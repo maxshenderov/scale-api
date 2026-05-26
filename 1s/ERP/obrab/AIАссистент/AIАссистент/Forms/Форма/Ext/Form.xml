@@ -1,0 +1,703 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>AI ассистент</v8:content>
+		</v8:item>
+	</Title>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
+	</Events>
+	<ChildItems>
+		<Button name="СписокМоделей" id="31">
+			<Type>UsualButton</Type>
+			<CommandName>Form.Command.СписокМоделей</CommandName>
+			<ExtendedTooltip name="СписокМоделейРасширеннаяПодсказка" id="32"/>
+		</Button>
+		<InputField name="Провайдер" id="33">
+			<DataPath>Провайдер</DataPath>
+			<ListChoiceMode>true</ListChoiceMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ПровайдерКонтекстноеМеню" id="34"/>
+			<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="35"/>
+			<Events>
+				<Event name="OnChange">ПровайдерПриИзменении</Event>
+			</Events>
+		</InputField>
+		<UsualGroup name="ГруппаМодель" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа модель</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа модель</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаМодельРасширеннаяПодсказка" id="16"/>
+			<ChildItems>
+				<InputField name="Модель" id="9">
+					<DataPath>Модель</DataPath>
+					<GroupVerticalAlign>Center</GroupVerticalAlign>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="МодельКонтекстноеМеню" id="10"/>
+					<ExtendedTooltip name="МодельРасширеннаяПодсказка" id="11"/>
+					<Events>
+						<Event name="OnChange">МодельПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ОписаниеМодели" id="12">
+					<DataPath>ОписаниеМодели</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<GroupVerticalAlign>Center</GroupVerticalAlign>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<AutoMaxHeight>false</AutoMaxHeight>
+					<MaxHeight>2</MaxHeight>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ОписаниеМоделиКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="ОписаниеМоделиРасширеннаяПодсказка" id="14"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаМодельVL" id="50">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа Vision модель</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Модель для анализа изображений (Vision LLM)</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаМодельVLРасширеннаяПодсказка" id="51"/>
+			<ChildItems>
+				<InputField name="МодельVL" id="52">
+					<DataPath>МодельVL</DataPath>
+					<GroupVerticalAlign>Center</GroupVerticalAlign>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="МодельVLКонтекстноеМеню" id="53"/>
+					<ExtendedTooltip name="МодельVLРасширеннаяПодсказка" id="54"/>
+					<Events>
+						<Event name="OnChange">МодельVLПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ОписаниеМоделиVL" id="55">
+					<DataPath>ОписаниеМоделиVL</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<GroupVerticalAlign>Center</GroupVerticalAlign>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<AutoMaxHeight>false</AutoMaxHeight>
+					<MaxHeight>2</MaxHeight>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<MultiLine>true</MultiLine>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ОписаниеМоделиVLКонтекстноеМеню" id="56"/>
+					<ExtendedTooltip name="ОписаниеМоделиVLРасширеннаяПодсказка" id="57"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Страницы" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="18"/>
+			<ChildItems>
+				<Page name="СтраницаЗаказ" id="21">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заказ</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница заказ</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="СтраницаЗаказРасширеннаяПодсказка" id="22"/>
+					<ChildItems>
+						<UsualGroup name="ГруппаЗаказЗадача" id="39">
+							<Group>AlwaysHorizontal</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаЗаказЗадачаРасширеннаяПодсказка" id="40"/>
+							<ChildItems>
+								<InputField name="Заказ" id="23">
+									<DataPath>Заказ</DataPath>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ЗаказКонтекстноеМеню" id="24"/>
+									<ExtendedTooltip name="ЗаказРасширеннаяПодсказка" id="25"/>
+								</InputField>
+								<Button name="ИндексироватьQdrant" id="80">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ИндексироватьЗаказQdrant</CommandName>
+									<ExtendedTooltip name="ИндексироватьQdrantРасширеннаяПодсказка" id="81"/>
+								</Button>
+								<InputField name="Задача" id="36">
+									<DataPath>Задача</DataPath>
+									<GroupVerticalAlign>Center</GroupVerticalAlign>
+									<ListChoiceMode>true</ListChoiceMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ЗадачаКонтекстноеМеню" id="37"/>
+									<ExtendedTooltip name="ЗадачаРасширеннаяПодсказка" id="38"/>
+									<Events>
+										<Event name="OnChange">ЗадачаПриИзменении</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ГруппаПутьМакет" id="46">
+							<Group>AlwaysHorizontal</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаПутьМакетРасширеннаяПодсказка" id="47"/>
+							<ChildItems>
+								<InputField name="ПутьКМакетуНаДискеПоле" id="43">
+									<DataPath>ПутьКМакетуНаДиске</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Путь к файлу макета</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПутьКМакетуНаДискеКонтекстноеМеню" id="44"/>
+									<ExtendedTooltip name="ПутьКМакетуНаДискеРасширеннаяПодсказка" id="45"/>
+								</InputField>
+								<Button name="ВыбратьФайлМакета" id="48">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ВыбратьФайлМакета</CommandName>
+									<ExtendedTooltip name="ВыбратьФайлМакетаРасширеннаяПодсказка" id="49"/>
+								</Button>
+								<Button name="ПроверитьPhase1" id="82">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ПроверитьPhase1</CommandName>
+									<ExtendedTooltip name="ПроверитьPhase1РасширеннаяПодсказка" id="83"/>
+								</Button>
+								<Button name="ПроверитьPyMuPDF" id="84">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ПроверитьPyMuPDF</CommandName>
+									<ExtendedTooltip name="ПроверитьPyMuPDFРасширеннаяПодсказка" id="85"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ГруппаИзвестныйРазмер" id="58">
+							<Group>AlwaysHorizontal</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаИзвестныйРазмерРасширеннаяПодсказка" id="59"/>
+							<ChildItems>
+								<InputField name="ИзвестныйРазмерММ" id="60">
+									<DataPath>ИзвестныйРазмерММ</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Размер (мм)</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ИзвестныйРазмерММКонтекстноеМеню" id="61"/>
+									<ExtendedTooltip name="ИзвестныйРазмерММРасширеннаяПодсказка" id="62"/>
+								</InputField>
+								<CheckBoxField name="ИзвестныйРазмерЭтоШирина" id="63">
+									<DataPath>ИзвестныйРазмерЭтоШирина</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Это ширина</v8:content>
+										</v8:item>
+									</Title>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ИзвестныйРазмерЭтоШиринаКонтекстноеМеню" id="64"/>
+									<ExtendedTooltip name="ИзвестныйРазмерЭтоШиринаРасширеннаяПодсказка" id="65"/>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="ГруппаДопИнфо" id="70">
+							<Group>AlwaysHorizontal</Group>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаДопИнфоРасширеннаяПодсказка" id="71"/>
+							<ChildItems>
+								<InputField name="ДополнительнаяИнформация" id="72">
+									<DataPath>ДополнительнаяИнформация</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Доп. информация</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ДополнительнаяИнформацияКонтекстноеМеню" id="73"/>
+									<ExtendedTooltip name="ДополнительнаяИнформацияРасширеннаяПодсказка" id="74"/>
+								</InputField>
+								<InputField name="ПутьДопФайлу" id="75">
+									<DataPath>ПутьДопФайлу</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Доп. файл</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ПутьДопФайлуКонтекстноеМеню" id="76"/>
+									<ExtendedTooltip name="ПутьДопФайлуРасширеннаяПодсказка" id="77"/>
+								</InputField>
+								<Button name="ВыбратьДопФайл" id="78">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ВыбратьФайлМакета</CommandName>
+									<ExtendedTooltip name="ВыбратьДопФайлРасширеннаяПодсказка" id="79"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<Button name="ИзвлечьПараметрыМакетаКнопка" id="41">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.ИзвлечьПараметрыМакета</CommandName>
+							<ExtendedTooltip name="ИзвлечьПараметрыМакетаКнопкаРасширеннаяПодсказка" id="42"/>
+						</Button>
+						<Button name="АнализЗаказа" id="29">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.АнализЗаказа</CommandName>
+							<ExtendedTooltip name="АнализЗаказаРасширеннаяПодсказка" id="30"/>
+						</Button>
+						<HTMLDocumentField name="htmlЗаказ" id="26">
+							<DataPath>htmlЗаказ</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Данные по заказу</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="htmlЗаказКонтекстноеМеню" id="27"/>
+							<ExtendedTooltip name="htmlЗаказРасширеннаяПодсказка" id="28"/>
+						</HTMLDocumentField>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаЧат" id="19">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Чат</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница чат</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="СтраницаЧатРасширеннаяПодсказка" id="20"/>
+					<ChildItems>
+						<InputField name="Вопрос" id="3">
+							<DataPath>Вопрос</DataPath>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<HorizontalStretch>true</HorizontalStretch>
+							<MultiLine>true</MultiLine>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ВопросКонтекстноеМеню" id="4"/>
+							<ExtendedTooltip name="ВопросРасширеннаяПодсказка" id="5"/>
+						</InputField>
+						<Button name="ВыполнитьЗапрос" id="1">
+							<Type>UsualButton</Type>
+							<DefaultButton>true</DefaultButton>
+							<CommandName>Form.Command.ВыполнитьЗапрос</CommandName>
+							<ExtendedTooltip name="ВыполнитьЗапросРасширеннаяПодсказка" id="2"/>
+						</Button>
+						<InputField name="ОтвОтветЗапроса" id="6">
+							<DataPath>ОтветЗапроса</DataPath>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<HorizontalStretch>true</HorizontalStretch>
+							<MultiLine>true</MultiLine>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ОтвОтветЗапросаКонтекстноеМеню" id="7"/>
+							<ExtendedTooltip name="ОтвОтветЗапросаРасширеннаяПодсказка" id="8"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:ExternalDataProcessorObject.AIАссистент</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="Вопрос" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вопрос</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ОтветЗапроса" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ответ запроса</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Модель" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Модель</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ОписаниеМодели" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Описание модели</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Заказ" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заказ</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DocumentRef.ЗаказКлиента</v8:Type>
+			</Type>
+			<Save>
+				<Field>Заказ</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="htmlЗаказ" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Html заказ</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+			<Save>
+				<Field>htmlЗаказ</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="Провайдер" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Провайдер</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="МодельVL" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Модель VL</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ОписаниеМоделиVL" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Описание модели VL</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Задача" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Задача</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ИзвестныйРазмерММ" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Известный размер (мм)</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>0</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ДополнительнаяИнформация" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Доп. информация</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ПутьДопФайлу" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Доп. файл</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ИзвестныйРазмерЭтоШирина" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Это ширина</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ПутьКМакетуНаДиске" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Путь к макету на диске</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ВыполнитьЗапрос" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выполнить запрос</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выполнить запрос</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ВыполнитьЗапрос</Action>
+		</Command>
+		<Command name="АнализЗаказа" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Анализ заказа</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Анализ заказа</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>АнализЗаказа</Action>
+		</Command>
+		<Command name="ВыбратьФайлМакета" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>...</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать файл макета на диске</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ВыбратьФайлМакета</Action>
+		</Command>
+		<Command name="ПроверитьPhase1" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>🧪 Тест Phase1</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Тестировать Phase1 - отправить файл на Docling и вывести результат</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПроверитьPhase1</Action>
+		</Command>
+		<Command name="ПроверитьPyMuPDF" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>🔬 Тест PyMuPDF+EasyOCR</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Тестировать PyMuPDF+EasyOCR - отправить файл на парсер (порт 8002) и вывести результат</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПроверитьPyMuPDF</Action>
+		</Command>
+		<Command name="ИндексироватьЗаказQdrant" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>🔍 Qdrant</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать данные индексации для Qdrant</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ИндексироватьЗаказQdrant</Action>
+		</Command>
+		<Command name="ИзвлечьПараметрыМакета" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>🎨 Извлечь параметры из макета</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Извлечь параметры макета через Vision LLM</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ИзвлечьПараметрыМакета</Action>
+		</Command>
+		<Command name="СписокМоделей" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список моделей</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список моделей</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СписокМоделей</Action>
+		</Command>
+	</Commands>
+</Form>

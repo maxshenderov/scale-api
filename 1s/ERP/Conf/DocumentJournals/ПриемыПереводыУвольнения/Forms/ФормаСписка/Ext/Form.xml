@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<CommandBarLocation>None</CommandBarLocation>
+	<CommandSet>
+		<ExcludedCommand>Create</ExcludedCommand>
+		<ExcludedCommand>CreateByParameter</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="NotificationProcessing">ОбработкаОповещения</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="СписокКритерииОтбора" id="53">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список критерии отбора</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter criterion list</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СписокКритерииОтбораРасширеннаяПодсказка" id="54"/>
+		</UsualGroup>
+		<UsualGroup name="СписокКомпоновщикНастроекПользовательскиеНастройки" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа пользовательских настроек</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СписокКомпоновщикНастроекПользовательскиеНастройкиРасширеннаяПодсказка" id="2"/>
+		</UsualGroup>
+		<UsualGroup name="СписокНастройкиОтбора" id="55">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дополнительные условия</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional conditions</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ExtendedTooltip name="СписокНастройкиОтбораРасширеннаяПодсказка" id="56"/>
+		</UsualGroup>
+		<CommandBar name="КоманднаяПанельФормы" id="36">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Командная панель формы</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Form command bar</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="КоманднаяПанельФормыРасширеннаяПодсказка" id="37"/>
+			<ChildItems>
+				<Popup name="ПодменюСоздать" id="57">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Создать</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Create</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ПодменюСоздатьРасширеннаяПодсказка" id="58"/>
+				</Popup>
+				<ButtonGroup name="СтандартныеКомандыФормы" id="59">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Стандартные команды формы</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Standard form commands</v8:content>
+						</v8:item>
+					</Title>
+					<CommandSource>Form</CommandSource>
+					<ExtendedTooltip name="СтандартныеКомандыФормыРасширеннаяПодсказка" id="60"/>
+					<ChildItems>
+						<Button name="ФормаУтвердить" id="34">
+							<Type>CommandBarButton</Type>
+							<CommandName>Form.Command.Утвердить</CommandName>
+							<ExtendedTooltip name="ФормаУтвердитьРасширеннаяПодсказка" id="35"/>
+						</Button>
+					</ChildItems>
+				</ButtonGroup>
+				<Button name="Справка" id="66">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.StandardCommand.Help</CommandName>
+					<ExtendedTooltip name="СправкаРасширеннаяПодсказка" id="67"/>
+				</Button>
+				<Button name="ОбщаяКомандаПрисоединенныеФайлыБЗК" id="70">
+					<Type>CommandBarButton</Type>
+					<CommandName>CommonCommand.ПрисоединенныеФайлыБЗК</CommandName>
+					<DataPath>Items.Список.CurrentData.Ссылка</DataPath>
+					<ExtendedTooltip name="ОбщаяКомандаПрисоединенныеФайлыБЗКРасширеннаяПодсказка" id="71"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="Список" id="3">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<DefaultItem>true</DefaultItem>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Список</DataPath>
+			<RowPictureDataPath>Список.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSet>
+				<ExcludedCommand>CreateByParameter</ExcludedCommand>
+				<ExcludedCommand>Refresh</ExcludedCommand>
+			</CommandSet>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>СписокКомпоновщикНастроекПользовательскиеНастройки</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СписокКонтекстноеМеню" id="4"/>
+			<AutoCommandBar name="СписокКоманднаяПанель" id="5">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="6"/>
+			<SearchStringAddition name="СписокСтрокаПоиска" id="41">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="42"/>
+				<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="43"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СписокСостояниеПросмотра" id="44">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="45"/>
+				<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="46"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СписокУправлениеПоиском" id="47">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="48"/>
+				<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="49"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="BeforeAddRow">СписокПередНачаломДобавления</Event>
+				<Event name="OnActivateRow">СписокПриАктивизацииСтроки</Event>
+				<Event name="OnGetDataAtServer">СписокПриПолученииДанныхНаСервере</Event>
+				<Event name="BeforeLoadUserSettingsAtServer">СписокПередЗагрузкойПользовательскихНастроекНаСервере</Event>
+				<Event name="OnUpdateUserSettingSetAtServer">СписокПриОбновленииСоставаПользовательскихНастроекНаСервере</Event>
+			</Events>
+			<ChildItems>
+				<PictureField name="ЕстьФайлы" id="61">
+					<DataPath>Список.ЕстьФайлы</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Есть файлы</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Has files</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>None</TitleLocation>
+					<HeaderPicture>
+						<xr:Ref>CommonPicture.Скрепка</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</HeaderPicture>
+					<Width>2</Width>
+					<ValuesPicture>
+						<xr:Ref>CommonPicture.КоллекцияСкрепка</xr:Ref>
+						<xr:LoadTransparent>false</xr:LoadTransparent>
+					</ValuesPicture>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="ЕстьФайлыКонтекстноеМеню" id="62"/>
+					<ExtendedTooltip name="ЕстьФайлыРасширеннаяПодсказка" id="63"/>
+				</PictureField>
+				<LabelField name="ДатаСобытия" id="19">
+					<DataPath>Список.ДатаСобытия</DataPath>
+					<Width>7</Width>
+					<ContextMenu name="ДатаСобытияКонтекстноеМеню" id="20"/>
+					<ExtendedTooltip name="ДатаСобытияРасширеннаяПодсказка" id="21"/>
+				</LabelField>
+				<LabelField name="Дата" id="38">
+					<DataPath>Список.Дата</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<Width>9</Width>
+					<ContextMenu name="ДатаКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="40"/>
+				</LabelField>
+				<LabelField name="Номер" id="13">
+					<DataPath>Список.Номер</DataPath>
+					<Width>11</Width>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ContextMenu name="НомерКонтекстноеМеню" id="14"/>
+					<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="15"/>
+				</LabelField>
+				<LabelField name="Тип" id="16">
+					<DataPath>Список.Тип</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ContextMenu name="ТипКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ТипРасширеннаяПодсказка" id="18"/>
+				</LabelField>
+				<LabelField name="Организация" id="22">
+					<DataPath>Список.Организация</DataPath>
+					<ContextMenu name="ОрганизацияКонтекстноеМеню" id="23"/>
+					<ExtendedTooltip name="ОрганизацияРасширеннаяПодсказка" id="24"/>
+				</LabelField>
+				<LabelField name="Сотрудник" id="25">
+					<DataPath>Список.Сотрудник</DataPath>
+					<ContextMenu name="СотрудникКонтекстноеМеню" id="26"/>
+					<ExtendedTooltip name="СотрудникРасширеннаяПодсказка" id="27"/>
+				</LabelField>
+				<CheckBoxField name="БронированиеПозиции" id="50">
+					<DataPath>Список.БронированиеПозиции</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Бронь</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Reservation</v8:content>
+						</v8:item>
+					</Title>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="БронированиеПозицииКонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="БронированиеПозицииРасширеннаяПодсказка" id="52"/>
+				</CheckBoxField>
+				<LabelField name="Комментарий" id="31">
+					<DataPath>Список.Комментарий</DataPath>
+					<ContextMenu name="КомментарийКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="33"/>
+				</LabelField>
+				<LabelField name="Ответственный" id="28">
+					<DataPath>Список.Ответственный</DataPath>
+					<ContextMenu name="ОтветственныйКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="30"/>
+				</LabelField>
+				<LabelField name="Ссылка" id="7">
+					<DataPath>Список.Ссылка</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ContextMenu name="СсылкаКонтекстноеМеню" id="8"/>
+					<ExtendedTooltip name="СсылкаРасширеннаяПодсказка" id="9"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>Список.БронированиеПозиции</Field>
+				<Field>Список.Дата</Field>
+				<Field>Список.ИзменитьДистанционнуюРаботу</Field>
+				<Field>Список.ОбщееСостояние</Field>
+				<Field>Список.ПериодРегистрации</Field>
+				<Field>Список.ПредоставлятьМероприятияТДВЭлектроннойФорме</Field>
+				<Field>Список.Проведен</Field>
+				<Field>Список.РаботаетДистанционно</Field>
+				<Field>Список.СостояниеОригиналаПервичногоДокумента</Field>
+				<Field>Список.Ссылка</Field>
+				<Field>Список.ТребуетОбработки</Field>
+				<Field>Список.УвольнениеСОсновногоМестаРаботы</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	ЖурналДокументовПриемыПереводыУвольнения.Ссылка КАК Ссылка,
+	ЖурналДокументовПриемыПереводыУвольнения.Дата КАК Дата,
+	НАЧАЛОПЕРИОДА(ЖурналДокументовПриемыПереводыУвольнения.Дата, ДЕНЬ) КАК ДатаДокумента,
+	ЖурналДокументовПриемыПереводыУвольнения.ПометкаУдаления КАК ПометкаУдаления,
+	ЖурналДокументовПриемыПереводыУвольнения.Номер КАК Номер,
+	ЖурналДокументовПриемыПереводыУвольнения.Проведен КАК Проведен,
+	ЖурналДокументовПриемыПереводыУвольнения.Организация КАК Организация,
+	ЖурналДокументовПриемыПереводыУвольнения.Сотрудник КАК Сотрудник,
+	ЖурналДокументовПриемыПереводыУвольнения.ДатаСобытия КАК ДатаСобытия,
+	ЖурналДокументовПриемыПереводыУвольнения.Утвержден КАК Утвержден,
+	ЖурналДокументовПриемыПереводыУвольнения.Ответственный КАК Ответственный,
+	ЖурналДокументовПриемыПереводыУвольнения.Комментарий КАК Комментарий,
+	ВЫБОР
+		КОГДА НЕ ЖурналДокументовПриемыПереводыУвольнения.ПометкаУдаления
+				И НЕ ЖурналДокументовПриемыПереводыУвольнения.Утвержден
+			ТОГДА ИСТИНА
+		ИНАЧЕ ЛОЖЬ
+	КОНЕЦ КАК ТребуетОбработки,
+	ЖурналДокументовПриемыПереводыУвольнения.Тип КАК Тип,
+	ЖурналДокументовПриемыПереводыУвольнения.БронированиеПозиции КАК БронированиеПозиции,
+	ВЫБОР
+		КОГДА НаличиеФайлов.ЕстьФайлы ЕСТЬ NULL
+			ТОГДА 0
+		КОГДА НаличиеФайлов.ЕстьФайлы
+			ТОГДА 1
+		ИНАЧЕ 0
+	КОНЕЦ КАК ЕстьФайлы,
+	ЖурналДокументовПриемыПереводыУвольнения.Ссылка.УвольнениеСОсновногоМестаРаботы КАК УвольнениеСОсновногоМестаРаботы,
+	ЖурналДокументовПриемыПереводыУвольнения.Ссылка.РаботаетДистанционно КАК РаботаетДистанционно,
+	ВЫБОР
+		КОГДА ЖурналДокументовПриемыПереводыУвольнения.Ссылка ССЫЛКА Документ.ПриемНаРаботу
+			ТОГДА ЖурналДокументовПриемыПереводыУвольнения.Ссылка.РаботаетДистанционно
+		КОГДА ЖурналДокументовПриемыПереводыУвольнения.Ссылка ССЫЛКА Документ.ПриемНаРаботуСписком
+			ТОГДА ЖурналДокументовПриемыПереводыУвольнения.Ссылка.РаботаетДистанционно
+		ИНАЧЕ ЖурналДокументовПриемыПереводыУвольнения.Ссылка.ИзменитьДистанционнуюРаботу
+	КОНЕЦ КАК ИзменитьДистанционнуюРаботу,
+	ЖурналДокументовПриемыПереводыУвольнения.Ссылка.ПредоставлятьМероприятияТДВЭлектроннойФорме КАК ПредоставлятьМероприятияТДВЭлектроннойФорме,
+	NULL КАК СостояниеОригиналаПервичногоДокумента,
+	ИСТИНА КАК ОбщееСостояние,
+	0 КАК СостояниеОригиналПолучен,
+	ЖурналДокументовПриемыПереводыУвольнения.Ссылка.ПериодРегистрации КАК ПериодРегистрации
+ИЗ
+	ЖурналДокументов.ПриемыПереводыУвольнения КАК ЖурналДокументовПриемыПереводыУвольнения
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.НаличиеФайлов КАК НаличиеФайлов
+		ПО ЖурналДокументовПриемыПереводыУвольнения.Ссылка = НаличиеФайлов.ОбъектСФайлами
+{ГДЕ
+	(ИСТИНА В
+			(ВЫБРАТЬ ПЕРВЫЕ 1
+				ИСТИНА
+			ИЗ
+				РегистрСведений.СоставДокументовЗарплатаКадры КАК СоставДокументовЗарплатаКадры
+			ГДЕ
+				СоставДокументовЗарплатаКадры.ФизическоеЛицо = &amp;ФизическоеЛицо
+				И ЖурналДокументовПриемыПереводыУвольнения.Ссылка = СоставДокументовЗарплатаКадры.ДокументФизическогоЛица))}</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Организация</dcssch:dataPath>
+					<dcssch:field>Организация</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Ссылка</dcssch:dataPath>
+					<dcssch:field>Ссылка</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Дата</dcssch:dataPath>
+					<dcssch:field>Дата</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ДатаСобытия</dcssch:dataPath>
+					<dcssch:field>ДатаСобытия</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Проведен</dcssch:dataPath>
+					<dcssch:field>Проведен</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ДатаДокумента</dcssch:dataPath>
+					<dcssch:field>ДатаДокумента</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дата документа</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Document date</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ПометкаУдаления</dcssch:dataPath>
+					<dcssch:field>ПометкаУдаления</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Номер</dcssch:dataPath>
+					<dcssch:field>Номер</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Сотрудник</dcssch:dataPath>
+					<dcssch:field>Сотрудник</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Утвержден</dcssch:dataPath>
+					<dcssch:field>Утвержден</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Ответственный</dcssch:dataPath>
+					<dcssch:field>Ответственный</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Комментарий</dcssch:dataPath>
+					<dcssch:field>Комментарий</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ТребуетОбработки</dcssch:dataPath>
+					<dcssch:field>ТребуетОбработки</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Требует обработки</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Requires processing</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Тип</dcssch:dataPath>
+					<dcssch:field>Тип</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>БронированиеПозиции</dcssch:dataPath>
+					<dcssch:field>БронированиеПозиции</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ЕстьФайлы</dcssch:dataPath>
+					<dcssch:field>ЕстьФайлы</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Есть файлы</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Has files</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>УвольнениеСОсновногоМестаРаботы</dcssch:dataPath>
+					<dcssch:field>УвольнениеСОсновногоМестаРаботы</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Увольнение с основного места работы</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Dismissal from the main place of work</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>РаботаетДистанционно</dcssch:dataPath>
+					<dcssch:field>РаботаетДистанционно</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Работает дистанционно</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Works remotely</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ИзменитьДистанционнуюРаботу</dcssch:dataPath>
+					<dcssch:field>ИзменитьДистанционнуюРаботу</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Изменить дистанционную работу</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Edit remote work</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ПредоставлятьМероприятияТДВЭлектроннойФорме</dcssch:dataPath>
+					<dcssch:field>ПредоставлятьМероприятияТДВЭлектроннойФорме</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Предоставлять мероприятия ТДВЭлектронной форме</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Provide labor activity events in electronic form</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>СостояниеОригиналаПервичногоДокумента</dcssch:dataPath>
+					<dcssch:field>СостояниеОригиналаПервичногоДокумента</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Состояние оригинала первичного документа</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Source document original state</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ОбщееСостояние</dcssch:dataPath>
+					<dcssch:field>ОбщееСостояние</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Общее состояние</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Overall state</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>СостояниеОригиналПолучен</dcssch:dataPath>
+					<dcssch:field>СостояниеОригиналПолучен</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Состояние оригинал получен</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>State original is received</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ПериодРегистрации</dcssch:dataPath>
+					<dcssch:field>ПериодРегистрации</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Период регистрации</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Registration period</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Parameter>
+					<dcssch:name>ФизическоеЛицо</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Физическое лицо</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Individual</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:CatalogRef.ФизическиеЛица</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>false</dcssch:useRestriction>
+				</Parameter>
+				<MainTable>DocumentJournal.ПриемыПереводыУвольнения</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="КомандыСозданияДокументов" id="2">
+			<Type/>
+		</Attribute>
+		<Attribute name="ПараметрыПодключаемыхКоманд" id="3">
+			<Type/>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Утвердить" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Утвердить</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Approve</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Утвердить</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Approve</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ОперацияВыполненаУспешно</xr:Ref>
+				<xr:LoadTransparent>false</xr:LoadTransparent>
+			</Picture>
+			<Action>Утвердить</Action>
+			<FunctionalOptions>
+				<Item>FunctionalOption.ИспользоватьМногофункциональностьДокументовЗарплатаКадры</Item>
+			</FunctionalOptions>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

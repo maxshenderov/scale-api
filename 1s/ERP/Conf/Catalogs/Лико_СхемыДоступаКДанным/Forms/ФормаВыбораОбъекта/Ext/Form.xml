@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="Объекты" id="24">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объекты</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объекты</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="ОбъектыРасширеннаяПодсказка" id="25"/>
+			<ChildItems>
+				<Page name="Документы" id="49">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Документы</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Документы</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Picture>
+						<xr:Ref>StdPicture.Document</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<TitleDataPath>5</TitleDataPath>
+					<ExtendedTooltip name="ДокументыРасширеннаяПодсказка" id="50"/>
+					<ChildItems>
+						<Table name="СписокДокументов" id="86">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Header>false</Header>
+							<HorizontalLines>false</HorizontalLines>
+							<VerticalLines>false</VerticalLines>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<DataPath>СписокДокументов</DataPath>
+							<RowPictureDataPath>СписокДокументов.Picture</RowPictureDataPath>
+							<CommandSet>
+								<ExcludedCommand>Pickup</ExcludedCommand>
+							</CommandSet>
+							<ContextMenu name="СписокДокументовКонтекстноеМеню" id="87"/>
+							<AutoCommandBar name="СписокДокументовКоманднаяПанель" id="88"/>
+							<ExtendedTooltip name="СписокДокументовРасширеннаяПодсказка" id="89"/>
+							<SearchStringAddition name="СписокДокументовСтрокаПоиска" id="90">
+								<AdditionSource>
+									<Item>СписокДокументов</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокДокументовСтрокаПоискаКонтекстноеМеню" id="91"/>
+								<ExtendedTooltip name="СписокДокументовСтрокаПоискаРасширеннаяПодсказка" id="92"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="СписокДокументовСостояниеПросмотра" id="93">
+								<AdditionSource>
+									<Item>СписокДокументов</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокДокументовСостояниеПросмотраКонтекстноеМеню" id="94"/>
+								<ExtendedTooltip name="СписокДокументовСостояниеПросмотраРасширеннаяПодсказка" id="95"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="СписокДокументовУправлениеПоиском" id="96">
+								<AdditionSource>
+									<Item>СписокДокументов</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокДокументовУправлениеПоискомКонтекстноеМеню" id="97"/>
+								<ExtendedTooltip name="СписокДокументовУправлениеПоискомРасширеннаяПодсказка" id="98"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">СписокДокументовВыбор</Event>
+							</Events>
+							<ChildItems>
+								<InputField name="СписокДокументовЗначение" id="99">
+									<DataPath>СписокДокументов.Value</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="СписокДокументовЗначениеКонтекстноеМеню" id="100"/>
+									<ExtendedTooltip name="СписокДокументовЗначениеРасширеннаяПодсказка" id="101"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="Справочники" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Справочники</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Справочники</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Picture>
+						<xr:Ref>StdPicture.Catalog</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<TitleDataPath>4</TitleDataPath>
+					<ExtendedTooltip name="СправочникиРасширеннаяПодсказка" id="2"/>
+					<ChildItems>
+						<Table name="СписокСправочников" id="70">
+							<Representation>List</Representation>
+							<SkipOnInput>false</SkipOnInput>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<Header>false</Header>
+							<HorizontalLines>false</HorizontalLines>
+							<VerticalLines>false</VerticalLines>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<DataPath>СписокСправочников</DataPath>
+							<RowPictureDataPath>СписокСправочников.Picture</RowPictureDataPath>
+							<CommandSet>
+								<ExcludedCommand>Pickup</ExcludedCommand>
+							</CommandSet>
+							<ContextMenu name="СписокСправочниковКонтекстноеМеню" id="71"/>
+							<AutoCommandBar name="СписокСправочниковКоманднаяПанель" id="72"/>
+							<ExtendedTooltip name="СписокСправочниковРасширеннаяПодсказка" id="73"/>
+							<SearchStringAddition name="СписокСправочниковСтрокаПоиска" id="74">
+								<AdditionSource>
+									<Item>СписокСправочников</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокСправочниковСтрокаПоискаКонтекстноеМеню" id="75"/>
+								<ExtendedTooltip name="СписокСправочниковСтрокаПоискаРасширеннаяПодсказка" id="76"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="СписокСправочниковСостояниеПросмотра" id="77">
+								<AdditionSource>
+									<Item>СписокСправочников</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокСправочниковСостояниеПросмотраКонтекстноеМеню" id="78"/>
+								<ExtendedTooltip name="СписокСправочниковСостояниеПросмотраРасширеннаяПодсказка" id="79"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="СписокСправочниковУправлениеПоиском" id="80">
+								<AdditionSource>
+									<Item>СписокСправочников</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокСправочниковУправлениеПоискомКонтекстноеМеню" id="81"/>
+								<ExtendedTooltip name="СписокСправочниковУправлениеПоискомРасширеннаяПодсказка" id="82"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">СписокСправочниковВыбор</Event>
+							</Events>
+							<ChildItems>
+								<InputField name="СписокСправочников1Значение" id="83">
+									<DataPath>СписокСправочников.Value</DataPath>
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="СписокСправочников1ЗначениеКонтекстноеМеню" id="84"/>
+									<ExtendedTooltip name="СписокСправочников1ЗначениеРасширеннаяПодсказка" id="85"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="СписокСправочников" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список справочников</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="СписокДокументов" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список документов</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+			<SavedData>true</SavedData>
+			<Settings xsi:type="v8:TypeDescription">
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Settings>
+		</Attribute>
+	</Attributes>
+</Form>

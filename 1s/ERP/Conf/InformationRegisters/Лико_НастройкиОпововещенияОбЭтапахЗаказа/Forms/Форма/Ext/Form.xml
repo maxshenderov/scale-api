@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Пользователь" id="36">
+			<DataPath>Пользователь</DataPath>
+			<ContextMenu name="ПользовательКонтекстноеМеню" id="37"/>
+			<ExtendedTooltip name="ПользовательРасширеннаяПодсказка" id="38"/>
+			<Events>
+				<Event name="OnChange">ПользовательПриИзменении</Event>
+			</Events>
+		</InputField>
+		<InputField name="Заказ" id="39">
+			<DataPath>Заказ</DataPath>
+			<Enabled>false</Enabled>
+			<ContextMenu name="ЗаказКонтекстноеМеню" id="40"/>
+			<ExtendedTooltip name="ЗаказРасширеннаяПодсказка" id="41"/>
+		</InputField>
+		<Table name="ВыборЭтапов" id="14">
+			<Representation>Tree</Representation>
+			<ChoiceMode>true</ChoiceMode>
+			<MultipleChoice>true</MultipleChoice>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<EnableStartDrag>true</EnableStartDrag>
+			<DataPath>ВыборЭтапов</DataPath>
+			<RowPictureDataPath>~ВыборЭтапов.DefaultPicture</RowPictureDataPath>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="ВыборЭтаповКонтекстноеМеню" id="15"/>
+			<AutoCommandBar name="ВыборЭтаповКоманднаяПанель" id="16"/>
+			<ExtendedTooltip name="ВыборЭтаповРасширеннаяПодсказка" id="17"/>
+			<SearchStringAddition name="ВыборЭтаповСтрокаПоиска" id="18">
+				<AdditionSource>
+					<Item>ВыборЭтапов</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ВыборЭтаповСтрокаПоискаКонтекстноеМеню" id="19"/>
+				<ExtendedTooltip name="ВыборЭтаповСтрокаПоискаРасширеннаяПодсказка" id="20"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ВыборЭтаповСостояниеПросмотра" id="21">
+				<AdditionSource>
+					<Item>ВыборЭтапов</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ВыборЭтаповСостояниеПросмотраКонтекстноеМеню" id="22"/>
+				<ExtendedTooltip name="ВыборЭтаповСостояниеПросмотраРасширеннаяПодсказка" id="23"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ВыборЭтаповУправлениеПоиском" id="24">
+				<AdditionSource>
+					<Item>ВыборЭтапов</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ВыборЭтаповУправлениеПоискомКонтекстноеМеню" id="25"/>
+				<ExtendedTooltip name="ВыборЭтаповУправлениеПоискомРасширеннаяПодсказка" id="26"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">ВыборЭтаповВыбор</Event>
+			</Events>
+			<ChildItems>
+				<CheckBoxField name="Оповестить" id="30">
+					<DataPath>ВыборЭтапов.Оповестить</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выбрано</v8:content>
+						</v8:item>
+					</Title>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ОповеститьКонтекстноеМеню" id="31"/>
+					<ExtendedTooltip name="ОповеститьРасширеннаяПодсказка" id="32"/>
+				</CheckBoxField>
+				<LabelField name="ВыборЭтапов1Наименование" id="27">
+					<DataPath>ВыборЭтапов.Наименование</DataPath>
+					<ContextMenu name="ВыборЭтапов1НаименованиеКонтекстноеМеню" id="28"/>
+					<ExtendedTooltip name="ВыборЭтапов1НаименованиеРасширеннаяПодсказка" id="29"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ВыборЭтапов" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбор этапов</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	Лико_ЭтапыВыполненияЗаказа.Ссылка КАК Ссылка
+ПОМЕСТИТЬ втЭтапы
+ИЗ
+	Справочник.Лико_ЭтапыВыполненияЗаказа КАК Лико_ЭтапыВыполненияЗаказа
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Лико_НастройкиОпововещенияОбЭтапахЗаказа.Этап.Ссылка КАК ЭтапСсылка
+ПОМЕСТИТЬ втНастройкаОповещения
+ИЗ
+	РегистрСведений.Лико_НастройкиОпововещенияОбЭтапахЗаказа КАК Лико_НастройкиОпововещенияОбЭтапахЗаказа
+ГДЕ
+	Лико_НастройкиОпововещенияОбЭтапахЗаказа.Заказ = &amp;Заказ
+	И Лико_НастройкиОпововещенияОбЭтапахЗаказа.Пользователь = &amp;Пользователь
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втЭтапы.Ссылка КАК Наименование,
+	ВЫБОР
+		КОГДА НЕ втНастройкаОповещения.ЭтапСсылка ЕСТЬ NULL
+			ТОГДА ИСТИНА
+		ИНАЧЕ ЛОЖЬ
+	КОНЕЦ КАК Оповестить
+ИЗ
+	втЭтапы КАК втЭтапы
+		ЛЕВОЕ СОЕДИНЕНИЕ втНастройкаОповещения КАК втНастройкаОповещения
+		ПО (втНастройкаОповещения.ЭтапСсылка = втЭтапы.Ссылка)</QueryText>
+				<KeyType>FieldValue</KeyType>
+				<KeyField>Наименование</KeyField>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="Пользователь" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Пользователь</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Пользователи</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Заказ" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заказ</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DocumentRef.ЗаказКлиента</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+</Form>

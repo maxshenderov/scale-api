@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="" id="-1"/>
+	<ChildItems>
+		<UsualGroup name="Шапка" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Шапка</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ШапкаРасширеннаяПодсказка" id="2"/>
+			<ChildItems>
+				<UsualGroup name="ЛеваяКолонка" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Левая колонка</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ЛеваяКолонкаРасширеннаяПодсказка" id="4"/>
+					<ChildItems>
+						<InputField name="Номер" id="5">
+							<DataPath>Объект.Number</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="НомерКонтекстноеМеню" id="6"/>
+							<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="7"/>
+						</InputField>
+						<InputField name="Дата" id="8">
+							<DataPath>Объект.Date</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ДатаКонтекстноеМеню" id="9"/>
+							<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="10"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ПраваяКолонка" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Правая колонка</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ПраваяКолонкаРасширеннаяПодсказка" id="12"/>
+					<ChildItems>
+						<InputField name="Организация" id="13">
+							<DataPath>Объект.Организация</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ОрганизацияКонтекстноеМеню" id="14"/>
+							<ExtendedTooltip name="ОрганизацияРасширеннаяПодсказка" id="15"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="Затраты" id="16">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.Затраты</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ЗатратыКонтекстноеМеню" id="17"/>
+			<AutoCommandBar name="ЗатратыКоманднаяПанель" id="18"/>
+			<ExtendedTooltip name="ЗатратыРасширеннаяПодсказка" id="19"/>
+			<SearchStringAddition name="ЗатратыСтрокаПоиска" id="20">
+				<AdditionSource>
+					<Item>Затраты</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗатратыСтрокаПоискаКонтекстноеМеню" id="21"/>
+				<ExtendedTooltip name="ЗатратыСтрокаПоискаРасширеннаяПодсказка" id="22"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ЗатратыСостояниеПросмотра" id="23">
+				<AdditionSource>
+					<Item>Затраты</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗатратыСостояниеПросмотраКонтекстноеМеню" id="24"/>
+				<ExtendedTooltip name="ЗатратыСостояниеПросмотраРасширеннаяПодсказка" id="25"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ЗатратыУправлениеПоиском" id="26">
+				<AdditionSource>
+					<Item>Затраты</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗатратыУправлениеПоискомКонтекстноеМеню" id="27"/>
+				<ExtendedTooltip name="ЗатратыУправлениеПоискомРасширеннаяПодсказка" id="28"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ЗатратыНомерСтроки" id="29">
+					<DataPath>Объект.Затраты.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыНомерСтрокиКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="ЗатратыНомерСтрокиРасширеннаяПодсказка" id="31"/>
+				</LabelField>
+				<InputField name="ЗатратыЗаказ" id="32">
+					<DataPath>Объект.Затраты.Заказ</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыЗаказКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="ЗатратыЗаказРасширеннаяПодсказка" id="34"/>
+				</InputField>
+				<InputField name="ЗатратыРабочийЦентр" id="35">
+					<DataPath>Объект.Затраты.РабочийЦентр</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыРабочийЦентрКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="ЗатратыРабочийЦентрРасширеннаяПодсказка" id="37"/>
+				</InputField>
+				<InputField name="ЗатратыЗатрата" id="38">
+					<DataPath>Объект.Затраты.Затрата</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыЗатратаКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="ЗатратыЗатратаРасширеннаяПодсказка" id="40"/>
+				</InputField>
+				<InputField name="ЗатратыСтатьяЗатрат" id="41">
+					<DataPath>Объект.Затраты.СтатьяЗатрат</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыСтатьяЗатратКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="ЗатратыСтатьяЗатратРасширеннаяПодсказка" id="43"/>
+				</InputField>
+				<InputField name="ЗатратыНомерПроката" id="44">
+					<DataPath>Объект.Затраты.НомерПроката</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыНомерПрокатаКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="ЗатратыНомерПрокатаРасширеннаяПодсказка" id="46"/>
+				</InputField>
+				<InputField name="ЗатратыВидРабот" id="47">
+					<DataPath>Объект.Затраты.ВидРабот</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыВидРаботКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="ЗатратыВидРаботРасширеннаяПодсказка" id="49"/>
+				</InputField>
+				<InputField name="ЗатратыНомерРаботы" id="50">
+					<DataPath>Объект.Затраты.НомерРаботы</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыНомерРаботыКонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="ЗатратыНомерРаботыРасширеннаяПодсказка" id="52"/>
+				</InputField>
+				<InputField name="ЗатратыВидНастроечногоМатериала" id="53">
+					<DataPath>Объект.Затраты.ВидНастроечногоМатериала</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыВидНастроечногоМатериалаКонтекстноеМеню" id="54"/>
+					<ExtendedTooltip name="ЗатратыВидНастроечногоМатериалаРасширеннаяПодсказка" id="55"/>
+				</InputField>
+				<InputField name="ЗатратыКоличество" id="56">
+					<DataPath>Объект.Затраты.Количество</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыКоличествоКонтекстноеМеню" id="57"/>
+					<ExtendedTooltip name="ЗатратыКоличествоРасширеннаяПодсказка" id="58"/>
+				</InputField>
+				<InputField name="ЗатратыСумма" id="59">
+					<DataPath>Объект.Затраты.Сумма</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыСуммаКонтекстноеМеню" id="60"/>
+					<ExtendedTooltip name="ЗатратыСуммаРасширеннаяПодсказка" id="61"/>
+				</InputField>
+				<InputField name="ЗатратыКоличествоПМ" id="62">
+					<DataPath>Объект.Затраты.КоличествоПМ</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗатратыКоличествоПМКонтекстноеМеню" id="63"/>
+					<ExtendedTooltip name="ЗатратыКоличествоПМРасширеннаяПодсказка" id="64"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Лико_ВводОстатковЗатратДляОтгрузки</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+	</Attributes>
+</Form>

@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>лк Несоответствующая продукция</v8:content>
+		</v8:item>
+	</Title>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoURL>false</AutoURL>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Button name="ФормаСоздать" id="85">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Создать</CommandName>
+				<ExtendedTooltip name="ФормаСоздатьРасширеннаяПодсказка" id="86"/>
+			</Button>
+			<Button name="ФормаСкопировать" id="87">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Скопировать</CommandName>
+				<ExtendedTooltip name="ФормаСкопироватьРасширеннаяПодсказка" id="88"/>
+			</Button>
+			<Button name="ФормаОбновить" id="89">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Обновить</CommandName>
+				<ExtendedTooltip name="ФормаОбновитьРасширеннаяПодсказка" id="90"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">ОбработкаОповещения</Event>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Период" id="115">
+			<DataPath>Период</DataPath>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="ПериодКонтекстноеМеню" id="116"/>
+			<ExtendedTooltip name="ПериодРасширеннаяПодсказка" id="117"/>
+			<Events>
+				<Event name="OnChange">ПериодПриИзменении</Event>
+			</Events>
+		</InputField>
+		<UsualGroup name="СписокКомпоновщикНастроекПользовательскиеНастройки" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа пользовательских настроек</v8:content>
+				</v8:item>
+			</Title>
+			<VerticalStretch>false</VerticalStretch>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СписокКомпоновщикНастроекПользовательскиеНастройкиРасширеннаяПодсказка" id="2"/>
+		</UsualGroup>
+		<Table name="Список" id="3">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<DefaultItem>true</DefaultItem>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<DataPath>Список</DataPath>
+			<RowPictureDataPath>~Список.DefaultPicture</RowPictureDataPath>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>СписокКомпоновщикНастроекПользовательскиеНастройки</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СписокКонтекстноеМеню" id="4"/>
+			<AutoCommandBar name="СписокКоманднаяПанель" id="5">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="6"/>
+			<SearchStringAddition name="СписокСтрокаПоиска" id="7">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="8"/>
+				<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="9"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СписокСостояниеПросмотра" id="10">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="11"/>
+				<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="12"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СписокУправлениеПоиском" id="13">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="14"/>
+				<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="15"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">СписокВыбор</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="Дата" id="70">
+					<DataPath>Список.Дата</DataPath>
+					<ContextMenu name="ДатаКонтекстноеМеню" id="71"/>
+					<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="72"/>
+				</LabelField>
+				<LabelField name="Номер" id="73">
+					<DataPath>Список.Номер</DataPath>
+					<ContextMenu name="НомерКонтекстноеМеню" id="74"/>
+					<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="75"/>
+				</LabelField>
+				<LabelField name="НомерЗаказа" id="22">
+					<DataPath>Список.НомерЗаказа</DataPath>
+					<ContextMenu name="НомерЗаказаКонтекстноеМеню" id="23"/>
+					<ExtendedTooltip name="НомерЗаказаРасширеннаяПодсказка" id="24"/>
+				</LabelField>
+				<LabelField name="ТипЗаказа" id="109">
+					<DataPath>Список.ТипЗаказа</DataPath>
+					<ContextMenu name="ТипЗаказаКонтекстноеМеню" id="110"/>
+					<ExtendedTooltip name="ТипЗаказаРасширеннаяПодсказка" id="111"/>
+				</LabelField>
+				<LabelField name="Состояние" id="76">
+					<DataPath>Список.Состояние</DataPath>
+					<ContextMenu name="СостояниеКонтекстноеМеню" id="77"/>
+					<ExtendedTooltip name="СостояниеРасширеннаяПодсказка" id="78"/>
+				</LabelField>
+				<LabelField name="ДокументОтгрузки" id="106">
+					<DataPath>Список.ДокументОтгрузки</DataPath>
+					<ContextMenu name="ДокументОтгрузкиКонтекстноеМеню" id="107"/>
+					<ExtendedTooltip name="ДокументОтгрузкиРасширеннаяПодсказка" id="108"/>
+				</LabelField>
+				<LabelField name="Менеджер" id="25">
+					<DataPath>Список.Менеджер</DataPath>
+					<ContextMenu name="МенеджерКонтекстноеМеню" id="26"/>
+					<ExtendedTooltip name="МенеджерРасширеннаяПодсказка" id="27"/>
+				</LabelField>
+				<LabelField name="Партнер" id="28">
+					<DataPath>Список.Партнер</DataPath>
+					<ContextMenu name="ПартнерКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="ПартнерРасширеннаяПодсказка" id="30"/>
+				</LabelField>
+				<LabelField name="Этикетки" id="31">
+					<DataPath>Список.Этикетки</DataPath>
+					<ContextMenu name="ЭтикеткиКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="ЭтикеткиРасширеннаяПодсказка" id="33"/>
+				</LabelField>
+				<LabelField name="Номенклатура" id="34">
+					<DataPath>Список.Номенклатура</DataPath>
+					<ContextMenu name="НоменклатураКонтекстноеМеню" id="35"/>
+					<ExtendedTooltip name="НоменклатураРасширеннаяПодсказка" id="36"/>
+				</LabelField>
+				<LabelField name="ОписаниеДефекта" id="94">
+					<DataPath>Список.ОписаниеДефекта</DataPath>
+					<ContextMenu name="ОписаниеДефектаКонтекстноеМеню" id="95"/>
+					<ExtendedTooltip name="ОписаниеДефектаРасширеннаяПодсказка" id="96"/>
+				</LabelField>
+				<LabelField name="КоличествоЗабракованных" id="40">
+					<DataPath>Список.КоличествоЗабракованных</DataPath>
+					<ContextMenu name="КоличествоЗабракованныхКонтекстноеМеню" id="41"/>
+					<ExtendedTooltip name="КоличествоЗабракованныхРасширеннаяПодсказка" id="42"/>
+				</LabelField>
+				<LabelField name="ДатаЗапроса" id="43">
+					<DataPath>Список.ДатаЗапроса</DataPath>
+					<ContextMenu name="ДатаЗапросаКонтекстноеМеню" id="44"/>
+					<ExtendedTooltip name="ДатаЗапросаРасширеннаяПодсказка" id="45"/>
+				</LabelField>
+				<LabelField name="ДатаОтвета" id="46">
+					<DataPath>Список.ДатаОтвета</DataPath>
+					<ContextMenu name="ДатаОтветаКонтекстноеМеню" id="47"/>
+					<ExtendedTooltip name="ДатаОтветаРасширеннаяПодсказка" id="48"/>
+				</LabelField>
+				<CheckBoxField name="Возврат" id="49">
+					<DataPath>Список.Возврат</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ВозвратКонтекстноеМеню" id="50"/>
+					<ExtendedTooltip name="ВозвратРасширеннаяПодсказка" id="51"/>
+				</CheckBoxField>
+				<LabelField name="Решение" id="52">
+					<DataPath>Список.Решение</DataPath>
+					<ContextMenu name="РешениеКонтекстноеМеню" id="53"/>
+					<ExtendedTooltip name="РешениеРасширеннаяПодсказка" id="54"/>
+				</LabelField>
+				<LabelField name="СработаноЗаказчиком" id="97">
+					<DataPath>Список.СработаноЗаказчиком</DataPath>
+					<ContextMenu name="СработаноЗаказчикомКонтекстноеМеню" id="98"/>
+					<ExtendedTooltip name="СработаноЗаказчикомРасширеннаяПодсказка" id="99"/>
+				</LabelField>
+				<LabelField name="УтилизированоЗаказчиком" id="61">
+					<DataPath>Список.УтилизированоЗаказчиком</DataPath>
+					<ContextMenu name="УтилизированоЗаказчикомКонтекстноеМеню" id="62"/>
+					<ExtendedTooltip name="УтилизированоЗаказчикомРасширеннаяПодсказка" id="63"/>
+				</LabelField>
+				<LabelField name="УтилизированоНаПредприятии" id="58">
+					<DataPath>Список.УтилизированоНаПредприятии</DataPath>
+					<ContextMenu name="УтилизированоНаПредприятииКонтекстноеМеню" id="59"/>
+					<ExtendedTooltip name="УтилизированоНаПредприятииРасширеннаяПодсказка" id="60"/>
+				</LabelField>
+				<LabelField name="УпакованоБезИсправления" id="100">
+					<DataPath>Список.УпакованоБезИсправления</DataPath>
+					<ContextMenu name="УпакованоБезИсправленияКонтекстноеМеню" id="101"/>
+					<ExtendedTooltip name="УпакованоБезИсправленияРасширеннаяПодсказка" id="102"/>
+				</LabelField>
+				<LabelField name="УпакованоПослеИсправления" id="103">
+					<DataPath>Список.УпакованоПослеИсправления</DataPath>
+					<ContextMenu name="УпакованоПослеИсправленияКонтекстноеМеню" id="104"/>
+					<ExtendedTooltip name="УпакованоПослеИсправленияРасширеннаяПодсказка" id="105"/>
+				</LabelField>
+				<LabelField name="Контроль" id="79">
+					<DataPath>Список.Контроль</DataPath>
+					<ContextMenu name="КонтрольКонтекстноеМеню" id="80"/>
+					<ExtendedTooltip name="КонтрольРасширеннаяПодсказка" id="81"/>
+				</LabelField>
+				<LabelField name="НомерАктаБухгалтерии" id="67">
+					<DataPath>Список.НомерАктаБухгалтерии</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>№ акта бухгалтерии</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="НомерАктаБухгалтерииКонтекстноеМеню" id="68"/>
+					<ExtendedTooltip name="НомерАктаБухгалтерииРасширеннаяПодсказка" id="69"/>
+				</LabelField>
+				<LabelField name="Комментарий" id="82">
+					<DataPath>Список.Комментарий</DataPath>
+					<ContextMenu name="КомментарийКонтекстноеМеню" id="83"/>
+					<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="84"/>
+				</LabelField>
+				<LabelField name="Ссылка" id="91">
+					<DataPath>Список.Ссылка</DataPath>
+					<ContextMenu name="СсылкаКонтекстноеМеню" id="92"/>
+					<ExtendedTooltip name="СсылкаРасширеннаяПодсказка" id="93"/>
+				</LabelField>
+				<LabelField name="ДатаРаботы" id="112">
+					<DataPath>Список.ДатаРаботы</DataPath>
+					<ContextMenu name="ДатаРаботыКонтекстноеМеню" id="113"/>
+					<ExtendedTooltip name="ДатаРаботыРасширеннаяПодсказка" id="114"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	ДокументЛико_НесоответствующаяПродукция.Дата КАК Дата,
+	ДокументЛико_НесоответствующаяПродукция.Номер КАК Номер,
+	Лико_НесоответствующаяПродукцияТовары.ЗаказКлиента.НомерБезПрефикса КАК НомерЗаказа,
+	Лико_НесоответствующаяПродукцияТовары.ЗаказКлиента.ТипЗаказа КАК ТипЗаказа,
+	ДокументЛико_НесоответствующаяПродукция.Состояние КАК Состояние,
+	Лико_НесоответствующаяПродукцияТовары.ДокументОтгрузки КАК ДокументОтгрузки,
+	ДокументЛико_НесоответствующаяПродукция.Менеджер КАК Менеджер,
+	ДокументЛико_НесоответствующаяПродукция.Партнер КАК Партнер,
+	Лико_НесоответствующаяПродукцияТовары.ЗаказКлиента.Этикетки КАК Этикетки,
+	Лико_НесоответствующаяПродукцияТовары.Номенклатура КАК Номенклатура,
+	Лико_НесоответствующаяПродукцияТовары.ОписаниеДефекта КАК ОписаниеДефекта,
+	Лико_НесоответствующаяПродукцияТовары.КоличествоЗабракованных КАК КоличествоЗабракованных,
+	Лико_НесоответствующаяПродукцияТовары.ДатаЗапроса КАК ДатаЗапроса,
+	Лико_НесоответствующаяПродукцияТовары.ДатаОтвета КАК ДатаОтвета,
+	Лико_НесоответствующаяПродукцияТовары.Возврат КАК Возврат,
+	Лико_НесоответствующаяПродукцияТовары.Решение КАК Решение,
+	Лико_НесоответствующаяПродукцияТовары.СработаноЗаказчиком КАК СработаноЗаказчиком,
+	Лико_НесоответствующаяПродукцияТовары.УтилизированоНаПредприятии КАК УтилизированоНаПредприятии,
+	Лико_НесоответствующаяПродукцияТовары.УтилизированоЗаказчиком КАК УтилизированоЗаказчиком,
+	Лико_НесоответствующаяПродукцияТовары.УпакованоБезИсправления КАК УпакованоБезИсправления,
+	Лико_НесоответствующаяПродукцияТовары.УпакованоПослеИсправления КАК УпакованоПослеИсправления,
+	Лико_НесоответствующаяПродукцияТовары.КоличествоЗабракованных - Лико_НесоответствующаяПродукцияТовары.УпакованоБезИсправления - Лико_НесоответствующаяПродукцияТовары.УтилизированоНаПредприятии - Лико_НесоответствующаяПродукцияТовары.УтилизированоЗаказчиком - Лико_НесоответствующаяПродукцияТовары.УпакованоПослеИсправления - Лико_НесоответствующаяПродукцияТовары.СработаноЗаказчиком КАК Контроль,
+	Лико_НесоответствующаяПродукцияТовары.НомерАктаБухгалтерии КАК НомерАктаБухгалтерии,
+	ДокументЛико_НесоответствующаяПродукция.Комментарий КАК Комментарий,
+	ДокументЛико_НесоответствующаяПродукция.Файлы КАК Файлы,
+	ДокументЛико_НесоответствующаяПродукция.Ссылка КАК Ссылка,
+	Лико_НесоответствующаяПродукцияТовары.ДатаРаботы КАК ДатаРаботы
+ИЗ
+	Документ.Лико_НесоответствующаяПродукция КАК ДокументЛико_НесоответствующаяПродукция
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Документ.Лико_НесоответствующаяПродукция.Товары КАК Лико_НесоответствующаяПродукцияТовары
+		ПО ДокументЛико_НесоответствующаяПродукция.Ссылка = Лико_НесоответствующаяПродукцияТовары.Ссылка
+ГДЕ
+	ДокументЛико_НесоответствующаяПродукция.Дата МЕЖДУ &amp;ДатаНачала И &amp;ДатаОкончания</QueryText>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:item>
+							<dcsset:selection/>
+							<dcsset:filter>
+								<dcsset:item xsi:type="dcsset:FilterItemComparison">
+									<dcsset:left xsi:type="dcscor:Field">Состояние</dcsset:left>
+									<dcsset:comparisonType>Equal</dcsset:comparisonType>
+									<dcsset:right xsi:type="dcscor:DesignTimeValue">Перечисление.Лико_СостоянияНесоответствийЗаказу.Отработано</dcsset:right>
+								</dcsset:item>
+							</dcsset:filter>
+							<dcsset:appearance>
+								<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+									<dcscor:parameter>ЦветФона</dcscor:parameter>
+									<dcscor:value xsi:type="v8ui:Color">#C0C0C0</dcscor:value>
+								</dcscor:item>
+							</dcsset:appearance>
+						</dcsset:item>
+						<dcsset:item>
+							<dcsset:selection/>
+							<dcsset:filter>
+								<dcsset:item xsi:type="dcsset:FilterItemComparison">
+									<dcsset:left xsi:type="dcscor:Field">Состояние</dcsset:left>
+									<dcsset:comparisonType>Equal</dcsset:comparisonType>
+									<dcsset:right xsi:type="dcscor:DesignTimeValue">Перечисление.Лико_СостоянияНесоответствийЗаказу.НаПереборке</dcsset:right>
+								</dcsset:item>
+							</dcsset:filter>
+							<dcsset:appearance>
+								<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+									<dcscor:parameter>ЦветФона</dcscor:parameter>
+									<dcscor:value xsi:type="v8ui:Color">#FF0000</dcscor:value>
+								</dcscor:item>
+							</dcsset:appearance>
+						</dcsset:item>
+						<dcsset:item>
+							<dcsset:selection/>
+							<dcsset:filter>
+								<dcsset:item xsi:type="dcsset:FilterItemComparison">
+									<dcsset:left xsi:type="dcscor:Field">Состояние</dcsset:left>
+									<dcsset:comparisonType>Equal</dcsset:comparisonType>
+									<dcsset:right xsi:type="dcscor:DesignTimeValue">Перечисление.Лико_СостоянияНесоответствийЗаказу.ВРаботе</dcsset:right>
+								</dcsset:item>
+							</dcsset:filter>
+							<dcsset:appearance>
+								<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+									<dcscor:parameter>ЦветФона</dcscor:parameter>
+									<dcscor:value xsi:type="v8ui:Color">#FFFF00</dcscor:value>
+								</dcscor:item>
+							</dcsset:appearance>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="Период" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Период</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:StandardPeriod</v8:Type>
+			</Type>
+			<Save>
+				<Field>Период</Field>
+			</Save>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Создать" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Создать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Обновить" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Обновить</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Скопировать" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Скопировать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Скопировать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CloneObject</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Скопировать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<LabelDecoration name="ДекорацияНадписьТекстВопроса" id="1">
+			<Width>64</Width>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<Height>4</Height>
+			<Font height="18" kind="AutoFont"/>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Декорация надпись текст вопроса</v8:content>
+				</v8:item>
+			</Title>
+			<GroupHorizontalAlign>Center</GroupHorizontalAlign>
+			<HorizontalAlign>Center</HorizontalAlign>
+			<ContextMenu name="ДекорацияНадписьТекстВопросаКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ДекорацияНадписьТекстВопросаРасширеннаяПодсказка" id="3"/>
+		</LabelDecoration>
+		<UsualGroup name="Группа1" id="10">
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<Button name="Да" id="4">
+					<Type>UsualButton</Type>
+					<Width>20</Width>
+					<Height>2</Height>
+					<GroupHorizontalAlign>Left</GroupHorizontalAlign>
+					<CommandName>Form.Command.Да</CommandName>
+					<Font height="18" kind="AutoFont"/>
+					<ToolTipRepresentation>None</ToolTipRepresentation>
+					<ExtendedTooltip name="ДаРасширеннаяПодсказка" id="5"/>
+				</Button>
+				<LabelDecoration name="ДекорацияМеждуДаНет" id="12">
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ДекорацияМеждуДаНетКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="ДекорацияМеждуДаНетРасширеннаяПодсказка" id="14"/>
+				</LabelDecoration>
+				<Button name="Нет" id="6">
+					<Type>UsualButton</Type>
+					<Width>20</Width>
+					<Height>2</Height>
+					<GroupHorizontalAlign>Center</GroupHorizontalAlign>
+					<CommandName>Form.Command.Нет</CommandName>
+					<Font height="18" kind="AutoFont"/>
+					<ToolTipRepresentation>None</ToolTipRepresentation>
+					<ExtendedTooltip name="НетРасширеннаяПодсказка" id="7"/>
+				</Button>
+				<LabelDecoration name="ДекорацияМеждуНетОтмена" id="15">
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ДекорацияМеждуНетОтменаКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="ДекорацияМеждуНетОтменаРасширеннаяПодсказка" id="17"/>
+				</LabelDecoration>
+				<Button name="Отмена" id="8">
+					<Type>UsualButton</Type>
+					<Width>20</Width>
+					<Height>2</Height>
+					<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+					<CommandName>Form.Command.Отмена</CommandName>
+					<Font height="18" kind="AutoFont"/>
+					<ToolTipRepresentation>None</ToolTipRepresentation>
+					<ExtendedTooltip name="ОтменаРасширеннаяПодсказка" id="9"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ДатаОткрытия" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дата открытия</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:dateTime</v8:Type>
+				<v8:DateQualifiers>
+					<v8:DateFractions>DateTime</v8:DateFractions>
+				</v8:DateQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="СекундОжидания" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Секунд ожидания</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Да" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Да</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Да</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Да</Action>
+		</Command>
+		<Command name="Нет" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Нет</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Нет</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Нет</Action>
+		</Command>
+		<Command name="Отмена" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмена</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмена</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Отмена</Action>
+		</Command>
+	</Commands>
+</Form>

@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<CommandSet>
+		<ExcludedCommand>Refresh</ExcludedCommand>
+	</CommandSet>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">ОбработкаОповещения</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="СписокКритерииОтбора" id="65">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список критерии отбора</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter criterion list</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СписокКритерииОтбораРасширеннаяПодсказка" id="66"/>
+		</UsualGroup>
+		<UsualGroup name="СписокКомпоновщикНастроекПользовательскиеНастройки" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа пользовательских настроек</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>User settings group</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СписокКомпоновщикНастроекПользовательскиеНастройкиРасширеннаяПодсказка" id="2"/>
+		</UsualGroup>
+		<UsualGroup name="СписокНастройкиОтбора" id="67">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дополнительные условия</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Additional conditions</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ExtendedTooltip name="СписокНастройкиОтбораРасширеннаяПодсказка" id="68"/>
+		</UsualGroup>
+		<CommandBar name="КоманднаяПанельФормы" id="69">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Командная панель формы</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Form command bar</v8:content>
+				</v8:item>
+			</Title>
+			<CommandSource>Form</CommandSource>
+			<ExtendedTooltip name="КоманднаяПанельФормыРасширеннаяПодсказка" id="70"/>
+		</CommandBar>
+		<Table name="Список" id="3">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<DefaultItem>true</DefaultItem>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Список</DataPath>
+			<RowPictureDataPath>Список.DefaultPicture</RowPictureDataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>List</v8:content>
+				</v8:item>
+			</Title>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>СписокКомпоновщикНастроекПользовательскиеНастройки</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СписокКонтекстноеМеню" id="4"/>
+			<AutoCommandBar name="СписокКоманднаяПанель" id="5">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="6"/>
+			<SearchStringAddition name="СписокСтрокаПоиска" id="43">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="44"/>
+				<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="45"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СписокСостояниеПросмотра" id="46">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="47"/>
+				<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="48"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СписокУправлениеПоиском" id="49">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="50"/>
+				<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="51"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">СписокВыбор</Event>
+				<Event name="BeforeAddRow">СписокПередНачаломДобавления</Event>
+				<Event name="OnActivateRow">СписокПриАктивизацииСтроки</Event>
+				<Event name="BeforeLoadUserSettingsAtServer">СписокПередЗагрузкойПользовательскихНастроекНаСервере</Event>
+				<Event name="OnUpdateUserSettingSetAtServer">СписокПриОбновленииСоставаПользовательскихНастроекНаСервере</Event>
+				<Event name="OnChange">СписокПриИзменении</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="Дата" id="7">
+					<DataPath>Список.Дата</DataPath>
+					<Width>7</Width>
+					<ContextMenu name="ДатаКонтекстноеМеню" id="8"/>
+					<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="9"/>
+				</LabelField>
+				<LabelField name="Номер" id="10">
+					<DataPath>Список.Номер</DataPath>
+					<Width>14</Width>
+					<ContextMenu name="НомерКонтекстноеМеню" id="11"/>
+					<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="12"/>
+				</LabelField>
+				<ColumnGroup name="ГруппаТипДокумента" id="58">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тип документа</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Document type</v8:content>
+						</v8:item>
+					</Title>
+					<Group>InCell</Group>
+					<ExtendedTooltip name="ГруппаТипДокументаРасширеннаяПодсказка" id="59"/>
+					<ChildItems>
+						<PictureField name="ЕстьФайлы" id="55">
+							<DataPath>Список.ЕстьФайлы</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Есть файлы</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Has files</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>None</TitleLocation>
+							<ValuesPicture>
+								<xr:Ref>CommonPicture.КоллекцияСкрепка</xr:Ref>
+								<xr:LoadTransparent>false</xr:LoadTransparent>
+							</ValuesPicture>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="ЕстьФайлыКонтекстноеМеню" id="56"/>
+							<ExtendedTooltip name="ЕстьФайлыРасширеннаяПодсказка" id="57"/>
+						</PictureField>
+						<LabelField name="Тип" id="13">
+							<DataPath>Список.Тип</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<ContextMenu name="ТипКонтекстноеМеню" id="14"/>
+							<ExtendedTooltip name="ТипРасширеннаяПодсказка" id="15"/>
+						</LabelField>
+					</ChildItems>
+				</ColumnGroup>
+				<LabelField name="НомерРеестра" id="74">
+					<DataPath>Список.НомерРеестра</DataPath>
+					<ContextMenu name="НомерРеестраКонтекстноеМеню" id="75"/>
+					<ExtendedTooltip name="НомерРеестраРасширеннаяПодсказка" id="76"/>
+				</LabelField>
+				<LabelField name="Состояние" id="52">
+					<DataPath>Список.Состояние</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Состояние</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>State</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СостояниеКонтекстноеМеню" id="53"/>
+					<ExtendedTooltip name="СостояниеРасширеннаяПодсказка" id="54"/>
+				</LabelField>
+				<LabelField name="ДокументыПодтверждения" id="71">
+					<DataPath>Список.ДокументыПодтверждения</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Документы-Подтверждения</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Confirmation documents</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ДокументыПодтвержденияКонтекстноеМеню" id="72"/>
+					<ExtendedTooltip name="ДокументыПодтвержденияРасширеннаяПодсказка" id="73"/>
+				</LabelField>
+				<LabelField name="Организация" id="16">
+					<DataPath>Список.Организация</DataPath>
+					<ContextMenu name="ОрганизацияКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ОрганизацияРасширеннаяПодсказка" id="18"/>
+				</LabelField>
+				<LabelField name="Подразделение" id="19">
+					<DataPath>Список.Подразделение</DataPath>
+					<UserVisible>
+						<xr:Common>false</xr:Common>
+					</UserVisible>
+					<ContextMenu name="ПодразделениеКонтекстноеМеню" id="20"/>
+					<ExtendedTooltip name="ПодразделениеРасширеннаяПодсказка" id="21"/>
+				</LabelField>
+				<LabelField name="ЗарплатныйПроект" id="22">
+					<DataPath>Список.ЗарплатныйПроект</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Зарплатный проект</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Payroll card program</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ЗарплатныйПроектКонтекстноеМеню" id="23"/>
+					<ExtendedTooltip name="ЗарплатныйПроектРасширеннаяПодсказка" id="24"/>
+				</LabelField>
+				<LabelField name="Сотрудники" id="25">
+					<DataPath>Список.Сотрудники</DataPath>
+					<ContextMenu name="СотрудникиКонтекстноеМеню" id="26"/>
+					<ExtendedTooltip name="СотрудникиРасширеннаяПодсказка" id="27"/>
+				</LabelField>
+				<LabelField name="Комментарий" id="31">
+					<DataPath>Список.Комментарий</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Комментарий</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Comment</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="КомментарийКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="33"/>
+				</LabelField>
+				<LabelField name="Ответственный" id="28">
+					<DataPath>Список.Ответственный</DataPath>
+					<ContextMenu name="ОтветственныйКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="30"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<UseAlways>
+				<Field>Список.ЗарплатныйПроект</Field>
+				<Field>Список.Ссылка</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка КАК Ссылка,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Дата КАК Дата,
+	НАЧАЛОПЕРИОДА(ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Дата, ДЕНЬ) КАК ДатаДокумента,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.ПометкаУдаления КАК ПометкаУдаления,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Номер КАК Номер,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Проведен КАК Проведен,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Организация КАК Организация,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Подразделение КАК Подразделение,
+	ВЫБОР
+		КОГДА РеквизитыПлатежныхДокументовПеречисленияЗарплаты.ПлатежныйДокумент ЕСТЬ НЕ NULL 
+			ТОГДА РеквизитыПлатежныхДокументовПеречисленияЗарплаты.ЗарплатныйПроект
+		ИНАЧЕ ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.ЗарплатныйПроект
+	КОНЕЦ КАК ЗарплатныйПроект,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.НомерРеестра КАК НомерРеестра,
+	ЕСТЬNULL(СостоянияДокументовЗачисленияЗарплаты.Состояние, СостоянияДокументовОткрытияЛицевыхСчетов.Состояние) КАК Состояние,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Сотрудники КАК Сотрудники,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ответственный КАК Ответственный,
+	ВЫРАЗИТЬ(ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Комментарий КАК СТРОКА(500)) КАК Комментарий,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Тип КАК Тип,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(НаличиеФайлов.ЕстьФайлы, ЛОЖЬ)
+			ТОГДА 1
+		ИНАЧЕ 0
+	КОНЕЦ КАК ЕстьФайлы,
+	МАКСИМУМ(ВЫБОР
+			КОГДА ЕСТЬNULL(ПодтверждениеЗачисленияЗарплаты.Ссылка, ПодтверждениеОткрытияЛицевыхСчетовСотрудников.Ссылка) ЕСТЬ НЕ NULL 
+				ТОГДА &amp;ПодтвержденияПолучены
+		КОНЕЦ) КАК ДокументыПодтверждения
+ИЗ
+	ЖурналДокументов.ДокументыОбменаСБанкамиПоЗарплатнымПроектам КАК ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ПодтверждениеЗачисленияЗарплаты КАК ПодтверждениеЗачисленияЗарплаты
+		ПО (ПодтверждениеЗачисленияЗарплаты.Проведен)
+			И ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка = ПодтверждениеЗачисленияЗарплаты.ПервичныйДокумент
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ПодтверждениеОткрытияЛицевыхСчетовСотрудников КАК ПодтверждениеОткрытияЛицевыхСчетовСотрудников
+		ПО (ПодтверждениеОткрытияЛицевыхСчетовСотрудников.Проведен)
+			И ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка = ПодтверждениеОткрытияЛицевыхСчетовСотрудников.ПервичныйДокумент
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.РеквизитыПлатежныхДокументовПеречисленияЗарплаты КАК РеквизитыПлатежныхДокументовПеречисленияЗарплаты
+		ПО ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка = РеквизитыПлатежныхДокументовПеречисленияЗарплаты.ПлатежныйДокумент
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.СостоянияДокументовЗачисленияЗарплаты КАК СостоянияДокументовЗачисленияЗарплаты
+		ПО ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка = СостоянияДокументовЗачисленияЗарплаты.ДокументЗачисленияЗарплаты
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.СостоянияДокументовОткрытияЛицевыхСчетов КАК СостоянияДокументовОткрытияЛицевыхСчетов
+		ПО ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка = СостоянияДокументовОткрытияЛицевыхСчетов.ДокументОткрытияЛицевыхСчетов
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.НаличиеФайлов КАК НаличиеФайлов
+		ПО ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка = НаличиеФайлов.ОбъектСФайлами
+{ГДЕ
+	ИСТИНА В
+			(ВЫБРАТЬ ПЕРВЫЕ 1
+				ИСТИНА
+			ИЗ
+				РегистрСведений.СоставДокументовЗарплатаКадры КАК СоставДокументовЗарплатаКадры
+			ГДЕ
+				СоставДокументовЗарплатаКадры.ФизическоеЛицо = &amp;ФизическоеЛицо
+				И ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка = СоставДокументовЗарплатаКадры.ДокументФизическогоЛица)}
+
+СГРУППИРОВАТЬ ПО
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ссылка,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Дата,
+	НАЧАЛОПЕРИОДА(ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Дата, ДЕНЬ),
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.ПометкаУдаления,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Номер,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Проведен,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Организация,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Подразделение,
+	ВЫБОР
+		КОГДА РеквизитыПлатежныхДокументовПеречисленияЗарплаты.ПлатежныйДокумент ЕСТЬ НЕ NULL 
+			ТОГДА РеквизитыПлатежныхДокументовПеречисленияЗарплаты.ЗарплатныйПроект
+		ИНАЧЕ ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.ЗарплатныйПроект
+	КОНЕЦ,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.НомерРеестра,
+	ЕСТЬNULL(СостоянияДокументовЗачисленияЗарплаты.Состояние, СостоянияДокументовОткрытияЛицевыхСчетов.Состояние),
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Сотрудники,
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Ответственный,
+	ВЫРАЗИТЬ(ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Комментарий КАК СТРОКА(500)),
+	ЖурналДокументовДокументыОбменаСБанкамиПоЗарплатнымПроектам.Тип,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(НаличиеФайлов.ЕстьФайлы, ЛОЖЬ)
+			ТОГДА 1
+		ИНАЧЕ 0
+	КОНЕЦ</QueryText>
+				<MainTable>DocumentJournal.ДокументыОбменаСБанкамиПоЗарплатнымПроектам</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="ПараметрыПодключаемыхКоманд" id="2">
+			<Type/>
+		</Attribute>
+	</Attributes>
+</Form>

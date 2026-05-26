@@ -1,0 +1,921 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer" callType="Override">Лико_ПриСозданииНаСервереВместо</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаЛевоПраво" id="25">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа лево право</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа лево право</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаЛевоПравоРасширеннаяПодсказка" id="26"/>
+			<ChildItems>
+				<UsualGroup name="ГруппаЛево" id="27">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа лево</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа лево</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаЛевоРасширеннаяПодсказка" id="28"/>
+					<ChildItems>
+						<Table name="МонтажСоответствия" id="1">
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="МонтажСоответствияКонтекстноеМеню" id="2"/>
+							<AutoCommandBar name="МонтажСоответствияКоманднаяПанель" id="3">
+								<ChildItems>
+									<Button name="МонтажСоответствияЗаполнитьИзЗаказа" id="23">
+										<Type>CommandBarButton</Type>
+										<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="МонтажСоответствияЗаполнитьИзЗаказаРасширеннаяПодсказка" id="24"/>
+									</Button>
+									<Button name="МонтажСоответствияКнопкаУдалить" id="131">
+										<Type>CommandBarButton</Type>
+										<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Удалить</v8:content>
+											</v8:item>
+										</Title>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="МонтажСоответствияКнопкаУдалитьРасширеннаяПодсказка" id="132"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="МонтажСоответствияРасширеннаяПодсказка" id="4"/>
+							<SearchStringAddition name="МонтажСоответствияСтрокаПоиска" id="5">
+								<AdditionSource>
+									<Item>МонтажСоответствия</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="МонтажСоответствияСтрокаПоискаКонтекстноеМеню" id="6"/>
+								<ExtendedTooltip name="МонтажСоответствияСтрокаПоискаРасширеннаяПодсказка" id="7"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="МонтажСоответствияСостояниеПросмотра" id="8">
+								<AdditionSource>
+									<Item>МонтажСоответствия</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="МонтажСоответствияСостояниеПросмотраКонтекстноеМеню" id="9"/>
+								<ExtendedTooltip name="МонтажСоответствияСостояниеПросмотраРасширеннаяПодсказка" id="10"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="МонтажСоответствияУправлениеПоиском" id="11">
+								<AdditionSource>
+									<Item>МонтажСоответствия</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="МонтажСоответствияУправлениеПоискомКонтекстноеМеню" id="12"/>
+								<ExtendedTooltip name="МонтажСоответствияУправлениеПоискомРасширеннаяПодсказка" id="13"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="МонтажСоответствияНомерСтроки" id="14">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="МонтажСоответствияНомерСтрокиКонтекстноеМеню" id="15"/>
+									<ExtendedTooltip name="МонтажСоответствияНомерСтрокиРасширеннаяПодсказка" id="16"/>
+								</LabelField>
+								<InputField name="МонтажСоответствияНоменклатура" id="17">
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="МонтажСоответствияНоменклатураКонтекстноеМеню" id="18"/>
+									<ExtendedTooltip name="МонтажСоответствияНоменклатураРасширеннаяПодсказка" id="19"/>
+								</InputField>
+								<LabelField name="МонтажСоответствияНоменклатураАртикул" id="20">
+									<ReadOnly>true</ReadOnly>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="МонтажСоответствияНоменклатураАртикулКонтекстноеМеню" id="21"/>
+									<ExtendedTooltip name="МонтажСоответствияНоменклатураАртикулРасширеннаяПодсказка" id="22"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ГруппаРаздел" id="115">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа раздел</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа раздел</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаРазделРасширеннаяПодсказка" id="116"/>
+					<ChildItems>
+						<LabelDecoration name="Декорация1" id="117">
+							<Width>1</Width>
+							<VerticalStretch>true</VerticalStretch>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>&gt;&gt;</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="Декорация1КонтекстноеМеню" id="118"/>
+							<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="119"/>
+						</LabelDecoration>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ГруппаПраво" id="29">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа право</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа право</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаПравоРасширеннаяПодсказка" id="30"/>
+					<ChildItems>
+						<Table name="Схема" id="31">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>2</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="СхемаКонтекстноеМеню" id="32"/>
+							<AutoCommandBar name="СхемаКоманднаяПанель" id="33">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="СхемаДобавитьМонтаж" id="109">
+										<Type>CommandBarButton</Type>
+										<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="СхемаДобавитьМонтажРасширеннаяПодсказка" id="110"/>
+									</Button>
+									<Button name="СхемаУдалитьСхемуМонтажа" id="133">
+										<Type>CommandBarButton</Type>
+										<Visible>false</Visible>
+										<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="СхемаУдалитьСхемуМонтажаРасширеннаяПодсказка" id="134"/>
+									</Button>
+									<Button name="СхемаОчиститьМонтаж" id="111">
+										<Type>CommandBarButton</Type>
+										<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="СхемаОчиститьМонтажРасширеннаяПодсказка" id="112"/>
+									</Button>
+									<Button name="СхемаЗаполнитьПоПервойМонтаж" id="113">
+										<Type>CommandBarButton</Type>
+										<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="СхемаЗаполнитьПоПервойМонтажРасширеннаяПодсказка" id="114"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="СхемаРасширеннаяПодсказка" id="34"/>
+							<SearchStringAddition name="СхемаСтрокаПоиска" id="35">
+								<AdditionSource>
+									<Item>Схема</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СхемаСтрокаПоискаКонтекстноеМеню" id="36"/>
+								<ExtendedTooltip name="СхемаСтрокаПоискаРасширеннаяПодсказка" id="37"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="СхемаСостояниеПросмотра" id="38">
+								<AdditionSource>
+									<Item>Схема</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СхемаСостояниеПросмотраКонтекстноеМеню" id="39"/>
+								<ExtendedTooltip name="СхемаСостояниеПросмотраРасширеннаяПодсказка" id="40"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="СхемаУправлениеПоиском" id="41">
+								<AdditionSource>
+									<Item>Схема</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="СхемаУправлениеПоискомКонтекстноеМеню" id="42"/>
+								<ExtendedTooltip name="СхемаУправлениеПоискомРасширеннаяПодсказка" id="43"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<InputField name="СхемаКолонка1" id="44">
+									<DataPath>2/1</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка1КонтекстноеМеню" id="45"/>
+									<ExtendedTooltip name="СхемаКолонка1РасширеннаяПодсказка" id="46"/>
+								</InputField>
+								<InputField name="СхемаКолонка2" id="47">
+									<DataPath>2/2</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка2КонтекстноеМеню" id="48"/>
+									<ExtendedTooltip name="СхемаКолонка2РасширеннаяПодсказка" id="49"/>
+								</InputField>
+								<InputField name="СхемаКолонка3" id="50">
+									<DataPath>2/3</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка3КонтекстноеМеню" id="51"/>
+									<ExtendedTooltip name="СхемаКолонка3РасширеннаяПодсказка" id="52"/>
+								</InputField>
+								<InputField name="СхемаКолонка4" id="53">
+									<DataPath>2/4</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка4КонтекстноеМеню" id="54"/>
+									<ExtendedTooltip name="СхемаКолонка4РасширеннаяПодсказка" id="55"/>
+								</InputField>
+								<InputField name="СхемаКолонка5" id="56">
+									<DataPath>2/5</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка5КонтекстноеМеню" id="57"/>
+									<ExtendedTooltip name="СхемаКолонка5РасширеннаяПодсказка" id="58"/>
+								</InputField>
+								<InputField name="СхемаКолонка6" id="59">
+									<DataPath>2/6</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка6КонтекстноеМеню" id="60"/>
+									<ExtendedTooltip name="СхемаКолонка6РасширеннаяПодсказка" id="61"/>
+								</InputField>
+								<InputField name="СхемаКолонка7" id="62">
+									<DataPath>2/7</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка7КонтекстноеМеню" id="63"/>
+									<ExtendedTooltip name="СхемаКолонка7РасширеннаяПодсказка" id="64"/>
+								</InputField>
+								<InputField name="СхемаКолонка8" id="65">
+									<DataPath>2/8</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка8КонтекстноеМеню" id="66"/>
+									<ExtendedTooltip name="СхемаКолонка8РасширеннаяПодсказка" id="67"/>
+								</InputField>
+								<InputField name="СхемаКолонка9" id="68">
+									<DataPath>2/9</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка9КонтекстноеМеню" id="69"/>
+									<ExtendedTooltip name="СхемаКолонка9РасширеннаяПодсказка" id="70"/>
+								</InputField>
+								<InputField name="СхемаКолонка10" id="71">
+									<DataPath>2/10</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка10КонтекстноеМеню" id="72"/>
+									<ExtendedTooltip name="СхемаКолонка10РасширеннаяПодсказка" id="73"/>
+								</InputField>
+								<InputField name="СхемаКолонка11" id="74">
+									<DataPath>2/11</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка11КонтекстноеМеню" id="75"/>
+									<ExtendedTooltip name="СхемаКолонка11РасширеннаяПодсказка" id="76"/>
+								</InputField>
+								<InputField name="СхемаКолонка12" id="77">
+									<DataPath>2/12</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка12КонтекстноеМеню" id="78"/>
+									<ExtendedTooltip name="СхемаКолонка12РасширеннаяПодсказка" id="79"/>
+								</InputField>
+								<InputField name="СхемаКолонка13" id="80">
+									<DataPath>2/13</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка13КонтекстноеМеню" id="81"/>
+									<ExtendedTooltip name="СхемаКолонка13РасширеннаяПодсказка" id="82"/>
+								</InputField>
+								<InputField name="СхемаКолонка14" id="83">
+									<DataPath>2/14</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка14КонтекстноеМеню" id="84"/>
+									<ExtendedTooltip name="СхемаКолонка14РасширеннаяПодсказка" id="85"/>
+								</InputField>
+								<InputField name="СхемаКолонка15" id="86">
+									<DataPath>2/15</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка15КонтекстноеМеню" id="87"/>
+									<ExtendedTooltip name="СхемаКолонка15РасширеннаяПодсказка" id="88"/>
+								</InputField>
+								<InputField name="СхемаКолонка16" id="89">
+									<DataPath>2/16</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка16КонтекстноеМеню" id="90"/>
+									<ExtendedTooltip name="СхемаКолонка16РасширеннаяПодсказка" id="91"/>
+								</InputField>
+								<InputField name="СхемаКолонка17" id="92">
+									<DataPath>2/17</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка17КонтекстноеМеню" id="93"/>
+									<ExtendedTooltip name="СхемаКолонка17РасширеннаяПодсказка" id="94"/>
+								</InputField>
+								<InputField name="СхемаКолонка18" id="95">
+									<DataPath>2/18</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка18КонтекстноеМеню" id="96"/>
+									<ExtendedTooltip name="СхемаКолонка18РасширеннаяПодсказка" id="97"/>
+								</InputField>
+								<InputField name="СхемаКолонка19" id="98">
+									<DataPath>2/19</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка19КонтекстноеМеню" id="99"/>
+									<ExtendedTooltip name="СхемаКолонка19РасширеннаяПодсказка" id="100"/>
+								</InputField>
+								<InputField name="СхемаКолонка20" id="101">
+									<DataPath>2/20</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="СхемаКолонка20КонтекстноеМеню" id="102"/>
+									<ExtendedTooltip name="СхемаКолонка20РасширеннаяПодсказка" id="103"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+						<UsualGroup name="ГруппаСхемыМонтажа" id="107">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа схемы монтажа</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа схемы монтажа</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Behavior>Usual</Behavior>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаСхемыМонтажаРасширеннаяПодсказка" id="108"/>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаПодвал" id="120">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа подвал</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа подвал</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="121"/>
+			<ChildItems>
+				<LabelDecoration name="НадписьИнфо" id="122">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заполните заказ. А затем перетащите из левой части нужную номенклатуру на схему вправо.</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="НадписьИнфоКонтекстноеМеню" id="123"/>
+					<ExtendedTooltip name="НадписьИнфоРасширеннаяПодсказка" id="124"/>
+				</LabelDecoration>
+				<Button name="СохранитьМонтаж" id="129">
+					<Type>UsualButton</Type>
+					<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+					<ExtendedTooltip name="СохранитьМонтажРасширеннаяПодсказка" id="130"/>
+				</Button>
+				<Button name="ЗакрытьФорму" id="127">
+					<Type>UsualButton</Type>
+					<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+					<ExtendedTooltip name="ЗакрытьФормуРасширеннаяПодсказка" id="128"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes/>
+	<BaseForm version="2.20">
+		<AutoTime>CurrentOrLast</AutoTime>
+		<UsePostingMode>Auto</UsePostingMode>
+		<RepostOnWrite>true</RepostOnWrite>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+			<Autofill>false</Autofill>
+		</AutoCommandBar>
+		<ChildItems>
+			<UsualGroup name="ГруппаЛевоПраво" id="25">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа лево право</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа лево право</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Group>AlwaysHorizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаЛевоПравоРасширеннаяПодсказка" id="26"/>
+				<ChildItems>
+					<UsualGroup name="ГруппаЛево" id="27">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа лево</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа лево</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="ГруппаЛевоРасширеннаяПодсказка" id="28"/>
+						<ChildItems>
+							<Table name="МонтажСоответствия" id="1">
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="МонтажСоответствияКонтекстноеМеню" id="2"/>
+								<AutoCommandBar name="МонтажСоответствияКоманднаяПанель" id="3">
+									<ChildItems>
+										<Button name="МонтажСоответствияЗаполнитьИзЗаказа" id="23">
+											<Type>CommandBarButton</Type>
+											<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+											<ExtendedTooltip name="МонтажСоответствияЗаполнитьИзЗаказаРасширеннаяПодсказка" id="24"/>
+										</Button>
+										<Button name="МонтажСоответствияКнопкаУдалить" id="131">
+											<Type>CommandBarButton</Type>
+											<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Удалить</v8:content>
+												</v8:item>
+											</Title>
+											<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+											<ExtendedTooltip name="МонтажСоответствияКнопкаУдалитьРасширеннаяПодсказка" id="132"/>
+										</Button>
+									</ChildItems>
+								</AutoCommandBar>
+								<ExtendedTooltip name="МонтажСоответствияРасширеннаяПодсказка" id="4"/>
+								<SearchStringAddition name="МонтажСоответствияСтрокаПоиска" id="5">
+									<AdditionSource>
+										<Item>МонтажСоответствия</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="МонтажСоответствияСтрокаПоискаКонтекстноеМеню" id="6"/>
+									<ExtendedTooltip name="МонтажСоответствияСтрокаПоискаРасширеннаяПодсказка" id="7"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="МонтажСоответствияСостояниеПросмотра" id="8">
+									<AdditionSource>
+										<Item>МонтажСоответствия</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="МонтажСоответствияСостояниеПросмотраКонтекстноеМеню" id="9"/>
+									<ExtendedTooltip name="МонтажСоответствияСостояниеПросмотраРасширеннаяПодсказка" id="10"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="МонтажСоответствияУправлениеПоиском" id="11">
+									<AdditionSource>
+										<Item>МонтажСоответствия</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="МонтажСоответствияУправлениеПоискомКонтекстноеМеню" id="12"/>
+									<ExtendedTooltip name="МонтажСоответствияУправлениеПоискомРасширеннаяПодсказка" id="13"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<LabelField name="МонтажСоответствияНомерСтроки" id="14">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="МонтажСоответствияНомерСтрокиКонтекстноеМеню" id="15"/>
+										<ExtendedTooltip name="МонтажСоответствияНомерСтрокиРасширеннаяПодсказка" id="16"/>
+									</LabelField>
+									<InputField name="МонтажСоответствияНоменклатура" id="17">
+										<ReadOnly>true</ReadOnly>
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="МонтажСоответствияНоменклатураКонтекстноеМеню" id="18"/>
+										<ExtendedTooltip name="МонтажСоответствияНоменклатураРасширеннаяПодсказка" id="19"/>
+									</InputField>
+									<LabelField name="МонтажСоответствияНоменклатураАртикул" id="20">
+										<ReadOnly>true</ReadOnly>
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="МонтажСоответствияНоменклатураАртикулКонтекстноеМеню" id="21"/>
+										<ExtendedTooltip name="МонтажСоответствияНоменклатураАртикулРасширеннаяПодсказка" id="22"/>
+									</LabelField>
+								</ChildItems>
+							</Table>
+						</ChildItems>
+					</UsualGroup>
+					<UsualGroup name="ГруппаРаздел" id="115">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа раздел</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа раздел</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="ГруппаРазделРасширеннаяПодсказка" id="116"/>
+						<ChildItems>
+							<LabelDecoration name="Декорация1" id="117">
+								<Width>1</Width>
+								<VerticalStretch>true</VerticalStretch>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>&gt;&gt;</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="Декорация1КонтекстноеМеню" id="118"/>
+								<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="119"/>
+							</LabelDecoration>
+						</ChildItems>
+					</UsualGroup>
+					<UsualGroup name="ГруппаПраво" id="29">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа право</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа право</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="ГруппаПравоРасширеннаяПодсказка" id="30"/>
+						<ChildItems>
+							<Table name="Схема" id="31">
+								<Representation>List</Representation>
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<DataPath>2</DataPath>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="СхемаКонтекстноеМеню" id="32"/>
+								<AutoCommandBar name="СхемаКоманднаяПанель" id="33">
+									<Autofill>false</Autofill>
+									<ChildItems>
+										<Button name="СхемаДобавитьМонтаж" id="109">
+											<Type>CommandBarButton</Type>
+											<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+											<ExtendedTooltip name="СхемаДобавитьМонтажРасширеннаяПодсказка" id="110"/>
+										</Button>
+										<Button name="СхемаУдалитьСхемуМонтажа" id="133">
+											<Type>CommandBarButton</Type>
+											<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+											<ExtendedTooltip name="СхемаУдалитьСхемуМонтажаРасширеннаяПодсказка" id="134"/>
+										</Button>
+										<Button name="СхемаОчиститьМонтаж" id="111">
+											<Type>CommandBarButton</Type>
+											<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+											<ExtendedTooltip name="СхемаОчиститьМонтажРасширеннаяПодсказка" id="112"/>
+										</Button>
+										<Button name="СхемаЗаполнитьПоПервойМонтаж" id="113">
+											<Type>CommandBarButton</Type>
+											<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+											<ExtendedTooltip name="СхемаЗаполнитьПоПервойМонтажРасширеннаяПодсказка" id="114"/>
+										</Button>
+									</ChildItems>
+								</AutoCommandBar>
+								<ExtendedTooltip name="СхемаРасширеннаяПодсказка" id="34"/>
+								<SearchStringAddition name="СхемаСтрокаПоиска" id="35">
+									<AdditionSource>
+										<Item>Схема</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="СхемаСтрокаПоискаКонтекстноеМеню" id="36"/>
+									<ExtendedTooltip name="СхемаСтрокаПоискаРасширеннаяПодсказка" id="37"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="СхемаСостояниеПросмотра" id="38">
+									<AdditionSource>
+										<Item>Схема</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="СхемаСостояниеПросмотраКонтекстноеМеню" id="39"/>
+									<ExtendedTooltip name="СхемаСостояниеПросмотраРасширеннаяПодсказка" id="40"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="СхемаУправлениеПоиском" id="41">
+									<AdditionSource>
+										<Item>Схема</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="СхемаУправлениеПоискомКонтекстноеМеню" id="42"/>
+									<ExtendedTooltip name="СхемаУправлениеПоискомРасширеннаяПодсказка" id="43"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<InputField name="СхемаКолонка1" id="44">
+										<DataPath>2/1</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка1КонтекстноеМеню" id="45"/>
+										<ExtendedTooltip name="СхемаКолонка1РасширеннаяПодсказка" id="46"/>
+									</InputField>
+									<InputField name="СхемаКолонка2" id="47">
+										<DataPath>2/2</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка2КонтекстноеМеню" id="48"/>
+										<ExtendedTooltip name="СхемаКолонка2РасширеннаяПодсказка" id="49"/>
+									</InputField>
+									<InputField name="СхемаКолонка3" id="50">
+										<DataPath>2/3</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка3КонтекстноеМеню" id="51"/>
+										<ExtendedTooltip name="СхемаКолонка3РасширеннаяПодсказка" id="52"/>
+									</InputField>
+									<InputField name="СхемаКолонка4" id="53">
+										<DataPath>2/4</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка4КонтекстноеМеню" id="54"/>
+										<ExtendedTooltip name="СхемаКолонка4РасширеннаяПодсказка" id="55"/>
+									</InputField>
+									<InputField name="СхемаКолонка5" id="56">
+										<DataPath>2/5</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка5КонтекстноеМеню" id="57"/>
+										<ExtendedTooltip name="СхемаКолонка5РасширеннаяПодсказка" id="58"/>
+									</InputField>
+									<InputField name="СхемаКолонка6" id="59">
+										<DataPath>2/6</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка6КонтекстноеМеню" id="60"/>
+										<ExtendedTooltip name="СхемаКолонка6РасширеннаяПодсказка" id="61"/>
+									</InputField>
+									<InputField name="СхемаКолонка7" id="62">
+										<DataPath>2/7</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка7КонтекстноеМеню" id="63"/>
+										<ExtendedTooltip name="СхемаКолонка7РасширеннаяПодсказка" id="64"/>
+									</InputField>
+									<InputField name="СхемаКолонка8" id="65">
+										<DataPath>2/8</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка8КонтекстноеМеню" id="66"/>
+										<ExtendedTooltip name="СхемаКолонка8РасширеннаяПодсказка" id="67"/>
+									</InputField>
+									<InputField name="СхемаКолонка9" id="68">
+										<DataPath>2/9</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка9КонтекстноеМеню" id="69"/>
+										<ExtendedTooltip name="СхемаКолонка9РасширеннаяПодсказка" id="70"/>
+									</InputField>
+									<InputField name="СхемаКолонка10" id="71">
+										<DataPath>2/10</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка10КонтекстноеМеню" id="72"/>
+										<ExtendedTooltip name="СхемаКолонка10РасширеннаяПодсказка" id="73"/>
+									</InputField>
+									<InputField name="СхемаКолонка11" id="74">
+										<DataPath>2/11</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка11КонтекстноеМеню" id="75"/>
+										<ExtendedTooltip name="СхемаКолонка11РасширеннаяПодсказка" id="76"/>
+									</InputField>
+									<InputField name="СхемаКолонка12" id="77">
+										<DataPath>2/12</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка12КонтекстноеМеню" id="78"/>
+										<ExtendedTooltip name="СхемаКолонка12РасширеннаяПодсказка" id="79"/>
+									</InputField>
+									<InputField name="СхемаКолонка13" id="80">
+										<DataPath>2/13</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка13КонтекстноеМеню" id="81"/>
+										<ExtendedTooltip name="СхемаКолонка13РасширеннаяПодсказка" id="82"/>
+									</InputField>
+									<InputField name="СхемаКолонка14" id="83">
+										<DataPath>2/14</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка14КонтекстноеМеню" id="84"/>
+										<ExtendedTooltip name="СхемаКолонка14РасширеннаяПодсказка" id="85"/>
+									</InputField>
+									<InputField name="СхемаКолонка15" id="86">
+										<DataPath>2/15</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка15КонтекстноеМеню" id="87"/>
+										<ExtendedTooltip name="СхемаКолонка15РасширеннаяПодсказка" id="88"/>
+									</InputField>
+									<InputField name="СхемаКолонка16" id="89">
+										<DataPath>2/16</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка16КонтекстноеМеню" id="90"/>
+										<ExtendedTooltip name="СхемаКолонка16РасширеннаяПодсказка" id="91"/>
+									</InputField>
+									<InputField name="СхемаКолонка17" id="92">
+										<DataPath>2/17</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка17КонтекстноеМеню" id="93"/>
+										<ExtendedTooltip name="СхемаКолонка17РасширеннаяПодсказка" id="94"/>
+									</InputField>
+									<InputField name="СхемаКолонка18" id="95">
+										<DataPath>2/18</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка18КонтекстноеМеню" id="96"/>
+										<ExtendedTooltip name="СхемаКолонка18РасширеннаяПодсказка" id="97"/>
+									</InputField>
+									<InputField name="СхемаКолонка19" id="98">
+										<DataPath>2/19</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка19КонтекстноеМеню" id="99"/>
+										<ExtendedTooltip name="СхемаКолонка19РасширеннаяПодсказка" id="100"/>
+									</InputField>
+									<InputField name="СхемаКолонка20" id="101">
+										<DataPath>2/20</DataPath>
+										<EditMode>EnterOnInput</EditMode>
+										<AutoMaxWidth>false</AutoMaxWidth>
+										<HorizontalStretch>true</HorizontalStretch>
+										<ContextMenu name="СхемаКолонка20КонтекстноеМеню" id="102"/>
+										<ExtendedTooltip name="СхемаКолонка20РасширеннаяПодсказка" id="103"/>
+									</InputField>
+								</ChildItems>
+							</Table>
+							<UsualGroup name="ГруппаСхемыМонтажа" id="107">
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Группа схемы монтажа</v8:content>
+									</v8:item>
+								</Title>
+								<ToolTip>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Группа схемы монтажа</v8:content>
+									</v8:item>
+								</ToolTip>
+								<Behavior>Usual</Behavior>
+								<ShowTitle>false</ShowTitle>
+								<ExtendedTooltip name="ГруппаСхемыМонтажаРасширеннаяПодсказка" id="108"/>
+							</UsualGroup>
+						</ChildItems>
+					</UsualGroup>
+				</ChildItems>
+			</UsualGroup>
+			<UsualGroup name="ГруппаПодвал" id="120">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа подвал</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа подвал</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Group>AlwaysHorizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="121"/>
+				<ChildItems>
+					<LabelDecoration name="НадписьИнфо" id="122">
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<HorizontalStretch>true</HorizontalStretch>
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Заполните заказ. А затем перетащите из левой части нужную номенклатуру на схему вправо.</v8:content>
+							</v8:item>
+						</Title>
+						<ContextMenu name="НадписьИнфоКонтекстноеМеню" id="123"/>
+						<ExtendedTooltip name="НадписьИнфоРасширеннаяПодсказка" id="124"/>
+					</LabelDecoration>
+					<Button name="СохранитьМонтаж" id="129">
+						<Type>UsualButton</Type>
+						<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+						<ExtendedTooltip name="СохранитьМонтажРасширеннаяПодсказка" id="130"/>
+					</Button>
+					<Button name="ЗакрытьФорму" id="127">
+						<Type>UsualButton</Type>
+						<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+						<ExtendedTooltip name="ЗакрытьФормуРасширеннаяПодсказка" id="128"/>
+					</Button>
+				</ChildItems>
+			</UsualGroup>
+		</ChildItems>
+		<Attributes/>
+	</BaseForm>
+</Form>

@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>НаборДанных1</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Счет</dataPath>
+			<field>Счет</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Счет</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Account</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
+			<presentationExpression>Счет.Код + " " + Счет.Наименование</presentationExpression>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>УчетПоПодразделениям</dataPath>
+			<field>УчетПоПодразделениям</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОбособленноеПодразделение</dataPath>
+			<field>ОбособленноеПодразделение</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обособленное подразделение</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Branch office</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Номенклатура</dataPath>
+			<field>Номенклатура</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номенклатура</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Products</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+				<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+			</role>
+			<valueType>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Номенклатура</v8:Type>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КорСчет</dataPath>
+			<field>КорСчет</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Кор счет</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Corr. account</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОсновноеСредство</dataPath>
+			<field>ОсновноеСредство</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Основное средство</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fixed asset</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+				<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+			</role>
+			<valueType>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ОбъектыЭксплуатации</v8:Type>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОбъектСтроительства</dataPath>
+			<field>ОбъектСтроительства</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объект строительства</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Assets under construction</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+				<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+			</role>
+			<valueType>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ОбъектыСтроительства</v8:Type>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВложенияИнвентарь</dataPath>
+			<field>ВложенияИнвентарь</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вложения в инвентарь</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Investments in inventory</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВложенияСооружения</dataPath>
+			<field>ВложенияСооружения</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вложения в сооружения</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Investments in facilities</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВложенияЗдания</dataPath>
+			<field>ВложенияЗдания</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вложения в здания</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Investments in buildings</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВложенияТранспорт</dataPath>
+			<field>ВложенияТранспорт</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вложения в транспорт</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Investments in vehicles</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ГруппаОС</dataPath>
+			<field>ГруппаОС</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа ОС</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fixed assets accounting group</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+				<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+			</role>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Вложения</dataPath>
+			<field>Вложения</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вложения</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Attachments</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВнеоборотныйАктив</dataPath>
+			<field>ВнеоборотныйАктив</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Внеоборотный актив</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Fixed or intangible asset</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+				<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+			</role>
+			<valueType>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ОбъектыЭксплуатации</v8:Type>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Номенклатура</v8:Type>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ОбъектыСтроительства</v8:Type>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВложенияНеУчтенныеКакОС</dataPath>
+			<field>ВложенияНеУчтенныеКакОС</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вложения не учтенные как ОС</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Investments not registered as fixed assets</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодПоОКОФ</dataPath>
+			<field>КодПоОКОФ</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Код по ОКОФ</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OKOF code</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВложенияДругие</dataPath>
+			<field>ВложенияДругие</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вложения в другие основные средства</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Investments in other fixed assets</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВложенияМашиныОборудование</dataPath>
+			<field>ВложенияМашиныОборудование</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ ВТ_СчетаВложений
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+{ГДЕ
+	Хозрасчетный.Ссылка.* КАК Счет,
+	Хозрасчетный.УчетПоПодразделениям КАК УчетПоПодразделениям}
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ СчетаОС
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ОсновныеСредства),
+		ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ДоходныеВложенияВ_МЦ))
+	И НЕ Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.АрендованноеИмущество))
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ОборотыДт01Кт08.СубконтоКт1 КАК ВнеоборотныйАктив,
+	ОборотыДт01Кт08.СубконтоДт1 КАК ОсновноеСредство,
+	ОборотыДт01Кт08.СчетКт КАК СчетКт
+ПОМЕСТИТЬ ОборотыМеждуСубконтоДт01Кт08
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.ОборотыДтКт(&amp;НачалоПериода, &amp;КонецПериода,, СчетДт В
+		(ВЫБРАТЬ
+			СчетаОС.Счет
+		ИЗ
+			СчетаОС КАК СчетаОС), ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.ОсновныеСредства), СчетКт В
+		(ВЫБРАТЬ
+			ВТ_СчетаВложений.Счет
+		ИЗ
+			ВТ_СчетаВложений КАК ВТ_СчетаВложений),
+		ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.ОбъектыСтроительства), {Организация В (&amp;Организация)}
+		{(ЕСТЬNULL(ПодразделениеКт, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК
+		ОбособленноеПодразделение}) КАК ОборотыДт01Кт08
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ОборотыДт01Кт08.СубконтоКт1,
+	ОборотыДт01Кт08.СубконтоДт1,
+	ОборотыДт01Кт08.СчетКт
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.ОборотыДтКт(&amp;НачалоПериода, &amp;КонецПериода,, СчетДт В
+		(ВЫБРАТЬ
+			СчетаОС.Счет
+		ИЗ
+			СчетаОС КАК СчетаОС), ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.ОсновныеСредства), СчетКт В
+		(ВЫБРАТЬ
+			ВТ_СчетаВложений.Счет
+		ИЗ
+			ВТ_СчетаВложений КАК ВТ_СчетаВложений), ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Номенклатура),
+		{Организация В (&amp;Организация)} {(ЕСТЬNULL(ПодразделениеКт,
+		ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение}) КАК ОборотыДт01Кт08
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ОборотыМеждуСубконтоДт01Кт08.ВнеоборотныйАктив КАК ВнеоборотныйАктив,
+	ОборотыМеждуСубконтоДт01Кт08.СчетКт КАК СоСчета,
+	МАКСИМУМ(ВЫРАЗИТЬ(ОборотыМеждуСубконтоДт01Кт08.ОсновноеСредство КАК Справочник.ОбъектыЭксплуатации)) КАК
+		ОсновноеСредство
+ПОМЕСТИТЬ ВнеоборотныйАктивВОсновноеСредство
+ИЗ
+	ОборотыМеждуСубконтоДт01Кт08 КАК ОборотыМеждуСубконтоДт01Кт08
+СГРУППИРОВАТЬ ПО
+	ОборотыМеждуСубконтоДт01Кт08.ВнеоборотныйАктив,
+	ОборотыМеждуСубконтоДт01Кт08.СчетКт
+
+ИНДЕКСИРОВАТЬ ПО
+	ВнеоборотныйАктив,
+	СоСчета
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВложенияВоВнеоборотныеАктивы.Счет КАК Счет,
+	ВложенияВоВнеоборотныеАктивы.Субконто1 КАК ОбъектСтроительства,
+	ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка) КАК Номенклатура,
+	ЕСТЬNULL(ВнеоборотныйАктивВОсновноеСредство.ОсновноеСредство, ЗНАЧЕНИЕ(Справочник.ОбъектыЭксплуатации.ПустаяСсылка)) КАК
+		ОсновноеСредство,
+	ВложенияВоВнеоборотныеАктивы.Субконто1 КАК ВнеоборотныйАктив,
+	ВложенияВоВнеоборотныеАктивы.СуммаОборотДт КАК СуммаВложений
+ПОМЕСТИТЬ ВложенияВоВнеоборотныеАктивы
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(&amp;НачалоПериода, &amp;КонецПериода,, Счет В
+		(ВЫБРАТЬ
+			ВТ_СчетаВложений.Счет
+		ИЗ
+			ВТ_СчетаВложений КАК ВТ_СчетаВложений),
+		ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.ОбъектыСтроительства), {Организация В (&amp;Организация)}
+		{(ЕСТЬNULL(Подразделение, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК
+		ОбособленноеПодразделение} {(Субконто1).* КАК ОбъектСтроительства} {ЛОЖЬ КАК Номенклатура} {(Субконто1).* КАК
+		ВнеоборотныйАктив}, {КорСчет КАК КорСчет},) КАК ВложенияВоВнеоборотныеАктивы
+		ЛЕВОЕ СОЕДИНЕНИЕ ВнеоборотныйАктивВОсновноеСредство КАК ВнеоборотныйАктивВОсновноеСредство
+		ПО ВложенияВоВнеоборотныеАктивы.Субконто1 = ВнеоборотныйАктивВОсновноеСредство.ВнеоборотныйАктив
+		И ВложенияВоВнеоборотныеАктивы.Счет = ВнеоборотныйАктивВОсновноеСредство.СоСчета
+{ГДЕ
+	(ЕСТЬNULL(ВнеоборотныйАктивВОсновноеСредство.ОсновноеСредство, ЗНАЧЕНИЕ(Справочник.ОбъектыЭксплуатации.ПустаяСсылка))).*
+		КАК ОсновноеСредство,
+	ЕСТЬNULL(ВнеоборотныйАктивВОсновноеСредство.ОсновноеСредство.ГруппаОС, ЗНАЧЕНИЕ(Перечисление.ГруппыОС.ПустаяСсылка))
+		КАК ГруппаОС,
+	ЕСТЬNULL(ВнеоборотныйАктивВОсновноеСредство.ОсновноеСредство.КодПоОКОФ.Код, "") КАК КодПоОКОФ}
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВложенияВоВнеоборотныеАктивы.Счет,
+	ЗНАЧЕНИЕ(Справочник.ОбъектыСтроительства.ПустаяСсылка),
+	ВложенияВоВнеоборотныеАктивы.Субконто1,
+	ЕСТЬNULL(ВнеоборотныйАктивВОсновноеСредство.ОсновноеСредство, ЗНАЧЕНИЕ(Справочник.ОбъектыЭксплуатации.ПустаяСсылка)),
+	ВложенияВоВнеоборотныеАктивы.Субконто1,
+	ВложенияВоВнеоборотныеАктивы.СуммаОборотДт
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(&amp;НачалоПериода, &amp;КонецПериода,, Счет В
+		(ВЫБРАТЬ
+			ВТ_СчетаВложений.Счет
+		ИЗ
+			ВТ_СчетаВложений КАК ВТ_СчетаВложений), ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Номенклатура),
+		{Организация В (&amp;Организация)} {(ЕСТЬNULL(Подразделение,
+		ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение} {ЛОЖЬ КАК
+		ОбъектСтроительства} {(Субконто1).* КАК Номенклатура} {(Субконто1).* КАК ВнеоборотныйАктив}, {КорСчет КАК
+		КорСчет},) КАК ВложенияВоВнеоборотныеАктивы
+		ЛЕВОЕ СОЕДИНЕНИЕ ВнеоборотныйАктивВОсновноеСредство КАК ВнеоборотныйАктивВОсновноеСредство
+		ПО ВложенияВоВнеоборотныеАктивы.Субконто1 = ВнеоборотныйАктивВОсновноеСредство.ВнеоборотныйАктив
+		И ВложенияВоВнеоборотныеАктивы.Счет = ВнеоборотныйАктивВОсновноеСредство.СоСчета
+{ГДЕ
+	(ЕСТЬNULL(ВнеоборотныйАктивВОсновноеСредство.ОсновноеСредство, ЗНАЧЕНИЕ(Справочник.ОбъектыЭксплуатации.ПустаяСсылка))).*
+		КАК ОсновноеСредство,
+	ЕСТЬNULL(ВнеоборотныйАктивВОсновноеСредство.ОсновноеСредство.ГруппаОС, ЗНАЧЕНИЕ(Перечисление.ГруппыОС.ПустаяСсылка))
+		КАК ГруппаОС,
+	ЕСТЬNULL(ВнеоборотныйАктивВОсновноеСредство.ОсновноеСредство.КодПоОКОФ.Код, "") КАК КодПоОКОФ}
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВложенияВоВнеоборотныеАктивы.Счет,
+	ЗНАЧЕНИЕ(Справочник.ОбъектыСтроительства.ПустаяСсылка),
+	ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка),
+	ВложенияВоВнеоборотныеАктивы.Субконто1,
+	ВложенияВоВнеоборотныеАктивы.Субконто1,
+	ВложенияВоВнеоборотныеАктивы.СуммаОборотДт
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(&amp;НачалоПериода, &amp;КонецПериода,, Счет В
+		(ВЫБРАТЬ
+			ВТ_СчетаВложений.Счет
+		ИЗ
+			ВТ_СчетаВложений КАК ВТ_СчетаВложений), ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.ОсновныеСредства),
+		{Организация В (&amp;Организация)} {(ЕСТЬNULL(Подразделение,
+		ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение} {ЛОЖЬ КАК
+		ОбъектСтроительства} {ЛОЖЬ КАК Номенклатура} {(Субконто1).* КАК ОсновноеСредство} {(Субконто1).* КАК
+		ВнеоборотныйАктив} {ЕСТЬNULL(Субконто1.ГруппаОС, ЗНАЧЕНИЕ(Перечисление.ГруппыОС.ПустаяСсылка)) КАК ГруппаОС}
+		{ЕСТЬNULL(Субконто1.КодПоОКОФ.Код, "") КАК КодПоОКОФ}, {КорСчет КАК КорСчет},) КАК ВложенияВоВнеоборотныеАктивы
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВложенияВоВнеоборотныеАктивы.СуммаВложений КАК Вложения,
+	ВЫБОР
+		КОГДА ВложенияВоВнеоборотныеАктивы.ОсновноеСредство = ЗНАЧЕНИЕ(Справочник.ОбъектыЭксплуатации.ПустаяСсылка)
+			ТОГДА ВложенияВоВнеоборотныеАктивы.СуммаВложений
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВложенияНеУчтенныеКакОС,
+	ВЫБОР
+		КОГДА ВложенияВоВнеоборотныеАктивы.ОсновноеСредство.ГруппаОС = ЗНАЧЕНИЕ(Перечисление.ГруппыОС.Здания)
+			ТОГДА ВложенияВоВнеоборотныеАктивы.СуммаВложений
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВложенияЗдания,
+	ВЫБОР
+		КОГДА ВложенияВоВнеоборотныеАктивы.ОсновноеСредство.ГруппаОС = ЗНАЧЕНИЕ(Перечисление.ГруппыОС.Сооружения)
+			ТОГДА ВложенияВоВнеоборотныеАктивы.СуммаВложений
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВложенияСооружения,
+	ВЫБОР
+		КОГДА ВложенияВоВнеоборотныеАктивы.ОсновноеСредство.ГруппаОС В (ЗНАЧЕНИЕ(Перечисление.ГруппыОС.МашиныИОборудование),
+			ЗНАЧЕНИЕ(Перечисление.ГруппыОС.ОфисноеОборудование))
+			ТОГДА ВложенияВоВнеоборотныеАктивы.СуммаВложений
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВложенияМашиныОборудование,
+	ВЫБОР
+		КОГДА ВложенияВоВнеоборотныеАктивы.ОсновноеСредство.ГруппаОС = ЗНАЧЕНИЕ(Перечисление.ГруппыОС.ТранспортныеСредства)
+			ТОГДА ВложенияВоВнеоборотныеАктивы.СуммаВложений
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВложенияТранспорт,
+	ВЫБОР
+		КОГДА
+			ВложенияВоВнеоборотныеАктивы.ОсновноеСредство.ГруппаОС = ЗНАЧЕНИЕ(Перечисление.ГруппыОС.ПроизводственныйИХозяйственныйИнвентарь)
+			ТОГДА ВложенияВоВнеоборотныеАктивы.СуммаВложений
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВложенияИнвентарь,
+	ВЫБОР
+		КОГДА
+			ВложенияВоВнеоборотныеАктивы.ОсновноеСредство.ГруппаОС = ЗНАЧЕНИЕ(Перечисление.ГруппыОС.ДругиеВидыОсновныхСредств)
+			ТОГДА ВложенияВоВнеоборотныеАктивы.СуммаВложений
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВложенияДругие,
+	ВложенияВоВнеоборотныеАктивы.Счет КАК Счет,
+	ВложенияВоВнеоборотныеАктивы.ОбъектСтроительства КАК ОбъектСтроительства,
+	ВложенияВоВнеоборотныеАктивы.Номенклатура КАК Номенклатура,
+	ВложенияВоВнеоборотныеАктивы.ОсновноеСредство КАК ОсновноеСредство,
+	ВложенияВоВнеоборотныеАктивы.ВнеоборотныйАктив КАК ВнеоборотныйАктив,
+	ВложенияВоВнеоборотныеАктивы.ОсновноеСредство.ГруппаОС КАК ГруппаОС
+{ВЫБРАТЬ
+	Счет.*,
+	ОбъектСтроительства,
+	Номенклатура,
+	ОсновноеСредство,
+	ВнеоборотныйАктив,
+	ГруппаОС,
+	Вложения,
+	ВложенияНеУчтенныеКакОС,
+	ВложенияЗдания,
+	ВложенияСооружения,
+	ВложенияМашиныОборудование,
+	ВложенияТранспорт,
+	ВложенияИнвентарь,
+	ВложенияДругие}
+ИЗ
+	ВложенияВоВнеоборотныеАктивы КАК ВложенияВоВнеоборотныеАктивы</query>
+		<autoFillFields>false</autoFillFields>
+	</dataSet>
+	<totalField>
+		<dataPath>Вложения</dataPath>
+		<expression>Сумма(Вложения)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВложенияЗдания</dataPath>
+		<expression>Сумма(ВложенияЗдания)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВложенияИнвентарь</dataPath>
+		<expression>Сумма(ВложенияИнвентарь)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВложенияСооружения</dataPath>
+		<expression>Сумма(ВложенияСооружения)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВложенияТранспорт</dataPath>
+		<expression>Сумма(ВложенияТранспорт)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВложенияНеУчтенныеКакОС</dataPath>
+		<expression>Сумма(ВложенияНеУчтенныеКакОС)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВложенияДругие</dataPath>
+		<expression>Сумма(ВложенияДругие)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВложенияМашиныОборудование</dataPath>
+		<expression>Сумма(ВложенияМашиныОборудование)</expression>
+	</totalField>
+	<parameter>
+		<name>НачалоПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Начало периода</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period start</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>КонецПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Конец периода</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period end</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>Организация</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Организация</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Company</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:CatalogRef.Организации</v8:Type>
+		</valueType>
+		<useRestriction>true</useRestriction>
+		<valueListAllowed>true</valueListAllowed>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Основной</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Main</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>Расшифровка</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Расшифровка</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Drill down</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>ВнеоборотныйАктив</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

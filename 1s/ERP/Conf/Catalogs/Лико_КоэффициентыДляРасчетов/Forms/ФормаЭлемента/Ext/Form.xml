@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Наименование" id="4">
+			<DataPath>Объект.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="ВидПечати" id="7">
+			<DataPath>Объект.ВидПечати</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ВидПечатиКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ВидПечатиРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<CheckBoxField name="СпецКраска" id="10">
+			<DataPath>Объект.СпецКраска</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="СпецКраскаКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="СпецКраскаРасширеннаяПодсказка" id="12"/>
+		</CheckBoxField>
+		<InputField name="ЦеноваяГруппа" id="13">
+			<DataPath>Объект.ЦеноваяГруппа</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ЦеноваяГруппаКонтекстноеМеню" id="14"/>
+			<ExtendedTooltip name="ЦеноваяГруппаРасширеннаяПодсказка" id="15"/>
+		</InputField>
+		<UsualGroup name="Группа1" id="66">
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="67"/>
+			<ChildItems>
+				<InputField name="ПроцентВСмеси" id="16">
+					<DataPath>Объект.ПроцентВСмеси</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПроцентВСмесиКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ПроцентВСмесиРасширеннаяПодсказка" id="18"/>
+				</InputField>
+				<InputField name="Значение" id="19">
+					<DataPath>Объект.Значение</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗначениеКонтекстноеМеню" id="20"/>
+					<ExtendedTooltip name="ЗначениеРасширеннаяПодсказка" id="21"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Страницы" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="23"/>
+			<ChildItems>
+				<Page name="ГруппаТипыЦвета" id="24">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Типы цвета</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаТипыЦветаРасширеннаяПодсказка" id="25"/>
+					<ChildItems>
+						<Table name="ТипыЦвета" id="26">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.ТипыЦвета</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ТипыЦветаКонтекстноеМеню" id="27"/>
+							<AutoCommandBar name="ТипыЦветаКоманднаяПанель" id="28"/>
+							<ExtendedTooltip name="ТипыЦветаРасширеннаяПодсказка" id="29"/>
+							<SearchStringAddition name="ТипыЦветаСтрокаПоиска" id="30">
+								<AdditionSource>
+									<Item>ТипыЦвета</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТипыЦветаСтрокаПоискаКонтекстноеМеню" id="31"/>
+								<ExtendedTooltip name="ТипыЦветаСтрокаПоискаРасширеннаяПодсказка" id="32"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ТипыЦветаСостояниеПросмотра" id="33">
+								<AdditionSource>
+									<Item>ТипыЦвета</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТипыЦветаСостояниеПросмотраКонтекстноеМеню" id="34"/>
+								<ExtendedTooltip name="ТипыЦветаСостояниеПросмотраРасширеннаяПодсказка" id="35"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ТипыЦветаУправлениеПоиском" id="36">
+								<AdditionSource>
+									<Item>ТипыЦвета</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ТипыЦветаУправлениеПоискомКонтекстноеМеню" id="37"/>
+								<ExtendedTooltip name="ТипыЦветаУправлениеПоискомРасширеннаяПодсказка" id="38"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ТипыЦветаНомерСтроки" id="39">
+									<DataPath>Объект.ТипыЦвета.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТипыЦветаНомерСтрокиКонтекстноеМеню" id="40"/>
+									<ExtendedTooltip name="ТипыЦветаНомерСтрокиРасширеннаяПодсказка" id="41"/>
+								</LabelField>
+								<InputField name="ТипыЦветаТипЦвета" id="42">
+									<DataPath>Объект.ТипыЦвета.ТипЦвета</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТипыЦветаТипЦветаКонтекстноеМеню" id="43"/>
+									<ExtendedTooltip name="ТипыЦветаТипЦветаРасширеннаяПодсказка" id="44"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаВидыРабот" id="45">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Виды работ</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаВидыРаботРасширеннаяПодсказка" id="46"/>
+					<ChildItems>
+						<Table name="ВидыРабот" id="47">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.ВидыРабот</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ВидыРаботКонтекстноеМеню" id="48"/>
+							<AutoCommandBar name="ВидыРаботКоманднаяПанель" id="49"/>
+							<ExtendedTooltip name="ВидыРаботРасширеннаяПодсказка" id="50"/>
+							<SearchStringAddition name="ВидыРаботСтрокаПоиска" id="51">
+								<AdditionSource>
+									<Item>ВидыРабот</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ВидыРаботСтрокаПоискаКонтекстноеМеню" id="52"/>
+								<ExtendedTooltip name="ВидыРаботСтрокаПоискаРасширеннаяПодсказка" id="53"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ВидыРаботСостояниеПросмотра" id="54">
+								<AdditionSource>
+									<Item>ВидыРабот</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ВидыРаботСостояниеПросмотраКонтекстноеМеню" id="55"/>
+								<ExtendedTooltip name="ВидыРаботСостояниеПросмотраРасширеннаяПодсказка" id="56"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ВидыРаботУправлениеПоиском" id="57">
+								<AdditionSource>
+									<Item>ВидыРабот</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ВидыРаботУправлениеПоискомКонтекстноеМеню" id="58"/>
+								<ExtendedTooltip name="ВидыРаботУправлениеПоискомРасширеннаяПодсказка" id="59"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ВидыРаботНомерСтроки" id="60">
+									<DataPath>Объект.ВидыРабот.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ВидыРаботНомерСтрокиКонтекстноеМеню" id="61"/>
+									<ExtendedTooltip name="ВидыРаботНомерСтрокиРасширеннаяПодсказка" id="62"/>
+								</LabelField>
+								<InputField name="ВидыРаботВидРабот" id="63">
+									<DataPath>Объект.ВидыРабот.ВидРабот</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ВидыРаботВидРаботКонтекстноеМеню" id="64"/>
+									<ExtendedTooltip name="ВидыРаботВидРаботРасширеннаяПодсказка" id="65"/>
+								</InputField>
+								<InputField name="ВидыРаботВидСекции" id="68">
+									<DataPath>Объект.ВидыРабот.ВидСекции</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВидыРаботВидСекцииКонтекстноеМеню" id="69"/>
+									<ExtendedTooltip name="ВидыРаботВидСекцииРасширеннаяПодсказка" id="70"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ВидыМатериалов" id="71">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Виды материалов</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Виды материалов</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ВидыМатериаловРасширеннаяПодсказка" id="72"/>
+					<ChildItems>
+						<Table name="ВидыМатериалов1" id="73">
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.ВидыМатериалов</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ВидыМатериалов1КонтекстноеМеню" id="74"/>
+							<AutoCommandBar name="ВидыМатериалов1КоманднаяПанель" id="75"/>
+							<ExtendedTooltip name="ВидыМатериалов1РасширеннаяПодсказка" id="76"/>
+							<SearchStringAddition name="ВидыМатериалов1СтрокаПоиска" id="77">
+								<AdditionSource>
+									<Item>ВидыМатериалов1</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ВидыМатериалов1СтрокаПоискаКонтекстноеМеню" id="78"/>
+								<ExtendedTooltip name="ВидыМатериалов1СтрокаПоискаРасширеннаяПодсказка" id="79"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ВидыМатериалов1СостояниеПросмотра" id="80">
+								<AdditionSource>
+									<Item>ВидыМатериалов1</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ВидыМатериалов1СостояниеПросмотраКонтекстноеМеню" id="81"/>
+								<ExtendedTooltip name="ВидыМатериалов1СостояниеПросмотраРасширеннаяПодсказка" id="82"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ВидыМатериалов1УправлениеПоиском" id="83">
+								<AdditionSource>
+									<Item>ВидыМатериалов1</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ВидыМатериалов1УправлениеПоискомКонтекстноеМеню" id="84"/>
+								<ExtendedTooltip name="ВидыМатериалов1УправлениеПоискомРасширеннаяПодсказка" id="85"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ВидыМатериалов1НомерСтроки" id="86">
+									<DataPath>Объект.ВидыМатериалов.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ВидыМатериалов1НомерСтрокиКонтекстноеМеню" id="87"/>
+									<ExtendedTooltip name="ВидыМатериалов1НомерСтрокиРасширеннаяПодсказка" id="88"/>
+								</LabelField>
+								<InputField name="ВидыМатериалов1ВидМатериала" id="89">
+									<DataPath>Объект.ВидыМатериалов.ВидМатериала</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВидыМатериалов1ВидМатериалаКонтекстноеМеню" id="90"/>
+									<ExtendedTooltip name="ВидыМатериалов1ВидМатериалаРасширеннаяПодсказка" id="91"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.Лико_КоэффициентыДляРасчетов</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "memory-bank-indexer": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:\\Users\\mshenderov\\Documents\\Cline\\MCP\\memory-bank-indexer\\build\\index.js"
+      ],
+      "timeout": 300
+    },
+    "1c-mcp-bridge": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:\\Users\\mshenderov\\Documents\\Cline\\MCP\\1c-mcp-bridge\\build\\index.js"
+      ],
+      "timeout": 60,
+      "env": {
+        "ONE_C_URL": "http://it-mshenderov/1ctesterp5/hs/mcp",
+        "ONE_C_USERNAME": "administrator",
+        "ONE_C_PASSWORD": "224"
+      }
+    }
+  }
+}

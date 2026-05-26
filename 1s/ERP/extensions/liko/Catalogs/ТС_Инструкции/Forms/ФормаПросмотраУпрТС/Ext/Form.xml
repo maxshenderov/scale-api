@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Просмотр документов</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<ScalingMode>Normal</ScalingMode>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="СписокРаскрытьГруппу" id="32">
+				<Type>CommandBarButton</Type>
+				<Visible>false</Visible>
+				<CommandName>0</CommandName>
+				<ExtendedTooltip name="СписокРаскрытьГруппуРасширеннаяПодсказка" id="33"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen" callType="Override">Лико_ПриОткрытииВместо</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="ГруппаСтраницы" id="23">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="ГруппаСтраницыРасширеннаяПодсказка" id="24"/>
+			<ChildItems>
+				<Page name="СтраницаРисуонк" id="27">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница рисуонк</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница рисуонк</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="СтраницаРисуонкРасширеннаяПодсказка" id="28"/>
+					<ChildItems>
+						<PictureField name="Предпросмотр" id="29">
+							<TitleLocation>None</TitleLocation>
+							<Width>150</Width>
+							<Height>20</Height>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="ПредпросмотрКонтекстноеМеню" id="30"/>
+							<ExtendedTooltip name="ПредпросмотрРасширеннаяПодсказка" id="31"/>
+						</PictureField>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаHTML" id="25">
+					<Visible>false</Visible>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница HTML</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница HTML</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="СтраницаHTMLРасширеннаяПодсказка" id="26"/>
+					<ChildItems>
+						<HTMLDocumentField name="HTML" id="20">
+							<TitleLocation>None</TitleLocation>
+							<ContextMenu name="HTMLКонтекстноеМеню" id="21"/>
+							<ExtendedTooltip name="HTMLРасширеннаяПодсказка" id="22"/>
+						</HTMLDocumentField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<Button name="Назад" id="34">
+			<Type>UsualButton</Type>
+			<Enabled>false</Enabled>
+			<Width>30</Width>
+			<Height>2</Height>
+			<CommandName>Form.Command.Назад</CommandName>
+			<Font ref="sys:DefaultGUIFont" height="18" kind="WindowsFont"/>
+			<ExtendedTooltip name="НазадРасширеннаяПодсказка" id="35"/>
+		</Button>
+	</ChildItems>
+	<Attributes/>
+	<Commands>
+		<Command name="Назад" id="1000002">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Назад</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Назад</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ТСНазад</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action callType="Override">Лико_НазадВместо</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<BaseForm version="2.20">
+		<Title>
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Просмотр документов</v8:content>
+			</v8:item>
+		</Title>
+		<AutoTitle>false</AutoTitle>
+		<ScalingMode>Normal</ScalingMode>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+			<Autofill>false</Autofill>
+			<ChildItems>
+				<Button name="СписокРаскрытьГруппу" id="32">
+					<Type>CommandBarButton</Type>
+					<Visible>false</Visible>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="СписокРаскрытьГруппуРасширеннаяПодсказка" id="33"/>
+				</Button>
+			</ChildItems>
+		</AutoCommandBar>
+		<ChildItems>
+			<Pages name="ГруппаСтраницы" id="23">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа страницы</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа страницы</v8:content>
+					</v8:item>
+				</ToolTip>
+				<PagesRepresentation>None</PagesRepresentation>
+				<ExtendedTooltip name="ГруппаСтраницыРасширеннаяПодсказка" id="24"/>
+				<ChildItems>
+					<Page name="СтраницаРисуонк" id="27">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница рисуонк</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница рисуонк</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="СтраницаРисуонкРасширеннаяПодсказка" id="28"/>
+						<ChildItems>
+							<PictureField name="Предпросмотр" id="29">
+								<TitleLocation>None</TitleLocation>
+								<Width>150</Width>
+								<Height>20</Height>
+								<FileDragMode>AsFile</FileDragMode>
+								<ContextMenu name="ПредпросмотрКонтекстноеМеню" id="30"/>
+								<ExtendedTooltip name="ПредпросмотрРасширеннаяПодсказка" id="31"/>
+							</PictureField>
+						</ChildItems>
+					</Page>
+					<Page name="СтраницаHTML" id="25">
+						<Visible>false</Visible>
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница HTML</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница HTML</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="СтраницаHTMLРасширеннаяПодсказка" id="26"/>
+						<ChildItems>
+							<HTMLDocumentField name="HTML" id="20">
+								<TitleLocation>None</TitleLocation>
+								<ContextMenu name="HTMLКонтекстноеМеню" id="21"/>
+								<ExtendedTooltip name="HTMLРасширеннаяПодсказка" id="22"/>
+							</HTMLDocumentField>
+						</ChildItems>
+					</Page>
+				</ChildItems>
+			</Pages>
+			<Button name="Назад" id="34">
+				<Type>UsualButton</Type>
+				<Width>30</Width>
+				<Height>2</Height>
+				<CommandName>Form.Command.Назад</CommandName>
+				<Font ref="sys:DefaultGUIFont" height="18" kind="WindowsFont"/>
+				<ExtendedTooltip name="НазадРасширеннаяПодсказка" id="35"/>
+			</Button>
+		</ChildItems>
+		<Attributes/>
+		<Commands>
+			<Command name="Назад" id="1000001">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Назад</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Назад</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Picture>
+					<xr:Ref>CommonPicture.ТСНазад</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<Representation>TextPicture</Representation>
+				<CurrentRowUse>DontUse</CurrentRowUse>
+			</Command>
+		</Commands>
+	</BaseForm>
+</Form>

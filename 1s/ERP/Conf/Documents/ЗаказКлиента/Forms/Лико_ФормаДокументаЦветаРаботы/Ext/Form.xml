@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="ФормаЗаписатьЗаказ" id="119">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.ЗаписатьЗаказ</CommandName>
+				<ExtendedTooltip name="ФормаЗаписатьЗаказРасширеннаяПодсказка" id="120"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="НомерПроката" id="116">
+			<DataPath>НомерПроката</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<ContextMenu name="НомерПрокатаКонтекстноеМеню" id="117"/>
+			<ExtendedTooltip name="НомерПрокатаРасширеннаяПодсказка" id="118"/>
+		</InputField>
+		<UsualGroup name="ГруппаЦвета" id="102">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Цвета</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа цвета</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Behavior>Usual</Behavior>
+			<ExtendedTooltip name="ГруппаЦветаРасширеннаяПодсказка" id="103"/>
+			<ChildItems>
+				<Table name="Цвета" id="5">
+					<Representation>List</Representation>
+					<AutoInsertNewRow>true</AutoInsertNewRow>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<DataPath>Объект.Цвета</DataPath>
+					<RowFilter xsi:nil="true"/>
+					<ContextMenu name="ЦветаКонтекстноеМеню" id="6"/>
+					<AutoCommandBar name="ЦветаКоманднаяПанель" id="7"/>
+					<ExtendedTooltip name="ЦветаРасширеннаяПодсказка" id="8"/>
+					<SearchStringAddition name="ЦветаСтрокаПоиска" id="9">
+						<AdditionSource>
+							<Item>Цвета</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ЦветаСтрокаПоискаКонтекстноеМеню" id="10"/>
+						<ExtendedTooltip name="ЦветаСтрокаПоискаРасширеннаяПодсказка" id="11"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ЦветаСостояниеПросмотра" id="12">
+						<AdditionSource>
+							<Item>Цвета</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ЦветаСостояниеПросмотраКонтекстноеМеню" id="13"/>
+						<ExtendedTooltip name="ЦветаСостояниеПросмотраРасширеннаяПодсказка" id="14"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ЦветаУправлениеПоиском" id="15">
+						<AdditionSource>
+							<Item>Цвета</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ЦветаУправлениеПоискомКонтекстноеМеню" id="16"/>
+						<ExtendedTooltip name="ЦветаУправлениеПоискомРасширеннаяПодсказка" id="17"/>
+					</SearchControlAddition>
+					<Events>
+						<Event name="BeforeAddRow">ЦветаПередНачаломДобавления</Event>
+						<Event name="BeforeDeleteRow">ЦветаПередУдалением</Event>
+						<Event name="OnActivateRow">ЦветаПриАктивизацииСтроки</Event>
+						<Event name="OnStartEdit">ЦветаПриНачалеРедактирования</Event>
+					</Events>
+					<ChildItems>
+						<LabelField name="ЦветаНомерСтроки" id="18">
+							<DataPath>Объект.Цвета.LineNumber</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>2</MaxWidth>
+							<ContextMenu name="ЦветаНомерСтрокиКонтекстноеМеню" id="19"/>
+							<ExtendedTooltip name="ЦветаНомерСтрокиРасширеннаяПодсказка" id="20"/>
+						</LabelField>
+						<InputField name="ЦветаНомерПроката" id="39">
+							<DataPath>Объект.Цвета.НомерПроката</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>№ Проката</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>5</MaxWidth>
+							<ContextMenu name="ЦветаНомерПрокатаКонтекстноеМеню" id="40"/>
+							<ExtendedTooltip name="ЦветаНомерПрокатаРасширеннаяПодсказка" id="41"/>
+						</InputField>
+						<InputField name="ЦветаВидПечати" id="21">
+							<DataPath>Объект.Цвета.ВидПечати</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>8</MaxWidth>
+							<ContextMenu name="ЦветаВидПечатиКонтекстноеМеню" id="22"/>
+							<ExtendedTooltip name="ЦветаВидПечатиРасширеннаяПодсказка" id="23"/>
+						</InputField>
+						<InputField name="ЦветаТипЦвета" id="24">
+							<DataPath>1/0:3f1241b2-645f-4eff-8a46-35576427ed04/0:bafe6a19-c7d1-46a9-af4c-e20658cd91af</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>10</MaxWidth>
+							<ContextMenu name="ЦветаТипЦветаКонтекстноеМеню" id="25"/>
+							<ExtendedTooltip name="ЦветаТипЦветаРасширеннаяПодсказка" id="26"/>
+						</InputField>
+						<InputField name="ЦветаТипКраски" id="27">
+							<DataPath>Объект.Цвета.ТипКраски</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>10</MaxWidth>
+							<ContextMenu name="ЦветаТипКраскиКонтекстноеМеню" id="28"/>
+							<ExtendedTooltip name="ЦветаТипКраскиРасширеннаяПодсказка" id="29"/>
+						</InputField>
+						<LabelField name="ЦветаТипКраскиФактКод" id="107">
+							<DataPath>1/0:3f1241b2-645f-4eff-8a46-35576427ed04/0:a0bdaf68-ea9b-4b91-856d-8ad12295de03/-2</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>5</MaxWidth>
+							<ContextMenu name="ЦветаТипКраскиФактКодКонтекстноеМеню" id="108"/>
+							<ExtendedTooltip name="ЦветаТипКраскиФактКодРасширеннаяПодсказка" id="109"/>
+						</LabelField>
+						<InputField name="ЦветаТипКраскиФакт" id="45">
+							<DataPath>1/0:3f1241b2-645f-4eff-8a46-35576427ed04/0:a0bdaf68-ea9b-4b91-856d-8ad12295de03</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>10</MaxWidth>
+							<ContextMenu name="ЦветаТипКраскиФактКонтекстноеМеню" id="46"/>
+							<ExtendedTooltip name="ЦветаТипКраскиФактРасширеннаяПодсказка" id="47"/>
+							<Events>
+								<Event name="ChoiceProcessing">ЦветаТипКраскиФактОбработкаВыбора</Event>
+							</Events>
+						</InputField>
+						<CheckBoxField name="ЦветаВременныеИзменения_ТипКраски" id="121">
+							<DataPath>1/0:3f1241b2-645f-4eff-8a46-35576427ed04/0:146673b5-0bc6-4131-ae1d-4199635df507</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Врем. изм. типа краски</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ЦветаВременныеИзменения_ТипКраскиКонтекстноеМеню" id="122"/>
+							<ExtendedTooltip name="ЦветаВременныеИзменения_ТипКраскиРасширеннаяПодсказка" id="123"/>
+						</CheckBoxField>
+						<InputField name="ЦветаНазвание" id="30">
+							<DataPath>Объект.Цвета.Название</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ЦветаНазваниеКонтекстноеМеню" id="31"/>
+							<ExtendedTooltip name="ЦветаНазваниеРасширеннаяПодсказка" id="32"/>
+						</InputField>
+						<InputField name="ЦветаПроцентЗаливки" id="33">
+							<DataPath>Объект.Цвета.ПроцентЗаливки</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>% Заливки</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ЦветаПроцентЗаливкиКонтекстноеМеню" id="34"/>
+							<ExtendedTooltip name="ЦветаПроцентЗаливкиРасширеннаяПодсказка" id="35"/>
+						</InputField>
+						<InputField name="ЦветаГрамматура" id="36">
+							<DataPath>Объект.Цвета.Грамматура</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Гр.</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>5</MaxWidth>
+							<ContextMenu name="ЦветаГрамматураКонтекстноеМеню" id="37"/>
+							<ExtendedTooltip name="ЦветаГрамматураРасширеннаяПодсказка" id="38"/>
+						</InputField>
+						<LabelField name="ЦветаКлючСтроки" id="42">
+							<DataPath>Объект.Цвета.КлючСтроки</DataPath>
+							<Visible>false</Visible>
+							<Enabled>false</Enabled>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ЦветаКлючСтрокиКонтекстноеМеню" id="43"/>
+							<ExtendedTooltip name="ЦветаКлючСтрокиРасширеннаяПодсказка" id="44"/>
+						</LabelField>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="ВидыРабот" id="50">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.ВидыРабот</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ВидыРаботКонтекстноеМеню" id="51"/>
+			<AutoCommandBar name="ВидыРаботКоманднаяПанель" id="52"/>
+			<ExtendedTooltip name="ВидыРаботРасширеннаяПодсказка" id="53"/>
+			<SearchStringAddition name="ВидыРаботСтрокаПоиска" id="54">
+				<AdditionSource>
+					<Item>ВидыРабот</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ВидыРаботСтрокаПоискаКонтекстноеМеню" id="55"/>
+				<ExtendedTooltip name="ВидыРаботСтрокаПоискаРасширеннаяПодсказка" id="56"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ВидыРаботСостояниеПросмотра" id="57">
+				<AdditionSource>
+					<Item>ВидыРабот</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ВидыРаботСостояниеПросмотраКонтекстноеМеню" id="58"/>
+				<ExtendedTooltip name="ВидыРаботСостояниеПросмотраРасширеннаяПодсказка" id="59"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ВидыРаботУправлениеПоиском" id="60">
+				<AdditionSource>
+					<Item>ВидыРабот</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ВидыРаботУправлениеПоискомКонтекстноеМеню" id="61"/>
+				<ExtendedTooltip name="ВидыРаботУправлениеПоискомРасширеннаяПодсказка" id="62"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="BeforeAddRow">ВидыРаботПередНачаломДобавления</Event>
+				<Event name="BeforeDeleteRow">ВидыРаботПередУдалением</Event>
+				<Event name="OnActivateRow">ВидыРаботПриАктивизацииСтроки</Event>
+				<Event name="OnStartEdit">ВидыРаботПриНачалеРедактирования</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="ВидыРаботНомерСтроки" id="63">
+					<DataPath>Объект.ВидыРабот.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>3</MaxWidth>
+					<ContextMenu name="ВидыРаботНомерСтрокиКонтекстноеМеню" id="64"/>
+					<ExtendedTooltip name="ВидыРаботНомерСтрокиРасширеннаяПодсказка" id="65"/>
+				</LabelField>
+				<InputField name="ВидыРаботВидРабот" id="66">
+					<DataPath>Объект.ВидыРабот.ВидРабот</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>12</MaxWidth>
+					<ContextMenu name="ВидыРаботВидРаботКонтекстноеМеню" id="67"/>
+					<ExtendedTooltip name="ВидыРаботВидРаботРасширеннаяПодсказка" id="68"/>
+				</InputField>
+				<InputField name="ВидыРаботНомерРаботы" id="99">
+					<DataPath>Объект.ВидыРабот.НомерРаботы</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>№ Р.</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>2</MaxWidth>
+					<ContextMenu name="ВидыРаботНомерРаботыКонтекстноеМеню" id="100"/>
+					<ExtendedTooltip name="ВидыРаботНомерРаботыРасширеннаяПодсказка" id="101"/>
+				</InputField>
+				<InputField name="ВидыРаботРабочийЦентр" id="69">
+					<DataPath>Объект.ВидыРабот.РабочийЦентр</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>12</MaxWidth>
+					<ContextMenu name="ВидыРаботРабочийЦентрКонтекстноеМеню" id="70"/>
+					<ExtendedTooltip name="ВидыРаботРабочийЦентрРасширеннаяПодсказка" id="71"/>
+				</InputField>
+				<LabelField name="ВидыРаботОснасткаАртикул" id="110">
+					<DataPath>Объект.ВидыРабот.Оснастка.Артикул</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>8</MaxWidth>
+					<ContextMenu name="ВидыРаботОснасткаАртикулКонтекстноеМеню" id="111"/>
+					<ExtendedTooltip name="ВидыРаботОснасткаАртикулРасширеннаяПодсказка" id="112"/>
+				</LabelField>
+				<InputField name="ВидыРаботОснастка" id="72">
+					<DataPath>Объект.ВидыРабот.Оснастка</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>8</MaxWidth>
+					<ContextMenu name="ВидыРаботОснасткаКонтекстноеМеню" id="73"/>
+					<ExtendedTooltip name="ВидыРаботОснасткаРасширеннаяПодсказка" id="74"/>
+				</InputField>
+				<InputField name="ВидыРаботМатериал" id="75">
+					<DataPath>Объект.ВидыРабот.Материал</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ВидыРаботМатериалКонтекстноеМеню" id="76"/>
+					<ExtendedTooltip name="ВидыРаботМатериалРасширеннаяПодсказка" id="77"/>
+				</InputField>
+				<InputField name="ВидыРаботКлей" id="81">
+					<DataPath>Объект.ВидыРабот.Клей</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>7</MaxWidth>
+					<ContextMenu name="ВидыРаботКлейКонтекстноеМеню" id="82"/>
+					<ExtendedTooltip name="ВидыРаботКлейРасширеннаяПодсказка" id="83"/>
+				</InputField>
+				<LabelField name="ВидыРаботКлейФактКод" id="113">
+					<DataPath>Объект.ВидыРабот.КлейФактУдалить.Code</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код Факт</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ВидыРаботКлейФактКодКонтекстноеМеню" id="114"/>
+					<ExtendedTooltip name="ВидыРаботКлейФактКодРасширеннаяПодсказка" id="115"/>
+				</LabelField>
+				<InputField name="ВидыРаботКлейФакт" id="96">
+					<DataPath>Объект.ВидыРабот.КлейФактУдалить</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ВидыРаботКлейФактКонтекстноеМеню" id="97"/>
+					<ExtendedTooltip name="ВидыРаботКлейФактРасширеннаяПодсказка" id="98"/>
+					<Events>
+						<Event name="ChoiceProcessing">ВидыРаботКлейФактОбработкаВыбора</Event>
+					</Events>
+				</InputField>
+				<CheckBoxField name="ВидыРаботВременныеИзменения_Клей" id="124">
+					<DataPath>1/0:2180227a-b417-4ae4-8799-82da6a9899a6/0:322fbb9e-2e6d-4f93-af30-b2bb1eea0b8e</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Врем. изм. клей</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ВидыРаботВременныеИзменения_КлейКонтекстноеМеню" id="125"/>
+					<ExtendedTooltip name="ВидыРаботВременныеИзменения_КлейРасширеннаяПодсказка" id="126"/>
+				</CheckBoxField>
+				<InputField name="ВидыРаботПроцентЗаливки" id="84">
+					<DataPath>Объект.ВидыРабот.ПроцентЗаливки</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ВидыРаботПроцентЗаливкиКонтекстноеМеню" id="85"/>
+					<ExtendedTooltip name="ВидыРаботПроцентЗаливкиРасширеннаяПодсказка" id="86"/>
+				</InputField>
+				<InputField name="ВидыРаботНомерПроката" id="87">
+					<DataPath>Объект.ВидыРабот.НомерПроката</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ВидыРаботНомерПрокатаКонтекстноеМеню" id="88"/>
+					<ExtendedTooltip name="ВидыРаботНомерПрокатаРасширеннаяПодсказка" id="89"/>
+				</InputField>
+				<LabelField name="ВидыРаботКлючСтроки" id="90">
+					<DataPath>Объект.ВидыРабот.КлючСтроки</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ВидыРаботКлючСтрокиКонтекстноеМеню" id="91"/>
+					<ExtendedTooltip name="ВидыРаботКлючСтрокиРасширеннаяПодсказка" id="92"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.ЗаказКлиента</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="НомерПроката" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номер проката</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ЗаписатьЗаказ" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Записать заказ</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Записать заказ</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ЗаписатьЗаказ</Action>
+		</Command>
+	</Commands>
+	<CommandInterface>
+		<NavigationPanel>
+			<Item>
+				<Command>InformationRegister.ОчередьЗаказовККорректировкеСтрокМерныхТоваров.StandardCommand.OpenByValue.Заказ</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>InformationRegister.Лико_ПоказателиРасчетаЗаказа.StandardCommand.OpenByValue.Заказ</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>InformationRegister.Лико_ПараметрыПроизводстваЗаказа.StandardCommand.OpenByValue.Заказ</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>3:9713b662-2f8d-4e79-964c-e566324bdaec</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>InformationRegister.Лико_Затраты.StandardCommand.OpenByValue.ЗаказКлиента</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>InformationRegister.Лико_ЭтапыЗаказа.StandardCommand.OpenByValue.Заказ</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>BusinessProcess.СогласованиеПродажи.Command.СогласованиеПоЗаказуКлиента</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>CommonCommand.ПрисоединенныеФайлы</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>CommonCommand.ИнтеграцияС1СДокументооборот</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>CommonCommand.ЗадачиПоПредмету</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>CommonCommand.МоиЗаметкиПоПредмету</Command>
+				<Type>Auto</Type>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+		</NavigationPanel>
+		<CommandBar>
+			<Item>
+				<Command>CommonCommand.Лико_ШтрихкодДокумента</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarImportant</CommandGroup>
+				<Index>5</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>CommonCommand.Лико_СканАрхив</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarImportant</CommandGroup>
+				<Index>1</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>CommonCommand.ДополнительныеСведенияКоманднаяПанель</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarImportant</CommandGroup>
+				<Index>2</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>0:2e8bc202-b82e-4381-ad7d-9932c36b78b2</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarImportant</CommandGroup>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>CommonCommand.ИсторияИзменений</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarImportant</CommandGroup>
+				<Index>3</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>0:d88abba3-095f-4306-9b7e-e6dcec3bd102</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormCommandBarImportant</CommandGroup>
+				<Index>4</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+		</CommandBar>
+	</CommandInterface>
+</Form>

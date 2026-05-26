@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Корректировка данных по заказу</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Button name="Записать" id="40">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>0</CommandName>
+				<ExtendedTooltip name="ЗаписатьРасширеннаяПодсказка" id="41"/>
+			</Button>
+			<Button name="Отмена" id="42">
+				<Type>CommandBarButton</Type>
+				<CommandName>0</CommandName>
+				<ExtendedTooltip name="ОтменаРасширеннаяПодсказка" id="43"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<ChildItems>
+		<InputField name="ЗаказКлиента" id="44">
+			<ReadOnly>true</ReadOnly>
+			<ContextMenu name="ЗаказКлиентаКонтекстноеМеню" id="45"/>
+			<ExtendedTooltip name="ЗаказКлиентаРасширеннаяПодсказка" id="46"/>
+		</InputField>
+		<InputField name="Этап" id="4">
+			<ReadOnly>true</ReadOnly>
+			<OpenButton>false</OpenButton>
+			<ContextMenu name="ЭтапКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="ЭтапРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<Table name="ТаблицаДанных" id="7">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ТаблицаДанныхКонтекстноеМеню" id="8"/>
+			<AutoCommandBar name="ТаблицаДанныхКоманднаяПанель" id="9"/>
+			<ExtendedTooltip name="ТаблицаДанныхРасширеннаяПодсказка" id="10"/>
+			<SearchStringAddition name="ТаблицаДанныхСтрокаПоиска" id="11">
+				<AdditionSource>
+					<Item>ТаблицаДанных</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаДанныхСтрокаПоискаКонтекстноеМеню" id="12"/>
+				<ExtendedTooltip name="ТаблицаДанныхСтрокаПоискаРасширеннаяПодсказка" id="13"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТаблицаДанныхСостояниеПросмотра" id="14">
+				<AdditionSource>
+					<Item>ТаблицаДанных</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаДанныхСостояниеПросмотраКонтекстноеМеню" id="15"/>
+				<ExtendedTooltip name="ТаблицаДанныхСостояниеПросмотраРасширеннаяПодсказка" id="16"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТаблицаДанныхУправлениеПоиском" id="17">
+				<AdditionSource>
+					<Item>ТаблицаДанных</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаДанныхУправлениеПоискомКонтекстноеМеню" id="18"/>
+				<ExtendedTooltip name="ТаблицаДанныхУправлениеПоискомРасширеннаяПодсказка" id="19"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="ТаблицаДанныхДата" id="20">
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаДанныхДатаКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="ТаблицаДанныхДатаРасширеннаяПодсказка" id="22"/>
+				</InputField>
+				<InputField name="ТаблицаДанныхАвтор" id="23">
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаДанныхАвторКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="ТаблицаДанныхАвторРасширеннаяПодсказка" id="25"/>
+				</InputField>
+				<InputField name="ТаблицаДанныхТипОперации" id="53">
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ТаблицаДанныхТипОперацииКонтекстноеМеню" id="54"/>
+					<ExtendedTooltip name="ТаблицаДанныхТипОперацииРасширеннаяПодсказка" id="55"/>
+				</InputField>
+				<InputField name="ТаблицаДанныхНомерБланка" id="26">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаДанныхНомерБланкаКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ТаблицаДанныхНомерБланкаРасширеннаяПодсказка" id="28"/>
+				</InputField>
+				<InputField name="ТаблицаДанныхКоличество" id="29">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаДанныхКоличествоКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="ТаблицаДанныхКоличествоРасширеннаяПодсказка" id="31"/>
+				</InputField>
+				<InputField name="ТаблицаДанныхКоличествоПМ" id="47">
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ТаблицаДанныхКоличествоПМКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="ТаблицаДанныхКоличествоПМРасширеннаяПодсказка" id="49"/>
+				</InputField>
+				<InputField name="ТаблицаДанныхВремя" id="50">
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ТаблицаДанныхВремяКонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="ТаблицаДанныхВремяРасширеннаяПодсказка" id="52"/>
+				</InputField>
+				<CheckBoxField name="ТаблицаДанныхРастарка" id="35">
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ТаблицаДанныхРастаркаКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="ТаблицаДанныхРастаркаРасширеннаяПодсказка" id="37"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes/>
+	<BaseForm version="2.20">
+		<Title>
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Корректировка данных по заказу</v8:content>
+			</v8:item>
+		</Title>
+		<AutoTitle>false</AutoTitle>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+			<ChildItems>
+				<Button name="Записать" id="40">
+					<Type>CommandBarButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="ЗаписатьРасширеннаяПодсказка" id="41"/>
+				</Button>
+				<Button name="Отмена" id="42">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="ОтменаРасширеннаяПодсказка" id="43"/>
+				</Button>
+			</ChildItems>
+		</AutoCommandBar>
+		<ChildItems>
+			<InputField name="ЗаказКлиента" id="44">
+				<ReadOnly>true</ReadOnly>
+				<ContextMenu name="ЗаказКлиентаКонтекстноеМеню" id="45"/>
+				<ExtendedTooltip name="ЗаказКлиентаРасширеннаяПодсказка" id="46"/>
+			</InputField>
+			<InputField name="Этап" id="4">
+				<ReadOnly>true</ReadOnly>
+				<OpenButton>false</OpenButton>
+				<ContextMenu name="ЭтапКонтекстноеМеню" id="5"/>
+				<ExtendedTooltip name="ЭтапРасширеннаяПодсказка" id="6"/>
+			</InputField>
+			<Table name="ТаблицаДанных" id="7">
+				<Representation>List</Representation>
+				<AutoInsertNewRow>true</AutoInsertNewRow>
+				<EnableStartDrag>true</EnableStartDrag>
+				<EnableDrag>true</EnableDrag>
+				<RowFilter xsi:nil="true"/>
+				<ContextMenu name="ТаблицаДанныхКонтекстноеМеню" id="8"/>
+				<AutoCommandBar name="ТаблицаДанныхКоманднаяПанель" id="9"/>
+				<ExtendedTooltip name="ТаблицаДанныхРасширеннаяПодсказка" id="10"/>
+				<SearchStringAddition name="ТаблицаДанныхСтрокаПоиска" id="11">
+					<AdditionSource>
+						<Item>ТаблицаДанных</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="ТаблицаДанныхСтрокаПоискаКонтекстноеМеню" id="12"/>
+					<ExtendedTooltip name="ТаблицаДанныхСтрокаПоискаРасширеннаяПодсказка" id="13"/>
+				</SearchStringAddition>
+				<ViewStatusAddition name="ТаблицаДанныхСостояниеПросмотра" id="14">
+					<AdditionSource>
+						<Item>ТаблицаДанных</Item>
+						<Type>ViewStatusRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="ТаблицаДанныхСостояниеПросмотраКонтекстноеМеню" id="15"/>
+					<ExtendedTooltip name="ТаблицаДанныхСостояниеПросмотраРасширеннаяПодсказка" id="16"/>
+				</ViewStatusAddition>
+				<SearchControlAddition name="ТаблицаДанныхУправлениеПоиском" id="17">
+					<AdditionSource>
+						<Item>ТаблицаДанных</Item>
+						<Type>SearchControl</Type>
+					</AdditionSource>
+					<ContextMenu name="ТаблицаДанныхУправлениеПоискомКонтекстноеМеню" id="18"/>
+					<ExtendedTooltip name="ТаблицаДанныхУправлениеПоискомРасширеннаяПодсказка" id="19"/>
+				</SearchControlAddition>
+				<ChildItems>
+					<InputField name="ТаблицаДанныхДата" id="20">
+						<ReadOnly>true</ReadOnly>
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ТаблицаДанныхДатаКонтекстноеМеню" id="21"/>
+						<ExtendedTooltip name="ТаблицаДанныхДатаРасширеннаяПодсказка" id="22"/>
+					</InputField>
+					<InputField name="ТаблицаДанныхАвтор" id="23">
+						<ReadOnly>true</ReadOnly>
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ТаблицаДанныхАвторКонтекстноеМеню" id="24"/>
+						<ExtendedTooltip name="ТаблицаДанныхАвторРасширеннаяПодсказка" id="25"/>
+					</InputField>
+					<InputField name="ТаблицаДанныхТипОперации" id="53">
+						<ReadOnly>true</ReadOnly>
+						<EditMode>EnterOnInput</EditMode>
+						<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+						<ContextMenu name="ТаблицаДанныхТипОперацииКонтекстноеМеню" id="54"/>
+						<ExtendedTooltip name="ТаблицаДанныхТипОперацииРасширеннаяПодсказка" id="55"/>
+					</InputField>
+					<InputField name="ТаблицаДанныхНомерБланка" id="26">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ТаблицаДанныхНомерБланкаКонтекстноеМеню" id="27"/>
+						<ExtendedTooltip name="ТаблицаДанныхНомерБланкаРасширеннаяПодсказка" id="28"/>
+					</InputField>
+					<InputField name="ТаблицаДанныхКоличество" id="29">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ТаблицаДанныхКоличествоКонтекстноеМеню" id="30"/>
+						<ExtendedTooltip name="ТаблицаДанныхКоличествоРасширеннаяПодсказка" id="31"/>
+					</InputField>
+					<InputField name="ТаблицаДанныхКоличествоПМ" id="47">
+						<EditMode>EnterOnInput</EditMode>
+						<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+						<ContextMenu name="ТаблицаДанныхКоличествоПМКонтекстноеМеню" id="48"/>
+						<ExtendedTooltip name="ТаблицаДанныхКоличествоПМРасширеннаяПодсказка" id="49"/>
+					</InputField>
+					<InputField name="ТаблицаДанныхВремя" id="50">
+						<EditMode>EnterOnInput</EditMode>
+						<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+						<ContextMenu name="ТаблицаДанныхВремяКонтекстноеМеню" id="51"/>
+						<ExtendedTooltip name="ТаблицаДанныхВремяРасширеннаяПодсказка" id="52"/>
+					</InputField>
+					<CheckBoxField name="ТаблицаДанныхРастарка" id="35">
+						<EditMode>EnterOnInput</EditMode>
+						<CheckBoxType>Auto</CheckBoxType>
+						<ContextMenu name="ТаблицаДанныхРастаркаКонтекстноеМеню" id="36"/>
+						<ExtendedTooltip name="ТаблицаДанныхРастаркаРасширеннаяПодсказка" id="37"/>
+					</CheckBoxField>
+				</ChildItems>
+			</Table>
+		</ChildItems>
+		<Attributes/>
+	</BaseForm>
+</Form>

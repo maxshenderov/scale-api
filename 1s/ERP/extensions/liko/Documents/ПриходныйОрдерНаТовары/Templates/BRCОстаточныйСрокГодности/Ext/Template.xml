@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>НаборДанных1</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОстаточныйСрокГодостиФакт</dataPath>
+			<field>ОстаточныйСрокГодостиФакт</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Остаточный срок годости факт</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОбъектНоменклатуры</dataPath>
+			<field>ОбъектНоменклатуры</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объект номенклатуры</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ДатаПроизводства</dataPath>
+			<field>ДатаПроизводства</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дата производства</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>УпотребитьДо</dataPath>
+			<field>УпотребитьДо</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Употребить до</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОстаточныйСрокГодности</dataPath>
+			<field>ОстаточныйСрокГодности</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Остаточный срок годности</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры КАК ОбъектНоменклатуры,
+	ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры.ДатаПроизводства КАК ДатаПроизводства,
+	ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры.УпотребитьДо КАК УпотребитьДо,
+	&amp;ОстаточныйСрокГодности КАК ОстаточныйСрокГодности,
+	ВЫРАЗИТЬ(100 * РАЗНОСТЬДАТ(&amp;ТекущаяДата, ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры.УпотребитьДо, ДЕНЬ) / РАЗНОСТЬДАТ(ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры.ДатаПроизводства, ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры.УпотребитьДо, ДЕНЬ) КАК ЧИСЛО(3, 0)) КАК ОстаточныйСрокГодостиФакт
+ИЗ
+	Документ.ПриходныйОрдерНаТовары.Товары КАК ПриходныйОрдерНаТоварыТовары
+ГДЕ
+	ПриходныйОрдерНаТоварыТовары.Номенклатура.Лико_ВидКонтактаСПищевойПродукцией В (ЗНАЧЕНИЕ(Справочник.Лико_ВидыКонтактовСПищевойПродукцией.ПрямойКонтакт), ЗНАЧЕНИЕ(Справочник.Лико_ВидыКонтактовСПищевойПродукцией.НеПрямойКонтакт))
+	И 100 * РАЗНОСТЬДАТ(&amp;ТекущаяДата, ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры.УпотребитьДо, ДЕНЬ) / РАЗНОСТЬДАТ(ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры.ДатаПроизводства, ПриходныйОрдерНаТоварыТовары.Серия.ЯССМ_ОбъектНоменклатуры.УпотребитьДо, ДЕНЬ) &lt; &amp;ОстаточныйСрокГодности
+	И ПриходныйОрдерНаТоварыТовары.Ссылка = &amp;Ссылка
+	И &amp;ОстаточныйСрокГодности &gt; 0</query>
+	</dataSet>
+	<parameter>
+		<name>ОстаточныйСрокГодности</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Остаточный срок годности</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:decimal</v8:Type>
+			<v8:NumberQualifiers>
+				<v8:Digits>0</v8:Digits>
+				<v8:FractionDigits>0</v8:FractionDigits>
+				<v8:AllowedSign>Any</v8:AllowedSign>
+			</v8:NumberQualifiers>
+		</valueType>
+		<value xsi:type="xs:decimal">0</value>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<parameter>
+		<name>Ссылка</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Ссылка</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:DocumentRef.ПриходныйОрдерНаТовары</v8:Type>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<parameter>
+		<name>ТекущаяДата</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Текущая дата</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="xs:string">Основной</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>СистемныеПоля.НомерПоПорядку</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>ОбъектНоменклатуры</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>ДатаПроизводства</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>УпотребитьДо</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>ОстаточныйСрокГодности</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>ОстаточныйСрокГодостиФакт</dcsset:field>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Ссылка</dcscor:parameter>
+					<dcscor:value xsi:nil="true"/>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

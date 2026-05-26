@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Выберите параметры</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<CheckBoxField name="Цена" id="15">
+			<DataPath>Цена</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ЦенаКонтекстноеМеню" id="16"/>
+			<ExtendedTooltip name="ЦенаРасширеннаяПодсказка" id="17"/>
+		</CheckBoxField>
+		<CheckBoxField name="Город" id="1">
+			<DataPath>Город</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ГородКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ГородРасширеннаяПодсказка" id="3"/>
+		</CheckBoxField>
+		<CheckBoxField name="КодЭтикеткиЗаказчика" id="4">
+			<DataPath>КодЭтикеткиЗаказчика</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="КодЭтикеткиЗаказчикаКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="КодЭтикеткиЗаказчикаРасширеннаяПодсказка" id="6"/>
+		</CheckBoxField>
+		<CheckBoxField name="Намотка" id="7">
+			<DataPath>Намотка</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="НамоткаКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="НамоткаРасширеннаяПодсказка" id="9"/>
+		</CheckBoxField>
+		<CheckBoxField name="НомерПоставки" id="10">
+			<DataPath>НомерПоставки</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="НомерПоставкиКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="НомерПоставкиРасширеннаяПодсказка" id="12"/>
+		</CheckBoxField>
+		<CheckBoxField name="ЧестныйЗнак" id="21">
+			<DataPath>ЧестныйЗнак</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ЧестныйЗнакКонтекстноеМеню" id="22"/>
+			<ExtendedTooltip name="ЧестныйЗнакРасширеннаяПодсказка" id="23"/>
+		</CheckBoxField>
+		<CheckBoxField name="Втулка" id="18">
+			<DataPath>Втулка</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ВтулкаКонтекстноеМеню" id="19"/>
+			<ExtendedTooltip name="ВтулкаРасширеннаяПодсказка" id="20"/>
+		</CheckBoxField>
+		<Button name="ОК" id="13">
+			<Type>UsualButton</Type>
+			<CommandName>Form.Command.ОК</CommandName>
+			<ExtendedTooltip name="ОКРасширеннаяПодсказка" id="14"/>
+		</Button>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Намотка" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Намотка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Город" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Город</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="КодЭтикеткиЗаказчика" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Код этикетки заказчика</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="НомерПоставки" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номер поставки</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Цена" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Цена</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ВариантОткрытия" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вариант открытия</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Втулка" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Втулка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ЧестныйЗнак" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Честный знак</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ОК" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОК</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОК</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ОК</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

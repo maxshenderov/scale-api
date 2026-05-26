@@ -1,0 +1,801 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Группа3" id="64">
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="65"/>
+			<ChildItems>
+				<CommandBar name="Группа2" id="62">
+					<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="63"/>
+					<ChildItems>
+						<Button name="ПрименитьИЗакрыть" id="60">
+							<Type>CommandBarButton</Type>
+							<Representation>PictureAndText</Representation>
+							<DefaultButton>true</DefaultButton>
+							<CommandName>Form.Command.ПрименитьИЗакрыть</CommandName>
+							<Picture>
+								<xr:Ref>StdPicture.AppearanceCheckBox</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<ExtendedTooltip name="ПрименитьИЗакрытьРасширеннаяПодсказка" id="61"/>
+						</Button>
+						<Button name="ФормаЗакрытьФорму" id="58">
+							<Type>CommandBarButton</Type>
+							<Representation>PictureAndText</Representation>
+							<CommandName>Form.Command.ЗакрытьФорму</CommandName>
+							<Picture>
+								<xr:Ref>StdPicture.Close</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+							</Picture>
+							<ExtendedTooltip name="ФормаЗакрытьФормуРасширеннаяПодсказка" id="59"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+				<UsualGroup name="Группа1" id="26">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Мастер заполнения по прокату</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="27"/>
+					<ChildItems>
+						<InputField name="НомерПроката" id="1">
+							<DataPath>НомерПроката</DataPath>
+							<Width>2</Width>
+							<ContextMenu name="НомерПрокатаКонтекстноеМеню" id="2"/>
+							<ExtendedTooltip name="НомерПрокатаРасширеннаяПодсказка" id="3"/>
+							<Events>
+								<Event name="OnChange">НомерПрокатаПриИзменении</Event>
+							</Events>
+						</InputField>
+						<InputField name="РабочийЦентр" id="4">
+							<DataPath>РабочийЦентр</DataPath>
+							<DropListButton>false</DropListButton>
+							<ChoiceButtonRepresentation>ShowInInputField</ChoiceButtonRepresentation>
+							<SpinButton>false</SpinButton>
+							<OpenButton>false</OpenButton>
+							<CreateButton>false</CreateButton>
+							<ContextMenu name="РабочийЦентрКонтекстноеМеню" id="5"/>
+							<ExtendedTooltip name="РабочийЦентрРасширеннаяПодсказка" id="6"/>
+							<Events>
+								<Event name="OnChange">РабочийЦентрПриИзменении</Event>
+								<Event name="StartChoice">РабочийЦентрНачалоВыбора</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="ТаблицаСекции" id="30">
+			<Representation>List</Representation>
+			<SelectionMode>SingleRow</SelectionMode>
+			<Footer>true</Footer>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>ТаблицаСекции</DataPath>
+			<CommandSet>
+				<ExcludedCommand>Add</ExcludedCommand>
+				<ExcludedCommand>Change</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>EndEdit</ExcludedCommand>
+				<ExcludedCommand>MoveDown</ExcludedCommand>
+				<ExcludedCommand>MoveUp</ExcludedCommand>
+				<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+				<ExcludedCommand>SortListAsc</ExcludedCommand>
+				<ExcludedCommand>SortListDesc</ExcludedCommand>
+			</CommandSet>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ТаблицаСекцииКонтекстноеМеню" id="31"/>
+			<AutoCommandBar name="ТаблицаСекцииКоманднаяПанель" id="32">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ТаблицаСекцииРасширеннаяПодсказка" id="33"/>
+			<SearchStringAddition name="ТаблицаСекцииСтрокаПоиска" id="34">
+				<AdditionSource>
+					<Item>ТаблицаСекции</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаСекцииСтрокаПоискаКонтекстноеМеню" id="35"/>
+				<ExtendedTooltip name="ТаблицаСекцииСтрокаПоискаРасширеннаяПодсказка" id="36"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТаблицаСекцииСостояниеПросмотра" id="37">
+				<AdditionSource>
+					<Item>ТаблицаСекции</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаСекцииСостояниеПросмотраКонтекстноеМеню" id="38"/>
+				<ExtendedTooltip name="ТаблицаСекцииСостояниеПросмотраРасширеннаяПодсказка" id="39"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТаблицаСекцииУправлениеПоиском" id="40">
+				<AdditionSource>
+					<Item>ТаблицаСекции</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаСекцииУправлениеПоискомКонтекстноеМеню" id="41"/>
+				<ExtendedTooltip name="ТаблицаСекцииУправлениеПоискомРасширеннаяПодсказка" id="42"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">ТаблицаСекцииВыбор</Event>
+				<Event name="BeforeAddRow">ТаблицаСекцииПередНачаломДобавления</Event>
+				<Event name="BeforeDeleteRow">ТаблицаСекцииПередУдалением</Event>
+				<Event name="DragStart">ТаблицаСекцииНачалоПеретаскивания</Event>
+				<Event name="Drag">ТаблицаСекцииПеретаскивание</Event>
+				<Event name="BeforeRowChange">ТаблицаСекцииПередНачаломИзменения</Event>
+			</Events>
+			<ChildItems>
+				<InputField name="ТаблицаСекцииНомер" id="46">
+					<DataPath>ТаблицаСекции.Номер</DataPath>
+					<Enabled>false</Enabled>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>1</Width>
+					<ContextMenu name="ТаблицаСекцииНомерКонтекстноеМеню" id="47"/>
+					<ExtendedTooltip name="ТаблицаСекцииНомерРасширеннаяПодсказка" id="48"/>
+				</InputField>
+				<InputField name="ТаблицаСекцииСекция" id="43">
+					<DataPath>ТаблицаСекции.Секция</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаСекцииСекцияКонтекстноеМеню" id="44"/>
+					<ExtendedTooltip name="ТаблицаСекцииСекцияРасширеннаяПодсказка" id="45"/>
+				</InputField>
+				<InputField name="ТаблицаСекцииПараметры" id="49">
+					<DataPath>ТаблицаСекции.Параметры</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<ChoiceButton>true</ChoiceButton>
+					<AutoShowClearButtonMode>Always</AutoShowClearButtonMode>
+					<AutoShowOpenButtonMode>Always</AutoShowOpenButtonMode>
+					<ContextMenu name="ТаблицаСекцииПараметрыКонтекстноеМеню" id="50"/>
+					<ExtendedTooltip name="ТаблицаСекцииПараметрыРасширеннаяПодсказка" id="51"/>
+				</InputField>
+				<InputField name="ТаблицаСекцииТипСекции" id="66">
+					<DataPath>ТаблицаСекции.ТипСекции</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>1</Width>
+					<ContextMenu name="ТаблицаСекцииТипСекцииКонтекстноеМеню" id="67"/>
+					<ExtendedTooltip name="ТаблицаСекцииТипСекцииРасширеннаяПодсказка" id="68"/>
+				</InputField>
+				<InputField name="ТаблицаСекцииПараметрыПредставление" id="99">
+					<DataPath>ТаблицаСекции.ПараметрыПредставление</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаСекцииПараметрыПредставлениеКонтекстноеМеню" id="100"/>
+					<ExtendedTooltip name="ТаблицаСекцииПараметрыПредставлениеРасширеннаяПодсказка" id="101"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<Table name="ТаблицаДопСекций" id="102">
+			<Representation>Tree</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>ТаблицаДопСекций</DataPath>
+			<CommandSet>
+				<ExcludedCommand>Add</ExcludedCommand>
+				<ExcludedCommand>Change</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+				<ExcludedCommand>Delete</ExcludedCommand>
+				<ExcludedCommand>EndEdit</ExcludedCommand>
+				<ExcludedCommand>MoveDown</ExcludedCommand>
+				<ExcludedCommand>MoveUp</ExcludedCommand>
+				<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+				<ExcludedCommand>SortListAsc</ExcludedCommand>
+				<ExcludedCommand>SortListDesc</ExcludedCommand>
+			</CommandSet>
+			<ContextMenu name="ТаблицаДопСекцийКонтекстноеМеню" id="103"/>
+			<AutoCommandBar name="ТаблицаДопСекцийКоманднаяПанель" id="104">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ТаблицаДопСекцийРасширеннаяПодсказка" id="105"/>
+			<SearchStringAddition name="ТаблицаДопСекцийСтрокаПоиска" id="106">
+				<AdditionSource>
+					<Item>ТаблицаДопСекций</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаДопСекцийСтрокаПоискаКонтекстноеМеню" id="107"/>
+				<ExtendedTooltip name="ТаблицаДопСекцийСтрокаПоискаРасширеннаяПодсказка" id="108"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТаблицаДопСекцийСостояниеПросмотра" id="109">
+				<AdditionSource>
+					<Item>ТаблицаДопСекций</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаДопСекцийСостояниеПросмотраКонтекстноеМеню" id="110"/>
+				<ExtendedTooltip name="ТаблицаДопСекцийСостояниеПросмотраРасширеннаяПодсказка" id="111"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТаблицаДопСекцийУправлениеПоиском" id="112">
+				<AdditionSource>
+					<Item>ТаблицаДопСекций</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТаблицаДопСекцийУправлениеПоискомКонтекстноеМеню" id="113"/>
+				<ExtendedTooltip name="ТаблицаДопСекцийУправлениеПоискомРасширеннаяПодсказка" id="114"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="DragCheck">ТаблицаДопСекцийПроверкаПеретаскивания</Event>
+				<Event name="BeforeAddRow">ТаблицаДопСекцийПередНачаломДобавления</Event>
+				<Event name="BeforeDeleteRow">ТаблицаДопСекцийПередУдалением</Event>
+				<Event name="DragStart">ТаблицаДопСекцийНачалоПеретаскивания</Event>
+				<Event name="Drag">ТаблицаДопСекцийПеретаскивание</Event>
+				<Event name="BeforeCollapse">ТаблицаДопСекцийПередСворачиванием</Event>
+				<Event name="DragEnd">ТаблицаДопСекцийОкончаниеПеретаскивания</Event>
+			</Events>
+			<ChildItems>
+				<InputField name="ТаблицаДопСекцийСекция" id="115">
+					<DataPath>ТаблицаДопСекций.Секция</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаДопСекцийСекцияКонтекстноеМеню" id="116"/>
+					<ExtendedTooltip name="ТаблицаДопСекцийСекцияРасширеннаяПодсказка" id="117"/>
+				</InputField>
+				<InputField name="ТаблицаДопСекцийВидыРабот" id="118">
+					<DataPath>ТаблицаДопСекций.ВидыРабот</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаДопСекцийВидыРаботКонтекстноеМеню" id="119"/>
+					<ExtendedTooltip name="ТаблицаДопСекцийВидыРаботРасширеннаяПодсказка" id="120"/>
+				</InputField>
+				<InputField name="ТаблицаДопСекцийКоличество" id="121">
+					<DataPath>ТаблицаДопСекций.Количество</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаДопСекцийКоличествоКонтекстноеМеню" id="122"/>
+					<ExtendedTooltip name="ТаблицаДопСекцийКоличествоРасширеннаяПодсказка" id="123"/>
+				</InputField>
+				<InputField name="ТаблицаДопСекцийПараметры" id="124">
+					<DataPath>ТаблицаДопСекций.Параметры</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТаблицаДопСекцийПараметрыКонтекстноеМеню" id="125"/>
+					<ExtendedTooltip name="ТаблицаДопСекцийПараметрыРасширеннаяПодсказка" id="126"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="НомерПроката" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номер проката</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>3</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="РабочийЦентр" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Рабочий центр</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.РабочиеЦентры</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ТаблицаСекции" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Таблица секции</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Секция" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Секция</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_ВидыСекций</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>5</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Параметры" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ПараметрыПредставление" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ТипСекции" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тип секции</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:EnumRef.Лико_ТипСекции</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="фПлощадка" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Площадка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Организации</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ЧислоСекций" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Число секций</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>4</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ТаблицаДопСекций" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Таблица доп секций</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTree</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Секция" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Секция</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_ВидыСекций</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ВидыРабот" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Виды работ</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_ВидыСекций</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Количество" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Параметры" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Номер1" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>1</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер2" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>2</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер3" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>3</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер4" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>4</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер5" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>5</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер6" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>6</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер7" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>7</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер8" id="12">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>8</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер9" id="13">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>9</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер10" id="14">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>10</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер11" id="15">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>11</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер12" id="16">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>12</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер13" id="17">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>13</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер14" id="18">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>14</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер15" id="19">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>15</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер16" id="20">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>16</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер17" id="21">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>17</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер18" id="22">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>18</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер19" id="23">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>19</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номер20" id="24">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>20</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ТипСекции" id="25">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тип секции</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:EnumRef.Лико_ТипСекции</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ЧислоУдаленныхСтрок" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Число удаленных строк</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ДанныеПоСекциям" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Данные по секциям</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="НомерНачальнойСтроки" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номер начальной строки</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="НомерКонечнойСтроки" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номер конечной строки</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ЗакрытьФорму" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Закрыть </v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Закрыть форму</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ЗакрытьФорму</Action>
+		</Command>
+		<Command name="ПрименитьИЗакрыть" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ок</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Применить и закрыть</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПрименитьИЗакрыть</Action>
+		</Command>
+	</Commands>
+</Form>

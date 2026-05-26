@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>НаборДанных1</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Номенклатура</dataPath>
+			<field>Номенклатура</field>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Намотка</dataPath>
+			<field>Намотка</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Намотка</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Назначение</dataPath>
+			<field>Назначение</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Характеристика</dataPath>
+			<field>Характеристика</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Склад</dataPath>
+			<field>Склад</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Склад</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ГруппаНоменклатуры</dataPath>
+			<field>ГруппаНоменклатуры</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа номенклатуры</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодЦеновойГруппы</dataPath>
+			<field>КодЦеновойГруппы</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Код ценовой группы</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Упаковка</dataPath>
+			<field>Упаковка</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодНоменклатуры</dataPath>
+			<field>КодНоменклатуры</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Код номенклатуры</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Ячейка</dataPath>
+			<field>Ячейка</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Серия</dataPath>
+			<field>Серия</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Нарезка</dataPath>
+			<field>Нарезка</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Нарезка</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КоличествоОстаток</dataPath>
+			<field>КоличествоОстаток</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество остаток</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КоличествоУУОстаток</dataPath>
+			<field>КоличествоУУОстаток</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество УУОстаток</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОбъектНоменклатуры</dataPath>
+			<field>ОбъектНоменклатуры</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объект номенклатуры</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Артикул</dataPath>
+			<field>Артикул</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Артикул</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НамоткаДляБригадиров</dataPath>
+			<field>НамоткаДляБригадиров</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Намотка для бригадиров</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Незавершеннка</dataPath>
+			<field>Незавершеннка</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Незавершеннка</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Помещение</dataPath>
+			<field>Помещение</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Помещение</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	ТоварыВЯчейкахОстатки.Номенклатура КАК Номенклатура,
+	ТоварыВЯчейкахОстатки.Серия.ЯССМ_ОбъектНоменклатуры КАК ОбъектНоменклатуры,
+	ТоварыВЯчейкахОстатки.ВНаличииОстаток КАК Количество,
+	ТоварыВЯчейкахОстатки.ВНаличииОстаток * ТоварыВЯчейкахОстатки.Упаковка.Числитель КАК КоличествоУУ,
+	ТоварыВЯчейкахОстатки.Ячейка.Помещение КАК Помещение,
+	ТоварыВЯчейкахОстатки.Ячейка КАК Ячейка,
+	ТоварыВЯчейкахОстатки.Ячейка.Владелец КАК Склад
+ПОМЕСТИТЬ ВтНоменклатура
+ИЗ
+	РегистрНакопления.ТоварыВЯчейках.Остатки(, Ячейка.Помещение.Наименование = "СИМ") КАК ТоварыВЯчейкахОстатки
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	НоменклатураДополнительныеРеквизиты.Значение КАК ГруппаНоменклатуры,
+	ПОДСТРОКА(ВЫРАЗИТЬ(ВтНоменклатура.ОбъектНоменклатуры.Номенклатура.Код КАК СТРОКА(11)), 2, 13) КАК КодНоменклатуры,
+	ВтНоменклатура.Номенклатура КАК Номенклатура,
+	ВтНоменклатура.ОбъектНоменклатуры.Нарезка.Размер КАК Нарезка,
+	СУММА(ВтНоменклатура.Количество) КАК КоличествоОстаток,
+	СУММА(ВтНоменклатура.КоличествоУУ) КАК КоличествоУУОстаток,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ВтНоменклатура.ОбъектНоменклатуры) КАК ОбъектНоменклатуры,
+	ВтНоменклатура.Номенклатура.Артикул КАК Артикул,
+	СУММА(ВтНоменклатура.Количество) КАК Намотка,
+	ВЫБОР
+		КОГДА ВтНоменклатура.Количество &lt; 100
+			ТОГДА 100
+		КОГДА ВтНоменклатура.Количество &lt; 200
+			ТОГДА 100
+		КОГДА ВтНоменклатура.Количество &lt; 300
+			ТОГДА 200
+		КОГДА ВтНоменклатура.Количество &lt; 400
+			ТОГДА 300
+		КОГДА ВтНоменклатура.Количество &lt; 500
+			ТОГДА 400
+		КОГДА ВтНоменклатура.Количество &lt; 600
+			ТОГДА 500
+		КОГДА ВтНоменклатура.Количество &lt; 1000
+			ТОГДА 600
+		КОГДА ВтНоменклатура.Количество &lt; 2000
+			ТОГДА 1000
+		КОГДА ВтНоменклатура.Количество &lt; 3000
+			ТОГДА 2000
+		КОГДА ВтНоменклатура.Количество &lt; 4000
+			ТОГДА 3000
+		КОГДА ВтНоменклатура.Количество &lt; 5000
+			ТОГДА 4000
+		КОГДА ВтНоменклатура.Количество &lt; 6000
+			ТОГДА 5000
+		КОГДА ВтНоменклатура.Количество &lt; 7000
+			ТОГДА 6000
+		КОГДА ВтНоменклатура.Количество &lt; 8000
+			ТОГДА 7000
+		КОГДА ВтНоменклатура.Количество &lt; 9000
+			ТОГДА 8000
+		КОГДА ВтНоменклатура.Количество &lt; 10000
+			ТОГДА 9000
+		КОГДА ВтНоменклатура.Количество &lt; 11000
+			ТОГДА 10000
+		КОГДА ВтНоменклатура.Количество &lt; 12000
+			ТОГДА 11000
+		ИНАЧЕ ВтНоменклатура.Количество
+	КОНЕЦ КАК НамоткаДляБригадиров,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ВЫБОР
+			КОГДА ВтНоменклатура.Номенклатура.ВидНоменклатуры = &amp;НезавершеннаяПродукция
+				ТОГДА ИСТИНА
+			ИНАЧЕ ЛОЖЬ
+		КОНЕЦ) КАК Незавершеннка,
+	ВтНоменклатура.Номенклатура.ЦеноваяГруппа.Код КАК КодЦеновойГруппы,
+	ВтНоменклатура.Склад КАК Склад,
+	ВтНоменклатура.Помещение КАК Помещение
+ИЗ
+	ВтНоменклатура КАК ВтНоменклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Номенклатура.ДополнительныеРеквизиты КАК НоменклатураДополнительныеРеквизиты
+		ПО ВтНоменклатура.Номенклатура = НоменклатураДополнительныеРеквизиты.Ссылка
+			И (НоменклатураДополнительныеРеквизиты.Свойство.Заголовок = "Материал вид")
+ГДЕ
+	ВтНоменклатура.ОбъектНоменклатуры.Нарезка.Размер &gt; 0
+	И ВтНоменклатура.Количество &lt;&gt; 0
+
+СГРУППИРОВАТЬ ПО
+	НоменклатураДополнительныеРеквизиты.Значение,
+	ПОДСТРОКА(ВЫРАЗИТЬ(ВтНоменклатура.ОбъектНоменклатуры.Номенклатура.Код КАК СТРОКА(11)), 2, 13),
+	ВтНоменклатура.Номенклатура,
+	ВтНоменклатура.ОбъектНоменклатуры.Нарезка.Размер,
+	ВтНоменклатура.Номенклатура.Артикул,
+	ВЫБОР
+		КОГДА ВтНоменклатура.Количество &lt; 100
+			ТОГДА 100
+		КОГДА ВтНоменклатура.Количество &lt; 200
+			ТОГДА 100
+		КОГДА ВтНоменклатура.Количество &lt; 300
+			ТОГДА 200
+		КОГДА ВтНоменклатура.Количество &lt; 400
+			ТОГДА 300
+		КОГДА ВтНоменклатура.Количество &lt; 500
+			ТОГДА 400
+		КОГДА ВтНоменклатура.Количество &lt; 600
+			ТОГДА 500
+		КОГДА ВтНоменклатура.Количество &lt; 1000
+			ТОГДА 600
+		КОГДА ВтНоменклатура.Количество &lt; 2000
+			ТОГДА 1000
+		КОГДА ВтНоменклатура.Количество &lt; 3000
+			ТОГДА 2000
+		КОГДА ВтНоменклатура.Количество &lt; 4000
+			ТОГДА 3000
+		КОГДА ВтНоменклатура.Количество &lt; 5000
+			ТОГДА 4000
+		КОГДА ВтНоменклатура.Количество &lt; 6000
+			ТОГДА 5000
+		КОГДА ВтНоменклатура.Количество &lt; 7000
+			ТОГДА 6000
+		КОГДА ВтНоменклатура.Количество &lt; 8000
+			ТОГДА 7000
+		КОГДА ВтНоменклатура.Количество &lt; 9000
+			ТОГДА 8000
+		КОГДА ВтНоменклатура.Количество &lt; 10000
+			ТОГДА 9000
+		КОГДА ВтНоменклатура.Количество &lt; 11000
+			ТОГДА 10000
+		КОГДА ВтНоменклатура.Количество &lt; 12000
+			ТОГДА 11000
+		ИНАЧЕ ВтНоменклатура.Количество
+	КОНЕЦ,
+	ВтНоменклатура.Номенклатура.ЦеноваяГруппа.Код,
+	ВтНоменклатура.Склад,
+	ВтНоменклатура.Помещение
+
+УПОРЯДОЧИТЬ ПО
+	ВтНоменклатура.Номенклатура.Наименование,
+	ВтНоменклатура.Номенклатура.Артикул,
+	Нарезка</query>
+	</dataSet>
+	<totalField>
+		<dataPath>КоличествоОстаток</dataPath>
+		<expression>Сумма(КоличествоОстаток)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоУУОстаток</dataPath>
+		<expression>Сумма(КоличествоУУОстаток)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОбъектНоменклатуры</dataPath>
+		<expression>Количество(Различные ОбъектНоменклатуры)</expression>
+	</totalField>
+	<parameter>
+		<name>Период</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Период</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+	</parameter>
+	<parameter>
+		<name>НезавершеннаяПродукция</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Незавершенная продукция</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:CatalogRef.ВидыНоменклатуры</v8:Type>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>false</useRestriction>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Остатки сводный</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Нарезка</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>НамоткаДляБригадиров</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>КоличествоОстаток</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>ОбъектНоменклатуры</dcsset:field>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:filter>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">Номенклатура.[Материал вид (Рулонные материалы)]</dcsset:left>
+					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:string">5de75fd6-9f76-11e7-965e-005056883b86</dcsset:right>
+					<dcsset:userSettingID>cb333733-a0a1-464e-98d5-1f15d8b1a16e</dcsset:userSettingID>
+					<dcsset:userSettingPresentation xsi:type="xs:string">Рулонные материалы</dcsset:userSettingPresentation>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:left xsi:type="dcscor:Field">Склад</dcsset:left>
+					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:string">4cd6afdd-2687-11e7-856d-002590395860</dcsset:right>
+					<dcsset:userSettingID>08c12c5e-e970-42fe-b4b1-476ab11d76ce</dcsset:userSettingID>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:left xsi:type="dcscor:Field">Помещение</dcsset:left>
+					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:string">777f5c8d-b9f6-11e7-965e-005056883b86</dcsset:right>
+					<dcsset:userSettingID>e7918448-57cf-4541-aea3-a668ec9c3881</dcsset:userSettingID>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">КодНоменклатуры</dcsset:left>
+					<dcsset:comparisonType>Contains</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:string"/>
+					<dcsset:userSettingID>ace829c2-3ffd-4a0c-8b0c-a6e00ac8bd4f</dcsset:userSettingID>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">КодЦеновойГруппы</dcsset:left>
+					<dcsset:comparisonType>Contains</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:string">         </dcsset:right>
+					<dcsset:userSettingID>e330c838-edc1-4436-8c94-865bdec905e3</dcsset:userSettingID>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:FilterItemComparison">
+					<dcsset:use>false</dcsset:use>
+					<dcsset:left xsi:type="dcscor:Field">Нарезка</dcsset:left>
+					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:right xsi:type="xs:decimal">0</dcsset:right>
+					<dcsset:userSettingID>3abc8402-e7e2-4394-aede-4a4d85e36463</dcsset:userSettingID>
+				</dcsset:item>
+			</dcsset:filter>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Период</dcscor:parameter>
+					<dcscor:value xsi:type="v8:StandardBeginningDate">
+						<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfNextDay</v8:variant>
+					</dcscor:value>
+					<dcsset:userSettingID>4a9a6444-8d5e-492b-bcbd-158d6549d294</dcsset:userSettingID>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>НезавершеннаяПродукция</dcscor:parameter>
+					<dcscor:value xsi:type="xs:string">0ec36846-d43f-11e7-8c24-005056883b86</dcscor:value>
+					<dcsset:viewMode>Normal</dcsset:viewMode>
+					<dcsset:userSettingID>f83083a9-15ec-4b96-9a80-c7a495e0b71a</dcsset:userSettingID>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:outputParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>МакетОформления</dcscor:parameter>
+					<dcscor:value xsi:type="xs:string">ОформлениеОтчетовБежевый</dcscor:value>
+				</dcscor:item>
+			</dcsset:outputParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Номенклатура.[Материал вид (Рулонные материалы)]</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>КодНоменклатуры</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+					<dcsset:item xsi:type="dcsset:StructureItemGroup">
+						<dcsset:groupItems>
+							<dcsset:item xsi:type="dcsset:GroupItemField">
+								<dcsset:field>Номенклатура</dcsset:field>
+								<dcsset:groupType>Items</dcsset:groupType>
+								<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+								<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+								<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+							</dcsset:item>
+							<dcsset:item xsi:type="dcsset:GroupItemField">
+								<dcsset:field>Артикул</dcsset:field>
+								<dcsset:groupType>Items</dcsset:groupType>
+								<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+								<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+								<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+							</dcsset:item>
+							<dcsset:item xsi:type="dcsset:GroupItemField">
+								<dcsset:field>КодЦеновойГруппы</dcsset:field>
+								<dcsset:groupType>Items</dcsset:groupType>
+								<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+								<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+								<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+							</dcsset:item>
+						</dcsset:groupItems>
+						<dcsset:order>
+							<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+						</dcsset:order>
+						<dcsset:selection>
+							<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+						</dcsset:selection>
+						<dcsset:item xsi:type="dcsset:StructureItemGroup">
+							<dcsset:order>
+								<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+							</dcsset:order>
+							<dcsset:selection>
+								<dcsset:item xsi:type="dcsset:SelectedItemField">
+									<dcsset:field>Нарезка</dcsset:field>
+								</dcsset:item>
+								<dcsset:item xsi:type="dcsset:SelectedItemField">
+									<dcsset:field>НамоткаДляБригадиров</dcsset:field>
+								</dcsset:item>
+								<dcsset:item xsi:type="dcsset:SelectedItemField">
+									<dcsset:field>КоличествоОстаток</dcsset:field>
+								</dcsset:item>
+							</dcsset:selection>
+						</dcsset:item>
+					</dcsset:item>
+				</dcsset:item>
+			</dcsset:item>
+			<dcsset:additionalProperties>
+				<v8:Property name="ВариантНаименование">
+					<v8:Value xsi:type="xs:string">Основной</v8:Value>
+				</v8:Property>
+				<v8:Property name="КлючВарианта">
+					<v8:Value xsi:type="xs:string">Основной</v8:Value>
+				</v8:Property>
+			</dcsset:additionalProperties>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

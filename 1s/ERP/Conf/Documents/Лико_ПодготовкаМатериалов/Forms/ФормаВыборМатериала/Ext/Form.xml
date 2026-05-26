@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockWholeInterface</WindowOpeningMode>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<PictureDecoration name="Декорация1" id="15">
+			<Height>2</Height>
+			<FileDragMode>AsFile</FileDragMode>
+			<ContextMenu name="Декорация1КонтекстноеМеню" id="16"/>
+			<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="17"/>
+		</PictureDecoration>
+		<InputField name="Нарезка" id="4">
+			<DataPath>Нарезка</DataPath>
+			<AutoMarkIncomplete>true</AutoMarkIncomplete>
+			<ContextMenu name="НарезкаКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="НарезкаРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<CheckBoxField name="ОжидаетсяПриход" id="7">
+			<DataPath>ОжидаетсяПриход</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ОжидаетсяПриходКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ОжидаетсяПриходРасширеннаяПодсказка" id="9"/>
+		</CheckBoxField>
+		<CheckBoxField name="ОжидаетсяРасход" id="10">
+			<DataPath>ОжидаетсяПереработка</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ОжидаетсяРасходКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="ОжидаетсяРасходРасширеннаяПодсказка" id="12"/>
+		</CheckBoxField>
+		<InputField name="Количество" id="1">
+			<DataPath>Количество</DataPath>
+			<DefaultItem>true</DefaultItem>
+			<TitleFont ref="style:NormalTextFont" height="12" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+			<TitleLocation>Top</TitleLocation>
+			<HorizontalStretch>true</HorizontalStretch>
+			<Font height="12" bold="true" kind="AutoFont"/>
+			<ContextMenu name="КоличествоКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КоличествоРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<UsualGroup name="Группа1" id="21">
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="22"/>
+			<ChildItems>
+				<LabelDecoration name="Декорация3" id="23">
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="Декорация3КонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="Декорация3РасширеннаяПодсказка" id="25"/>
+				</LabelDecoration>
+				<Button name="Выполнить" id="13">
+					<Type>UsualButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.ВыполнитьРезервирование</CommandName>
+					<ExtendedTooltip name="ВыполнитьРасширеннаяПодсказка" id="14"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<LabelDecoration name="Декорация2" id="18">
+			<Height>2</Height>
+			<ContextMenu name="Декорация2КонтекстноеМеню" id="19"/>
+			<ExtendedTooltip name="Декорация2РасширеннаяПодсказка" id="20"/>
+		</LabelDecoration>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Количество" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Введите количество погонных метров </v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>15</v8:Digits>
+					<v8:FractionDigits>3</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Нарезка" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Нарезка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.ЯССМ_Нарезки</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ОжидаетсяПриход" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ожидается приход</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ОжидаетсяПереработка" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ожидается переработка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ЕстьНарезка" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Есть нарезка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ВыполнитьРезервирование" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выполнить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выполнить резервирование</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ВыполнитьРезервирование</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

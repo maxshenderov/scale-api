@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Наименование" id="4">
+			<DataPath>1/-3</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="ТипСетки" id="7">
+			<DataPath>Объект.ТипСетки</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ТипСеткиКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ТипСеткиРасширеннаяПодсказка" id="9"/>
+			<Events>
+				<Event name="StartChoice">ТипСеткиНачалоВыбора</Event>
+			</Events>
+		</InputField>
+		<Table name="НастройкиФормы" id="28">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.НастройкиФормы</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="НастройкиФормыКонтекстноеМеню" id="29"/>
+			<AutoCommandBar name="НастройкиФормыКоманднаяПанель" id="30"/>
+			<ExtendedTooltip name="НастройкиФормыРасширеннаяПодсказка" id="31"/>
+			<SearchStringAddition name="НастройкиФормыСтрокаПоиска" id="32">
+				<AdditionSource>
+					<Item>НастройкиФормы</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="НастройкиФормыСтрокаПоискаКонтекстноеМеню" id="33"/>
+				<ExtendedTooltip name="НастройкиФормыСтрокаПоискаРасширеннаяПодсказка" id="34"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="НастройкиФормыСостояниеПросмотра" id="35">
+				<AdditionSource>
+					<Item>НастройкиФормы</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="НастройкиФормыСостояниеПросмотраКонтекстноеМеню" id="36"/>
+				<ExtendedTooltip name="НастройкиФормыСостояниеПросмотраРасширеннаяПодсказка" id="37"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="НастройкиФормыУправлениеПоиском" id="38">
+				<AdditionSource>
+					<Item>НастройкиФормы</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="НастройкиФормыУправлениеПоискомКонтекстноеМеню" id="39"/>
+				<ExtendedTooltip name="НастройкиФормыУправлениеПоискомРасширеннаяПодсказка" id="40"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="НастройкиФормыНомерСтроки" id="41">
+					<DataPath>Объект.НастройкиФормы.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="НастройкиФормыНомерСтрокиКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="НастройкиФормыНомерСтрокиРасширеннаяПодсказка" id="43"/>
+				</LabelField>
+				<InputField name="НастройкиФормыРаздел" id="44">
+					<DataPath>Объект.НастройкиФормы.Раздел</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation/>
+								<Value xsi:type="xs:string">Добавить</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation/>
+								<Value xsi:type="xs:string">Хранение</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation/>
+								<Value xsi:type="xs:string">Выдать</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>На машинах</v8:content>
+									</v8:item>
+								</Presentation>
+								<Value xsi:type="xs:string">Приемка</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation/>
+								<Value xsi:type="xs:string">Списанные</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation/>
+								<Value xsi:type="xs:string">Снятие</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="НастройкиФормыРазделКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="НастройкиФормыРазделРасширеннаяПодсказка" id="46"/>
+				</InputField>
+				<InputField name="НастройкиФормыТип" id="47">
+					<DataPath>Объект.НастройкиФормы.Тип</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ChoiceList>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation/>
+								<Value xsi:type="xs:string">Команда</Value>
+							</xr:Value>
+						</xr:Item>
+						<xr:Item>
+							<xr:Presentation/>
+							<xr:CheckState>0</xr:CheckState>
+							<xr:Value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation/>
+								<Value xsi:type="xs:string">Операция</Value>
+							</xr:Value>
+						</xr:Item>
+					</ChoiceList>
+					<ContextMenu name="НастройкиФормыТипКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="НастройкиФормыТипРасширеннаяПодсказка" id="49"/>
+				</InputField>
+				<InputField name="НастройкиФормыНаименование" id="50">
+					<DataPath>Объект.НастройкиФормы.Наименование</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ContextMenu name="НастройкиФормыНаименованиеКонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="НастройкиФормыНаименованиеРасширеннаяПодсказка" id="52"/>
+					<Events>
+						<Event name="StartChoice">НастройкиФормыНаименованиеНачалоВыбора</Event>
+					</Events>
+				</InputField>
+				<InputField name="НастройкиФормыНовоеНаименование" id="53">
+					<DataPath>Объект.НастройкиФормы.НовоеНаименование</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="НастройкиФормыНовоеНаименованиеКонтекстноеМеню" id="54"/>
+					<ExtendedTooltip name="НастройкиФормыНовоеНаименованиеРасширеннаяПодсказка" id="55"/>
+				</InputField>
+				<InputField name="НастройкиФормыКомандаОперации" id="66">
+					<DataPath>Объект.НастройкиФормы.КомандаОперации</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ContextMenu name="НастройкиФормыКомандаОперацииКонтекстноеМеню" id="67"/>
+					<ExtendedTooltip name="НастройкиФормыКомандаОперацииРасширеннаяПодсказка" id="68"/>
+					<Events>
+						<Event name="StartChoice">НастройкиФормыКомандаОперацииНачалоВыбора</Event>
+					</Events>
+				</InputField>
+				<CheckBoxField name="НастройкиФормыВключить" id="56">
+					<DataPath>Объект.НастройкиФормы.Включить</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="НастройкиФормыВключитьКонтекстноеМеню" id="57"/>
+					<ExtendedTooltip name="НастройкиФормыВключитьРасширеннаяПодсказка" id="58"/>
+				</CheckBoxField>
+				<CheckBoxField name="НастройкиФормыПовтор" id="59">
+					<DataPath>Объект.НастройкиФормы.Повтор</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="НастройкиФормыПовторКонтекстноеМеню" id="60"/>
+					<ExtendedTooltip name="НастройкиФормыПовторРасширеннаяПодсказка" id="61"/>
+				</CheckBoxField>
+				<CheckBoxField name="НастройкиФормыКнопкаПоУмолчанию" id="69">
+					<DataPath>Объект.НастройкиФормы.КнопкаПоУмолчанию</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="НастройкиФормыКнопкаПоУмолчаниюКонтекстноеМеню" id="70"/>
+					<ExtendedTooltip name="НастройкиФормыКнопкаПоУмолчаниюРасширеннаяПодсказка" id="71"/>
+				</CheckBoxField>
+				<CheckBoxField name="НастройкиФормыАвтоОперация" id="72">
+					<DataPath>Объект.НастройкиФормы.АвтоОперация</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="НастройкиФормыАвтоОперацияКонтекстноеМеню" id="73"/>
+					<ExtendedTooltip name="НастройкиФормыАвтоОперацияРасширеннаяПодсказка" id="74"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+		<Pages name="ГруппаСтраницы" id="62">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="ГруппаСтраницыРасширеннаяПодсказка" id="63"/>
+			<ChildItems>
+				<Page name="ГруппаРазделДобавить" id="64">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content> Раздел добавить</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа раздел добавить</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ГруппаРазделДобавитьРасширеннаяПодсказка" id="65"/>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.Лико_НастройкиФормыУчетаТрафаретныйУчасток</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

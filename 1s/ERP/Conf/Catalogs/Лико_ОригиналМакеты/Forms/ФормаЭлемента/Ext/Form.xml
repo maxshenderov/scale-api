@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		<Event name="BeforeWriteAtServer">ПередЗаписьюНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Группа1" id="78">
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="79"/>
+			<ChildItems>
+				<InputField name="Код" id="1">
+					<DataPath>Объект.Code</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+					<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+				</InputField>
+				<InputField name="Наименование" id="4">
+					<DataPath>Объект.Description</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+					<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="Группа2" id="80">
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="81"/>
+			<ChildItems>
+				<InputField name="СтрСпец" id="82">
+					<DataPath>Объект.СтрСпец</DataPath>
+					<ContextMenu name="СтрСпецКонтекстноеМеню" id="83"/>
+					<ExtendedTooltip name="СтрСпецРасширеннаяПодсказка" id="84"/>
+				</InputField>
+				<InputField name="СтрОМ" id="85">
+					<DataPath>Объект.СтрОМ</DataPath>
+					<ContextMenu name="СтрОМКонтекстноеМеню" id="86"/>
+					<ExtendedTooltip name="СтрОМРасширеннаяПодсказка" id="87"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Панель" id="88">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Панель</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Панель</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="ПанельРасширеннаяПодсказка" id="89"/>
+			<ChildItems>
+				<Page name="ПанельФайлы" id="90">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Файлы</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Панель файлы</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ПанельФайлыРасширеннаяПодсказка" id="91"/>
+					<ChildItems>
+						<Table name="Файлы" id="7">
+							<Representation>List</Representation>
+							<ChangeRowSet>false</ChangeRowSet>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<AutoMaxHeight>false</AutoMaxHeight>
+							<MaxHeight>4</MaxHeight>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Объект.Файлы</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ФайлыКонтекстноеМеню" id="8"/>
+							<AutoCommandBar name="ФайлыКоманднаяПанель" id="9">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="ФайлыДобавитьФайл" id="45">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ДобавитьФайл</CommandName>
+										<ExtendedTooltip name="ФайлыДобавитьФайлРасширеннаяПодсказка" id="46"/>
+									</Button>
+									<Button name="ФайлыИзменить" id="72">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.Изменить</CommandName>
+										<ExtendedTooltip name="ФайлыИзменитьРасширеннаяПодсказка" id="73"/>
+									</Button>
+									<Button name="ФайлыСохранить" id="74">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.Сохранить</CommandName>
+										<ExtendedTooltip name="ФайлыСохранитьРасширеннаяПодсказка" id="75"/>
+									</Button>
+									<Button name="ФайлыУдалить" id="76">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.Удалить</CommandName>
+										<ExtendedTooltip name="ФайлыУдалитьРасширеннаяПодсказка" id="77"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="ФайлыРасширеннаяПодсказка" id="10"/>
+							<SearchStringAddition name="ФайлыСтрокаПоиска" id="11">
+								<AdditionSource>
+									<Item>Файлы</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ФайлыСтрокаПоискаКонтекстноеМеню" id="12"/>
+								<ExtendedTooltip name="ФайлыСтрокаПоискаРасширеннаяПодсказка" id="13"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ФайлыСостояниеПросмотра" id="14">
+								<AdditionSource>
+									<Item>Файлы</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ФайлыСостояниеПросмотраКонтекстноеМеню" id="15"/>
+								<ExtendedTooltip name="ФайлыСостояниеПросмотраРасширеннаяПодсказка" id="16"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ФайлыУправлениеПоиском" id="17">
+								<AdditionSource>
+									<Item>Файлы</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ФайлыУправлениеПоискомКонтекстноеМеню" id="18"/>
+								<ExtendedTooltip name="ФайлыУправлениеПоискомРасширеннаяПодсказка" id="19"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="OnActivateRow">ФайлыПриАктивизацииСтроки</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="ФайлыНомерСтроки" id="20">
+									<DataPath>Объект.Файлы.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ФайлыНомерСтрокиКонтекстноеМеню" id="21"/>
+									<ExtendedTooltip name="ФайлыНомерСтрокиРасширеннаяПодсказка" id="22"/>
+								</LabelField>
+								<InputField name="ФайлыИмяФайла" id="47">
+									<DataPath>Объект.Файлы.ИмяФайла</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ФайлыИмяФайлаКонтекстноеМеню" id="48"/>
+									<ExtendedTooltip name="ФайлыИмяФайлаРасширеннаяПодсказка" id="49"/>
+								</InputField>
+								<LabelField name="ФайлыИдентификаторФайла" id="50">
+									<DataPath>Объект.Файлы.ИдентификаторФайла</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ФайлыИдентификаторФайлаКонтекстноеМеню" id="51"/>
+									<ExtendedTooltip name="ФайлыИдентификаторФайлаРасширеннаяПодсказка" id="52"/>
+								</LabelField>
+								<InputField name="ФайлыСтрСпец" id="113">
+									<DataPath>Объект.Файлы.СтрСпец</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ФайлыСтрСпецКонтекстноеМеню" id="114"/>
+									<ExtendedTooltip name="ФайлыСтрСпецРасширеннаяПодсказка" id="115"/>
+								</InputField>
+								<InputField name="ФайлыСтрОМ" id="116">
+									<DataPath>Объект.Файлы.СтрОМ</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ФайлыСтрОМКонтекстноеМеню" id="117"/>
+									<ExtendedTooltip name="ФайлыСтрОМРасширеннаяПодсказка" id="118"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ПанельЭтикетки" id="92">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Этикетки</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Панель этикетки</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ПанельЭтикеткиРасширеннаяПодсказка" id="93"/>
+					<ChildItems>
+						<Table name="Этикетки" id="94">
+							<AutoMaxHeight>false</AutoMaxHeight>
+							<MaxHeight>4</MaxHeight>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Объект.Этикетки</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ЭтикеткиКонтекстноеМеню" id="95"/>
+							<AutoCommandBar name="ЭтикеткиКоманднаяПанель" id="96"/>
+							<ExtendedTooltip name="ЭтикеткиРасширеннаяПодсказка" id="97"/>
+							<SearchStringAddition name="ЭтикеткиСтрокаПоиска" id="98">
+								<AdditionSource>
+									<Item>Этикетки</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ЭтикеткиСтрокаПоискаКонтекстноеМеню" id="99"/>
+								<ExtendedTooltip name="ЭтикеткиСтрокаПоискаРасширеннаяПодсказка" id="100"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ЭтикеткиСостояниеПросмотра" id="101">
+								<AdditionSource>
+									<Item>Этикетки</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ЭтикеткиСостояниеПросмотраКонтекстноеМеню" id="102"/>
+								<ExtendedTooltip name="ЭтикеткиСостояниеПросмотраРасширеннаяПодсказка" id="103"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ЭтикеткиУправлениеПоиском" id="104">
+								<AdditionSource>
+									<Item>Этикетки</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ЭтикеткиУправлениеПоискомКонтекстноеМеню" id="105"/>
+								<ExtendedTooltip name="ЭтикеткиУправлениеПоискомРасширеннаяПодсказка" id="106"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ЭтикеткиНомерСтроки" id="107">
+									<DataPath>Объект.Этикетки.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ЭтикеткиНомерСтрокиКонтекстноеМеню" id="108"/>
+									<ExtendedTooltip name="ЭтикеткиНомерСтрокиРасширеннаяПодсказка" id="109"/>
+								</LabelField>
+								<InputField name="ЭтикеткиНоменклатура" id="110">
+									<DataPath>Объект.Этикетки.Номенклатура</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ЭтикеткиНоменклатураКонтекстноеМеню" id="111"/>
+									<ExtendedTooltip name="ЭтикеткиНоменклатураРасширеннаяПодсказка" id="112"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<Pages name="Панель1" id="53">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Панель1</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Панель1</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="Панель1РасширеннаяПодсказка" id="54"/>
+			<ChildItems>
+				<Page name="JPG" id="55">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>JPG</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>JPG</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="JPGРасширеннаяПодсказка" id="56"/>
+					<ChildItems>
+						<PictureField name="ОсновноеИзображение" id="32">
+							<DataPath>АдресКартинки</DataPath>
+							<SkipOnInput>true</SkipOnInput>
+							<TitleLocation>None</TitleLocation>
+							<PictureSize>AutoSize</PictureSize>
+							<Hyperlink>true</Hyperlink>
+							<NonselectedPictureText>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Добавить изображение</v8:content>
+								</v8:item>
+							</NonselectedPictureText>
+							<TextColor>style:ЦветТекстаНевыбраннойКартинки</TextColor>
+							<Font ref="sys:DefaultGUIFont" height="12" kind="WindowsFont"/>
+							<FileDragMode>AsFile</FileDragMode>
+							<ContextMenu name="ОсновноеИзображениеКонтекстноеМеню" id="33">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="АдресКартинкиКонтекстноеМенюДобавитьИзображение" id="35">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюДобавитьИзображениеExtendedTooltip" id="36"/>
+									</Button>
+									<Button name="АдресКартинкиКонтекстноеМенюИзменитьИзображение" id="37">
+										<Type>CommandBarButton</Type>
+										<CommandName>6:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюИзменитьИзображениеExtendedTooltip" id="38"/>
+									</Button>
+									<Button name="АдресКартинкиКонтекстноеМенюОчиститьИзображение" id="39">
+										<Type>CommandBarButton</Type>
+										<CommandName>7:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюОчиститьИзображениеExtendedTooltip" id="40"/>
+									</Button>
+									<Button name="АдресКартинкиКонтекстноеМенюПросмотретьИзображение" id="41">
+										<Type>CommandBarButton</Type>
+										<CommandName>8:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюПросмотретьИзображениеExtendedTooltip" id="42"/>
+									</Button>
+									<Button name="АдресКартинкиКонтекстноеМенюВыбратьКартинкуИзПрисоединенныхФайлов" id="43">
+										<Type>CommandBarButton</Type>
+										<Representation>PictureAndText</Representation>
+										<CommandName>Form.Command.Изменить</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюВыбратьКартинкуИзПрисоединенныхФайловExtendedTooltip" id="44"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<ExtendedTooltip name="ОсновноеИзображениеРасширеннаяПодсказка" id="34"/>
+							<Events>
+								<Event name="Click">АдресКартинкиНажатие</Event>
+							</Events>
+						</PictureField>
+					</ChildItems>
+				</Page>
+				<Page name="PDF" id="57">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>PDF</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>PDF</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="PDFРасширеннаяПодсказка" id="58"/>
+					<ChildItems>
+						<HTMLDocumentField name="ОсновноеИзображениеPDF" id="59">
+							<DataPath>HTML</DataPath>
+							<SkipOnInput>true</SkipOnInput>
+							<TitleLocation>None</TitleLocation>
+							<ContextMenu name="ОсновноеИзображениеPDFКонтекстноеМеню" id="60">
+								<Autofill>false</Autofill>
+								<ChildItems>
+									<Button name="АдресКартинкиКонтекстноеМенюДобавитьИзображение1" id="62">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюДобавитьИзображение1РасширеннаяПодсказка" id="63"/>
+									</Button>
+									<Button name="АдресКартинкиКонтекстноеМенюИзменитьИзображение1" id="64">
+										<Type>CommandBarButton</Type>
+										<CommandName>6:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюИзменитьИзображение1РасширеннаяПодсказка" id="65"/>
+									</Button>
+									<Button name="АдресКартинкиКонтекстноеМенюОчиститьИзображение1" id="66">
+										<Type>CommandBarButton</Type>
+										<CommandName>7:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюОчиститьИзображение1РасширеннаяПодсказка" id="67"/>
+									</Button>
+									<Button name="АдресКартинкиКонтекстноеМенюПросмотретьИзображение1" id="68">
+										<Type>CommandBarButton</Type>
+										<CommandName>8:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюПросмотретьИзображение1РасширеннаяПодсказка" id="69"/>
+									</Button>
+									<Button name="АдресКартинкиКонтекстноеМенюВыбратьКартинкуИзПрисоединенныхФайлов1" id="70">
+										<Type>CommandBarButton</Type>
+										<Representation>PictureAndText</Representation>
+										<CommandName>Form.Command.Изменить</CommandName>
+										<ExtendedTooltip name="АдресКартинкиКонтекстноеМенюВыбратьКартинкуИзПрисоединенныхФайлов1РасширеннаяПодсказка" id="71"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<ExtendedTooltip name="ОсновноеИзображениеPDFРасширеннаяПодсказка" id="61"/>
+						</HTMLDocumentField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.Лико_ОригиналМакеты</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="АдресКартинки" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Адрес картинки</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="HTML" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>HTML</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="HttpАдресПросмотраPDF" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Http адрес просмотра PDF</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ДобавитьФайл" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавить файл</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавить файл</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ДобавитьФайл</Action>
+			<Representation>Picture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Сохранить" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сохранить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сохранить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Сохранить</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Изменить" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Изменить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Изменить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Изменить</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Удалить" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Удалить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Удалить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Удалить</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

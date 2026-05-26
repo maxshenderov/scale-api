@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Номер" id="1">
+			<DataPath>Объект.Number</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НомерКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Дата" id="4">
+			<DataPath>Объект.Date</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="Организация" id="7">
+			<DataPath>Объект.Организация</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ОрганизацияКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ОрганизацияРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<InputField name="Валюта" id="10">
+			<DataPath>Объект.Валюта</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ВалютаКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="ВалютаРасширеннаяПодсказка" id="12"/>
+		</InputField>
+		<InputField name="Наценка" id="43">
+			<DataPath>Объект.Наценка</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НаценкаКонтекстноеМеню" id="44"/>
+			<ExtendedTooltip name="НаценкаРасширеннаяПодсказка" id="45"/>
+		</InputField>
+		<InputField name="Ответсвенный" id="46">
+			<DataPath>Объект.Ответсвенный</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ОтветсвенныйКонтекстноеМеню" id="47"/>
+			<ExtendedTooltip name="ОтветсвенныйРасширеннаяПодсказка" id="48"/>
+		</InputField>
+		<Table name="ЦеновыеГруппы" id="13">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.ЦеновыеГруппы</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ЦеновыеГруппыКонтекстноеМеню" id="14"/>
+			<AutoCommandBar name="ЦеновыеГруппыКоманднаяПанель" id="15">
+				<ChildItems>
+					<Button name="ЦеновыеГруппыЗаполнитьПоОрганизации" id="38">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ЗаполнитьПоОрганизации</CommandName>
+						<ExtendedTooltip name="ЦеновыеГруппыЗаполнитьПоОрганизацииРасширеннаяПодсказка" id="39"/>
+					</Button>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ЦеновыеГруппыРасширеннаяПодсказка" id="16"/>
+			<SearchStringAddition name="ЦеновыеГруппыСтрокаПоиска" id="17">
+				<AdditionSource>
+					<Item>ЦеновыеГруппы</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦеновыеГруппыСтрокаПоискаКонтекстноеМеню" id="18"/>
+				<ExtendedTooltip name="ЦеновыеГруппыСтрокаПоискаРасширеннаяПодсказка" id="19"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ЦеновыеГруппыСостояниеПросмотра" id="20">
+				<AdditionSource>
+					<Item>ЦеновыеГруппы</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦеновыеГруппыСостояниеПросмотраКонтекстноеМеню" id="21"/>
+				<ExtendedTooltip name="ЦеновыеГруппыСостояниеПросмотраРасширеннаяПодсказка" id="22"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ЦеновыеГруппыУправлениеПоиском" id="23">
+				<AdditionSource>
+					<Item>ЦеновыеГруппы</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦеновыеГруппыУправлениеПоискомКонтекстноеМеню" id="24"/>
+				<ExtendedTooltip name="ЦеновыеГруппыУправлениеПоискомРасширеннаяПодсказка" id="25"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ЦеновыеГруппыНомерСтроки" id="26">
+					<DataPath>Объект.ЦеновыеГруппы.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦеновыеГруппыНомерСтрокиКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ЦеновыеГруппыНомерСтрокиРасширеннаяПодсказка" id="28"/>
+				</LabelField>
+				<InputField name="ЦеновыеГруппыЦеноваяГруппа" id="29">
+					<DataPath>Объект.ЦеновыеГруппы.ЦеноваяГруппа</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ЦеновыеГруппыЦеноваяГруппаКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="ЦеновыеГруппыЦеноваяГруппаРасширеннаяПодсказка" id="31"/>
+				</InputField>
+				<InputField name="ЦеновыеГруппыВалюта" id="40">
+					<DataPath>Объект.ЦеновыеГруппы.Валюта</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ЦеновыеГруппыВалютаКонтекстноеМеню" id="41"/>
+					<ExtendedTooltip name="ЦеновыеГруппыВалютаРасширеннаяПодсказка" id="42"/>
+				</InputField>
+				<InputField name="ЦеновыеГруппыЦена" id="35">
+					<DataPath>Объект.ЦеновыеГруппы.Цена</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ЦеновыеГруппыЦенаКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="ЦеновыеГруппыЦенаРасширеннаяПодсказка" id="37"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Лико_УстановкаСтоимостиЦеновыхГрупп</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ЗаполнитьПоОрганизации" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполнить по организации</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполнить по организации</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ВходящийЗапросГосИС</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ЗаполнитьПоОрганизации</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+	</Commands>
+</Form>

@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Popup name="ПодменюПечать" id="68">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Подменю печать</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Подменю печать</v8:content>
+					</v8:item>
+				</ToolTip>
+				<ExtendedTooltip name="ПодменюПечатьРасширеннаяПодсказка" id="69"/>
+			</Popup>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnReadAtServer">ПриЧтенииНаСервере</Event>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Шапка" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Шапка</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ШапкаРасширеннаяПодсказка" id="2"/>
+			<ChildItems>
+				<UsualGroup name="ЛеваяКолонка" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Левая колонка</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ЛеваяКолонкаРасширеннаяПодсказка" id="4"/>
+					<ChildItems>
+						<InputField name="Номер" id="5">
+							<DataPath>Объект.Number</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="НомерКонтекстноеМеню" id="6"/>
+							<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="7"/>
+						</InputField>
+						<InputField name="Ответственный" id="13">
+							<DataPath>Объект.Ответственный</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ОтветственныйКонтекстноеМеню" id="14"/>
+							<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="15"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ПраваяКолонка" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Правая колонка</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ПраваяКолонкаРасширеннаяПодсказка" id="12"/>
+					<ChildItems>
+						<InputField name="Дата" id="8">
+							<DataPath>Объект.Date</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ДатаКонтекстноеМеню" id="9"/>
+							<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="10"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="Поставщики" id="19">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.Поставщики</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ПоставщикиКонтекстноеМеню" id="20"/>
+			<AutoCommandBar name="ПоставщикиКоманднаяПанель" id="21"/>
+			<ExtendedTooltip name="ПоставщикиРасширеннаяПодсказка" id="22"/>
+			<SearchStringAddition name="ПоставщикиСтрокаПоиска" id="23">
+				<AdditionSource>
+					<Item>Поставщики</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ПоставщикиСтрокаПоискаКонтекстноеМеню" id="24"/>
+				<ExtendedTooltip name="ПоставщикиСтрокаПоискаРасширеннаяПодсказка" id="25"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ПоставщикиСостояниеПросмотра" id="26">
+				<AdditionSource>
+					<Item>Поставщики</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ПоставщикиСостояниеПросмотраКонтекстноеМеню" id="27"/>
+				<ExtendedTooltip name="ПоставщикиСостояниеПросмотраРасширеннаяПодсказка" id="28"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ПоставщикиУправлениеПоиском" id="29">
+				<AdditionSource>
+					<Item>Поставщики</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ПоставщикиУправлениеПоискомКонтекстноеМеню" id="30"/>
+				<ExtendedTooltip name="ПоставщикиУправлениеПоискомРасширеннаяПодсказка" id="31"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">ПоставщикиВыбор</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="ПоставщикиНомерСтроки" id="32">
+					<DataPath>Объект.Поставщики.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиНомерСтрокиКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="ПоставщикиНомерСтрокиРасширеннаяПодсказка" id="34"/>
+				</LabelField>
+				<InputField name="ПоставщикиПоставщик" id="35">
+					<DataPath>Объект.Поставщики.Поставщик</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиПоставщикКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="ПоставщикиПоставщикРасширеннаяПодсказка" id="37"/>
+					<Events>
+						<Event name="OnChange">ПоставщикиПоставщикПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ПоставщикиВозможностьВыполнения" id="38">
+					<DataPath>Объект.Поставщики.ВозможностьВыполнения</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиВозможностьВыполненияКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="ПоставщикиВозможностьВыполненияРасширеннаяПодсказка" id="40"/>
+				</InputField>
+				<CheckBoxField name="ПоставщикиНаличиеДокументации" id="41">
+					<DataPath>Объект.Поставщики.НаличиеДокументации</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПоставщикиНаличиеДокументацииКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="ПоставщикиНаличиеДокументацииРасширеннаяПодсказка" id="43"/>
+				</CheckBoxField>
+				<InputField name="ПоставщикиЦена" id="44">
+					<DataPath>Объект.Поставщики.Цена</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиЦенаКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="ПоставщикиЦенаРасширеннаяПодсказка" id="46"/>
+				</InputField>
+				<InputField name="ПоставщикиНаличиеСертификатов" id="47">
+					<DataPath>Объект.Поставщики.НаличиеСертификатов</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиНаличиеСертификатовКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="ПоставщикиНаличиеСертификатовРасширеннаяПодсказка" id="49"/>
+				</InputField>
+				<InputField name="ПоставщикиУсловияОплаты" id="50">
+					<DataPath>Объект.Поставщики.УсловияОплаты</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиУсловияОплатыКонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="ПоставщикиУсловияОплатыРасширеннаяПодсказка" id="52"/>
+				</InputField>
+				<InputField name="ПоставщикиУсловияПоставкиТовара" id="53">
+					<DataPath>Объект.Поставщики.УсловияПоставкиТовара</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиУсловияПоставкиТовараКонтекстноеМеню" id="54"/>
+					<ExtendedTooltip name="ПоставщикиУсловияПоставкиТовараРасширеннаяПодсказка" id="55"/>
+				</InputField>
+				<InputField name="ПоставщикиСрокРаботы" id="56">
+					<DataPath>Объект.Поставщики.СрокРаботы</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиСрокРаботыКонтекстноеМеню" id="57"/>
+					<ExtendedTooltip name="ПоставщикиСрокРаботыРасширеннаяПодсказка" id="58"/>
+				</InputField>
+				<CheckBoxField name="ПоставщикиОдобрено" id="70">
+					<DataPath>Объект.Поставщики.Одобрено</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПоставщикиОдобреноКонтекстноеМеню" id="71"/>
+					<ExtendedTooltip name="ПоставщикиОдобреноРасширеннаяПодсказка" id="72"/>
+				</CheckBoxField>
+				<InputField name="ПоставщикиПримечание" id="73">
+					<DataPath>Объект.Поставщики.Примечание</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПоставщикиПримечаниеКонтекстноеМеню" id="74"/>
+					<ExtendedTooltip name="ПоставщикиПримечаниеРасширеннаяПодсказка" id="75"/>
+				</InputField>
+				<InputField name="ПоставщикиГиперссылка" id="65">
+					<DataPath>Объект.Поставщики.Гиперссылка</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CellHyperlink>true</CellHyperlink>
+					<ContextMenu name="ПоставщикиГиперссылкаКонтекстноеМеню" id="66"/>
+					<ExtendedTooltip name="ПоставщикиГиперссылкаРасширеннаяПодсказка" id="67"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<InputField name="ВыбранныйПоставщик" id="16">
+			<DataPath>Объект.ВыбранныйПоставщик</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="ВыбранныйПоставщикКонтекстноеМеню" id="17"/>
+			<ExtendedTooltip name="ВыбранныйПоставщикРасширеннаяПодсказка" id="18"/>
+		</InputField>
+		<InputField name="Комментарий" id="62">
+			<DataPath>Объект.Комментарий</DataPath>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<HorizontalStretch>true</HorizontalStretch>
+			<MultiLine>true</MultiLine>
+			<ContextMenu name="КомментарийКонтекстноеМеню" id="63"/>
+			<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="64"/>
+		</InputField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Лико_ВыборПоставщиков</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+	</Attributes>
+</Form>

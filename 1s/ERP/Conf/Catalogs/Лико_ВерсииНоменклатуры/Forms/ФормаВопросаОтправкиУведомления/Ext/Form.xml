@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Отправка уведомления дизайнеру о новых артикулах</v8:content>
+		</v8:item>
+	</Title>
+	<Width>100</Width>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<LabelDecoration name="Декорация9" id="56">
+			<ContextMenu name="Декорация9КонтекстноеМеню" id="57"/>
+			<ExtendedTooltip name="Декорация9РасширеннаяПодсказка" id="58"/>
+		</LabelDecoration>
+		<Table name="Товары" id="7">
+			<Representation>List</Representation>
+			<ChangeRowSet>false</ChangeRowSet>
+			<ChangeRowOrder>false</ChangeRowOrder>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Товары</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ТоварыКонтекстноеМеню" id="8"/>
+			<AutoCommandBar name="ТоварыКоманднаяПанель" id="9">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ТоварыРасширеннаяПодсказка" id="10"/>
+			<SearchStringAddition name="ТоварыСтрокаПоиска" id="11">
+				<AdditionSource>
+					<Item>Товары</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТоварыСтрокаПоискаКонтекстноеМеню" id="12"/>
+				<ExtendedTooltip name="ТоварыСтрокаПоискаРасширеннаяПодсказка" id="13"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТоварыСостояниеПросмотра" id="14">
+				<AdditionSource>
+					<Item>Товары</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТоварыСостояниеПросмотраКонтекстноеМеню" id="15"/>
+				<ExtendedTooltip name="ТоварыСостояниеПросмотраРасширеннаяПодсказка" id="16"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТоварыУправлениеПоиском" id="17">
+				<AdditionSource>
+					<Item>Товары</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТоварыУправлениеПоискомКонтекстноеМеню" id="18"/>
+				<ExtendedTooltip name="ТоварыУправлениеПоискомРасширеннаяПодсказка" id="19"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="ТоварыАртикул" id="20">
+					<DataPath>Товары.Артикул</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>10</Width>
+					<ContextMenu name="ТоварыАртикулКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="ТоварыАртикулРасширеннаяПодсказка" id="22"/>
+				</InputField>
+				<InputField name="ТоварыНоменклатура" id="23">
+					<DataPath>Товары.Номенклатура</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТоварыНоменклатураКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="ТоварыНоменклатураРасширеннаяПодсказка" id="25"/>
+				</InputField>
+				<CheckBoxField name="ТоварыУведомитьДизайнера" id="26">
+					<DataPath>Товары.УведомитьДизайнера</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ТоварыУведомитьДизайнераКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ТоварыУведомитьДизайнераРасширеннаяПодсказка" id="28"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+		<InputField name="Дизайнер" id="29">
+			<DataPath>Дизайнер</DataPath>
+			<OpenButton>false</OpenButton>
+			<ContextMenu name="ДизайнерКонтекстноеМеню" id="30"/>
+			<ExtendedTooltip name="ДизайнерРасширеннаяПодсказка" id="31"/>
+			<Events>
+				<Event name="OnChange">ДизайнерПриИзменении</Event>
+			</Events>
+		</InputField>
+		<UsualGroup name="Группа2ДИзайнер" id="67">
+			<Visible>false</Visible>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа2 д изайнер</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа2 д изайнер</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа2ДИзайнерРасширеннаяПодсказка" id="68"/>
+			<ChildItems>
+				<PictureDecoration name="ОтступКомментарий1" id="69">
+					<Width>7</Width>
+					<Height>1</Height>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Отступ комментарий</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ОтступКомментарий1КонтекстноеМеню" id="70"/>
+					<ExtendedTooltip name="ОтступКомментарий1РасширеннаяПодсказка" id="71"/>
+				</PictureDecoration>
+				<LabelDecoration name="КомментарийДизайнер1" id="72">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>1</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<TextColor>style:SpecialTextColor</TextColor>
+					<Font ref="style:NormalTextFont" faceName="Times New Roman" height="10" kind="StyleItem"/>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ВНИМАНИЕ! У сотрудника не заведена почта в 1С . Обратитесь в отдел ИТ.</v8:content>
+						</v8:item>
+					</Title>
+					<GroupVerticalAlign>Top</GroupVerticalAlign>
+					<VerticalAlign>Top</VerticalAlign>
+					<ContextMenu name="КомментарийДизайнер1КонтекстноеМеню" id="73"/>
+					<ExtendedTooltip name="КомментарийДизайнер1РасширеннаяПодсказка" id="74"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="Группа2" id="59">
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="60"/>
+			<ChildItems>
+				<PictureDecoration name="Декорация1" id="61">
+					<Width>6</Width>
+					<Height>1</Height>
+					<ContextMenu name="Декорация1КонтекстноеМеню" id="62"/>
+					<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="63"/>
+				</PictureDecoration>
+				<LabelDecoration name="Декорация4" id="35">
+					<Font height="8" kind="AutoFont"/>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Указанному сотруднику будут отправлены уведомления о выбранных артикулах</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="Декорация4КонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="Декорация4РасширеннаяПодсказка" id="37"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="Комментарий" id="64">
+			<DataPath>Комментарий</DataPath>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<HorizontalStretch>true</HorizontalStretch>
+			<MultiLine>true</MultiLine>
+			<ContextMenu name="КомментарийКонтекстноеМеню" id="65"/>
+			<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="66"/>
+		</InputField>
+		<UsualGroup name="Группа1" id="44">
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="45"/>
+			<ChildItems>
+				<PictureDecoration name="Декорация7" id="50">
+					<Height>1</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="Декорация7КонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="Декорация7РасширеннаяПодсказка" id="52"/>
+				</PictureDecoration>
+				<Button name="Продолжить" id="48">
+					<Type>UsualButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.Продолжить</CommandName>
+					<ExtendedTooltip name="ПродолжитьРасширеннаяПодсказка" id="49"/>
+				</Button>
+				<Button name="Отменить" id="46">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.Отменить</CommandName>
+					<ExtendedTooltip name="ОтменитьРасширеннаяПодсказка" id="47"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Товары" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Товары</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Артикул" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Артикул</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>60</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Номенклатура" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номенклатура</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Номенклатура</v8:Type>
+					</Type>
+				</Column>
+				<Column name="УведомитьДизайнера" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Уведомить дизайнера</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ВерсияНоменклатуры" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Версия номенклатуры</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_ВерсииНоменклатуры</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Дизайнер" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дизайнер</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Пользователи</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Комментарий" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Комментарий для дизайнера</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ЕстьПочта" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Есть почта</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Продолжить" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Продолжить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Продолжить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПродолжитьКоманда</Action>
+		</Command>
+		<Command name="Отменить" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отменить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отменить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Отменить</Action>
+		</Command>
+	</Commands>
+</Form>

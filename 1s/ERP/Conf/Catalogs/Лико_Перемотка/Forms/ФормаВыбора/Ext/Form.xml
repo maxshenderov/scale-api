@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="СписокКомпоновщикНастроекПользовательскиеНастройки" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа пользовательских настроек</v8:content>
+				</v8:item>
+			</Title>
+			<VerticalStretch>false</VerticalStretch>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СписокКомпоновщикНастроекПользовательскиеНастройкиРасширеннаяПодсказка" id="2"/>
+		</UsualGroup>
+		<Table name="Список" id="3">
+			<CommandBarLocation>None</CommandBarLocation>
+			<DefaultItem>true</DefaultItem>
+			<ChoiceMode>true</ChoiceMode>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<InitialTreeView>ExpandTopLevel</InitialTreeView>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Список</DataPath>
+			<RowPictureDataPath>Список.DefaultPicture</RowPictureDataPath>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<UserSettingsGroup>СписокКомпоновщикНастроекПользовательскиеНастройки</UserSettingsGroup>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СписокКонтекстноеМеню" id="4"/>
+			<AutoCommandBar name="СписокКоманднаяПанель" id="5">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="6"/>
+			<SearchStringAddition name="СписокСтрокаПоиска" id="7">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="8"/>
+				<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="9"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СписокСостояниеПросмотра" id="10">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="11"/>
+				<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="12"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СписокУправлениеПоиском" id="13">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="14"/>
+				<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="15"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<CheckBoxField name="ПометкаУдаления" id="28">
+					<DataPath>Список.ПометкаУдаления</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПометкаУдаленияКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="ПометкаУдаленияРасширеннаяПодсказка" id="30"/>
+				</CheckBoxField>
+				<LabelField name="Код" id="22">
+					<DataPath>Список.Код</DataPath>
+					<ContextMenu name="КодКонтекстноеМеню" id="23"/>
+					<ExtendedTooltip name="КодРасширеннаяПодсказка" id="24"/>
+				</LabelField>
+				<LabelField name="Наименование" id="19">
+					<DataPath>Список.Наименование</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ContextMenu name="НаименованиеКонтекстноеМеню" id="20"/>
+					<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="21"/>
+				</LabelField>
+				<LabelField name="Родитель" id="25">
+					<DataPath>Список.Родитель</DataPath>
+					<ContextMenu name="РодительКонтекстноеМеню" id="26"/>
+					<ExtendedTooltip name="РодительРасширеннаяПодсказка" id="27"/>
+				</LabelField>
+				<LabelField name="Партнер" id="64">
+					<DataPath>Список.Партнер</DataPath>
+					<ContextMenu name="ПартнерКонтекстноеМеню" id="65"/>
+					<ExtendedTooltip name="ПартнерРасширеннаяПодсказка" id="66"/>
+				</LabelField>
+				<LabelField name="Номенклатура" id="67">
+					<DataPath>Список.Номенклатура</DataPath>
+					<ContextMenu name="НоменклатураКонтекстноеМеню" id="68"/>
+					<ExtendedTooltip name="НоменклатураРасширеннаяПодсказка" id="69"/>
+				</LabelField>
+				<LabelField name="Город" id="61">
+					<DataPath>Список.Город</DataPath>
+					<ContextMenu name="ГородКонтекстноеМеню" id="62"/>
+					<ExtendedTooltip name="ГородРасширеннаяПодсказка" id="63"/>
+				</LabelField>
+				<LabelField name="Направление" id="37">
+					<DataPath>Список.Направление</DataPath>
+					<ContextMenu name="НаправлениеКонтекстноеМеню" id="38"/>
+					<ExtendedTooltip name="НаправлениеРасширеннаяПодсказка" id="39"/>
+				</LabelField>
+				<LabelField name="МаксимальныйДиаметрРулона" id="40">
+					<DataPath>Список.МаксимальныйДиаметрРулона</DataPath>
+					<ContextMenu name="МаксимальныйДиаметрРулонаКонтекстноеМеню" id="41"/>
+					<ExtendedTooltip name="МаксимальныйДиаметрРулонаРасширеннаяПодсказка" id="42"/>
+				</LabelField>
+				<LabelField name="ВнутреннийДиаметр" id="43">
+					<DataPath>Список.ВнутреннийДиаметр</DataPath>
+					<ContextMenu name="ВнутреннийДиаметрКонтекстноеМеню" id="44"/>
+					<ExtendedTooltip name="ВнутреннийДиаметрРасширеннаяПодсказка" id="45"/>
+				</LabelField>
+				<LabelField name="КоличествоЭтикетокВРолике" id="46">
+					<DataPath>Список.КоличествоЭтикетокВРолике</DataPath>
+					<ContextMenu name="КоличествоЭтикетокВРоликеКонтекстноеМеню" id="47"/>
+					<ExtendedTooltip name="КоличествоЭтикетокВРоликеРасширеннаяПодсказка" id="48"/>
+				</LabelField>
+				<CheckBoxField name="ПродольнаяРезка" id="49">
+					<DataPath>Список.ПродольнаяРезка</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПродольнаяРезкаКонтекстноеМеню" id="50"/>
+					<ExtendedTooltip name="ПродольнаяРезкаРасширеннаяПодсказка" id="51"/>
+				</CheckBoxField>
+				<CheckBoxField name="ПоперечнаяРезка" id="52">
+					<DataPath>Список.ПоперечнаяРезка</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПоперечнаяРезкаКонтекстноеМеню" id="53"/>
+					<ExtendedTooltip name="ПоперечнаяРезкаРасширеннаяПодсказка" id="54"/>
+				</CheckBoxField>
+				<LabelField name="Кромка" id="55">
+					<DataPath>Список.Кромка</DataPath>
+					<ContextMenu name="КромкаКонтекстноеМеню" id="56"/>
+					<ExtendedTooltip name="КромкаРасширеннаяПодсказка" id="57"/>
+				</LabelField>
+				<CheckBoxField name="ПодрезкаКромки" id="58">
+					<DataPath>Список.ПодрезкаКромки</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПодрезкаКромкиКонтекстноеМеню" id="59"/>
+					<ExtendedTooltip name="ПодрезкаКромкиРасширеннаяПодсказка" id="60"/>
+				</CheckBoxField>
+				<LabelField name="Ссылка" id="16">
+					<DataPath>Список.Ссылка</DataPath>
+					<ContextMenu name="СсылкаКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="СсылкаРасширеннаяПодсказка" id="18"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	СправочникЛико_Перемотка.Ссылка КАК Ссылка,
+	СправочникЛико_Перемотка.ПометкаУдаления КАК ПометкаУдаления,
+	СправочникЛико_Перемотка.Родитель КАК Родитель,
+	СправочникЛико_Перемотка.ЭтоГруппа КАК ЭтоГруппа,
+	СправочникЛико_Перемотка.Код КАК Код,
+	СправочникЛико_Перемотка.Наименование КАК Наименование,
+	СправочникЛико_Перемотка.Направление КАК Направление,
+	СправочникЛико_Перемотка.МаксимальныйДиаметрРулона КАК МаксимальныйДиаметрРулона,
+	СправочникЛико_Перемотка.ВнутреннийДиаметр КАК ВнутреннийДиаметр,
+	СправочникЛико_Перемотка.КоличествоЭтикетокВРолике КАК КоличествоЭтикетокВРолике,
+	СправочникЛико_Перемотка.ПродольнаяРезка КАК ПродольнаяРезка,
+	СправочникЛико_Перемотка.ПоперечнаяРезка КАК ПоперечнаяРезка,
+	СправочникЛико_Перемотка.Кромка КАК Кромка,
+	СправочникЛико_Перемотка.ПодрезкаКромки КАК ПодрезкаКромки,
+	СправочникЛико_Перемотка.Город КАК Город,
+	СправочникЛико_Перемотка.Партнер КАК Партнер,
+	СправочникЛико_Перемотка.Номенклатура КАК Номенклатура,
+	СправочникЛико_Перемотка.Предопределенный КАК Предопределенный,
+	СправочникЛико_Перемотка.ИмяПредопределенныхДанных КАК ИмяПредопределенныхДанных
+ИЗ
+	Справочник.Лико_Перемотка КАК СправочникЛико_Перемотка
+ГДЕ
+	ВЫБОР
+			КОГДА &amp;ОтборПоПартнеру = ИСТИНА
+				ТОГДА СправочникЛико_Перемотка.Партнер = &amp;Партнер
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ
+	И ВЫБОР
+			КОГДА &amp;ОтборПоНоменклатуре = ИСТИНА
+				ТОГДА СправочникЛико_Перемотка.Номенклатура = &amp;Номенклатура
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ
+	И ВЫБОР
+			КОГДА &amp;ОтборПоГороду = ИСТИНА
+				ТОГДА СправочникЛико_Перемотка.Город = &amp;Город
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ</QueryText>
+				<MainTable>Catalog.Лико_Перемотка</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+</Form>

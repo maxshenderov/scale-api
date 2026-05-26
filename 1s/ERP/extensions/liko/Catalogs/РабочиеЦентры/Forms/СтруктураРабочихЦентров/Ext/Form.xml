@@ -1,0 +1,1026 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Структура рабочих центров</v8:content>
+		</v8:item>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Work center structure</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<ChildItems>
+		<UsualGroup name="ГруппаОтбор" id="43">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отбор</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Filter</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаОтборExtendedTooltip" id="59"/>
+			<ChildItems>
+				<InputField name="Подразделение" id="44">
+					<ClearButton>true</ClearButton>
+					<OpenButton>false</OpenButton>
+					<ChoiceParameters>
+						<app:item name="Отбор.ПроизводственноеПодразделение">
+							<app:value xsi:type="FormChoiceListDesTimeValue">
+								<Presentation/>
+								<Value xsi:type="xs:boolean">true</Value>
+							</app:value>
+						</app:item>
+					</ChoiceParameters>
+					<ContextMenu name="ПодразделениеКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="ПодразделениеРасширеннаяПодсказка" id="60"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаСписокСправочников" id="29">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список справочников</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Catalog list</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ChildItemsWidth>LeftNarrowest</ChildItemsWidth>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаСписокСправочниковExtendedTooltip" id="61"/>
+			<ChildItems>
+				<UsualGroup name="ГруппаВедущийСписок" id="140">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ведущий список (группа)</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Leading list (group)</v8:content>
+						</v8:item>
+					</Title>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаВедущийСписокРасширеннаяПодсказка" id="141"/>
+					<ChildItems>
+						<LabelField name="ЗаголовокВедущийСписок" id="142">
+							<TitleLocation>None</TitleLocation>
+							<TextColor>#009646</TextColor>
+							<Font ref="style:ШрифтЗаголовкаИнформационнойПанели" kind="StyleItem"/>
+							<ContextMenu name="ЗаголовокВедущийСписокКонтекстноеМеню" id="143"/>
+							<ExtendedTooltip name="ЗаголовокВедущийСписокРасширеннаяПодсказка" id="144"/>
+						</LabelField>
+						<Pages name="СтраницыВедущийСписок" id="109">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Страницы ведущий список</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Pages leading list</v8:content>
+								</v8:item>
+							</Title>
+							<PagesRepresentation>None</PagesRepresentation>
+							<ExtendedTooltip name="СтраницыВедущийСписокРасширеннаяПодсказка" id="110"/>
+							<ChildItems>
+								<Page name="СтраницаВидыРабочихЦентров" id="111">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Виды рабочих центров</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Work center kinds</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="СтраницаВидыРабочихЦентровРасширеннаяПодсказка" id="112"/>
+									<ChildItems>
+										<Table name="ВидыРабочихЦентров" id="10">
+											<Representation>Tree</Representation>
+											<UseAlternationRowColor>true</UseAlternationRowColor>
+											<InitialTreeView>ExpandTopLevel</InitialTreeView>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<FileDragMode>AsFile</FileDragMode>
+											<RowPictureDataPath>10000000</RowPictureDataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Виды рабочих центров</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Work center kinds</v8:content>
+												</v8:item>
+											</Title>
+											<AutoRefresh>false</AutoRefresh>
+											<AutoRefreshPeriod>60</AutoRefreshPeriod>
+											<Period>
+												<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+												<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+												<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+											</Period>
+											<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+											<RestoreCurrentRow>false</RestoreCurrentRow>
+											<TopLevelParent xsi:nil="true"/>
+											<ShowRoot>true</ShowRoot>
+											<AllowRootChoice>false</AllowRootChoice>
+											<UpdateOnDataChange>Auto</UpdateOnDataChange>
+											<ContextMenu name="ВидыРабочихЦентровКонтекстноеМеню" id="11"/>
+											<AutoCommandBar name="ВидыРабочихЦентровКоманднаяПанель" id="12"/>
+											<ExtendedTooltip name="ВидыРабочихЦентровExtendedTooltip" id="67"/>
+											<SearchStringAddition name="ВидыРабочихЦентровСтрокаПоиска" id="83">
+												<AdditionSource>
+													<Item>ВидыРабочихЦентров</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ВидыРабочихЦентровСтрокаПоискаКонтекстноеМеню" id="84"/>
+												<ExtendedTooltip name="ВидыРабочихЦентровСтрокаПоискаРасширеннаяПодсказка" id="85"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="ВидыРабочихЦентровСостояниеПросмотра" id="86">
+												<AdditionSource>
+													<Item>ВидыРабочихЦентров</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="ВидыРабочихЦентровСостояниеПросмотраКонтекстноеМеню" id="87"/>
+												<ExtendedTooltip name="ВидыРабочихЦентровСостояниеПросмотраРасширеннаяПодсказка" id="88"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="ВидыРабочихЦентровУправлениеПоиском" id="89">
+												<AdditionSource>
+													<Item>ВидыРабочихЦентров</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="ВидыРабочихЦентровУправлениеПоискомКонтекстноеМеню" id="90"/>
+												<ExtendedTooltip name="ВидыРабочихЦентровУправлениеПоискомРасширеннаяПодсказка" id="91"/>
+											</SearchControlAddition>
+											<ChildItems>
+												<LabelField name="ВидыРабочихЦентровНаименование" id="13">
+													<ContextMenu name="ВидыРабочихЦентровНаименованиеКонтекстноеМеню" id="14"/>
+													<ExtendedTooltip name="ВидыРабочихЦентровНаименованиеExtendedTooltip" id="68"/>
+												</LabelField>
+												<LabelField name="ВидыРабочихЦентровКоличествоРабочихЦентров" id="46">
+													<UserVisible>
+														<xr:Common>false</xr:Common>
+													</UserVisible>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Количество рабочих центров</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Number of work centers</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Количество рабочих центров.</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Number of work centers.</v8:content>
+														</v8:item>
+													</ToolTip>
+													<Width>5</Width>
+													<ContextMenu name="ВидыРабочихЦентровКоличествоРабочихЦентровКонтекстноеМеню" id="47"/>
+													<ExtendedTooltip name="ВидыРабочихЦентровКоличествоРабочихЦентровExtendedTooltip" id="69"/>
+												</LabelField>
+												<LabelField name="ВидыРабочихЦентровСсылка" id="106">
+													<UserVisible>
+														<xr:Common>false</xr:Common>
+													</UserVisible>
+													<ContextMenu name="ВидыРабочихЦентровСсылкаКонтекстноеМеню" id="107"/>
+													<ExtendedTooltip name="ВидыРабочихЦентровСсылкаРасширеннаяПодсказка" id="108"/>
+												</LabelField>
+											</ChildItems>
+										</Table>
+									</ChildItems>
+								</Page>
+								<Page name="СтраницаУчастки" id="113">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Участки</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Areas</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="СтраницаУчасткиРасширеннаяПодсказка" id="114"/>
+									<ChildItems>
+										<Table name="Участки" id="115">
+											<Representation>List</Representation>
+											<UseAlternationRowColor>true</UseAlternationRowColor>
+											<InitialTreeView>ExpandTopLevel</InitialTreeView>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<FileDragMode>AsFile</FileDragMode>
+											<RowPictureDataPath>10000000</RowPictureDataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Участки</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Areas</v8:content>
+												</v8:item>
+											</Title>
+											<AutoRefresh>false</AutoRefresh>
+											<AutoRefreshPeriod>60</AutoRefreshPeriod>
+											<Period>
+												<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+												<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+												<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+											</Period>
+											<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+											<RestoreCurrentRow>false</RestoreCurrentRow>
+											<TopLevelParent xsi:nil="true"/>
+											<ShowRoot>true</ShowRoot>
+											<AllowRootChoice>false</AllowRootChoice>
+											<UpdateOnDataChange>Auto</UpdateOnDataChange>
+											<ContextMenu name="УчасткиКонтекстноеМеню" id="116"/>
+											<AutoCommandBar name="УчасткиКоманднаяПанель" id="117"/>
+											<ExtendedTooltip name="УчасткиРасширеннаяПодсказка" id="118"/>
+											<SearchStringAddition name="УчасткиСтрокаПоиска" id="119">
+												<AdditionSource>
+													<Item>Участки</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="УчасткиСтрокаПоискаКонтекстноеМеню" id="120"/>
+												<ExtendedTooltip name="УчасткиСтрокаПоискаРасширеннаяПодсказка" id="121"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="УчасткиСостояниеПросмотра" id="122">
+												<AdditionSource>
+													<Item>Участки</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="УчасткиСостояниеПросмотраКонтекстноеМеню" id="123"/>
+												<ExtendedTooltip name="УчасткиСостояниеПросмотраРасширеннаяПодсказка" id="124"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="УчасткиУправлениеПоиском" id="125">
+												<AdditionSource>
+													<Item>Участки</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="УчасткиУправлениеПоискомКонтекстноеМеню" id="126"/>
+												<ExtendedTooltip name="УчасткиУправлениеПоискомРасширеннаяПодсказка" id="127"/>
+											</SearchControlAddition>
+											<ChildItems>
+												<LabelField name="УчасткиНаименование" id="131">
+													<ContextMenu name="УчасткиНаименованиеКонтекстноеМеню" id="132"/>
+													<ExtendedTooltip name="УчасткиНаименованиеРасширеннаяПодсказка" id="133"/>
+												</LabelField>
+												<LabelField name="УчасткиКоличествоРабочихЦентров" id="128">
+													<UserVisible>
+														<xr:Common>false</xr:Common>
+													</UserVisible>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Количество рабочих центров</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Number of work centers</v8:content>
+														</v8:item>
+													</Title>
+													<ContextMenu name="УчасткиКоличествоРабочихЦентровКонтекстноеМеню" id="129"/>
+													<ExtendedTooltip name="УчасткиКоличествоРабочихЦентровРасширеннаяПодсказка" id="130"/>
+												</LabelField>
+												<LabelField name="УчасткиСсылка" id="137">
+													<UserVisible>
+														<xr:Common>false</xr:Common>
+													</UserVisible>
+													<ContextMenu name="УчасткиСсылкаКонтекстноеМеню" id="138"/>
+													<ExtendedTooltip name="УчасткиСсылкаРасширеннаяПодсказка" id="139"/>
+												</LabelField>
+											</ChildItems>
+										</Table>
+									</ChildItems>
+								</Page>
+							</ChildItems>
+						</Pages>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ГруппаРабочиеЦентры" id="31">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Рабочие центры</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Work centers</v8:content>
+						</v8:item>
+					</Title>
+					<TitleTextColor>#009646</TitleTextColor>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаРабочиеЦентрыExtendedTooltip" id="70"/>
+					<ChildItems>
+						<LabelDecoration name="ЗаголовокРабочиеЦентры" id="147">
+							<Height>1</Height>
+							<TextColor>#009646</TextColor>
+							<Font ref="style:ШрифтЗаголовкаИнформационнойПанели" kind="StyleItem"/>
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Рабочие центры</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Work centers</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ЗаголовокРабочиеЦентрыКонтекстноеМеню" id="148"/>
+							<ExtendedTooltip name="ЗаголовокРабочиеЦентрыРасширеннаяПодсказка" id="149"/>
+						</LabelDecoration>
+						<Table name="РабочиеЦентры" id="36">
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<RowPictureDataPath>10000000</RowPictureDataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Рабочие центры</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Work centers</v8:content>
+								</v8:item>
+							</Title>
+							<AutoRefresh>false</AutoRefresh>
+							<AutoRefreshPeriod>60</AutoRefreshPeriod>
+							<Period>
+								<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+								<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+								<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+							</Period>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<RestoreCurrentRow>false</RestoreCurrentRow>
+							<TopLevelParent xsi:nil="true"/>
+							<ShowRoot>true</ShowRoot>
+							<AllowRootChoice>false</AllowRootChoice>
+							<UpdateOnDataChange>Auto</UpdateOnDataChange>
+							<ContextMenu name="РабочиеЦентрыКонтекстноеМеню" id="37">
+								<ChildItems>
+									<Button name="РабочиеЦентрыКонтекстноеМенюИзменитьВыделенные" id="58">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="РабочиеЦентрыКонтекстноеМенюИзменитьВыделенныеExtendedTooltip" id="71"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="РабочиеЦентрыКоманднаяПанель" id="38">
+								<ChildItems>
+									<Button name="РабочиеЦентрыОтборПоВиду" id="50">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="РабочиеЦентрыОтборПоВидуРасширеннаяПодсказка" id="72"/>
+									</Button>
+									<Button name="РабочиеЦентрыОтборПоУчастку" id="145">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="РабочиеЦентрыОтборПоУчасткуРасширеннаяПодсказка" id="146"/>
+									</Button>
+									<Button name="РабочиеЦентрыИзменитьВыделенные" id="57">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="РабочиеЦентрыИзменитьВыделенныеExtendedTooltip" id="74"/>
+									</Button>
+									<ButtonGroup name="РабочиеЦентрыГруппаКомандыФормы" id="55">
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Рабочие центры группа команды формы</v8:content>
+											</v8:item>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Work centers group form commands</v8:content>
+											</v8:item>
+										</Title>
+										<CommandSource>Form</CommandSource>
+										<ExtendedTooltip name="РабочиеЦентрыГруппаКомандыФормыExtendedTooltip" id="73"/>
+									</ButtonGroup>
+									<Button name="РабочиеЦентрыИзменитьФорму" id="101">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="РабочиеЦентрыИзменитьФормуРасширеннаяПодсказка" id="102"/>
+									</Button>
+									<Button name="РабочиеЦентрыСправка" id="56">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="РабочиеЦентрыСправкаExtendedTooltip" id="75"/>
+									</Button>
+									<Button name="РабочиеЦентрыПечатьЭтикетки" id="150">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ПечатьЭтикетки</CommandName>
+										<ExtendedTooltip name="РабочиеЦентрыПечатьЭтикеткиРасширеннаяПодсказка" id="151"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="РабочиеЦентрыExtendedTooltip" id="76"/>
+							<SearchStringAddition name="РабочиеЦентрыСтрокаПоиска" id="92">
+								<AdditionSource>
+									<Item>РабочиеЦентры</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="РабочиеЦентрыСтрокаПоискаКонтекстноеМеню" id="93"/>
+								<ExtendedTooltip name="РабочиеЦентрыСтрокаПоискаРасширеннаяПодсказка" id="94"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="РабочиеЦентрыСостояниеПросмотра" id="95">
+								<AdditionSource>
+									<Item>РабочиеЦентры</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="РабочиеЦентрыСостояниеПросмотраКонтекстноеМеню" id="96"/>
+								<ExtendedTooltip name="РабочиеЦентрыСостояниеПросмотраРасширеннаяПодсказка" id="97"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="РабочиеЦентрыУправлениеПоиском" id="98">
+								<AdditionSource>
+									<Item>РабочиеЦентры</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="РабочиеЦентрыУправлениеПоискомКонтекстноеМеню" id="99"/>
+								<ExtendedTooltip name="РабочиеЦентрыУправлениеПоискомРасширеннаяПодсказка" id="100"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="РабочиеЦентрыНаименование" id="39">
+									<ContextMenu name="РабочиеЦентрыНаименованиеКонтекстноеМеню" id="40"/>
+									<ExtendedTooltip name="РабочиеЦентрыНаименованиеExtendedTooltip" id="77"/>
+								</LabelField>
+								<LabelField name="РабочиеЦентрыУчасток" id="103">
+									<ContextMenu name="РабочиеЦентрыУчастокКонтекстноеМеню" id="104"/>
+									<ExtendedTooltip name="РабочиеЦентрыУчастокРасширеннаяПодсказка" id="105"/>
+								</LabelField>
+								<LabelField name="РабочиеЦентрыВидРабочегоЦентра" id="48">
+									<ContextMenu name="РабочиеЦентрыВидРабочегоЦентраКонтекстноеМеню" id="49"/>
+									<ExtendedTooltip name="РабочиеЦентрыВидРабочегоЦентраРасширеннаяПодсказка" id="78"/>
+								</LabelField>
+								<LabelField name="РабочиеЦентрыВидРабочегоЦентраПодразделение" id="41">
+									<ContextMenu name="РабочиеЦентрыВидРабочегоЦентраПодразделениеКонтекстноеМеню" id="42"/>
+									<ExtendedTooltip name="РабочиеЦентрыВидРабочегоЦентраПодразделениеExtendedTooltip" id="79"/>
+								</LabelField>
+								<LabelField name="РабочиеЦентрыСсылка" id="80">
+									<UserVisible>
+										<xr:Common>false</xr:Common>
+									</UserVisible>
+									<ContextMenu name="РабочиеЦентрыСсылкаКонтекстноеМеню" id="81"/>
+									<ExtendedTooltip name="РабочиеЦентрыСсылкаРасширеннаяПодсказка" id="82"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes/>
+	<Commands>
+		<Command name="ПечатьЭтикетки" id="1000000">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Печать этикетки</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Печать этикетки</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action callType="After">Лико_ПечатьЭтикеткиПосле</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<BaseForm version="2.20">
+		<Title>
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Структура рабочих центров</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Work center structure</v8:content>
+			</v8:item>
+		</Title>
+		<AutoTitle>false</AutoTitle>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+			<Autofill>false</Autofill>
+		</AutoCommandBar>
+		<ChildItems>
+			<UsualGroup name="ГруппаОтбор" id="43">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Отбор</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Filter</v8:content>
+					</v8:item>
+				</Title>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаОтборExtendedTooltip" id="59"/>
+				<ChildItems>
+					<InputField name="Подразделение" id="44">
+						<ClearButton>true</ClearButton>
+						<OpenButton>false</OpenButton>
+						<ChoiceParameters>
+							<app:item name="Отбор.ПроизводственноеПодразделение">
+								<app:value xsi:type="FormChoiceListDesTimeValue">
+									<Presentation/>
+									<Value xsi:type="xs:boolean">true</Value>
+								</app:value>
+							</app:item>
+						</ChoiceParameters>
+						<ContextMenu name="ПодразделениеКонтекстноеМеню" id="45"/>
+						<ExtendedTooltip name="ПодразделениеРасширеннаяПодсказка" id="60"/>
+					</InputField>
+				</ChildItems>
+			</UsualGroup>
+			<UsualGroup name="ГруппаСписокСправочников" id="29">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Список справочников</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Catalog list</v8:content>
+					</v8:item>
+				</Title>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ChildItemsWidth>LeftNarrowest</ChildItemsWidth>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаСписокСправочниковExtendedTooltip" id="61"/>
+				<ChildItems>
+					<UsualGroup name="ГруппаВедущийСписок" id="140">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Ведущий список (группа)</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Leading list (group)</v8:content>
+							</v8:item>
+						</Title>
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="ГруппаВедущийСписокРасширеннаяПодсказка" id="141"/>
+						<ChildItems>
+							<LabelField name="ЗаголовокВедущийСписок" id="142">
+								<TitleLocation>None</TitleLocation>
+								<TextColor>#009646</TextColor>
+								<Font ref="style:ШрифтЗаголовкаИнформационнойПанели" kind="StyleItem"/>
+								<ContextMenu name="ЗаголовокВедущийСписокКонтекстноеМеню" id="143"/>
+								<ExtendedTooltip name="ЗаголовокВедущийСписокРасширеннаяПодсказка" id="144"/>
+							</LabelField>
+							<Pages name="СтраницыВедущийСписок" id="109">
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Страницы ведущий список</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Pages leading list</v8:content>
+									</v8:item>
+								</Title>
+								<PagesRepresentation>None</PagesRepresentation>
+								<ExtendedTooltip name="СтраницыВедущийСписокРасширеннаяПодсказка" id="110"/>
+								<ChildItems>
+									<Page name="СтраницаВидыРабочихЦентров" id="111">
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Виды рабочих центров</v8:content>
+											</v8:item>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Work center kinds</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="СтраницаВидыРабочихЦентровРасширеннаяПодсказка" id="112"/>
+										<ChildItems>
+											<Table name="ВидыРабочихЦентров" id="10">
+												<Representation>Tree</Representation>
+												<UseAlternationRowColor>true</UseAlternationRowColor>
+												<InitialTreeView>ExpandTopLevel</InitialTreeView>
+												<EnableStartDrag>true</EnableStartDrag>
+												<EnableDrag>true</EnableDrag>
+												<FileDragMode>AsFile</FileDragMode>
+												<RowPictureDataPath>10000000</RowPictureDataPath>
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Виды рабочих центров</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Work center kinds</v8:content>
+													</v8:item>
+												</Title>
+												<AutoRefresh>false</AutoRefresh>
+												<AutoRefreshPeriod>60</AutoRefreshPeriod>
+												<Period>
+													<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+													<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+													<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+												</Period>
+												<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+												<RestoreCurrentRow>false</RestoreCurrentRow>
+												<TopLevelParent xsi:nil="true"/>
+												<ShowRoot>true</ShowRoot>
+												<AllowRootChoice>false</AllowRootChoice>
+												<UpdateOnDataChange>Auto</UpdateOnDataChange>
+												<ContextMenu name="ВидыРабочихЦентровКонтекстноеМеню" id="11"/>
+												<AutoCommandBar name="ВидыРабочихЦентровКоманднаяПанель" id="12"/>
+												<ExtendedTooltip name="ВидыРабочихЦентровExtendedTooltip" id="67"/>
+												<SearchStringAddition name="ВидыРабочихЦентровСтрокаПоиска" id="83">
+													<AdditionSource>
+														<Item>ВидыРабочихЦентров</Item>
+														<Type>SearchStringRepresentation</Type>
+													</AdditionSource>
+													<ContextMenu name="ВидыРабочихЦентровСтрокаПоискаКонтекстноеМеню" id="84"/>
+													<ExtendedTooltip name="ВидыРабочихЦентровСтрокаПоискаРасширеннаяПодсказка" id="85"/>
+												</SearchStringAddition>
+												<ViewStatusAddition name="ВидыРабочихЦентровСостояниеПросмотра" id="86">
+													<AdditionSource>
+														<Item>ВидыРабочихЦентров</Item>
+														<Type>ViewStatusRepresentation</Type>
+													</AdditionSource>
+													<ContextMenu name="ВидыРабочихЦентровСостояниеПросмотраКонтекстноеМеню" id="87"/>
+													<ExtendedTooltip name="ВидыРабочихЦентровСостояниеПросмотраРасширеннаяПодсказка" id="88"/>
+												</ViewStatusAddition>
+												<SearchControlAddition name="ВидыРабочихЦентровУправлениеПоиском" id="89">
+													<AdditionSource>
+														<Item>ВидыРабочихЦентров</Item>
+														<Type>SearchControl</Type>
+													</AdditionSource>
+													<ContextMenu name="ВидыРабочихЦентровУправлениеПоискомКонтекстноеМеню" id="90"/>
+													<ExtendedTooltip name="ВидыРабочихЦентровУправлениеПоискомРасширеннаяПодсказка" id="91"/>
+												</SearchControlAddition>
+												<ChildItems>
+													<LabelField name="ВидыРабочихЦентровНаименование" id="13">
+														<ContextMenu name="ВидыРабочихЦентровНаименованиеКонтекстноеМеню" id="14"/>
+														<ExtendedTooltip name="ВидыРабочихЦентровНаименованиеExtendedTooltip" id="68"/>
+													</LabelField>
+													<LabelField name="ВидыРабочихЦентровКоличествоРабочихЦентров" id="46">
+														<UserVisible>
+															<xr:Common>false</xr:Common>
+														</UserVisible>
+														<Title>
+															<v8:item>
+																<v8:lang>ru</v8:lang>
+																<v8:content>Количество рабочих центров</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Number of work centers</v8:content>
+															</v8:item>
+														</Title>
+														<ToolTip>
+															<v8:item>
+																<v8:lang>ru</v8:lang>
+																<v8:content>Количество рабочих центров.</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Number of work centers.</v8:content>
+															</v8:item>
+														</ToolTip>
+														<Width>5</Width>
+														<ContextMenu name="ВидыРабочихЦентровКоличествоРабочихЦентровКонтекстноеМеню" id="47"/>
+														<ExtendedTooltip name="ВидыРабочихЦентровКоличествоРабочихЦентровExtendedTooltip" id="69"/>
+													</LabelField>
+													<LabelField name="ВидыРабочихЦентровСсылка" id="106">
+														<UserVisible>
+															<xr:Common>false</xr:Common>
+														</UserVisible>
+														<ContextMenu name="ВидыРабочихЦентровСсылкаКонтекстноеМеню" id="107"/>
+														<ExtendedTooltip name="ВидыРабочихЦентровСсылкаРасширеннаяПодсказка" id="108"/>
+													</LabelField>
+												</ChildItems>
+											</Table>
+										</ChildItems>
+									</Page>
+									<Page name="СтраницаУчастки" id="113">
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Участки</v8:content>
+											</v8:item>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Areas</v8:content>
+											</v8:item>
+										</Title>
+										<ExtendedTooltip name="СтраницаУчасткиРасширеннаяПодсказка" id="114"/>
+										<ChildItems>
+											<Table name="Участки" id="115">
+												<Representation>List</Representation>
+												<UseAlternationRowColor>true</UseAlternationRowColor>
+												<InitialTreeView>ExpandTopLevel</InitialTreeView>
+												<EnableStartDrag>true</EnableStartDrag>
+												<EnableDrag>true</EnableDrag>
+												<FileDragMode>AsFile</FileDragMode>
+												<RowPictureDataPath>10000000</RowPictureDataPath>
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Участки</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Areas</v8:content>
+													</v8:item>
+												</Title>
+												<AutoRefresh>false</AutoRefresh>
+												<AutoRefreshPeriod>60</AutoRefreshPeriod>
+												<Period>
+													<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+													<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+													<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+												</Period>
+												<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+												<RestoreCurrentRow>false</RestoreCurrentRow>
+												<TopLevelParent xsi:nil="true"/>
+												<ShowRoot>true</ShowRoot>
+												<AllowRootChoice>false</AllowRootChoice>
+												<UpdateOnDataChange>Auto</UpdateOnDataChange>
+												<ContextMenu name="УчасткиКонтекстноеМеню" id="116"/>
+												<AutoCommandBar name="УчасткиКоманднаяПанель" id="117"/>
+												<ExtendedTooltip name="УчасткиРасширеннаяПодсказка" id="118"/>
+												<SearchStringAddition name="УчасткиСтрокаПоиска" id="119">
+													<AdditionSource>
+														<Item>Участки</Item>
+														<Type>SearchStringRepresentation</Type>
+													</AdditionSource>
+													<ContextMenu name="УчасткиСтрокаПоискаКонтекстноеМеню" id="120"/>
+													<ExtendedTooltip name="УчасткиСтрокаПоискаРасширеннаяПодсказка" id="121"/>
+												</SearchStringAddition>
+												<ViewStatusAddition name="УчасткиСостояниеПросмотра" id="122">
+													<AdditionSource>
+														<Item>Участки</Item>
+														<Type>ViewStatusRepresentation</Type>
+													</AdditionSource>
+													<ContextMenu name="УчасткиСостояниеПросмотраКонтекстноеМеню" id="123"/>
+													<ExtendedTooltip name="УчасткиСостояниеПросмотраРасширеннаяПодсказка" id="124"/>
+												</ViewStatusAddition>
+												<SearchControlAddition name="УчасткиУправлениеПоиском" id="125">
+													<AdditionSource>
+														<Item>Участки</Item>
+														<Type>SearchControl</Type>
+													</AdditionSource>
+													<ContextMenu name="УчасткиУправлениеПоискомКонтекстноеМеню" id="126"/>
+													<ExtendedTooltip name="УчасткиУправлениеПоискомРасширеннаяПодсказка" id="127"/>
+												</SearchControlAddition>
+												<ChildItems>
+													<LabelField name="УчасткиНаименование" id="131">
+														<ContextMenu name="УчасткиНаименованиеКонтекстноеМеню" id="132"/>
+														<ExtendedTooltip name="УчасткиНаименованиеРасширеннаяПодсказка" id="133"/>
+													</LabelField>
+													<LabelField name="УчасткиКоличествоРабочихЦентров" id="128">
+														<UserVisible>
+															<xr:Common>false</xr:Common>
+														</UserVisible>
+														<Title>
+															<v8:item>
+																<v8:lang>ru</v8:lang>
+																<v8:content>Количество рабочих центров</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Number of work centers</v8:content>
+															</v8:item>
+														</Title>
+														<ContextMenu name="УчасткиКоличествоРабочихЦентровКонтекстноеМеню" id="129"/>
+														<ExtendedTooltip name="УчасткиКоличествоРабочихЦентровРасширеннаяПодсказка" id="130"/>
+													</LabelField>
+													<LabelField name="УчасткиСсылка" id="137">
+														<UserVisible>
+															<xr:Common>false</xr:Common>
+														</UserVisible>
+														<ContextMenu name="УчасткиСсылкаКонтекстноеМеню" id="138"/>
+														<ExtendedTooltip name="УчасткиСсылкаРасширеннаяПодсказка" id="139"/>
+													</LabelField>
+												</ChildItems>
+											</Table>
+										</ChildItems>
+									</Page>
+								</ChildItems>
+							</Pages>
+						</ChildItems>
+					</UsualGroup>
+					<UsualGroup name="ГруппаРабочиеЦентры" id="31">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Рабочие центры</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Work centers</v8:content>
+							</v8:item>
+						</Title>
+						<TitleTextColor>#009646</TitleTextColor>
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="ГруппаРабочиеЦентрыExtendedTooltip" id="70"/>
+						<ChildItems>
+							<LabelDecoration name="ЗаголовокРабочиеЦентры" id="147">
+								<Height>1</Height>
+								<TextColor>#009646</TextColor>
+								<Font ref="style:ШрифтЗаголовкаИнформационнойПанели" kind="StyleItem"/>
+								<Title formatted="false">
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Рабочие центры</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Work centers</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="ЗаголовокРабочиеЦентрыКонтекстноеМеню" id="148"/>
+								<ExtendedTooltip name="ЗаголовокРабочиеЦентрыРасширеннаяПодсказка" id="149"/>
+							</LabelDecoration>
+							<Table name="РабочиеЦентры" id="36">
+								<UseAlternationRowColor>true</UseAlternationRowColor>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<FileDragMode>AsFile</FileDragMode>
+								<RowPictureDataPath>10000000</RowPictureDataPath>
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Рабочие центры</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Work centers</v8:content>
+									</v8:item>
+								</Title>
+								<AutoRefresh>false</AutoRefresh>
+								<AutoRefreshPeriod>60</AutoRefreshPeriod>
+								<Period>
+									<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+									<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+									<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+								</Period>
+								<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+								<RestoreCurrentRow>false</RestoreCurrentRow>
+								<TopLevelParent xsi:nil="true"/>
+								<ShowRoot>true</ShowRoot>
+								<AllowRootChoice>false</AllowRootChoice>
+								<UpdateOnDataChange>Auto</UpdateOnDataChange>
+								<ContextMenu name="РабочиеЦентрыКонтекстноеМеню" id="37">
+									<ChildItems>
+										<Button name="РабочиеЦентрыКонтекстноеМенюИзменитьВыделенные" id="58">
+											<Type>CommandBarButton</Type>
+											<CommandName>0</CommandName>
+											<ExtendedTooltip name="РабочиеЦентрыКонтекстноеМенюИзменитьВыделенныеExtendedTooltip" id="71"/>
+										</Button>
+									</ChildItems>
+								</ContextMenu>
+								<AutoCommandBar name="РабочиеЦентрыКоманднаяПанель" id="38">
+									<ChildItems>
+										<Button name="РабочиеЦентрыОтборПоВиду" id="50">
+											<Type>CommandBarButton</Type>
+											<CommandName>0</CommandName>
+											<ExtendedTooltip name="РабочиеЦентрыОтборПоВидуРасширеннаяПодсказка" id="72"/>
+										</Button>
+										<Button name="РабочиеЦентрыОтборПоУчастку" id="145">
+											<Type>CommandBarButton</Type>
+											<CommandName>0</CommandName>
+											<ExtendedTooltip name="РабочиеЦентрыОтборПоУчасткуРасширеннаяПодсказка" id="146"/>
+										</Button>
+										<Button name="РабочиеЦентрыИзменитьВыделенные" id="57">
+											<Type>CommandBarButton</Type>
+											<CommandName>0</CommandName>
+											<ExtendedTooltip name="РабочиеЦентрыИзменитьВыделенныеExtendedTooltip" id="74"/>
+										</Button>
+										<ButtonGroup name="РабочиеЦентрыГруппаКомандыФормы" id="55">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Рабочие центры группа команды формы</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Work centers group form commands</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSource>Form</CommandSource>
+											<ExtendedTooltip name="РабочиеЦентрыГруппаКомандыФормыExtendedTooltip" id="73"/>
+										</ButtonGroup>
+										<Button name="РабочиеЦентрыИзменитьФорму" id="101">
+											<Type>CommandBarButton</Type>
+											<CommandName>0</CommandName>
+											<ExtendedTooltip name="РабочиеЦентрыИзменитьФормуРасширеннаяПодсказка" id="102"/>
+										</Button>
+										<Button name="РабочиеЦентрыСправка" id="56">
+											<Type>CommandBarButton</Type>
+											<CommandName>0</CommandName>
+											<ExtendedTooltip name="РабочиеЦентрыСправкаExtendedTooltip" id="75"/>
+										</Button>
+									</ChildItems>
+								</AutoCommandBar>
+								<ExtendedTooltip name="РабочиеЦентрыExtendedTooltip" id="76"/>
+								<SearchStringAddition name="РабочиеЦентрыСтрокаПоиска" id="92">
+									<AdditionSource>
+										<Item>РабочиеЦентры</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="РабочиеЦентрыСтрокаПоискаКонтекстноеМеню" id="93"/>
+									<ExtendedTooltip name="РабочиеЦентрыСтрокаПоискаРасширеннаяПодсказка" id="94"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="РабочиеЦентрыСостояниеПросмотра" id="95">
+									<AdditionSource>
+										<Item>РабочиеЦентры</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="РабочиеЦентрыСостояниеПросмотраКонтекстноеМеню" id="96"/>
+									<ExtendedTooltip name="РабочиеЦентрыСостояниеПросмотраРасширеннаяПодсказка" id="97"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="РабочиеЦентрыУправлениеПоиском" id="98">
+									<AdditionSource>
+										<Item>РабочиеЦентры</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="РабочиеЦентрыУправлениеПоискомКонтекстноеМеню" id="99"/>
+									<ExtendedTooltip name="РабочиеЦентрыУправлениеПоискомРасширеннаяПодсказка" id="100"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<LabelField name="РабочиеЦентрыНаименование" id="39">
+										<ContextMenu name="РабочиеЦентрыНаименованиеКонтекстноеМеню" id="40"/>
+										<ExtendedTooltip name="РабочиеЦентрыНаименованиеExtendedTooltip" id="77"/>
+									</LabelField>
+									<LabelField name="РабочиеЦентрыУчасток" id="103">
+										<ContextMenu name="РабочиеЦентрыУчастокКонтекстноеМеню" id="104"/>
+										<ExtendedTooltip name="РабочиеЦентрыУчастокРасширеннаяПодсказка" id="105"/>
+									</LabelField>
+									<LabelField name="РабочиеЦентрыВидРабочегоЦентра" id="48">
+										<ContextMenu name="РабочиеЦентрыВидРабочегоЦентраКонтекстноеМеню" id="49"/>
+										<ExtendedTooltip name="РабочиеЦентрыВидРабочегоЦентраРасширеннаяПодсказка" id="78"/>
+									</LabelField>
+									<LabelField name="РабочиеЦентрыВидРабочегоЦентраПодразделение" id="41">
+										<ContextMenu name="РабочиеЦентрыВидРабочегоЦентраПодразделениеКонтекстноеМеню" id="42"/>
+										<ExtendedTooltip name="РабочиеЦентрыВидРабочегоЦентраПодразделениеExtendedTooltip" id="79"/>
+									</LabelField>
+									<LabelField name="РабочиеЦентрыСсылка" id="80">
+										<UserVisible>
+											<xr:Common>false</xr:Common>
+										</UserVisible>
+										<ContextMenu name="РабочиеЦентрыСсылкаКонтекстноеМеню" id="81"/>
+										<ExtendedTooltip name="РабочиеЦентрыСсылкаРасширеннаяПодсказка" id="82"/>
+									</LabelField>
+								</ChildItems>
+							</Table>
+						</ChildItems>
+					</UsualGroup>
+				</ChildItems>
+			</UsualGroup>
+		</ChildItems>
+		<Attributes/>
+	</BaseForm>
+</Form>

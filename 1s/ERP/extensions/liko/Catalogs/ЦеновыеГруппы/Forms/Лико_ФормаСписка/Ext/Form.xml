@@ -1,0 +1,588 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<GroupList>Дерево</GroupList>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Button name="ФормаИзменитьЦены" id="116">
+				<Type>CommandBarButton</Type>
+				<CommandName>0</CommandName>
+				<ExtendedTooltip name="ФормаИзменитьЦеныРасширеннаяПодсказка" id="117"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer" callType="Override">Лико_ПриСозданииНаСервереВместо</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаДатаПлощадка" id="114">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа дата площадка</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа дата площадка</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаДатаПлощадкаРасширеннаяПодсказка" id="115"/>
+			<ChildItems>
+				<InputField name="Дата" id="108">
+					<ContextMenu name="ДатаКонтекстноеМеню" id="109"/>
+					<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="110"/>
+				</InputField>
+				<InputField name="Площадка" id="111">
+					<ContextMenu name="ПлощадкаКонтекстноеМеню" id="112"/>
+					<ExtendedTooltip name="ПлощадкаРасширеннаяПодсказка" id="113"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ДеревоИСписок" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дерево и список</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ДеревоИСписокРасширеннаяПодсказка" id="2"/>
+			<ChildItems>
+				<Table name="Дерево" id="5">
+					<Representation>Tree</Representation>
+					<CommandBarLocation>None</CommandBarLocation>
+					<Width>25</Width>
+					<InitialTreeView>ExpandTopLevel</InitialTreeView>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<AutoRefresh>false</AutoRefresh>
+					<AutoRefreshPeriod>60</AutoRefreshPeriod>
+					<Period>
+						<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+						<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+						<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+					</Period>
+					<ChoiceFoldersAndItems>Folders</ChoiceFoldersAndItems>
+					<RestoreCurrentRow>false</RestoreCurrentRow>
+					<TopLevelParent xsi:nil="true"/>
+					<ShowRoot>true</ShowRoot>
+					<AllowRootChoice>false</AllowRootChoice>
+					<UpdateOnDataChange>Auto</UpdateOnDataChange>
+					<UserSettingsGroup>ДеревоКомпоновщикНастроекПользовательскиеНастройки</UserSettingsGroup>
+					<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+					<ContextMenu name="ДеревоКонтекстноеМеню" id="6"/>
+					<AutoCommandBar name="ДеревоКоманднаяПанель" id="7">
+						<Autofill>false</Autofill>
+					</AutoCommandBar>
+					<ExtendedTooltip name="ДеревоРасширеннаяПодсказка" id="8"/>
+					<SearchStringAddition name="ДеревоСтрокаПоиска" id="9">
+						<AdditionSource>
+							<Item>Дерево</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ДеревоСтрокаПоискаКонтекстноеМеню" id="10"/>
+						<ExtendedTooltip name="ДеревоСтрокаПоискаРасширеннаяПодсказка" id="11"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ДеревоСостояниеПросмотра" id="12">
+						<AdditionSource>
+							<Item>Дерево</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ДеревоСостояниеПросмотраКонтекстноеМеню" id="13"/>
+						<ExtendedTooltip name="ДеревоСостояниеПросмотраРасширеннаяПодсказка" id="14"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ДеревоУправлениеПоиском" id="15">
+						<AdditionSource>
+							<Item>Дерево</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ДеревоУправлениеПоискомКонтекстноеМеню" id="16"/>
+						<ExtendedTooltip name="ДеревоУправлениеПоискомРасширеннаяПодсказка" id="17"/>
+					</SearchControlAddition>
+					<ChildItems>
+						<LabelField name="ДеревоСсылка" id="18">
+							<ContextMenu name="ДеревоСсылкаКонтекстноеМеню" id="19"/>
+							<ExtendedTooltip name="ДеревоСсылкаРасширеннаяПодсказка" id="20"/>
+						</LabelField>
+						<LabelField name="ДеревоНаименование" id="21">
+							<ContextMenu name="ДеревоНаименованиеКонтекстноеМеню" id="22"/>
+							<ExtendedTooltip name="ДеревоНаименованиеРасширеннаяПодсказка" id="23"/>
+						</LabelField>
+						<LabelField name="ДеревоКод" id="24">
+							<ContextMenu name="ДеревоКодКонтекстноеМеню" id="25"/>
+							<ExtendedTooltip name="ДеревоКодРасширеннаяПодсказка" id="26"/>
+						</LabelField>
+						<LabelField name="ДеревоРодитель" id="27">
+							<ContextMenu name="ДеревоРодительКонтекстноеМеню" id="28"/>
+							<ExtendedTooltip name="ДеревоРодительРасширеннаяПодсказка" id="29"/>
+						</LabelField>
+						<LabelField name="ДеревоПометкаУдаления" id="30">
+							<ContextMenu name="ДеревоПометкаУдаленияКонтекстноеМеню" id="31"/>
+							<ExtendedTooltip name="ДеревоПометкаУдаленияРасширеннаяПодсказка" id="32"/>
+						</LabelField>
+						<LabelField name="ДеревоПредопределенный" id="33">
+							<ContextMenu name="ДеревоПредопределенныйКонтекстноеМеню" id="34"/>
+							<ExtendedTooltip name="ДеревоПредопределенныйРасширеннаяПодсказка" id="35"/>
+						</LabelField>
+						<LabelField name="ДеревоИмяПредопределенныхДанных" id="36">
+							<ContextMenu name="ДеревоИмяПредопределенныхДанныхКонтекстноеМеню" id="37"/>
+							<ExtendedTooltip name="ДеревоИмяПредопределенныхДанныхРасширеннаяПодсказка" id="38"/>
+						</LabelField>
+					</ChildItems>
+				</Table>
+				<Table name="Список" id="41">
+					<CommandBarLocation>None</CommandBarLocation>
+					<DefaultItem>true</DefaultItem>
+					<UseAlternationRowColor>true</UseAlternationRowColor>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>true</EnableDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<AutoRefresh>false</AutoRefresh>
+					<AutoRefreshPeriod>60</AutoRefreshPeriod>
+					<Period>
+						<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+						<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+						<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+					</Period>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<RestoreCurrentRow>false</RestoreCurrentRow>
+					<TopLevelParent xsi:nil="true"/>
+					<ShowRoot>false</ShowRoot>
+					<AllowRootChoice>false</AllowRootChoice>
+					<UpdateOnDataChange>Auto</UpdateOnDataChange>
+					<UserSettingsGroup>СписокКомпоновщикНастроекПользовательскиеНастройки</UserSettingsGroup>
+					<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+					<ContextMenu name="СписокКонтекстноеМеню" id="42"/>
+					<AutoCommandBar name="СписокКоманднаяПанель" id="43">
+						<Autofill>false</Autofill>
+					</AutoCommandBar>
+					<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="44"/>
+					<SearchStringAddition name="СписокСтрокаПоиска" id="45">
+						<AdditionSource>
+							<Item>Список</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="46"/>
+						<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="47"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="СписокСостояниеПросмотра" id="48">
+						<AdditionSource>
+							<Item>Список</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="49"/>
+						<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="50"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="СписокУправлениеПоиском" id="51">
+						<AdditionSource>
+							<Item>Список</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="52"/>
+						<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="53"/>
+					</SearchControlAddition>
+					<ChildItems>
+						<LabelField name="Родитель" id="63">
+							<ContextMenu name="РодительКонтекстноеМеню" id="64"/>
+							<ExtendedTooltip name="РодительРасширеннаяПодсказка" id="65"/>
+						</LabelField>
+						<LabelField name="Код" id="60">
+							<ContextMenu name="КодКонтекстноеМеню" id="61"/>
+							<ExtendedTooltip name="КодРасширеннаяПодсказка" id="62"/>
+						</LabelField>
+						<LabelField name="Наименование" id="57">
+							<DefaultItem>true</DefaultItem>
+							<ContextMenu name="НаименованиеКонтекстноеМеню" id="58"/>
+							<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="59"/>
+						</LabelField>
+						<CheckBoxField name="НеИспользуется" id="81">
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="НеИспользуетсяКонтекстноеМеню" id="82"/>
+							<ExtendedTooltip name="НеИспользуетсяРасширеннаяПодсказка" id="83"/>
+						</CheckBoxField>
+						<LabelField name="ДатаЦены" id="93">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Дата</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ДатаЦеныКонтекстноеМеню" id="94"/>
+							<ExtendedTooltip name="ДатаЦеныРасширеннаяПодсказка" id="95"/>
+						</LabelField>
+						<LabelField name="Цена" id="96">
+							<ContextMenu name="ЦенаКонтекстноеМеню" id="97"/>
+							<ExtendedTooltip name="ЦенаРасширеннаяПодсказка" id="98"/>
+						</LabelField>
+						<LabelField name="ЦенаПредпоследняя" id="118">
+							<ContextMenu name="ЦенаПредпоследняяКонтекстноеМеню" id="119"/>
+							<ExtendedTooltip name="ЦенаПредпоследняяРасширеннаяПодсказка" id="120"/>
+						</LabelField>
+						<LabelField name="ЦенаПоставщика" id="99">
+							<ContextMenu name="ЦенаПоставщикаКонтекстноеМеню" id="100"/>
+							<ExtendedTooltip name="ЦенаПоставщикаРасширеннаяПодсказка" id="101"/>
+						</LabelField>
+						<LabelField name="ВалютаПостащика" id="102">
+							<ContextMenu name="ВалютаПостащикаКонтекстноеМеню" id="103"/>
+							<ExtendedTooltip name="ВалютаПостащикаРасширеннаяПодсказка" id="104"/>
+						</LabelField>
+						<CheckBoxField name="Metal" id="90">
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="MetalКонтекстноеМеню" id="91"/>
+							<ExtendedTooltip name="MetalРасширеннаяПодсказка" id="92"/>
+						</CheckBoxField>
+						<LabelField name="ТипМатериала" id="78">
+							<ContextMenu name="ТипМатериалаКонтекстноеМеню" id="79"/>
+							<ExtendedTooltip name="ТипМатериалаРасширеннаяПодсказка" id="80"/>
+						</LabelField>
+						<LabelField name="ОсновнаяНоменклатура" id="87">
+							<ContextMenu name="ОсновнаяНоменклатураКонтекстноеМеню" id="88"/>
+							<ExtendedTooltip name="ОсновнаяНоменклатураРасширеннаяПодсказка" id="89"/>
+						</LabelField>
+						<CheckBoxField name="Предопределенный" id="69">
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ПредопределенныйКонтекстноеМеню" id="70"/>
+							<ExtendedTooltip name="ПредопределенныйРасширеннаяПодсказка" id="71"/>
+						</CheckBoxField>
+						<LabelField name="Описание" id="75">
+							<ContextMenu name="ОписаниеКонтекстноеМеню" id="76"/>
+							<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="77"/>
+						</LabelField>
+						<LabelField name="Ссылка" id="54">
+							<ContextMenu name="СсылкаКонтекстноеМеню" id="55"/>
+							<ExtendedTooltip name="СсылкаРасширеннаяПодсказка" id="56"/>
+						</LabelField>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ДеревоКомпоновщикНастроекПользовательскиеНастройки" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа пользовательских настроек</v8:content>
+				</v8:item>
+			</Title>
+			<VerticalStretch>false</VerticalStretch>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ДеревоКомпоновщикНастроекПользовательскиеНастройкиРасширеннаяПодсказка" id="4"/>
+		</UsualGroup>
+		<UsualGroup name="СписокКомпоновщикНастроекПользовательскиеНастройки" id="39">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа пользовательских настроек</v8:content>
+				</v8:item>
+			</Title>
+			<VerticalStretch>false</VerticalStretch>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СписокКомпоновщикНастроекПользовательскиеНастройкиРасширеннаяПодсказка" id="40"/>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes/>
+	<BaseForm version="2.20">
+		<GroupList>Дерево</GroupList>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+			<ChildItems>
+				<Button name="ФормаИзменитьЦены" id="116">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="ФормаИзменитьЦеныРасширеннаяПодсказка" id="117"/>
+				</Button>
+			</ChildItems>
+		</AutoCommandBar>
+		<ChildItems>
+			<UsualGroup name="ГруппаДатаПлощадка" id="114">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа дата площадка</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа дата площадка</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаДатаПлощадкаРасширеннаяПодсказка" id="115"/>
+				<ChildItems>
+					<InputField name="Дата" id="108">
+						<ContextMenu name="ДатаКонтекстноеМеню" id="109"/>
+						<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="110"/>
+					</InputField>
+					<InputField name="Площадка" id="111">
+						<ContextMenu name="ПлощадкаКонтекстноеМеню" id="112"/>
+						<ExtendedTooltip name="ПлощадкаРасширеннаяПодсказка" id="113"/>
+					</InputField>
+				</ChildItems>
+			</UsualGroup>
+			<UsualGroup name="ДеревоИСписок" id="1">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Дерево и список</v8:content>
+					</v8:item>
+				</Title>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ДеревоИСписокРасширеннаяПодсказка" id="2"/>
+				<ChildItems>
+					<Table name="Дерево" id="5">
+						<Representation>Tree</Representation>
+						<CommandBarLocation>None</CommandBarLocation>
+						<Width>25</Width>
+						<InitialTreeView>ExpandTopLevel</InitialTreeView>
+						<EnableStartDrag>true</EnableStartDrag>
+						<EnableDrag>true</EnableDrag>
+						<FileDragMode>AsFile</FileDragMode>
+						<AutoRefresh>false</AutoRefresh>
+						<AutoRefreshPeriod>60</AutoRefreshPeriod>
+						<Period>
+							<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+							<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+							<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+						</Period>
+						<ChoiceFoldersAndItems>Folders</ChoiceFoldersAndItems>
+						<RestoreCurrentRow>false</RestoreCurrentRow>
+						<TopLevelParent xsi:nil="true"/>
+						<ShowRoot>true</ShowRoot>
+						<AllowRootChoice>false</AllowRootChoice>
+						<UpdateOnDataChange>Auto</UpdateOnDataChange>
+						<UserSettingsGroup>ДеревоКомпоновщикНастроекПользовательскиеНастройки</UserSettingsGroup>
+						<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+						<ContextMenu name="ДеревоКонтекстноеМеню" id="6"/>
+						<AutoCommandBar name="ДеревоКоманднаяПанель" id="7">
+							<Autofill>false</Autofill>
+						</AutoCommandBar>
+						<ExtendedTooltip name="ДеревоРасширеннаяПодсказка" id="8"/>
+						<SearchStringAddition name="ДеревоСтрокаПоиска" id="9">
+							<AdditionSource>
+								<Item>Дерево</Item>
+								<Type>SearchStringRepresentation</Type>
+							</AdditionSource>
+							<ContextMenu name="ДеревоСтрокаПоискаКонтекстноеМеню" id="10"/>
+							<ExtendedTooltip name="ДеревоСтрокаПоискаРасширеннаяПодсказка" id="11"/>
+						</SearchStringAddition>
+						<ViewStatusAddition name="ДеревоСостояниеПросмотра" id="12">
+							<AdditionSource>
+								<Item>Дерево</Item>
+								<Type>ViewStatusRepresentation</Type>
+							</AdditionSource>
+							<ContextMenu name="ДеревоСостояниеПросмотраКонтекстноеМеню" id="13"/>
+							<ExtendedTooltip name="ДеревоСостояниеПросмотраРасширеннаяПодсказка" id="14"/>
+						</ViewStatusAddition>
+						<SearchControlAddition name="ДеревоУправлениеПоиском" id="15">
+							<AdditionSource>
+								<Item>Дерево</Item>
+								<Type>SearchControl</Type>
+							</AdditionSource>
+							<ContextMenu name="ДеревоУправлениеПоискомКонтекстноеМеню" id="16"/>
+							<ExtendedTooltip name="ДеревоУправлениеПоискомРасширеннаяПодсказка" id="17"/>
+						</SearchControlAddition>
+						<ChildItems>
+							<LabelField name="ДеревоСсылка" id="18">
+								<ContextMenu name="ДеревоСсылкаКонтекстноеМеню" id="19"/>
+								<ExtendedTooltip name="ДеревоСсылкаРасширеннаяПодсказка" id="20"/>
+							</LabelField>
+							<LabelField name="ДеревоНаименование" id="21">
+								<ContextMenu name="ДеревоНаименованиеКонтекстноеМеню" id="22"/>
+								<ExtendedTooltip name="ДеревоНаименованиеРасширеннаяПодсказка" id="23"/>
+							</LabelField>
+							<LabelField name="ДеревоКод" id="24">
+								<ContextMenu name="ДеревоКодКонтекстноеМеню" id="25"/>
+								<ExtendedTooltip name="ДеревоКодРасширеннаяПодсказка" id="26"/>
+							</LabelField>
+							<LabelField name="ДеревоРодитель" id="27">
+								<ContextMenu name="ДеревоРодительКонтекстноеМеню" id="28"/>
+								<ExtendedTooltip name="ДеревоРодительРасширеннаяПодсказка" id="29"/>
+							</LabelField>
+							<LabelField name="ДеревоПометкаУдаления" id="30">
+								<ContextMenu name="ДеревоПометкаУдаленияКонтекстноеМеню" id="31"/>
+								<ExtendedTooltip name="ДеревоПометкаУдаленияРасширеннаяПодсказка" id="32"/>
+							</LabelField>
+							<LabelField name="ДеревоПредопределенный" id="33">
+								<ContextMenu name="ДеревоПредопределенныйКонтекстноеМеню" id="34"/>
+								<ExtendedTooltip name="ДеревоПредопределенныйРасширеннаяПодсказка" id="35"/>
+							</LabelField>
+							<LabelField name="ДеревоИмяПредопределенныхДанных" id="36">
+								<ContextMenu name="ДеревоИмяПредопределенныхДанныхКонтекстноеМеню" id="37"/>
+								<ExtendedTooltip name="ДеревоИмяПредопределенныхДанныхРасширеннаяПодсказка" id="38"/>
+							</LabelField>
+						</ChildItems>
+					</Table>
+					<Table name="Список" id="41">
+						<CommandBarLocation>None</CommandBarLocation>
+						<DefaultItem>true</DefaultItem>
+						<UseAlternationRowColor>true</UseAlternationRowColor>
+						<EnableStartDrag>true</EnableStartDrag>
+						<EnableDrag>true</EnableDrag>
+						<FileDragMode>AsFile</FileDragMode>
+						<AutoRefresh>false</AutoRefresh>
+						<AutoRefreshPeriod>60</AutoRefreshPeriod>
+						<Period>
+							<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+							<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+							<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+						</Period>
+						<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+						<RestoreCurrentRow>false</RestoreCurrentRow>
+						<TopLevelParent xsi:nil="true"/>
+						<ShowRoot>false</ShowRoot>
+						<AllowRootChoice>false</AllowRootChoice>
+						<UpdateOnDataChange>Auto</UpdateOnDataChange>
+						<UserSettingsGroup>СписокКомпоновщикНастроекПользовательскиеНастройки</UserSettingsGroup>
+						<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+						<ContextMenu name="СписокКонтекстноеМеню" id="42"/>
+						<AutoCommandBar name="СписокКоманднаяПанель" id="43">
+							<Autofill>false</Autofill>
+						</AutoCommandBar>
+						<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="44"/>
+						<SearchStringAddition name="СписокСтрокаПоиска" id="45">
+							<AdditionSource>
+								<Item>Список</Item>
+								<Type>SearchStringRepresentation</Type>
+							</AdditionSource>
+							<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="46"/>
+							<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="47"/>
+						</SearchStringAddition>
+						<ViewStatusAddition name="СписокСостояниеПросмотра" id="48">
+							<AdditionSource>
+								<Item>Список</Item>
+								<Type>ViewStatusRepresentation</Type>
+							</AdditionSource>
+							<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="49"/>
+							<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="50"/>
+						</ViewStatusAddition>
+						<SearchControlAddition name="СписокУправлениеПоиском" id="51">
+							<AdditionSource>
+								<Item>Список</Item>
+								<Type>SearchControl</Type>
+							</AdditionSource>
+							<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="52"/>
+							<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="53"/>
+						</SearchControlAddition>
+						<ChildItems>
+							<LabelField name="Родитель" id="63">
+								<ContextMenu name="РодительКонтекстноеМеню" id="64"/>
+								<ExtendedTooltip name="РодительРасширеннаяПодсказка" id="65"/>
+							</LabelField>
+							<LabelField name="Код" id="60">
+								<ContextMenu name="КодКонтекстноеМеню" id="61"/>
+								<ExtendedTooltip name="КодРасширеннаяПодсказка" id="62"/>
+							</LabelField>
+							<LabelField name="Наименование" id="57">
+								<DefaultItem>true</DefaultItem>
+								<ContextMenu name="НаименованиеКонтекстноеМеню" id="58"/>
+								<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="59"/>
+							</LabelField>
+							<CheckBoxField name="НеИспользуется" id="81">
+								<CheckBoxType>Auto</CheckBoxType>
+								<ContextMenu name="НеИспользуетсяКонтекстноеМеню" id="82"/>
+								<ExtendedTooltip name="НеИспользуетсяРасширеннаяПодсказка" id="83"/>
+							</CheckBoxField>
+							<LabelField name="ДатаЦены" id="93">
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Дата</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="ДатаЦеныКонтекстноеМеню" id="94"/>
+								<ExtendedTooltip name="ДатаЦеныРасширеннаяПодсказка" id="95"/>
+							</LabelField>
+							<LabelField name="Цена" id="96">
+								<ContextMenu name="ЦенаКонтекстноеМеню" id="97"/>
+								<ExtendedTooltip name="ЦенаРасширеннаяПодсказка" id="98"/>
+							</LabelField>
+							<LabelField name="ЦенаПредпоследняя" id="118">
+								<ContextMenu name="ЦенаПредпоследняяКонтекстноеМеню" id="119"/>
+								<ExtendedTooltip name="ЦенаПредпоследняяРасширеннаяПодсказка" id="120"/>
+							</LabelField>
+							<LabelField name="ЦенаПоставщика" id="99">
+								<ContextMenu name="ЦенаПоставщикаКонтекстноеМеню" id="100"/>
+								<ExtendedTooltip name="ЦенаПоставщикаРасширеннаяПодсказка" id="101"/>
+							</LabelField>
+							<LabelField name="ВалютаПостащика" id="102">
+								<ContextMenu name="ВалютаПостащикаКонтекстноеМеню" id="103"/>
+								<ExtendedTooltip name="ВалютаПостащикаРасширеннаяПодсказка" id="104"/>
+							</LabelField>
+							<CheckBoxField name="Metal" id="90">
+								<CheckBoxType>Auto</CheckBoxType>
+								<ContextMenu name="MetalКонтекстноеМеню" id="91"/>
+								<ExtendedTooltip name="MetalРасширеннаяПодсказка" id="92"/>
+							</CheckBoxField>
+							<LabelField name="ТипМатериала" id="78">
+								<ContextMenu name="ТипМатериалаКонтекстноеМеню" id="79"/>
+								<ExtendedTooltip name="ТипМатериалаРасширеннаяПодсказка" id="80"/>
+							</LabelField>
+							<LabelField name="ОсновнаяНоменклатура" id="87">
+								<ContextMenu name="ОсновнаяНоменклатураКонтекстноеМеню" id="88"/>
+								<ExtendedTooltip name="ОсновнаяНоменклатураРасширеннаяПодсказка" id="89"/>
+							</LabelField>
+							<CheckBoxField name="Предопределенный" id="69">
+								<CheckBoxType>Auto</CheckBoxType>
+								<ContextMenu name="ПредопределенныйКонтекстноеМеню" id="70"/>
+								<ExtendedTooltip name="ПредопределенныйРасширеннаяПодсказка" id="71"/>
+							</CheckBoxField>
+							<LabelField name="Описание" id="75">
+								<ContextMenu name="ОписаниеКонтекстноеМеню" id="76"/>
+								<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="77"/>
+							</LabelField>
+							<LabelField name="Ссылка" id="54">
+								<ContextMenu name="СсылкаКонтекстноеМеню" id="55"/>
+								<ExtendedTooltip name="СсылкаРасширеннаяПодсказка" id="56"/>
+							</LabelField>
+						</ChildItems>
+					</Table>
+				</ChildItems>
+			</UsualGroup>
+			<UsualGroup name="ДеревоКомпоновщикНастроекПользовательскиеНастройки" id="3">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа пользовательских настроек</v8:content>
+					</v8:item>
+				</Title>
+				<VerticalStretch>false</VerticalStretch>
+				<Group>Vertical</Group>
+				<Behavior>Usual</Behavior>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ДеревоКомпоновщикНастроекПользовательскиеНастройкиРасширеннаяПодсказка" id="4"/>
+			</UsualGroup>
+			<UsualGroup name="СписокКомпоновщикНастроекПользовательскиеНастройки" id="39">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа пользовательских настроек</v8:content>
+					</v8:item>
+				</Title>
+				<VerticalStretch>false</VerticalStretch>
+				<Group>Vertical</Group>
+				<Behavior>Usual</Behavior>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="СписокКомпоновщикНастроекПользовательскиеНастройкиРасширеннаяПодсказка" id="40"/>
+			</UsualGroup>
+		</ChildItems>
+		<Attributes/>
+	</BaseForm>
+</Form>

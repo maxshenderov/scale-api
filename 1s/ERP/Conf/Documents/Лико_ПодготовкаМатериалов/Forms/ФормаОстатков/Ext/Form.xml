@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<Table name="Список" id="1">
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<EnableStartDrag>true</EnableStartDrag>
+			<DataPath>Список</DataPath>
+			<RowPictureDataPath>~Список.DefaultPicture</RowPictureDataPath>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СписокКонтекстноеМеню" id="2"/>
+			<AutoCommandBar name="СписокКоманднаяПанель" id="3">
+				<ChildItems>
+					<Button name="СписокРедактироватьОбъектНоменклатуры" id="44">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.РедактироватьОбъектНоменклатуры</CommandName>
+						<ExtendedTooltip name="СписокРедактироватьОбъектНоменклатурыРасширеннаяПодсказка" id="45"/>
+					</Button>
+					<Button name="СписокЗарезервироватьПодКлиента" id="55">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ЗарезервироватьПодКлиента</CommandName>
+						<ExtendedTooltip name="СписокЗарезервироватьПодКлиентаРасширеннаяПодсказка" id="56"/>
+					</Button>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="4"/>
+			<SearchStringAddition name="СписокСтрокаПоиска" id="5">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="6"/>
+				<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="7"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СписокСостояниеПросмотра" id="8">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="9"/>
+				<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="10"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СписокУправлениеПоиском" id="11">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="12"/>
+				<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="13"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="СписокСклад" id="60">
+					<DataPath>Список.Склад</DataPath>
+					<ContextMenu name="СписокСкладКонтекстноеМеню" id="61"/>
+					<ExtendedTooltip name="СписокСкладРасширеннаяПодсказка" id="62"/>
+				</LabelField>
+				<LabelField name="СписокПомещение" id="35">
+					<DataPath>Список.Помещение</DataPath>
+					<ContextMenu name="СписокПомещениеКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="СписокПомещениеРасширеннаяПодсказка" id="37"/>
+				</LabelField>
+				<LabelField name="СписокПартнер" id="63">
+					<DataPath>Список.Партнер</DataPath>
+					<ContextMenu name="СписокПартнерКонтекстноеМеню" id="64"/>
+					<ExtendedTooltip name="СписокПартнерРасширеннаяПодсказка" id="65"/>
+				</LabelField>
+				<LabelField name="СписокРезерв" id="57">
+					<DataPath>Список.Резерв</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Резерв под</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СписокРезервКонтекстноеМеню" id="58"/>
+					<ExtendedTooltip name="СписокРезервРасширеннаяПодсказка" id="59"/>
+				</LabelField>
+				<LabelField name="СписокАдрес" id="14">
+					<DataPath>Список.Адрес</DataPath>
+					<ContextMenu name="СписокАдресКонтекстноеМеню" id="15"/>
+					<ExtendedTooltip name="СписокАдресРасширеннаяПодсказка" id="16"/>
+				</LabelField>
+				<LabelField name="СписокОбъектНоменклатуры" id="32">
+					<DataPath>Список.ОбъектНоменклатуры</DataPath>
+					<ContextMenu name="СписокОбъектНоменклатурыКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="СписокОбъектНоменклатурыРасширеннаяПодсказка" id="34"/>
+				</LabelField>
+				<LabelField name="СписокОбъектНоменклатурыКатегорияТовара" id="41">
+					<DataPath>Список.ОбъектНоменклатуры.КатегорияТовара</DataPath>
+					<ContextMenu name="СписокОбъектНоменклатурыКатегорияТовараКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="СписокОбъектНоменклатурыКатегорияТовараРасширеннаяПодсказка" id="43"/>
+				</LabelField>
+				<LabelField name="СписокНоменклатура" id="26">
+					<DataPath>Список.Номенклатура</DataPath>
+					<ContextMenu name="СписокНоменклатураКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="СписокНоменклатураРасширеннаяПодсказка" id="28"/>
+				</LabelField>
+				<LabelField name="СписокХарактеристика" id="38">
+					<DataPath>Список.Характеристика</DataPath>
+					<ContextMenu name="СписокХарактеристикаКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="СписокХарактеристикаРасширеннаяПодсказка" id="40"/>
+				</LabelField>
+				<LabelField name="СписокНомерПоставки" id="29">
+					<DataPath>Список.НомерПоставки</DataPath>
+					<ContextMenu name="СписокНомерПоставкиКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="СписокНомерПоставкиРасширеннаяПодсказка" id="31"/>
+				</LabelField>
+				<LabelField name="СписокНарезка" id="23">
+					<DataPath>Список.Нарезка</DataPath>
+					<ContextMenu name="СписокНарезкаКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="СписокНарезкаРасширеннаяПодсказка" id="25"/>
+				</LabelField>
+				<LabelField name="СписокКоличество" id="17">
+					<DataPath>Список.Количество</DataPath>
+					<ContextMenu name="СписокКоличествоКонтекстноеМеню" id="18"/>
+					<ExtendedTooltip name="СписокКоличествоРасширеннаяПодсказка" id="19"/>
+				</LabelField>
+				<LabelField name="СписокКоличествоУУ" id="20">
+					<DataPath>Список.КоличествоУУ</DataPath>
+					<ContextMenu name="СписокКоличествоУУКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="СписокКоличествоУУРасширеннаяПодсказка" id="22"/>
+				</LabelField>
+				<LabelField name="СписокОписаниеДефекта" id="46">
+					<DataPath>Список.ОписаниеДефекта</DataPath>
+					<ContextMenu name="СписокОписаниеДефектаКонтекстноеМеню" id="47"/>
+					<ExtendedTooltip name="СписокОписаниеДефектаРасширеннаяПодсказка" id="48"/>
+				</LabelField>
+				<LabelField name="СписокКомментарийКРешению" id="49">
+					<DataPath>Список.КомментарийКРешению</DataPath>
+					<ContextMenu name="СписокКомментарийКРешениюКонтекстноеМеню" id="50"/>
+					<ExtendedTooltip name="СписокКомментарийКРешениюРасширеннаяПодсказка" id="51"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>Список.ВидНастроечногоМатериала</Field>
+				<Field>Список.Серия</Field>
+				<Field>Список.Упаковка</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	ТоварыВЯчейкахОстатки.Ячейка.Помещение КАК Помещение,
+	ТоварыВЯчейкахОстатки.Ячейка КАК Адрес,
+	ТоварыВЯчейкахОстатки.Серия.ЯССМ_ОбъектНоменклатуры КАК ОбъектНоменклатуры,
+	ТоварыВЯчейкахОстатки.Номенклатура КАК Номенклатура,
+	ТоварыВЯчейкахОстатки.Характеристика КАК Характеристика,
+	ТоварыВЯчейкахОстатки.ВНаличииОстаток КАК Количество,
+	ТоварыВЯчейкахОстатки.ВНаличииОстаток * ТоварыВЯчейкахОстатки.Упаковка.Числитель КАК КоличествоУУ,
+	ТоварыВЯчейкахОстатки.Серия.ЯССМ_ОбъектНоменклатуры.Нарезка КАК Нарезка,
+	ТоварыВЯчейкахОстатки.Серия.ЯССМ_ОбъектНоменклатуры.НомерПоставки КАК НомерПоставки,
+	МАКСИМУМ(Лико_БракСерий.Документ) КАК Документ,
+	ТоварыВЯчейкахОстатки.Ячейка.Владелец КАК Склад
+ПОМЕСТИТЬ Вт
+ИЗ
+	РегистрНакопления.ТоварыВЯчейках.Остатки(
+			,
+			Номенклатура = &amp;Номенклатура
+				И Характеристика = &amp;Характеристика
+				И Серия.ЯССМ_ОбъектНоменклатуры.ВидНастроечногоМатериала = &amp;ВидНастроечногоМатериала
+				И Ячейка.Лико_ТипСклада = &amp;ТипСклада
+				И НЕ Ячейка.Лико_ПомещениеБрака
+				И Ячейка.Лико_Организация = &amp;Площадка
+				И ВЫБОР
+					КОГДА &amp;ПоказыватьВсе
+						ТОГДА ИСТИНА
+					ИНАЧЕ Ячейка.Лико_УдаленныйСклад = &amp;УдаленныйСклад
+				КОНЕЦ
+				И Ячейка.Лико_ОтветственноеХранение = &amp;ОтветХранение) КАК ТоварыВЯчейкахОстатки
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.Лико_БракСерий КАК Лико_БракСерий
+		ПО ТоварыВЯчейкахОстатки.Серия = Лико_БракСерий.Серия
+			И (Лико_БракСерий.Решение = ЗНАЧЕНИЕ(Справочник.Лико_РешенияПоБракуМатериалов.ПеревестиНаК2))
+ГДЕ
+	ВЫБОР
+			КОГДА Лико_БракСерий.Серия ЕСТЬ NULL
+				ТОГДА ЛОЖЬ
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ = &amp;К2
+
+СГРУППИРОВАТЬ ПО
+	ТоварыВЯчейкахОстатки.Ячейка,
+	ТоварыВЯчейкахОстатки.Серия.ЯССМ_ОбъектНоменклатуры,
+	ТоварыВЯчейкахОстатки.Номенклатура,
+	ТоварыВЯчейкахОстатки.Характеристика,
+	ТоварыВЯчейкахОстатки.Ячейка.Помещение,
+	ТоварыВЯчейкахОстатки.ВНаличииОстаток,
+	ТоварыВЯчейкахОстатки.Серия.ЯССМ_ОбъектНоменклатуры.Нарезка,
+	ТоварыВЯчейкахОстатки.Серия.ЯССМ_ОбъектНоменклатуры.НомерПоставки,
+	ТоварыВЯчейкахОстатки.ВНаличииОстаток * ТоварыВЯчейкахОстатки.Упаковка.Числитель,
+	ТоварыВЯчейкахОстатки.Ячейка.Владелец
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Вт.Помещение КАК Помещение,
+	Вт.Адрес КАК Адрес,
+	Вт.ОбъектНоменклатуры КАК ОбъектНоменклатуры,
+	Вт.Номенклатура КАК Номенклатура,
+	Вт.Характеристика КАК Характеристика,
+	Вт.Количество КАК Количество,
+	Вт.КоличествоУУ КАК КоличествоУУ,
+	Вт.Нарезка КАК Нарезка,
+	Вт.НомерПоставки КАК НомерПоставки,
+	Вт.Документ КАК Документ,
+	Лико_БракСерий.Дефект КАК Дефект,
+	Лико_БракСерий.ОписаниеДефекта КАК ОписаниеДефекта,
+	Лико_БракСерий.Решение КАК Решение,
+	Лико_БракСерий.КомментарийКРешению КАК КомментарийКРешению,
+	Вт.ОбъектНоменклатуры.Серия КАК Серия,
+	Вт.ОбъектНоменклатуры.ВидНастроечногоМатериала КАК ВидНастроечногоМатериала,
+	Вт.ОбъектНоменклатуры.БазоваяЕдиницаИзмерения КАК Упаковка,
+	Вт.ОбъектНоменклатуры.Резерв КАК Резерв,
+	Вт.Склад КАК Склад,
+	Вт.ОбъектНоменклатуры.Партнер КАК Партнер
+ИЗ
+	Вт КАК Вт
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.Лико_БракСерий КАК Лико_БракСерий
+		ПО Вт.Документ = Лико_БракСерий.Документ
+			И Вт.ОбъектНоменклатуры = Лико_БракСерий.ОбъектНоменклатуры</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Номенклатура</dcssch:dataPath>
+					<dcssch:field>Номенклатура</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Назначение</dcssch:dataPath>
+					<dcssch:field>Назначение</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Характеристика</dcssch:dataPath>
+					<dcssch:field>Характеристика</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Упаковка</dcssch:dataPath>
+					<dcssch:field>Упаковка</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Адрес</dcssch:dataPath>
+					<dcssch:field>Адрес</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Адрес</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Ячейка</dcssch:dataPath>
+					<dcssch:field>Ячейка</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Помещение</dcssch:dataPath>
+					<dcssch:field>Помещение</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Помещение</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Серия</dcssch:dataPath>
+					<dcssch:field>Серия</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ОбъектНоменклатуры</dcssch:dataPath>
+					<dcssch:field>ОбъектНоменклатуры</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Объект номенклатуры</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ВидНастроечногоМатериала</dcssch:dataPath>
+					<dcssch:field>ВидНастроечногоМатериала</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вид настроечного материала</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Количество</dcssch:dataPath>
+					<dcssch:field>Количество</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>КоличествоУУ</dcssch:dataPath>
+					<dcssch:field>КоличествоУУ</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество УУ</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Нарезка</dcssch:dataPath>
+					<dcssch:field>Нарезка</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Нарезка</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>НомерПоставки</dcssch:dataPath>
+					<dcssch:field>НомерПоставки</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер поставки</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Документ</dcssch:dataPath>
+					<dcssch:field>Документ</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Дефект</dcssch:dataPath>
+					<dcssch:field>Дефект</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ОписаниеДефекта</dcssch:dataPath>
+					<dcssch:field>ОписаниеДефекта</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Решение</dcssch:dataPath>
+					<dcssch:field>Решение</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>КомментарийКРешению</dcssch:dataPath>
+					<dcssch:field>КомментарийКРешению</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Резерв</dcssch:dataPath>
+					<dcssch:field>Резерв</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Резерв</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Склад</dcssch:dataPath>
+					<dcssch:field>Склад</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Склад</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Партнер</dcssch:dataPath>
+					<dcssch:field>Партнер</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Партнер</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Parameter>
+					<dcssch:name>Период</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Период</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcssch:value>
+					<dcssch:useRestriction>false</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ВидНастроечногоМатериала</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вид настроечного материала</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:EnumRef.Лико_ВидыНастроечногоМатериала</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>К2</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>К2</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>Номенклатура</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номенклатура</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:CatalogRef.Номенклатура</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>Характеристика</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Характеристика</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:CatalogRef.ХарактеристикиНоменклатуры</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>Площадка</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Площадка</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:CatalogRef.Организации</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ТипСклада</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тип склада</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:EnumRef.Лико_ТипСклада</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>УдаленныйСклад</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Удаленный склад</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ОтветХранение</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ответ хранение</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ПоказыватьВсе</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Показывать все</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="ЗаказКлиента" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заказ клиента</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DocumentRef.ЗаказКлиента</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Партнер" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Партнер</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Партнеры</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Резерв" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Резерв</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueListType</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="РедактироватьОбъектНоменклатуры" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Редактировать объект номенклатуры</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Редактировать объект номенклатуры</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>РедактироватьОбъектНоменклатуры</Action>
+			<Action>Лико_РедактироватьОбъектНоменклатурыПосле</Action>
+		</Command>
+		<Command name="ЗарезервироватьПодКлиента" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Зарезервировать под клиента</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Зарезервировать под клиента</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ЗарезервироватьПодКлиента</Action>
+		</Command>
+	</Commands>
+</Form>

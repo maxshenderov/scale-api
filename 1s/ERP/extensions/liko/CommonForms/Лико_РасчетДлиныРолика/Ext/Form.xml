@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Расчет длины ролика</v8:content>
+		</v8:item>
+	</Title>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">ОбработкаОповещения</Event>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Номенклатура" id="1">
+			<DataPath>Номенклатура</DataPath>
+			<ContextMenu name="НоменклатураКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="НоменклатураРасширеннаяПодсказка" id="3"/>
+			<Events>
+				<Event name="OnChange">НоменклатураПриИзменении</Event>
+			</Events>
+		</InputField>
+		<InputField name="КодНоменклатуры" id="4">
+			<DataPath>Номенклатура.Code</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<ContextMenu name="КодНоменклатурыКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="КодНоменклатурыРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="ТолщинаМатериала" id="7">
+			<DataPath>ТолщинаМатериала</DataPath>
+			<Enabled>false</Enabled>
+			<ContextMenu name="ТолщинаМатериалаКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ТолщинаМатериалаРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<InputField name="НачальныйДиаметр" id="10">
+			<DataPath>НачальныйДиаметр</DataPath>
+			<ContextMenu name="НачальныйДиаметрКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="НачальныйДиаметрРасширеннаяПодсказка" id="12"/>
+			<Events>
+				<Event name="OnChange">НачальныйДиаметрПриИзменении</Event>
+			</Events>
+		</InputField>
+		<InputField name="КонечныйДиаметр" id="13">
+			<DataPath>КонечныйДиаметр</DataPath>
+			<ContextMenu name="КонечныйДиаметрКонтекстноеМеню" id="14"/>
+			<ExtendedTooltip name="КонечныйДиаметрРасширеннаяПодсказка" id="15"/>
+			<Events>
+				<Event name="OnChange">КонечныйДиаметрПриИзменении</Event>
+			</Events>
+		</InputField>
+		<UsualGroup name="ГруппаРасчета" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа расчета</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа расчета</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаРасчетаРасширеннаяПодсказка" id="23"/>
+			<ChildItems>
+				<InputField name="ДлинаРолика" id="16">
+					<DataPath>ДлинаРолика</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<HorizontalAlign>Center</HorizontalAlign>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Font height="14" kind="AutoFont"/>
+					<ContextMenu name="ДлинаРоликаКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ДлинаРоликаРасширеннаяПодсказка" id="18"/>
+					<Events>
+						<Event name="AutoComplete">ДлинаРоликаАвтоПодбор</Event>
+					</Events>
+				</InputField>
+				<Button name="Рассчитать" id="24">
+					<Type>UsualButton</Type>
+					<Height>2</Height>
+					<CommandName>Form.Command.Рассчитать</CommandName>
+					<Font height="10" bold="true" kind="AutoFont"/>
+					<ExtendedTooltip name="РассчитатьРасширеннаяПодсказка" id="25"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<LabelDecoration name="НадписьСообщение" id="19">
+			<HorizontalStretch>true</HorizontalStretch>
+			<TextColor>style:SpecialTextColor</TextColor>
+			<Font height="10" bold="true" kind="AutoFont"/>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Надпись сообщение</v8:content>
+				</v8:item>
+			</Title>
+			<HorizontalAlign>Center</HorizontalAlign>
+			<VerticalAlign>Center</VerticalAlign>
+			<ContextMenu name="НадписьСообщениеКонтекстноеМеню" id="20"/>
+			<ExtendedTooltip name="НадписьСообщениеРасширеннаяПодсказка" id="21"/>
+		</LabelDecoration>
+		<UsualGroup name="ГруппаЗавершение" id="28">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа завершение</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа завершение</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаЗавершениеРасширеннаяПодсказка" id="29"/>
+			<ChildItems>
+				<LabelDecoration name="ДекорацияРастяжка" id="30">
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ДекорацияРастяжкаКонтекстноеМеню" id="31"/>
+					<ExtendedTooltip name="ДекорацияРастяжкаРасширеннаяПодсказка" id="32"/>
+				</LabelDecoration>
+				<Button name="ОК" id="26">
+					<Type>UsualButton</Type>
+					<Width>11</Width>
+					<Height>2</Height>
+					<CommandName>Form.Command.ОК</CommandName>
+					<Font height="10" bold="true" kind="AutoFont"/>
+					<ExtendedTooltip name="ОКРасширеннаяПодсказка" id="27"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ДлинаРолика" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Длина ролика</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ВозвращатьЗначение" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Возвращать значение</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="КонечныйДиаметр" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Конечный диаметр (мм)</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>15</v8:Digits>
+					<v8:FractionDigits>3</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="НачальныйДиаметр" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Начальный диаметр (мм)</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>15</v8:Digits>
+					<v8:FractionDigits>3</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Номенклатура" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Материал</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Номенклатура</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="РедактироватьТолщину" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Редактировать толщину</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="РежимБезРедактированияМетров" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Режим без редактирования метров</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="РежимТСД" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Режим ТСД</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ТолщинаМатериала" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Толщина материала (мкм)</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>3</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ИспользоватьПодключаемоеОборудование" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Использовать подключаемое оборудование</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ПоддерживаемыеТипыПодключаемогоОборудования" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Поддерживаемые типы подключаемого оборудования</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ОК" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОК</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОК</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ОК</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Рассчитать" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Рассчитать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Рассчитать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Рассчитать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

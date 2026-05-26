@@ -1,0 +1,800 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="AfterWriteAtServer">ПослеЗаписиНаСервере</Event>
+		<Event name="BeforeWrite">ПередЗаписью</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Группа3" id="208">
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="209"/>
+			<ChildItems>
+				<UsualGroup name="Группа4" id="210">
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Группа4РасширеннаяПодсказка" id="211"/>
+					<ChildItems>
+						<UsualGroup name="Группа1" id="180">
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="181"/>
+							<ChildItems>
+								<InputField name="Номер" id="1">
+									<DataPath>Объект.Number</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>9</Width>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>10</MaxWidth>
+									<ContextMenu name="НомерКонтекстноеМеню" id="2"/>
+									<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="3"/>
+								</InputField>
+								<InputField name="Дата" id="4">
+									<DataPath>Объект.Date</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>от</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<Width>20</Width>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>20</MaxWidth>
+									<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+									<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="6"/>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+						<UsualGroup name="Группа2" id="206">
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="207"/>
+							<ChildItems>
+								<InputField name="ТабельныйНомер" id="200">
+									<DataPath>ТабельныйНомер</DataPath>
+									<Width>10</Width>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>10</MaxWidth>
+									<AutoMarkIncomplete>true</AutoMarkIncomplete>
+									<ContextMenu name="ТабельныйНомерКонтекстноеМеню" id="201"/>
+									<ExtendedTooltip name="ТабельныйНомерРасширеннаяПодсказка" id="202"/>
+									<Events>
+										<Event name="OnChange">ТабельныйНомерПриИзменении</Event>
+									</Events>
+								</InputField>
+								<LabelDecoration name="Декорация1" id="217">
+									<Width>1</Width>
+									<Font ref="style:NormalTextFont" kind="StyleItem"/>
+									<ContextMenu name="Декорация1КонтекстноеМеню" id="218"/>
+									<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="219"/>
+								</LabelDecoration>
+								<InputField name="Сотрудник" id="214">
+									<DataPath>Объект.Сотрудник</DataPath>
+									<SkipOnInput>true</SkipOnInput>
+									<TitleLocation>None</TitleLocation>
+									<Width>20</Width>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>20</MaxWidth>
+									<ContextMenu name="СотрудникКонтекстноеМеню" id="215"/>
+									<ExtendedTooltip name="СотрудникРасширеннаяПодсказка" id="216"/>
+									<Events>
+										<Event name="OnChange">СотрудникПриИзменении</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="Группа5" id="212">
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Группа5РасширеннаяПодсказка" id="213"/>
+					<ChildItems>
+						<InputField name="ТипДокумента" id="7">
+							<DataPath>Объект.ТипДокумента</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>15</MaxWidth>
+							<ContextMenu name="ТипДокументаКонтекстноеМеню" id="8"/>
+							<ExtendedTooltip name="ТипДокументаРасширеннаяПодсказка" id="9"/>
+							<Events>
+								<Event name="OnChange">ТипДокументаПриИзменении</Event>
+							</Events>
+						</InputField>
+						<InputField name="Смена" id="13">
+							<DataPath>Объект.Смена</DataPath>
+							<Visible>false</Visible>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>17</Width>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<MaxWidth>17</MaxWidth>
+							<ContextMenu name="СменаКонтекстноеМеню" id="14"/>
+							<ExtendedTooltip name="СменаРасширеннаяПодсказка" id="15"/>
+						</InputField>
+						<InputField name="ВидПечати" id="256">
+							<DataPath>Объект.ВидПечати</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Вид форм</v8:content>
+								</v8:item>
+							</Title>
+							<AutoMarkIncomplete>true</AutoMarkIncomplete>
+							<ChoiceList>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation/>
+										<Value xsi:type="xr:DesignTimeRef">Catalog.Лико_ВидыПечати.Флексо</Value>
+									</xr:Value>
+								</xr:Item>
+								<xr:Item>
+									<xr:Presentation/>
+									<xr:CheckState>0</xr:CheckState>
+									<xr:Value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation/>
+										<Value xsi:type="xr:DesignTimeRef">Catalog.Лико_ВидыПечати.Офсет</Value>
+									</xr:Value>
+								</xr:Item>
+							</ChoiceList>
+							<ContextMenu name="ВидПечатиКонтекстноеМеню" id="257"/>
+							<ExtendedTooltip name="ВидПечатиРасширеннаяПодсказка" id="258"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="Организация" id="226">
+			<DataPath>Объект.Организация</DataPath>
+			<ContextMenu name="ОрганизацияКонтекстноеМеню" id="227"/>
+			<ExtendedTooltip name="ОрганизацияРасширеннаяПодсказка" id="228"/>
+		</InputField>
+		<Table name="ИзготовлениеФорм" id="20">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Объект.ИзготовлениеФорм</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ИзготовлениеФормКонтекстноеМеню" id="21"/>
+			<AutoCommandBar name="ИзготовлениеФормКоманднаяПанель" id="22"/>
+			<ExtendedTooltip name="ИзготовлениеФормРасширеннаяПодсказка" id="23"/>
+			<SearchStringAddition name="ИзготовлениеФормСтрокаПоиска" id="24">
+				<AdditionSource>
+					<Item>ИзготовлениеФорм</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ИзготовлениеФормСтрокаПоискаКонтекстноеМеню" id="25"/>
+				<ExtendedTooltip name="ИзготовлениеФормСтрокаПоискаРасширеннаяПодсказка" id="26"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ИзготовлениеФормСостояниеПросмотра" id="27">
+				<AdditionSource>
+					<Item>ИзготовлениеФорм</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ИзготовлениеФормСостояниеПросмотраКонтекстноеМеню" id="28"/>
+				<ExtendedTooltip name="ИзготовлениеФормСостояниеПросмотраРасширеннаяПодсказка" id="29"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ИзготовлениеФормУправлениеПоиском" id="30">
+				<AdditionSource>
+					<Item>ИзготовлениеФорм</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ИзготовлениеФормУправлениеПоискомКонтекстноеМеню" id="31"/>
+				<ExtendedTooltip name="ИзготовлениеФормУправлениеПоискомРасширеннаяПодсказка" id="32"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ИзготовлениеФормНомерСтроки" id="33">
+					<DataPath>Объект.ИзготовлениеФорм.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>3</MaxWidth>
+					<ContextMenu name="ИзготовлениеФормНомерСтрокиКонтекстноеМеню" id="34"/>
+					<ExtendedTooltip name="ИзготовлениеФормНомерСтрокиРасширеннаяПодсказка" id="35"/>
+				</LabelField>
+				<InputField name="ИзготовлениеФормЗаказ" id="182">
+					<DataPath>Объект.ИзготовлениеФорм.Заказ</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>10</MaxWidth>
+					<ContextMenu name="ИзготовлениеФормЗаказКонтекстноеМеню" id="183"/>
+					<ExtendedTooltip name="ИзготовлениеФормЗаказРасширеннаяПодсказка" id="184"/>
+					<Events>
+						<Event name="OnChange">ЗаказПриИзменении</Event>
+						<Event name="ChoiceProcessing">ТаблицаЗаказОбработкаВыбора</Event>
+					</Events>
+				</InputField>
+				<LabelField name="ИзготовлениеФормЗаказНомерБезПрефикса" id="191">
+					<DataPath>Объект.ИзготовлениеФорм.Заказ.НомерБезПрефикса</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ИзготовлениеФормЗаказНомерБезПрефиксаКонтекстноеМеню" id="192"/>
+					<ExtendedTooltip name="ИзготовлениеФормЗаказНомерБезПрефиксаРасширеннаяПодсказка" id="193"/>
+				</LabelField>
+				<InputField name="ИзготовлениеФормНомерПроката" id="223">
+					<DataPath>Объект.ИзготовлениеФорм.НомерПроката</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>№ проката</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>6</Width>
+					<ContextMenu name="ИзготовлениеФормНомерПрокатаКонтекстноеМеню" id="224"/>
+					<ExtendedTooltip name="ИзготовлениеФормНомерПрокатаРасширеннаяПодсказка" id="225"/>
+					<Events>
+						<Event name="OnChange">НомерПрокатаПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ИзготовлениеФормРабочийЦентр" id="220">
+					<DataPath>Объект.ИзготовлениеФорм.РабочийЦентр</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Рабочий центр</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>13</Width>
+					<ContextMenu name="ИзготовлениеФормРабочийЦентрКонтекстноеМеню" id="221"/>
+					<ExtendedTooltip name="ИзготовлениеФормРабочийЦентрРасширеннаяПодсказка" id="222"/>
+					<Events>
+						<Event name="OnChange">РабочийЦентрПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ИзготовлениеФормНомерБланка" id="45">
+					<DataPath>Объект.ИзготовлениеФорм.НомерБланка</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ИзготовлениеФормНомерБланкаКонтекстноеМеню" id="46"/>
+					<ExtendedTooltip name="ИзготовлениеФормНомерБланкаРасширеннаяПодсказка" id="47"/>
+				</InputField>
+				<InputField name="ИзготовлениеФормВидФормы" id="48">
+					<DataPath>Объект.ИзготовлениеФорм.ВидФормы</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ИзготовлениеФормВидФормыКонтекстноеМеню" id="49"/>
+					<ExtendedTooltip name="ИзготовлениеФормВидФормыРасширеннаяПодсказка" id="50"/>
+				</InputField>
+				<InputField name="ИзготовлениеФормВидПолимера" id="51">
+					<DataPath>Объект.ИзготовлениеФорм.ВидПолимера</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>12</MaxWidth>
+					<ContextMenu name="ИзготовлениеФормВидПолимераКонтекстноеМеню" id="52"/>
+					<ExtendedTooltip name="ИзготовлениеФормВидПолимераРасширеннаяПодсказка" id="53"/>
+				</InputField>
+				<InputField name="ИзготовлениеФормКоличествоНовых" id="54">
+					<DataPath>Объект.ИзготовлениеФорм.КоличествоНовых</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>8</MaxWidth>
+					<ContextMenu name="ИзготовлениеФормКоличествоНовыхКонтекстноеМеню" id="55"/>
+					<ExtendedTooltip name="ИзготовлениеФормКоличествоНовыхРасширеннаяПодсказка" id="56"/>
+				</InputField>
+				<InputField name="ИзготовлениеФормКоличествоПеределок" id="57">
+					<DataPath>Объект.ИзготовлениеФорм.КоличествоПеределок</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ИзготовлениеФормКоличествоПеределокКонтекстноеМеню" id="58"/>
+					<ExtendedTooltip name="ИзготовлениеФормКоличествоПеределокРасширеннаяПодсказка" id="59"/>
+				</InputField>
+				<InputField name="ИзготовлениеФормШирина" id="60">
+					<DataPath>Объект.ИзготовлениеФорм.Ширина</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ширина, см</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>8</MaxWidth>
+					<ContextMenu name="ИзготовлениеФормШиринаКонтекстноеМеню" id="61"/>
+					<ExtendedTooltip name="ИзготовлениеФормШиринаРасширеннаяПодсказка" id="62"/>
+					<Events>
+						<Event name="OnChange">ИзготовлениеФормШиринаПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ИзготовлениеФормДлина" id="63">
+					<DataPath>Объект.ИзготовлениеФорм.Длина</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Длина, см</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>8</MaxWidth>
+					<ContextMenu name="ИзготовлениеФормДлинаКонтекстноеМеню" id="64"/>
+					<ExtendedTooltip name="ИзготовлениеФормДлинаРасширеннаяПодсказка" id="65"/>
+					<Events>
+						<Event name="OnChange">ИзготовлениеФормДлинаПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ИзготовлениеФормПлощадь" id="262">
+					<DataPath>Объект.ИзготовлениеФорм.Площадь</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>8</MaxWidth>
+					<Format>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ЧДЦ=2</v8:content>
+						</v8:item>
+					</Format>
+					<EditFormat>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ЧДЦ=2</v8:content>
+						</v8:item>
+					</EditFormat>
+					<ContextMenu name="ИзготовлениеФормПлощадьКонтекстноеМеню" id="263"/>
+					<ExtendedTooltip name="ИзготовлениеФормПлощадьРасширеннаяПодсказка" id="264"/>
+				</InputField>
+				<LabelField name="ИзготовлениеФормЗаказПлощадьКлише" id="259">
+					<DataPath>Объект.ИзготовлениеФорм.Заказ.ПлощадьКлише</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Площадь в Заказе</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>10</MaxWidth>
+					<ContextMenu name="ИзготовлениеФормЗаказПлощадьКлишеКонтекстноеМеню" id="260"/>
+					<ExtendedTooltip name="ИзготовлениеФормЗаказПлощадьКлишеРасширеннаяПодсказка" id="261"/>
+				</LabelField>
+				<InputField name="ИзготовлениеФормПричинаПеределки" id="66">
+					<DataPath>Объект.ИзготовлениеФорм.ПричинаПеределки</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ИзготовлениеФормПричинаПеределкиКонтекстноеМеню" id="67"/>
+					<ExtendedTooltip name="ИзготовлениеФормПричинаПеределкиРасширеннаяПодсказка" id="68"/>
+				</InputField>
+				<InputField name="ИзготовлениеФормПримечание" id="69">
+					<DataPath>Объект.ИзготовлениеФорм.Примечание</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ИзготовлениеФормПримечаниеКонтекстноеМеню" id="70"/>
+					<ExtendedTooltip name="ИзготовлениеФормПримечаниеРасширеннаяПодсказка" id="71"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<Table name="ЗасветкаStork" id="74">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Объект.ЗасветкаStork</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ЗасветкаStorkКонтекстноеМеню" id="75"/>
+			<AutoCommandBar name="ЗасветкаStorkКоманднаяПанель" id="76"/>
+			<ExtendedTooltip name="ЗасветкаStorkРасширеннаяПодсказка" id="77"/>
+			<SearchStringAddition name="ЗасветкаStorkСтрокаПоиска" id="78">
+				<AdditionSource>
+					<Item>ЗасветкаStork</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗасветкаStorkСтрокаПоискаКонтекстноеМеню" id="79"/>
+				<ExtendedTooltip name="ЗасветкаStorkСтрокаПоискаРасширеннаяПодсказка" id="80"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ЗасветкаStorkСостояниеПросмотра" id="81">
+				<AdditionSource>
+					<Item>ЗасветкаStork</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗасветкаStorkСостояниеПросмотраКонтекстноеМеню" id="82"/>
+				<ExtendedTooltip name="ЗасветкаStorkСостояниеПросмотраРасширеннаяПодсказка" id="83"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ЗасветкаStorkУправлениеПоиском" id="84">
+				<AdditionSource>
+					<Item>ЗасветкаStork</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ЗасветкаStorkУправлениеПоискомКонтекстноеМеню" id="85"/>
+				<ExtendedTooltip name="ЗасветкаStorkУправлениеПоискомРасширеннаяПодсказка" id="86"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ЗасветкаStorkНомерСтроки" id="87">
+					<DataPath>Объект.ЗасветкаStork.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkНомерСтрокиКонтекстноеМеню" id="88"/>
+					<ExtendedTooltip name="ЗасветкаStorkНомерСтрокиРасширеннаяПодсказка" id="89"/>
+				</LabelField>
+				<InputField name="ЗасветкаStorkЗаказ" id="185">
+					<DataPath>Объект.ЗасветкаStork.Заказ</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkЗаказКонтекстноеМеню" id="186"/>
+					<ExtendedTooltip name="ЗасветкаStorkЗаказРасширеннаяПодсказка" id="187"/>
+					<Events>
+						<Event name="OnChange">ЗаказПриИзменении</Event>
+					</Events>
+				</InputField>
+				<LabelField name="ЗасветкаStorkЗаказНомерБезПрефикса" id="194">
+					<DataPath>Объект.ЗасветкаStork.Заказ.НомерБезПрефикса</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkЗаказНомерБезПрефиксаКонтекстноеМеню" id="195"/>
+					<ExtendedTooltip name="ЗасветкаStorkЗаказНомерБезПрефиксаРасширеннаяПодсказка" id="196"/>
+				</LabelField>
+				<InputField name="ЗасветкаStorkНомерПроката" id="229">
+					<DataPath>Объект.ЗасветкаStork.НомерПроката</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>№ проката</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>6</MaxWidth>
+					<ContextMenu name="ЗасветкаStorkНомерПрокатаКонтекстноеМеню" id="230"/>
+					<ExtendedTooltip name="ЗасветкаStorkНомерПрокатаРасширеннаяПодсказка" id="231"/>
+					<Events>
+						<Event name="OnChange">НомерПрокатаПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ЗасветкаStorkРабочийЦентр" id="232">
+					<DataPath>Объект.ЗасветкаStork.РабочийЦентр</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Рабочий центр</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>12</MaxWidth>
+					<ContextMenu name="ЗасветкаStorkРабочийЦентрКонтекстноеМеню" id="233"/>
+					<ExtendedTooltip name="ЗасветкаStorkРабочийЦентрРасширеннаяПодсказка" id="234"/>
+					<Events>
+						<Event name="OnChange">РабочийЦентрПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ЗасветкаStorkНомерБланка" id="99">
+					<DataPath>Объект.ЗасветкаStork.НомерБланка</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkНомерБланкаКонтекстноеМеню" id="100"/>
+					<ExtendedTooltip name="ЗасветкаStorkНомерБланкаРасширеннаяПодсказка" id="101"/>
+				</InputField>
+				<InputField name="ЗасветкаStorkНомерСетки" id="102">
+					<DataPath>Объект.ЗасветкаStork.НомерСетки</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkНомерСеткиКонтекстноеМеню" id="103"/>
+					<ExtendedTooltip name="ЗасветкаStorkНомерСеткиРасширеннаяПодсказка" id="104"/>
+				</InputField>
+				<InputField name="ЗасветкаStorkДиаметр" id="105">
+					<DataPath>Объект.ЗасветкаStork.Диаметр</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Диаметр, Z</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkДиаметрКонтекстноеМеню" id="106"/>
+					<ExtendedTooltip name="ЗасветкаStorkДиаметрРасширеннаяПодсказка" id="107"/>
+				</InputField>
+				<CheckBoxField name="ЗасветкаStorkМонтаж" id="108">
+					<DataPath>Объект.ЗасветкаStork.Монтаж</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЗасветкаStorkМонтажКонтекстноеМеню" id="109"/>
+					<ExtendedTooltip name="ЗасветкаStorkМонтажРасширеннаяПодсказка" id="110"/>
+				</CheckBoxField>
+				<CheckBoxField name="ЗасветкаStorkПаста" id="111">
+					<DataPath>Объект.ЗасветкаStork.Паста</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЗасветкаStorkПастаКонтекстноеМеню" id="112"/>
+					<ExtendedTooltip name="ЗасветкаStorkПастаРасширеннаяПодсказка" id="113"/>
+				</CheckBoxField>
+				<CheckBoxField name="ЗасветкаStorkНанесениеЭмульсии" id="114">
+					<DataPath>Объект.ЗасветкаStork.НанесениеЭмульсии</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЗасветкаStorkНанесениеЭмульсииКонтекстноеМеню" id="115"/>
+					<ExtendedTooltip name="ЗасветкаStorkНанесениеЭмульсииРасширеннаяПодсказка" id="116"/>
+				</CheckBoxField>
+				<CheckBoxField name="ЗасветкаStorkЗасветка" id="117">
+					<DataPath>Объект.ЗасветкаStork.Засветка</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЗасветкаStorkЗасветкаКонтекстноеМеню" id="118"/>
+					<ExtendedTooltip name="ЗасветкаStorkЗасветкаРасширеннаяПодсказка" id="119"/>
+				</CheckBoxField>
+				<CheckBoxField name="ЗасветкаStorkСварка" id="120">
+					<DataPath>Объект.ЗасветкаStork.Сварка</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЗасветкаStorkСваркаКонтекстноеМеню" id="121"/>
+					<ExtendedTooltip name="ЗасветкаStorkСваркаРасширеннаяПодсказка" id="122"/>
+				</CheckBoxField>
+				<CheckBoxField name="ЗасветкаStorkСнятиеДляПовторногоНанесения" id="123">
+					<DataPath>Объект.ЗасветкаStork.СнятиеДляПовторногоНанесения</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЗасветкаStorkСнятиеДляПовторногоНанесенияКонтекстноеМеню" id="124"/>
+					<ExtendedTooltip name="ЗасветкаStorkСнятиеДляПовторногоНанесенияРасширеннаяПодсказка" id="125"/>
+				</CheckBoxField>
+				<CheckBoxField name="ЗасветкаStorkМонтажБУСетки" id="126">
+					<DataPath>Объект.ЗасветкаStork.МонтажБУСетки</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЗасветкаStorkМонтажБУСеткиКонтекстноеМеню" id="127"/>
+					<ExtendedTooltip name="ЗасветкаStorkМонтажБУСеткиРасширеннаяПодсказка" id="128"/>
+				</CheckBoxField>
+				<InputField name="ЗасветкаStorkПечатник" id="129">
+					<DataPath>Объект.ЗасветкаStork.Печатник</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkПечатникКонтекстноеМеню" id="130"/>
+					<ExtendedTooltip name="ЗасветкаStorkПечатникРасширеннаяПодсказка" id="131"/>
+				</InputField>
+				<InputField name="ЗасветкаStorkStork" id="132">
+					<DataPath>Объект.ЗасветкаStork.Stork</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkStorkКонтекстноеМеню" id="133"/>
+					<ExtendedTooltip name="ЗасветкаStorkStorkРасширеннаяПодсказка" id="134"/>
+				</InputField>
+				<CheckBoxField name="ЗасветкаStorkСдана" id="135">
+					<DataPath>Объект.ЗасветкаStork.Сдана</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЗасветкаStorkСданаКонтекстноеМеню" id="136"/>
+					<ExtendedTooltip name="ЗасветкаStorkСданаРасширеннаяПодсказка" id="137"/>
+				</CheckBoxField>
+				<InputField name="ЗасветкаStorkПримечание" id="138">
+					<DataPath>Объект.ЗасветкаStork.Примечание</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЗасветкаStorkПримечаниеКонтекстноеМеню" id="139"/>
+					<ExtendedTooltip name="ЗасветкаStorkПримечаниеРасширеннаяПодсказка" id="140"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<Table name="ТрафСетки" id="143">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Объект.ТрафСетки</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ТрафСеткиКонтекстноеМеню" id="144"/>
+			<AutoCommandBar name="ТрафСеткиКоманднаяПанель" id="145"/>
+			<ExtendedTooltip name="ТрафСеткиРасширеннаяПодсказка" id="146"/>
+			<SearchStringAddition name="ТрафСеткиСтрокаПоиска" id="147">
+				<AdditionSource>
+					<Item>ТрафСетки</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТрафСеткиСтрокаПоискаКонтекстноеМеню" id="148"/>
+				<ExtendedTooltip name="ТрафСеткиСтрокаПоискаРасширеннаяПодсказка" id="149"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТрафСеткиСостояниеПросмотра" id="150">
+				<AdditionSource>
+					<Item>ТрафСетки</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТрафСеткиСостояниеПросмотраКонтекстноеМеню" id="151"/>
+				<ExtendedTooltip name="ТрафСеткиСостояниеПросмотраРасширеннаяПодсказка" id="152"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТрафСеткиУправлениеПоиском" id="153">
+				<AdditionSource>
+					<Item>ТрафСетки</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТрафСеткиУправлениеПоискомКонтекстноеМеню" id="154"/>
+				<ExtendedTooltip name="ТрафСеткиУправлениеПоискомРасширеннаяПодсказка" id="155"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ТрафСеткиНомерСтроки" id="156">
+					<DataPath>Объект.ТрафСетки.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТрафСеткиНомерСтрокиКонтекстноеМеню" id="157"/>
+					<ExtendedTooltip name="ТрафСеткиНомерСтрокиРасширеннаяПодсказка" id="158"/>
+				</LabelField>
+				<InputField name="ТрафСеткиЗаказ" id="188">
+					<DataPath>Объект.ТрафСетки.Заказ</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТрафСеткиЗаказКонтекстноеМеню" id="189"/>
+					<ExtendedTooltip name="ТрафСеткиЗаказРасширеннаяПодсказка" id="190"/>
+					<Events>
+						<Event name="OnChange">ЗаказПриИзменении</Event>
+						<Event name="ChoiceProcessing">ТаблицаЗаказОбработкаВыбора</Event>
+					</Events>
+				</InputField>
+				<LabelField name="ТрафСеткиЗаказНомерБезПрефикса" id="197">
+					<DataPath>Объект.ТрафСетки.Заказ.НомерБезПрефикса</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТрафСеткиЗаказНомерБезПрефиксаКонтекстноеМеню" id="198"/>
+					<ExtendedTooltip name="ТрафСеткиЗаказНомерБезПрефиксаРасширеннаяПодсказка" id="199"/>
+				</LabelField>
+				<InputField name="ТрафСеткиНомерПроката" id="235">
+					<DataPath>Объект.ТрафСетки.НомерПроката</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>№ проката</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>6</MaxWidth>
+					<ContextMenu name="ТрафСеткиНомерПрокатаКонтекстноеМеню" id="236"/>
+					<ExtendedTooltip name="ТрафСеткиНомерПрокатаРасширеннаяПодсказка" id="237"/>
+					<Events>
+						<Event name="OnChange">НомерПрокатаПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ТрафСеткиРабочийЦентр" id="238">
+					<DataPath>Объект.ТрафСетки.РабочийЦентр</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Рабочий центр</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>12</MaxWidth>
+					<ContextMenu name="ТрафСеткиРабочийЦентрКонтекстноеМеню" id="239"/>
+					<ExtendedTooltip name="ТрафСеткиРабочийЦентрРасширеннаяПодсказка" id="240"/>
+					<Events>
+						<Event name="OnChange">РабочийЦентрПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ТрафСеткиНомерБланка" id="168">
+					<DataPath>Объект.ТрафСетки.НомерБланка</DataPath>
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТрафСеткиНомерБланкаКонтекстноеМеню" id="169"/>
+					<ExtendedTooltip name="ТрафСеткиНомерБланкаРасширеннаяПодсказка" id="170"/>
+				</InputField>
+				<InputField name="ТрафСеткиНовыхСеток" id="171">
+					<DataPath>Объект.ТрафСетки.НовыхСеток</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТрафСеткиНовыхСетокКонтекстноеМеню" id="172"/>
+					<ExtendedTooltip name="ТрафСеткиНовыхСетокРасширеннаяПодсказка" id="173"/>
+				</InputField>
+				<InputField name="ТрафСеткиСтарыхСеток" id="174">
+					<DataPath>Объект.ТрафСетки.СтарыхСеток</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТрафСеткиСтарыхСетокКонтекстноеМеню" id="175"/>
+					<ExtendedTooltip name="ТрафСеткиСтарыхСетокРасширеннаяПодсказка" id="176"/>
+				</InputField>
+				<InputField name="ТрафСеткиВидСетки" id="177">
+					<DataPath>Объект.ТрафСетки.ВидСетки</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТрафСеткиВидСеткиКонтекстноеМеню" id="178"/>
+					<ExtendedTooltip name="ТрафСеткиВидСеткиРасширеннаяПодсказка" id="179"/>
+				</InputField>
+				<CheckBoxField name="ТрафСеткиЗасветка" id="244">
+					<DataPath>Объект.ТрафСетки.Засветка</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ТрафСеткиЗасветкаКонтекстноеМеню" id="245"/>
+					<ExtendedTooltip name="ТрафСеткиЗасветкаРасширеннаяПодсказка" id="246"/>
+				</CheckBoxField>
+				<CheckBoxField name="ТрафСеткиПаста" id="247">
+					<DataPath>Объект.ТрафСетки.Паста</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ТрафСеткиПастаКонтекстноеМеню" id="248"/>
+					<ExtendedTooltip name="ТрафСеткиПастаРасширеннаяПодсказка" id="249"/>
+				</CheckBoxField>
+				<CheckBoxField name="ТрафСеткиНанесениеЭмульсии" id="250">
+					<DataPath>Объект.ТрафСетки.НанесениеЭмульсии</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ТрафСеткиНанесениеЭмульсииКонтекстноеМеню" id="251"/>
+					<ExtendedTooltip name="ТрафСеткиНанесениеЭмульсииРасширеннаяПодсказка" id="252"/>
+				</CheckBoxField>
+				<CheckBoxField name="ТрафСеткиСмывка" id="253">
+					<DataPath>Объект.ТрафСетки.Смывка</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ТрафСеткиСмывкаКонтекстноеМеню" id="254"/>
+					<ExtendedTooltip name="ТрафСеткиСмывкаРасширеннаяПодсказка" id="255"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+		<CheckBoxField name="ОстаткиПоЗатратам" id="241">
+			<DataPath>Объект.ОстаткиПоЗатратам</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ОстаткиПоЗатратамКонтекстноеМеню" id="242"/>
+			<ExtendedTooltip name="ОстаткиПоЗатратамРасширеннаяПодсказка" id="243"/>
+		</CheckBoxField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Лико_ОтчетФормногоУчастка</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="ТабельныйНомер" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Табельный номер</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ФизическоеЛицо" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Физическое лицо</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.ФизическиеЛица</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ПредыдущийТипДокумента" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Предыдущий тип документа</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:EnumRef.Лико_ТипыДокументовОтчетФормногоУчастка</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+</Form>

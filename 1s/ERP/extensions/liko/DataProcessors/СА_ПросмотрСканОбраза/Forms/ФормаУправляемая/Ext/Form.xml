@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="СсылкаНаОбъект" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объект</v8:content>
+				</v8:item>
+			</Title>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="СсылкаНаОбъектКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="СсылкаНаОбъектРасширеннаяПодсказка" id="37"/>
+		</InputField>
+		<Table name="СправочникСписок" id="3">
+			<Representation>List</Representation>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<SearchStringLocation>None</SearchStringLocation>
+			<ViewStatusLocation>None</ViewStatusLocation>
+			<SearchControlLocation>None</SearchControlLocation>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СправочникСписокКонтекстноеМеню" id="4"/>
+			<AutoCommandBar name="СправочникСписокКоманднаяПанель" id="5">
+				<Autofill>false</Autofill>
+				<ChildItems>
+					<Button name="Изменить" id="36">
+						<Type>CommandBarButton</Type>
+						<CommandName>0</CommandName>
+						<ExtendedTooltip name="ИзменитьРасширеннаяПодсказка" id="38"/>
+					</Button>
+					<Button name="ПометитьНаУдаление" id="35">
+						<Type>CommandBarButton</Type>
+						<CommandName>0</CommandName>
+						<ExtendedTooltip name="ПометитьНаУдалениеРасширеннаяПодсказка" id="39"/>
+					</Button>
+					<Button name="Найти" id="34">
+						<Type>CommandBarButton</Type>
+						<CommandName>0</CommandName>
+						<ExtendedTooltip name="НайтиРасширеннаяПодсказка" id="40"/>
+					</Button>
+					<Button name="ОтменитьПоиск" id="33">
+						<Type>CommandBarButton</Type>
+						<CommandName>0</CommandName>
+						<ExtendedTooltip name="ОтменитьПоискРасширеннаяПодсказка" id="41"/>
+					</Button>
+					<Button name="ПросмотрСкана" id="31">
+						<Type>CommandBarButton</Type>
+						<Check>true</Check>
+						<CommandName>0</CommandName>
+						<ExtendedTooltip name="ПросмотрСканаРасширеннаяПодсказка" id="42"/>
+					</Button>
+					<Button name="СправочникСписокОтправитьСканСебеНаПочту" id="67">
+						<Type>CommandBarButton</Type>
+						<CommandName>0</CommandName>
+						<ExtendedTooltip name="СправочникСписокОтправитьСканСебеНаПочтуРасширеннаяПодсказка" id="68"/>
+					</Button>
+					<Button name="Печать" id="32">
+						<Type>CommandBarButton</Type>
+						<CommandName>0</CommandName>
+						<ExtendedTooltip name="ПечатьРасширеннаяПодсказка" id="43"/>
+					</Button>
+					<Button name="Обновить" id="30">
+						<Type>CommandBarButton</Type>
+						<CommandName>0</CommandName>
+						<ExtendedTooltip name="ОбновитьРасширеннаяПодсказка" id="44"/>
+					</Button>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СправочникСписокРасширеннаяПодсказка" id="45"/>
+			<SearchStringAddition name="СправочникСписокСтрокаПоиска" id="46">
+				<AdditionSource>
+					<Item>СправочникСписок</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СправочникСписокСтрокаПоискаКонтекстноеМеню" id="47"/>
+				<ExtendedTooltip name="СправочникСписокСтрокаПоискаРасширеннаяПодсказка" id="48"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СправочникСписокСостояниеПросмотра" id="49">
+				<AdditionSource>
+					<Item>СправочникСписок</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СправочникСписокСостояниеПросмотраКонтекстноеМеню" id="50"/>
+				<ExtendedTooltip name="СправочникСписокСостояниеПросмотраРасширеннаяПодсказка" id="51"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СправочникСписокУправлениеПоиском" id="52">
+				<AdditionSource>
+					<Item>СправочникСписок</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СправочникСписокУправлениеПоискомКонтекстноеМеню" id="53"/>
+				<ExtendedTooltip name="СправочникСписокУправлениеПоискомРасширеннаяПодсказка" id="54"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="Код" id="8">
+					<ContextMenu name="КодКонтекстноеМеню" id="9"/>
+					<ExtendedTooltip name="КодРасширеннаяПодсказка" id="55"/>
+				</LabelField>
+				<LabelField name="Наименование" id="6">
+					<ContextMenu name="НаименованиеКонтекстноеМеню" id="7"/>
+					<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="56"/>
+				</LabelField>
+				<LabelField name="СправочникСписокДокумент" id="69">
+					<ContextMenu name="СправочникСписокДокументКонтекстноеМеню" id="70"/>
+					<ExtendedTooltip name="СправочникСписокДокументРасширеннаяПодсказка" id="71"/>
+				</LabelField>
+				<LabelField name="ТипПечатнойФормы" id="28">
+					<ContextMenu name="ТипПечатнойФормыКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="ТипПечатнойФормыРасширеннаяПодсказка" id="57"/>
+				</LabelField>
+				<LabelField name="Сеанс" id="26">
+					<ContextMenu name="СеансКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="СеансРасширеннаяПодсказка" id="58"/>
+				</LabelField>
+				<LabelField name="ДатаПомещения" id="10">
+					<ContextMenu name="ДатаПомещенияКонтекстноеМеню" id="11"/>
+					<ExtendedTooltip name="ДатаПомещенияРасширеннаяПодсказка" id="59"/>
+				</LabelField>
+				<LabelField name="Ответственный" id="12">
+					<ContextMenu name="ОтветственныйКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="60"/>
+				</LabelField>
+				<CheckBoxField name="Многостраничный" id="16">
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="МногостраничныйКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="МногостраничныйРасширеннаяПодсказка" id="61"/>
+				</CheckBoxField>
+				<LabelField name="НомерСтраницы" id="18">
+					<ContextMenu name="НомерСтраницыКонтекстноеМеню" id="19"/>
+					<ExtendedTooltip name="НомерСтраницыРасширеннаяПодсказка" id="62"/>
+				</LabelField>
+				<CheckBoxField name="ХранитсяВБазеДанных" id="20">
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ХранитсяВБазеДанныхКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="ХранитсяВБазеДанныхРасширеннаяПодсказка" id="63"/>
+				</CheckBoxField>
+				<LabelField name="ИмяФайла" id="24">
+					<ContextMenu name="ИмяФайлаКонтекстноеМеню" id="25"/>
+					<ExtendedTooltip name="ИмяФайлаРасширеннаяПодсказка" id="64"/>
+				</LabelField>
+				<LabelField name="ПутьКФайлу" id="22">
+					<Visible>false</Visible>
+					<ContextMenu name="ПутьКФайлуКонтекстноеМеню" id="23"/>
+					<ExtendedTooltip name="ПутьКФайлуРасширеннаяПодсказка" id="65"/>
+				</LabelField>
+				<LabelField name="Документ" id="14">
+					<Visible>false</Visible>
+					<ContextMenu name="ДокументКонтекстноеМеню" id="15"/>
+					<ExtendedTooltip name="ДокументРасширеннаяПодсказка" id="66"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes/>
+	<BaseForm version="2.20">
+		<VerticalScroll>useIfNecessary</VerticalScroll>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+		<ChildItems>
+			<InputField name="СсылкаНаОбъект" id="1">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Объект</v8:content>
+					</v8:item>
+				</Title>
+				<EditMode>EnterOnInput</EditMode>
+				<ContextMenu name="СсылкаНаОбъектКонтекстноеМеню" id="2"/>
+				<ExtendedTooltip name="СсылкаНаОбъектРасширеннаяПодсказка" id="37"/>
+			</InputField>
+			<Table name="СправочникСписок" id="3">
+				<Representation>List</Representation>
+				<UseAlternationRowColor>true</UseAlternationRowColor>
+				<EnableStartDrag>true</EnableStartDrag>
+				<FileDragMode>AsFile</FileDragMode>
+				<SearchStringLocation>None</SearchStringLocation>
+				<ViewStatusLocation>None</ViewStatusLocation>
+				<SearchControlLocation>None</SearchControlLocation>
+				<AutoRefresh>false</AutoRefresh>
+				<AutoRefreshPeriod>60</AutoRefreshPeriod>
+				<Period>
+					<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+					<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+					<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+				</Period>
+				<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+				<RestoreCurrentRow>false</RestoreCurrentRow>
+				<TopLevelParent xsi:nil="true"/>
+				<ShowRoot>true</ShowRoot>
+				<AllowRootChoice>false</AllowRootChoice>
+				<UpdateOnDataChange>Auto</UpdateOnDataChange>
+				<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+				<ContextMenu name="СправочникСписокКонтекстноеМеню" id="4"/>
+				<AutoCommandBar name="СправочникСписокКоманднаяПанель" id="5">
+					<Autofill>false</Autofill>
+					<ChildItems>
+						<Button name="Изменить" id="36">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ИзменитьРасширеннаяПодсказка" id="38"/>
+						</Button>
+						<Button name="ПометитьНаУдаление" id="35">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ПометитьНаУдалениеРасширеннаяПодсказка" id="39"/>
+						</Button>
+						<Button name="Найти" id="34">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="НайтиРасширеннаяПодсказка" id="40"/>
+						</Button>
+						<Button name="ОтменитьПоиск" id="33">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ОтменитьПоискРасширеннаяПодсказка" id="41"/>
+						</Button>
+						<Button name="ПросмотрСкана" id="31">
+							<Type>CommandBarButton</Type>
+							<Check>true</Check>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ПросмотрСканаРасширеннаяПодсказка" id="42"/>
+						</Button>
+						<Button name="СправочникСписокОтправитьСканСебеНаПочту" id="67">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="СправочникСписокОтправитьСканСебеНаПочтуРасширеннаяПодсказка" id="68"/>
+						</Button>
+						<Button name="Печать" id="32">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ПечатьРасширеннаяПодсказка" id="43"/>
+						</Button>
+						<Button name="Обновить" id="30">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ОбновитьРасширеннаяПодсказка" id="44"/>
+						</Button>
+					</ChildItems>
+				</AutoCommandBar>
+				<ExtendedTooltip name="СправочникСписокРасширеннаяПодсказка" id="45"/>
+				<SearchStringAddition name="СправочникСписокСтрокаПоиска" id="46">
+					<AdditionSource>
+						<Item>СправочникСписок</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="СправочникСписокСтрокаПоискаКонтекстноеМеню" id="47"/>
+					<ExtendedTooltip name="СправочникСписокСтрокаПоискаРасширеннаяПодсказка" id="48"/>
+				</SearchStringAddition>
+				<ViewStatusAddition name="СправочникСписокСостояниеПросмотра" id="49">
+					<AdditionSource>
+						<Item>СправочникСписок</Item>
+						<Type>ViewStatusRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="СправочникСписокСостояниеПросмотраКонтекстноеМеню" id="50"/>
+					<ExtendedTooltip name="СправочникСписокСостояниеПросмотраРасширеннаяПодсказка" id="51"/>
+				</ViewStatusAddition>
+				<SearchControlAddition name="СправочникСписокУправлениеПоиском" id="52">
+					<AdditionSource>
+						<Item>СправочникСписок</Item>
+						<Type>SearchControl</Type>
+					</AdditionSource>
+					<ContextMenu name="СправочникСписокУправлениеПоискомКонтекстноеМеню" id="53"/>
+					<ExtendedTooltip name="СправочникСписокУправлениеПоискомРасширеннаяПодсказка" id="54"/>
+				</SearchControlAddition>
+				<ChildItems>
+					<LabelField name="Код" id="8">
+						<ContextMenu name="КодКонтекстноеМеню" id="9"/>
+						<ExtendedTooltip name="КодРасширеннаяПодсказка" id="55"/>
+					</LabelField>
+					<LabelField name="Наименование" id="6">
+						<ContextMenu name="НаименованиеКонтекстноеМеню" id="7"/>
+						<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="56"/>
+					</LabelField>
+					<LabelField name="СправочникСписокДокумент" id="69">
+						<ContextMenu name="СправочникСписокДокументКонтекстноеМеню" id="70"/>
+						<ExtendedTooltip name="СправочникСписокДокументРасширеннаяПодсказка" id="71"/>
+					</LabelField>
+					<LabelField name="ТипПечатнойФормы" id="28">
+						<ContextMenu name="ТипПечатнойФормыКонтекстноеМеню" id="29"/>
+						<ExtendedTooltip name="ТипПечатнойФормыРасширеннаяПодсказка" id="57"/>
+					</LabelField>
+					<LabelField name="Сеанс" id="26">
+						<ContextMenu name="СеансКонтекстноеМеню" id="27"/>
+						<ExtendedTooltip name="СеансРасширеннаяПодсказка" id="58"/>
+					</LabelField>
+					<LabelField name="ДатаПомещения" id="10">
+						<ContextMenu name="ДатаПомещенияКонтекстноеМеню" id="11"/>
+						<ExtendedTooltip name="ДатаПомещенияРасширеннаяПодсказка" id="59"/>
+					</LabelField>
+					<LabelField name="Ответственный" id="12">
+						<ContextMenu name="ОтветственныйКонтекстноеМеню" id="13"/>
+						<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="60"/>
+					</LabelField>
+					<CheckBoxField name="Многостраничный" id="16">
+						<CheckBoxType>Auto</CheckBoxType>
+						<ContextMenu name="МногостраничныйКонтекстноеМеню" id="17"/>
+						<ExtendedTooltip name="МногостраничныйРасширеннаяПодсказка" id="61"/>
+					</CheckBoxField>
+					<LabelField name="НомерСтраницы" id="18">
+						<ContextMenu name="НомерСтраницыКонтекстноеМеню" id="19"/>
+						<ExtendedTooltip name="НомерСтраницыРасширеннаяПодсказка" id="62"/>
+					</LabelField>
+					<CheckBoxField name="ХранитсяВБазеДанных" id="20">
+						<CheckBoxType>Auto</CheckBoxType>
+						<ContextMenu name="ХранитсяВБазеДанныхКонтекстноеМеню" id="21"/>
+						<ExtendedTooltip name="ХранитсяВБазеДанныхРасширеннаяПодсказка" id="63"/>
+					</CheckBoxField>
+					<LabelField name="ИмяФайла" id="24">
+						<ContextMenu name="ИмяФайлаКонтекстноеМеню" id="25"/>
+						<ExtendedTooltip name="ИмяФайлаРасширеннаяПодсказка" id="64"/>
+					</LabelField>
+					<LabelField name="ПутьКФайлу" id="22">
+						<Visible>false</Visible>
+						<ContextMenu name="ПутьКФайлуКонтекстноеМеню" id="23"/>
+						<ExtendedTooltip name="ПутьКФайлуРасширеннаяПодсказка" id="65"/>
+					</LabelField>
+					<LabelField name="Документ" id="14">
+						<Visible>false</Visible>
+						<ContextMenu name="ДокументКонтекстноеМеню" id="15"/>
+						<ExtendedTooltip name="ДокументРасширеннаяПодсказка" id="66"/>
+					</LabelField>
+				</ChildItems>
+			</Table>
+		</ChildItems>
+		<Attributes/>
+	</BaseForm>
+</Form>

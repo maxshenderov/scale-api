@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetUnion">
+		<name>НаборДанных1</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КорСчет</dataPath>
+			<field>КорСчет</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Кор. счет</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Corr.account</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Счет</dataPath>
+			<field>Счет</field>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
+			<presentationExpression>Счет.Код + " " + Счет.Наименование</presentationExpression>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НематериальныйАктив</dataPath>
+			<field>НематериальныйАктив</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Нематериальный актив</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Intangible asset</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+				<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+			</role>
+			<valueType>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НематериальныеАктивы</v8:Type>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Вложения</dataPath>
+			<field>Вложения</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вложения</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Attachments</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>УчетПоПодразделениям</dataPath>
+			<field>УчетПоПодразделениям</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВидНМА</dataPath>
+			<field>ВидНМА</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вид НМА</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Intangible assets kind</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОбособленноеПодразделение</dataPath>
+			<field>ОбособленноеПодразделение</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обособленное подразделение</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Branch office</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВидНМАПоПБУ14</dataPath>
+			<field>ВидНМАПоПБУ14</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вид НМА по ПБУ14</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Intangible asset kind in accordance with PBU 14</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВидОбъектаУчета</dataPath>
+			<field>ВидОбъектаУчета</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вид объекта учета</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Kind of accounting object</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<item xsi:type="DataSetQuery">
+			<name>ПриобретениеНематериальныхАктивов</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСчет</dataPath>
+				<field>КорСчет</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Кор. счет</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Corr.account</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Счет</dataPath>
+				<field>Счет</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+				</role>
+				<presentationExpression>Счет.Код + " " + Счет.Наименование</presentationExpression>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НематериальныйАктив</dataPath>
+				<field>НематериальныйАктив</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Нематериальный актив</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Intangible asset</v8:content>
+					</v8:item>
+				</title>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.НематериальныеАктивы</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вложения</dataPath>
+				<field>Вложения</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вложения</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Attachments</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УчетПоПодразделениям</dataPath>
+				<field>УчетПоПодразделениям</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидНМА</dataPath>
+				<field>ВидНМА</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вид НМА</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Intangible assets kind</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбособленноеПодразделение</dataPath>
+				<field>ОбособленноеПодразделение</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Обособленное подразделение</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Branch office</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидНМАПоПБУ14</dataPath>
+				<field>ВидНМАПоПБУ14</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вид НМАПо ПБУ14</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Intangible asset kind in accordance with PBU 14</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидОбъектаУчета</dataPath>
+				<field>ВидОбъектаУчета</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вид объекта учета</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Kind of accounting object</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ ВТ_Счета
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ПриобретениеНематериальныхАктивов))
+{ГДЕ
+	Хозрасчетный.Ссылка.* КАК Счет,
+	Хозрасчетный.УчетПоПодразделениям КАК УчетПоПодразделениям}
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВТ_Счета.Счет КАК Счет
+ПОМЕСТИТЬ ВТ_КорСчетаИсключить
+ИЗ
+	ВТ_Счета КАК ВТ_Счета
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	Хозрасчетный.Ссылка
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ОборудованиеКУстановке), ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ВложенияВоВнеоборотныеАктивы))
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	НематериальныеАктивы.Счет КАК Счет,
+	НематериальныеАктивы.Субконто1 КАК НематериальныйАктив,
+	НематериальныеАктивы.СуммаОборотДт КАК Вложения
+{ВЫБРАТЬ
+	Счет,
+	НематериальныйАктив,
+	Вложения}
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			Период,
+			Счет В
+				(ВЫБРАТЬ
+					ВТ_Счета.Счет
+				ИЗ
+					ВТ_Счета КАК ВТ_Счета),
+			ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.НематериальныеАктивы),
+			{(Организация В (&amp;Организация)), (ЕСТЬNULL(Подразделение, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение, (Субконто1).* КАК НематериальныйАктив, (Субконто1.ВидНМА) КАК ВидНМАПоПБУ14, (Субконто1.ГруппаНМА) КАК ВидНМА, (Субконто1.ВидОбъектаУчета) КАК ВидОбъектаУчета},
+			НЕ КорСчет В
+					(ВЫБРАТЬ
+						ВТ_КорСчетаИсключить.Счет
+					ИЗ
+						ВТ_КорСчетаИсключить КАК ВТ_КорСчетаИсключить) {(КорСчет) КАК КорСчет},
+			) КАК НематериальныеАктивы</query>
+			<autoFillFields>false</autoFillFields>
+		</item>
+		<item xsi:type="DataSetQuery">
+			<name>НематериальныеАктивы</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидНМА</dataPath>
+				<field>ВидНМА</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вид НМА</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Intangible assets kind</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Счет</dataPath>
+				<field>Счет</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НематериальныйАктив</dataPath>
+				<field>НематериальныйАктив</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Нематериальный актив</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Intangible asset</v8:content>
+					</v8:item>
+				</title>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСчет</dataPath>
+				<field>КорСчет</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Кор счет</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Corr. account</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УчетПоПодразделениям</dataPath>
+				<field>УчетПоПодразделениям</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбособленноеПодразделение</dataPath>
+				<field>ОбособленноеПодразделение</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Обособленное подразделение</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Branch office</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидНМАПоПБУ14</dataPath>
+				<field>ВидНМАПоПБУ14</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вид НМА по ПБУ14</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Intangible asset kind in accordance with PBU 14</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидОбъектаУчета</dataPath>
+				<field>ВидОбъектаУчета</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вид объекта учета</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Kind of accounting object</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вложения</dataPath>
+				<field>Вложения</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вложения</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Attachments</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ ВТ_Счета
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.НематериальныеАктивы))
+{ГДЕ
+	Хозрасчетный.Ссылка.* КАК Счет,
+	Хозрасчетный.УчетПоПодразделениям КАК УчетПоПодразделениям}
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВТ_Счета.Счет КАК Счет
+ПОМЕСТИТЬ ВТ_КорСчетаИсключить
+ИЗ
+	ВТ_Счета КАК ВТ_Счета
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	Хозрасчетный.Ссылка
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ПриобретениеНематериальныхАктивов), ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ВыполнениеНИОКР), ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ПриростСтоимостиНМАПоПереоценке))
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ХозрасчетныйСчет91.Ссылка КАК КорСчет,
+	ПрочиеДоходыИРасходы.Ссылка КАК КорСубконто1
+ПОМЕСТИТЬ КорреспондецииУценки
+ИЗ
+	ПланСчетов.Хозрасчетный КАК ХозрасчетныйСчет91
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ ПланВидовХарактеристик.СтатьиДоходов КАК ПрочиеДоходыИРасходы
+		ПО (ПрочиеДоходыИРасходы.ВидПрочихДоходовИРасходов = ЗНАЧЕНИЕ(Перечисление.ВидыПрочихДоходовИРасходов.ПереоценкаВнеоборотныхАктивов))
+ГДЕ
+	ХозрасчетныйСчет91.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ПрочиеДоходыИРасходы))
+
+ИНДЕКСИРОВАТЬ ПО
+	КорСчет,
+	КорСубконто1
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ХозрасчетныйОстатки.Организация КАК Организация,
+	ХозрасчетныйОстатки.Счет КАК Счет,
+	ХозрасчетныйОстатки.Субконто1 КАК Субконто1,
+	ХозрасчетныйОстатки.КорСчет КАК КорСчет,
+	ХозрасчетныйОстатки.КорСубконто1 КАК КорСубконто1,
+	ХозрасчетныйОстатки.СуммаОборотДт КАК СуммаОборотДт
+ПОМЕСТИТЬ ИзмененияСтоимости
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			Период,
+			Счет В
+				(ВЫБРАТЬ
+					ВТ_Счета.Счет
+				ИЗ
+					ВТ_Счета КАК ВТ_Счета),
+			ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.НематериальныеАктивы),
+			{(Организация В (&amp;Организация)), (ЕСТЬNULL(Подразделение, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение, (Субконто1).* КАК НематериальныйАктив, (Субконто1.ВидНМА) КАК ВидНМАПоПБУ14, (Субконто1.ГруппаНМА) КАК ВидНМА, (Субконто1.ВидОбъектаУчета) КАК ВидОбъектаУчета},
+			НЕ КорСчет В
+					(ВЫБРАТЬ
+						ВТ_КорСчетаИсключить.Счет
+					ИЗ
+						ВТ_КорСчетаИсключить КАК ВТ_КорСчетаИсключить) {(КорСчет).*},
+			) КАК ХозрасчетныйОстатки
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ИзмененияСтоимости.Счет КАК Счет,
+	ИзмененияСтоимости.Субконто1 КАК НематериальныйАктив,
+	ВЫБОР
+		КОГДА ИзмененияСтоимости.КорСчет &lt;&gt; ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ПриростСтоимостиНМАПоПереоценке)
+				И КорреспондецииУценки.КорСчет ЕСТЬ NULL
+			ТОГДА ИзмененияСтоимости.СуммаОборотДт
+		ИНАЧЕ 0
+	КОНЕЦ КАК Вложения
+{ВЫБРАТЬ
+	Счет,
+	НематериальныйАктив,
+	Вложения}
+ИЗ
+	ИзмененияСтоимости КАК ИзмененияСтоимости
+		ЛЕВОЕ СОЕДИНЕНИЕ КорреспондецииУценки КАК КорреспондецииУценки
+		ПО ИзмененияСтоимости.КорСчет = КорреспондецииУценки.КорСчет
+			И ИзмененияСтоимости.КорСубконто1 = КорреспондецииУценки.КорСубконто1</query>
+			<autoFillFields>false</autoFillFields>
+		</item>
+	</dataSet>
+	<totalField>
+		<dataPath>Вложения</dataPath>
+		<expression>Сумма(Вложения)</expression>
+	</totalField>
+	<parameter>
+		<name>НачалоПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Начало периода</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period start</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>КонецПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Конец периода</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period end</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>Организация</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Организация</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Company</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:CatalogRef.Организации</v8:Type>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Основной</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Main</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>Расшифровка</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Расшифровка</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Drill down</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>НематериальныйАктив</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

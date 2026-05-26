@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<CommandSet>
+		<ExcludedCommand>Abort</ExcludedCommand>
+		<ExcludedCommand>Cancel</ExcludedCommand>
+		<ExcludedCommand>ChangeHistory</ExcludedCommand>
+		<ExcludedCommand>Copy</ExcludedCommand>
+		<ExcludedCommand>Delete</ExcludedCommand>
+		<ExcludedCommand>Help</ExcludedCommand>
+		<ExcludedCommand>Ignore</ExcludedCommand>
+		<ExcludedCommand>No</ExcludedCommand>
+		<ExcludedCommand>OK</ExcludedCommand>
+		<ExcludedCommand>Post</ExcludedCommand>
+		<ExcludedCommand>RestoreValues</ExcludedCommand>
+		<ExcludedCommand>Retry</ExcludedCommand>
+		<ExcludedCommand>SaveValues</ExcludedCommand>
+		<ExcludedCommand>SetDeletionMark</ExcludedCommand>
+		<ExcludedCommand>ShowInList</ExcludedCommand>
+		<ExcludedCommand>UndoPosting</ExcludedCommand>
+		<ExcludedCommand>Write</ExcludedCommand>
+		<ExcludedCommand>Yes</ExcludedCommand>
+	</CommandSet>
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="BeforeWriteAtServer">ПередЗаписьюНаСервере</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Контрагент" id="1">
+			<DataPath>Объект.Контрагент</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Грузополучатель</v8:content>
+				</v8:item>
+			</Title>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="КонтрагентКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КонтрагентРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="АдресДоставки" id="10">
+			<DataPath>Объект.АдресДоставки</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ChoiceButton>true</ChoiceButton>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="АдресДоставкиКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="АдресДоставкиРасширеннаяПодсказка" id="12"/>
+			<Events>
+				<Event name="OnChange">АдресДоставкиПриИзменении</Event>
+				<Event name="StartChoice">АдресДоставкиНачалоВыбора</Event>
+				<Event name="Clearing">АдресДоставкиОчистка</Event>
+			</Events>
+		</InputField>
+		<InputField name="ДополнениеКАдресуДоставки" id="13">
+			<DataPath>Объект.ДополнениеКАдресуДоставки</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<HorizontalStretch>true</HorizontalStretch>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="ДополнениеКАдресуДоставкиКонтекстноеМеню" id="14"/>
+			<ExtendedTooltip name="ДополнениеКАдресуДоставкиРасширеннаяПодсказка" id="15"/>
+		</InputField>
+		<InputField name="ПеревозчикЖДиАвиа" id="19">
+			<DataPath>Объект.ПеревозчикЖДиАвиа</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="ПеревозчикЖДиАвиаКонтекстноеМеню" id="20"/>
+			<ExtendedTooltip name="ПеревозчикЖДиАвиаРасширеннаяПодсказка" id="21"/>
+		</InputField>
+		<InputField name="АдрестДоставкиЖДилиАвиа" id="22">
+			<DataPath>Объект.АдрестДоставкиЖДилиАвиа</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="АдрестДоставкиЖДилиАвиаКонтекстноеМеню" id="23"/>
+			<ExtendedTooltip name="АдрестДоставкиЖДилиАвиаРасширеннаяПодсказка" id="24"/>
+		</InputField>
+		<InputField name="Водитель" id="16">
+			<DataPath>Объект.Водитель</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="ВодительКонтекстноеМеню" id="17"/>
+			<ExtendedTooltip name="ВодительРасширеннаяПодсказка" id="18"/>
+			<Events>
+				<Event name="OnChange">ВодительПриИзменении</Event>
+				<Event name="StartChoice">ВодительНачалоВыбора</Event>
+			</Events>
+		</InputField>
+		<InputField name="Диспетчер" id="7">
+			<DataPath>Объект.Диспетчер</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Перевозчик "авто"</v8:content>
+				</v8:item>
+			</Title>
+			<EditMode>EnterOnInput</EditMode>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="ДиспетчерКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ДиспетчерРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<InputField name="Машина" id="4">
+			<DataPath>Объект.Машина</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="МашинаКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="МашинаРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="Пломба" id="42">
+			<DataPath>Объект.Пломба</DataPath>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="ПломбаКонтекстноеМеню" id="43"/>
+			<ExtendedTooltip name="ПломбаРасширеннаяПодсказка" id="44"/>
+		</InputField>
+		<InputField name="ДатаЗакладкиТермодатчиков" id="36">
+			<DataPath>Объект.ДатаЗакладкиТермодатчиков</DataPath>
+			<ContextMenu name="ДатаЗакладкиТермодатчиковКонтекстноеМеню" id="37"/>
+			<ExtendedTooltip name="ДатаЗакладкиТермодатчиковРасширеннаяПодсказка" id="38"/>
+		</InputField>
+		<InputField name="КоличествоТермодатчиков" id="39">
+			<DataPath>Объект.КоличествоТермодатчиков</DataPath>
+			<ChoiceButton>true</ChoiceButton>
+			<SpinButton>true</SpinButton>
+			<ContextMenu name="КоличествоТермодатчиковКонтекстноеМеню" id="40"/>
+			<ExtendedTooltip name="КоличествоТермодатчиковРасширеннаяПодсказка" id="41"/>
+		</InputField>
+		<UsualGroup name="Группа1" id="31">
+			<Visible>false</Visible>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="32"/>
+			<ChildItems>
+				<InputField name="СтоимостьДоставкиЗаКг" id="28">
+					<DataPath>Объект.УдалитьСтоимостьДоставкиЗаКг</DataPath>
+					<Visible>false</Visible>
+					<ContextMenu name="СтоимостьДоставкиЗаКгКонтекстноеМеню" id="29"/>
+					<ExtendedTooltip name="СтоимостьДоставкиЗаКгРасширеннаяПодсказка" id="30"/>
+					<Events>
+						<Event name="OnChange">СтоимостьДоставкиЗаКгПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="ОбщийВесКоробок" id="33">
+					<DataPath>ОбщийВесКоробок</DataPath>
+					<Visible>false</Visible>
+					<ReadOnly>true</ReadOnly>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вес коробок, кг.</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ОбщийВесКоробокКонтекстноеМеню" id="34"/>
+					<ExtendedTooltip name="ОбщийВесКоробокРасширеннаяПодсказка" id="35"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="ОбщаяСтоимостьДоставки" id="25">
+			<DataPath>Объект.ОбщаяСтоимостьДоставки</DataPath>
+			<Visible>false</Visible>
+			<ContextMenu name="ОбщаяСтоимостьДоставкиКонтекстноеМеню" id="26"/>
+			<ExtendedTooltip name="ОбщаяСтоимостьДоставкиРасширеннаяПодсказка" id="27"/>
+			<Events>
+				<Event name="OnChange">ОбщаяСтоимостьДоставкиПриИзменении</Event>
+			</Events>
+		</InputField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Лико_ЗаявкаНаТранспортировку</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="ОбщийВесКоробок" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Общий вес коробок</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>15</v8:Digits>
+					<v8:FractionDigits>3</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<CommandInterface>
+		<NavigationPanel>
+			<Item>
+				<Command>InformationRegister.Лико_ШтрихкодыДокументов.StandardCommand.OpenByValue.Док</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormNavigationPanelGoTo</CommandGroup>
+				<Index>3</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>InformationRegister.Лико_СостояниеЗаявокНаТранспортировку.StandardCommand.OpenByRecorder</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormNavigationPanelGoTo</CommandGroup>
+				<Index>2</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>AccumulationRegister.Лико_ЗаявкиНаОтгрузку.StandardCommand.OpenByRecorder</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormNavigationPanelGoTo</CommandGroup>
+				<Index>1</Index>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>InformationRegister.Лико_АдресноеХранение.StandardCommand.OpenByRecorder</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormNavigationPanelGoTo</CommandGroup>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+			<Item>
+				<Command>CommonCommand.ИсторияИзменений</Command>
+				<Type>Auto</Type>
+				<CommandGroup>FormNavigationPanelSeeAlso</CommandGroup>
+				<DefaultVisible>false</DefaultVisible>
+				<Visible>
+					<xr:Common>false</xr:Common>
+				</Visible>
+			</Item>
+		</NavigationPanel>
+	</CommandInterface>
+</Form>

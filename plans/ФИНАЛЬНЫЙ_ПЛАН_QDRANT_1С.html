@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Финальный план: Интеграция Qdrant с 1С — гибридный поиск похожих заказов</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-card-alt: #1c2333;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --text-dim: #8b949e;
+    --accent: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d2991d;
+    --accent-red: #f85149;
+    --accent-purple: #a371f7;
+    --code-bg: #0d1117;
+    --code-border: #30363d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 0;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  /* Header */
+  .hero {
+    background: linear-gradient(135deg, #161b22 0%, #1c2333 50%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 0;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #58a6ff, #a371f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    color: var(--text-dim);
+    font-size: 1.1em;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero .meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .hero .meta .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 500;
+  }
+  .badge-green { background: rgba(63,185,80,0.15); color: var(--accent-green); border: 1px solid rgba(63,185,80,0.3); }
+  .badge-blue { background: rgba(88,166,255,0.15); color: var(--accent); border: 1px solid rgba(88,166,255,0.3); }
+  .badge-purple { background: rgba(163,113,247,0.15); color: var(--accent-purple); border: 1px solid rgba(163,113,247,0.3); }
+
+  /* Section */
+  .section { margin-top: 40px; }
+  .section h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .icon { font-size: 1.2em; }
+  .section h3 {
+    font-size: 1.15em;
+    font-weight: 600;
+    margin: 24px 0 12px;
+    color: var(--accent);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  /* Diagrams */
+  .diagram {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 6px;
+    padding: 16px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.82em;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--text-dim);
+  }
+
+  /* Code */
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 6px;
+    padding: 14px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.8em;
+    line-height: 1.5;
+    margin: 8px 0;
+  }
+  code { font-family: 'Consolas', 'Courier New', monospace; font-size: 0.9em; }
+  .hl-kw { color: #ff7b72; }
+  .hl-fn { color: #d2a8ff; }
+  .hl-str { color: #a5d6ff; }
+  .hl-cmt { color: #8b949e; font-style: italic; }
+  .hl-num { color: #79c0ff; }
+  .hl-op { color: #ff7b72; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.9em;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  th {
+    background: var(--bg-card-alt);
+    font-weight: 600;
+    color: var(--accent);
+  }
+  tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+  /* Steps */
+  .steps { counter-reset: step; }
+  .step {
+    counter-increment: step;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step::before {
+    content: counter(step);
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85em;
+  }
+  .step-content { flex: 1; }
+  .step-content .step-name { font-weight: 600; }
+  .step-content .step-desc { color: var(--text-dim); font-size: 0.9em; margin-top: 4px; }
+
+  /* Risks */
+  .risk { display: flex; gap: 10px; padding: 8px 0; align-items: flex-start; }
+  .risk-icon { font-size: 1.1em; margin-top: 1px; }
+  .risk-text { flex: 1; }
+  .risk-text strong { color: var(--accent-orange); }
+
+  /* Status dots */
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot-green { background: var(--accent-green); }
+  .dot-yellow { background: var(--accent-orange); }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85em;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 12px; }
+    .hero h1 { font-size: 1.5em; }
+    .card-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="container">
+    <h1>🔄 Qdrant + 1С: Гибридный поиск похожих заказов</h1>
+    <p class="subtitle">
+      Интеграция векторной БД Qdrant с конфигурацией 1С:ERP для семантического поиска
+      исторических заказов по параметрам этикетки. Только BSL, без Python.
+    </p>
+    <div class="meta">
+      <span class="badge badge-green">✅ Готов к реализации</span>
+      <span class="badge badge-blue">📅 08–12.05.2026</span>
+      <span class="badge badge-purple">🧩 Стек: 1С BSL + Qdrant + Ollama</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== 0. КЛЮЧЕВЫЕ РЕШЕНИЯ ===== -->
+<div class="section">
+  <h2><span class="icon">🎯</span> Ключевые архитектурные решения</h2>
+  <div class="card-row">
+    <div class="card">
+      <h3 style="margin-top:0">Приоритет №1: Определение машины</h3>
+      <p>Первая и главная задача Qdrant-поиска — по параметрам этикетки определить подходящую печатную машину (рабочий центр).</p>
+      <p style="margin-top:8px; color:var(--text-dim)">
+        Пример: «Этикетка 295×80 мм, флексо, 7 цветов, ламинация» → поиск →
+        «22 Omet (N=450), Nilpeter FA 4 (N=120)» → LLM выбирает оптимальную.
+      </p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Гибридный поиск</h3>
+      <pre>dense_vector(текст_описания) → семантическая близость
++ filter: technology = "флексо"      → точное совпадение
++ filter: work_center = "22 Omet"    → точная машина
++ filter: width BETWEEN 200..350     → числовой диапазон</pre>
+    </div>
+  </div>
+
+  <div class="card-row" style="margin-top:16px;">
+    <div class="card">
+      <h3 style="margin-top:0">🏷️ Наименование → тип продукции</h3>
+      <p>Наименование этикетки содержит <strong>скрытый тип продукции</strong>, которого нет в явном виде в 1С:</p>
+      <table style="font-size:0.82em; margin-top:8px;">
+        <tr><th>Наименование</th><th>Скрытый тип</th></tr>
+        <tr><td>"Этикетка СССР 1,35 л"</td><td>Самоклеящаяся для напитков</td></tr>
+        <tr><td>"Пленка для йогурта 500мл"</td><td>Термоусадочная плёнка</td></tr>
+        <tr><td>"Вплавляемая IML 500мл"</td><td>IML-этикетка</td></tr>
+      </table>
+      <p style="margin-top:8px; color:var(--accent-green); font-size:0.85em;">
+        ✅ Решение: поле <code>inferred_product_type</code> — эвристика из наименования
+      </p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">🧹 Фильтрация «шума» в данных</h3>
+      <p>Не все исторические заказы репрезентативны:</p>
+      <ul style="font-size:0.85em; margin-top:8px; padding-left:18px;">
+        <li>❌ Пробники (тираж < 1K) — аномальные параметры</li>
+        <li>❌ Эксперименты — один раз, не типовое</li>
+        <li>❌ Убыточные заказы — рентабельность < 0</li>
+        <li>✅ Повторные заказы — надёжный сигнал</li>
+      </ul>
+      <p style="margin-top:8px; color:var(--accent-green); font-size:0.85em;">
+        ✅ Решение: payload-фильтры + группировка по work_center
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 1. АРХИТЕКТУРА ===== -->
+<div class="section">
+  <h2><span class="icon">🏗️</span> Архитектура системы</h2>
+  <div class="diagram">
+┌──────────────────────────────────────────────────────────────────┐
+│                      1С:Предприятие (BSL)                         │
+│                                                                   │
+│  ┌──────────────────┐   ┌────────────────────────────────────┐   │
+│  │ Agent Loop        │   │ BSL-клиенты (HTTP)                 │   │
+│  │ + инструмент      │   │ • OllamaEmbeddingClient            │   │
+│  │ search_similar_   │   │ • QdrantClient                     │   │
+│  │ orders            │   │ • ИндексаторЗаказов                │   │
+│  └──────┬───────────┘   └───────────┬────────────────────────┘   │
+│         │                           │                             │
+└─────────┼───────────────────────────┼─────────────────────────────┘
+          │                           │
+          ▼                           ▼
+┌─────────────────┐     ┌──────────────────────────────┐
+│ Ollama :11434   │     │ Qdrant :6335                 │
+│ (Docker)        │     │ (Docker, инстанс для заказов)│
+│ BGE-m3          │     │ Коллекция: liko_orders       │
+│ embedding       │     │ • Векторы (1024-dim)         │
+│ POST /api/      │     │ • Payload (22+ полей)        │
+│   embeddings    │     │ • Индексы payload            │
+└─────────────────┘     └──────────────────────────────┘</div>
+</div>
+
+<!-- ===== 2. DOCKER COMPOSE ===== -->
+<div class="section">
+  <h2><span class="icon">🐳</span> Docker Compose — портативная структура</h2>
+  <div class="card-row">
+    <div class="card">
+      <h3 style="margin-top:0">Текущее состояние (12.05.2026)</h3>
+      <table>
+        <tr><td>Qdrant Roo Code (порт 6333)</td><td><span class="dot dot-green"></span> green, 117 508 векторов</td></tr>
+        <tr><td>Qdrant Orders (порт 6335)</td><td><span class="dot dot-yellow"></span> коллекция не создана</td></tr>
+        <tr><td>Ollama (порт 11434)</td><td><span class="dot dot-yellow"></span> контейнер не запущен</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Карта портов</h3>
+      <table>
+        <tr><th>Сервис</th><th>Внешний</th><th>Внутренний</th><th>Назначение</th></tr>
+        <tr><td>qdrant_roo</td><td>6333</td><td>6333</td><td>REST API (Roo Code)</td></tr>
+        <tr><td>qdrant_roo</td><td>6334</td><td>6334</td><td>gRPC</td></tr>
+        <tr><td>qdrant_orders</td><td>6335</td><td>6333</td><td>REST API (1С заказы)</td></tr>
+        <tr><td>qdrant_orders</td><td>6336</td><td>6334</td><td>gRPC</td></tr>
+        <tr><td>ollama</td><td>11434</td><td>11434</td><td>Embedding API</td></tr>
+      </table>
+      <p style="margin-top:8px; color:var(--accent-orange); font-size:0.85em">
+        ⚠️ BSL-код должен использовать порт <strong>6335</strong> для qdrant_orders, а не 6333!
+      </p>
+    </div>
+  </div>
+
+  <h3>Структура папок</h3>
+  <pre>d:/project/OKIL/
+├── 1c/ERP/Конф/                    ← конфигурация 1С
+├── services/                        ← Docker Compose
+│   ├── qdrant_roo/
+│   │   ├── docker-compose.yml
+│   │   └── storage/                 ← bind mount (Roo Code)
+│   ├── qdrant_orders/
+│   │   ├── docker-compose.yml
+│   │   └── storage/                 ← bind mount (заказы)
+│   ├── ollama/
+│   │   └── docker-compose.yml       ← named volume для моделей
+│   └── docker-compose.yml           ← корневой (все три)
+├── qdrant_storage/                  ← текущие данные Roo (~119K)
+└── qdrant_orders_storage/           ← данные заказов (новая папка)</pre>
+
+  <h3>Сохранность данных</h3>
+  <table>
+    <tr><th>Сценарий</th><th>Данные Qdrant</th><th>Данные Ollama</th></tr>
+    <tr><td><code>docker stop</code></td><td>✅ Сохранены (bind mount)</td><td>N/A</td></tr>
+    <tr><td><code>docker rm</code></td><td>✅ Сохранены</td><td>N/A</td></tr>
+    <tr><td><code>docker compose down</code></td><td>✅ Сохранены</td><td>✅ Сохранены (named volume)</td></tr>
+    <tr><td><code>docker compose down -v</code></td><td>✅ Сохранены (bind mount не удаляется)</td><td>❌ Удалены!</td></tr>
+  </table>
+</div>
+
+<!-- ===== 3. СХЕМА КОЛЛЕКЦИИ ===== -->
+<div class="section">
+  <h2><span class="icon">📊</span> Схема коллекции Qdrant <code>liko_orders</code></h2>
+  <div class="card-row">
+    <div class="card">
+      <h3 style="margin-top:0">Параметры коллекции</h3>
+      <table>
+        <tr><td>Размерность вектора</td><td>1024 (BGE-m3)</td></tr>
+        <tr><td>Метрика</td><td>Cosine</td></tr>
+        <tr><td>Хранение</td><td>On-disk vectors + on-disk payload</td></tr>
+        <tr><td>HNSW</td><td>m=64, ef_construct=512</td></tr>
+        <tr><td>Индексация payload</td><td>Включена для всех полей</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Структура точки (26+ полей)</h3>
+      <table style="font-size:0.82em;">
+        <tr><th>Поле</th><th>Тип</th><th>Назначение</th></tr>
+        <tr><td>order_id</td><td>keyword</td><td>Номер заказа (ЛК006640049)</td></tr>
+        <tr><td>order_date</td><td>datetime</td><td>Дата заказа</td></tr>
+        <tr><td>client</td><td>keyword</td><td>Контрагент</td></tr>
+        <tr><td>label_name</td><td>текст</td><td>Название этикетки</td></tr>
+        <tr><td style="background:rgba(88,166,255,0.1);">inferred_product_type</td><td style="background:rgba(88,166,255,0.1);">keyword</td><td style="background:rgba(88,166,255,0.1);">Тип продукции (из наименования)</td></tr>
+        <tr><td>size_width_mm</td><td>integer</td><td>Ширина, мм</td></tr>
+        <tr><td>size_height_mm</td><td>integer</td><td>Длина, мм</td></tr>
+        <tr><td>rapport_mm</td><td>float</td><td>Раппорт</td></tr>
+        <tr><td>lanes_print</td><td>integer</td><td>Этикеток в ряду</td></tr>
+        <tr><td>labels_per_lane</td><td>integer</td><td>Этикеток в подаче</td></tr>
+        <tr><td>technology</td><td>keyword</td><td>Технология (флексо/офсет/…)</td></tr>
+        <tr><td>colors_count</td><td>integer</td><td>Количество красок</td></tr>
+        <tr><td>material</td><td>keyword</td><td>Материал</td></tr>
+        <tr><td>has_lamination</td><td>boolean</td><td>Ламинация</td></tr>
+        <tr><td>has_embossing</td><td>boolean</td><td>Тиснение</td></tr>
+        <tr><td>has_screen</td><td>boolean</td><td>Трафарет</td></tr>
+        <tr><td>work_center</td><td>keyword</td><td>Рабочий центр (машина)</td></tr>
+        <tr><td>circulation_thousands</td><td>integer</td><td>Тираж, тыс. шт</td></tr>
+        <tr><td>linear_meters</td><td>float</td><td>Метраж</td></tr>
+        <tr><td>price_per_thousand_eur</td><td>float</td><td>Цена за 1000, €</td></tr>
+        <tr><td>profitability_pct</td><td>float</td><td>Рентабельность, %</td></tr>
+        <tr><td>production_time_min</td><td>float</td><td>Время изготовления, мин</td></tr>
+        <tr><td style="background:rgba(63,185,80,0.1);">is_repeated_order</td><td style="background:rgba(63,185,80,0.1);">boolean</td><td style="background:rgba(63,185,80,0.1);">Это повторный заказ?</td></tr>
+        <tr><td style="background:rgba(63,185,80,0.1);">order_repeat_count</td><td style="background:rgba(63,185,80,0.1);">integer</td><td style="background:rgba(63,185,80,0.1);">Сколько раз повторялся</td></tr>
+        <tr><td style="background:rgba(248,81,73,0.1);">is_test_order</td><td style="background:rgba(248,81,73,0.1);">boolean</td><td style="background:rgba(248,81,73,0.1);">Пробник/тест/эксперимент</td></tr>
+        <tr><td>text_for_embedding</td><td>текст</td><td>Конкатенация полей → вектор</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3>Формат текста для векторизации (усиленный)</h3>
+  <pre>{label_name} — {inferred_product_type}. {technology} печать. {colors_count} цветов.
+Материал: {material}. Ламинация: {has_lamination}, тиснение: {has_embossing}.
+Размер: {size_width_mm}×{size_height_mm} мм. Рабочий центр: {work_center}.
+Тираж: {circulation_thousands}K шт. Клиент: {client}.</pre>
+  <p style="margin-top:8px; color:var(--accent); font-size:0.85em;">
+    🔑 Ключевое: <code>inferred_product_type</code> добавлен в текст — вектор захватит семантику типа продукции.
+  </p>
+
+  <h3>Эвристика: определение типа продукции из наименования (подробно)</h3>
+
+  <div class="card" style="margin-bottom:16px;">
+    <h4 style="margin-top:0; color:var(--accent);">Как это работает</h4>
+    <p>Наименование этикетки в 1С — это свободная строка, но она содержит <strong>скрытые маркеры</strong> типа продукции:</p>
+    <table style="font-size:0.82em; margin-top:8px;">
+      <tr><th>Маркер в наименовании</th><th>Вывод</th><th>Почему важно для машины</th></tr>
+      <tr><td>"этикет" + "вплав" / "iml"</td><td>Вплавляемая этикетка</td><td>Требует машину с модулем вплавки</td></tr>
+      <tr><td>"этикет" + "термоусад"</td><td>Термоусадочная этикетка</td><td>Другая технология усадки, другая машина</td></tr>
+      <tr><td>"этикет" + "вино" / "алкоголь" / "пиво"</td><td>Этикетка для напитков</td><td>Специальные требования к влагостойкости</td></tr>
+      <tr><td>"этикет" + "масло" / "авто"</td><td>Этикетка для масел/химии</td><td>Стойкость к маслам, другие краски</td></tr>
+      <tr><td>"этикет" + "фармацевт" / "лекарств"</td><td>Фармацевтическая этикетка</td><td>Высокие требования к качеству печати</td></tr>
+      <tr><td>"этикет" + "пищев" / "продукт" / "йогурт"</td><td>Пищевая этикетка</td><td>Контакт с пищей, сертификация</td></tr>
+      <tr><td>"этикет" (остальное)</td><td>Самоклеящаяся этикетка</td><td>Стандартная машина</td></tr>
+      <tr><td>"пленк" / "рукав"</td><td>Гибкая упаковка/рукав</td><td>Машина с модулем ламинации</td></tr>
+      <tr><td>"пакет"</td><td>Пакет</td><td>Пакетная машина, не рулонная</td></tr>
+      <tr><td>"упаковк"</td><td>Упаковка</td><td>Широкоформатная машина</td></tr>
+      <tr><td>"рулон" / "термоэтикет"</td><td>Термоэтикетка (рулон)</td><td>Термоголовка, не флексо</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;">
+    <h4 style="margin-top:0; color:var(--accent);">Полная эвристика (BSL)</h4>
+    <pre><span class="hl-cmt">//+Лико m.shenderov 12.05.2026</span>
+<span class="hl-cmt">// Определяет тип продукции из наименования этикетки</span>
+<span class="hl-cmt">// Возвращает: строка-идентификатор типа продукции</span>
+<span class="hl-kw">Функция</span> <span class="hl-fn">ОпределитьТипПродукцииПоНаименованию</span>(Наименование)
+    Нижнее = НРег(Наименование);
+
+    <span class="hl-cmt">// ===== ЭТИКЕТКИ =====</span>
+    Если Найти(Нижнее, <span class="hl-str">"этикет"</span>) > <span class="hl-num">0</span> Тогда
+
+        <span class="hl-cmt">// Вплавляемые (IML)</span>
+        Если Найти(Нижнее, <span class="hl-str">"вплав"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"iml"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"in-mold"</span>) > <span class="hl-num">0</span> Тогда
+            Возврат <span class="hl-str">"вплавляемая_этикетка"</span>;
+        КонецЕсли;
+
+        <span class="hl-cmt">// Термоусадочные</span>
+        Если Найти(Нижнее, <span class="hl-str">"термоусад"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"sleeve"</span>) > <span class="hl-num">0</span> Тогда
+            Возврат <span class="hl-str">"термоусадочная_этикетка"</span>;
+        КонецЕсли;
+
+        <span class="hl-cmt">// Термоэтикетки (рулонные)</span>
+        Если Найти(Нижнее, <span class="hl-str">"термоэтикет"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"термо"</span>) > <span class="hl-num">0</span> Тогда
+            Возврат <span class="hl-str">"термоэтикетка"</span>;
+        КонецЕсли;
+
+        <span class="hl-cmt">// Для напитков (алкоголь, вино, пиво, вода)</span>
+        Если Найти(Нижнее, <span class="hl-str">"вино"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"алкоголь"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"пиво"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"водк"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"коньяк"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"виски"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"минеральн"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"напитк"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"ссср"</span>) > <span class="hl-num">0</span> Тогда  <span class="hl-cmt">// "СССР" — бренд напитков</span>
+            Возврат <span class="hl-str">"этикетка_для_напитков"</span>;
+        КонецЕсли;
+
+        <span class="hl-cmt">// Для масел и автохимии</span>
+        Если Найти(Нижнее, <span class="hl-str">"масло"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"авто"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"моторн"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"химия"</span>) > <span class="hl-num">0</span> Тогда
+            Возврат <span class="hl-str">"этикетка_для_масел_химии"</span>;
+        КонецЕсли;
+
+        <span class="hl-cmt">// Фармацевтические</span>
+        Если Найти(Нижнее, <span class="hl-str">"фармацевт"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"лекарств"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"медицинск"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"таблетк"</span>) > <span class="hl-num">0</span> Тогда
+            Возврат <span class="hl-str">"фармацевтическая_этикетка"</span>;
+        КонецЕсли;
+
+        <span class="hl-cmt">// Пищевые</span>
+        Если Найти(Нижнее, <span class="hl-str">"пищев"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"продукт"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"йогурт"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"молоко"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"сыр"</span>) > <span class="hl-num">0</span>
+            Или Найти(Нижнее, <span class="hl-str">"мяс"</span>) > <span class="hl-num">0</span> Тогда
+            Возврат <span class="hl-str">"пищевая_этикетка"</span>;
+        КонецЕсли;
+
+        <span class="hl-cmt">// По умолчанию — самоклеящаяся</span>
+        Возврат <span class="hl-str">"самоклеящаяся_этикетка"</span>;
+
+    <span class="hl-cmt">// ===== ПЛЁНКИ И РУКАВА =====</span>
+    ИначеЕсли Найти(Нижнее, <span class="hl-str">"пленк"</span>) > <span class="hl-num">0</span>
+        Или Найти(Нижнее, <span class="hl-str">"рукав"</span>) > <span class="hl-num">0</span>
+        Или Найти(Нижнее, <span class="hl-str">"film"</span>) > <span class="hl-num">0</span> Тогда
+        Возврат <span class="hl-str">"гибкая_упаковка"</span>;
+
+    <span class="hl-cmt">// ===== ПАКЕТЫ =====</span>
+    ИначеЕсли Найти(Нижнее, <span class="hl-str">"пакет"</span>) > <span class="hl-num">0</span>
+        Или Найти(Нижнее, <span class="hl-str">"bag"</span>) > <span class="hl-num">0</span> Тогда
+        Возврат <span class="hl-str">"пакет"</span>;
+
+    <span class="hl-cmt">// ===== УПАКОВКА =====</span>
+    ИначеЕсли Найти(Нижнее, <span class="hl-str">"упаковк"</span>) > <span class="hl-num">0</span>
+        Или Найти(Нижнее, <span class="hl-str">"packaging"</span>) > <span class="hl-num">0</span> Тогда
+        Возврат <span class="hl-str">"упаковка"</span>;
+
+    <span class="hl-cmt">// ===== ТЕРМОЭТИКЕТКИ (без слова "этикет" в начале) =====</span>
+    ИначеЕсли Найти(Нижнее, <span class="hl-str">"термоэтикет"</span>) > <span class="hl-num">0</span>
+        Или Найти(Нижнее, <span class="hl-str">"термо"</span>) > <span class="hl-num">0</span> Тогда
+        Возврат <span class="hl-str">"термоэтикетка"</span>;
+
+    <span class="hl-cmt">// ===== НЕ ОПРЕДЕЛЕНО =====</span>
+    Иначе
+        Возврат <span class="hl-str">"неопределено"</span>;
+    КонецЕсли;
+
+<span class="hl-kw">КонецФункции</span></pre>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;">
+    <h4 style="margin-top:0; color:var(--accent);">Как inferred_product_type используется</h4>
+    <table style="font-size:0.85em;">
+      <tr><th>Этап</th><th>Как используется</th></tr>
+      <tr><td><strong>Индексация</strong></td><td>Заполняется в payload точки Qdrant при индексации заказа</td></tr>
+      <tr><td><strong>Текст для embedding</strong></td><td>Добавляется в text_for_embedding: "{label_name} — {inferred_product_type}. ..."</td></tr>
+      <tr><td><strong>Поиск (фильтр)</strong></td><td>LLM определяет inferred_product_type из запроса → 1С добавляет payload-фильтр</td></tr>
+      <tr><td><strong>Группировка</strong></td><td>Результаты группируются по work_center ВНУТРИ одного inferred_product_type</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h4 style="margin-top:0; color:var(--accent-orange);">Ограничения и fallback</h4>
+    <ul style="font-size:0.85em; padding-left:18px;">
+      <li><strong>Покрытие:</strong> ~75% наименований определяются эвристикой</li>
+      <li><strong>~25% → "неопределено":</strong> нестандартные наименования, аббревиатуры, коды</li>
+      <li><strong>Fallback:</strong> если "неопределено" — поиск идёт без фильтра по типу продукции (только вектор + другие фильтры)</li>
+      <li><strong>Улучшение:</strong> LLM-инференс при индексации (дороже, но точнее) — отдельный этап</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 4. BSL-КЛИЕНТЫ ===== -->
+<div class="section">
+  <h2><span class="icon">💻</span> BSL-клиенты: Ollama Embedding + Qdrant</h2>
+
+  <h3>4.1 <code>ПолучитьЭмбеддинг(Текст)</code> — клиент Ollama</h3>
+  <pre><span class="hl-cmt">//+Лико m.shenderov 08.05.2026</span>
+<span class="hl-cmt">// Получает вектор (Массив из 1024 чисел) для текста через Ollama API</span>
+<span class="hl-kw">&НаСервере</span>
+<span class="hl-kw">Функция</span> <span class="hl-fn">ПолучитьЭмбеддинг</span>(Текст) <span class="hl-kw">Экспорт</span>
+    <span class="hl-kw">Попытка</span>
+        URL = <span class="hl-str">"localhost"</span>;
+        Порт = <span class="hl-num">11434</span>;
+        Путь = <span class="hl-str">"/api/embeddings"</span>;
+
+        Тело = <span class="hl-kw">Новый</span> Структура;
+        Тело.Вставить(<span class="hl-str">"model"</span>, <span class="hl-str">"bge-m3"</span>);
+        Тело.Вставить(<span class="hl-str">"prompt"</span>, Текст);
+
+        <span class="hl-cmt">// HTTP POST → Ответ.ПолучитьТелоКакСтроку() → ПрочитатьJSON</span>
+        <span class="hl-kw">Возврат</span> Данные.embedding;  <span class="hl-cmt">// Массив из 1024 чисел</span>
+    <span class="hl-kw">Исключение</span>
+        <span class="hl-kw">Возврат</span> <span class="hl-kw">Новый</span> Массив;
+    <span class="hl-kw">КонецПопытки</span>;
+<span class="hl-kw">КонецФункции</span></pre>
+
+  <h3>4.2 <code>СоздатьКоллекциюQdrant()</code> — идемпотентное создание</h3>
+  <pre><span class="hl-cmt">//+Лико m.shenderov 08.05.2026</span>
+<span class="hl-cmt">// Создаёт коллекцию liko_orders в Qdrant (порт 6335), если её нет</span>
+<span class="hl-kw">&НаСервере</span>
+<span class="hl-kw">Процедура</span> <span class="hl-fn">СоздатьКоллекциюQdrant</span>() <span class="hl-kw">Экспорт</span>
+    Порт = <span class="hl-num">6335</span>;  <span class="hl-cmt">// qdrant_orders</span>
+    <span class="hl-cmt">// GET /collections/liko_orders → если 404 →</span>
+    <span class="hl-cmt">// PUT /collections/liko_orders { vectors: { size: 1024, distance: "Cosine" } }</span>
+<span class="hl-kw">КонецПроцедуры</span></pre>
+
+  <h3>4.3 <code>ДобавитьТочкиQdrant(Точки)</code> — upsert</h3>
+  <pre><span class="hl-cmt">//+Лико m.shenderov 08.05.2026</span>
+<span class="hl-cmt">// Точки: Массив структур {id, vector, payload}</span>
+<span class="hl-kw">&НаСервере</span>
+<span class="hl-kw">Функция</span> <span class="hl-fn">ДобавитьТочкиQdrant</span>(Точки) <span class="hl-kw">Экспорт</span>
+    Порт = <span class="hl-num">6335</span>;  Путь = <span class="hl-str">"/collections/liko_orders/points"</span>;
+    <span class="hl-cmt">// PUT { points: Точки } → HTTP 200</span>
+<span class="hl-kw">КонецФункции</span></pre>
+
+  <h3>4.4 <code>ПоискПохожихЗаказов(Вектор, Фильтры, Лимит)</code> — гибридный поиск</h3>
+  <pre><span class="hl-cmt">//+Лико m.shenderov 08.05.2026</span>
+<span class="hl-cmt">// Гибридный: вектор семантики + payload-фильтры (диапазоны, категории, булевы)</span>
+<span class="hl-kw">&НаСервере</span>
+<span class="hl-kw">Функция</span> <span class="hl-fn">ПоискПохожихЗаказов</span>(ВекторЗапроса, Фильтры = Неопределено, Лимит = <span class="hl-num">20</span>) <span class="hl-kw">Экспорт</span>
+    Порт = <span class="hl-num">6335</span>;  Путь = <span class="hl-str">"/collections/liko_orders/points/search"</span>;
+
+    Тело = <span class="hl-kw">Новый</span> Структура;
+    Тело.Вставить(<span class="hl-str">"vector"</span>, ВекторЗапроса);
+    Тело.Вставить(<span class="hl-str">"limit"</span>, Лимит);  <span class="hl-cmt">// top-20 для последующей группировки</span>
+
+    <span class="hl-cmt">// Фильтры по умолчанию (исключаем «шум»):</span>
+    <span class="hl-cmt">//   circulation_thousands >= 10</span>
+    <span class="hl-cmt">//   is_test_order = false</span>
+    <span class="hl-cmt">//   profitability_pct >= 0</span>
+    <span class="hl-cmt">// Сборка фильтров: must → [match/range для каждого поля]</span>
+    <span class="hl-cmt">// POST /search → Ответ.result — массив результатов</span>
+<span class="hl-kw">КонецФункции</span></pre>
+
+  <h3>4.5 <code>СгруппироватьПоМашинам(Результаты)</code> — агрегация для LLM</h3>
+  <pre><span class="hl-cmt">//+Лико m.shenderov 12.05.2026</span>
+<span class="hl-cmt">// Группирует top-20 результатов по work_center → статистика</span>
+<span class="hl-kw">&НаСервере</span>
+<span class="hl-kw">Функция</span> <span class="hl-fn">СгруппироватьПоМашинам</span>(Результаты) <span class="hl-kw">Экспорт</span>
+    Группы = <span class="hl-kw">Новый</span> Соответствие;
+
+    Для Каждого Рез Из Результаты Цикл
+        Машина = Рез.payload.work_center;
+        Если Не Группы.СодержитКлюч(Машина) Тогда
+            Группа = <span class="hl-kw">Новый</span> Структура;
+            Группа.Вставить(<span class="hl-str">"name"</span>, Машина);
+            Группа.Вставить(<span class="hl-str">"count"</span>, <span class="hl-num">0</span>);
+            Группа.Вставить(<span class="hl-str">"orders"</span>, <span class="hl-kw">Новый</span> Массив);
+            Группы.Вставить(Машина, Группа);
+        КонецЕсли;
+
+        Группа = Группы.Получить(Машина);
+        Группа.count = Группа.count + <span class="hl-num">1</span>;
+        Группа.orders.Добавить(Рез);
+    КонецЦикла;
+
+    <span class="hl-cmt">// Сортируем по количеству заказов (убывание)</span>
+    <span class="hl-cmt">// Возвращаем: [{name, count, avg_profitability, sample_orders: [...]}]</span>
+<span class="hl-kw">КонецФункции</span></pre>
+</div>
+
+<!-- ===== 5. ИНДЕКСАЦИЯ ===== -->
+<div class="section">
+  <h2><span class="icon">📥</span> Индексация заказов</h2>
+
+  <h3>5.1 <code>ПроиндексироватьВсеЗаказы()</code> — пакетная загрузка</h3>
+  <pre><span class="hl-cmt">//+Лико m.shenderov 08.05.2026</span>
+<span class="hl-cmt">// Индексирует все проведённые заказы клиентов в Qdrant</span>
+<span class="hl-cmt">// Параметры: ДатаС, ДатаПо — период; ПакетныйРазмер = 50</span>
+<span class="hl-kw">&НаСервере</span>
+<span class="hl-kw">Процедура</span> <span class="hl-fn">ПроиндексироватьВсеЗаказы</span>(
+    ДатаС = Неопределено, ДатаПо = Неопределено, ПакетныйРазмер = <span class="hl-num">50</span>) <span class="hl-kw">Экспорт</span>
+
+    <span class="hl-cmt">// 1. СоздатьКоллекциюQdrant() — идемпотентно</span>
+    <span class="hl-cmt">// 2. Запрос ВЫБРАТЬ из Документ.ЗаказКлиента ГДЕ Проведен</span>
+    <span class="hl-cmt">// 3. Для каждого:</span>
+    <span class="hl-cmt">//    a. СформироватьТекстЗаказа() → конкатенация полей</span>
+    <span class="hl-cmt">//    b. ПолучитьЭмбеддинг(текст) → вектор 1024-dim</span>
+    <span class="hl-cmt">//    c. Сформировать payload (22+ полей)</span>
+    <span class="hl-cmt">//    d. Добавить в пакет, при достижении ПакетныйРазмер → ДобавитьТочкиQdrant()</span>
+<span class="hl-kw">КонецПроцедуры</span></pre>
+
+  <div class="card-row">
+    <div class="card">
+      <h3 style="margin-top:0">Поток индексации</h3>
+      <pre style="font-size:0.82em;">ЗаказКлиента (1С)
+  → формирование текста
+    → Ollama /api/embeddings
+      → вектор (1024 float)
+  → числовые поля (payload)
+    → Qdrant PUT /collections/liko_orders/points</pre>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Оценка времени</h3>
+      <table>
+        <tr><td>На 1 заказ</td><td>~0.2 сек (embedding + upsert)</td></tr>
+        <tr><td>1 000 заказов</td><td>~3-4 мин</td></tr>
+        <tr><td>5 000 заказов</td><td>~15-20 мин</td></tr>
+        <tr><td>10 000 заказов</td><td>~30-35 мин</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 6. AGENT LOOP ===== -->
+<div class="section">
+  <h2><span class="icon">🤖</span> Инструмент <code>search_similar_orders</code> в Agent Loop</h2>
+
+  <div class="card">
+    <h3 style="margin-top:0">Определение инструмента (добавляется в <code>ОписаниеИнструментов()</code>)</h3>
+    <pre><span class="hl-cmt">// 12. search_similar_orders</span>
+Инстр.Вставить(<span class="hl-str">"type"</span>, <span class="hl-str">"function"</span>);
+ФункцияИнстр.Вставить(<span class="hl-str">"name"</span>, <span class="hl-str">"search_similar_orders"</span>);
+ФункцияИнстр.Вставить(<span class="hl-str">"description"</span>,
+    <span class="hl-str">"Найти похожие заказы в базе через Qdrant (гибридный поиск).
+    |Используй для поиска заказов с похожими параметрами."</span>);
+
+<span class="hl-cmt">// Параметры:</span>
+<span class="hl-cmt">//   query (string, required) — текст описания для семантического поиска</span>
+<span class="hl-cmt">//   technology (string) — фильтр: флексо, офсет, цифра, глубокая, трафарет</span>
+<span class="hl-cmt">//   min_circulation (integer) — мин. тираж (тыс. шт)</span>
+<span class="hl-cmt">//   max_circulation (integer) — макс. тираж (тыс. шт)</span>
+<span class="hl-cmt">//   min_profitability (number) — мин. рентабельность (%)</span></pre>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Реализация <code>ВыполнитьИнструмент_search_similar_orders()</code></h3>
+    <pre><span class="hl-cmt">//+Лико m.shenderov 08.05.2026</span>
+<span class="hl-kw">&НаСервере</span>
+<span class="hl-kw">Функция</span> <span class="hl-fn">ВыполнитьИнструмент_search_similar_orders</span>(ДокументСсылка, Аргументы)
+    ЗапросПоиска = Аргументы.query;
+
+    <span class="hl-cmt">// 1. Собрать фильтры из аргументов + фильтры по умолчанию</span>
+    <span class="hl-cmt">// 2. ПолучитьЭмбеддинг(ЗапросПоиска) → вектор</span>
+    <span class="hl-cmt">// 3. ПоискПохожихЗаказов(вектор, фильтры, 20) → top-20</span>
+    <span class="hl-cmt">// 4. СгруппироватьПоМашинам(результаты) → статистика</span>
+    <span class="hl-cmt">// 5. Вернуть JSON: {work_centers: [{name, count, avg_profit, sample_orders}]}</span>
+<span class="hl-kw">КонецФункции</span></pre>
+  </div>
+
+  <h3>Поток поиска (в Agent Loop)</h3>
+  <div class="diagram">LLM вызывает search_similar_orders(query, filters)
+        ↓
+1С → Ollama embedding(query) → Qdrant POST search (top-20)
+        ↓                              ↑
+   вектор + payload-фильтры ──────────┘
+        ↓
+   СгруппироватьПоМашинам(top-20)
+        ↓
+   {work_centers: [
+     {name: "22 Omet", count: 45, avg_profit: 20.5%, samples: [...]},
+     {name: "Nilpeter FA 4", count: 12, avg_profit: 18.2%, samples: [...]}
+   ]}
+        ↓
+   LLM анализирует статистику → рекомендует машину</div>
+</div>
+
+<!-- ===== 7. ПОРЯДОК РЕАЛИЗАЦИИ ===== -->
+<div class="section">
+  <h2><span class="icon">📋</span> Порядок реализации (13 шагов)</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">Docker Compose — Ollama + BGE-m3</span>
+        <div class="step-desc">Запустить контейнер ollama, загрузить модель bge-m3. Проверить: <code>curl localhost:11434/api/embeddings</code></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">Создать коллекцию liko_orders</span>
+        <div class="step-desc">PUT /collections/liko_orders { vectors: { size: 1024, distance: "Cosine" }, hnsw_config: { m: 64 } }</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">BSL: ПолучитьЭмбеддинг()</span>
+        <div class="step-desc">HTTP-клиент к Ollama /api/embeddings. Возвращает Массив из 1024 чисел.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">BSL: СоздатьКоллекциюQdrant()</span>
+        <div class="step-desc">Идемпотентное создание коллекции через Qdrant REST API (порт 6335).</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">BSL: ОпределитьТипПродукцииПоНаименованию()</span>
+        <div class="step-desc">Эвристика: извлекаем тип продукции из наименования этикетки (самоклеящаяся, вплавляемая, термоусадка, упаковка...)</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">BSL: ДобавитьТочкиQdrant()</span>
+        <div class="step-desc">PUT /collections/liko_orders/points — upsert точек с векторами и payload (26+ полей, включая inferred_product_type, is_test_order, order_repeat_count).</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">BSL: ПоискПохожихЗаказов() — с фильтрами по умолчанию</span>
+        <div class="step-desc">POST /search + фильтры: circulation >= 10, is_test_order = false, profitability >= 0. Лимит top-20.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">BSL: СгруппироватьПоМашинам()</span>
+        <div class="step-desc">Группировка top-20 по work_center → статистика: count, avg_profitability, sample_orders.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">BSL: ПроиндексироватьВсеЗаказы()</span>
+        <div class="step-desc">Запрос всех проведённых заказов → пакетная индексация (по 50) с inferred_product_type и is_test_order.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">Инструмент search_similar_orders в Agent Loop</span>
+        <div class="step-desc">Добавить в ОписаниеИнструментов() и ВыполнитьИнструменты(). Возвращает агрегированную статистику по машинам.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">Тестирование</span>
+        <div class="step-desc">Индексация тестового заказа → поиск через LLM → проверка: правильная машина, нет пробников в результатах.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">Валидация качества</span>
+        <div class="step-desc">Проверить: пробники исключены, группировка работает, LLM получает агрегированные данные, а не сырые заказы.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-content">
+        <span class="step-name">Полная индексация</span>
+        <div class="step-desc">~5K-10K заказов в Qdrant. Ночной запуск или фоновое задание.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 8. ДИАГНОСТИКА ИНДЕКСАЦИИ ===== -->
+<div class="section">
+  <h2><span class="icon">🔍</span> Диагностика: почему индексация перестала работать</h2>
+  <div class="card">
+    <h3 style="margin-top:0; color:var(--accent-red)">Корневая причина: контейнер Qdrant был остановлен</h3>
+    <table>
+      <tr><th>Симптом</th><th>Причина</th><th>Решение</th></tr>
+      <tr><td>curl localhost:6333 → connection refused</td><td>Docker-контейнер qdrant_roo не запущен</td><td><code>docker start qdrant_roo</code></td></tr>
+      <tr><td>Индексация кодовой базы не работает</td><td>Roo не может писать в Qdrant</td><td>Запустить контейнер</td></tr>
+      <tr><td>119K → 117K векторов</td><td>Небольшая потеря при перезапуске (WAL-сегменты)</td><td>Нормально, восстановится</td></tr>
+    </table>
+    <p style="margin-top:12px; color:var(--accent-green);">
+      ✅ После запуска контейнера: status = green, 117 508 векторов, healthz = ok
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Команды для мониторинга</h3>
+    <pre><span class="hl-cmt"># Проверка статуса Qdrant</span>
+curl http://localhost:6333/healthz
+curl http://localhost:6333/collections/ws-5e70e849fd3d1c12 | python -m json.tool
+
+<span class="hl-cmt"># Проверка Docker-контейнеров</span>
+docker ps -a --filter "name=qdrant"
+
+<span class="hl-cmt"># Запуск если остановлен</span>
+docker start qdrant_roo
+
+<span class="hl-cmt"># Автозапуск при старте системы</span>
+<span class="hl-cmt"># В docker-compose.yml: restart: unless-stopped</span></pre>
+  </div>
+</div>
+
+<!-- ===== 9. СЕМАНТИЧЕСКИЙ ПОИСК ===== -->
+<div class="section">
+  <h2><span class="icon">🔎</span> Как использовать семантический поиск</h2>
+  <div class="card-row">
+    <div class="card">
+      <h3 style="margin-top:0">VS Code — Roo Search Codebase</h3>
+      <p><code>Ctrl+Shift+P</code> → <strong>«Roo: Search Codebase»</strong></p>
+      <p style="margin-top:8px; color:var(--text-dim)">Примеры запросов: «ЗаказКлиента», «Лико_», «BSL-функция», «проведение документа», «расчёт тиража».</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Проверка Qdrant API</h3>
+      <pre>curl http://localhost:6333/collections</pre>
+      <p style="margin-top:8px; color:var(--text-dim); font-size:0.85em">Должен вернуть коллекцию <code>ws-5e70e849fd3d1c12</code> с ~119K точками.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 10. РИСКИ ===== -->
+<div class="section">
+  <h2><span class="icon">⚠️</span> Риски и меры</h2>
+  <div class="card">
+    <div class="risk">
+      <span class="risk-icon">🧠</span>
+      <div class="risk-text">
+        <strong>Ollama может не хватить RAM (4 GB)</strong> — BGE-m3 требует ~2 GB. Решение: лимит <code>deploy.resources.limits.memory: 4G</code> в docker-compose.
+      </div>
+    </div>
+    <div class="risk">
+      <span class="risk-icon">🌐</span>
+      <div class="risk-text">
+        <strong>1С HTTPСоединение не поддерживает localhost</strong> — использовать <code>127.0.0.1</code> или <code>host.docker.internal</code>.
+      </div>
+    </div>
+    <div class="risk">
+      <span class="risk-icon">⏱️</span>
+      <div class="risk-text">
+        <strong>Долгая индексация</strong> — 10K заказов × 0.2 сек ≈ 30 мин. Решение: пакетный режим, ночной запуск.
+      </div>
+    </div>
+    <div class="risk">
+      <span class="risk-icon">🗄️</span>
+      <div class="risk-text">
+        <strong>Qdrant занят Roo Code</strong> — отдельная коллекция <code>liko_orders</code>, отдельный порт 6335. Конфликта нет.
+      </div>
+    </div>
+    <div class="risk">
+      <span class="risk-icon">🔄</span>
+      <div class="risk-text">
+        <strong>Изменение заказа после индексации</strong> — периодическая реиндексация или индексация при проведении документа.
+      </div>
+    </div>
+    <div class="risk">
+      <span class="risk-icon">🏷️</span>
+      <div class="risk-text">
+        <strong>Эвристика типа продукции может ошибаться</strong> — не все наименования содержат явные маркеры. Решение: LLM-инференс при индексации (дороже, но точнее) или ручная корректировка.
+      </div>
+    </div>
+    <div class="risk">
+      <span class="risk-icon">🧹</span>
+      <div class="risk-text">
+        <strong>Пробники могут не быть помечены</strong> — если в 1С нет флага «тестовый заказ», эвристика по тиражу (< 1K) может пропустить некоторые. Решение: комбинировать несколько критериев (тираж + рентабельность + repeat_count).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 11. СВОДКА КОМАНД ===== -->
+<div class="section">
+  <h2><span class="icon">⚡</span> Сводка полезных команд</h2>
+
+  <h3>Docker</h3>
+  <pre><span class="hl-cmt"># Запуск всех сервисов</span>
+cd services && docker compose up -d
+
+<span class="hl-cmt"># Установка модели BGE-m3</span>
+docker exec -it ollama ollama pull bge-m3
+
+<span class="hl-cmt"># Проверка</span>
+docker ps
+docker exec -it ollama ollama list</pre>
+
+  <h3>Qdrant</h3>
+  <pre><span class="hl-cmt"># Статус коллекции Roo Code</span>
+curl http://localhost:6333/collections/ws-5e70e849fd3d1c12
+
+<span class="hl-cmt"># Статус коллекции заказов</span>
+curl http://localhost:6335/collections/liko_orders
+
+<span class="hl-cmt"># Снапшот</span>
+curl -X POST http://localhost:6335/collections/liko_orders/snapshots</pre>
+
+  <h3>Бэкап</h3>
+  <pre><span class="hl-cmt"># Бэкап данных заказов (Windows)</span>
+xcopy d:\project\OKIL\qdrant_orders_storage d:\backups\qdrant_orders_%date% /E /I
+
+<span class="hl-cmt"># Бэкап данных Roo Code</span>
+xcopy d:\project\OKIL\qdrant_storage d:\backups\qdrant_roo_%date% /E /I
+
+<span class="hl-cmt"># Бэкап Ollama-моделей</span>
+docker run --rm -v liko_ollama_models:/data -v d:\backups:/backup alpine tar czf /backup/ollama_backup.tar.gz -C /data .</pre>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <p>📄 Версия 1.2 | 12.05.2026 | OKIL — типография этикеток «Лико»</p>
+  <p>Стек: 1С:Предприятие (BSL) + Qdrant (Docker) + Ollama BGE-m3 (Docker)</p>
+  <p style="margin-top:4px; color:var(--accent-green);">v1.2: inferred_product_type из наименования, фильтрация пробников, группировка по work_center</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Заказы на оснастку</v8:content>
+		</v8:item>
+	</Title>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<Table name="Список" id="1">
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<EnableStartDrag>true</EnableStartDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<DataPath>Список</DataPath>
+			<RowPictureDataPath>~Список.DefaultPicture</RowPictureDataPath>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СписокКонтекстноеМеню" id="2"/>
+			<AutoCommandBar name="СписокКоманднаяПанель" id="3">
+				<ChildItems>
+					<Button name="СписокСоздать" id="68">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.Создать</CommandName>
+						<ExtendedTooltip name="СписокСоздатьРасширеннаяПодсказка" id="69"/>
+					</Button>
+					<Button name="СписокСкопировать" id="72">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.Скопировать</CommandName>
+						<ExtendedTooltip name="СписокСкопироватьРасширеннаяПодсказка" id="73"/>
+					</Button>
+					<Button name="СписокОбновить" id="70">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.Обновить</CommandName>
+						<ExtendedTooltip name="СписокОбновитьРасширеннаяПодсказка" id="71"/>
+					</Button>
+					<Button name="ФормаИзменитьФорму" id="89">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.StandardCommand.CustomizeForm</CommandName>
+						<ExtendedTooltip name="ФормаИзменитьФормуРасширеннаяПодсказка" id="90"/>
+					</Button>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="4"/>
+			<SearchStringAddition name="СписокСтрокаПоиска" id="5">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="6"/>
+				<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="7"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СписокСостояниеПросмотра" id="8">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="9"/>
+				<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="10"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СписокУправлениеПоиском" id="11">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="12"/>
+				<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="13"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="Selection">СписокВыбор</Event>
+				<Event name="OnActivateRow">СписокПриАктивизацииСтроки</Event>
+			</Events>
+			<ChildItems>
+				<CheckBoxField name="Проведен" id="80">
+					<DataPath>Список.Проведен</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПроведенКонтекстноеМеню" id="81"/>
+					<ExtendedTooltip name="ПроведенРасширеннаяПодсказка" id="82"/>
+				</CheckBoxField>
+				<LabelField name="Дата" id="83">
+					<DataPath>Список.Дата</DataPath>
+					<ContextMenu name="ДатаКонтекстноеМеню" id="84"/>
+					<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="85"/>
+				</LabelField>
+				<LabelField name="Номер" id="86">
+					<DataPath>Список.Номер</DataPath>
+					<ContextMenu name="НомерКонтекстноеМеню" id="87"/>
+					<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="88"/>
+				</LabelField>
+				<CheckBoxField name="Срочный" id="50">
+					<DataPath>Список.Срочный</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="СрочныйКонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="СрочныйРасширеннаяПодсказка" id="52"/>
+				</CheckBoxField>
+				<LabelField name="Артикул" id="62">
+					<DataPath>Список.Артикул</DataPath>
+					<ContextMenu name="АртикулКонтекстноеМеню" id="63"/>
+					<ExtendedTooltip name="АртикулРасширеннаяПодсказка" id="64"/>
+				</LabelField>
+				<LabelField name="Оснастка" id="65">
+					<DataPath>Список.Оснастка</DataPath>
+					<ContextMenu name="ОснасткаКонтекстноеМеню" id="66"/>
+					<ExtendedTooltip name="ОснасткаРасширеннаяПодсказка" id="67"/>
+				</LabelField>
+				<LabelField name="Количество" id="29">
+					<DataPath>Список.Количество</DataPath>
+					<ContextMenu name="КоличествоКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="КоличествоРасширеннаяПодсказка" id="31"/>
+				</LabelField>
+				<LabelField name="ВидОперации" id="23">
+					<DataPath>Список.ВидОперации</DataPath>
+					<ContextMenu name="ВидОперацииКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="ВидОперацииРасширеннаяПодсказка" id="25"/>
+				</LabelField>
+				<LabelField name="Менеджер" id="35">
+					<DataPath>Список.Менеджер</DataPath>
+					<ContextMenu name="МенеджерКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="МенеджерРасширеннаяПодсказка" id="37"/>
+				</LabelField>
+				<LabelField name="Заказ" id="26">
+					<DataPath>Список.Заказ</DataPath>
+					<ContextMenu name="ЗаказКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ЗаказРасширеннаяПодсказка" id="28"/>
+				</LabelField>
+				<LabelField name="Статус" id="53">
+					<DataPath>Список.Статус</DataPath>
+					<ContextMenu name="СтатусКонтекстноеМеню" id="54"/>
+					<ExtendedTooltip name="СтатусРасширеннаяПодсказка" id="55"/>
+				</LabelField>
+				<LabelField name="Этикетки" id="74">
+					<DataPath>Список.Этикетки</DataPath>
+					<ContextMenu name="ЭтикеткиКонтекстноеМеню" id="75"/>
+					<ExtendedTooltip name="ЭтикеткиРасширеннаяПодсказка" id="76"/>
+				</LabelField>
+				<LabelField name="Ответственный" id="41">
+					<DataPath>Список.Ответственный</DataPath>
+					<ContextMenu name="ОтветственныйКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="43"/>
+				</LabelField>
+				<LabelField name="Комментарий" id="32">
+					<DataPath>Список.Комментарий</DataPath>
+					<ContextMenu name="КомментарийКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="34"/>
+				</LabelField>
+				<LabelField name="Площадка" id="44">
+					<DataPath>Список.Площадка</DataPath>
+					<ContextMenu name="ПлощадкаКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="ПлощадкаРасширеннаяПодсказка" id="46"/>
+				</LabelField>
+				<LabelField name="Ссылка" id="77">
+					<DataPath>Список.Ссылка</DataPath>
+					<ContextMenu name="СсылкаКонтекстноеМеню" id="78"/>
+					<ExtendedTooltip name="СсылкаРасширеннаяПодсказка" id="79"/>
+				</LabelField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="1">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	Лико_ЗаказОснастки.Проведен КАК Проведен,
+	Лико_ЗаказОснастки.Номер КАК Номер,
+	Лико_ЗаказОснастки.Дата КАК Дата,
+	Лико_ЗаказОснастки.Срочный КАК Срочный,
+	Лико_ЗаказОснастки.ВидОперации КАК ВидОперации,
+	Лико_ЗаказОснасткиОснастка.Номенклатура.Артикул КАК Артикул,
+	Лико_ЗаказОснасткиОснастка.Номенклатура КАК Оснастка,
+	Лико_ЗаказОснасткиОснастка.Количество КАК Количество,
+	Лико_ЗаказОснасткиОснастка.Менеджер КАК Менеджер,
+	Лико_ЗаказОснасткиОснастка.Заказ КАК Заказ,
+	ЕСТЬNULL(Лико_ЗаказыНаОснасткуСрезПоследних.Статус, Лико_ЗаказОснасткиОснастка.Статус) КАК Статус,
+	Лико_ЗаказыНаОснасткуСрезПоследних.Ответственный КАК Ответственный,
+	ЗаказКлиента.Этикетки КАК Этикетки,
+	Лико_ЗаказОснастки.Комментарий КАК Комментарий,
+	Лико_ЗаказОснастки.Площадка КАК Площадка,
+	Лико_ЗаказОснастки.Ссылка КАК Ссылка
+ИЗ
+	Документ.Лико_ЗаказОснастки.Оснастка КАК Лико_ЗаказОснасткиОснастка
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.Лико_ЗаказыНаОснастку.СрезПоследних КАК Лико_ЗаказыНаОснасткуСрезПоследних
+		ПО Лико_ЗаказОснасткиОснастка.Ссылка = Лико_ЗаказыНаОснасткуСрезПоследних.ЗаказНаОснастку
+			И Лико_ЗаказОснасткиОснастка.Номенклатура = Лико_ЗаказыНаОснасткуСрезПоследних.Номенклатура
+			И Лико_ЗаказОснасткиОснастка.КлючСтроки = Лико_ЗаказыНаОснасткуСрезПоследних.КлючСтроки
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Документ.Лико_ЗаказОснастки КАК Лико_ЗаказОснастки
+		ПО Лико_ЗаказОснасткиОснастка.Ссылка = Лико_ЗаказОснастки.Ссылка
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаказКлиента КАК ЗаказКлиента
+		ПО Лико_ЗаказОснасткиОснастка.Заказ = ЗаказКлиента.Ссылка
+
+СГРУППИРОВАТЬ ПО
+	Лико_ЗаказОснасткиОснастка.Номенклатура,
+	Лико_ЗаказОснасткиОснастка.Менеджер,
+	Лико_ЗаказОснасткиОснастка.Заказ,
+	ЕСТЬNULL(Лико_ЗаказыНаОснасткуСрезПоследних.Статус, Лико_ЗаказОснасткиОснастка.Статус),
+	Лико_ЗаказыНаОснасткуСрезПоследних.Ответственный,
+	Лико_ЗаказОснастки.Ссылка,
+	ЗаказКлиента.Этикетки,
+	Лико_ЗаказОснастки.Проведен,
+	Лико_ЗаказОснастки.Номер,
+	Лико_ЗаказОснастки.Дата,
+	Лико_ЗаказОснастки.Срочный,
+	Лико_ЗаказОснастки.ВидОперации,
+	Лико_ЗаказОснасткиОснастка.Номенклатура.Артикул,
+	Лико_ЗаказОснасткиОснастка.Количество,
+	Лико_ЗаказОснастки.Комментарий,
+	Лико_ЗаказОснастки.Площадка</QueryText>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>Номер</dcsset:field>
+							<dcsset:orderType>Asc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:item>
+							<dcsset:selection/>
+							<dcsset:filter>
+								<dcsset:item xsi:type="dcsset:FilterItemComparison">
+									<dcsset:left xsi:type="dcscor:Field">Статус</dcsset:left>
+									<dcsset:comparisonType>Equal</dcsset:comparisonType>
+									<dcsset:right xsi:type="dcscor:DesignTimeValue">Перечисление.Лико_СтатусыЗаказовНаОснастку.Создан</dcsset:right>
+								</dcsset:item>
+							</dcsset:filter>
+							<dcsset:appearance>
+								<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+									<dcscor:parameter>ЦветФона</dcscor:parameter>
+									<dcscor:value xsi:type="v8ui:Color">#FFCBA3</dcscor:value>
+								</dcscor:item>
+							</dcsset:appearance>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Создать" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Создать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Обновить" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Обновить</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Скопировать" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Скопировать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Скопировать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CloneObject</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Скопировать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

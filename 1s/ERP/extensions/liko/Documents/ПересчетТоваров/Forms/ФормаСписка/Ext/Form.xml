@@ -1,0 +1,2014 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Пересчеты товаров</v8:content>
+		</v8:item>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Goods recount</v8:content>
+		</v8:item>
+	</Title>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<SaveDataInSettings>UseList</SaveDataInSettings>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer" callType="Override">Лико_ПриСозданииНаСервереВместо</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаШапка" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Шапка</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Header</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="2"/>
+			<ChildItems>
+				<Pages name="ГруппаФильтры" id="97">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Фильтры</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Filters</v8:content>
+						</v8:item>
+					</Title>
+					<PagesRepresentation>None</PagesRepresentation>
+					<ExtendedTooltip name="ГруппаФильтрыРасширеннаяПодсказка" id="98"/>
+					<ChildItems>
+						<Page name="ГруппаФильтрыСПомещением" id="99">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Фильтры с помещением</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Filters with placement</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Horizontal</Group>
+							<ExtendedTooltip name="ГруппаФильтрыСПомещениемРасширеннаяПодсказка" id="100"/>
+							<ChildItems>
+								<InputField name="Склад" id="3">
+									<TitleLocation>Left</TitleLocation>
+									<Width>25</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<DropListButton>false</DropListButton>
+									<ChoiceButton>true</ChoiceButton>
+									<ChoiceButtonRepresentation>ShowInInputField</ChoiceButtonRepresentation>
+									<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+									<ContextMenu name="СкладКонтекстноеМеню" id="4"/>
+									<ExtendedTooltip name="СкладРасширеннаяПодсказка" id="5"/>
+								</InputField>
+								<InputField name="Помещение" id="6">
+									<TitleLocation>Left</TitleLocation>
+									<Width>25</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ChoiceParameterLinks>
+										<xr:Link>
+											<xr:Name>Отбор.Владелец</xr:Name>
+											<xr:DataPath xsi:type="xs:string">4</xr:DataPath>
+											<xr:ValueChange>Clear</xr:ValueChange>
+										</xr:Link>
+									</ChoiceParameterLinks>
+									<ContextMenu name="ПомещениеКонтекстноеМеню" id="7"/>
+									<ExtendedTooltip name="ПомещениеРасширеннаяПодсказка" id="8"/>
+								</InputField>
+								<InputField name="Статус" id="9">
+									<TitleLocation>Left</TitleLocation>
+									<Width>20</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ListChoiceMode>true</ListChoiceMode>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Все</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>All</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">Все</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Только невыполненные</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Only incomplete</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">ТолькоНевыполненные</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Подготовлено</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Prepared</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">Подготовлено</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>В работе</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>In progress</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">ВРаботе</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Внесение результатов</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Entering results</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">ВнесениеРезультатов</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Выполнено</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Completed</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">Выполнено</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="СтатусКонтекстноеМеню" id="10"/>
+									<ExtendedTooltip name="СтатусРасширеннаяПодсказка" id="11"/>
+								</InputField>
+							</ChildItems>
+						</Page>
+						<Page name="ГруппаФильтрыБезПомещения" id="101">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Фильтры без помещения</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Filters without wareroom</v8:content>
+								</v8:item>
+							</Title>
+							<Group>Horizontal</Group>
+							<ExtendedTooltip name="ГруппаФильтрыБезПомещенияРасширеннаяПодсказка" id="102"/>
+							<ChildItems>
+								<InputField name="Склад1" id="103">
+									<TitleLocation>Left</TitleLocation>
+									<Width>25</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<DropListButton>false</DropListButton>
+									<ChoiceButton>true</ChoiceButton>
+									<ChoiceButtonRepresentation>ShowInInputField</ChoiceButtonRepresentation>
+									<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+									<ContextMenu name="Склад1КонтекстноеМеню" id="104"/>
+									<ExtendedTooltip name="Склад1РасширеннаяПодсказка" id="105"/>
+								</InputField>
+								<InputField name="Статус1" id="106">
+									<TitleLocation>Left</TitleLocation>
+									<Width>20</Width>
+									<HorizontalStretch>false</HorizontalStretch>
+									<ListChoiceMode>true</ListChoiceMode>
+									<ChoiceList>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Все</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>All</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">Все</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Только невыполненные</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Only incomplete</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">ТолькоНевыполненные</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Подготовлено</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Prepared</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">Подготовлено</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>В работе</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>In progress</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">ВРаботе</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Внесение результатов</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Entering results</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">ВнесениеРезультатов</Value>
+											</xr:Value>
+										</xr:Item>
+										<xr:Item>
+											<xr:Presentation/>
+											<xr:CheckState>0</xr:CheckState>
+											<xr:Value xsi:type="FormChoiceListDesTimeValue">
+												<Presentation>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Выполнено</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Completed</v8:content>
+													</v8:item>
+												</Presentation>
+												<Value xsi:type="xs:string">Выполнено</Value>
+											</xr:Value>
+										</xr:Item>
+									</ChoiceList>
+									<ContextMenu name="Статус1КонтекстноеМеню" id="107"/>
+									<ExtendedTooltip name="Статус1РасширеннаяПодсказка" id="108"/>
+								</InputField>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="СтраницыИнформацияОРасхождениях" id="154">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы информация о расхождениях</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages information on discrepancies</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="СтраницыИнформацияОРасхожденияхРасширеннаяПодсказка" id="155"/>
+			<ChildItems>
+				<Page name="СтраницаЕстьРасхождения" id="156">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница есть расхождения</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page discrepancies exist</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаЕстьРасхожденияРасширеннаяПодсказка" id="157"/>
+					<ChildItems>
+						<LabelDecoration name="ДекорацияЕстьРасхождения" id="129">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Есть выявленные пересчетами расхождения, по которым не оформлены складские акты. &lt;link вапфвыа&gt;Оформить&lt;/&gt;</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ДекорацияЕстьРасхожденияКонтекстноеМеню" id="130"/>
+							<ExtendedTooltip name="ДекорацияЕстьРасхожденияРасширеннаяПодсказка" id="131"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаНетРасхождений" id="158">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница нет расхождений</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page no discrepancies</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаНетРасхожденийРасширеннаяПодсказка" id="159"/>
+					<ChildItems>
+						<LabelDecoration name="ДекорацияНетРасхождений" id="160">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Расхождения при пересчетах не выявлены или по всем выявленным расхождениям оформлены складские акты.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ДекорацияНетРасхожденийКонтекстноеМеню" id="161"/>
+							<ExtendedTooltip name="ДекорацияНетРасхожденийРасширеннаяПодсказка" id="162"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаНетСклада" id="163">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница нет склада</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page no warehouse</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаНетСкладаРасширеннаяПодсказка" id="164"/>
+					<ChildItems>
+						<LabelDecoration name="ДекорацияНетСклада" id="165">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Title formatted="true">
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Выберите склад.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ДекорацияНетСкладаКонтекстноеМеню" id="166"/>
+							<ExtendedTooltip name="ДекорацияНетСкладаРасширеннаяПодсказка" id="167"/>
+						</LabelDecoration>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<UsualGroup name="СостояниеАвтоматическогоФормированияКорректировок" id="182">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Состояние автоматического формирования корректировок</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Automatic adjustment generation status</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СостояниеАвтоматическогоФормированияКорректировокРасширеннаяПодсказка" id="183"/>
+			<ChildItems>
+				<PictureDecoration name="Внимание" id="184">
+					<Width>2</Width>
+					<Height>1</Height>
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Внимание</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Warning</v8:content>
+						</v8:item>
+					</Title>
+					<FileDragMode>AsFile</FileDragMode>
+					<ContextMenu name="ВниманиеКонтекстноеМеню" id="185"/>
+					<ExtendedTooltip name="ВниманиеРасширеннаяПодсказка" id="186"/>
+				</PictureDecoration>
+				<LabelDecoration name="ПроблемаЕсть" id="187">
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Title formatted="true">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Есть проблемы с автоформированием корректировок излишков и недостач по товарным местам. &lt;link ЗапуститьФормирование&gt;Запустить формирование&lt;/&gt;</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ПроблемаЕстьКонтекстноеМеню" id="188"/>
+					<ExtendedTooltip name="ПроблемаЕстьРасширеннаяПодсказка" id="189"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаЗаданияНаПересчет" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Задания на пересчет</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Recount jobs</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаЗаданияНаПересчетРасширеннаяПодсказка" id="20"/>
+			<ChildItems>
+				<Pages name="ГруппаСтраницыШапкаЗаданияНаПересчет" id="21">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страницы шапка задания на пересчет</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Pages header recount jobs</v8:content>
+						</v8:item>
+					</Title>
+					<PagesRepresentation>None</PagesRepresentation>
+					<ExtendedTooltip name="ГруппаСтраницыШапкаЗаданияНаПересчетРасширеннаяПодсказка" id="22"/>
+					<ChildItems>
+						<Page name="ГруппаСтраницаШапкаЗаданияНаПересчетНеадресныйСклад" id="23">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Страница шапка задания на пересчет неадресный склад</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Page header recount jobs non-bin location warehouse</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ГруппаСтраницаШапкаЗаданияНаПересчетНеадресныйСкладРасширеннаяПодсказка" id="24"/>
+							<ChildItems>
+								<UsualGroup name="ГруппаШапкаЗаданияНаПересчетНеадресныйСклад" id="25">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа шапка задания на пересчет</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Group header recount jobs</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Horizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ГруппаШапкаЗаданияНаПересчетНеадресныйСкладРасширеннаяПодсказка" id="26"/>
+									<ChildItems>
+										<CommandBar name="ГруппаКоманднаяПанельЗаданияНаПересчетНеадресныйСклад" id="27">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Группа командная панель задания на пересчет</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Group command bar recount jobs</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSource>Item.СписокПересчетов</CommandSource>
+											<ExtendedTooltip name="ГруппаКоманднаяПанельЗаданияНаПересчетНеадресныйСкладРасширеннаяПодсказка" id="28"/>
+											<ChildItems>
+												<Button name="СоздатьЗаданиеНаПересчетНеадресныйСклад" id="29">
+													<Type>CommandBarButton</Type>
+													<Representation>PictureAndText</Representation>
+													<CommandName>0</CommandName>
+													<Picture>
+														<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+														<xr:LoadTransparent>true</xr:LoadTransparent>
+													</Picture>
+													<ExtendedTooltip name="СоздатьЗаданиеНаПересчетНеадресныйСкладРасширеннаяПодсказка" id="30"/>
+												</Button>
+												<Button name="СкопироватьНеадресныйСклад" id="31">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="СкопироватьНеадресныйСкладРасширеннаяПодсказка" id="32"/>
+												</Button>
+												<Button name="ИзменитьНеадресныйСклад" id="33">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ИзменитьНеадресныйСкладРасширеннаяПодсказка" id="34"/>
+												</Button>
+												<Button name="УстановитьПометкуУдаленияНеадресныйСклад" id="35">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="УстановитьПометкуУдаленияНеадресныйСкладРасширеннаяПодсказка" id="36"/>
+												</Button>
+												<Button name="УстановитьИнтервалНеадресныйСклад" id="172">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="УстановитьИнтервалНеадресныйСкладРасширеннаяПодсказка" id="173"/>
+												</Button>
+												<Button name="ПоискНеадресныйСклад" id="37">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ПоискНеадресныйСкладРасширеннаяПодсказка" id="38"/>
+												</Button>
+												<Button name="ОтменаПоискаНеадресныйСклад" id="39">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ОтменаПоискаНеадресныйСкладРасширеннаяПодсказка" id="40"/>
+												</Button>
+												<Button name="НазначитьИсполнителя" id="41">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="НазначитьИсполнителяРасширеннаяПодсказка" id="42"/>
+												</Button>
+												<Button name="ОбновитьНеадресныйСклад" id="95">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+													<ExtendedTooltip name="ОбновитьНеадресныйСкладРасширеннаяПодсказка" id="96"/>
+												</Button>
+												<Button name="ФормаНастройкаСписка" id="174">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ФормаНастройкаСпискаРасширеннаяПодсказка" id="175"/>
+												</Button>
+												<Button name="СохранитьНастройкиДинамическогоСпискаНеадресныйСклад" id="121">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="СохранитьНастройкиДинамическогоСпискаНеадресныйСкладРасширеннаяПодсказка" id="122"/>
+												</Button>
+												<Button name="ЗагрузитьНастройкиДинамическогоСпискаНеадресныйСклад" id="123">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ЗагрузитьНастройкиДинамическогоСпискаНеадресныйСкладРасширеннаяПодсказка" id="124"/>
+												</Button>
+												<Button name="СтандартныеНастройкиДинамическогоСпискаНеадресныйСклад" id="125">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="СтандартныеНастройкиДинамическогоСпискаНеадресныйСкладРасширеннаяПодсказка" id="126"/>
+												</Button>
+												<Button name="ВывестиСписокНеадресныйСклад" id="127">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ВывестиСписокНеадресныйСкладРасширеннаяПодсказка" id="128"/>
+												</Button>
+												<Button name="ФормаИзменитьФорму" id="190">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ФормаИзменитьФормуРасширеннаяПодсказка" id="191"/>
+												</Button>
+												<Popup name="НеадресныйСкладПодменюПечать" id="168">
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Печать</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Print</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Команды печати</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Print commands</v8:content>
+														</v8:item>
+													</ToolTip>
+													<Picture>
+														<xr:Ref>StdPicture.Print</xr:Ref>
+														<xr:LoadTransparent>true</xr:LoadTransparent>
+													</Picture>
+													<ExtendedTooltip name="НеадресныйСкладПодменюПечатьРасширеннаяПодсказка" id="169"/>
+												</Popup>
+											</ChildItems>
+										</CommandBar>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</Page>
+						<Page name="ГруппаСтраницаШапкаЗаданияНаПересчетАдресныйСклад" id="43">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Страница шапка задания на пересчет адресный склад</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>Page header recount jobs bin location warehouse</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="ГруппаСтраницаШапкаЗаданияНаПересчетАдресныйСкладРасширеннаяПодсказка" id="44"/>
+							<ChildItems>
+								<UsualGroup name="ГруппаШапкаЗаданияНаПересчетАдресныйСклад" id="45">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Шапка задания на пересчет адресный склад</v8:content>
+										</v8:item>
+										<v8:item>
+											<v8:lang>en</v8:lang>
+											<v8:content>Header recount jobs bin location warehouse</v8:content>
+										</v8:item>
+									</Title>
+									<Group>Horizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ГруппаШапкаЗаданияНаПересчетАдресныйСкладРасширеннаяПодсказка" id="46"/>
+									<ChildItems>
+										<CommandBar name="ГруппаКоманднаяПанельЗаданияНаПересчетАдресныйСклад" id="47">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Командная панель задания на пересчет адресный склад</v8:content>
+												</v8:item>
+												<v8:item>
+													<v8:lang>en</v8:lang>
+													<v8:content>Command bar recount jobs bin location warehouse</v8:content>
+												</v8:item>
+											</Title>
+											<CommandSource>Form</CommandSource>
+											<ExtendedTooltip name="ГруппаКоманднаяПанельЗаданияНаПересчетАдресныйСкладРасширеннаяПодсказка" id="48"/>
+											<ChildItems>
+												<Button name="СоздатьЗаданиеНаПересчетАдресныйСклад" id="49">
+													<Type>CommandBarButton</Type>
+													<Representation>PictureAndText</Representation>
+													<CommandName>0</CommandName>
+													<Picture>
+														<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+														<xr:LoadTransparent>true</xr:LoadTransparent>
+													</Picture>
+													<ExtendedTooltip name="СоздатьЗаданиеНаПересчетАдресныйСкладРасширеннаяПодсказка" id="50"/>
+												</Button>
+												<Button name="СгенерироватьЗаданияНаПересчетАдресныйСклад" id="51">
+													<Type>CommandBarButton</Type>
+													<Representation>PictureAndText</Representation>
+													<CommandName>0</CommandName>
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Сформировать задания на пересчет...</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Creating recount jobs...</v8:content>
+														</v8:item>
+													</Title>
+													<ExtendedTooltip name="СгенерироватьЗаданияНаПересчетАдресныйСкладРасширеннаяПодсказка" id="52"/>
+												</Button>
+												<Button name="СкопироватьАдресныйСклад" id="53">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="СкопироватьАдресныйСкладРасширеннаяПодсказка" id="54"/>
+												</Button>
+												<Button name="ИзменитьАдресныйСклад" id="55">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ИзменитьАдресныйСкладРасширеннаяПодсказка" id="56"/>
+												</Button>
+												<Button name="УстановитьПометкуУдаленияАдресныйСклад" id="57">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="УстановитьПометкуУдаленияАдресныйСкладРасширеннаяПодсказка" id="58"/>
+												</Button>
+												<Button name="УстановитьИнтервалАдресныйСклад" id="109">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="УстановитьИнтервалАдресныйСкладРасширеннаяПодсказка" id="110"/>
+												</Button>
+												<Button name="ПоискАдресныйСклад" id="59">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ПоискАдресныйСкладРасширеннаяПодсказка" id="60"/>
+												</Button>
+												<Button name="ОтменаПоискаАдресныйСклад" id="61">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ОтменаПоискаАдресныйСкладРасширеннаяПодсказка" id="62"/>
+												</Button>
+												<Button name="НазначитьИсполнителяАдресныйСклад" id="63">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="НазначитьИсполнителяАдресныйСкладРасширеннаяПодсказка" id="64"/>
+												</Button>
+												<Button name="ОбновитьАдресныйСклад" id="93">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+													<ExtendedTooltip name="ОбновитьАдресныйСкладРасширеннаяПодсказка" id="94"/>
+												</Button>
+												<Button name="НастройкаСпискаАдресныйСклад" id="111">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="НастройкаСпискаАдресныйСкладРасширеннаяПодсказка" id="112"/>
+												</Button>
+												<Button name="СохранитьНастройкиДинамическогоСпискаАдресныйСклад" id="113">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="СохранитьНастройкиДинамическогоСпискаАдресныйСкладРасширеннаяПодсказка" id="114"/>
+												</Button>
+												<Button name="ЗагрузитьНастройкиДинамическогоСпискаАдресныйСклад" id="115">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ЗагрузитьНастройкиДинамическогоСпискаАдресныйСкладРасширеннаяПодсказка" id="116"/>
+												</Button>
+												<Button name="СтандартныеНастройкиДинамическогоСпискаАдресныйСклад" id="117">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="СтандартныеНастройкиДинамическогоСпискаАдресныйСкладРасширеннаяПодсказка" id="118"/>
+												</Button>
+												<Button name="ВывестиСписокАдресныйСклад" id="119">
+													<Type>CommandBarButton</Type>
+													<CommandName>0</CommandName>
+													<ExtendedTooltip name="ВывестиСписокАдресныйСкладРасширеннаяПодсказка" id="120"/>
+												</Button>
+												<Popup name="АдресныйСкладПодменюПечать" id="170">
+													<Title>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Печать</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Print</v8:content>
+														</v8:item>
+													</Title>
+													<ToolTip>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Команды печати</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Print commands</v8:content>
+														</v8:item>
+													</ToolTip>
+													<Picture>
+														<xr:Ref>StdPicture.Print</xr:Ref>
+														<xr:LoadTransparent>true</xr:LoadTransparent>
+													</Picture>
+													<ExtendedTooltip name="АдресныйСкладПодменюПечатьРасширеннаяПодсказка" id="171"/>
+												</Popup>
+											</ChildItems>
+										</CommandBar>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+				<UsualGroup name="ГруппаПользовательскихНастроек" id="180">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа пользовательских настроек</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>User settings group</v8:content>
+						</v8:item>
+					</Title>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаПользовательскихНастроекРасширеннаяПодсказка" id="181"/>
+				</UsualGroup>
+				<Table name="СписокПересчетов" id="65">
+					<UseAlternationRowColor>true</UseAlternationRowColor>
+					<EnableStartDrag>true</EnableStartDrag>
+					<FileDragMode>AsFile</FileDragMode>
+					<RowPictureDataPath>10000000</RowPictureDataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Список пересчетов</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Recounts list</v8:content>
+						</v8:item>
+					</Title>
+					<AutoRefresh>false</AutoRefresh>
+					<AutoRefreshPeriod>60</AutoRefreshPeriod>
+					<Period>
+						<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+						<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+						<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+					</Period>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<RestoreCurrentRow>false</RestoreCurrentRow>
+					<TopLevelParent xsi:nil="true"/>
+					<ShowRoot>true</ShowRoot>
+					<AllowRootChoice>false</AllowRootChoice>
+					<UpdateOnDataChange>Auto</UpdateOnDataChange>
+					<UserSettingsGroup>ГруппаПользовательскихНастроек</UserSettingsGroup>
+					<ContextMenu name="СписокПересчетовКонтекстноеМеню" id="66"/>
+					<AutoCommandBar name="СписокПересчетовКоманднаяПанель" id="67">
+						<Autofill>false</Autofill>
+					</AutoCommandBar>
+					<ExtendedTooltip name="СписокПересчетовРасширеннаяПодсказка" id="68"/>
+					<SearchStringAddition name="СписокПересчетовСтрокаПоиска" id="132">
+						<AdditionSource>
+							<Item>СписокПересчетов</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="СписокПересчетовСтрокаПоискаКонтекстноеМеню" id="133"/>
+						<ExtendedTooltip name="СписокПересчетовСтрокаПоискаРасширеннаяПодсказка" id="134"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="СписокПересчетовСостояниеПросмотра" id="135">
+						<AdditionSource>
+							<Item>СписокПересчетов</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="СписокПересчетовСостояниеПросмотраКонтекстноеМеню" id="136"/>
+						<ExtendedTooltip name="СписокПересчетовСостояниеПросмотраРасширеннаяПодсказка" id="137"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="СписокПересчетовУправлениеПоиском" id="138">
+						<AdditionSource>
+							<Item>СписокПересчетов</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="СписокПересчетовУправлениеПоискомКонтекстноеМеню" id="139"/>
+						<ExtendedTooltip name="СписокПересчетовУправлениеПоискомРасширеннаяПодсказка" id="140"/>
+					</SearchControlAddition>
+					<ChildItems>
+						<LabelField name="СписокПересчетовДата" id="176">
+							<Width>9</Width>
+							<ContextMenu name="СписокПересчетовДатаКонтекстноеМеню" id="177"/>
+							<ExtendedTooltip name="СписокПересчетовДатаРасширеннаяПодсказка" id="178"/>
+						</LabelField>
+						<LabelField name="СписокПересчетовНомер" id="72">
+							<ContextMenu name="СписокПересчетовНомерКонтекстноеМеню" id="73"/>
+							<ExtendedTooltip name="СписокПересчетовНомерРасширеннаяПодсказка" id="74"/>
+						</LabelField>
+						<LabelField name="СписокПересчетовСтатус" id="81">
+							<ContextMenu name="СписокПересчетовСтатусКонтекстноеМеню" id="82"/>
+							<ExtendedTooltip name="СписокПересчетовСтатусРасширеннаяПодсказка" id="83"/>
+						</LabelField>
+						<LabelField name="СписокПересчетовИсполнитель" id="84">
+							<ContextMenu name="СписокПересчетовИсполнительКонтекстноеМеню" id="85"/>
+							<ExtendedTooltip name="СписокПересчетовИсполнительРасширеннаяПодсказка" id="86"/>
+						</LabelField>
+						<LabelField name="СписокПересчетовОтветственный" id="87">
+							<ContextMenu name="СписокПересчетовОтветственныйКонтекстноеМеню" id="88"/>
+							<ExtendedTooltip name="СписокПересчетовОтветственныйРасширеннаяПодсказка" id="89"/>
+						</LabelField>
+						<LabelField name="СписокПересчетовСсылка" id="90">
+							<UserVisible>
+								<xr:Common>false</xr:Common>
+							</UserVisible>
+							<ContextMenu name="СписокПересчетовСсылкаКонтекстноеМеню" id="91"/>
+							<ExtendedTooltip name="СписокПересчетовСсылкаРасширеннаяПодсказка" id="92"/>
+						</LabelField>
+					</ChildItems>
+				</Table>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="СтраницыКонтекстныеОтчеты" id="141">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы контекстные отчеты</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Pages context reports</v8:content>
+				</v8:item>
+			</Title>
+			<PagesRepresentation>None</PagesRepresentation>
+			<ExtendedTooltip name="СтраницыКонтекстныеОтчетыРасширеннаяПодсказка" id="142"/>
+			<ChildItems>
+				<Page name="СтраницаДоступныеОтчеты" id="143">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница доступные отчеты</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page available reports</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаДоступныеОтчетыРасширеннаяПодсказка" id="144"/>
+					<ChildItems>
+						<Button name="ОткрытьОтчетТоварыВПроцессеОтгрузки" id="152">
+							<Type>Hyperlink</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ОткрытьОтчетТоварыВПроцессеОтгрузкиРасширеннаяПодсказка" id="153"/>
+						</Button>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаНетДоступныхОтчетов" id="147">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница нет доступных отчетов</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Page no available reports</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаНетДоступныхОтчетовРасширеннаяПодсказка" id="148"/>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes/>
+	<BaseForm version="2.20">
+		<Title>
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Пересчеты товаров</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Goods recount</v8:content>
+			</v8:item>
+		</Title>
+		<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+		<SaveDataInSettings>UseList</SaveDataInSettings>
+		<AutoTitle>false</AutoTitle>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+			<Autofill>false</Autofill>
+		</AutoCommandBar>
+		<ChildItems>
+			<UsualGroup name="ГруппаШапка" id="1">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Шапка</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Header</v8:content>
+					</v8:item>
+				</Title>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="2"/>
+				<ChildItems>
+					<Pages name="ГруппаФильтры" id="97">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Фильтры</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Filters</v8:content>
+							</v8:item>
+						</Title>
+						<PagesRepresentation>None</PagesRepresentation>
+						<ExtendedTooltip name="ГруппаФильтрыРасширеннаяПодсказка" id="98"/>
+						<ChildItems>
+							<Page name="ГруппаФильтрыСПомещением" id="99">
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Фильтры с помещением</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Filters with placement</v8:content>
+									</v8:item>
+								</Title>
+								<Group>Horizontal</Group>
+								<ExtendedTooltip name="ГруппаФильтрыСПомещениемРасширеннаяПодсказка" id="100"/>
+								<ChildItems>
+									<InputField name="Склад" id="3">
+										<TitleLocation>Left</TitleLocation>
+										<Width>25</Width>
+										<HorizontalStretch>false</HorizontalStretch>
+										<DropListButton>false</DropListButton>
+										<ChoiceButton>true</ChoiceButton>
+										<ChoiceButtonRepresentation>ShowInInputField</ChoiceButtonRepresentation>
+										<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+										<ContextMenu name="СкладКонтекстноеМеню" id="4"/>
+										<ExtendedTooltip name="СкладРасширеннаяПодсказка" id="5"/>
+									</InputField>
+									<InputField name="Помещение" id="6">
+										<TitleLocation>Left</TitleLocation>
+										<Width>25</Width>
+										<HorizontalStretch>false</HorizontalStretch>
+										<ChoiceParameterLinks>
+											<xr:Link>
+												<xr:Name>Отбор.Владелец</xr:Name>
+												<xr:DataPath xsi:type="xs:string">4</xr:DataPath>
+												<xr:ValueChange>Clear</xr:ValueChange>
+											</xr:Link>
+										</ChoiceParameterLinks>
+										<ContextMenu name="ПомещениеКонтекстноеМеню" id="7"/>
+										<ExtendedTooltip name="ПомещениеРасширеннаяПодсказка" id="8"/>
+									</InputField>
+									<InputField name="Статус" id="9">
+										<TitleLocation>Left</TitleLocation>
+										<Width>20</Width>
+										<HorizontalStretch>false</HorizontalStretch>
+										<ListChoiceMode>true</ListChoiceMode>
+										<ChoiceList>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Все</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>All</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">Все</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Только невыполненные</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Only incomplete</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">ТолькоНевыполненные</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Подготовлено</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Prepared</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">Подготовлено</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>В работе</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>In progress</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">ВРаботе</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Внесение результатов</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Entering results</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">ВнесениеРезультатов</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Выполнено</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Completed</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">Выполнено</Value>
+												</xr:Value>
+											</xr:Item>
+										</ChoiceList>
+										<ContextMenu name="СтатусКонтекстноеМеню" id="10"/>
+										<ExtendedTooltip name="СтатусРасширеннаяПодсказка" id="11"/>
+									</InputField>
+								</ChildItems>
+							</Page>
+							<Page name="ГруппаФильтрыБезПомещения" id="101">
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Фильтры без помещения</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Filters without wareroom</v8:content>
+									</v8:item>
+								</Title>
+								<Group>Horizontal</Group>
+								<ExtendedTooltip name="ГруппаФильтрыБезПомещенияРасширеннаяПодсказка" id="102"/>
+								<ChildItems>
+									<InputField name="Склад1" id="103">
+										<TitleLocation>Left</TitleLocation>
+										<Width>25</Width>
+										<HorizontalStretch>false</HorizontalStretch>
+										<DropListButton>false</DropListButton>
+										<ChoiceButton>true</ChoiceButton>
+										<ChoiceButtonRepresentation>ShowInInputField</ChoiceButtonRepresentation>
+										<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+										<ContextMenu name="Склад1КонтекстноеМеню" id="104"/>
+										<ExtendedTooltip name="Склад1РасширеннаяПодсказка" id="105"/>
+									</InputField>
+									<InputField name="Статус1" id="106">
+										<TitleLocation>Left</TitleLocation>
+										<Width>20</Width>
+										<HorizontalStretch>false</HorizontalStretch>
+										<ListChoiceMode>true</ListChoiceMode>
+										<ChoiceList>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Все</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>All</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">Все</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Только невыполненные</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Only incomplete</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">ТолькоНевыполненные</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Подготовлено</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Prepared</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">Подготовлено</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>В работе</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>In progress</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">ВРаботе</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Внесение результатов</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Entering results</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">ВнесениеРезультатов</Value>
+												</xr:Value>
+											</xr:Item>
+											<xr:Item>
+												<xr:Presentation/>
+												<xr:CheckState>0</xr:CheckState>
+												<xr:Value xsi:type="FormChoiceListDesTimeValue">
+													<Presentation>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>Выполнено</v8:content>
+														</v8:item>
+														<v8:item>
+															<v8:lang>en</v8:lang>
+															<v8:content>Completed</v8:content>
+														</v8:item>
+													</Presentation>
+													<Value xsi:type="xs:string">Выполнено</Value>
+												</xr:Value>
+											</xr:Item>
+										</ChoiceList>
+										<ContextMenu name="Статус1КонтекстноеМеню" id="107"/>
+										<ExtendedTooltip name="Статус1РасширеннаяПодсказка" id="108"/>
+									</InputField>
+								</ChildItems>
+							</Page>
+						</ChildItems>
+					</Pages>
+				</ChildItems>
+			</UsualGroup>
+			<Pages name="СтраницыИнформацияОРасхождениях" id="154">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Страницы информация о расхождениях</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Pages information on discrepancies</v8:content>
+					</v8:item>
+				</Title>
+				<PagesRepresentation>None</PagesRepresentation>
+				<ExtendedTooltip name="СтраницыИнформацияОРасхожденияхРасширеннаяПодсказка" id="155"/>
+				<ChildItems>
+					<Page name="СтраницаЕстьРасхождения" id="156">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница есть расхождения</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Page discrepancies exist</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="СтраницаЕстьРасхожденияРасширеннаяПодсказка" id="157"/>
+						<ChildItems>
+							<LabelDecoration name="ДекорацияЕстьРасхождения" id="129">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Есть выявленные пересчетами расхождения, по которым не оформлены складские акты. &lt;link вапфвыа&gt;Оформить&lt;/&gt;</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="ДекорацияЕстьРасхожденияКонтекстноеМеню" id="130"/>
+								<ExtendedTooltip name="ДекорацияЕстьРасхожденияРасширеннаяПодсказка" id="131"/>
+							</LabelDecoration>
+						</ChildItems>
+					</Page>
+					<Page name="СтраницаНетРасхождений" id="158">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница нет расхождений</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Page no discrepancies</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="СтраницаНетРасхожденийРасширеннаяПодсказка" id="159"/>
+						<ChildItems>
+							<LabelDecoration name="ДекорацияНетРасхождений" id="160">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Расхождения при пересчетах не выявлены или по всем выявленным расхождениям оформлены складские акты.</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="ДекорацияНетРасхожденийКонтекстноеМеню" id="161"/>
+								<ExtendedTooltip name="ДекорацияНетРасхожденийРасширеннаяПодсказка" id="162"/>
+							</LabelDecoration>
+						</ChildItems>
+					</Page>
+					<Page name="СтраницаНетСклада" id="163">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница нет склада</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Page no warehouse</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="СтраницаНетСкладаРасширеннаяПодсказка" id="164"/>
+						<ChildItems>
+							<LabelDecoration name="ДекорацияНетСклада" id="165">
+								<AutoMaxWidth>false</AutoMaxWidth>
+								<Title formatted="true">
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Выберите склад.</v8:content>
+									</v8:item>
+								</Title>
+								<ContextMenu name="ДекорацияНетСкладаКонтекстноеМеню" id="166"/>
+								<ExtendedTooltip name="ДекорацияНетСкладаРасширеннаяПодсказка" id="167"/>
+							</LabelDecoration>
+						</ChildItems>
+					</Page>
+				</ChildItems>
+			</Pages>
+			<UsualGroup name="СостояниеАвтоматическогоФормированияКорректировок" id="182">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Состояние автоматического формирования корректировок</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Automatic adjustment generation status</v8:content>
+					</v8:item>
+				</Title>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="СостояниеАвтоматическогоФормированияКорректировокРасширеннаяПодсказка" id="183"/>
+				<ChildItems>
+					<PictureDecoration name="Внимание" id="184">
+						<Width>2</Width>
+						<Height>1</Height>
+						<Title formatted="false">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Внимание</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Warning</v8:content>
+							</v8:item>
+						</Title>
+						<FileDragMode>AsFile</FileDragMode>
+						<ContextMenu name="ВниманиеКонтекстноеМеню" id="185"/>
+						<ExtendedTooltip name="ВниманиеРасширеннаяПодсказка" id="186"/>
+					</PictureDecoration>
+					<LabelDecoration name="ПроблемаЕсть" id="187">
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<Title formatted="true">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Есть проблемы с автоформированием корректировок излишков и недостач по товарным местам. &lt;link ЗапуститьФормирование&gt;Запустить формирование&lt;/&gt;</v8:content>
+							</v8:item>
+						</Title>
+						<ContextMenu name="ПроблемаЕстьКонтекстноеМеню" id="188"/>
+						<ExtendedTooltip name="ПроблемаЕстьРасширеннаяПодсказка" id="189"/>
+					</LabelDecoration>
+				</ChildItems>
+			</UsualGroup>
+			<UsualGroup name="ГруппаЗаданияНаПересчет" id="19">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Задания на пересчет</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Recount jobs</v8:content>
+					</v8:item>
+				</Title>
+				<Group>Vertical</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаЗаданияНаПересчетРасширеннаяПодсказка" id="20"/>
+				<ChildItems>
+					<Pages name="ГруппаСтраницыШапкаЗаданияНаПересчет" id="21">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страницы шапка задания на пересчет</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Pages header recount jobs</v8:content>
+							</v8:item>
+						</Title>
+						<PagesRepresentation>None</PagesRepresentation>
+						<ExtendedTooltip name="ГруппаСтраницыШапкаЗаданияНаПересчетРасширеннаяПодсказка" id="22"/>
+						<ChildItems>
+							<Page name="ГруппаСтраницаШапкаЗаданияНаПересчетНеадресныйСклад" id="23">
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Страница шапка задания на пересчет неадресный склад</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Page header recount jobs non-bin location warehouse</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ГруппаСтраницаШапкаЗаданияНаПересчетНеадресныйСкладРасширеннаяПодсказка" id="24"/>
+								<ChildItems>
+									<UsualGroup name="ГруппаШапкаЗаданияНаПересчетНеадресныйСклад" id="25">
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Группа шапка задания на пересчет</v8:content>
+											</v8:item>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Group header recount jobs</v8:content>
+											</v8:item>
+										</Title>
+										<Group>Horizontal</Group>
+										<Behavior>Usual</Behavior>
+										<Representation>None</Representation>
+										<ShowTitle>false</ShowTitle>
+										<ExtendedTooltip name="ГруппаШапкаЗаданияНаПересчетНеадресныйСкладРасширеннаяПодсказка" id="26"/>
+										<ChildItems>
+											<CommandBar name="ГруппаКоманднаяПанельЗаданияНаПересчетНеадресныйСклад" id="27">
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Группа командная панель задания на пересчет</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Group command bar recount jobs</v8:content>
+													</v8:item>
+												</Title>
+												<CommandSource>Item.СписокПересчетов</CommandSource>
+												<ExtendedTooltip name="ГруппаКоманднаяПанельЗаданияНаПересчетНеадресныйСкладРасширеннаяПодсказка" id="28"/>
+												<ChildItems>
+													<Button name="СоздатьЗаданиеНаПересчетНеадресныйСклад" id="29">
+														<Type>CommandBarButton</Type>
+														<Representation>PictureAndText</Representation>
+														<CommandName>0</CommandName>
+														<Picture>
+															<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+															<xr:LoadTransparent>true</xr:LoadTransparent>
+														</Picture>
+														<ExtendedTooltip name="СоздатьЗаданиеНаПересчетНеадресныйСкладРасширеннаяПодсказка" id="30"/>
+													</Button>
+													<Button name="СкопироватьНеадресныйСклад" id="31">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="СкопироватьНеадресныйСкладРасширеннаяПодсказка" id="32"/>
+													</Button>
+													<Button name="ИзменитьНеадресныйСклад" id="33">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ИзменитьНеадресныйСкладРасширеннаяПодсказка" id="34"/>
+													</Button>
+													<Button name="УстановитьПометкуУдаленияНеадресныйСклад" id="35">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="УстановитьПометкуУдаленияНеадресныйСкладРасширеннаяПодсказка" id="36"/>
+													</Button>
+													<Button name="УстановитьИнтервалНеадресныйСклад" id="172">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="УстановитьИнтервалНеадресныйСкладРасширеннаяПодсказка" id="173"/>
+													</Button>
+													<Button name="ПоискНеадресныйСклад" id="37">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ПоискНеадресныйСкладРасширеннаяПодсказка" id="38"/>
+													</Button>
+													<Button name="ОтменаПоискаНеадресныйСклад" id="39">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ОтменаПоискаНеадресныйСкладРасширеннаяПодсказка" id="40"/>
+													</Button>
+													<Button name="НазначитьИсполнителя" id="41">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="НазначитьИсполнителяРасширеннаяПодсказка" id="42"/>
+													</Button>
+													<Button name="ОбновитьНеадресныйСклад" id="95">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+														<ExtendedTooltip name="ОбновитьНеадресныйСкладРасширеннаяПодсказка" id="96"/>
+													</Button>
+													<Button name="ФормаНастройкаСписка" id="174">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ФормаНастройкаСпискаРасширеннаяПодсказка" id="175"/>
+													</Button>
+													<Button name="СохранитьНастройкиДинамическогоСпискаНеадресныйСклад" id="121">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="СохранитьНастройкиДинамическогоСпискаНеадресныйСкладРасширеннаяПодсказка" id="122"/>
+													</Button>
+													<Button name="ЗагрузитьНастройкиДинамическогоСпискаНеадресныйСклад" id="123">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ЗагрузитьНастройкиДинамическогоСпискаНеадресныйСкладРасширеннаяПодсказка" id="124"/>
+													</Button>
+													<Button name="СтандартныеНастройкиДинамическогоСпискаНеадресныйСклад" id="125">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="СтандартныеНастройкиДинамическогоСпискаНеадресныйСкладРасширеннаяПодсказка" id="126"/>
+													</Button>
+													<Button name="ВывестиСписокНеадресныйСклад" id="127">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ВывестиСписокНеадресныйСкладРасширеннаяПодсказка" id="128"/>
+													</Button>
+													<Button name="ФормаИзменитьФорму" id="190">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ФормаИзменитьФормуРасширеннаяПодсказка" id="191"/>
+													</Button>
+													<Popup name="НеадресныйСкладПодменюПечать" id="168">
+														<Title>
+															<v8:item>
+																<v8:lang>ru</v8:lang>
+																<v8:content>Печать</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Print</v8:content>
+															</v8:item>
+														</Title>
+														<ToolTip>
+															<v8:item>
+																<v8:lang>ru</v8:lang>
+																<v8:content>Команды печати</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Print commands</v8:content>
+															</v8:item>
+														</ToolTip>
+														<Picture>
+															<xr:Ref>StdPicture.Print</xr:Ref>
+															<xr:LoadTransparent>true</xr:LoadTransparent>
+														</Picture>
+														<ExtendedTooltip name="НеадресныйСкладПодменюПечатьРасширеннаяПодсказка" id="169"/>
+													</Popup>
+												</ChildItems>
+											</CommandBar>
+										</ChildItems>
+									</UsualGroup>
+								</ChildItems>
+							</Page>
+							<Page name="ГруппаСтраницаШапкаЗаданияНаПересчетАдресныйСклад" id="43">
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Страница шапка задания на пересчет адресный склад</v8:content>
+									</v8:item>
+									<v8:item>
+										<v8:lang>en</v8:lang>
+										<v8:content>Page header recount jobs bin location warehouse</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="ГруппаСтраницаШапкаЗаданияНаПересчетАдресныйСкладРасширеннаяПодсказка" id="44"/>
+								<ChildItems>
+									<UsualGroup name="ГруппаШапкаЗаданияНаПересчетАдресныйСклад" id="45">
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Шапка задания на пересчет адресный склад</v8:content>
+											</v8:item>
+											<v8:item>
+												<v8:lang>en</v8:lang>
+												<v8:content>Header recount jobs bin location warehouse</v8:content>
+											</v8:item>
+										</Title>
+										<Group>Horizontal</Group>
+										<Behavior>Usual</Behavior>
+										<Representation>None</Representation>
+										<ShowTitle>false</ShowTitle>
+										<ExtendedTooltip name="ГруппаШапкаЗаданияНаПересчетАдресныйСкладРасширеннаяПодсказка" id="46"/>
+										<ChildItems>
+											<CommandBar name="ГруппаКоманднаяПанельЗаданияНаПересчетАдресныйСклад" id="47">
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Командная панель задания на пересчет адресный склад</v8:content>
+													</v8:item>
+													<v8:item>
+														<v8:lang>en</v8:lang>
+														<v8:content>Command bar recount jobs bin location warehouse</v8:content>
+													</v8:item>
+												</Title>
+												<CommandSource>Form</CommandSource>
+												<ExtendedTooltip name="ГруппаКоманднаяПанельЗаданияНаПересчетАдресныйСкладРасширеннаяПодсказка" id="48"/>
+												<ChildItems>
+													<Button name="СоздатьЗаданиеНаПересчетАдресныйСклад" id="49">
+														<Type>CommandBarButton</Type>
+														<Representation>PictureAndText</Representation>
+														<CommandName>0</CommandName>
+														<Picture>
+															<xr:Ref>StdPicture.CreateListItem</xr:Ref>
+															<xr:LoadTransparent>true</xr:LoadTransparent>
+														</Picture>
+														<ExtendedTooltip name="СоздатьЗаданиеНаПересчетАдресныйСкладРасширеннаяПодсказка" id="50"/>
+													</Button>
+													<Button name="СгенерироватьЗаданияНаПересчетАдресныйСклад" id="51">
+														<Type>CommandBarButton</Type>
+														<Representation>PictureAndText</Representation>
+														<CommandName>0</CommandName>
+														<Title>
+															<v8:item>
+																<v8:lang>ru</v8:lang>
+																<v8:content>Сформировать задания на пересчет...</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Creating recount jobs...</v8:content>
+															</v8:item>
+														</Title>
+														<ExtendedTooltip name="СгенерироватьЗаданияНаПересчетАдресныйСкладРасширеннаяПодсказка" id="52"/>
+													</Button>
+													<Button name="СкопироватьАдресныйСклад" id="53">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="СкопироватьАдресныйСкладРасширеннаяПодсказка" id="54"/>
+													</Button>
+													<Button name="ИзменитьАдресныйСклад" id="55">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ИзменитьАдресныйСкладРасширеннаяПодсказка" id="56"/>
+													</Button>
+													<Button name="УстановитьПометкуУдаленияАдресныйСклад" id="57">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="УстановитьПометкуУдаленияАдресныйСкладРасширеннаяПодсказка" id="58"/>
+													</Button>
+													<Button name="УстановитьИнтервалАдресныйСклад" id="109">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="УстановитьИнтервалАдресныйСкладРасширеннаяПодсказка" id="110"/>
+													</Button>
+													<Button name="ПоискАдресныйСклад" id="59">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ПоискАдресныйСкладРасширеннаяПодсказка" id="60"/>
+													</Button>
+													<Button name="ОтменаПоискаАдресныйСклад" id="61">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ОтменаПоискаАдресныйСкладРасширеннаяПодсказка" id="62"/>
+													</Button>
+													<Button name="НазначитьИсполнителяАдресныйСклад" id="63">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="НазначитьИсполнителяАдресныйСкладРасширеннаяПодсказка" id="64"/>
+													</Button>
+													<Button name="ОбновитьАдресныйСклад" id="93">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+														<ExtendedTooltip name="ОбновитьАдресныйСкладРасширеннаяПодсказка" id="94"/>
+													</Button>
+													<Button name="НастройкаСпискаАдресныйСклад" id="111">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="НастройкаСпискаАдресныйСкладРасширеннаяПодсказка" id="112"/>
+													</Button>
+													<Button name="СохранитьНастройкиДинамическогоСпискаАдресныйСклад" id="113">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="СохранитьНастройкиДинамическогоСпискаАдресныйСкладРасширеннаяПодсказка" id="114"/>
+													</Button>
+													<Button name="ЗагрузитьНастройкиДинамическогоСпискаАдресныйСклад" id="115">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ЗагрузитьНастройкиДинамическогоСпискаАдресныйСкладРасширеннаяПодсказка" id="116"/>
+													</Button>
+													<Button name="СтандартныеНастройкиДинамическогоСпискаАдресныйСклад" id="117">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="СтандартныеНастройкиДинамическогоСпискаАдресныйСкладРасширеннаяПодсказка" id="118"/>
+													</Button>
+													<Button name="ВывестиСписокАдресныйСклад" id="119">
+														<Type>CommandBarButton</Type>
+														<CommandName>0</CommandName>
+														<ExtendedTooltip name="ВывестиСписокАдресныйСкладРасширеннаяПодсказка" id="120"/>
+													</Button>
+													<Popup name="АдресныйСкладПодменюПечать" id="170">
+														<Title>
+															<v8:item>
+																<v8:lang>ru</v8:lang>
+																<v8:content>Печать</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Print</v8:content>
+															</v8:item>
+														</Title>
+														<ToolTip>
+															<v8:item>
+																<v8:lang>ru</v8:lang>
+																<v8:content>Команды печати</v8:content>
+															</v8:item>
+															<v8:item>
+																<v8:lang>en</v8:lang>
+																<v8:content>Print commands</v8:content>
+															</v8:item>
+														</ToolTip>
+														<Picture>
+															<xr:Ref>StdPicture.Print</xr:Ref>
+															<xr:LoadTransparent>true</xr:LoadTransparent>
+														</Picture>
+														<ExtendedTooltip name="АдресныйСкладПодменюПечатьРасширеннаяПодсказка" id="171"/>
+													</Popup>
+												</ChildItems>
+											</CommandBar>
+										</ChildItems>
+									</UsualGroup>
+								</ChildItems>
+							</Page>
+						</ChildItems>
+					</Pages>
+					<UsualGroup name="ГруппаПользовательскихНастроек" id="180">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа пользовательских настроек</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>User settings group</v8:content>
+							</v8:item>
+						</Title>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="ГруппаПользовательскихНастроекРасширеннаяПодсказка" id="181"/>
+					</UsualGroup>
+					<Table name="СписокПересчетов" id="65">
+						<UseAlternationRowColor>true</UseAlternationRowColor>
+						<EnableStartDrag>true</EnableStartDrag>
+						<FileDragMode>AsFile</FileDragMode>
+						<RowPictureDataPath>10000000</RowPictureDataPath>
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Список пересчетов</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Recounts list</v8:content>
+							</v8:item>
+						</Title>
+						<AutoRefresh>false</AutoRefresh>
+						<AutoRefreshPeriod>60</AutoRefreshPeriod>
+						<Period>
+							<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+							<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+							<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+						</Period>
+						<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+						<RestoreCurrentRow>false</RestoreCurrentRow>
+						<TopLevelParent xsi:nil="true"/>
+						<ShowRoot>true</ShowRoot>
+						<AllowRootChoice>false</AllowRootChoice>
+						<UpdateOnDataChange>Auto</UpdateOnDataChange>
+						<UserSettingsGroup>ГруппаПользовательскихНастроек</UserSettingsGroup>
+						<ContextMenu name="СписокПересчетовКонтекстноеМеню" id="66"/>
+						<AutoCommandBar name="СписокПересчетовКоманднаяПанель" id="67">
+							<Autofill>false</Autofill>
+						</AutoCommandBar>
+						<ExtendedTooltip name="СписокПересчетовРасширеннаяПодсказка" id="68"/>
+						<SearchStringAddition name="СписокПересчетовСтрокаПоиска" id="132">
+							<AdditionSource>
+								<Item>СписокПересчетов</Item>
+								<Type>SearchStringRepresentation</Type>
+							</AdditionSource>
+							<ContextMenu name="СписокПересчетовСтрокаПоискаКонтекстноеМеню" id="133"/>
+							<ExtendedTooltip name="СписокПересчетовСтрокаПоискаРасширеннаяПодсказка" id="134"/>
+						</SearchStringAddition>
+						<ViewStatusAddition name="СписокПересчетовСостояниеПросмотра" id="135">
+							<AdditionSource>
+								<Item>СписокПересчетов</Item>
+								<Type>ViewStatusRepresentation</Type>
+							</AdditionSource>
+							<ContextMenu name="СписокПересчетовСостояниеПросмотраКонтекстноеМеню" id="136"/>
+							<ExtendedTooltip name="СписокПересчетовСостояниеПросмотраРасширеннаяПодсказка" id="137"/>
+						</ViewStatusAddition>
+						<SearchControlAddition name="СписокПересчетовУправлениеПоиском" id="138">
+							<AdditionSource>
+								<Item>СписокПересчетов</Item>
+								<Type>SearchControl</Type>
+							</AdditionSource>
+							<ContextMenu name="СписокПересчетовУправлениеПоискомКонтекстноеМеню" id="139"/>
+							<ExtendedTooltip name="СписокПересчетовУправлениеПоискомРасширеннаяПодсказка" id="140"/>
+						</SearchControlAddition>
+						<ChildItems>
+							<LabelField name="СписокПересчетовДата" id="176">
+								<Width>9</Width>
+								<ContextMenu name="СписокПересчетовДатаКонтекстноеМеню" id="177"/>
+								<ExtendedTooltip name="СписокПересчетовДатаРасширеннаяПодсказка" id="178"/>
+							</LabelField>
+							<LabelField name="СписокПересчетовНомер" id="72">
+								<ContextMenu name="СписокПересчетовНомерКонтекстноеМеню" id="73"/>
+								<ExtendedTooltip name="СписокПересчетовНомерРасширеннаяПодсказка" id="74"/>
+							</LabelField>
+							<LabelField name="СписокПересчетовСтатус" id="81">
+								<ContextMenu name="СписокПересчетовСтатусКонтекстноеМеню" id="82"/>
+								<ExtendedTooltip name="СписокПересчетовСтатусРасширеннаяПодсказка" id="83"/>
+							</LabelField>
+							<LabelField name="СписокПересчетовИсполнитель" id="84">
+								<ContextMenu name="СписокПересчетовИсполнительКонтекстноеМеню" id="85"/>
+								<ExtendedTooltip name="СписокПересчетовИсполнительРасширеннаяПодсказка" id="86"/>
+							</LabelField>
+							<LabelField name="СписокПересчетовОтветственный" id="87">
+								<ContextMenu name="СписокПересчетовОтветственныйКонтекстноеМеню" id="88"/>
+								<ExtendedTooltip name="СписокПересчетовОтветственныйРасширеннаяПодсказка" id="89"/>
+							</LabelField>
+							<LabelField name="СписокПересчетовСсылка" id="90">
+								<UserVisible>
+									<xr:Common>false</xr:Common>
+								</UserVisible>
+								<ContextMenu name="СписокПересчетовСсылкаКонтекстноеМеню" id="91"/>
+								<ExtendedTooltip name="СписокПересчетовСсылкаРасширеннаяПодсказка" id="92"/>
+							</LabelField>
+						</ChildItems>
+					</Table>
+				</ChildItems>
+			</UsualGroup>
+			<Pages name="СтраницыКонтекстныеОтчеты" id="141">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Страницы контекстные отчеты</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Pages context reports</v8:content>
+					</v8:item>
+				</Title>
+				<PagesRepresentation>None</PagesRepresentation>
+				<ExtendedTooltip name="СтраницыКонтекстныеОтчетыРасширеннаяПодсказка" id="142"/>
+				<ChildItems>
+					<Page name="СтраницаДоступныеОтчеты" id="143">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница доступные отчеты</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Page available reports</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="СтраницаДоступныеОтчетыРасширеннаяПодсказка" id="144"/>
+						<ChildItems>
+							<Button name="ОткрытьОтчетТоварыВПроцессеОтгрузки" id="152">
+								<Type>Hyperlink</Type>
+								<CommandName>0</CommandName>
+								<ExtendedTooltip name="ОткрытьОтчетТоварыВПроцессеОтгрузкиРасширеннаяПодсказка" id="153"/>
+							</Button>
+						</ChildItems>
+					</Page>
+					<Page name="СтраницаНетДоступныхОтчетов" id="147">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Страница нет доступных отчетов</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Page no available reports</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="СтраницаНетДоступныхОтчетовРасширеннаяПодсказка" id="148"/>
+					</Page>
+				</ChildItems>
+			</Pages>
+		</ChildItems>
+		<Attributes/>
+	</BaseForm>
+</Form>

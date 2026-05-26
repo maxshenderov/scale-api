@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<CommandSet>
+		<ExcludedCommand>Generate</ExcludedCommand>
+		<ExcludedCommand>LoadReportSettings</ExcludedCommand>
+		<ExcludedCommand>ReportSettings</ExcludedCommand>
+		<ExcludedCommand>SaveReportSettings</ExcludedCommand>
+	</CommandSet>
+	<ReportFormType>Main</ReportFormType>
+	<AutoShowState>Auto</AutoShowState>
+	<ReportResultViewMode>Auto</ReportResultViewMode>
+	<ViewModeApplicationOnSetReportResult>Auto</ViewModeApplicationOnSetReportResult>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<Button name="ФормаСформировать" id="4">
+			<Type>UsualButton</Type>
+			<DefaultButton>true</DefaultButton>
+			<CommandName>Form.Command.Сформировать</CommandName>
+			<ExtendedTooltip name="ФормаСформироватьРасширеннаяПодсказка" id="5"/>
+		</Button>
+		<InputField name="Склад" id="20">
+			<DataPath>Склад</DataPath>
+			<ContextMenu name="СкладКонтекстноеМеню" id="21"/>
+			<ExtendedTooltip name="СкладРасширеннаяПодсказка" id="22"/>
+		</InputField>
+		<Table name="ТзПомещения" id="23">
+			<Representation>List</Representation>
+			<Height>2</Height>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>ТзПомещения</DataPath>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ТзПомещенияКонтекстноеМеню" id="24"/>
+			<AutoCommandBar name="ТзПомещенияКоманднаяПанель" id="25"/>
+			<ExtendedTooltip name="ТзПомещенияРасширеннаяПодсказка" id="26"/>
+			<SearchStringAddition name="ТзПомещенияСтрокаПоиска" id="27">
+				<AdditionSource>
+					<Item>ТзПомещения</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТзПомещенияСтрокаПоискаКонтекстноеМеню" id="28"/>
+				<ExtendedTooltip name="ТзПомещенияСтрокаПоискаРасширеннаяПодсказка" id="29"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТзПомещенияСостояниеПросмотра" id="30">
+				<AdditionSource>
+					<Item>ТзПомещения</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТзПомещенияСостояниеПросмотраКонтекстноеМеню" id="31"/>
+				<ExtendedTooltip name="ТзПомещенияСостояниеПросмотраРасширеннаяПодсказка" id="32"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТзПомещенияУправлениеПоиском" id="33">
+				<AdditionSource>
+					<Item>ТзПомещения</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТзПомещенияУправлениеПоискомКонтекстноеМеню" id="34"/>
+				<ExtendedTooltip name="ТзПомещенияУправлениеПоискомРасширеннаяПодсказка" id="35"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="ТзПомещенияПомещение" id="36">
+					<DataPath>ТзПомещения.Помещение</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ChoiceParameterLinks>
+						<xr:Link>
+							<xr:Name>Отбор.Владелец</xr:Name>
+							<xr:DataPath xsi:type="xs:string">Склад</xr:DataPath>
+							<xr:ValueChange>Clear</xr:ValueChange>
+						</xr:Link>
+					</ChoiceParameterLinks>
+					<ContextMenu name="ТзПомещенияПомещениеКонтекстноеМеню" id="37"/>
+					<ExtendedTooltip name="ТзПомещенияПомещениеРасширеннаяПодсказка" id="38"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<InputField name="Помещение" id="17">
+			<DataPath>Помещение</DataPath>
+			<Visible>false</Visible>
+			<ChoiceParameterLinks>
+				<xr:Link>
+					<xr:Name>Отбор.Владелец</xr:Name>
+					<xr:DataPath xsi:type="xs:string">Склад</xr:DataPath>
+					<xr:ValueChange>Clear</xr:ValueChange>
+				</xr:Link>
+			</ChoiceParameterLinks>
+			<ContextMenu name="ПомещениеКонтекстноеМеню" id="18"/>
+			<ExtendedTooltip name="ПомещениеРасширеннаяПодсказка" id="19"/>
+		</InputField>
+		<UsualGroup name="Группа1" id="6">
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="7"/>
+			<ChildItems>
+				<CheckBoxField name="ПоРабочимЦентрам" id="11">
+					<DataPath>ПоРабочимЦентрам</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ПоРабочимЦентрамКонтекстноеМеню" id="12"/>
+					<ExtendedTooltip name="ПоРабочимЦентрамРасширеннаяПодсказка" id="13"/>
+					<Events>
+						<Event name="OnChange">ПоРабочимЦентрамПриИзменении</Event>
+					</Events>
+				</CheckBoxField>
+				<InputField name="СписокРЦ" id="8">
+					<DataPath>Отчет.СписокРабочихЦентров</DataPath>
+					<Enabled>false</Enabled>
+					<ContextMenu name="СписокРЦКонтекстноеМеню" id="9"/>
+					<ExtendedTooltip name="СписокРЦРасширеннаяПодсказка" id="10"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<CheckBoxField name="СкладБрака" id="14">
+			<DataPath>СкладБрака</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="СкладБракаКонтекстноеМеню" id="15"/>
+			<ExtendedTooltip name="СкладБракаРасширеннаяПодсказка" id="16"/>
+			<Events>
+				<Event name="OnChange">СкладБракаПриИзменении</Event>
+			</Events>
+		</CheckBoxField>
+		<SpreadSheetDocumentField name="ТабличныйДокумент" id="1">
+			<DataPath>ТабличныйДокумент</DataPath>
+			<TitleLocation>None</TitleLocation>
+			<ContextMenu name="ТабличныйДокументКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ТабличныйДокументРасширеннаяПодсказка" id="3"/>
+		</SpreadSheetDocumentField>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Отчет" id="1">
+			<Type>
+				<v8:Type>cfg:ReportObject.ГруппаОтчетовДляЗакупщиков</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="ТабличныйДокумент" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Табличный документ</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type xmlns:mxl="http://v8.1c.ru/8.2/data/spreadsheet">mxl:SpreadsheetDocument</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ПоРабочимЦентрам" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>По рабочим центрам</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>ПоРабочимЦентрам</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="СписокРЦ" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список РЦ</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Лико_ОтображениеРабочихЦентров</v8:Type>
+			</Type>
+			<Save>
+				<Field>СписокРЦ</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="СкладБрака" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Склад брака</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Save>
+				<Field>СкладБрака</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="Помещение" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Помещение</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.СкладскиеПомещения</v8:Type>
+			</Type>
+			<Save>
+				<Field>Помещение</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="Склад" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Склад</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Склады</v8:Type>
+			</Type>
+			<Save>
+				<Field>Склад</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ТзПомещения" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Тз помещения</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Save>
+				<Field>ТзПомещения</Field>
+			</Save>
+			<Columns>
+				<Column name="Помещение" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Помещение</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.СкладскиеПомещения</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Сформировать" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Сформировать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Button name="ДоступностьВидовРабочихЦентровКонтекст" id="108">
+				<Type>CommandBarButton</Type>
+				<CommandName>DataProcessor.ДоступностьВидовРабочихЦентров.Command.ДоступностьВидовРабочихЦентровКонтекст</CommandName>
+				<DataPath>Объект.ВидРабочегоЦентра</DataPath>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="ДоступностьВидовРабочихЦентровКонтекстРасширеннаяПодсказка" id="109"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<ChildItems>
+		<LabelField name="ВидРабочегоЦентраПодразделение" id="11">
+			<DataPath>Объект.ВидРабочегоЦентра.Подразделение</DataPath>
+			<ContextMenu name="ВидРабочегоЦентраПодразделениеКонтекстноеМеню" id="12"/>
+			<ExtendedTooltip name="ВидРабочегоЦентраПодразделениеExtendedTooltip" id="28"/>
+		</LabelField>
+		<InputField name="Лико_Код" id="110">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>лк Код</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="Лико_КодКонтекстноеМеню" id="111"/>
+			<ExtendedTooltip name="Лико_КодРасширеннаяПодсказка" id="112"/>
+		</InputField>
+		<UsualGroup name="ГруппаРеквизиты" id="100">
+			<Group>Horizontal</Group>
+			<HorizontalSpacing>Double</HorizontalSpacing>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаРеквизитыРасширеннаяПодсказка" id="101"/>
+			<ChildItems>
+				<UsualGroup name="ГруппаНаименованиеОписание" id="102">
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<United>false</United>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаНаименованиеОписаниеРасширеннаяПодсказка" id="103"/>
+					<ChildItems>
+						<InputField name="Наименование" id="3">
+							<DataPath>Объект.Description</DataPath>
+							<DefaultItem>true</DefaultItem>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="НаименованиеКонтекстноеМеню" id="4"/>
+							<ExtendedTooltip name="НаименованиеExtendedTooltip" id="26"/>
+						</InputField>
+						<InputField name="Описание" id="9">
+							<DataPath>Объект.Описание</DataPath>
+							<TitleLocation>Left</TitleLocation>
+							<EditMode>EnterOnInput</EditMode>
+							<VerticalStretch>false</VerticalStretch>
+							<MultiLine>true</MultiLine>
+							<ContextMenu name="ОписаниеКонтекстноеМеню" id="10"/>
+							<ExtendedTooltip name="ОписаниеExtendedTooltip" id="30"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ГруппаВидРодитель" id="104">
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<United>false</United>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаВидРодительРасширеннаяПодсказка" id="105"/>
+					<ChildItems>
+						<InputField name="ВидРабочегоЦентра" id="7">
+							<DataPath>Объект.ВидРабочегоЦентра</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Вид</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ВидРабочегоЦентраКонтекстноеМеню" id="8"/>
+							<ExtendedTooltip name="ВидРабочегоЦентраExtendedTooltip" id="27"/>
+						</InputField>
+						<InputField name="Родитель" id="5">
+							<SkipOnInput>true</SkipOnInput>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="РодительКонтекстноеМеню" id="6"/>
+							<ExtendedTooltip name="РодительExtendedTooltip" id="25"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаПараметрыДоступности" id="50">
+			<TitleTextColor>style:ГруппаВариантовОтчетовЦвет82</TitleTextColor>
+			<Group>Horizontal</Group>
+			<HorizontalSpacing>Double</HorizontalSpacing>
+			<Behavior>Usual</Behavior>
+			<Representation>NormalSeparation</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ThroughAlign>Use</ThroughAlign>
+			<ExtendedTooltip name="ГруппаПараметрыДоступностиРасширеннаяПодсказка" id="51"/>
+			<ChildItems>
+				<InputField name="Календарь" id="23">
+					<DataPath>Объект.Календарь</DataPath>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Если график работы не указан, то используется график вида рабочих центров, или график подразделения, или график предприятия.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<ContextMenu name="КалендарьКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="КалендарьExtendedTooltip" id="29"/>
+				</InputField>
+				<InputField name="КоэффициентВремениРаботы" id="44">
+					<DataPath>Объект.КоэффициентВремениРаботы</DataPath>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Определяет коэффициент изменения времени выполнения этапа или операции на РЦ относительно нормативного времени.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ToolTipRepresentation>Button</ToolTipRepresentation>
+					<Width>10</Width>
+					<ContextMenu name="КоэффициентВремениРаботыКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="КоэффициентВремениРаботыРасширеннаяПодсказка" id="46"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="РасценкаРабота" id="94">
+			<DataPath>Объект.РасценкаРабота</DataPath>
+			<Width>10</Width>
+			<ContextMenu name="РасценкаРаботаКонтекстноеМеню" id="95"/>
+			<ExtendedTooltip name="РасценкаРаботаРасширеннаяПодсказка" id="96"/>
+		</InputField>
+		<InputField name="РасценкаПереналадка" id="97">
+			<DataPath>Объект.РасценкаПереналадка</DataPath>
+			<Width>10</Width>
+			<ContextMenu name="РасценкаПереналадкаКонтекстноеМеню" id="98"/>
+			<ExtendedTooltip name="РасценкаПереналадкаРасширеннаяПодсказка" id="99"/>
+		</InputField>
+		<UsualGroup name="ГруппаМаксимальнаяЗагрузка" id="39">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа максимальная загрузка</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа максимальная загрузка</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаМаксимальнаяЗагрузкаРасширеннаяПодсказка" id="40"/>
+			<ChildItems>
+				<InputField name="МаксимальнаяЗагрузка" id="33">
+					<DataPath>Объект.МаксимальнаяЗагрузка</DataPath>
+					<Width>10</Width>
+					<ContextMenu name="МаксимальнаяЗагрузкаКонтекстноеМеню" id="34"/>
+					<ExtendedTooltip name="МаксимальнаяЗагрузкаРасширеннаяПодсказка" id="35"/>
+				</InputField>
+				<LabelField name="ВидРабочегоЦентраЕдиницаИзмеренияЗагрузки" id="41">
+					<DataPath>Объект.ВидРабочегоЦентра.ЕдиницаИзмеренияЗагрузки</DataPath>
+					<TitleLocation>None</TitleLocation>
+					<ContextMenu name="ВидРабочегоЦентраЕдиницаИзмеренияЗагрузкиКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="ВидРабочегоЦентраЕдиницаИзмеренияЗагрузкиРасширеннаяПодсказка" id="43"/>
+				</LabelField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаДополнительныеРеквизиты" id="106">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Дополнительные реквизиты</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа дополнительные реквизиты</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Vertical</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаДополнительныеРеквизитыРасширеннаяПодсказка" id="107"/>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1000001">
+			<Type>
+				<v8:Type>cfg:CatalogObject.РабочиеЦентры</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<BaseForm version="2.20">
+		<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+		<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+			<ChildItems>
+				<Button name="ДоступностьВидовРабочихЦентровКонтекст" id="108">
+					<Type>CommandBarButton</Type>
+					<CommandName>DataProcessor.ДоступностьВидовРабочихЦентров.Command.ДоступностьВидовРабочихЦентровКонтекст</CommandName>
+					<DataPath>Объект.ВидРабочегоЦентра</DataPath>
+					<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+					<ExtendedTooltip name="ДоступностьВидовРабочихЦентровКонтекстРасширеннаяПодсказка" id="109"/>
+				</Button>
+			</ChildItems>
+		</AutoCommandBar>
+		<ChildItems>
+			<LabelField name="ВидРабочегоЦентраПодразделение" id="11">
+				<DataPath>Объект.ВидРабочегоЦентра.Подразделение</DataPath>
+				<ContextMenu name="ВидРабочегоЦентраПодразделениеКонтекстноеМеню" id="12"/>
+				<ExtendedTooltip name="ВидРабочегоЦентраПодразделениеExtendedTooltip" id="28"/>
+			</LabelField>
+			<UsualGroup name="ГруппаРеквизиты" id="100">
+				<Group>Horizontal</Group>
+				<HorizontalSpacing>Double</HorizontalSpacing>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаРеквизитыРасширеннаяПодсказка" id="101"/>
+				<ChildItems>
+					<UsualGroup name="ГруппаНаименованиеОписание" id="102">
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<United>false</United>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="ГруппаНаименованиеОписаниеРасширеннаяПодсказка" id="103"/>
+						<ChildItems>
+							<InputField name="Наименование" id="3">
+								<DataPath>Объект.Description</DataPath>
+								<DefaultItem>true</DefaultItem>
+								<EditMode>EnterOnInput</EditMode>
+								<ContextMenu name="НаименованиеКонтекстноеМеню" id="4"/>
+								<ExtendedTooltip name="НаименованиеExtendedTooltip" id="26"/>
+							</InputField>
+							<InputField name="Описание" id="9">
+								<DataPath>Объект.Описание</DataPath>
+								<TitleLocation>Left</TitleLocation>
+								<EditMode>EnterOnInput</EditMode>
+								<VerticalStretch>false</VerticalStretch>
+								<MultiLine>true</MultiLine>
+								<ContextMenu name="ОписаниеКонтекстноеМеню" id="10"/>
+								<ExtendedTooltip name="ОписаниеExtendedTooltip" id="30"/>
+							</InputField>
+						</ChildItems>
+					</UsualGroup>
+					<UsualGroup name="ГруппаВидРодитель" id="104">
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<United>false</United>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="ГруппаВидРодительРасширеннаяПодсказка" id="105"/>
+						<ChildItems>
+							<InputField name="ВидРабочегоЦентра" id="7">
+								<DataPath>Объект.ВидРабочегоЦентра</DataPath>
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Вид</v8:content>
+									</v8:item>
+								</Title>
+								<EditMode>EnterOnInput</EditMode>
+								<ContextMenu name="ВидРабочегоЦентраКонтекстноеМеню" id="8"/>
+								<ExtendedTooltip name="ВидРабочегоЦентраExtendedTooltip" id="27"/>
+							</InputField>
+							<InputField name="Родитель" id="5">
+								<SkipOnInput>true</SkipOnInput>
+								<EditMode>EnterOnInput</EditMode>
+								<ContextMenu name="РодительКонтекстноеМеню" id="6"/>
+								<ExtendedTooltip name="РодительExtendedTooltip" id="25"/>
+							</InputField>
+						</ChildItems>
+					</UsualGroup>
+				</ChildItems>
+			</UsualGroup>
+			<UsualGroup name="ГруппаПараметрыДоступности" id="50">
+				<TitleTextColor>style:ГруппаВариантовОтчетовЦвет82</TitleTextColor>
+				<Group>Horizontal</Group>
+				<HorizontalSpacing>Double</HorizontalSpacing>
+				<Behavior>Usual</Behavior>
+				<Representation>NormalSeparation</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ThroughAlign>Use</ThroughAlign>
+				<ExtendedTooltip name="ГруппаПараметрыДоступностиРасширеннаяПодсказка" id="51"/>
+				<ChildItems>
+					<InputField name="Календарь" id="23">
+						<DataPath>Объект.Календарь</DataPath>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Если график работы не указан, то используется график вида рабочих центров, или график подразделения, или график предприятия.</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ToolTipRepresentation>Button</ToolTipRepresentation>
+						<ContextMenu name="КалендарьКонтекстноеМеню" id="24"/>
+						<ExtendedTooltip name="КалендарьExtendedTooltip" id="29"/>
+					</InputField>
+					<InputField name="КоэффициентВремениРаботы" id="44">
+						<DataPath>Объект.КоэффициентВремениРаботы</DataPath>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Определяет коэффициент изменения времени выполнения этапа или операции на РЦ относительно нормативного времени.</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ToolTipRepresentation>Button</ToolTipRepresentation>
+						<Width>10</Width>
+						<ContextMenu name="КоэффициентВремениРаботыКонтекстноеМеню" id="45"/>
+						<ExtendedTooltip name="КоэффициентВремениРаботыРасширеннаяПодсказка" id="46"/>
+					</InputField>
+				</ChildItems>
+			</UsualGroup>
+			<InputField name="РасценкаРабота" id="94">
+				<DataPath>Объект.РасценкаРабота</DataPath>
+				<Width>10</Width>
+				<ContextMenu name="РасценкаРаботаКонтекстноеМеню" id="95"/>
+				<ExtendedTooltip name="РасценкаРаботаРасширеннаяПодсказка" id="96"/>
+			</InputField>
+			<InputField name="РасценкаПереналадка" id="97">
+				<DataPath>Объект.РасценкаПереналадка</DataPath>
+				<Width>10</Width>
+				<ContextMenu name="РасценкаПереналадкаКонтекстноеМеню" id="98"/>
+				<ExtendedTooltip name="РасценкаПереналадкаРасширеннаяПодсказка" id="99"/>
+			</InputField>
+			<UsualGroup name="ГруппаМаксимальнаяЗагрузка" id="39">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа максимальная загрузка</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа максимальная загрузка</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаМаксимальнаяЗагрузкаРасширеннаяПодсказка" id="40"/>
+				<ChildItems>
+					<InputField name="МаксимальнаяЗагрузка" id="33">
+						<DataPath>Объект.МаксимальнаяЗагрузка</DataPath>
+						<Width>10</Width>
+						<ContextMenu name="МаксимальнаяЗагрузкаКонтекстноеМеню" id="34"/>
+						<ExtendedTooltip name="МаксимальнаяЗагрузкаРасширеннаяПодсказка" id="35"/>
+					</InputField>
+					<LabelField name="ВидРабочегоЦентраЕдиницаИзмеренияЗагрузки" id="41">
+						<DataPath>Объект.ВидРабочегоЦентра.ЕдиницаИзмеренияЗагрузки</DataPath>
+						<TitleLocation>None</TitleLocation>
+						<ContextMenu name="ВидРабочегоЦентраЕдиницаИзмеренияЗагрузкиКонтекстноеМеню" id="42"/>
+						<ExtendedTooltip name="ВидРабочегоЦентраЕдиницаИзмеренияЗагрузкиРасширеннаяПодсказка" id="43"/>
+					</LabelField>
+				</ChildItems>
+			</UsualGroup>
+			<UsualGroup name="ГруппаДополнительныеРеквизиты" id="106">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Дополнительные реквизиты</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа дополнительные реквизиты</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Group>Vertical</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаДополнительныеРеквизитыРасширеннаяПодсказка" id="107"/>
+			</UsualGroup>
+		</ChildItems>
+		<Attributes>
+			<Attribute name="Объект" id="1000001">
+				<Type>
+					<v8:Type>cfg:CatalogObject.РабочиеЦентры</v8:Type>
+				</Type>
+				<MainAttribute>true</MainAttribute>
+				<SavedData>true</SavedData>
+			</Attribute>
+		</Attributes>
+	</BaseForm>
+</Form>

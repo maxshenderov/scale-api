@@ -1,0 +1,17 @@
+{
+  "name": "qdrant-code-search",
+  "version": "0.1.0",
+  "description": "MCP server for semantic code search in Qdrant via Perplexity embeddings",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="BeforeWrite">ПередЗаписью</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаНомерДата" id="31">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа номер дата</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа номер дата</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаНомерДатаРасширеннаяПодсказка" id="32"/>
+			<ChildItems>
+				<InputField name="Номер" id="1">
+					<DataPath>Объект.Number</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="НомерКонтекстноеМеню" id="2"/>
+					<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="3"/>
+				</InputField>
+				<InputField name="Дата" id="4">
+					<DataPath>Объект.Date</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+					<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="6"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="Состояние" id="25">
+			<DataPath>Объект.Состояние</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<Width>40</Width>
+			<HorizontalStretch>false</HorizontalStretch>
+			<DropListButton>false</DropListButton>
+			<ChoiceButton>false</ChoiceButton>
+			<ClearButton>false</ClearButton>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<QuickChoice>false</QuickChoice>
+			<TextEdit>false</TextEdit>
+			<BackColor>style:ImportantColor</BackColor>
+			<Font ref="style:NormalTextFont" height="16" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem" scale="100"/>
+			<ChoiceHistoryOnInput>DontUse</ChoiceHistoryOnInput>
+			<ContextMenu name="СостояниеКонтекстноеМеню" id="26"/>
+			<ExtendedTooltip name="СостояниеРасширеннаяПодсказка" id="27"/>
+		</InputField>
+		<InputField name="РабочийЦентр" id="45">
+			<DataPath>Объект.РабочийЦентр</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="РабочийЦентрКонтекстноеМеню" id="46"/>
+			<ExtendedTooltip name="РабочийЦентрРасширеннаяПодсказка" id="47"/>
+		</InputField>
+		<InputField name="Статус" id="36">
+			<DataPath>Объект.Статус</DataPath>
+			<ListChoiceMode>true</ListChoiceMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ChoiceList>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation/>
+						<Value xsi:type="xr:DesignTimeRef">Enum.ТССтатусыЗаказов.EnumValue.Настройка</Value>
+					</xr:Value>
+				</xr:Item>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation/>
+						<Value xsi:type="xr:DesignTimeRef">Enum.ТССтатусыЗаказов.EnumValue.Печать</Value>
+					</xr:Value>
+				</xr:Item>
+			</ChoiceList>
+			<ContextMenu name="СтатусКонтекстноеМеню" id="37"/>
+			<ExtendedTooltip name="СтатусРасширеннаяПодсказка" id="38"/>
+		</InputField>
+		<InputField name="Оператор" id="13">
+			<DataPath>Объект.Оператор</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ОператорКонтекстноеМеню" id="14"/>
+			<ExtendedTooltip name="ОператорРасширеннаяПодсказка" id="15"/>
+		</InputField>
+		<InputField name="Заказ" id="7">
+			<DataPath>Объект.Заказ</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ЗаказКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ЗаказРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<InputField name="НомерПроката" id="28">
+			<DataPath>Объект.НомерПроката</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НомерПрокатаКонтекстноеМеню" id="29"/>
+			<ExtendedTooltip name="НомерПрокатаРасширеннаяПодсказка" id="30"/>
+		</InputField>
+		<InputField name="НомерБланка" id="10">
+			<DataPath>Объект.НомерБланка</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НомерБланкаКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="НомерБланкаРасширеннаяПодсказка" id="12"/>
+		</InputField>
+		<InputField name="Материал" id="16">
+			<DataPath>Объект.Материал</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="МатериалКонтекстноеМеню" id="17"/>
+			<ExtendedTooltip name="МатериалРасширеннаяПодсказка" id="18"/>
+		</InputField>
+		<InputField name="КоличествоЗаявлено" id="19">
+			<DataPath>Объект.КоличествоЗаявлено</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<AutoMarkIncomplete>false</AutoMarkIncomplete>
+			<ContextMenu name="КоличествоЗаявленоКонтекстноеМеню" id="20"/>
+			<ExtendedTooltip name="КоличествоЗаявленоРасширеннаяПодсказка" id="21"/>
+		</InputField>
+		<InputField name="КоличествоПодтверждено" id="33">
+			<DataPath>Объект.КоличествоПодтверждено</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="КоличествоПодтвержденоКонтекстноеМеню" id="34"/>
+			<ExtendedTooltip name="КоличествоПодтвержденоРасширеннаяПодсказка" id="35"/>
+		</InputField>
+		<InputField name="Причина" id="22">
+			<DataPath>Объект.Причина</DataPath>
+			<TitleLocation>Left</TitleLocation>
+			<EditMode>EnterOnInput</EditMode>
+			<VerticalStretch>false</VerticalStretch>
+			<MultiLine>true</MultiLine>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ПричинаКонтекстноеМеню" id="23"/>
+			<ExtendedTooltip name="ПричинаРасширеннаяПодсказка" id="24"/>
+		</InputField>
+		<LabelDecoration name="Декорация2" id="57">
+			<ContextMenu name="Декорация2КонтекстноеМеню" id="58"/>
+			<ExtendedTooltip name="Декорация2РасширеннаяПодсказка" id="59"/>
+		</LabelDecoration>
+		<InputField name="Проверил" id="54">
+			<DataPath>Объект.Проверил</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ПроверилКонтекстноеМеню" id="55"/>
+			<ExtendedTooltip name="ПроверилРасширеннаяПодсказка" id="56"/>
+		</InputField>
+		<InputField name="ДатаПроверки" id="51">
+			<DataPath>Объект.ДатаПроверки</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ДатаПроверкиКонтекстноеМеню" id="52"/>
+			<ExtendedTooltip name="ДатаПроверкиРасширеннаяПодсказка" id="53"/>
+		</InputField>
+		<LabelDecoration name="Декорация1" id="48">
+			<Height>2</Height>
+			<ContextMenu name="Декорация1КонтекстноеМеню" id="49"/>
+			<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="50"/>
+		</LabelDecoration>
+		<UsualGroup name="Группа1" id="43">
+			<Width>58</Width>
+			<HorizontalStretch>false</HorizontalStretch>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="44"/>
+			<ChildItems>
+				<Button name="Отклонить" id="41">
+					<Type>UsualButton</Type>
+					<Representation>PictureAndText</Representation>
+					<Height>2</Height>
+					<GroupHorizontalAlign>Left</GroupHorizontalAlign>
+					<CommandName>Form.Command.Отклонить</CommandName>
+					<Font ref="style:NormalTextFont" height="16" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem" scale="100"/>
+					<ExtendedTooltip name="ОтклонитьРасширеннаяПодсказка" id="42"/>
+				</Button>
+				<Button name="Подтвердить" id="39">
+					<Type>UsualButton</Type>
+					<Representation>PictureAndText</Representation>
+					<Height>2</Height>
+					<GroupHorizontalAlign>Right</GroupHorizontalAlign>
+					<CommandName>Form.Command.Подтвердить</CommandName>
+					<Font ref="style:NormalTextFont" height="16" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem" scale="100"/>
+					<ExtendedTooltip name="ПодтвердитьРасширеннаяПодсказка" id="40"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Лико_КартаПерерасхода</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="ИзПланирования" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Из планирования</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="МожноЗакрытьФормуСФайлами" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Можно закрыть форму с файлами</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Подтвердить" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подтвердить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подтвердить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ТСОК</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Подтвердить</Action>
+		</Command>
+		<Command name="Отклонить" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отклонить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отклонить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>CommonPicture.ТСУдалить</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Отклонить</Action>
+		</Command>
+	</Commands>
+</Form>

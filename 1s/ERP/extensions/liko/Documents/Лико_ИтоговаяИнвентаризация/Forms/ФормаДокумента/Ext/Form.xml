@@ -1,0 +1,1113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Номер" id="1">
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НомерКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Дата" id="4">
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="Организация" id="7">
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ОрганизацияКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ОрганизацияРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<InputField name="Склад" id="326">
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="СкладКонтекстноеМеню" id="327"/>
+			<ExtendedTooltip name="СкладРасширеннаяПодсказка" id="328"/>
+		</InputField>
+		<InputField name="ДатаНачала" id="10">
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ДатаНачалаКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="ДатаНачалаРасширеннаяПодсказка" id="12"/>
+		</InputField>
+		<InputField name="ДатаОкончания" id="13">
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ДатаОкончанияКонтекстноеМеню" id="14"/>
+			<ExtendedTooltip name="ДатаОкончанияРасширеннаяПодсказка" id="15"/>
+		</InputField>
+		<InputField name="Ответственный" id="16">
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ОтветственныйКонтекстноеМеню" id="17"/>
+			<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="18"/>
+		</InputField>
+		<Button name="ЗаполнитьДокумент" id="324">
+			<Type>UsualButton</Type>
+			<CommandName>0</CommandName>
+			<ExtendedTooltip name="ЗаполнитьДокументРасширеннаяПодсказка" id="325"/>
+		</Button>
+		<Pages name="Страницы" id="22">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="23"/>
+			<ChildItems>
+				<Page name="ГруппаТоварыИвентаризаций" id="87">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Товары ивентаризаций</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаТоварыИвентаризацийРасширеннаяПодсказка" id="88"/>
+					<ChildItems>
+						<Table name="ТоварыИвентаризаций" id="89">
+							<Representation>List</Representation>
+							<ReadOnly>true</ReadOnly>
+							<ChangeRowSet>false</ChangeRowSet>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ТоварыИвентаризацийКонтекстноеМеню" id="90"/>
+							<AutoCommandBar name="ТоварыИвентаризацийКоманднаяПанель" id="91"/>
+							<ExtendedTooltip name="ТоварыИвентаризацийРасширеннаяПодсказка" id="92"/>
+							<SearchStringAddition name="ТоварыИвентаризацийСтрокаПоиска" id="93">
+								<AdditionSource>
+									<Item>ТоварыИвентаризаций</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТоварыИвентаризацийСтрокаПоискаКонтекстноеМеню" id="94"/>
+								<ExtendedTooltip name="ТоварыИвентаризацийСтрокаПоискаРасширеннаяПодсказка" id="95"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ТоварыИвентаризацийСостояниеПросмотра" id="96">
+								<AdditionSource>
+									<Item>ТоварыИвентаризаций</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТоварыИвентаризацийСостояниеПросмотраКонтекстноеМеню" id="97"/>
+								<ExtendedTooltip name="ТоварыИвентаризацийСостояниеПросмотраРасширеннаяПодсказка" id="98"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ТоварыИвентаризацийУправлениеПоиском" id="99">
+								<AdditionSource>
+									<Item>ТоварыИвентаризаций</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ТоварыИвентаризацийУправлениеПоискомКонтекстноеМеню" id="100"/>
+								<ExtendedTooltip name="ТоварыИвентаризацийУправлениеПоискомРасширеннаяПодсказка" id="101"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ТоварыИвентаризацийНомерСтроки" id="102">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТоварыИвентаризацийНомерСтрокиКонтекстноеМеню" id="103"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийНомерСтрокиРасширеннаяПодсказка" id="104"/>
+								</LabelField>
+								<InputField name="ТоварыИвентаризацийДокумент" id="105">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийДокументКонтекстноеМеню" id="106"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийДокументРасширеннаяПодсказка" id="107"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийПомещение" id="321">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийПомещениеКонтекстноеМеню" id="322"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийПомещениеРасширеннаяПодсказка" id="323"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийОтветственный" id="318">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийОтветственныйКонтекстноеМеню" id="319"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийОтветственныйРасширеннаяПодсказка" id="320"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийНоменклатура" id="120">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийНоменклатураКонтекстноеМеню" id="121"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийНоменклатураРасширеннаяПодсказка" id="122"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийХарактеристика" id="126">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийХарактеристикаКонтекстноеМеню" id="127"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийХарактеристикаРасширеннаяПодсказка" id="128"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийУпаковка" id="123">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийУпаковкаКонтекстноеМеню" id="124"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийУпаковкаРасширеннаяПодсказка" id="125"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийСерия" id="138">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийСерияКонтекстноеМеню" id="139"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийСерияРасширеннаяПодсказка" id="140"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийКоличество" id="108">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийКоличествоКонтекстноеМеню" id="109"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийКоличествоРасширеннаяПодсказка" id="110"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийКоличествоФакт" id="111">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийКоличествоФактКонтекстноеМеню" id="112"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийКоличествоФактРасширеннаяПодсказка" id="113"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийКоличествоУпаковок" id="114">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийКоличествоУпаковокКонтекстноеМеню" id="115"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийКоличествоУпаковокРасширеннаяПодсказка" id="116"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийКоличествоУпаковокФакт" id="117">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийКоличествоУпаковокФактКонтекстноеМеню" id="118"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийКоличествоУпаковокФактРасширеннаяПодсказка" id="119"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийНазначение" id="129">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийНазначениеКонтекстноеМеню" id="130"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийНазначениеРасширеннаяПодсказка" id="131"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийЯчейка" id="132">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийЯчейкаКонтекстноеМеню" id="133"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийЯчейкаРасширеннаяПодсказка" id="134"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийЛико_ЯчейкаФакт" id="144">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Ячейка факт</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийЛико_ЯчейкаФактКонтекстноеМеню" id="145"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийЛико_ЯчейкаФактРасширеннаяПодсказка" id="146"/>
+								</InputField>
+								<InputField name="ТоварыИвентаризацийРазница" id="356">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыИвентаризацийРазницаКонтекстноеМеню" id="357"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийРазницаРасширеннаяПодсказка" id="358"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаПересчетыТоваров" id="24">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Инвентаризации</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаПересчетыТоваровРасширеннаяПодсказка" id="25"/>
+					<ChildItems>
+						<Table name="ПересчетыТоваров" id="26">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ПересчетыТоваровКонтекстноеМеню" id="27"/>
+							<AutoCommandBar name="ПересчетыТоваровКоманднаяПанель" id="28"/>
+							<ExtendedTooltip name="ПересчетыТоваровРасширеннаяПодсказка" id="29"/>
+							<SearchStringAddition name="ПересчетыТоваровСтрокаПоиска" id="30">
+								<AdditionSource>
+									<Item>ПересчетыТоваров</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПересчетыТоваровСтрокаПоискаКонтекстноеМеню" id="31"/>
+								<ExtendedTooltip name="ПересчетыТоваровСтрокаПоискаРасширеннаяПодсказка" id="32"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ПересчетыТоваровСостояниеПросмотра" id="33">
+								<AdditionSource>
+									<Item>ПересчетыТоваров</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПересчетыТоваровСостояниеПросмотраКонтекстноеМеню" id="34"/>
+								<ExtendedTooltip name="ПересчетыТоваровСостояниеПросмотраРасширеннаяПодсказка" id="35"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ПересчетыТоваровУправлениеПоиском" id="36">
+								<AdditionSource>
+									<Item>ПересчетыТоваров</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ПересчетыТоваровУправлениеПоискомКонтекстноеМеню" id="37"/>
+								<ExtendedTooltip name="ПересчетыТоваровУправлениеПоискомРасширеннаяПодсказка" id="38"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ПересчетыТоваровНомерСтроки" id="39">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПересчетыТоваровНомерСтрокиКонтекстноеМеню" id="40"/>
+									<ExtendedTooltip name="ПересчетыТоваровНомерСтрокиРасширеннаяПодсказка" id="41"/>
+								</LabelField>
+								<InputField name="ПересчетыТоваровДокумент" id="42">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПересчетыТоваровДокументКонтекстноеМеню" id="43"/>
+									<ExtendedTooltip name="ПересчетыТоваровДокументРасширеннаяПодсказка" id="44"/>
+								</InputField>
+								<LabelField name="ПересчетыТоваровДокументПомещение" id="362">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПересчетыТоваровДокументПомещениеКонтекстноеМеню" id="363"/>
+									<ExtendedTooltip name="ПересчетыТоваровДокументПомещениеРасширеннаяПодсказка" id="364"/>
+								</LabelField>
+								<LabelField name="ПересчетыТоваровДокументОтветственный" id="365">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПересчетыТоваровДокументОтветственныйКонтекстноеМеню" id="366"/>
+									<ExtendedTooltip name="ПересчетыТоваровДокументОтветственныйРасширеннаяПодсказка" id="367"/>
+								</LabelField>
+								<InputField name="ПересчетыТоваровРазница" id="359">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПересчетыТоваровРазницаКонтекстноеМеню" id="360"/>
+									<ExtendedTooltip name="ПересчетыТоваровРазницаРасширеннаяПодсказка" id="361"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаПустыеЯчейки" id="45">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Пустые ячейки на момент инвентаризации</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаПустыеЯчейкиРасширеннаяПодсказка" id="46"/>
+					<ChildItems>
+						<Table name="ПустыеЯчейки" id="47">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ПустыеЯчейкиКонтекстноеМеню" id="48"/>
+							<AutoCommandBar name="ПустыеЯчейкиКоманднаяПанель" id="49"/>
+							<ExtendedTooltip name="ПустыеЯчейкиРасширеннаяПодсказка" id="50"/>
+							<SearchStringAddition name="ПустыеЯчейкиСтрокаПоиска" id="51">
+								<AdditionSource>
+									<Item>ПустыеЯчейки</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПустыеЯчейкиСтрокаПоискаКонтекстноеМеню" id="52"/>
+								<ExtendedTooltip name="ПустыеЯчейкиСтрокаПоискаРасширеннаяПодсказка" id="53"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ПустыеЯчейкиСостояниеПросмотра" id="54">
+								<AdditionSource>
+									<Item>ПустыеЯчейки</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПустыеЯчейкиСостояниеПросмотраКонтекстноеМеню" id="55"/>
+								<ExtendedTooltip name="ПустыеЯчейкиСостояниеПросмотраРасширеннаяПодсказка" id="56"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ПустыеЯчейкиУправлениеПоиском" id="57">
+								<AdditionSource>
+									<Item>ПустыеЯчейки</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ПустыеЯчейкиУправлениеПоискомКонтекстноеМеню" id="58"/>
+								<ExtendedTooltip name="ПустыеЯчейкиУправлениеПоискомРасширеннаяПодсказка" id="59"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ПустыеЯчейкиНомерСтроки" id="60">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПустыеЯчейкиНомерСтрокиКонтекстноеМеню" id="61"/>
+									<ExtendedTooltip name="ПустыеЯчейкиНомерСтрокиРасширеннаяПодсказка" id="62"/>
+								</LabelField>
+								<InputField name="ПустыеЯчейкиЯчейка" id="63">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПустыеЯчейкиЯчейкаКонтекстноеМеню" id="64"/>
+									<ExtendedTooltip name="ПустыеЯчейкиЯчейкаРасширеннаяПодсказка" id="65"/>
+								</InputField>
+								<LabelField name="ПустыеЯчейкиЯчейкаПомещение" id="329">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПустыеЯчейкиЯчейкаПомещениеКонтекстноеМеню" id="330"/>
+									<ExtendedTooltip name="ПустыеЯчейкиЯчейкаПомещениеРасширеннаяПодсказка" id="331"/>
+								</LabelField>
+								<LabelField name="ПустыеЯчейкиЯчейкаЛико_Организация" id="332">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияКонтекстноеМеню" id="333"/>
+									<ExtendedTooltip name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияРасширеннаяПодсказка" id="334"/>
+								</LabelField>
+								<LabelField name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияОтветственногоХранения" id="335">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияОтветственногоХраненияКонтекстноеМеню" id="336"/>
+									<ExtendedTooltip name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияОтветственногоХраненияРасширеннаяПодсказка" id="337"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаЯчейкиБезПересчета" id="66">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ячейки без пересчета</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаЯчейкиБезПересчетаРасширеннаяПодсказка" id="67"/>
+					<ChildItems>
+						<Table name="ЯчейкиБезПересчета" id="68">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ЯчейкиБезПересчетаКонтекстноеМеню" id="69"/>
+							<AutoCommandBar name="ЯчейкиБезПересчетаКоманднаяПанель" id="70"/>
+							<ExtendedTooltip name="ЯчейкиБезПересчетаРасширеннаяПодсказка" id="71"/>
+							<SearchStringAddition name="ЯчейкиБезПересчетаСтрокаПоиска" id="72">
+								<AdditionSource>
+									<Item>ЯчейкиБезПересчета</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ЯчейкиБезПересчетаСтрокаПоискаКонтекстноеМеню" id="73"/>
+								<ExtendedTooltip name="ЯчейкиБезПересчетаСтрокаПоискаРасширеннаяПодсказка" id="74"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ЯчейкиБезПересчетаСостояниеПросмотра" id="75">
+								<AdditionSource>
+									<Item>ЯчейкиБезПересчета</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ЯчейкиБезПересчетаСостояниеПросмотраКонтекстноеМеню" id="76"/>
+								<ExtendedTooltip name="ЯчейкиБезПересчетаСостояниеПросмотраРасширеннаяПодсказка" id="77"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ЯчейкиБезПересчетаУправлениеПоиском" id="78">
+								<AdditionSource>
+									<Item>ЯчейкиБезПересчета</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ЯчейкиБезПересчетаУправлениеПоискомКонтекстноеМеню" id="79"/>
+								<ExtendedTooltip name="ЯчейкиБезПересчетаУправлениеПоискомРасширеннаяПодсказка" id="80"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ЯчейкиБезПересчетаНомерСтроки" id="81">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ЯчейкиБезПересчетаНомерСтрокиКонтекстноеМеню" id="82"/>
+									<ExtendedTooltip name="ЯчейкиБезПересчетаНомерСтрокиРасширеннаяПодсказка" id="83"/>
+								</LabelField>
+								<InputField name="ЯчейкиБезПересчетаЯчейка" id="84">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ЯчейкиБезПересчетаЯчейкаКонтекстноеМеню" id="85"/>
+									<ExtendedTooltip name="ЯчейкиБезПересчетаЯчейкаРасширеннаяПодсказка" id="86"/>
+								</InputField>
+								<LabelField name="ЯчейкиБезПересчетаЯчейкаПомещение" id="338">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ЯчейкиБезПересчетаЯчейкаПомещениеКонтекстноеМеню" id="339"/>
+									<ExtendedTooltip name="ЯчейкиБезПересчетаЯчейкаПомещениеРасширеннаяПодсказка" id="340"/>
+								</LabelField>
+								<LabelField name="ЯчейкиБезПересчетаЯчейкаЛико_Организация" id="344">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияКонтекстноеМеню" id="345"/>
+									<ExtendedTooltip name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияРасширеннаяПодсказка" id="346"/>
+								</LabelField>
+								<LabelField name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияОтветственногоХранения" id="341">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияОтветственногоХраненияКонтекстноеМеню" id="342"/>
+									<ExtendedTooltip name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияОтветственногоХраненияРасширеннаяПодсказка" id="343"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаПриходСписание" id="159">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Приход / списание</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа приход списание</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ГруппаПриходСписаниеРасширеннаяПодсказка" id="160"/>
+					<ChildItems>
+						<Table name="Товары" id="161">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ТоварыКонтекстноеМеню" id="162"/>
+							<AutoCommandBar name="ТоварыКоманднаяПанель" id="163"/>
+							<ExtendedTooltip name="ТоварыРасширеннаяПодсказка" id="164"/>
+							<SearchStringAddition name="ТоварыСтрокаПоиска" id="165">
+								<AdditionSource>
+									<Item>Товары</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТоварыСтрокаПоискаКонтекстноеМеню" id="166"/>
+								<ExtendedTooltip name="ТоварыСтрокаПоискаРасширеннаяПодсказка" id="167"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ТоварыСостояниеПросмотра" id="168">
+								<AdditionSource>
+									<Item>Товары</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТоварыСостояниеПросмотраКонтекстноеМеню" id="169"/>
+								<ExtendedTooltip name="ТоварыСостояниеПросмотраРасширеннаяПодсказка" id="170"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ТоварыУправлениеПоиском" id="171">
+								<AdditionSource>
+									<Item>Товары</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ТоварыУправлениеПоискомКонтекстноеМеню" id="172"/>
+								<ExtendedTooltip name="ТоварыУправлениеПоискомРасширеннаяПодсказка" id="173"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<InputField name="ТоварыДата" id="350">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыДатаКонтекстноеМеню" id="351"/>
+									<ExtendedTooltip name="ТоварыДатаРасширеннаяПодсказка" id="352"/>
+								</InputField>
+								<InputField name="ТоварыДокумент" id="347">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыДокументКонтекстноеМеню" id="348"/>
+									<ExtendedTooltip name="ТоварыДокументРасширеннаяПодсказка" id="349"/>
+								</InputField>
+								<InputField name="ТоварыАвторДокумента" id="353">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыАвторДокументаКонтекстноеМеню" id="354"/>
+									<ExtendedTooltip name="ТоварыАвторДокументаРасширеннаяПодсказка" id="355"/>
+								</InputField>
+								<LabelField name="ТоварыНомерСтроки" id="174">
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТоварыНомерСтрокиКонтекстноеМеню" id="175"/>
+									<ExtendedTooltip name="ТоварыНомерСтрокиРасширеннаяПодсказка" id="176"/>
+								</LabelField>
+								<InputField name="ТоварыНоменклатура" id="177">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыНоменклатураКонтекстноеМеню" id="178"/>
+									<ExtendedTooltip name="ТоварыНоменклатураРасширеннаяПодсказка" id="179"/>
+								</InputField>
+								<InputField name="ТоварыХарактеристика" id="183">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыХарактеристикаКонтекстноеМеню" id="184"/>
+									<ExtendedTooltip name="ТоварыХарактеристикаРасширеннаяПодсказка" id="185"/>
+								</InputField>
+								<InputField name="ТоварыУпаковка" id="186">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыУпаковкаКонтекстноеМеню" id="187"/>
+									<ExtendedTooltip name="ТоварыУпаковкаРасширеннаяПодсказка" id="188"/>
+								</InputField>
+								<InputField name="ТоварыСерия" id="270">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыСерияКонтекстноеМеню" id="271"/>
+									<ExtendedTooltip name="ТоварыСерияРасширеннаяПодсказка" id="272"/>
+								</InputField>
+								<InputField name="ТоварыКоличествоУпаковок" id="189">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыКоличествоУпаковокКонтекстноеМеню" id="190"/>
+									<ExtendedTooltip name="ТоварыКоличествоУпаковокРасширеннаяПодсказка" id="191"/>
+								</InputField>
+								<InputField name="ТоварыКоличество" id="192">
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ТоварыКоличествоКонтекстноеМеню" id="193"/>
+									<ExtendedTooltip name="ТоварыКоличествоРасширеннаяПодсказка" id="194"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+		<InputField name="Комментарий" id="19">
+			<EditMode>EnterOnInput</EditMode>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<MultiLine>true</MultiLine>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="КомментарийКонтекстноеМеню" id="20"/>
+			<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="21"/>
+		</InputField>
+	</ChildItems>
+	<Attributes/>
+	<BaseForm version="2.20">
+		<AutoTime>CurrentOrLast</AutoTime>
+		<UsePostingMode>Auto</UsePostingMode>
+		<RepostOnWrite>true</RepostOnWrite>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+		<ChildItems>
+			<InputField name="Номер" id="1">
+				<EditMode>EnterOnInput</EditMode>
+				<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+				<ContextMenu name="НомерКонтекстноеМеню" id="2"/>
+				<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="3"/>
+			</InputField>
+			<InputField name="Дата" id="4">
+				<EditMode>EnterOnInput</EditMode>
+				<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+				<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+				<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="6"/>
+			</InputField>
+			<InputField name="Организация" id="7">
+				<EditMode>EnterOnInput</EditMode>
+				<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+				<ContextMenu name="ОрганизацияКонтекстноеМеню" id="8"/>
+				<ExtendedTooltip name="ОрганизацияРасширеннаяПодсказка" id="9"/>
+			</InputField>
+			<InputField name="Склад" id="326">
+				<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+				<ContextMenu name="СкладКонтекстноеМеню" id="327"/>
+				<ExtendedTooltip name="СкладРасширеннаяПодсказка" id="328"/>
+			</InputField>
+			<InputField name="ДатаНачала" id="10">
+				<EditMode>EnterOnInput</EditMode>
+				<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+				<ContextMenu name="ДатаНачалаКонтекстноеМеню" id="11"/>
+				<ExtendedTooltip name="ДатаНачалаРасширеннаяПодсказка" id="12"/>
+			</InputField>
+			<InputField name="ДатаОкончания" id="13">
+				<EditMode>EnterOnInput</EditMode>
+				<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+				<ContextMenu name="ДатаОкончанияКонтекстноеМеню" id="14"/>
+				<ExtendedTooltip name="ДатаОкончанияРасширеннаяПодсказка" id="15"/>
+			</InputField>
+			<InputField name="Ответственный" id="16">
+				<EditMode>EnterOnInput</EditMode>
+				<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+				<ContextMenu name="ОтветственныйКонтекстноеМеню" id="17"/>
+				<ExtendedTooltip name="ОтветственныйРасширеннаяПодсказка" id="18"/>
+			</InputField>
+			<Button name="ЗаполнитьДокумент" id="324">
+				<Type>UsualButton</Type>
+				<CommandName>0</CommandName>
+				<ExtendedTooltip name="ЗаполнитьДокументРасширеннаяПодсказка" id="325"/>
+			</Button>
+			<Pages name="Страницы" id="22">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Страницы</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="23"/>
+				<ChildItems>
+					<Page name="ГруппаТоварыИвентаризаций" id="87">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Товары ивентаризаций</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ГруппаТоварыИвентаризацийРасширеннаяПодсказка" id="88"/>
+						<ChildItems>
+							<Table name="ТоварыИвентаризаций" id="89">
+								<Representation>List</Representation>
+								<ReadOnly>true</ReadOnly>
+								<ChangeRowSet>false</ChangeRowSet>
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="ТоварыИвентаризацийКонтекстноеМеню" id="90"/>
+								<AutoCommandBar name="ТоварыИвентаризацийКоманднаяПанель" id="91"/>
+								<ExtendedTooltip name="ТоварыИвентаризацийРасширеннаяПодсказка" id="92"/>
+								<SearchStringAddition name="ТоварыИвентаризацийСтрокаПоиска" id="93">
+									<AdditionSource>
+										<Item>ТоварыИвентаризаций</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ТоварыИвентаризацийСтрокаПоискаКонтекстноеМеню" id="94"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийСтрокаПоискаРасширеннаяПодсказка" id="95"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="ТоварыИвентаризацийСостояниеПросмотра" id="96">
+									<AdditionSource>
+										<Item>ТоварыИвентаризаций</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ТоварыИвентаризацийСостояниеПросмотраКонтекстноеМеню" id="97"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийСостояниеПросмотраРасширеннаяПодсказка" id="98"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="ТоварыИвентаризацийУправлениеПоиском" id="99">
+									<AdditionSource>
+										<Item>ТоварыИвентаризаций</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="ТоварыИвентаризацийУправлениеПоискомКонтекстноеМеню" id="100"/>
+									<ExtendedTooltip name="ТоварыИвентаризацийУправлениеПоискомРасширеннаяПодсказка" id="101"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<LabelField name="ТоварыИвентаризацийНомерСтроки" id="102">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ТоварыИвентаризацийНомерСтрокиКонтекстноеМеню" id="103"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийНомерСтрокиРасширеннаяПодсказка" id="104"/>
+									</LabelField>
+									<InputField name="ТоварыИвентаризацийДокумент" id="105">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийДокументКонтекстноеМеню" id="106"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийДокументРасширеннаяПодсказка" id="107"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийПомещение" id="321">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийПомещениеКонтекстноеМеню" id="322"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийПомещениеРасширеннаяПодсказка" id="323"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийОтветственный" id="318">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийОтветственныйКонтекстноеМеню" id="319"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийОтветственныйРасширеннаяПодсказка" id="320"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийНоменклатура" id="120">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийНоменклатураКонтекстноеМеню" id="121"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийНоменклатураРасширеннаяПодсказка" id="122"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийХарактеристика" id="126">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийХарактеристикаКонтекстноеМеню" id="127"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийХарактеристикаРасширеннаяПодсказка" id="128"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийУпаковка" id="123">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийУпаковкаКонтекстноеМеню" id="124"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийУпаковкаРасширеннаяПодсказка" id="125"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийСерия" id="138">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийСерияКонтекстноеМеню" id="139"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийСерияРасширеннаяПодсказка" id="140"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийКоличество" id="108">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийКоличествоКонтекстноеМеню" id="109"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийКоличествоРасширеннаяПодсказка" id="110"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийКоличествоФакт" id="111">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийКоличествоФактКонтекстноеМеню" id="112"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийКоличествоФактРасширеннаяПодсказка" id="113"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийКоличествоУпаковок" id="114">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийКоличествоУпаковокКонтекстноеМеню" id="115"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийКоличествоУпаковокРасширеннаяПодсказка" id="116"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийКоличествоУпаковокФакт" id="117">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийКоличествоУпаковокФактКонтекстноеМеню" id="118"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийКоличествоУпаковокФактРасширеннаяПодсказка" id="119"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийНазначение" id="129">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийНазначениеКонтекстноеМеню" id="130"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийНазначениеРасширеннаяПодсказка" id="131"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийЯчейка" id="132">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийЯчейкаКонтекстноеМеню" id="133"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийЯчейкаРасширеннаяПодсказка" id="134"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийЛико_ЯчейкаФакт" id="144">
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Ячейка факт</v8:content>
+											</v8:item>
+										</Title>
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийЛико_ЯчейкаФактКонтекстноеМеню" id="145"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийЛико_ЯчейкаФактРасширеннаяПодсказка" id="146"/>
+									</InputField>
+									<InputField name="ТоварыИвентаризацийРазница" id="356">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыИвентаризацийРазницаКонтекстноеМеню" id="357"/>
+										<ExtendedTooltip name="ТоварыИвентаризацийРазницаРасширеннаяПодсказка" id="358"/>
+									</InputField>
+								</ChildItems>
+							</Table>
+						</ChildItems>
+					</Page>
+					<Page name="ГруппаПересчетыТоваров" id="24">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Инвентаризации</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ГруппаПересчетыТоваровРасширеннаяПодсказка" id="25"/>
+						<ChildItems>
+							<Table name="ПересчетыТоваров" id="26">
+								<Representation>List</Representation>
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="ПересчетыТоваровКонтекстноеМеню" id="27"/>
+								<AutoCommandBar name="ПересчетыТоваровКоманднаяПанель" id="28"/>
+								<ExtendedTooltip name="ПересчетыТоваровРасширеннаяПодсказка" id="29"/>
+								<SearchStringAddition name="ПересчетыТоваровСтрокаПоиска" id="30">
+									<AdditionSource>
+										<Item>ПересчетыТоваров</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ПересчетыТоваровСтрокаПоискаКонтекстноеМеню" id="31"/>
+									<ExtendedTooltip name="ПересчетыТоваровСтрокаПоискаРасширеннаяПодсказка" id="32"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="ПересчетыТоваровСостояниеПросмотра" id="33">
+									<AdditionSource>
+										<Item>ПересчетыТоваров</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ПересчетыТоваровСостояниеПросмотраКонтекстноеМеню" id="34"/>
+									<ExtendedTooltip name="ПересчетыТоваровСостояниеПросмотраРасширеннаяПодсказка" id="35"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="ПересчетыТоваровУправлениеПоиском" id="36">
+									<AdditionSource>
+										<Item>ПересчетыТоваров</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="ПересчетыТоваровУправлениеПоискомКонтекстноеМеню" id="37"/>
+									<ExtendedTooltip name="ПересчетыТоваровУправлениеПоискомРасширеннаяПодсказка" id="38"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<LabelField name="ПересчетыТоваровНомерСтроки" id="39">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ПересчетыТоваровНомерСтрокиКонтекстноеМеню" id="40"/>
+										<ExtendedTooltip name="ПересчетыТоваровНомерСтрокиРасширеннаяПодсказка" id="41"/>
+									</LabelField>
+									<InputField name="ПересчетыТоваровДокумент" id="42">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ПересчетыТоваровДокументКонтекстноеМеню" id="43"/>
+										<ExtendedTooltip name="ПересчетыТоваровДокументРасширеннаяПодсказка" id="44"/>
+									</InputField>
+									<LabelField name="ПересчетыТоваровДокументПомещение" id="362">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ПересчетыТоваровДокументПомещениеКонтекстноеМеню" id="363"/>
+										<ExtendedTooltip name="ПересчетыТоваровДокументПомещениеРасширеннаяПодсказка" id="364"/>
+									</LabelField>
+									<LabelField name="ПересчетыТоваровДокументОтветственный" id="365">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ПересчетыТоваровДокументОтветственныйКонтекстноеМеню" id="366"/>
+										<ExtendedTooltip name="ПересчетыТоваровДокументОтветственныйРасширеннаяПодсказка" id="367"/>
+									</LabelField>
+									<InputField name="ПересчетыТоваровРазница" id="359">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ПересчетыТоваровРазницаКонтекстноеМеню" id="360"/>
+										<ExtendedTooltip name="ПересчетыТоваровРазницаРасширеннаяПодсказка" id="361"/>
+									</InputField>
+								</ChildItems>
+							</Table>
+						</ChildItems>
+					</Page>
+					<Page name="ГруппаПустыеЯчейки" id="45">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Пустые ячейки на момент инвентаризации</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ГруппаПустыеЯчейкиРасширеннаяПодсказка" id="46"/>
+						<ChildItems>
+							<Table name="ПустыеЯчейки" id="47">
+								<Representation>List</Representation>
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="ПустыеЯчейкиКонтекстноеМеню" id="48"/>
+								<AutoCommandBar name="ПустыеЯчейкиКоманднаяПанель" id="49"/>
+								<ExtendedTooltip name="ПустыеЯчейкиРасширеннаяПодсказка" id="50"/>
+								<SearchStringAddition name="ПустыеЯчейкиСтрокаПоиска" id="51">
+									<AdditionSource>
+										<Item>ПустыеЯчейки</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ПустыеЯчейкиСтрокаПоискаКонтекстноеМеню" id="52"/>
+									<ExtendedTooltip name="ПустыеЯчейкиСтрокаПоискаРасширеннаяПодсказка" id="53"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="ПустыеЯчейкиСостояниеПросмотра" id="54">
+									<AdditionSource>
+										<Item>ПустыеЯчейки</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ПустыеЯчейкиСостояниеПросмотраКонтекстноеМеню" id="55"/>
+									<ExtendedTooltip name="ПустыеЯчейкиСостояниеПросмотраРасширеннаяПодсказка" id="56"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="ПустыеЯчейкиУправлениеПоиском" id="57">
+									<AdditionSource>
+										<Item>ПустыеЯчейки</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="ПустыеЯчейкиУправлениеПоискомКонтекстноеМеню" id="58"/>
+									<ExtendedTooltip name="ПустыеЯчейкиУправлениеПоискомРасширеннаяПодсказка" id="59"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<LabelField name="ПустыеЯчейкиНомерСтроки" id="60">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ПустыеЯчейкиНомерСтрокиКонтекстноеМеню" id="61"/>
+										<ExtendedTooltip name="ПустыеЯчейкиНомерСтрокиРасширеннаяПодсказка" id="62"/>
+									</LabelField>
+									<InputField name="ПустыеЯчейкиЯчейка" id="63">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ПустыеЯчейкиЯчейкаКонтекстноеМеню" id="64"/>
+										<ExtendedTooltip name="ПустыеЯчейкиЯчейкаРасширеннаяПодсказка" id="65"/>
+									</InputField>
+									<LabelField name="ПустыеЯчейкиЯчейкаПомещение" id="329">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ПустыеЯчейкиЯчейкаПомещениеКонтекстноеМеню" id="330"/>
+										<ExtendedTooltip name="ПустыеЯчейкиЯчейкаПомещениеРасширеннаяПодсказка" id="331"/>
+									</LabelField>
+									<LabelField name="ПустыеЯчейкиЯчейкаЛико_Организация" id="332">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияКонтекстноеМеню" id="333"/>
+										<ExtendedTooltip name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияРасширеннаяПодсказка" id="334"/>
+									</LabelField>
+									<LabelField name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияОтветственногоХранения" id="335">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияОтветственногоХраненияКонтекстноеМеню" id="336"/>
+										<ExtendedTooltip name="ПустыеЯчейкиЯчейкаЛико_ОрганизацияОтветственногоХраненияРасширеннаяПодсказка" id="337"/>
+									</LabelField>
+								</ChildItems>
+							</Table>
+						</ChildItems>
+					</Page>
+					<Page name="ГруппаЯчейкиБезПересчета" id="66">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Ячейки без пересчета</v8:content>
+							</v8:item>
+						</Title>
+						<ExtendedTooltip name="ГруппаЯчейкиБезПересчетаРасширеннаяПодсказка" id="67"/>
+						<ChildItems>
+							<Table name="ЯчейкиБезПересчета" id="68">
+								<Representation>List</Representation>
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="ЯчейкиБезПересчетаКонтекстноеМеню" id="69"/>
+								<AutoCommandBar name="ЯчейкиБезПересчетаКоманднаяПанель" id="70"/>
+								<ExtendedTooltip name="ЯчейкиБезПересчетаРасширеннаяПодсказка" id="71"/>
+								<SearchStringAddition name="ЯчейкиБезПересчетаСтрокаПоиска" id="72">
+									<AdditionSource>
+										<Item>ЯчейкиБезПересчета</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ЯчейкиБезПересчетаСтрокаПоискаКонтекстноеМеню" id="73"/>
+									<ExtendedTooltip name="ЯчейкиБезПересчетаСтрокаПоискаРасширеннаяПодсказка" id="74"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="ЯчейкиБезПересчетаСостояниеПросмотра" id="75">
+									<AdditionSource>
+										<Item>ЯчейкиБезПересчета</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ЯчейкиБезПересчетаСостояниеПросмотраКонтекстноеМеню" id="76"/>
+									<ExtendedTooltip name="ЯчейкиБезПересчетаСостояниеПросмотраРасширеннаяПодсказка" id="77"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="ЯчейкиБезПересчетаУправлениеПоиском" id="78">
+									<AdditionSource>
+										<Item>ЯчейкиБезПересчета</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="ЯчейкиБезПересчетаУправлениеПоискомКонтекстноеМеню" id="79"/>
+									<ExtendedTooltip name="ЯчейкиБезПересчетаУправлениеПоискомРасширеннаяПодсказка" id="80"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<LabelField name="ЯчейкиБезПересчетаНомерСтроки" id="81">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ЯчейкиБезПересчетаНомерСтрокиКонтекстноеМеню" id="82"/>
+										<ExtendedTooltip name="ЯчейкиБезПересчетаНомерСтрокиРасширеннаяПодсказка" id="83"/>
+									</LabelField>
+									<InputField name="ЯчейкиБезПересчетаЯчейка" id="84">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ЯчейкиБезПересчетаЯчейкаКонтекстноеМеню" id="85"/>
+										<ExtendedTooltip name="ЯчейкиБезПересчетаЯчейкаРасширеннаяПодсказка" id="86"/>
+									</InputField>
+									<LabelField name="ЯчейкиБезПересчетаЯчейкаПомещение" id="338">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ЯчейкиБезПересчетаЯчейкаПомещениеКонтекстноеМеню" id="339"/>
+										<ExtendedTooltip name="ЯчейкиБезПересчетаЯчейкаПомещениеРасширеннаяПодсказка" id="340"/>
+									</LabelField>
+									<LabelField name="ЯчейкиБезПересчетаЯчейкаЛико_Организация" id="344">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияКонтекстноеМеню" id="345"/>
+										<ExtendedTooltip name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияРасширеннаяПодсказка" id="346"/>
+									</LabelField>
+									<LabelField name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияОтветственногоХранения" id="341">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияОтветственногоХраненияКонтекстноеМеню" id="342"/>
+										<ExtendedTooltip name="ЯчейкиБезПересчетаЯчейкаЛико_ОрганизацияОтветственногоХраненияРасширеннаяПодсказка" id="343"/>
+									</LabelField>
+								</ChildItems>
+							</Table>
+						</ChildItems>
+					</Page>
+					<Page name="ГруппаПриходСписание" id="159">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Приход / списание</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа приход списание</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ExtendedTooltip name="ГруппаПриходСписаниеРасширеннаяПодсказка" id="160"/>
+						<ChildItems>
+							<Table name="Товары" id="161">
+								<Representation>List</Representation>
+								<AutoInsertNewRow>true</AutoInsertNewRow>
+								<EnableStartDrag>true</EnableStartDrag>
+								<EnableDrag>true</EnableDrag>
+								<RowFilter xsi:nil="true"/>
+								<ContextMenu name="ТоварыКонтекстноеМеню" id="162"/>
+								<AutoCommandBar name="ТоварыКоманднаяПанель" id="163"/>
+								<ExtendedTooltip name="ТоварыРасширеннаяПодсказка" id="164"/>
+								<SearchStringAddition name="ТоварыСтрокаПоиска" id="165">
+									<AdditionSource>
+										<Item>Товары</Item>
+										<Type>SearchStringRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ТоварыСтрокаПоискаКонтекстноеМеню" id="166"/>
+									<ExtendedTooltip name="ТоварыСтрокаПоискаРасширеннаяПодсказка" id="167"/>
+								</SearchStringAddition>
+								<ViewStatusAddition name="ТоварыСостояниеПросмотра" id="168">
+									<AdditionSource>
+										<Item>Товары</Item>
+										<Type>ViewStatusRepresentation</Type>
+									</AdditionSource>
+									<ContextMenu name="ТоварыСостояниеПросмотраКонтекстноеМеню" id="169"/>
+									<ExtendedTooltip name="ТоварыСостояниеПросмотраРасширеннаяПодсказка" id="170"/>
+								</ViewStatusAddition>
+								<SearchControlAddition name="ТоварыУправлениеПоиском" id="171">
+									<AdditionSource>
+										<Item>Товары</Item>
+										<Type>SearchControl</Type>
+									</AdditionSource>
+									<ContextMenu name="ТоварыУправлениеПоискомКонтекстноеМеню" id="172"/>
+									<ExtendedTooltip name="ТоварыУправлениеПоискомРасширеннаяПодсказка" id="173"/>
+								</SearchControlAddition>
+								<ChildItems>
+									<InputField name="ТоварыДата" id="350">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыДатаКонтекстноеМеню" id="351"/>
+										<ExtendedTooltip name="ТоварыДатаРасширеннаяПодсказка" id="352"/>
+									</InputField>
+									<InputField name="ТоварыДокумент" id="347">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыДокументКонтекстноеМеню" id="348"/>
+										<ExtendedTooltip name="ТоварыДокументРасширеннаяПодсказка" id="349"/>
+									</InputField>
+									<InputField name="ТоварыАвторДокумента" id="353">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыАвторДокументаКонтекстноеМеню" id="354"/>
+										<ExtendedTooltip name="ТоварыАвторДокументаРасширеннаяПодсказка" id="355"/>
+									</InputField>
+									<LabelField name="ТоварыНомерСтроки" id="174">
+										<EditMode>EnterOnInput</EditMode>
+										<ContextMenu name="ТоварыНомерСтрокиКонтекстноеМеню" id="175"/>
+										<ExtendedTooltip name="ТоварыНомерСтрокиРасширеннаяПодсказка" id="176"/>
+									</LabelField>
+									<InputField name="ТоварыНоменклатура" id="177">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыНоменклатураКонтекстноеМеню" id="178"/>
+										<ExtendedTooltip name="ТоварыНоменклатураРасширеннаяПодсказка" id="179"/>
+									</InputField>
+									<InputField name="ТоварыХарактеристика" id="183">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыХарактеристикаКонтекстноеМеню" id="184"/>
+										<ExtendedTooltip name="ТоварыХарактеристикаРасширеннаяПодсказка" id="185"/>
+									</InputField>
+									<InputField name="ТоварыУпаковка" id="186">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыУпаковкаКонтекстноеМеню" id="187"/>
+										<ExtendedTooltip name="ТоварыУпаковкаРасширеннаяПодсказка" id="188"/>
+									</InputField>
+									<InputField name="ТоварыСерия" id="270">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыСерияКонтекстноеМеню" id="271"/>
+										<ExtendedTooltip name="ТоварыСерияРасширеннаяПодсказка" id="272"/>
+									</InputField>
+									<InputField name="ТоварыКоличествоУпаковок" id="189">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыКоличествоУпаковокКонтекстноеМеню" id="190"/>
+										<ExtendedTooltip name="ТоварыКоличествоУпаковокРасширеннаяПодсказка" id="191"/>
+									</InputField>
+									<InputField name="ТоварыКоличество" id="192">
+										<EditMode>EnterOnInput</EditMode>
+										<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+										<ContextMenu name="ТоварыКоличествоКонтекстноеМеню" id="193"/>
+										<ExtendedTooltip name="ТоварыКоличествоРасширеннаяПодсказка" id="194"/>
+									</InputField>
+								</ChildItems>
+							</Table>
+						</ChildItems>
+					</Page>
+				</ChildItems>
+			</Pages>
+			<InputField name="Комментарий" id="19">
+				<EditMode>EnterOnInput</EditMode>
+				<AutoMaxWidth>false</AutoMaxWidth>
+				<MultiLine>true</MultiLine>
+				<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+				<ContextMenu name="КомментарийКонтекстноеМеню" id="20"/>
+				<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="21"/>
+			</InputField>
+		</ChildItems>
+		<Attributes/>
+	</BaseForm>
+</Form>

@@ -1,0 +1,852 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="Номер" id="1">
+			<DataPath>Объект.Number</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НомерКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Дата" id="4">
+			<DataPath>Объект.Date</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="ЗаказКлиента" id="7">
+			<DataPath>Объект.ЗаказКлиента</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ЗаказКлиентаКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ЗаказКлиентаРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<InputField name="Автор" id="10">
+			<DataPath>Объект.Автор</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="АвторКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="АвторРасширеннаяПодсказка" id="12"/>
+		</InputField>
+		<Pages name="Страницы" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="14"/>
+			<ChildItems>
+				<Page name="ГруппаПеремотка" id="15">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Перемотка</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаПеремоткаРасширеннаяПодсказка" id="16"/>
+					<ChildItems>
+						<Table name="Перемотка" id="17">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.Перемотка</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ПеремоткаКонтекстноеМеню" id="18">
+								<ChildItems>
+									<Button name="ПеремоткаКонтекстноеМенюПересчитатьВыработкуПеремотки" id="243">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ПересчитатьВыработкуПеремотки</CommandName>
+										<ExtendedTooltip name="ПеремоткаКонтекстноеМенюПересчитатьВыработкуПеремоткиРасширеннаяПодсказка" id="244"/>
+									</Button>
+								</ChildItems>
+							</ContextMenu>
+							<AutoCommandBar name="ПеремоткаКоманднаяПанель" id="19"/>
+							<ExtendedTooltip name="ПеремоткаРасширеннаяПодсказка" id="20"/>
+							<SearchStringAddition name="ПеремоткаСтрокаПоиска" id="21">
+								<AdditionSource>
+									<Item>Перемотка</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПеремоткаСтрокаПоискаКонтекстноеМеню" id="22"/>
+								<ExtendedTooltip name="ПеремоткаСтрокаПоискаРасширеннаяПодсказка" id="23"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ПеремоткаСостояниеПросмотра" id="24">
+								<AdditionSource>
+									<Item>Перемотка</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПеремоткаСостояниеПросмотраКонтекстноеМеню" id="25"/>
+								<ExtendedTooltip name="ПеремоткаСостояниеПросмотраРасширеннаяПодсказка" id="26"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ПеремоткаУправлениеПоиском" id="27">
+								<AdditionSource>
+									<Item>Перемотка</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ПеремоткаУправлениеПоискомКонтекстноеМеню" id="28"/>
+								<ExtendedTooltip name="ПеремоткаУправлениеПоискомРасширеннаяПодсказка" id="29"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ПеремоткаНомерСтроки" id="30">
+									<DataPath>Объект.Перемотка.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПеремоткаНомерСтрокиКонтекстноеМеню" id="31"/>
+									<ExtendedTooltip name="ПеремоткаНомерСтрокиРасширеннаяПодсказка" id="32"/>
+								</LabelField>
+								<InputField name="ПеремоткаДата" id="33">
+									<DataPath>Объект.Перемотка.Дата</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаДатаКонтекстноеМеню" id="34"/>
+									<ExtendedTooltip name="ПеремоткаДатаРасширеннаяПодсказка" id="35"/>
+								</InputField>
+								<InputField name="ПеремоткаАвтор" id="36">
+									<DataPath>Объект.Перемотка.Автор</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаАвторКонтекстноеМеню" id="37"/>
+									<ExtendedTooltip name="ПеремоткаАвторРасширеннаяПодсказка" id="38"/>
+								</InputField>
+								<InputField name="ПеремоткаНомерБланка" id="39">
+									<DataPath>Объект.Перемотка.НомерБланка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаНомерБланкаКонтекстноеМеню" id="40"/>
+									<ExtendedTooltip name="ПеремоткаНомерБланкаРасширеннаяПодсказка" id="41"/>
+								</InputField>
+								<InputField name="ПеремоткаКоличество" id="42">
+									<DataPath>Объект.Перемотка.Количество</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаКоличествоКонтекстноеМеню" id="43"/>
+									<ExtendedTooltip name="ПеремоткаКоличествоРасширеннаяПодсказка" id="44"/>
+								</InputField>
+								<InputField name="ПеремоткаИдентификаторСтроки" id="45">
+									<DataPath>Объект.Перемотка.ИдентификаторСтроки</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаИдентификаторСтрокиКонтекстноеМеню" id="46"/>
+									<ExtendedTooltip name="ПеремоткаИдентификаторСтрокиРасширеннаяПодсказка" id="47"/>
+								</InputField>
+								<CheckBoxField name="ПеремоткаРастарка" id="48">
+									<DataPath>Объект.Перемотка.Растарка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ПеремоткаРастаркаКонтекстноеМеню" id="49"/>
+									<ExtendedTooltip name="ПеремоткаРастаркаРасширеннаяПодсказка" id="50"/>
+								</CheckBoxField>
+								<InputField name="ПеремоткаМатериал" id="51">
+									<DataPath>Объект.Перемотка.Материал</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаМатериалКонтекстноеМеню" id="52"/>
+									<ExtendedTooltip name="ПеремоткаМатериалРасширеннаяПодсказка" id="53"/>
+								</InputField>
+								<CheckBoxField name="ПеремоткаУдалитьДляРасчетаШобер" id="54">
+									<DataPath>Объект.Перемотка.УдалитьДляРасчетаШобер</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ПеремоткаУдалитьДляРасчетаШоберКонтекстноеМеню" id="55"/>
+									<ExtendedTooltip name="ПеремоткаУдалитьДляРасчетаШоберРасширеннаяПодсказка" id="56"/>
+								</CheckBoxField>
+								<InputField name="ПеремоткаНомерПриложения" id="57">
+									<DataPath>Объект.Перемотка.НомерПриложения</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаНомерПриложенияКонтекстноеМеню" id="58"/>
+									<ExtendedTooltip name="ПеремоткаНомерПриложенияРасширеннаяПодсказка" id="59"/>
+								</InputField>
+								<InputField name="ПеремоткаВидРабочегоМеста" id="60">
+									<DataPath>Объект.Перемотка.ВидРабочегоМеста</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаВидРабочегоМестаКонтекстноеМеню" id="61"/>
+									<ExtendedTooltip name="ПеремоткаВидРабочегоМестаРасширеннаяПодсказка" id="62"/>
+								</InputField>
+								<InputField name="ПеремоткаСотрудник" id="63">
+									<DataPath>Объект.Перемотка.Сотрудник</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаСотрудникКонтекстноеМеню" id="64"/>
+									<ExtendedTooltip name="ПеремоткаСотрудникРасширеннаяПодсказка" id="65"/>
+								</InputField>
+								<InputField name="ПеремоткаСмена" id="66">
+									<DataPath>Объект.Перемотка.Смена</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаСменаКонтекстноеМеню" id="67"/>
+									<ExtendedTooltip name="ПеремоткаСменаРасширеннаяПодсказка" id="68"/>
+								</InputField>
+								<InputField name="ПеремоткаТипОперации" id="69">
+									<DataPath>Объект.Перемотка.ТипОперации</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаТипОперацииКонтекстноеМеню" id="70"/>
+									<ExtendedTooltip name="ПеремоткаТипОперацииРасширеннаяПодсказка" id="71"/>
+									<Events>
+										<Event name="OnChange">ПеремоткаТипОперацииПриИзменении</Event>
+									</Events>
+								</InputField>
+								<InputField name="ПеремоткаКоличествоПМ" id="72">
+									<DataPath>Объект.Перемотка.КоличествоПМ</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаКоличествоПМКонтекстноеМеню" id="73"/>
+									<ExtendedTooltip name="ПеремоткаКоличествоПМРасширеннаяПодсказка" id="74"/>
+								</InputField>
+								<InputField name="ПеремоткаКоличествоКВМ" id="75">
+									<DataPath>Объект.Перемотка.КоличествоКВМ</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаКоличествоКВМКонтекстноеМеню" id="76"/>
+									<ExtendedTooltip name="ПеремоткаКоличествоКВМРасширеннаяПодсказка" id="77"/>
+								</InputField>
+								<InputField name="ПеремоткаВремяНастройки" id="78">
+									<DataPath>Объект.Перемотка.ВремяНастройки</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаВремяНастройкиКонтекстноеМеню" id="79"/>
+									<ExtendedTooltip name="ПеремоткаВремяНастройкиРасширеннаяПодсказка" id="80"/>
+								</InputField>
+								<InputField name="ПеремоткаВремяОперации" id="81">
+									<DataPath>Объект.Перемотка.ВремяОперации</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаВремяОперацииКонтекстноеМеню" id="82"/>
+									<ExtendedTooltip name="ПеремоткаВремяОперацииРасширеннаяПодсказка" id="83"/>
+								</InputField>
+								<InputField name="ПеремоткаВремя" id="84">
+									<DataPath>Объект.Перемотка.Время</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаВремяКонтекстноеМеню" id="85"/>
+									<ExtendedTooltip name="ПеремоткаВремяРасширеннаяПодсказка" id="86"/>
+								</InputField>
+								<InputField name="ПеремоткаКоличествоНастроек" id="87">
+									<DataPath>Объект.Перемотка.КоличествоНастроек</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаКоличествоНастроекКонтекстноеМеню" id="88"/>
+									<ExtendedTooltip name="ПеремоткаКоличествоНастроекРасширеннаяПодсказка" id="89"/>
+								</InputField>
+								<CheckBoxField name="ПеремоткаДвойнаяНика" id="90">
+									<DataPath>Объект.Перемотка.ДвойнаяНика</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ПеремоткаДвойнаяНикаКонтекстноеМеню" id="91"/>
+									<ExtendedTooltip name="ПеремоткаДвойнаяНикаРасширеннаяПодсказка" id="92"/>
+								</CheckBoxField>
+								<InputField name="ПеремоткаКоличествоРучьевПереворота" id="93">
+									<DataPath>Объект.Перемотка.КоличествоРучьевПереворота</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаКоличествоРучьевПереворотаКонтекстноеМеню" id="94"/>
+									<ExtendedTooltip name="ПеремоткаКоличествоРучьевПереворотаРасширеннаяПодсказка" id="95"/>
+								</InputField>
+								<InputField name="ПеремоткаДокументОснование" id="245">
+									<DataPath>Объект.Перемотка.ДокументОснование</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаДокументОснованиеКонтекстноеМеню" id="246"/>
+									<ExtendedTooltip name="ПеремоткаДокументОснованиеРасширеннаяПодсказка" id="247"/>
+								</InputField>
+								<InputField name="ПеремоткаРабочийЦентр" id="248">
+									<DataPath>Объект.Перемотка.РабочийЦентр</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремоткаРабочийЦентрКонтекстноеМеню" id="249"/>
+									<ExtendedTooltip name="ПеремоткаРабочийЦентрРасширеннаяПодсказка" id="250"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаВыходнойКонтроль" id="96">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выходной контроль</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаВыходнойКонтрольРасширеннаяПодсказка" id="97"/>
+					<ChildItems>
+						<Table name="ВыходнойКонтроль" id="98">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.ВыходнойКонтроль</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ВыходнойКонтрольКонтекстноеМеню" id="99"/>
+							<AutoCommandBar name="ВыходнойКонтрольКоманднаяПанель" id="100"/>
+							<ExtendedTooltip name="ВыходнойКонтрольРасширеннаяПодсказка" id="101"/>
+							<SearchStringAddition name="ВыходнойКонтрольСтрокаПоиска" id="102">
+								<AdditionSource>
+									<Item>ВыходнойКонтроль</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ВыходнойКонтрольСтрокаПоискаКонтекстноеМеню" id="103"/>
+								<ExtendedTooltip name="ВыходнойКонтрольСтрокаПоискаРасширеннаяПодсказка" id="104"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ВыходнойКонтрольСостояниеПросмотра" id="105">
+								<AdditionSource>
+									<Item>ВыходнойКонтроль</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ВыходнойКонтрольСостояниеПросмотраКонтекстноеМеню" id="106"/>
+								<ExtendedTooltip name="ВыходнойКонтрольСостояниеПросмотраРасширеннаяПодсказка" id="107"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ВыходнойКонтрольУправлениеПоиском" id="108">
+								<AdditionSource>
+									<Item>ВыходнойКонтроль</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ВыходнойКонтрольУправлениеПоискомКонтекстноеМеню" id="109"/>
+								<ExtendedTooltip name="ВыходнойКонтрольУправлениеПоискомРасширеннаяПодсказка" id="110"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ВыходнойКонтрольНомерСтроки" id="111">
+									<DataPath>Объект.ВыходнойКонтроль.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ВыходнойКонтрольНомерСтрокиКонтекстноеМеню" id="112"/>
+									<ExtendedTooltip name="ВыходнойКонтрольНомерСтрокиРасширеннаяПодсказка" id="113"/>
+								</LabelField>
+								<InputField name="ВыходнойКонтрольДата" id="114">
+									<DataPath>Объект.ВыходнойКонтроль.Дата</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольДатаКонтекстноеМеню" id="115"/>
+									<ExtendedTooltip name="ВыходнойКонтрольДатаРасширеннаяПодсказка" id="116"/>
+								</InputField>
+								<InputField name="ВыходнойКонтрольАвтор" id="117">
+									<DataPath>Объект.ВыходнойКонтроль.Автор</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольАвторКонтекстноеМеню" id="118"/>
+									<ExtendedTooltip name="ВыходнойКонтрольАвторРасширеннаяПодсказка" id="119"/>
+								</InputField>
+								<InputField name="ВыходнойКонтрольНомерБланка" id="120">
+									<DataPath>Объект.ВыходнойКонтроль.НомерБланка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольНомерБланкаКонтекстноеМеню" id="121"/>
+									<ExtendedTooltip name="ВыходнойКонтрольНомерБланкаРасширеннаяПодсказка" id="122"/>
+								</InputField>
+								<InputField name="ВыходнойКонтрольКоличество" id="123">
+									<DataPath>Объект.ВыходнойКонтроль.Количество</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольКоличествоКонтекстноеМеню" id="124"/>
+									<ExtendedTooltip name="ВыходнойКонтрольКоличествоРасширеннаяПодсказка" id="125"/>
+								</InputField>
+								<InputField name="ВыходнойКонтрольИдентификаторСтроки" id="126">
+									<DataPath>Объект.ВыходнойКонтроль.ИдентификаторСтроки</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольИдентификаторСтрокиКонтекстноеМеню" id="127"/>
+									<ExtendedTooltip name="ВыходнойКонтрольИдентификаторСтрокиРасширеннаяПодсказка" id="128"/>
+								</InputField>
+								<CheckBoxField name="ВыходнойКонтрольРастарка" id="129">
+									<DataPath>Объект.ВыходнойКонтроль.Растарка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ВыходнойКонтрольРастаркаКонтекстноеМеню" id="130"/>
+									<ExtendedTooltip name="ВыходнойКонтрольРастаркаРасширеннаяПодсказка" id="131"/>
+								</CheckBoxField>
+								<InputField name="ВыходнойКонтрольМатериал" id="132">
+									<DataPath>Объект.ВыходнойКонтроль.Материал</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольМатериалКонтекстноеМеню" id="133"/>
+									<ExtendedTooltip name="ВыходнойКонтрольМатериалРасширеннаяПодсказка" id="134"/>
+								</InputField>
+								<CheckBoxField name="ВыходнойКонтрольУдалитьДляРасчетаШобер" id="135">
+									<DataPath>Объект.ВыходнойКонтроль.УдалитьДляРасчетаШобер</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ВыходнойКонтрольУдалитьДляРасчетаШоберКонтекстноеМеню" id="136"/>
+									<ExtendedTooltip name="ВыходнойКонтрольУдалитьДляРасчетаШоберРасширеннаяПодсказка" id="137"/>
+								</CheckBoxField>
+								<InputField name="ВыходнойКонтрольНомерПриложения" id="138">
+									<DataPath>Объект.ВыходнойКонтроль.НомерПриложения</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольНомерПриложенияКонтекстноеМеню" id="139"/>
+									<ExtendedTooltip name="ВыходнойКонтрольНомерПриложенияРасширеннаяПодсказка" id="140"/>
+								</InputField>
+								<InputField name="ВыходнойКонтрольВидРабочегоМеста" id="141">
+									<DataPath>Объект.ВыходнойКонтроль.ВидРабочегоМеста</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольВидРабочегоМестаКонтекстноеМеню" id="142"/>
+									<ExtendedTooltip name="ВыходнойКонтрольВидРабочегоМестаРасширеннаяПодсказка" id="143"/>
+								</InputField>
+								<InputField name="ВыходнойКонтрольОткудаПередано" id="144">
+									<DataPath>Объект.ВыходнойКонтроль.ОткудаПередано</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВыходнойКонтрольОткудаПереданоКонтекстноеМеню" id="145"/>
+									<ExtendedTooltip name="ВыходнойКонтрольОткудаПереданоРасширеннаяПодсказка" id="146"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаБлокировка" id="147">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Блокировка</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаБлокировкаРасширеннаяПодсказка" id="148"/>
+					<ChildItems>
+						<Table name="Блокировка" id="149">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.Блокировка</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="БлокировкаКонтекстноеМеню" id="150"/>
+							<AutoCommandBar name="БлокировкаКоманднаяПанель" id="151"/>
+							<ExtendedTooltip name="БлокировкаРасширеннаяПодсказка" id="152"/>
+							<SearchStringAddition name="БлокировкаСтрокаПоиска" id="153">
+								<AdditionSource>
+									<Item>Блокировка</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="БлокировкаСтрокаПоискаКонтекстноеМеню" id="154"/>
+								<ExtendedTooltip name="БлокировкаСтрокаПоискаРасширеннаяПодсказка" id="155"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="БлокировкаСостояниеПросмотра" id="156">
+								<AdditionSource>
+									<Item>Блокировка</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="БлокировкаСостояниеПросмотраКонтекстноеМеню" id="157"/>
+								<ExtendedTooltip name="БлокировкаСостояниеПросмотраРасширеннаяПодсказка" id="158"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="БлокировкаУправлениеПоиском" id="159">
+								<AdditionSource>
+									<Item>Блокировка</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="БлокировкаУправлениеПоискомКонтекстноеМеню" id="160"/>
+								<ExtendedTooltip name="БлокировкаУправлениеПоискомРасширеннаяПодсказка" id="161"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="БлокировкаНомерСтроки" id="162">
+									<DataPath>Объект.Блокировка.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="БлокировкаНомерСтрокиКонтекстноеМеню" id="163"/>
+									<ExtendedTooltip name="БлокировкаНомерСтрокиРасширеннаяПодсказка" id="164"/>
+								</LabelField>
+								<InputField name="БлокировкаДата" id="165">
+									<DataPath>Объект.Блокировка.Дата</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БлокировкаДатаКонтекстноеМеню" id="166"/>
+									<ExtendedTooltip name="БлокировкаДатаРасширеннаяПодсказка" id="167"/>
+								</InputField>
+								<InputField name="БлокировкаАвтор" id="168">
+									<DataPath>Объект.Блокировка.Автор</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БлокировкаАвторКонтекстноеМеню" id="169"/>
+									<ExtendedTooltip name="БлокировкаАвторРасширеннаяПодсказка" id="170"/>
+								</InputField>
+								<InputField name="БлокировкаНомерБланка" id="171">
+									<DataPath>Объект.Блокировка.НомерБланка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БлокировкаНомерБланкаКонтекстноеМеню" id="172"/>
+									<ExtendedTooltip name="БлокировкаНомерБланкаРасширеннаяПодсказка" id="173"/>
+								</InputField>
+								<InputField name="БлокировкаКоличество" id="174">
+									<DataPath>Объект.Блокировка.Количество</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БлокировкаКоличествоКонтекстноеМеню" id="175"/>
+									<ExtendedTooltip name="БлокировкаКоличествоРасширеннаяПодсказка" id="176"/>
+								</InputField>
+								<InputField name="БлокировкаИдентификаторСтроки" id="177">
+									<DataPath>Объект.Блокировка.ИдентификаторСтроки</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БлокировкаИдентификаторСтрокиКонтекстноеМеню" id="178"/>
+									<ExtendedTooltip name="БлокировкаИдентификаторСтрокиРасширеннаяПодсказка" id="179"/>
+								</InputField>
+								<CheckBoxField name="БлокировкаРастарка" id="180">
+									<DataPath>Объект.Блокировка.Растарка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="БлокировкаРастаркаКонтекстноеМеню" id="181"/>
+									<ExtendedTooltip name="БлокировкаРастаркаРасширеннаяПодсказка" id="182"/>
+								</CheckBoxField>
+								<InputField name="БлокировкаМатериал" id="183">
+									<DataPath>Объект.Блокировка.Материал</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БлокировкаМатериалКонтекстноеМеню" id="184"/>
+									<ExtendedTooltip name="БлокировкаМатериалРасширеннаяПодсказка" id="185"/>
+								</InputField>
+								<CheckBoxField name="БлокировкаУдалитьДляРасчетаШобер" id="186">
+									<DataPath>Объект.Блокировка.УдалитьДляРасчетаШобер</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="БлокировкаУдалитьДляРасчетаШоберКонтекстноеМеню" id="187"/>
+									<ExtendedTooltip name="БлокировкаУдалитьДляРасчетаШоберРасширеннаяПодсказка" id="188"/>
+								</CheckBoxField>
+								<InputField name="БлокировкаНомерПриложения" id="189">
+									<DataPath>Объект.Блокировка.НомерПриложения</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БлокировкаНомерПриложенияКонтекстноеМеню" id="190"/>
+									<ExtendedTooltip name="БлокировкаНомерПриложенияРасширеннаяПодсказка" id="191"/>
+								</InputField>
+								<InputField name="БлокировкаВидРабочегоМеста" id="192">
+									<DataPath>Объект.Блокировка.ВидРабочегоМеста</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БлокировкаВидРабочегоМестаКонтекстноеМеню" id="193"/>
+									<ExtendedTooltip name="БлокировкаВидРабочегоМестаРасширеннаяПодсказка" id="194"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаУничтожение" id="195">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Уничтожение</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаУничтожениеРасширеннаяПодсказка" id="196"/>
+					<ChildItems>
+						<Table name="Уничтожение" id="197">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.Уничтожение</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="УничтожениеКонтекстноеМеню" id="198"/>
+							<AutoCommandBar name="УничтожениеКоманднаяПанель" id="199"/>
+							<ExtendedTooltip name="УничтожениеРасширеннаяПодсказка" id="200"/>
+							<SearchStringAddition name="УничтожениеСтрокаПоиска" id="201">
+								<AdditionSource>
+									<Item>Уничтожение</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="УничтожениеСтрокаПоискаКонтекстноеМеню" id="202"/>
+								<ExtendedTooltip name="УничтожениеСтрокаПоискаРасширеннаяПодсказка" id="203"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="УничтожениеСостояниеПросмотра" id="204">
+								<AdditionSource>
+									<Item>Уничтожение</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="УничтожениеСостояниеПросмотраКонтекстноеМеню" id="205"/>
+								<ExtendedTooltip name="УничтожениеСостояниеПросмотраРасширеннаяПодсказка" id="206"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="УничтожениеУправлениеПоиском" id="207">
+								<AdditionSource>
+									<Item>Уничтожение</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="УничтожениеУправлениеПоискомКонтекстноеМеню" id="208"/>
+								<ExtendedTooltip name="УничтожениеУправлениеПоискомРасширеннаяПодсказка" id="209"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="УничтожениеНомерСтроки" id="210">
+									<DataPath>Объект.Уничтожение.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="УничтожениеНомерСтрокиКонтекстноеМеню" id="211"/>
+									<ExtendedTooltip name="УничтожениеНомерСтрокиРасширеннаяПодсказка" id="212"/>
+								</LabelField>
+								<InputField name="УничтожениеДата" id="213">
+									<DataPath>Объект.Уничтожение.Дата</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="УничтожениеДатаКонтекстноеМеню" id="214"/>
+									<ExtendedTooltip name="УничтожениеДатаРасширеннаяПодсказка" id="215"/>
+								</InputField>
+								<InputField name="УничтожениеАвтор" id="216">
+									<DataPath>Объект.Уничтожение.Автор</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="УничтожениеАвторКонтекстноеМеню" id="217"/>
+									<ExtendedTooltip name="УничтожениеАвторРасширеннаяПодсказка" id="218"/>
+								</InputField>
+								<InputField name="УничтожениеНомерБланка" id="219">
+									<DataPath>Объект.Уничтожение.НомерБланка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="УничтожениеНомерБланкаКонтекстноеМеню" id="220"/>
+									<ExtendedTooltip name="УничтожениеНомерБланкаРасширеннаяПодсказка" id="221"/>
+								</InputField>
+								<InputField name="УничтожениеКоличество" id="222">
+									<DataPath>Объект.Уничтожение.Количество</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="УничтожениеКоличествоКонтекстноеМеню" id="223"/>
+									<ExtendedTooltip name="УничтожениеКоличествоРасширеннаяПодсказка" id="224"/>
+								</InputField>
+								<InputField name="УничтожениеИдентификаторСтроки" id="225">
+									<DataPath>Объект.Уничтожение.ИдентификаторСтроки</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="УничтожениеИдентификаторСтрокиКонтекстноеМеню" id="226"/>
+									<ExtendedTooltip name="УничтожениеИдентификаторСтрокиРасширеннаяПодсказка" id="227"/>
+								</InputField>
+								<CheckBoxField name="УничтожениеРастарка" id="228">
+									<DataPath>Объект.Уничтожение.Растарка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="УничтожениеРастаркаКонтекстноеМеню" id="229"/>
+									<ExtendedTooltip name="УничтожениеРастаркаРасширеннаяПодсказка" id="230"/>
+								</CheckBoxField>
+								<InputField name="УничтожениеМатериал" id="231">
+									<DataPath>Объект.Уничтожение.Материал</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="УничтожениеМатериалКонтекстноеМеню" id="232"/>
+									<ExtendedTooltip name="УничтожениеМатериалРасширеннаяПодсказка" id="233"/>
+								</InputField>
+								<CheckBoxField name="УничтожениеУдалитьДляРасчетаШобер" id="234">
+									<DataPath>Объект.Уничтожение.УдалитьДляРасчетаШобер</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="УничтожениеУдалитьДляРасчетаШоберКонтекстноеМеню" id="235"/>
+									<ExtendedTooltip name="УничтожениеУдалитьДляРасчетаШоберРасширеннаяПодсказка" id="236"/>
+								</CheckBoxField>
+								<InputField name="УничтожениеНомерПриложения" id="237">
+									<DataPath>Объект.Уничтожение.НомерПриложения</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="УничтожениеНомерПриложенияКонтекстноеМеню" id="238"/>
+									<ExtendedTooltip name="УничтожениеНомерПриложенияРасширеннаяПодсказка" id="239"/>
+								</InputField>
+								<InputField name="УничтожениеВидРабочегоМеста" id="240">
+									<DataPath>Объект.Уничтожение.ВидРабочегоМеста</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="УничтожениеВидРабочегоМестаКонтекстноеМеню" id="241"/>
+									<ExtendedTooltip name="УничтожениеВидРабочегоМестаРасширеннаяПодсказка" id="242"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаРаскладкаПоРучьям" id="251">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Раскладка по ручьям</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа раскладка по ручьям</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ГруппаРаскладкаПоРучьямРасширеннаяПодсказка" id="252"/>
+					<ChildItems>
+						<Table name="РаскладкаПоРучьям" id="253">
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.РаскладкаПоРучьям</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="РаскладкаПоРучьямКонтекстноеМеню" id="254"/>
+							<AutoCommandBar name="РаскладкаПоРучьямКоманднаяПанель" id="255"/>
+							<ExtendedTooltip name="РаскладкаПоРучьямРасширеннаяПодсказка" id="256"/>
+							<SearchStringAddition name="РаскладкаПоРучьямСтрокаПоиска" id="257">
+								<AdditionSource>
+									<Item>РаскладкаПоРучьям</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="РаскладкаПоРучьямСтрокаПоискаКонтекстноеМеню" id="258"/>
+								<ExtendedTooltip name="РаскладкаПоРучьямСтрокаПоискаРасширеннаяПодсказка" id="259"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="РаскладкаПоРучьямСостояниеПросмотра" id="260">
+								<AdditionSource>
+									<Item>РаскладкаПоРучьям</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="РаскладкаПоРучьямСостояниеПросмотраКонтекстноеМеню" id="261"/>
+								<ExtendedTooltip name="РаскладкаПоРучьямСостояниеПросмотраРасширеннаяПодсказка" id="262"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="РаскладкаПоРучьямУправлениеПоиском" id="263">
+								<AdditionSource>
+									<Item>РаскладкаПоРучьям</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="РаскладкаПоРучьямУправлениеПоискомКонтекстноеМеню" id="264"/>
+								<ExtendedTooltip name="РаскладкаПоРучьямУправлениеПоискомРасширеннаяПодсказка" id="265"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="РаскладкаПоРучьямНомерСтроки" id="266">
+									<DataPath>Объект.РаскладкаПоРучьям.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="РаскладкаПоРучьямНомерСтрокиКонтекстноеМеню" id="267"/>
+									<ExtendedTooltip name="РаскладкаПоРучьямНомерСтрокиРасширеннаяПодсказка" id="268"/>
+								</LabelField>
+								<InputField name="РаскладкаПоРучьямРабочийЦентр" id="272">
+									<DataPath>Объект.РаскладкаПоРучьям.РабочийЦентр</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="РаскладкаПоРучьямРабочийЦентрКонтекстноеМеню" id="273"/>
+									<ExtendedTooltip name="РаскладкаПоРучьямРабочийЦентрРасширеннаяПодсказка" id="274"/>
+								</InputField>
+								<InputField name="РаскладкаПоРучьямНомерСтрокиЗаказа" id="269">
+									<DataPath>Объект.РаскладкаПоРучьям.НомерСтрокиЗаказа</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="РаскладкаПоРучьямНомерСтрокиЗаказаКонтекстноеМеню" id="270"/>
+									<ExtendedTooltip name="РаскладкаПоРучьямНомерСтрокиЗаказаРасширеннаяПодсказка" id="271"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаФактыНастройки" id="275">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Факты настройки</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа факты настройки</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ГруппаФактыНастройкиРасширеннаяПодсказка" id="276"/>
+					<ChildItems>
+						<Table name="ФактыНастройки" id="277">
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.ФактыНастройки</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ФактыНастройкиКонтекстноеМеню" id="278"/>
+							<AutoCommandBar name="ФактыНастройкиКоманднаяПанель" id="279"/>
+							<ExtendedTooltip name="ФактыНастройкиРасширеннаяПодсказка" id="280"/>
+							<SearchStringAddition name="ФактыНастройкиСтрокаПоиска" id="281">
+								<AdditionSource>
+									<Item>ФактыНастройки</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ФактыНастройкиСтрокаПоискаКонтекстноеМеню" id="282"/>
+								<ExtendedTooltip name="ФактыНастройкиСтрокаПоискаРасширеннаяПодсказка" id="283"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ФактыНастройкиСостояниеПросмотра" id="284">
+								<AdditionSource>
+									<Item>ФактыНастройки</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ФактыНастройкиСостояниеПросмотраКонтекстноеМеню" id="285"/>
+								<ExtendedTooltip name="ФактыНастройкиСостояниеПросмотраРасширеннаяПодсказка" id="286"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ФактыНастройкиУправлениеПоиском" id="287">
+								<AdditionSource>
+									<Item>ФактыНастройки</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ФактыНастройкиУправлениеПоискомКонтекстноеМеню" id="288"/>
+								<ExtendedTooltip name="ФактыНастройкиУправлениеПоискомРасширеннаяПодсказка" id="289"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ФактыНастройкиНомерСтроки" id="290">
+									<DataPath>Объект.ФактыНастройки.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ФактыНастройкиНомерСтрокиКонтекстноеМеню" id="291"/>
+									<ExtendedTooltip name="ФактыНастройкиНомерСтрокиРасширеннаяПодсказка" id="292"/>
+								</LabelField>
+								<InputField name="ФактыНастройкиНомерПроката" id="293">
+									<DataPath>Объект.ФактыНастройки.НомерПроката</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ФактыНастройкиНомерПрокатаКонтекстноеМеню" id="294"/>
+									<ExtendedTooltip name="ФактыНастройкиНомерПрокатаРасширеннаяПодсказка" id="295"/>
+								</InputField>
+								<InputField name="ФактыНастройкиНомерБланка" id="296">
+									<DataPath>Объект.ФактыНастройки.НомерБланка</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ФактыНастройкиНомерБланкаКонтекстноеМеню" id="297"/>
+									<ExtendedTooltip name="ФактыНастройкиНомерБланкаРасширеннаяПодсказка" id="298"/>
+								</InputField>
+								<InputField name="ФактыНастройкиОператор" id="305">
+									<DataPath>Объект.ФактыНастройки.Оператор</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ФактыНастройкиОператорКонтекстноеМеню" id="306"/>
+									<ExtendedTooltip name="ФактыНастройкиОператорРасширеннаяПодсказка" id="307"/>
+								</InputField>
+								<InputField name="ФактыНастройкиДата" id="302">
+									<DataPath>Объект.ФактыНастройки.Дата</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ФактыНастройкиДатаКонтекстноеМеню" id="303"/>
+									<ExtendedTooltip name="ФактыНастройкиДатаРасширеннаяПодсказка" id="304"/>
+								</InputField>
+								<InputField name="ФактыНастройкиКомментарий" id="299">
+									<DataPath>Объект.ФактыНастройки.Комментарий</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ФактыНастройкиКомментарийКонтекстноеМеню" id="300"/>
+									<ExtendedTooltip name="ФактыНастройкиКомментарийРасширеннаяПодсказка" id="301"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Лико_ДвиженияЗаказаПоЭтапам</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ПересчитатьВыработкуПеремотки" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Пересчитать выработку перемотки</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Пересчитать выработку перемотки</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПересчитатьВыработкуПеремотки</Action>
+		</Command>
+	</Commands>
+</Form>

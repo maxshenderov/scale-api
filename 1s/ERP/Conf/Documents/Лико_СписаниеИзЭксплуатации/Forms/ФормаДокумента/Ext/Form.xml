@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<Pages name="ГруппаСтраницы" id="28">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="ГруппаСтраницыРасширеннаяПодсказка" id="29"/>
+			<ChildItems>
+				<Page name="Основная" id="30">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Основная</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Основная</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ОсновнаяРасширеннаяПодсказка" id="31"/>
+					<ChildItems>
+						<InputField name="Номер" id="1">
+							<DataPath>Объект.Number</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="НомерКонтекстноеМеню" id="2"/>
+							<ExtendedTooltip name="НомерРасширеннаяПодсказка" id="3"/>
+						</InputField>
+						<InputField name="Дата" id="4">
+							<DataPath>Объект.Date</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ДатаКонтекстноеМеню" id="5"/>
+							<ExtendedTooltip name="ДатаРасширеннаяПодсказка" id="6"/>
+						</InputField>
+						<InputField name="Организация" id="7">
+							<DataPath>Объект.Организация</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ОрганизацияКонтекстноеМеню" id="8"/>
+							<ExtendedTooltip name="ОрганизацияРасширеннаяПодсказка" id="9"/>
+						</InputField>
+						<InputField name="Подразделение" id="13">
+							<DataPath>Объект.Подразделение</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ПодразделениеКонтекстноеМеню" id="14"/>
+							<ExtendedTooltip name="ПодразделениеРасширеннаяПодсказка" id="15"/>
+						</InputField>
+						<InputField name="Склад" id="10">
+							<DataPath>Объект.Склад</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="СкладКонтекстноеМеню" id="11"/>
+							<ExtendedTooltip name="СкладРасширеннаяПодсказка" id="12"/>
+						</InputField>
+						<InputField name="Помещение" id="25">
+							<DataPath>Объект.Помещение</DataPath>
+							<ContextMenu name="ПомещениеКонтекстноеМеню" id="26"/>
+							<ExtendedTooltip name="ПомещениеРасширеннаяПодсказка" id="27"/>
+						</InputField>
+						<InputField name="АвторДокумента" id="16">
+							<DataPath>Объект.АвторДокумента</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="АвторДокументаКонтекстноеМеню" id="17"/>
+							<ExtendedTooltip name="АвторДокументаРасширеннаяПодсказка" id="18"/>
+						</InputField>
+						<InputField name="РабочееМесто" id="19">
+							<DataPath>Объект.РабочееМесто</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="РабочееМестоКонтекстноеМеню" id="20"/>
+							<ExtendedTooltip name="РабочееМестоРасширеннаяПодсказка" id="21"/>
+						</InputField>
+						<InputField name="Месяц" id="22">
+							<DataPath>Объект.Месяц</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="МесяцКонтекстноеМеню" id="23"/>
+							<ExtendedTooltip name="МесяцРасширеннаяПодсказка" id="24"/>
+							<Events>
+								<Event name="OnChange">МесяцПриИзменении</Event>
+							</Events>
+						</InputField>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаТиповыеДокументы" id="32">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Типовые документы</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница типовые документы</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="СтраницаТиповыеДокументыРасширеннаяПодсказка" id="33"/>
+					<ChildItems>
+						<Table name="ТиповыеДокументы" id="34">
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<EnableStartDrag>true</EnableStartDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>ТиповыеДокументы</DataPath>
+							<RowPictureDataPath>ТиповыеДокументы.DefaultPicture</RowPictureDataPath>
+							<AutoRefresh>false</AutoRefresh>
+							<AutoRefreshPeriod>60</AutoRefreshPeriod>
+							<Period>
+								<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+								<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+								<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+							</Period>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<RestoreCurrentRow>false</RestoreCurrentRow>
+							<TopLevelParent xsi:nil="true"/>
+							<ShowRoot>true</ShowRoot>
+							<AllowRootChoice>false</AllowRootChoice>
+							<UpdateOnDataChange>Auto</UpdateOnDataChange>
+							<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+							<ContextMenu name="ТиповыеДокументыКонтекстноеМеню" id="35"/>
+							<AutoCommandBar name="ТиповыеДокументыКоманднаяПанель" id="36">
+								<Autofill>false</Autofill>
+							</AutoCommandBar>
+							<ExtendedTooltip name="ТиповыеДокументыРасширеннаяПодсказка" id="37"/>
+							<SearchStringAddition name="ТиповыеДокументыСтрокаПоиска" id="38">
+								<AdditionSource>
+									<Item>ТиповыеДокументы</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТиповыеДокументыСтрокаПоискаКонтекстноеМеню" id="39"/>
+								<ExtendedTooltip name="ТиповыеДокументыСтрокаПоискаРасширеннаяПодсказка" id="40"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ТиповыеДокументыСостояниеПросмотра" id="41">
+								<AdditionSource>
+									<Item>ТиповыеДокументы</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТиповыеДокументыСостояниеПросмотраКонтекстноеМеню" id="42"/>
+								<ExtendedTooltip name="ТиповыеДокументыСостояниеПросмотраРасширеннаяПодсказка" id="43"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ТиповыеДокументыУправлениеПоиском" id="44">
+								<AdditionSource>
+									<Item>ТиповыеДокументы</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ТиповыеДокументыУправлениеПоискомКонтекстноеМеню" id="45"/>
+								<ExtendedTooltip name="ТиповыеДокументыУправлениеПоискомРасширеннаяПодсказка" id="46"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ТиповыеДокументыСтандартнаяКартинка" id="50">
+									<DataPath>ТиповыеДокументы.DefaultPicture</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>  </v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ТиповыеДокументыСтандартнаяКартинкаКонтекстноеМеню" id="51"/>
+									<ExtendedTooltip name="ТиповыеДокументыСтандартнаяКартинкаРасширеннаяПодсказка" id="52"/>
+								</LabelField>
+								<LabelField name="ТиповыеДокументыСсылка" id="47">
+									<DataPath>~ТиповыеДокументы.Ссылка</DataPath>
+									<ContextMenu name="ТиповыеДокументыСсылкаКонтекстноеМеню" id="48"/>
+									<ExtendedTooltip name="ТиповыеДокументыСсылкаРасширеннаяПодсказка" id="49"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DocumentObject.Лико_СписаниеИзЭксплуатации</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+			<UseAlways>
+				<Field>Объект.RegisterRecords</Field>
+			</UseAlways>
+		</Attribute>
+		<Attribute name="ТиповыеДокументы" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Типовые документы</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<UseAlways>
+				<Field>~ТиповыеДокументы.Ссылка</Field>
+			</UseAlways>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	ВнутреннееПотреблениеТоваров.Ссылка КАК Ссылка
+ИЗ
+	Документ.ВнутреннееПотреблениеТоваров КАК ВнутреннееПотреблениеТоваров
+ГДЕ
+	ВнутреннееПотреблениеТоваров.Лико_Распоряжение = &amp;Ссылка</QueryText>
+				<MainTable>Document.ВнутреннееПотребление</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+</Form>

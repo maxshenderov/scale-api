@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.20">
+	<setForNewObjects>false</setForNewObjects>
+	<setForAttributesByDefault>true</setForAttributesByDefault>
+	<independentRightsOfChildObjects>false</independentRightsOfChildObjects>
+	<object>
+		<name>AccumulationRegister.ТоварыОрганизаций</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>TotalsControl</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.ДетализацияСебестоимостиТоваровПостатейныеЗатратыНЗП</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Document.ЭтапПроизводства2_2</name>
+		<right>
+			<name>Read</name>
+			<value>false</value>
+			<restrictionByCondition>
+				<condition>ЭтапПроизводства2_2 ИЗ Документ.ЭтапПроизводства2_2 КАК ЭтапПроизводства2_2
+    ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.Пользователи.Лико_Площадки КАК ПользователиЛико_Площадки
+    ПО ЭтапПроизводства2_2.Лико_ЗаказКлиента.Площадка = ПользователиЛико_Площадки.Площадка
+ГДЕ ПользователиЛико_Площадки.Ссылка = &amp;ТекущийПользователь</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Insert</name>
+			<value>false</value>
+			<restrictionByCondition>
+				<condition>ЭтапПроизводства2_2 ИЗ Документ.ЭтапПроизводства2_2 КАК ЭтапПроизводства2_2
+    ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.Пользователи.Лико_Площадки КАК ПользователиЛико_Площадки
+    ПО ЭтапПроизводства2_2.Лико_ЗаказКлиента.Площадка = ПользователиЛико_Площадки.Площадка
+ГДЕ ПользователиЛико_Площадки.Ссылка = &amp;ТекущийПользователь</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>false</value>
+			<restrictionByCondition>
+				<condition>ЭтапПроизводства2_2 ИЗ Документ.ЭтапПроизводства2_2 КАК ЭтапПроизводства2_2
+    ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.Пользователи.Лико_Площадки КАК ПользователиЛико_Площадки
+    ПО ЭтапПроизводства2_2.Лико_ЗаказКлиента.Площадка = ПользователиЛико_Площадки.Площадка
+ГДЕ ПользователиЛико_Площадки.Ссылка = &amp;ТекущийПользователь</condition>
+			</restrictionByCondition>
+		</right>
+	</object>
+	<object>
+		<name>AccumulationRegister.Лико_СебестоимостьЗаказов</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.ТССтатистикаСкорости</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+			<restrictionByCondition>
+				<condition>    ТССтатистикаСкорости ИЗ РегистрСведений.ТССтатистикаСкорости КАК ТССтатистикаСкорости
+	ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.Лико_НастройкаДоступаКЗаказу КАК Лико_НастройкаДоступаКЗаказу
+	ПО (ВЫБОР
+			КОГДА Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера ССЫЛКА Справочник.БизнесРегионы
+				ТОГДА ВЫБОР
+						КОГДА ВЫРАЗИТЬ(Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера КАК Справочник.БизнесРегионы).Ссылка = ЗНАЧЕНИЕ(Справочник.БизнесРегионы.ВсеРегионы)
+							ТОГДА ИСТИНА
+						ИНАЧЕ ВЫРАЗИТЬ(Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера КАК Справочник.БизнесРегионы).Ссылка = ТССтатистикаСкорости.Заказ.Регион
+					КОНЕЦ
+			КОГДА Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера ССЫЛКА Перечисление.Лико_ТипыЗаказов
+				ТОГДА ТССтатистикаСкорости.Заказ.ТипЗаказа = ВЫРАЗИТЬ(Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера КАК Перечисление.Лико_ТипыЗаказов).Ссылка
+			КОГДА Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера ССЫЛКА Справочник.Организации
+				ТОГДА ТССтатистикаСкорости.Заказ.Площадка = ВЫРАЗИТЬ(Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера КАК Справочник.Организации).Ссылка
+			ИНАЧЕ ВЫБОР
+					КОГДА Лико_НастройкаДоступаКЗаказу.Партнер = ЗНАЧЕНИЕ(Справочник.Партнеры.ПустаяСсылка)
+						ТОГДА ТССтатистикаСкорости.Заказ.Менеджер = ВЫРАЗИТЬ(Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера КАК Справочник.Пользователи).Ссылка
+					ИНАЧЕ ТССтатистикаСкорости.Заказ.Менеджер = ВЫРАЗИТЬ(Лико_НастройкаДоступаКЗаказу.ДоступныЗаказыМенеджера КАК Справочник.Пользователи).Ссылка
+							И ТССтатистикаСкорости.Заказ.Партнер = Лико_НастройкаДоступаКЗаказу.Партнер
+				КОНЕЦ
+		КОНЕЦ)
+ГДЕ Лико_НастройкаДоступаКЗаказу.Менеджер = &amp;ТекущийПользователь</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Document.Лико_ПодготовкаМатериалов</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>AccumulationRegister.ПартииПрочихРасходов</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Document.ЗаказНаПроизводство2_2</name>
+		<right>
+			<name>Read</name>
+			<value>false</value>
+			<restrictionByCondition>
+				<condition>ЗаказНаПроизводство2_2 ИЗ Документ.ЗаказНаПроизводство2_2 КАК ЗаказНаПроизводство2_2
+    ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.Пользователи.Лико_Площадки КАК ПользователиЛико_Площадки
+    ПО ЗаказНаПроизводство2_2.Организация = ПользователиЛико_Площадки.Организация
+ГДЕ ПользователиЛико_Площадки.Ссылка = &amp;ТекущийПользователь</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Insert</name>
+			<value>false</value>
+			<restrictionByCondition>
+				<condition>ЗаказНаПроизводство2_2 ИЗ Документ.ЗаказНаПроизводство2_2 КАК ЗаказНаПроизводство2_2
+    ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.Пользователи.Лико_Площадки КАК ПользователиЛико_Площадки
+    ПО ЗаказНаПроизводство2_2.Организация = ПользователиЛико_Площадки.Организация
+ГДЕ ПользователиЛико_Площадки.Ссылка = &amp;ТекущийПользователь</condition>
+			</restrictionByCondition>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>false</value>
+			<restrictionByCondition>
+				<condition>ЗаказНаПроизводство2_2 ИЗ Документ.ЗаказНаПроизводство2_2 КАК ЗаказНаПроизводство2_2
+    ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.Пользователи.Лико_Площадки КАК ПользователиЛико_Площадки
+    ПО ЗаказНаПроизводство2_2.Организация = ПользователиЛико_Площадки.Организация
+ГДЕ ПользователиЛико_Площадки.Ссылка = &amp;ТекущийПользователь</condition>
+			</restrictionByCondition>
+		</right>
+	</object>
+	<object>
+		<name>AccumulationRegister.Лико_ОтгрузкиПродажи</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>TotalsControl</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>AccumulationRegister.БонусныеБаллы</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Configuration.Лико</name>
+		<right>
+			<name>MainWindowModeNormal</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeEmbeddedWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeFullscreenWorkplace</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>MainWindowModeKiosk</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>AnalyticsSystemClient</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.ДетализацияСебестоимостиТоваров</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>Document.РасчетСебестоимостиТоваров</name>
+		<right>
+			<name>Insert</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>Update</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>Delete</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>Posting</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>UndoPosting</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractiveInsert</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractiveDelete</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractiveSetDeletionMark</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractiveClearDeletionMark</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractiveDeleteMarked</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractivePosting</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractivePostingRegular</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractiveUndoPosting</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InteractiveChangeOfPosted</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>InputByString</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ReadDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ReadDataHistoryOfMissingData</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>UpdateDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>UpdateDataHistoryOfMissingData</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>UpdateDataHistorySettings</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>UpdateDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.ДетализацияСебестоимостиПартииТоваровПостатейныеЗатраты</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.ДетализацияСебестоимостиТоваровПостатейныеЗатраты</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>AccumulationRegister.СебестоимостьТоваров</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+		<right>
+			<name>View</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
+		<name>InformationRegister.ДетализацияСебестоимостиПартииТоваров</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+</Rights>

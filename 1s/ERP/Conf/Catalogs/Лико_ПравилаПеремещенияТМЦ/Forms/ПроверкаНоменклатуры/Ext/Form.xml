@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Номенклатура" id="1">
+			<DataPath>Номенклатура</DataPath>
+			<ContextMenu name="НоменклатураКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="НоменклатураРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="ДокументРасхода" id="48">
+			<DataPath>ЗаявкаНаСклад</DataPath>
+			<ContextMenu name="ДокументРасходаКонтекстноеМеню" id="49"/>
+			<ExtendedTooltip name="ДокументРасходаРасширеннаяПодсказка" id="50"/>
+		</InputField>
+		<Button name="Команда1" id="57">
+			<Type>UsualButton</Type>
+			<DefaultButton>true</DefaultButton>
+			<CommandName>Form.Command.ОпределеитьРезультат</CommandName>
+			<ExtendedTooltip name="Команда1РасширеннаяПодсказка" id="58"/>
+		</Button>
+		<InputField name="Правило" id="7">
+			<DataPath>Правило</DataPath>
+			<ContextMenu name="ПравилоКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ПравилоРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<UsualGroup name="ГруппаНоменклатураБезПравил" id="40">
+			<Visible>false</Visible>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номенклатура без правил</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа номенклатура без правил</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>StrongSeparation</Representation>
+			<ExtendedTooltip name="ГруппаНоменклатураБезПравилРасширеннаяПодсказка" id="41"/>
+			<ChildItems>
+				<UsualGroup name="Группа2" id="42">
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="43"/>
+				</UsualGroup>
+				<UsualGroup name="Группа3" id="44">
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="45"/>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Номенклатура" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номенклатура</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Номенклатура</v8:Type>
+			</Type>
+			<Save>
+				<Field>Номенклатура</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="Правило" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Правило</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Лико_ПравилаПеремещенияТМЦ</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ЗаявкаНаСклад" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заявка на склад</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DocumentRef.Лико_ЗаявкаНаСклад</v8:Type>
+			</Type>
+			<Save>
+				<Field>ЗаявкаНаСклад</Field>
+			</Save>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ОпределеитьРезультат" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Определеить результат</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Определеить результат</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ОпределеитьРезультат</Action>
+		</Command>
+	</Commands>
+</Form>

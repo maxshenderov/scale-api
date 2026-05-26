@@ -1,0 +1,1318 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="ФормаЗакрыть" id="41">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.ДобавитьВДокумент</CommandName>
+				<ExtendedTooltip name="ФормаЗакрытьРасширеннаяПодсказка" id="42"/>
+			</Button>
+			<Button name="ФормаОтключитьОтбор" id="57">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ОтключитьОтбор</CommandName>
+				<ExtendedTooltip name="ФормаОтключитьОтборРасширеннаяПодсказка" id="58"/>
+			</Button>
+			<Button name="ФормаОбновить" id="59">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Обновить</CommandName>
+				<ExtendedTooltip name="ФормаОбновитьРасширеннаяПодсказка" id="60"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="NotificationProcessing">ОбработкаОповещения</Event>
+		<Event name="OnOpen">ПриОткрытии</Event>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<InputField name="ЗаказКлиента" id="135">
+			<DataPath>ЗаказКлиента</DataPath>
+			<Visible>false</Visible>
+			<ContextMenu name="ЗаказКлиентаКонтекстноеМеню" id="136"/>
+			<ExtendedTooltip name="ЗаказКлиентаРасширеннаяПодсказка" id="137"/>
+		</InputField>
+		<InputField name="РабочийЦентр" id="67">
+			<DataPath>РабочийЦентр</DataPath>
+			<ContextMenu name="РабочийЦентрКонтекстноеМеню" id="68"/>
+			<ExtendedTooltip name="РабочийЦентрРасширеннаяПодсказка" id="69"/>
+		</InputField>
+		<InputField name="Конверт" id="64">
+			<DataPath>Конверт</DataPath>
+			<ClearButton>true</ClearButton>
+			<ContextMenu name="КонвертКонтекстноеМеню" id="65"/>
+			<ExtendedTooltip name="КонвертРасширеннаяПодсказка" id="66"/>
+			<Events>
+				<Event name="OnChange">КодФормыОтборПриИзменении</Event>
+			</Events>
+		</InputField>
+		<UsualGroup name="ГруппаФильтр" id="46">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа фильтр</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа фильтр</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаФильтрРасширеннаяПодсказка" id="47"/>
+			<ChildItems>
+				<InputField name="КодФормыОтбор" id="48">
+					<DataPath>КодФормыОтбор</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код формы</v8:content>
+						</v8:item>
+					</Title>
+					<Width>10</Width>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="КодФормыОтборКонтекстноеМеню" id="49"/>
+					<ExtendedTooltip name="КодФормыОтборРасширеннаяПодсказка" id="50"/>
+					<Events>
+						<Event name="OnChange">КодФормыОтборПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="КонтрагентОтбораНоменклатуры" id="51">
+					<DataPath>НоменклатураОтбор</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номенклатура</v8:content>
+						</v8:item>
+					</Title>
+					<Width>15</Width>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="КонтрагентОтбораНоменклатурыКонтекстноеМеню" id="52"/>
+					<ExtendedTooltip name="КонтрагентОтбораНоменклатурыРасширеннаяПодсказка" id="53"/>
+					<Events>
+						<Event name="OnChange">КодФормыОтборПриИзменении</Event>
+					</Events>
+				</InputField>
+				<InputField name="КонтрагентОтбор" id="54">
+					<DataPath>КонтрагентОтбор</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Контрагент</v8:content>
+						</v8:item>
+					</Title>
+					<Width>15</Width>
+					<ClearButton>true</ClearButton>
+					<ContextMenu name="КонтрагентОтборКонтекстноеМеню" id="55"/>
+					<ExtendedTooltip name="КонтрагентОтборРасширеннаяПодсказка" id="56"/>
+					<Events>
+						<Event name="OnChange">КодФормыОтборПриИзменении</Event>
+					</Events>
+				</InputField>
+				<LabelDecoration name="Декорация1" id="61">
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="Декорация1КонтекстноеМеню" id="62"/>
+					<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="63"/>
+				</LabelDecoration>
+			</ChildItems>
+		</UsualGroup>
+		<CheckBoxField name="Выбрать" id="73">
+			<DataPath>Выбрать</DataPath>
+			<Visible>false</Visible>
+			<TitleLocation>Right</TitleLocation>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ВыбратьКонтекстноеМеню" id="74"/>
+			<ExtendedTooltip name="ВыбратьРасширеннаяПодсказка" id="75"/>
+			<Events>
+				<Event name="OnChange">ВыбратьПриИзменении</Event>
+			</Events>
+		</CheckBoxField>
+		<Pages name="ГруппаСтраницы" id="76">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="ГруппаСтраницыРасширеннаяПодсказка" id="77"/>
+			<ChildItems>
+				<Page name="СтраницаФормы" id="78">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Формы</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница формы</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="СтраницаФормыРасширеннаяПодсказка" id="79"/>
+					<ChildItems>
+						<Table name="СписокФорм" id="82">
+							<UseAlternationRowColor>true</UseAlternationRowColor>
+							<EnableStartDrag>true</EnableStartDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>СписокФорм</DataPath>
+							<RowPictureDataPath>~СписокФорм.DefaultPicture</RowPictureDataPath>
+							<AutoRefresh>false</AutoRefresh>
+							<AutoRefreshPeriod>60</AutoRefreshPeriod>
+							<Period>
+								<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+								<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+								<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+							</Period>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<RestoreCurrentRow>false</RestoreCurrentRow>
+							<TopLevelParent xsi:nil="true"/>
+							<ShowRoot>true</ShowRoot>
+							<AllowRootChoice>false</AllowRootChoice>
+							<UpdateOnDataChange>Auto</UpdateOnDataChange>
+							<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+							<ContextMenu name="СписокФормКонтекстноеМеню" id="83"/>
+							<AutoCommandBar name="СписокФормКоманднаяПанель" id="84">
+								<ChildItems>
+									<Button name="СписокФормВыбратьВсе" id="133">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.ВыбратьВсе</CommandName>
+										<ExtendedTooltip name="СписокФормВыбратьВсеРасширеннаяПодсказка" id="134"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="СписокФормРасширеннаяПодсказка" id="85"/>
+							<SearchStringAddition name="СписокФормСтрокаПоиска" id="86">
+								<AdditionSource>
+									<Item>СписокФорм</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокФормСтрокаПоискаКонтекстноеМеню" id="87"/>
+								<ExtendedTooltip name="СписокФормСтрокаПоискаРасширеннаяПодсказка" id="88"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="СписокФормСостояниеПросмотра" id="89">
+								<AdditionSource>
+									<Item>СписокФорм</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокФормСостояниеПросмотраКонтекстноеМеню" id="90"/>
+								<ExtendedTooltip name="СписокФормСостояниеПросмотраРасширеннаяПодсказка" id="91"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="СписокФормУправлениеПоиском" id="92">
+								<AdditionSource>
+									<Item>СписокФорм</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокФормУправлениеПоискомКонтекстноеМеню" id="93"/>
+								<ExtendedTooltip name="СписокФормУправлениеПоискомРасширеннаяПодсказка" id="94"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">СписокФормВыбор</Event>
+							</Events>
+							<ChildItems>
+								<CheckBoxField name="СписокФормВыбрана" id="130">
+									<DataPath>СписокФорм.Выбрана</DataPath>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="СписокФормВыбранаКонтекстноеМеню" id="131"/>
+									<ExtendedTooltip name="СписокФормВыбранаРасширеннаяПодсказка" id="132"/>
+								</CheckBoxField>
+								<LabelField name="СписокФормФорма" id="125">
+									<DataPath>СписокФорм.Форма</DataPath>
+									<ContextMenu name="СписокФормФормаКонтекстноеМеню" id="126"/>
+									<ExtendedTooltip name="СписокФормФормаРасширеннаяПодсказка" id="127"/>
+								</LabelField>
+								<LabelField name="СписокФормКод" id="107">
+									<DataPath>СписокФорм.Код</DataPath>
+									<ContextMenu name="СписокФормКодКонтекстноеМеню" id="108"/>
+									<ExtendedTooltip name="СписокФормКодРасширеннаяПодсказка" id="109"/>
+								</LabelField>
+								<CheckBoxField name="СписокФормПересвет" id="144">
+									<DataPath>СписокФорм.Пересвет</DataPath>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="СписокФормПересветКонтекстноеМеню" id="145"/>
+									<ExtendedTooltip name="СписокФормПересветРасширеннаяПодсказка" id="146"/>
+								</CheckBoxField>
+								<LabelField name="СписокФормКонтрагент" id="113">
+									<DataPath>СписокФорм.Контрагент</DataPath>
+									<ContextMenu name="СписокФормКонтрагентКонтекстноеМеню" id="114"/>
+									<ExtendedTooltip name="СписокФормКонтрагентРасширеннаяПодсказка" id="115"/>
+								</LabelField>
+								<LabelField name="СписокФормВысокаяПриоритетность" id="98">
+									<DataPath>СписокФорм.ВысокаяПриоритетность</DataPath>
+									<ContextMenu name="СписокФормВысокаяПриоритетностьКонтекстноеМеню" id="99"/>
+									<ExtendedTooltip name="СписокФормВысокаяПриоритетностьРасширеннаяПодсказка" id="100"/>
+								</LabelField>
+								<LabelField name="СписокФормРасположение" id="122">
+									<DataPath>СписокФорм.Расположение</DataPath>
+									<ContextMenu name="СписокФормРасположениеКонтекстноеМеню" id="123"/>
+									<ExtendedTooltip name="СписокФормРасположениеРасширеннаяПодсказка" id="124"/>
+								</LabelField>
+								<LabelField name="СписокФормКонверт" id="110">
+									<DataPath>СписокФорм.Конверт</DataPath>
+									<ContextMenu name="СписокФормКонвертКонтекстноеМеню" id="111"/>
+									<ExtendedTooltip name="СписокФормКонвертРасширеннаяПодсказка" id="112"/>
+								</LabelField>
+								<LabelField name="СписокФормНоменклатура" id="116">
+									<DataPath>СписокФорм.Номенклатура</DataPath>
+									<ContextMenu name="СписокФормНоменклатураКонтекстноеМеню" id="117"/>
+									<ExtendedTooltip name="СписокФормНоменклатураРасширеннаяПодсказка" id="118"/>
+								</LabelField>
+								<LabelField name="СписокФормЗаказ" id="104">
+									<DataPath>СписокФорм.Заказ.НомерБезПрефикса</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Заказ</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="СписокФормЗаказКонтекстноеМеню" id="105"/>
+									<ExtendedTooltip name="СписокФормЗаказРасширеннаяПодсказка" id="106"/>
+								</LabelField>
+								<LabelField name="СписокФормОрганизация" id="119">
+									<DataPath>СписокФорм.Организация</DataPath>
+									<ContextMenu name="СписокФормОрганизацияКонтекстноеМеню" id="120"/>
+									<ExtendedTooltip name="СписокФормОрганизацияРасширеннаяПодсказка" id="121"/>
+								</LabelField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаКорзина" id="80">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выбранные формы</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница корзина</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Picture>
+						<xr:Ref>CommonPicture.НовостиКорзина</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<TitleDataPath>КоличествоВыбранныхФорм</TitleDataPath>
+					<ExtendedTooltip name="СтраницаКорзинаРасширеннаяПодсказка" id="81"/>
+					<ChildItems>
+						<Table name="ТаблицаФорм" id="1">
+							<Representation>List</Representation>
+							<TitleLocation>Auto</TitleLocation>
+							<ChangeRowOrder>false</ChangeRowOrder>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>ФормыДляПодбора</DataPath>
+							<CommandSet>
+								<ExcludedCommand>Add</ExcludedCommand>
+								<ExcludedCommand>Change</ExcludedCommand>
+								<ExcludedCommand>Copy</ExcludedCommand>
+								<ExcludedCommand>CopyToClipboard</ExcludedCommand>
+								<ExcludedCommand>EndEdit</ExcludedCommand>
+								<ExcludedCommand>ShowMultipleSelection</ExcludedCommand>
+								<ExcludedCommand>ShowRowRearrangement</ExcludedCommand>
+							</CommandSet>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ТаблицаФормКонтекстноеМеню" id="2"/>
+							<AutoCommandBar name="ТаблицаФормКоманднаяПанель" id="3">
+								<ChildItems>
+									<Button name="ТаблицаФормУдалить" id="128">
+										<Type>CommandBarButton</Type>
+										<Representation>PictureAndText</Representation>
+										<CommandName>Form.Item.ТаблицаФорм.StandardCommand.Delete</CommandName>
+										<LocationInCommandBar>InCommandBarAndInAdditionalSubmenu</LocationInCommandBar>
+										<ExtendedTooltip name="ТаблицаФормУдалитьРасширеннаяПодсказка" id="129"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="ТаблицаФормРасширеннаяПодсказка" id="4"/>
+							<SearchStringAddition name="ТаблицаФормСтрокаПоиска" id="5">
+								<AdditionSource>
+									<Item>ТаблицаФорм</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТаблицаФормСтрокаПоискаКонтекстноеМеню" id="6"/>
+								<ExtendedTooltip name="ТаблицаФормСтрокаПоискаРасширеннаяПодсказка" id="7"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ТаблицаФормСостояниеПросмотра" id="8">
+								<AdditionSource>
+									<Item>ТаблицаФорм</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ТаблицаФормСостояниеПросмотраКонтекстноеМеню" id="9"/>
+								<ExtendedTooltip name="ТаблицаФормСостояниеПросмотраРасширеннаяПодсказка" id="10"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ТаблицаФормУправлениеПоиском" id="11">
+								<AdditionSource>
+									<Item>ТаблицаФорм</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ТаблицаФормУправлениеПоискомКонтекстноеМеню" id="12"/>
+								<ExtendedTooltip name="ТаблицаФормУправлениеПоискомРасширеннаяПодсказка" id="13"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">ТаблицаФормВыбор</Event>
+								<Event name="AfterDeleteRow">ТаблицаФормПослеУдаления</Event>
+							</Events>
+							<ChildItems>
+								<InputField name="ТаблицаФормФорма" id="14">
+									<DataPath>ФормыДляПодбора.Форма</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормФормаКонтекстноеМеню" id="15"/>
+									<ExtendedTooltip name="ТаблицаФормФормаРасширеннаяПодсказка" id="16"/>
+								</InputField>
+								<CheckBoxField name="ТаблицаФормПересвет" id="141">
+									<DataPath>ФормыДляПодбора.Пересвет</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ТаблицаФормПересветКонтекстноеМеню" id="142"/>
+									<ExtendedTooltip name="ТаблицаФормПересветРасширеннаяПодсказка" id="143"/>
+									<Events>
+										<Event name="OnChange">ТаблицаФормПересветПриИзменении</Event>
+									</Events>
+								</CheckBoxField>
+								<InputField name="ТаблицаФормФормаКод" id="17">
+									<DataPath>ФормыДляПодбора.Форма.Code</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормФормаКодКонтекстноеМеню" id="18"/>
+									<ExtendedTooltip name="ТаблицаФормФормаКодРасширеннаяПодсказка" id="19"/>
+								</InputField>
+								<InputField name="ТаблицаФормФормаЗаказКонтрагент" id="20">
+									<DataPath>ФормыДляПодбора.Контрагент</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормФормаЗаказКонтрагентКонтекстноеМеню" id="21"/>
+									<ExtendedTooltip name="ТаблицаФормФормаЗаказКонтрагентРасширеннаяПодсказка" id="22"/>
+								</InputField>
+								<InputField name="ТаблицаФормРасположение" id="23">
+									<DataPath>ФормыДляПодбора.Расположение</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормРасположениеКонтекстноеМеню" id="24"/>
+									<ExtendedTooltip name="ТаблицаФормРасположениеРасширеннаяПодсказка" id="25"/>
+								</InputField>
+								<InputField name="ТаблицаФормКонверт" id="70">
+									<DataPath>ФормыДляПодбора.Конверт</DataPath>
+									<Visible>false</Visible>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормКонвертКонтекстноеМеню" id="71"/>
+									<ExtendedTooltip name="ТаблицаФормКонвертРасширеннаяПодсказка" id="72"/>
+								</InputField>
+								<InputField name="ТаблицаФормФормаНоменклатура" id="26">
+									<DataPath>ФормыДляПодбора.Номенклатура</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормФормаНоменклатураКонтекстноеМеню" id="27"/>
+									<ExtendedTooltip name="ТаблицаФормФормаНоменклатураРасширеннаяПодсказка" id="28"/>
+								</InputField>
+								<InputField name="ТаблицаФормФормаЗаказ" id="29">
+									<DataPath>ФормыДляПодбора.Заказ</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормФормаЗаказКонтекстноеМеню" id="30"/>
+									<ExtendedTooltip name="ТаблицаФормФормаЗаказРасширеннаяПодсказка" id="31"/>
+								</InputField>
+								<InputField name="ТаблицаФормФормаЗаказОрганизация" id="32">
+									<DataPath>ФормыДляПодбора.Организация</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормФормаЗаказОрганизацияКонтекстноеМеню" id="33"/>
+									<ExtendedTooltip name="ТаблицаФормФормаЗаказОрганизацияРасширеннаяПодсказка" id="34"/>
+								</InputField>
+								<InputField name="ТаблицаФормВысокаяПриоритетность" id="38">
+									<DataPath>ФормыДляПодбора.ВысокаяПриоритетность</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ТаблицаФормВысокаяПриоритетностьКонтекстноеМеню" id="39"/>
+									<ExtendedTooltip name="ТаблицаФормВысокаяПриоритетностьРасширеннаяПодсказка" id="40"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ФормыДляПодбора" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Формы для подбора</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Форма" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Форма</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_Формы</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Расположение" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Расположение</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.РабочиеЦентры</v8:Type>
+						<v8:Type>cfg:CatalogRef.Лико_Конверты</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Выбрана" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выбрана</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ВысокаяПриоритетность" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Высокая приоритетность</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Заказ" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заказ</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:DocumentRef.ЗаказКлиента</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Номенклатура" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номенклатура</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Организация" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Организация</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Организации</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Контрагент" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Контрагент</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Контрагенты</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Конверт" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Конверт</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_Конверты</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Пересвет" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Пересвет</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="КодФормыОтбор" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Код формы отбор</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="КонтрагентОтбор" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Контрагент отбор</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="НоменклатураОтбор" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номенклатура отбор</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="КонтрагентОтбораНоменклатуры" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Контрагент отбора номенклатуры</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Контрагенты</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="СразуНапринтер" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сразу напринтер</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Конверт" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Конверт</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Лико_Конверты</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ИспользоватьПодключаемоеОборудование" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Использовать подключаемое оборудование</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ПоддерживаемыеТипыПодключаемогоОборудования" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Поддерживаемые типы подключаемого обрудования</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="РабочийЦентр" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Рабочий центр</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.РабочиеЦентры</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ИспользоватьРЦ" id="11">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Использовать РЦ</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Выбрать" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="СписокФорм" id="13">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список форм</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>true</ManualQuery>
+				<DynamicDataRead>false</DynamicDataRead>
+				<QueryText>ВЫБРАТЬ
+	Лико_ИсторияДвиженийФормСрезПоследних.Форма.Ссылка КАК Форма,
+	Лико_ИсторияДвиженийФормСрезПоследних.Форма.Код КАК Код,
+	Лико_ИсторияДвиженийФормСрезПоследних.Расположение КАК Расположение,
+	ВЫБОР
+		КОГДА Лико_ИсторияДвиженийФормСрезПоследних.Форма.Ссылка В (&amp;Формы)
+			ТОГДА ИСТИНА
+		ИНАЧЕ ЛОЖЬ
+	КОНЕЦ КАК Выбрана,
+	ВЫБОР
+		КОГДА Лико_ИсторияДвиженийФормСрезПоследних.Форма.Код = &amp;КодФормыОтборДляПриоритета
+			ТОГДА 1
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВысокаяПриоритетность,
+	Лико_ИсторияДвиженийФормСрезПоследних.Период КАК Дата,
+	ИсторияВКонверте.Расположение КАК Конверт,
+	Лико_Формы.ЗаказТех КАК Заказ,
+	Лико_Формы.ЗаказТех.Контрагент КАК Контрагент,
+	Лико_Формы.ЗаказТех.Организация КАК Организация,
+	Лико_Формы.ЗаказТех.Этикетки КАК Номенклатура,
+	Лико_Формы.Пересвет КАК Пересвет
+ИЗ
+	Справочник.Лико_Формы КАК Лико_Формы
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.Лико_ИсторияДвиженийФорм.СрезПоследних(, ) КАК Лико_ИсторияДвиженийФормСрезПоследних
+		ПО Лико_Формы.Ссылка = Лико_ИсторияДвиженийФормСрезПоследних.Форма
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.Лико_ИсторияДвиженийФорм.СрезПоследних(
+				,
+				ВЫБОР
+					КОГДА &amp;ПоРасположению
+							И &amp;ИспользоватьРЦ
+						ТОГДА Расположение ССЫЛКА Справочник.Лико_Конверты
+					ИНАЧЕ ЛОЖЬ
+				КОНЕЦ) КАК ИсторияВКонверте
+		ПО Лико_Формы.Ссылка = ИсторияВКонверте.Форма
+ГДЕ
+	ВЫБОР
+			КОГДА &amp;КодФормыОтбор = ""
+				ТОГДА ИСТИНА
+			ИНАЧЕ Лико_ИсторияДвиженийФормСрезПоследних.Форма.Код ПОДОБНО &amp;КодФормыОтбор
+		КОНЕЦ
+	И ВЫБОР
+			КОГДА &amp;НоменклатураОтбор = ""
+				ТОГДА ИСТИНА
+			ИНАЧЕ Лико_Формы.ЗаказТех.Этикетки ПОДОБНО &amp;НоменклатураОтбор
+		КОНЕЦ
+	И ВЫБОР
+			КОГДА &amp;КонтрагентОтбор = ""
+				ТОГДА ИСТИНА
+			ИНАЧЕ Лико_Формы.ЗаказТех.Контрагент.Наименование ПОДОБНО &amp;КонтрагентОтбор
+		КОНЕЦ
+	И ВЫБОР
+			КОГДА &amp;ПоРасположению
+				ТОГДА Лико_ИсторияДвиженийФормСрезПоследних.Расположение = &amp;Расположение
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ
+	И ВЫБОР
+			КОГДА &amp;ЕстьЗаказКлиента
+				ТОГДА Лико_Формы.ЗаказТех = &amp;ЗаказКлиента
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ
+	И ВЫБОР
+			КОГДА &amp;ЕстьВидПечати
+				ТОГДА Лико_Формы.ВидПечати = &amp;ВидПечати
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ
+	И ВЫБОР
+			КОГДА &amp;ЕстьОрганизация
+				ТОГДА Лико_Формы.ЗаказТех.Организация = &amp;Организация
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ</QueryText>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Заказ</dcssch:dataPath>
+					<dcssch:field>Заказ</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заказ</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Конверт</dcssch:dataPath>
+					<dcssch:field>Конверт</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Конверт</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Форма</dcssch:dataPath>
+					<dcssch:field>Форма</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Код</dcssch:dataPath>
+					<dcssch:field>Код</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Расположение</dcssch:dataPath>
+					<dcssch:field>Расположение</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Выбрана</dcssch:dataPath>
+					<dcssch:field>Выбрана</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выбрана</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>ВысокаяПриоритетность</dcssch:dataPath>
+					<dcssch:field>ВысокаяПриоритетность</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Высокая приоритетность</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Дата</dcssch:dataPath>
+					<dcssch:field>Дата</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дата</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Организация</dcssch:dataPath>
+					<dcssch:field>Организация</dcssch:field>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Контрагент</dcssch:dataPath>
+					<dcssch:field>Контрагент</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Контрагент</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Номенклатура</dcssch:dataPath>
+					<dcssch:field>Номенклатура</dcssch:field>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номенклатура</v8:content>
+						</v8:item>
+					</dcssch:title>
+				</Field>
+				<Field xsi:type="dcssch:DataSetFieldField">
+					<dcssch:dataPath>Пересвет</dcssch:dataPath>
+					<dcssch:field>Пересвет</dcssch:field>
+				</Field>
+				<Parameter>
+					<dcssch:name>Период</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Период</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:dateTime</v8:Type>
+						<v8:DateQualifiers>
+							<v8:DateFractions>DateTime</v8:DateFractions>
+						</v8:DateQualifiers>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcssch:value>
+					<dcssch:useRestriction>false</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ВидПечати</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вид печати</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:EnumRef.Лико_ВидыПечати</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ЕстьВидПечати</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Есть вид печати</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ЕстьЗаказКлиента</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Есть заказ клиента</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ЕстьОрганизация</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Есть организация</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ЗаказКлиента</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заказ клиента</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:DocumentRef.ЗаказКлиента</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ИспользоватьРЦ</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Использовать РЦ</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>КодФормыОтбор</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код формы отбор</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:string"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>КодФормыОтборДляПриоритета</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код формы отбор для приоритета</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:string"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>КонтрагентОтбор</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Контрагент отбор</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:string"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>НоменклатураОтбор</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номенклатура отбор</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:string"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>Организация</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Организация</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:CatalogRef.Организации</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>ПоРасположению</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>По расположению</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>xs:boolean</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:type="xs:boolean">false</dcssch:value>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>Расположение</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Расположение</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:CatalogRef.РабочиеЦентры</v8:Type>
+						<v8:Type>cfg:CatalogRef.Лико_Конверты</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+				</Parameter>
+				<Parameter>
+					<dcssch:name>Формы</dcssch:name>
+					<dcssch:title xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Формы</v8:content>
+						</v8:item>
+					</dcssch:title>
+					<dcssch:valueType>
+						<v8:Type>cfg:CatalogRef.Лико_Формы</v8:Type>
+					</dcssch:valueType>
+					<dcssch:value xsi:nil="true"/>
+					<dcssch:useRestriction>true</dcssch:useRestriction>
+					<dcssch:valueListAllowed>true</dcssch:valueListAllowed>
+				</Parameter>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:dataParameters>
+						<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+							<dcscor:use>false</dcscor:use>
+							<dcscor:parameter>Формы</dcscor:parameter>
+						</dcscor:item>
+					</dcsset:dataParameters>
+					<dcsset:order>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+		<Attribute name="КоличествоВыбранныхФорм" id="14">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество выбранных форм</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ЗаказКлиента" id="15">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заказ клиента</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:DocumentRef.ЗаказКлиента</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ВидПечати" id="16">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вид печати</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:EnumRef.Лико_ВидыПечати</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Организация" id="17">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Организация</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Организации</v8:Type>
+			</Type>
+		</Attribute>
+		<ConditionalAppearance>
+			<dcsset:item>
+				<dcsset:selection>
+					<dcsset:item>
+						<dcsset:field>ТаблицаФорм</dcsset:field>
+					</dcsset:item>
+				</dcsset:selection>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">ФормыДляПодбора.Выбрана</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+						<dcsset:right xsi:type="xs:boolean">true</dcsset:right>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:appearance>
+					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+						<dcscor:parameter>ЦветФона</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Color">style:ЦветТекстаНеактуальногоСписка</dcscor:value>
+					</dcscor:item>
+				</dcsset:appearance>
+			</dcsset:item>
+		</ConditionalAppearance>
+	</Attributes>
+	<Commands>
+		<Command name="ДобавитьВДокумент" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавить в документ</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавить в документ</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ДобавитьВДокумент</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ОтключитьОтбор" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отключить отбор</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отключить отбор</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Stop</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ОтключитьОтбор</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Обновить" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.Refresh</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>Обновить</Action>
+			<Representation>TextPicture</Representation>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="Выбрать" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Выбрать</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+		<Command name="ВыбратьВсе" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать все</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать все</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Picture>
+				<xr:Ref>StdPicture.CheckAll</xr:Ref>
+				<xr:LoadTransparent>true</xr:LoadTransparent>
+			</Picture>
+			<Action>ВыбратьВсе</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+	</Commands>
+</Form>

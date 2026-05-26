@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Наименование" id="4">
+			<DataPath>Объект.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ChoiceButton>true</ChoiceButton>
+			<TextEdit>false</TextEdit>
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+			<Events>
+				<Event name="StartChoice">НаименованиеНачалоВыбора</Event>
+			</Events>
+		</InputField>
+		<Pages name="СтраницыСправочника" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы справочника</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы справочника</v8:content>
+				</v8:item>
+			</ToolTip>
+			<PagesRepresentation>TabsOnTop</PagesRepresentation>
+			<ExtendedTooltip name="СтраницыСправочникаРасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<Page name="СтраницаДокументаОснования" id="12">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Основная</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница документа основания</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="СтраницаДокументаОснованияРасширеннаяПодсказка" id="13"/>
+				</Page>
+				<Page name="СтраницаДокументы" id="14">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница документы</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Страница документы</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="СтраницаДокументыРасширеннаяПодсказка" id="15"/>
+					<ChildItems>
+						<Table name="СписокДокументов" id="16">
+							<ReadOnly>true</ReadOnly>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<FileDragMode>AsFile</FileDragMode>
+							<DataPath>Объект.СписокДокументов</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="СписокДокументовКонтекстноеМеню" id="17"/>
+							<AutoCommandBar name="СписокДокументовКоманднаяПанель" id="18">
+								<ChildItems>
+									<Button name="СписокДокументовРедактироватьСписок" id="38">
+										<Type>CommandBarButton</Type>
+										<CommandName>Form.Command.РедактироватьСписок</CommandName>
+										<ExtendedTooltip name="СписокДокументовРедактироватьСписокРасширеннаяПодсказка" id="39"/>
+									</Button>
+								</ChildItems>
+							</AutoCommandBar>
+							<ExtendedTooltip name="СписокДокументовРасширеннаяПодсказка" id="19"/>
+							<SearchStringAddition name="СписокДокументовСтрокаПоиска" id="20">
+								<AdditionSource>
+									<Item>СписокДокументов</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокДокументовСтрокаПоискаКонтекстноеМеню" id="21"/>
+								<ExtendedTooltip name="СписокДокументовСтрокаПоискаРасширеннаяПодсказка" id="22"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="СписокДокументовСостояниеПросмотра" id="23">
+								<AdditionSource>
+									<Item>СписокДокументов</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокДокументовСостояниеПросмотраКонтекстноеМеню" id="24"/>
+								<ExtendedTooltip name="СписокДокументовСостояниеПросмотраРасширеннаяПодсказка" id="25"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="СписокДокументовУправлениеПоиском" id="26">
+								<AdditionSource>
+									<Item>СписокДокументов</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="СписокДокументовУправлениеПоискомКонтекстноеМеню" id="27"/>
+								<ExtendedTooltip name="СписокДокументовУправлениеПоискомРасширеннаяПодсказка" id="28"/>
+							</SearchControlAddition>
+							<Events>
+								<Event name="Selection">СписокДокументовВыбор</Event>
+							</Events>
+							<ChildItems>
+								<LabelField name="СписокДокументовНомерСтроки" id="29">
+									<DataPath>Объект.СписокДокументов.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="СписокДокументовНомерСтрокиКонтекстноеМеню" id="30"/>
+									<ExtendedTooltip name="СписокДокументовНомерСтрокиРасширеннаяПодсказка" id="31"/>
+								</LabelField>
+								<InputField name="СписокДокументовДокументСиноним" id="35">
+									<DataPath>Объект.СписокДокументов.ДокументСиноним</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ChoiceButton>true</ChoiceButton>
+									<TextEdit>false</TextEdit>
+									<ContextMenu name="СписокДокументовДокументСинонимКонтекстноеМеню" id="36"/>
+									<ExtendedTooltip name="СписокДокументовДокументСинонимРасширеннаяПодсказка" id="37"/>
+									<Events>
+										<Event name="StartChoice">СписокДокументовДокументСинонимНачалоВыбора</Event>
+									</Events>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.Лико_ПакетноеФормированиеДокументов</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="РедактироватьСписок" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Редактировать список</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Редактировать список</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>РедактироватьСписок</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+</Form>

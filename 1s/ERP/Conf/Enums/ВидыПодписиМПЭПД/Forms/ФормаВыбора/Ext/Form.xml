@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Выбор вида подписи</v8:content>
+		</v8:item>
+		<v8:item>
+			<v8:lang>en</v8:lang>
+			<v8:content>Select signature kind</v8:content>
+		</v8:item>
+	</Title>
+	<Width>64</Width>
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<SaveWindowSettings>false</SaveWindowSettings>
+	<AutoTitle>false</AutoTitle>
+	<CommandBarLocation>None</CommandBarLocation>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<RadioButtonField name="ИндексПеречисления" id="1">
+			<DataPath>ИндексПеречисления</DataPath>
+			<TitleLocation>None</TitleLocation>
+			<RadioButtonType>Auto</RadioButtonType>
+			<ColumnsCount>1</ColumnsCount>
+			<ChoiceList>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Простая электронная подпись</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Simple digital signature</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:decimal">1</Value>
+					</xr:Value>
+				</xr:Item>
+			</ChoiceList>
+			<Font ref="style:ВажнаяНадписьШрифт" kind="StyleItem"/>
+			<ContextMenu name="ИндексПеречисленияКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ИндексПеречисленияРасширеннаяПодсказка" id="3"/>
+		</RadioButtonField>
+		<LabelDecoration name="ДекорацияОписаниеДляПЭП" id="25">
+			<Width>64</Width>
+			<TextColor>style:ПоясняющийТекст</TextColor>
+			<Title formatted="true">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Простая электронная подпись создается при помощи ПИН-кода. Такая подпись может быть использована только для подписания проектов титулов и обмена ими внутри организации.</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>A simple electronic signature is created using a PIN. Such signature can only be used to sign draft titles and exchange them within the company.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ДекорацияОписаниеДляПЭПКонтекстноеМеню" id="26"/>
+			<ExtendedTooltip name="ДекорацияОписаниеДляПЭПРасширеннаяПодсказка" id="27"/>
+		</LabelDecoration>
+		<LabelDecoration name="ДекорацияОтступ1" id="34">
+			<ContextMenu name="ДекорацияОтступ1КонтекстноеМеню" id="35"/>
+			<ExtendedTooltip name="ДекорацияОтступ1РасширеннаяПодсказка" id="36"/>
+		</LabelDecoration>
+		<RadioButtonField name="ИндексПеречисления1" id="19">
+			<DataPath>ИндексПеречисления</DataPath>
+			<TitleLocation>None</TitleLocation>
+			<RadioButtonType>Auto</RadioButtonType>
+			<ColumnsCount>1</ColumnsCount>
+			<ChoiceList>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>УНЭП Госключ</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>Enhanced encrypted non-certified digital signature of Goskey</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:decimal">2</Value>
+					</xr:Value>
+				</xr:Item>
+			</ChoiceList>
+			<Font ref="style:ВажнаяНадписьШрифт" kind="StyleItem"/>
+			<ContextMenu name="ИндексПеречисления1КонтекстноеМеню" id="20"/>
+			<ExtendedTooltip name="ИндексПеречисления1РасширеннаяПодсказка" id="21"/>
+		</RadioButtonField>
+		<LabelDecoration name="ДекорацияОписаниеДляУНЭПГосключ" id="28">
+			<Width>64</Width>
+			<TextColor>style:ПоясняющийТекст</TextColor>
+			<Title formatted="true">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подписание усиленной неквалифицированной электронной подписью (УНЭП) производится в мобильном приложении &lt;link https://goskey.ru/&gt;Госключ&lt;/&gt;. При помощи УНЭП можно подписывать проекты титулов для отправки во внутреннем документообороте. Для получения УНЭП потребуется подтверждённая учётная запись на Госуслугах. Подробнее о получении УНЭП на &lt;link https://www.gosuslugi.ru/help/faq/state_key/55502&gt;официальном&lt;/&gt;&lt;link https://www.gosuslugi.ru/help/faq/state_key/55502&gt; &lt;/&gt;&lt;link https://www.gosuslugi.ru/help/faq/state_key/55502&gt;сайте&lt;/&gt;.</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Signing with an enhanced encrypted non-certified digital signature is performed in the &lt;link https://goskey.ru/&gt;Goskey&lt;/&gt; mobile application. With an enhanced encrypted non-certified digital signature, you can sign draft titles for sending in intra-company EDI. To get an enhanced encrypted non-certified digital signature, you will need a verified account in Gosuslugi. For more information about receiving an enhanced encrypted non-certified digital signature, see the &lt;link https://www.gosuslugi.ru/help/faq/state_key/55502&gt;official&lt;/&gt;&lt;link https://www.gosuslugi.ru/help/faq/state_key/55502&gt; &lt;/&gt;&lt;link https://www.gosuslugi.ru/help/faq/state_key/55502&gt;website&lt;/&gt;.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ДекорацияОписаниеДляУНЭПГосключКонтекстноеМеню" id="29"/>
+			<ExtendedTooltip name="ДекорацияОписаниеДляУНЭПГосключРасширеннаяПодсказка" id="30"/>
+		</LabelDecoration>
+		<LabelDecoration name="ДекорацияОтступ2" id="37">
+			<ContextMenu name="ДекорацияОтступ2КонтекстноеМеню" id="38"/>
+			<ExtendedTooltip name="ДекорацияОтступ2РасширеннаяПодсказка" id="39"/>
+		</LabelDecoration>
+		<RadioButtonField name="ИндексПеречисления4" id="40">
+			<DataPath>ИндексПеречисления</DataPath>
+			<TitleLocation>None</TitleLocation>
+			<RadioButtonType>Auto</RadioButtonType>
+			<ColumnsCount>1</ColumnsCount>
+			<ChoiceList>
+				<xr:Item>
+					<xr:Presentation/>
+					<xr:CheckState>0</xr:CheckState>
+					<xr:Value xsi:type="FormChoiceListDesTimeValue">
+						<Presentation>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>УКЭП Рутокен ЭЦП</v8:content>
+							</v8:item>
+							<v8:item>
+								<v8:lang>en</v8:lang>
+								<v8:content>AQES Rutoken EDS</v8:content>
+							</v8:item>
+						</Presentation>
+						<Value xsi:type="xs:decimal">4</Value>
+					</xr:Value>
+				</xr:Item>
+			</ChoiceList>
+			<Font ref="style:ВажнаяНадписьШрифт" kind="StyleItem"/>
+			<ContextMenu name="ИндексПеречисления4КонтекстноеМеню" id="41"/>
+			<ExtendedTooltip name="ИндексПеречисления4РасширеннаяПодсказка" id="42"/>
+		</RadioButtonField>
+		<LabelDecoration name="ДекорацияОписаниеДляУКЭПРутокен" id="43">
+			<Width>64</Width>
+			<TextColor>style:ПоясняющийТекст</TextColor>
+			<Title formatted="true">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подписания усиленной квалифицированной электронной подписью (УКЭП) производится при помощи сертификата УКЭП, установленного на ключевой носитель. Ключевым носителем должен быть один из продуктов линейки &lt;link https://www.rutoken.ru/products/all/rutoken-ecp-3/?ysclid=m7it3snexk999586611&gt;Рутокен ЭЦП 3.0&lt;/&gt;: USB-токен, токен с NFC или смарт-карта. При помощи УКЭП можно подписывать проекты титулов для отправки во внутреннем документообороте и титулы, отправляемые другим участникам напрямую.</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Signing with an enhanced qualified electronic signature (AQES) is performed using an AQES certificate installed on a key storage devices. The key storage devices must be one of the products of the &lt;link https://www.rutoken.ru/products/all/rutoken-ecp-3/?ysclid=m7it3snexk999586611&gt;Rutoken EDS 3.0&lt;/&gt; line: a USB token, an NFC token, or a smart card. With AQES, you can sign draft titles for sending in intra-company EDI and titles sent directly to other participants.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ДекорацияОписаниеДляУКЭПРутокенКонтекстноеМеню" id="44"/>
+			<ExtendedTooltip name="ДекорацияОписаниеДляУКЭПРутокенРасширеннаяПодсказка" id="45"/>
+		</LabelDecoration>
+		<LabelDecoration name="ДекорацияОтступ" id="16">
+			<ContextMenu name="ДекорацияОтступКонтекстноеМеню" id="17"/>
+			<ExtendedTooltip name="ДекорацияОтступРасширеннаяПодсказка" id="18"/>
+		</LabelDecoration>
+		<UsualGroup name="ГруппаКнопки" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа кнопки</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Button group</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа кнопки</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Button group</v8:content>
+				</v8:item>
+			</ToolTip>
+			<HorizontalStretch>true</HorizontalStretch>
+			<HorizontalAlign>Right</HorizontalAlign>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаКнопкиРасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<Button name="ОК" id="12">
+					<Type>UsualButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.ОК</CommandName>
+					<ExtendedTooltip name="ОКРасширеннаяПодсказка" id="13"/>
+				</Button>
+				<Button name="Отмена" id="14">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.Отмена</CommandName>
+					<ExtendedTooltip name="ОтменаРасширеннаяПодсказка" id="15"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="ИндексПеречисления" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Индекс перечисления</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Enumeration index</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>2</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Nonnegative</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ОК" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОК</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OK</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОК</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>OK</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ОК</Action>
+		</Command>
+		<Command name="Отмена" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмена</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмена</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cancel</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Отмена</Action>
+		</Command>
+	</Commands>
+	<Parameters>
+		<Parameter name="ВидПодписи">
+			<Type>
+				<v8:Type>cfg:EnumRef.ВидыПодписиМПЭПД</v8:Type>
+			</Type>
+		</Parameter>
+	</Parameters>
+</Form>

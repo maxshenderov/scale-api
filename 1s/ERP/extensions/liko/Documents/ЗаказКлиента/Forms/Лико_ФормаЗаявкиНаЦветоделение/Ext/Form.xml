@@ -1,0 +1,2460 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoTime>CurrentOrLast</AutoTime>
+	<UsePostingMode>Auto</UsePostingMode>
+	<RepostOnWrite>true</RepostOnWrite>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="ФормаЗаписать" id="211">
+				<Type>CommandBarButton</Type>
+				<Representation>Picture</Representation>
+				<CommandName>Form.StandardCommand.Write</CommandName>
+				<ExtendedTooltip name="ФормаЗаписатьРасширеннаяПодсказка" id="212"/>
+			</Button>
+			<Button name="ФормаПровестиИЗакрыть" id="213">
+				<Type>CommandBarButton</Type>
+				<Representation>Picture</Representation>
+				<CommandName>Form.StandardCommand.PostAndClose</CommandName>
+				<ExtendedTooltip name="ФормаПровестиИЗакрытьРасширеннаяПодсказка" id="214"/>
+			</Button>
+			<Button name="ФормаВБЗ" id="405">
+				<Type>CommandBarButton</Type>
+				<CommandName>0</CommandName>
+				<ExtendedTooltip name="ФормаВБЗРасширеннаяПодсказка" id="406"/>
+			</Button>
+			<Button name="ФормаПереданВОДП" id="19">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ПереданВОДП</CommandName>
+				<TextColor>#FF0000</TextColor>
+				<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Передан в ОДП</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="ФормаПереданВОДПРасширеннаяПодсказка" id="20"/>
+			</Button>
+			<Button name="ФормаЦветоделение" id="23">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Цветоделение</CommandName>
+				<TextColor>#0000FF</TextColor>
+				<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+				<ExtendedTooltip name="ФормаЦветоделениеРасширеннаяПодсказка" id="24"/>
+			</Button>
+			<Button name="ВозвратЦветоделителю" id="403">
+				<Type>CommandBarButton</Type>
+				<CommandName>0</CommandName>
+				<TextColor>#0000FF</TextColor>
+				<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+				<ExtendedTooltip name="ВозвратЦветоделителюРасширеннаяПодсказка" id="404"/>
+			</Button>
+			<Button name="ФормаКоррекция1" id="25">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Коррекция1</CommandName>
+				<TextColor>#0000FF</TextColor>
+				<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+				<ExtendedTooltip name="ФормаКоррекция1РасширеннаяПодсказка" id="26"/>
+			</Button>
+			<Button name="ФормаКоррекция2" id="27">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.Коррекция2</CommandName>
+				<TextColor>#0000FF</TextColor>
+				<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+				<ExtendedTooltip name="ФормаКоррекция2РасширеннаяПодсказка" id="28"/>
+			</Button>
+			<Button name="ФормаПереданВОПП" id="29">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ПереданВОПП</CommandName>
+				<TextColor>#0000FF</TextColor>
+				<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+				<ExtendedTooltip name="ФормаПереданВОППРасширеннаяПодсказка" id="30"/>
+			</Button>
+			<Button name="ФормаПереданНаПроизводство" id="387">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ПереданНаПроизводство</CommandName>
+				<TextColor>#0000FF</TextColor>
+				<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>На производство</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="ФормаПереданНаПроизводствоРасширеннаяПодсказка" id="388"/>
+			</Button>
+			<Popup name="Печать" id="354">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Печать</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Печать</v8:content>
+					</v8:item>
+				</ToolTip>
+				<ExtendedTooltip name="ПечатьРасширеннаяПодсказка" id="355"/>
+				<ChildItems>
+					<Button name="ФормаЗаявкаНаПеределку" id="358">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ЗаявкаНаПеределку</CommandName>
+						<ExtendedTooltip name="ФормаЗаявкаНаПеределкуРасширеннаяПодсказка" id="359"/>
+					</Button>
+				</ChildItems>
+			</Popup>
+			<Button name="ФормаСоздатьЗаявкуНаИзготовлениеФорм" id="385">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.СоздатьЗаявкуНаИзготовлениеФорм</CommandName>
+				<ExtendedTooltip name="ФормаСоздатьЗаявкуНаИзготовлениеФормРасширеннаяПодсказка" id="386"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer" callType="Override">Лико_ПриСозданииНаСервереВместо</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="Шапка" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Шапка</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ШапкаРасширеннаяПодсказка" id="2"/>
+			<ChildItems>
+				<UsualGroup name="Шапка4" id="31">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Шапка4</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Шапка4</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Шапка4РасширеннаяПодсказка" id="32"/>
+					<ChildItems>
+						<UsualGroup name="Группа3" id="318">
+							<Group>Horizontal</Group>
+							<Behavior>Usual</Behavior>
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="319"/>
+							<ChildItems>
+								<UsualGroup name="Шапка1" id="3">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Шапка1</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Шапка1</v8:content>
+										</v8:item>
+									</ToolTip>
+									<Group>Horizontal</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="Шапка1РасширеннаяПодсказка" id="4"/>
+									<ChildItems>
+										<UsualGroup name="Шапка11" id="33">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Шапка11</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Шапка11</v8:content>
+												</v8:item>
+											</ToolTip>
+											<Group>Vertical</Group>
+											<Behavior>Usual</Behavior>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="Шапка11РасширеннаяПодсказка" id="34"/>
+											<ChildItems>
+												<UsualGroup name="Группа5" id="461">
+													<Group>AlwaysHorizontal</Group>
+													<Representation>None</Representation>
+													<ShowTitle>false</ShowTitle>
+													<ExtendedTooltip name="Группа5РасширеннаяПодсказка" id="462"/>
+													<ChildItems>
+														<UsualGroup name="Группа1" id="49">
+															<ReadOnly>true</ReadOnly>
+															<Group>AlwaysHorizontal</Group>
+															<Behavior>Usual</Behavior>
+															<Representation>None</Representation>
+															<ShowTitle>false</ShowTitle>
+															<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="50"/>
+															<ChildItems>
+																<InputField name="НомерБезПрефикса" id="16">
+																	<Title>
+																		<v8:item>
+																			<v8:lang>ru</v8:lang>
+																			<v8:content>Номер</v8:content>
+																		</v8:item>
+																	</Title>
+																	<EditMode>EnterOnInput</EditMode>
+																	<ContextMenu name="НомерБезПрефиксаКонтекстноеМеню" id="17"/>
+																	<ExtendedTooltip name="НомерБезПрефиксаРасширеннаяПодсказка" id="18"/>
+																</InputField>
+																<InputField name="Версия" id="366">
+																	<Width>3</Width>
+																	<ContextMenu name="ВерсияКонтекстноеМеню" id="367"/>
+																	<ExtendedTooltip name="ВерсияРасширеннаяПодсказка" id="368"/>
+																</InputField>
+															</ChildItems>
+														</UsualGroup>
+														<CheckBoxField name="ЦветоделениеНеВыводитьФормы" id="458">
+															<CheckBoxType>Auto</CheckBoxType>
+															<ContextMenu name="ЦветоделениеНеВыводитьФормыКонтекстноеМеню" id="459"/>
+															<ExtendedTooltip name="ЦветоделениеНеВыводитьФормыРасширеннаяПодсказка" id="460"/>
+														</CheckBoxField>
+													</ChildItems>
+												</UsualGroup>
+												<InputField name="Пользователь" id="46">
+													<ContextMenu name="ПользовательКонтекстноеМеню" id="47"/>
+													<ExtendedTooltip name="ПользовательРасширеннаяПодсказка" id="48"/>
+												</InputField>
+												<InputField name="Площадка" id="13">
+													<ReadOnly>true</ReadOnly>
+													<EditMode>EnterOnInput</EditMode>
+													<ContextMenu name="ПлощадкаКонтекстноеМеню" id="14"/>
+													<ExtendedTooltip name="ПлощадкаРасширеннаяПодсказка" id="15"/>
+												</InputField>
+												<InputField name="Этикетки" id="51">
+													<ReadOnly>true</ReadOnly>
+													<ContextMenu name="ЭтикеткиКонтекстноеМеню" id="52"/>
+													<ExtendedTooltip name="ЭтикеткиРасширеннаяПодсказка" id="53"/>
+												</InputField>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
+								<UsualGroup name="Шапка2" id="35">
+									<ReadOnly>true</ReadOnly>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Шапка2</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Шапка2</v8:content>
+										</v8:item>
+									</ToolTip>
+									<Group>Vertical</Group>
+									<Behavior>Usual</Behavior>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="Шапка2РасширеннаяПодсказка" id="36"/>
+									<ChildItems>
+										<InputField name="Состояние" id="389">
+											<ContextMenu name="СостояниеКонтекстноеМеню" id="390"/>
+											<ExtendedTooltip name="СостояниеРасширеннаяПодсказка" id="391"/>
+										</InputField>
+										<InputField name="ВидЗаказа" id="37">
+											<ContextMenu name="ВидЗаказаКонтекстноеМеню" id="38"/>
+											<ExtendedTooltip name="ВидЗаказаРасширеннаяПодсказка" id="39"/>
+										</InputField>
+										<InputField name="РабочийЦентр" id="54">
+											<ContextMenu name="РабочийЦентрКонтекстноеМеню" id="55"/>
+											<ExtendedTooltip name="РабочийЦентрРасширеннаяПодсказка" id="56"/>
+										</InputField>
+										<InputField name="Дизайнер" id="410">
+											<ContextMenu name="ДизайнерКонтекстноеМеню" id="411"/>
+											<ExtendedTooltip name="ДизайнерРасширеннаяПодсказка" id="412"/>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="Шапка3" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Шапка3</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Шапка3</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Шапка3РасширеннаяПодсказка" id="12"/>
+					<ChildItems>
+						<InputField name="Партнер" id="8">
+							<ReadOnly>true</ReadOnly>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ПартнерКонтекстноеМеню" id="9"/>
+							<ExtendedTooltip name="ПартнерРасширеннаяПодсказка" id="10"/>
+						</InputField>
+						<InputField name="ТипЗаказа" id="43">
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="ТипЗаказаКонтекстноеМеню" id="44"/>
+							<ExtendedTooltip name="ТипЗаказаРасширеннаяПодсказка" id="45"/>
+						</InputField>
+						<InputField name="Z" id="57">
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="ZКонтекстноеМеню" id="58"/>
+							<ExtendedTooltip name="ZРасширеннаяПодсказка" id="59"/>
+						</InputField>
+						<InputField name="ЦветоделениеПеределка1" id="315">
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="ЦветоделениеПеределка1КонтекстноеМеню" id="316"/>
+							<ExtendedTooltip name="ЦветоделениеПеределка1РасширеннаяПодсказка" id="317"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="Группа2" id="313">
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="314"/>
+		</UsualGroup>
+		<Table name="Цветоделение" id="135">
+			<MaxWidth>1</MaxWidth>
+			<Height>3</Height>
+			<AutoMaxHeight>false</AutoMaxHeight>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ЦветоделениеКонтекстноеМеню" id="136"/>
+			<AutoCommandBar name="ЦветоделениеКоманднаяПанель" id="137"/>
+			<ExtendedTooltip name="ЦветоделениеРасширеннаяПодсказка" id="138"/>
+			<SearchStringAddition name="ЦветоделениеСтрокаПоиска" id="139">
+				<AdditionSource>
+					<Item>Цветоделение</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦветоделениеСтрокаПоискаКонтекстноеМеню" id="140"/>
+				<ExtendedTooltip name="ЦветоделениеСтрокаПоискаРасширеннаяПодсказка" id="141"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ЦветоделениеСостояниеПросмотра" id="142">
+				<AdditionSource>
+					<Item>Цветоделение</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦветоделениеСостояниеПросмотраКонтекстноеМеню" id="143"/>
+				<ExtendedTooltip name="ЦветоделениеСостояниеПросмотраРасширеннаяПодсказка" id="144"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ЦветоделениеУправлениеПоиском" id="145">
+				<AdditionSource>
+					<Item>Цветоделение</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦветоделениеУправлениеПоискомКонтекстноеМеню" id="146"/>
+				<ExtendedTooltip name="ЦветоделениеУправлениеПоискомРасширеннаяПодсказка" id="147"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ЦветоделениеНомерСтроки" id="148">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветоделениеНомерСтрокиКонтекстноеМеню" id="149"/>
+					<ExtendedTooltip name="ЦветоделениеНомерСтрокиРасширеннаяПодсказка" id="150"/>
+				</LabelField>
+				<InputField name="ЦветоделениеДатаЗаявки" id="344">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дата</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>7</MaxWidth>
+					<ContextMenu name="ЦветоделениеДатаЗаявкиКонтекстноеМеню" id="345"/>
+					<ExtendedTooltip name="ЦветоделениеДатаЗаявкиРасширеннаяПодсказка" id="346"/>
+				</InputField>
+				<LabelField name="ЦветоделениеКлючСтроки" id="320">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветоделениеКлючСтрокиКонтекстноеМеню" id="321"/>
+					<ExtendedTooltip name="ЦветоделениеКлючСтрокиРасширеннаяПодсказка" id="322"/>
+				</LabelField>
+				<InputField name="ЦветоделениеПредыдущийЦветоделитель" id="397">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеПредыдущийЦветоделительКонтекстноеМеню" id="398"/>
+					<ExtendedTooltip name="ЦветоделениеПредыдущийЦветоделительРасширеннаяПодсказка" id="399"/>
+				</InputField>
+				<InputField name="ЦветоделениеЦветоделитель" id="151">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеЦветоделительКонтекстноеМеню" id="152"/>
+					<ExtendedTooltip name="ЦветоделениеЦветоделительРасширеннаяПодсказка" id="153"/>
+				</InputField>
+				<InputField name="ЦветоделениеДатаЦветоделения" id="154">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветоделениеДатаЦветоделенияКонтекстноеМеню" id="155"/>
+					<ExtendedTooltip name="ЦветоделениеДатаЦветоделенияРасширеннаяПодсказка" id="156"/>
+				</InputField>
+				<InputField name="ЦветоделениеКоррекцияЦветоделения" id="400">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКоррекцияЦветоделенияКонтекстноеМеню" id="401"/>
+					<ExtendedTooltip name="ЦветоделениеКоррекцияЦветоделенияРасширеннаяПодсказка" id="402"/>
+				</InputField>
+				<InputField name="ЦветоделениеКорректор1" id="157">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКорректор1КонтекстноеМеню" id="158"/>
+					<ExtendedTooltip name="ЦветоделениеКорректор1РасширеннаяПодсказка" id="159"/>
+				</InputField>
+				<InputField name="ЦветоделениеДатаКорректировки1" id="160">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветоделениеДатаКорректировки1КонтекстноеМеню" id="161"/>
+					<ExtendedTooltip name="ЦветоделениеДатаКорректировки1РасширеннаяПодсказка" id="162"/>
+				</InputField>
+				<InputField name="ЦветоделениеКорректор2" id="163">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветоделениеКорректор2КонтекстноеМеню" id="164"/>
+					<ExtendedTooltip name="ЦветоделениеКорректор2РасширеннаяПодсказка" id="165"/>
+				</InputField>
+				<InputField name="ЦветоделениеДатаКорректировки2" id="166">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветоделениеДатаКорректировки2КонтекстноеМеню" id="167"/>
+					<ExtendedTooltip name="ЦветоделениеДатаКорректировки2РасширеннаяПодсказка" id="168"/>
+				</InputField>
+				<InputField name="ЦветоделениеПеределка" id="169">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветоделениеПеределкаКонтекстноеМеню" id="170"/>
+					<ExtendedTooltip name="ЦветоделениеПеределкаРасширеннаяПодсказка" id="171"/>
+				</InputField>
+				<InputField name="ЦветоделениеКоличествоНаименований" id="215">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКоличествоНаименованийКонтекстноеМеню" id="216"/>
+					<ExtendedTooltip name="ЦветоделениеКоличествоНаименованийРасширеннаяПодсказка" id="217"/>
+				</InputField>
+				<InputField name="ЦветоделениеКоличествоЦветовОфсет" id="218">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКоличествоЦветовОфсетКонтекстноеМеню" id="219"/>
+					<ExtendedTooltip name="ЦветоделениеКоличествоЦветовОфсетРасширеннаяПодсказка" id="220"/>
+				</InputField>
+				<InputField name="ЦветоделениеКоличествоЦветовФлексо" id="221">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКоличествоЦветовФлексоКонтекстноеМеню" id="222"/>
+					<ExtendedTooltip name="ЦветоделениеКоличествоЦветовФлексоРасширеннаяПодсказка" id="223"/>
+				</InputField>
+				<InputField name="ЦветоделениеКоличествоЦветовИнкджет" id="468">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКоличествоЦветовИнкджетКонтекстноеМеню" id="474"/>
+					<ExtendedTooltip name="ЦветоделениеКоличествоЦветовИнкджетРасширеннаяПодсказка" id="475"/>
+				</InputField>
+				<InputField name="ЦветоделениеКоличествоЦветовГлубокая" id="227">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКоличествоЦветовГлубокаяКонтекстноеМеню" id="228"/>
+					<ExtendedTooltip name="ЦветоделениеКоличествоЦветовГлубокаяРасширеннаяПодсказка" id="229"/>
+				</InputField>
+				<InputField name="ЦветоделениеКоличествоЦветовЦифровая" id="230">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКоличествоЦветовЦифроваяКонтекстноеМеню" id="231"/>
+					<ExtendedTooltip name="ЦветоделениеКоличествоЦветовЦифроваяРасширеннаяПодсказка" id="232"/>
+				</InputField>
+				<InputField name="ЦветоделениеКоличествоЦветовТрафарет" id="233">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКоличествоЦветовТрафаретКонтекстноеМеню" id="234"/>
+					<ExtendedTooltip name="ЦветоделениеКоличествоЦветовТрафаретРасширеннаяПодсказка" id="235"/>
+				</InputField>
+				<InputField name="ЦветоделениеКонгревНФ" id="236">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКонгревНФКонтекстноеМеню" id="237"/>
+					<ExtendedTooltip name="ЦветоделениеКонгревНФРасширеннаяПодсказка" id="238"/>
+				</InputField>
+				<InputField name="ЦветоделениеТиснениеРотационное" id="239">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеТиснениеРотационноеКонтекстноеМеню" id="240"/>
+					<ExtendedTooltip name="ЦветоделениеТиснениеРотационноеРасширеннаяПодсказка" id="241"/>
+				</InputField>
+				<InputField name="ЦветоделениеТиснениеНФ" id="242">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеТиснениеНФКонтекстноеМеню" id="243"/>
+					<ExtendedTooltip name="ЦветоделениеТиснениеНФРасширеннаяПодсказка" id="244"/>
+				</InputField>
+				<InputField name="ЦветоделениеТиснениеГалакси" id="245">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеТиснениеГалаксиКонтекстноеМеню" id="246"/>
+					<ExtendedTooltip name="ЦветоделениеТиснениеГалаксиРасширеннаяПодсказка" id="247"/>
+				</InputField>
+				<InputField name="ЦветоделениеТиснениеГолография" id="248">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеТиснениеГолографияКонтекстноеМеню" id="249"/>
+					<ExtendedTooltip name="ЦветоделениеТиснениеГолографияРасширеннаяПодсказка" id="250"/>
+				</InputField>
+				<InputField name="ЦветоделениеКомментарий" id="360">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветоделениеКомментарийКонтекстноеМеню" id="361"/>
+					<ExtendedTooltip name="ЦветоделениеКомментарийРасширеннаяПодсказка" id="362"/>
+				</InputField>
+				<InputField name="ЦветоделениеПричинаВозвратаНаПовторноеЦветоделение" id="425">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Причина возврата</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ЦветоделениеПричинаВозвратаНаПовторноеЦветоделениеКонтекстноеМеню" id="426"/>
+					<ExtendedTooltip name="ЦветоделениеПричинаВозвратаНаПовторноеЦветоделениеРасширеннаяПодсказка" id="427"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<UsualGroup name="Группа8" id="456">
+			<Group>AlwaysHorizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа8РасширеннаяПодсказка" id="457"/>
+			<ChildItems>
+				<CommandBar name="ГруппаЦветаКП" id="452">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа цвета КП</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа цвета КП</v8:content>
+						</v8:item>
+					</ToolTip>
+					<HorizontalStretch>false</HorizontalStretch>
+					<ExtendedTooltip name="ГруппаЦветаКПРасширеннаяПодсказка" id="453"/>
+					<ChildItems>
+						<Button name="ЦветаДобавить" id="444">
+							<Type>CommandBarButton</Type>
+							<Width>9</Width>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ЦветаДобавитьРасширеннаяПодсказка" id="445"/>
+						</Button>
+						<ButtonGroup name="Группа7" id="454">
+							<Representation>Compact</Representation>
+							<ExtendedTooltip name="Группа7РасширеннаяПодсказка" id="455"/>
+							<ChildItems>
+								<Button name="ЦветаПереместитьВверх" id="446">
+									<Type>CommandBarButton</Type>
+									<Representation>Picture</Representation>
+									<Width>3</Width>
+									<CommandName>0</CommandName>
+									<ExtendedTooltip name="ЦветаПереместитьВверхРасширеннаяПодсказка" id="447"/>
+								</Button>
+								<Button name="ЦветаПереместитьВниз" id="448">
+									<Type>CommandBarButton</Type>
+									<Representation>Picture</Representation>
+									<Width>3</Width>
+									<CommandName>0</CommandName>
+									<ExtendedTooltip name="ЦветаПереместитьВнизРасширеннаяПодсказка" id="449"/>
+								</Button>
+							</ChildItems>
+						</ButtonGroup>
+						<Button name="ЦветаДобавитьЦМИК" id="209">
+							<Type>CommandBarButton</Type>
+							<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+							<ExtendedTooltip name="ЦветаДобавитьЦМИКРасширеннаяПодсказка" id="210"/>
+						</Button>
+						<Button name="ЦветаСкопироватьВБуфер" id="369">
+							<Type>CommandBarButton</Type>
+							<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+							<ExtendedTooltip name="ЦветаСкопироватьВБуферРасширеннаяПодсказка" id="370"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+				<UsualGroup name="ГруппаСозданияФорм" id="431">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Создание форм</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа создания форм</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>AlwaysHorizontal</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ThroughAlign>DontUse</ThroughAlign>
+					<ExtendedTooltip name="ГруппаСозданияФормРасширеннаяПодсказка" id="432"/>
+					<ChildItems>
+						<InputField name="Дисторт" id="433">
+							<Width>14</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ДистортКонтекстноеМеню" id="434"/>
+							<ExtendedTooltip name="ДистортРасширеннаяПодсказка" id="435"/>
+						</InputField>
+						<InputField name="ВидПолимера" id="436">
+							<Width>14</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ChoiceParameters>
+								<app:item name="Отбор.НеПоказыватьВФормеВыбора">
+									<app:value xsi:type="FormChoiceListDesTimeValue">
+										<Presentation/>
+										<Value xsi:type="xs:boolean">false</Value>
+									</app:value>
+								</app:item>
+							</ChoiceParameters>
+							<ContextMenu name="ВидПолимераКонтекстноеМеню" id="437"/>
+							<ExtendedTooltip name="ВидПолимераРасширеннаяПодсказка" id="438"/>
+						</InputField>
+						<Button name="СоздатьФормы" id="439">
+							<Type>UsualButton</Type>
+							<CommandName>0</CommandName>
+							<TextColor>#0000FF</TextColor>
+							<Font bold="true" kind="AutoFont"/>
+							<ExtendedTooltip name="СоздатьФормыРасширеннаяПодсказка" id="440"/>
+						</Button>
+						<Button name="НайтиФормы" id="463">
+							<Type>UsualButton</Type>
+							<CommandName>0</CommandName>
+							<TextColor>#0000FF</TextColor>
+							<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem" scale="100"/>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Копировать формы</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="НайтиФормыРасширеннаяПодсказка" id="464"/>
+						</Button>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="Цвета" id="60">
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<FileDragMode>AsFile</FileDragMode>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ЦветаКонтекстноеМеню" id="61"/>
+			<AutoCommandBar name="ЦветаКоманднаяПанель" id="62">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="ЦветаРасширеннаяПодсказка" id="63"/>
+			<SearchStringAddition name="ЦветаСтрокаПоиска" id="64">
+				<AdditionSource>
+					<Item>Цвета</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦветаСтрокаПоискаКонтекстноеМеню" id="65"/>
+				<ExtendedTooltip name="ЦветаСтрокаПоискаРасширеннаяПодсказка" id="66"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ЦветаСостояниеПросмотра" id="67">
+				<AdditionSource>
+					<Item>Цвета</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦветаСостояниеПросмотраКонтекстноеМеню" id="68"/>
+				<ExtendedTooltip name="ЦветаСостояниеПросмотраРасширеннаяПодсказка" id="69"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ЦветаУправлениеПоиском" id="70">
+				<AdditionSource>
+					<Item>Цвета</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ЦветаУправлениеПоискомКонтекстноеМеню" id="71"/>
+				<ExtendedTooltip name="ЦветаУправлениеПоискомРасширеннаяПодсказка" id="72"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ЦветаНомерСтроки" id="73">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>№</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаНомерСтрокиКонтекстноеМеню" id="74"/>
+					<ExtendedTooltip name="ЦветаНомерСтрокиРасширеннаяПодсказка" id="75"/>
+				</LabelField>
+				<InputField name="ЦветаВидСекции" id="413">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вид работ</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<DropListButton>true</DropListButton>
+					<ChoiceButton>false</ChoiceButton>
+					<CreateButton>false</CreateButton>
+					<ListChoiceMode>true</ListChoiceMode>
+					<ContextMenu name="ЦветаВидСекцииКонтекстноеМеню" id="414"/>
+					<ExtendedTooltip name="ЦветаВидСекцииРасширеннаяПодсказка" id="415"/>
+				</InputField>
+				<InputField name="ЦветаВидПечати" id="76">
+					<Visible>false</Visible>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаВидПечатиКонтекстноеМеню" id="77"/>
+					<ExtendedTooltip name="ЦветаВидПечатиРасширеннаяПодсказка" id="78"/>
+				</InputField>
+				<InputField name="ЦветаТипЦвета1" id="407">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тип цвета</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>8</MaxWidth>
+					<ContextMenu name="ЦветаТипЦвета1КонтекстноеМеню" id="408"/>
+					<ExtendedTooltip name="ЦветаТипЦвета1РасширеннаяПодсказка" id="409"/>
+				</InputField>
+				<InputField name="ЦветаТипКраски" id="82">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>8</MaxWidth>
+					<ContextMenu name="ЦветаТипКраскиКонтекстноеМеню" id="83"/>
+					<ExtendedTooltip name="ЦветаТипКраскиРасширеннаяПодсказка" id="84"/>
+				</InputField>
+				<InputField name="ЦветаНазвание" id="85">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>9</MaxWidth>
+					<ContextMenu name="ЦветаНазваниеКонтекстноеМеню" id="86"/>
+					<ExtendedTooltip name="ЦветаНазваниеРасширеннаяПодсказка" id="87"/>
+				</InputField>
+				<InputField name="ЦветаПроцентЗаливки" id="88">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>%</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаПроцентЗаливкиКонтекстноеМеню" id="89"/>
+					<ExtendedTooltip name="ЦветаПроцентЗаливкиРасширеннаяПодсказка" id="90"/>
+				</InputField>
+				<InputField name="ЦветаГрамматура" id="91">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Гр.</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаГрамматураКонтекстноеМеню" id="92"/>
+					<ExtendedTooltip name="ЦветаГрамматураРасширеннаяПодсказка" id="93"/>
+				</InputField>
+				<InputField name="ЦветаЗапечатываемыйМатериал" id="94">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Зап. мат.</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаЗапечатываемыйМатериалКонтекстноеМеню" id="95"/>
+					<ExtendedTooltip name="ЦветаЗапечатываемыйМатериалРасширеннаяПодсказка" id="96"/>
+				</InputField>
+				<CheckBoxField name="ЦветаЦветоделение" id="97">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Цв.</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЦветаЦветоделениеКонтекстноеМеню" id="98"/>
+					<ExtendedTooltip name="ЦветаЦветоделениеРасширеннаяПодсказка" id="99"/>
+					<Events>
+						<Event name="OnChange" callType="Override">Лико_ЦветаЦветоделениеПриИзмененииВместо</Event>
+					</Events>
+				</CheckBoxField>
+				<CheckBoxField name="ЦветаПерегравировка" id="100">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Переграв.</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЦветаПерегравировкаКонтекстноеМеню" id="101"/>
+					<ExtendedTooltip name="ЦветаПерегравировкаРасширеннаяПодсказка" id="102"/>
+				</CheckBoxField>
+				<CheckBoxField name="ЦветаДистортВидПолимера" id="441">
+					<EditMode>EnterOnInput</EditMode>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ЦветаДистортВидПолимераКонтекстноеМеню" id="442"/>
+					<ExtendedTooltip name="ЦветаДистортВидПолимераРасширеннаяПодсказка" id="443"/>
+				</CheckBoxField>
+				<InputField name="ЦветаВидПолимера" id="394">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветаВидПолимераКонтекстноеМеню" id="395"/>
+					<ExtendedTooltip name="ЦветаВидПолимераРасширеннаяПодсказка" id="396"/>
+				</InputField>
+				<LabelField name="ЦветаФормаКод" id="347">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветаФормаКодКонтекстноеМеню" id="348"/>
+					<ExtendedTooltip name="ЦветаФормаКодРасширеннаяПодсказка" id="349"/>
+				</LabelField>
+				<InputField name="ЦветаФорма" id="103">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветаФормаКонтекстноеМеню" id="104"/>
+					<ExtendedTooltip name="ЦветаФормаРасширеннаяПодсказка" id="105"/>
+				</InputField>
+				<InputField name="ЦветаДистортФлексо" id="422">
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ЦветаДистортФлексоКонтекстноеМеню" id="423"/>
+					<ExtendedTooltip name="ЦветаДистортФлексоРасширеннаяПодсказка" id="424"/>
+				</InputField>
+				<InputField name="ЦветаНомерПроката" id="109">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>№ проката</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаНомерПрокатаКонтекстноеМеню" id="110"/>
+					<ExtendedTooltip name="ЦветаНомерПрокатаРасширеннаяПодсказка" id="111"/>
+				</InputField>
+				<InputField name="ЦветаВал" id="112">
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>5</MaxWidth>
+					<ContextMenu name="ЦветаВалКонтекстноеМеню" id="113"/>
+					<ExtendedTooltip name="ЦветаВалРасширеннаяПодсказка" id="114"/>
+				</InputField>
+				<InputField name="ЦветаПроцентДо" id="115">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>% До</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаПроцентДоКонтекстноеМеню" id="116"/>
+					<ExtendedTooltip name="ЦветаПроцентДоРасширеннаяПодсказка" id="117"/>
+				</InputField>
+				<InputField name="ЦветаПроцентПосле" id="118">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>% После</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаПроцентПослеКонтекстноеМеню" id="119"/>
+					<ExtendedTooltip name="ЦветаПроцентПослеРасширеннаяПодсказка" id="120"/>
+				</InputField>
+				<InputField name="ЦветаПроцент50" id="121">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>% 50</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаПроцент50КонтекстноеМеню" id="122"/>
+					<ExtendedTooltip name="ЦветаПроцент50РасширеннаяПодсказка" id="123"/>
+				</InputField>
+				<InputField name="ЦветаD" id="127">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>D</v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<MaxWidth>1</MaxWidth>
+					<ContextMenu name="ЦветаDКонтекстноеМеню" id="128"/>
+					<ExtendedTooltip name="ЦветаDРасширеннаяПодсказка" id="129"/>
+				</InputField>
+				<InputField name="ЦветаПроизведенныеИзменения" id="130">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветаПроизведенныеИзмененияКонтекстноеМеню" id="131"/>
+					<ExtendedTooltip name="ЦветаПроизведенныеИзмененияРасширеннаяПодсказка" id="132"/>
+				</InputField>
+				<InputField name="ЦветаВидТМЦ" id="416">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветаВидТМЦКонтекстноеМеню" id="417"/>
+					<ExtendedTooltip name="ЦветаВидТМЦРасширеннаяПодсказка" id="418"/>
+				</InputField>
+				<InputField name="ЦветаВидЗаливки" id="419">
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ЦветаВидЗаливкиКонтекстноеМеню" id="420"/>
+					<ExtendedTooltip name="ЦветаВидЗаливкиРасширеннаяПодсказка" id="421"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+		<UsualGroup name="ПараметрыЦветоделения" id="251">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Параметры цветоделения</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Параметры цветоделения</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>Horizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ПараметрыЦветоделенияРасширеннаяПодсказка" id="252"/>
+			<ChildItems>
+				<UsualGroup name="Параметры1" id="256">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры1</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры1</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Параметры1РасширеннаяПодсказка" id="257"/>
+					<ChildItems>
+						<InputField name="ЦветоделениеКоличествоНаименований1" id="253">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:f78666bc-2ab4-40a6-a34a-c1a000375e06</DataPath>
+							<ContextMenu name="ЦветоделениеКоличествоНаименований1КонтекстноеМеню" id="254"/>
+							<ExtendedTooltip name="ЦветоделениеКоличествоНаименований1РасширеннаяПодсказка" id="255"/>
+						</InputField>
+						<InputField name="ЦветоделениеКонгревНФ1" id="262">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:fd573bcc-f13e-45e9-a05f-91971917a120</DataPath>
+							<ContextMenu name="ЦветоделениеКонгревНФ1КонтекстноеМеню" id="263"/>
+							<ExtendedTooltip name="ЦветоделениеКонгревНФ1РасширеннаяПодсказка" id="264"/>
+						</InputField>
+						<InputField name="ЦветоделениеТиснениеРотационное1" id="265">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:127e6307-72be-4d38-b188-bdbf66bcf26a</DataPath>
+							<ContextMenu name="ЦветоделениеТиснениеРотационное1КонтекстноеМеню" id="266"/>
+							<ExtendedTooltip name="ЦветоделениеТиснениеРотационное1РасширеннаяПодсказка" id="267"/>
+						</InputField>
+						<InputField name="ЦветоделениеТиснениеНФ1" id="268">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:4d672983-0e01-4411-a8b4-b6595d799b71</DataPath>
+							<ContextMenu name="ЦветоделениеТиснениеНФ1КонтекстноеМеню" id="269"/>
+							<ExtendedTooltip name="ЦветоделениеТиснениеНФ1РасширеннаяПодсказка" id="270"/>
+						</InputField>
+						<InputField name="ЦветоделениеТиснениеГалакси1" id="271">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:7da3e162-4a7c-45b6-803c-01254a32caec</DataPath>
+							<ContextMenu name="ЦветоделениеТиснениеГалакси1КонтекстноеМеню" id="272"/>
+							<ExtendedTooltip name="ЦветоделениеТиснениеГалакси1РасширеннаяПодсказка" id="273"/>
+						</InputField>
+						<InputField name="ЦветоделениеТиснениеГолография1" id="274">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:5bf6c583-fbf0-4596-be21-21dce8a16f07</DataPath>
+							<ContextMenu name="ЦветоделениеТиснениеГолография1КонтекстноеМеню" id="275"/>
+							<ExtendedTooltip name="ЦветоделениеТиснениеГолография1РасширеннаяПодсказка" id="276"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="Параметры2" id="258">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры2</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры2</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Параметры2РасширеннаяПодсказка" id="259"/>
+					<ChildItems>
+						<InputField name="ЦветоделениеКоличествоЦветовФлексо1" id="277">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:609f09e8-7836-4306-bd0b-c3e0749d5ca6</DataPath>
+							<ContextMenu name="ЦветоделениеКоличествоЦветовФлексо1КонтекстноеМеню" id="278"/>
+							<ExtendedTooltip name="ЦветоделениеКоличествоЦветовФлексо1РасширеннаяПодсказка" id="279"/>
+						</InputField>
+						<InputField name="ЦветоделениеКоличествоЦветовОфсет1" id="280">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:25b7cd82-6f1e-4238-87c8-230efb89419f</DataPath>
+							<ContextMenu name="ЦветоделениеКоличествоЦветовОфсет1КонтекстноеМеню" id="281"/>
+							<ExtendedTooltip name="ЦветоделениеКоличествоЦветовОфсет1РасширеннаяПодсказка" id="282"/>
+						</InputField>
+						<InputField name="ЦветоделениеКоличествоЦветовИнкджет1" id="471">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:58c5564e-3b29-4551-bc8c-e7eb15580fcf</DataPath>
+							<ContextMenu name="ЦветоделениеКоличествоЦветовИнкджет1КонтекстноеМеню" id="476"/>
+							<ExtendedTooltip name="ЦветоделениеКоличествоЦветовИнкджет1РасширеннаяПодсказка" id="477"/>
+						</InputField>
+						<InputField name="ЦветоделениеКоличествоЦветовГлубокая1" id="286">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:e95eddff-3b4e-4527-8ada-a2b7e106c8d3</DataPath>
+							<ContextMenu name="ЦветоделениеКоличествоЦветовГлубокая1КонтекстноеМеню" id="287"/>
+							<ExtendedTooltip name="ЦветоделениеКоличествоЦветовГлубокая1РасширеннаяПодсказка" id="288"/>
+						</InputField>
+						<InputField name="ЦветоделениеКоличествоЦветовЦифровая1" id="289">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:7be4818e-631b-4c9e-a4ff-6942ffd30cd5</DataPath>
+							<ContextMenu name="ЦветоделениеКоличествоЦветовЦифровая1КонтекстноеМеню" id="290"/>
+							<ExtendedTooltip name="ЦветоделениеКоличествоЦветовЦифровая1РасширеннаяПодсказка" id="291"/>
+						</InputField>
+						<InputField name="ЦветоделениеКоличествоЦветовТрафарет1" id="292">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:24011ec6-1cd7-4ce2-9096-1437cf675fd7</DataPath>
+							<ContextMenu name="ЦветоделениеКоличествоЦветовТрафарет1КонтекстноеМеню" id="293"/>
+							<ExtendedTooltip name="ЦветоделениеКоличествоЦветовТрафарет1РасширеннаяПодсказка" id="294"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="Параметры3" id="260">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры3</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры3</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>Vertical</Group>
+					<Behavior>Usual</Behavior>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Параметры3РасширеннаяПодсказка" id="261"/>
+					<ChildItems>
+						<InputField name="ЦветоделениеАвторПеределки" id="465">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:f8c76aec-7fc6-4b6a-a0f6-a6ccc7483f43</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="ЦветоделениеАвторПеределкиКонтекстноеМеню" id="478"/>
+							<ExtendedTooltip name="ЦветоделениеАвторПеределкиРасширеннаяПодсказка" id="479"/>
+						</InputField>
+						<InputField name="ЦветоделениеИнициаторПеределки" id="323">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:42bb14fe-5ec2-4780-9e9c-4d98dc7ec2ce</DataPath>
+							<ContextMenu name="ЦветоделениеИнициаторПеределкиКонтекстноеМеню" id="324"/>
+							<ExtendedTooltip name="ЦветоделениеИнициаторПеределкиРасширеннаяПодсказка" id="325"/>
+						</InputField>
+						<InputField name="ЦветоделениеПричинаПеределки" id="326">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:5c542d35-83d9-4963-9f16-9255076a574d</DataPath>
+							<ContextMenu name="ЦветоделениеПричинаПеределкиКонтекстноеМеню" id="327"/>
+							<ExtendedTooltip name="ЦветоделениеПричинаПеределкиРасширеннаяПодсказка" id="328"/>
+						</InputField>
+						<InputField name="ЦветоделениеПечатник" id="329">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:2308c6ca-c890-4dd3-b5b7-61f9c9117b0a</DataPath>
+							<ContextMenu name="ЦветоделениеПечатникКонтекстноеМеню" id="330"/>
+							<ExtendedTooltip name="ЦветоделениеПечатникРасширеннаяПодсказка" id="331"/>
+						</InputField>
+						<InputField name="ЦветоделениеТехнолог" id="332">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:6b5c2e1e-7e6d-4919-b007-62b18fbe1493</DataPath>
+							<ContextMenu name="ЦветоделениеТехнологКонтекстноеМеню" id="333"/>
+							<ExtendedTooltip name="ЦветоделениеТехнологРасширеннаяПодсказка" id="334"/>
+						</InputField>
+						<InputField name="ЦветоделениеНачальникСмены" id="335">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:7b56e076-8502-48f3-85f9-43e225221291</DataPath>
+							<ContextMenu name="ЦветоделениеНачальникСменыКонтекстноеМеню" id="336"/>
+							<ExtendedTooltip name="ЦветоделениеНачальникСменыРасширеннаяПодсказка" id="337"/>
+						</InputField>
+						<InputField name="ЦветоделениеСпециалистОДП" id="338">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:6dcbad81-afec-4a01-b115-cd369fa77b53</DataPath>
+							<ContextMenu name="ЦветоделениеСпециалистОДПКонтекстноеМеню" id="339"/>
+							<ExtendedTooltip name="ЦветоделениеСпециалистОДПРасширеннаяПодсказка" id="340"/>
+						</InputField>
+						<InputField name="ЦветоделениеСпециалистОТК" id="341">
+							<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:eefd1d1b-e07d-4696-89aa-ca353ae93cb2</DataPath>
+							<ContextMenu name="ЦветоделениеСпециалистОТККонтекстноеМеню" id="342"/>
+							<ExtendedTooltip name="ЦветоделениеСпециалистОТКРасширеннаяПодсказка" id="343"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="ЦветоделениеКомментарий1" id="363">
+			<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:3be03549-1857-4f43-8b89-8584fbc63630</DataPath>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<HorizontalStretch>true</HorizontalStretch>
+			<MultiLine>true</MultiLine>
+			<ContextMenu name="ЦветоделениеКомментарий1КонтекстноеМеню" id="364"/>
+			<ExtendedTooltip name="ЦветоделениеКомментарий1РасширеннаяПодсказка" id="365"/>
+		</InputField>
+		<UsualGroup name="ГруппаПодвал" id="373">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа подвал</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа подвал</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="374"/>
+			<ChildItems>
+				<CommandBar name="Группа4" id="379">
+					<ExtendedTooltip name="Группа4РасширеннаяПодсказка" id="380"/>
+					<ChildItems>
+						<Button name="ВыгрузитьXML" id="352">
+							<Type>CommandBarButton</Type>
+							<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+							<ExtendedTooltip name="ВыгрузитьXMLРасширеннаяПодсказка" id="353"/>
+						</Button>
+						<Button name="Монтаж" id="371">
+							<Type>CommandBarButton</Type>
+							<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+							<ExtendedTooltip name="МонтажРасширеннаяПодсказка" id="372"/>
+						</Button>
+						<Popup name="ФорматДляСкрипта" id="381">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Формат для скрипта</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Формат для скрипта</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Picture>
+								<xr:Ref>CommonPicture.НастройкаБЭД</xr:Ref>
+								<xr:LoadTransparent>true</xr:LoadTransparent>
+								<xr:TransparentPixel x="38" y="43"/>
+							</Picture>
+							<Representation>PictureAndText</Representation>
+							<ExtendedTooltip name="ФорматДляСкриптаРасширеннаяПодсказка" id="382"/>
+							<ChildItems>
+								<Button name="БезМонтажа" id="383">
+									<Type>CommandBarButton</Type>
+									<CommandName>0:409b9a53-7f7e-4178-86c1-33176c7c7a7a</CommandName>
+									<ExtendedTooltip name="БезМонтажаРасширеннаяПодсказка" id="384"/>
+								</Button>
+							</ChildItems>
+						</Popup>
+						<Button name="СоздатьМонтаж" id="392">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="СоздатьМонтажРасширеннаяПодсказка" id="393"/>
+						</Button>
+					</ChildItems>
+				</CommandBar>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes/>
+	<Commands>
+		<Command name="Цветоделение" id="1000002">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Цветоделение</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Цветоделение</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action callType="Override">Лико_ЦветоделениеВместо</Action>
+			<CurrentRowUse>DontUse</CurrentRowUse>
+		</Command>
+	</Commands>
+	<BaseForm version="2.20">
+		<AutoTime>CurrentOrLast</AutoTime>
+		<UsePostingMode>Auto</UsePostingMode>
+		<RepostOnWrite>true</RepostOnWrite>
+		<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+			<Autofill>false</Autofill>
+			<ChildItems>
+				<Button name="ФормаЗаписать" id="211">
+					<Type>CommandBarButton</Type>
+					<Representation>Picture</Representation>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="ФормаЗаписатьРасширеннаяПодсказка" id="212"/>
+				</Button>
+				<Button name="ФормаПровестиИЗакрыть" id="213">
+					<Type>CommandBarButton</Type>
+					<Representation>Picture</Representation>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="ФормаПровестиИЗакрытьРасширеннаяПодсказка" id="214"/>
+				</Button>
+				<Button name="ФормаВБЗ" id="405">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="ФормаВБЗРасширеннаяПодсказка" id="406"/>
+				</Button>
+				<Button name="ФормаПереданВОДП" id="19">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<TextColor>#FF0000</TextColor>
+					<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Передан в ОДП</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ФормаПереданВОДПРасширеннаяПодсказка" id="20"/>
+				</Button>
+				<Button name="ФормаЦветоделение" id="23">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.Цветоделение</CommandName>
+					<TextColor>#0000FF</TextColor>
+					<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+					<ExtendedTooltip name="ФормаЦветоделениеРасширеннаяПодсказка" id="24"/>
+				</Button>
+				<Button name="ВозвратЦветоделителю" id="403">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<TextColor>#0000FF</TextColor>
+					<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+					<ExtendedTooltip name="ВозвратЦветоделителюРасширеннаяПодсказка" id="404"/>
+				</Button>
+				<Button name="ФормаКоррекция1" id="25">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<TextColor>#0000FF</TextColor>
+					<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+					<ExtendedTooltip name="ФормаКоррекция1РасширеннаяПодсказка" id="26"/>
+				</Button>
+				<Button name="ФормаКоррекция2" id="27">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<TextColor>#0000FF</TextColor>
+					<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+					<ExtendedTooltip name="ФормаКоррекция2РасширеннаяПодсказка" id="28"/>
+				</Button>
+				<Button name="ФормаПереданВОПП" id="29">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<TextColor>#0000FF</TextColor>
+					<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+					<ExtendedTooltip name="ФормаПереданВОППРасширеннаяПодсказка" id="30"/>
+				</Button>
+				<Button name="ФормаПереданНаПроизводство" id="387">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<TextColor>#0000FF</TextColor>
+					<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem"/>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>На производство</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ФормаПереданНаПроизводствоРасширеннаяПодсказка" id="388"/>
+				</Button>
+				<Popup name="Печать" id="354">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Печать</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Печать</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ПечатьРасширеннаяПодсказка" id="355"/>
+					<ChildItems>
+						<Button name="ФормаЗаявкаНаПеределку" id="358">
+							<Type>CommandBarButton</Type>
+							<CommandName>0</CommandName>
+							<ExtendedTooltip name="ФормаЗаявкаНаПеределкуРасширеннаяПодсказка" id="359"/>
+						</Button>
+					</ChildItems>
+				</Popup>
+				<Button name="ФормаСоздатьЗаявкуНаИзготовлениеФорм" id="385">
+					<Type>CommandBarButton</Type>
+					<CommandName>0</CommandName>
+					<ExtendedTooltip name="ФормаСоздатьЗаявкуНаИзготовлениеФормРасширеннаяПодсказка" id="386"/>
+				</Button>
+			</ChildItems>
+		</AutoCommandBar>
+		<ChildItems>
+			<UsualGroup name="Шапка" id="1">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Шапка</v8:content>
+					</v8:item>
+				</Title>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ШапкаРасширеннаяПодсказка" id="2"/>
+				<ChildItems>
+					<UsualGroup name="Шапка4" id="31">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Шапка4</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Шапка4</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="Шапка4РасширеннаяПодсказка" id="32"/>
+						<ChildItems>
+							<UsualGroup name="Группа3" id="318">
+								<Group>Horizontal</Group>
+								<Behavior>Usual</Behavior>
+								<Representation>None</Representation>
+								<ShowTitle>false</ShowTitle>
+								<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="319"/>
+								<ChildItems>
+									<UsualGroup name="Шапка1" id="3">
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Шапка1</v8:content>
+											</v8:item>
+										</Title>
+										<ToolTip>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Шапка1</v8:content>
+											</v8:item>
+										</ToolTip>
+										<Group>Horizontal</Group>
+										<Behavior>Usual</Behavior>
+										<Representation>None</Representation>
+										<ShowTitle>false</ShowTitle>
+										<ExtendedTooltip name="Шапка1РасширеннаяПодсказка" id="4"/>
+										<ChildItems>
+											<UsualGroup name="Шапка11" id="33">
+												<Title>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Шапка11</v8:content>
+													</v8:item>
+												</Title>
+												<ToolTip>
+													<v8:item>
+														<v8:lang>ru</v8:lang>
+														<v8:content>Шапка11</v8:content>
+													</v8:item>
+												</ToolTip>
+												<Group>Vertical</Group>
+												<Behavior>Usual</Behavior>
+												<Representation>None</Representation>
+												<ShowTitle>false</ShowTitle>
+												<ExtendedTooltip name="Шапка11РасширеннаяПодсказка" id="34"/>
+												<ChildItems>
+													<UsualGroup name="Группа5" id="461">
+														<Group>AlwaysHorizontal</Group>
+														<Representation>None</Representation>
+														<ShowTitle>false</ShowTitle>
+														<ExtendedTooltip name="Группа5РасширеннаяПодсказка" id="462"/>
+														<ChildItems>
+															<UsualGroup name="Группа1" id="49">
+																<ReadOnly>true</ReadOnly>
+																<Group>AlwaysHorizontal</Group>
+																<Behavior>Usual</Behavior>
+																<Representation>None</Representation>
+																<ShowTitle>false</ShowTitle>
+																<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="50"/>
+																<ChildItems>
+																	<InputField name="НомерБезПрефикса" id="16">
+																		<Title>
+																			<v8:item>
+																				<v8:lang>ru</v8:lang>
+																				<v8:content>Номер</v8:content>
+																			</v8:item>
+																		</Title>
+																		<EditMode>EnterOnInput</EditMode>
+																		<ContextMenu name="НомерБезПрефиксаКонтекстноеМеню" id="17"/>
+																		<ExtendedTooltip name="НомерБезПрефиксаРасширеннаяПодсказка" id="18"/>
+																	</InputField>
+																	<InputField name="Версия" id="366">
+																		<Width>3</Width>
+																		<ContextMenu name="ВерсияКонтекстноеМеню" id="367"/>
+																		<ExtendedTooltip name="ВерсияРасширеннаяПодсказка" id="368"/>
+																	</InputField>
+																</ChildItems>
+															</UsualGroup>
+															<CheckBoxField name="ЦветоделениеНеВыводитьФормы" id="458">
+																<CheckBoxType>Auto</CheckBoxType>
+																<ContextMenu name="ЦветоделениеНеВыводитьФормыКонтекстноеМеню" id="459"/>
+																<ExtendedTooltip name="ЦветоделениеНеВыводитьФормыРасширеннаяПодсказка" id="460"/>
+															</CheckBoxField>
+														</ChildItems>
+													</UsualGroup>
+													<InputField name="Пользователь" id="46">
+														<ContextMenu name="ПользовательКонтекстноеМеню" id="47"/>
+														<ExtendedTooltip name="ПользовательРасширеннаяПодсказка" id="48"/>
+													</InputField>
+													<InputField name="Площадка" id="13">
+														<ReadOnly>true</ReadOnly>
+														<EditMode>EnterOnInput</EditMode>
+														<ContextMenu name="ПлощадкаКонтекстноеМеню" id="14"/>
+														<ExtendedTooltip name="ПлощадкаРасширеннаяПодсказка" id="15"/>
+													</InputField>
+													<InputField name="Этикетки" id="51">
+														<ReadOnly>true</ReadOnly>
+														<ContextMenu name="ЭтикеткиКонтекстноеМеню" id="52"/>
+														<ExtendedTooltip name="ЭтикеткиРасширеннаяПодсказка" id="53"/>
+													</InputField>
+												</ChildItems>
+											</UsualGroup>
+										</ChildItems>
+									</UsualGroup>
+									<UsualGroup name="Шапка2" id="35">
+										<ReadOnly>true</ReadOnly>
+										<Title>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Шапка2</v8:content>
+											</v8:item>
+										</Title>
+										<ToolTip>
+											<v8:item>
+												<v8:lang>ru</v8:lang>
+												<v8:content>Шапка2</v8:content>
+											</v8:item>
+										</ToolTip>
+										<Group>Vertical</Group>
+										<Behavior>Usual</Behavior>
+										<Representation>None</Representation>
+										<ShowTitle>false</ShowTitle>
+										<ExtendedTooltip name="Шапка2РасширеннаяПодсказка" id="36"/>
+										<ChildItems>
+											<InputField name="Состояние" id="389">
+												<ContextMenu name="СостояниеКонтекстноеМеню" id="390"/>
+												<ExtendedTooltip name="СостояниеРасширеннаяПодсказка" id="391"/>
+											</InputField>
+											<InputField name="ВидЗаказа" id="37">
+												<ContextMenu name="ВидЗаказаКонтекстноеМеню" id="38"/>
+												<ExtendedTooltip name="ВидЗаказаРасширеннаяПодсказка" id="39"/>
+											</InputField>
+											<InputField name="РабочийЦентр" id="54">
+												<ContextMenu name="РабочийЦентрКонтекстноеМеню" id="55"/>
+												<ExtendedTooltip name="РабочийЦентрРасширеннаяПодсказка" id="56"/>
+											</InputField>
+											<InputField name="Дизайнер" id="410">
+												<ContextMenu name="ДизайнерКонтекстноеМеню" id="411"/>
+												<ExtendedTooltip name="ДизайнерРасширеннаяПодсказка" id="412"/>
+											</InputField>
+										</ChildItems>
+									</UsualGroup>
+								</ChildItems>
+							</UsualGroup>
+						</ChildItems>
+					</UsualGroup>
+					<UsualGroup name="Шапка3" id="11">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Шапка3</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Шапка3</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="Шапка3РасширеннаяПодсказка" id="12"/>
+						<ChildItems>
+							<InputField name="Партнер" id="8">
+								<ReadOnly>true</ReadOnly>
+								<EditMode>EnterOnInput</EditMode>
+								<ContextMenu name="ПартнерКонтекстноеМеню" id="9"/>
+								<ExtendedTooltip name="ПартнерРасширеннаяПодсказка" id="10"/>
+							</InputField>
+							<InputField name="ТипЗаказа" id="43">
+								<ReadOnly>true</ReadOnly>
+								<ContextMenu name="ТипЗаказаКонтекстноеМеню" id="44"/>
+								<ExtendedTooltip name="ТипЗаказаРасширеннаяПодсказка" id="45"/>
+							</InputField>
+							<InputField name="Z" id="57">
+								<ReadOnly>true</ReadOnly>
+								<ContextMenu name="ZКонтекстноеМеню" id="58"/>
+								<ExtendedTooltip name="ZРасширеннаяПодсказка" id="59"/>
+							</InputField>
+							<InputField name="ЦветоделениеПеределка1" id="315">
+								<HorizontalStretch>true</HorizontalStretch>
+								<ContextMenu name="ЦветоделениеПеределка1КонтекстноеМеню" id="316"/>
+								<ExtendedTooltip name="ЦветоделениеПеределка1РасширеннаяПодсказка" id="317"/>
+							</InputField>
+						</ChildItems>
+					</UsualGroup>
+				</ChildItems>
+			</UsualGroup>
+			<UsualGroup name="Группа2" id="313">
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="314"/>
+			</UsualGroup>
+			<Table name="Цветоделение" id="135">
+				<MaxWidth>1</MaxWidth>
+				<Height>3</Height>
+				<AutoMaxHeight>false</AutoMaxHeight>
+				<AutoInsertNewRow>true</AutoInsertNewRow>
+				<EnableStartDrag>true</EnableStartDrag>
+				<EnableDrag>true</EnableDrag>
+				<FileDragMode>AsFile</FileDragMode>
+				<RowFilter xsi:nil="true"/>
+				<ContextMenu name="ЦветоделениеКонтекстноеМеню" id="136"/>
+				<AutoCommandBar name="ЦветоделениеКоманднаяПанель" id="137"/>
+				<ExtendedTooltip name="ЦветоделениеРасширеннаяПодсказка" id="138"/>
+				<SearchStringAddition name="ЦветоделениеСтрокаПоиска" id="139">
+					<AdditionSource>
+						<Item>Цветоделение</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="ЦветоделениеСтрокаПоискаКонтекстноеМеню" id="140"/>
+					<ExtendedTooltip name="ЦветоделениеСтрокаПоискаРасширеннаяПодсказка" id="141"/>
+				</SearchStringAddition>
+				<ViewStatusAddition name="ЦветоделениеСостояниеПросмотра" id="142">
+					<AdditionSource>
+						<Item>Цветоделение</Item>
+						<Type>ViewStatusRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="ЦветоделениеСостояниеПросмотраКонтекстноеМеню" id="143"/>
+					<ExtendedTooltip name="ЦветоделениеСостояниеПросмотраРасширеннаяПодсказка" id="144"/>
+				</ViewStatusAddition>
+				<SearchControlAddition name="ЦветоделениеУправлениеПоиском" id="145">
+					<AdditionSource>
+						<Item>Цветоделение</Item>
+						<Type>SearchControl</Type>
+					</AdditionSource>
+					<ContextMenu name="ЦветоделениеУправлениеПоискомКонтекстноеМеню" id="146"/>
+					<ExtendedTooltip name="ЦветоделениеУправлениеПоискомРасширеннаяПодсказка" id="147"/>
+				</SearchControlAddition>
+				<ChildItems>
+					<LabelField name="ЦветоделениеНомерСтроки" id="148">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветоделениеНомерСтрокиКонтекстноеМеню" id="149"/>
+						<ExtendedTooltip name="ЦветоделениеНомерСтрокиРасширеннаяПодсказка" id="150"/>
+					</LabelField>
+					<InputField name="ЦветоделениеДатаЗаявки" id="344">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Дата</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>7</MaxWidth>
+						<ContextMenu name="ЦветоделениеДатаЗаявкиКонтекстноеМеню" id="345"/>
+						<ExtendedTooltip name="ЦветоделениеДатаЗаявкиРасширеннаяПодсказка" id="346"/>
+					</InputField>
+					<LabelField name="ЦветоделениеКлючСтроки" id="320">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветоделениеКлючСтрокиКонтекстноеМеню" id="321"/>
+						<ExtendedTooltip name="ЦветоделениеКлючСтрокиРасширеннаяПодсказка" id="322"/>
+					</LabelField>
+					<InputField name="ЦветоделениеПредыдущийЦветоделитель" id="397">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеПредыдущийЦветоделительКонтекстноеМеню" id="398"/>
+						<ExtendedTooltip name="ЦветоделениеПредыдущийЦветоделительРасширеннаяПодсказка" id="399"/>
+					</InputField>
+					<InputField name="ЦветоделениеЦветоделитель" id="151">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеЦветоделительКонтекстноеМеню" id="152"/>
+						<ExtendedTooltip name="ЦветоделениеЦветоделительРасширеннаяПодсказка" id="153"/>
+					</InputField>
+					<InputField name="ЦветоделениеДатаЦветоделения" id="154">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветоделениеДатаЦветоделенияКонтекстноеМеню" id="155"/>
+						<ExtendedTooltip name="ЦветоделениеДатаЦветоделенияРасширеннаяПодсказка" id="156"/>
+					</InputField>
+					<InputField name="ЦветоделениеКоррекцияЦветоделения" id="400">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКоррекцияЦветоделенияКонтекстноеМеню" id="401"/>
+						<ExtendedTooltip name="ЦветоделениеКоррекцияЦветоделенияРасширеннаяПодсказка" id="402"/>
+					</InputField>
+					<InputField name="ЦветоделениеКорректор1" id="157">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКорректор1КонтекстноеМеню" id="158"/>
+						<ExtendedTooltip name="ЦветоделениеКорректор1РасширеннаяПодсказка" id="159"/>
+					</InputField>
+					<InputField name="ЦветоделениеДатаКорректировки1" id="160">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветоделениеДатаКорректировки1КонтекстноеМеню" id="161"/>
+						<ExtendedTooltip name="ЦветоделениеДатаКорректировки1РасширеннаяПодсказка" id="162"/>
+					</InputField>
+					<InputField name="ЦветоделениеКорректор2" id="163">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветоделениеКорректор2КонтекстноеМеню" id="164"/>
+						<ExtendedTooltip name="ЦветоделениеКорректор2РасширеннаяПодсказка" id="165"/>
+					</InputField>
+					<InputField name="ЦветоделениеДатаКорректировки2" id="166">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветоделениеДатаКорректировки2КонтекстноеМеню" id="167"/>
+						<ExtendedTooltip name="ЦветоделениеДатаКорректировки2РасширеннаяПодсказка" id="168"/>
+					</InputField>
+					<InputField name="ЦветоделениеПеределка" id="169">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветоделениеПеределкаКонтекстноеМеню" id="170"/>
+						<ExtendedTooltip name="ЦветоделениеПеределкаРасширеннаяПодсказка" id="171"/>
+					</InputField>
+					<InputField name="ЦветоделениеКоличествоНаименований" id="215">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКоличествоНаименованийКонтекстноеМеню" id="216"/>
+						<ExtendedTooltip name="ЦветоделениеКоличествоНаименованийРасширеннаяПодсказка" id="217"/>
+					</InputField>
+					<InputField name="ЦветоделениеКоличествоЦветовОфсет" id="218">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКоличествоЦветовОфсетКонтекстноеМеню" id="219"/>
+						<ExtendedTooltip name="ЦветоделениеКоличествоЦветовОфсетРасширеннаяПодсказка" id="220"/>
+					</InputField>
+					<InputField name="ЦветоделениеКоличествоЦветовФлексо" id="221">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКоличествоЦветовФлексоКонтекстноеМеню" id="222"/>
+						<ExtendedTooltip name="ЦветоделениеКоличествоЦветовФлексоРасширеннаяПодсказка" id="223"/>
+					</InputField>
+					<InputField name="ЦветоделениеКоличествоЦветовИнкджет" id="224">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКоличествоЦветовИнкджетКонтекстноеМеню" id="225"/>
+						<ExtendedTooltip name="ЦветоделениеКоличествоЦветовИнкджетРасширеннаяПодсказка" id="226"/>
+					</InputField>
+					<InputField name="ЦветоделениеКоличествоЦветовГлубокая" id="227">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКоличествоЦветовГлубокаяКонтекстноеМеню" id="228"/>
+						<ExtendedTooltip name="ЦветоделениеКоличествоЦветовГлубокаяРасширеннаяПодсказка" id="229"/>
+					</InputField>
+					<InputField name="ЦветоделениеКоличествоЦветовЦифровая" id="230">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКоличествоЦветовЦифроваяКонтекстноеМеню" id="231"/>
+						<ExtendedTooltip name="ЦветоделениеКоличествоЦветовЦифроваяРасширеннаяПодсказка" id="232"/>
+					</InputField>
+					<InputField name="ЦветоделениеКоличествоЦветовТрафарет" id="233">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКоличествоЦветовТрафаретКонтекстноеМеню" id="234"/>
+						<ExtendedTooltip name="ЦветоделениеКоличествоЦветовТрафаретРасширеннаяПодсказка" id="235"/>
+					</InputField>
+					<InputField name="ЦветоделениеКонгревНФ" id="236">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКонгревНФКонтекстноеМеню" id="237"/>
+						<ExtendedTooltip name="ЦветоделениеКонгревНФРасширеннаяПодсказка" id="238"/>
+					</InputField>
+					<InputField name="ЦветоделениеТиснениеРотационное" id="239">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеТиснениеРотационноеКонтекстноеМеню" id="240"/>
+						<ExtendedTooltip name="ЦветоделениеТиснениеРотационноеРасширеннаяПодсказка" id="241"/>
+					</InputField>
+					<InputField name="ЦветоделениеТиснениеНФ" id="242">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеТиснениеНФКонтекстноеМеню" id="243"/>
+						<ExtendedTooltip name="ЦветоделениеТиснениеНФРасширеннаяПодсказка" id="244"/>
+					</InputField>
+					<InputField name="ЦветоделениеТиснениеГалакси" id="245">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеТиснениеГалаксиКонтекстноеМеню" id="246"/>
+						<ExtendedTooltip name="ЦветоделениеТиснениеГалаксиРасширеннаяПодсказка" id="247"/>
+					</InputField>
+					<InputField name="ЦветоделениеТиснениеГолография" id="248">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеТиснениеГолографияКонтекстноеМеню" id="249"/>
+						<ExtendedTooltip name="ЦветоделениеТиснениеГолографияРасширеннаяПодсказка" id="250"/>
+					</InputField>
+					<InputField name="ЦветоделениеКомментарий" id="360">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветоделениеКомментарийКонтекстноеМеню" id="361"/>
+						<ExtendedTooltip name="ЦветоделениеКомментарийРасширеннаяПодсказка" id="362"/>
+					</InputField>
+					<InputField name="ЦветоделениеПричинаВозвратаНаПовторноеЦветоделение" id="425">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Причина возврата</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+						<ContextMenu name="ЦветоделениеПричинаВозвратаНаПовторноеЦветоделениеКонтекстноеМеню" id="426"/>
+						<ExtendedTooltip name="ЦветоделениеПричинаВозвратаНаПовторноеЦветоделениеРасширеннаяПодсказка" id="427"/>
+					</InputField>
+				</ChildItems>
+			</Table>
+			<UsualGroup name="Группа8" id="456">
+				<Group>AlwaysHorizontal</Group>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="Группа8РасширеннаяПодсказка" id="457"/>
+				<ChildItems>
+					<CommandBar name="ГруппаЦветаКП" id="452">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа цвета КП</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа цвета КП</v8:content>
+							</v8:item>
+						</ToolTip>
+						<HorizontalStretch>false</HorizontalStretch>
+						<ExtendedTooltip name="ГруппаЦветаКПРасширеннаяПодсказка" id="453"/>
+						<ChildItems>
+							<Button name="ЦветаДобавить" id="444">
+								<Type>CommandBarButton</Type>
+								<Width>9</Width>
+								<CommandName>0</CommandName>
+								<ExtendedTooltip name="ЦветаДобавитьРасширеннаяПодсказка" id="445"/>
+							</Button>
+							<ButtonGroup name="Группа7" id="454">
+								<Representation>Compact</Representation>
+								<ExtendedTooltip name="Группа7РасширеннаяПодсказка" id="455"/>
+								<ChildItems>
+									<Button name="ЦветаПереместитьВверх" id="446">
+										<Type>CommandBarButton</Type>
+										<Representation>Picture</Representation>
+										<Width>3</Width>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="ЦветаПереместитьВверхРасширеннаяПодсказка" id="447"/>
+									</Button>
+									<Button name="ЦветаПереместитьВниз" id="448">
+										<Type>CommandBarButton</Type>
+										<Representation>Picture</Representation>
+										<Width>3</Width>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="ЦветаПереместитьВнизРасширеннаяПодсказка" id="449"/>
+									</Button>
+								</ChildItems>
+							</ButtonGroup>
+							<Button name="ЦветаДобавитьЦМИК" id="209">
+								<Type>CommandBarButton</Type>
+								<CommandName>0</CommandName>
+								<ExtendedTooltip name="ЦветаДобавитьЦМИКРасширеннаяПодсказка" id="210"/>
+							</Button>
+							<Button name="ЦветаСкопироватьВБуфер" id="369">
+								<Type>CommandBarButton</Type>
+								<CommandName>0</CommandName>
+								<ExtendedTooltip name="ЦветаСкопироватьВБуферРасширеннаяПодсказка" id="370"/>
+							</Button>
+						</ChildItems>
+					</CommandBar>
+					<UsualGroup name="ГруппаСозданияФорм" id="431">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Создание форм</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Группа создания форм</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Group>AlwaysHorizontal</Group>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ThroughAlign>DontUse</ThroughAlign>
+						<ExtendedTooltip name="ГруппаСозданияФормРасширеннаяПодсказка" id="432"/>
+						<ChildItems>
+							<InputField name="Дисторт" id="433">
+								<Width>14</Width>
+								<HorizontalStretch>false</HorizontalStretch>
+								<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+								<ContextMenu name="ДистортКонтекстноеМеню" id="434"/>
+								<ExtendedTooltip name="ДистортРасширеннаяПодсказка" id="435"/>
+							</InputField>
+							<InputField name="ВидПолимера" id="436">
+								<Width>14</Width>
+								<HorizontalStretch>false</HorizontalStretch>
+								<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+								<ChoiceParameters>
+									<app:item name="Отбор.НеПоказыватьВФормеВыбора">
+										<app:value xsi:type="FormChoiceListDesTimeValue">
+											<Presentation/>
+											<Value xsi:type="xs:boolean">false</Value>
+										</app:value>
+									</app:item>
+								</ChoiceParameters>
+								<ContextMenu name="ВидПолимераКонтекстноеМеню" id="437"/>
+								<ExtendedTooltip name="ВидПолимераРасширеннаяПодсказка" id="438"/>
+							</InputField>
+							<Button name="СоздатьФормы" id="439">
+								<Type>UsualButton</Type>
+								<CommandName>0</CommandName>
+								<TextColor>#0000FF</TextColor>
+								<Font bold="true" kind="AutoFont"/>
+								<ExtendedTooltip name="СоздатьФормыРасширеннаяПодсказка" id="440"/>
+							</Button>
+							<Button name="НайтиФормы" id="463">
+								<Type>UsualButton</Type>
+								<CommandName>0</CommandName>
+								<TextColor>#0000FF</TextColor>
+								<Font ref="style:NormalTextFont" bold="true" italic="false" underline="false" strikeout="false" kind="StyleItem" scale="100"/>
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Копировать формы</v8:content>
+									</v8:item>
+								</Title>
+								<ExtendedTooltip name="НайтиФормыРасширеннаяПодсказка" id="464"/>
+							</Button>
+						</ChildItems>
+					</UsualGroup>
+				</ChildItems>
+			</UsualGroup>
+			<Table name="Цвета" id="60">
+				<AutoInsertNewRow>true</AutoInsertNewRow>
+				<EnableStartDrag>true</EnableStartDrag>
+				<EnableDrag>true</EnableDrag>
+				<FileDragMode>AsFile</FileDragMode>
+				<RowFilter xsi:nil="true"/>
+				<ContextMenu name="ЦветаКонтекстноеМеню" id="61"/>
+				<AutoCommandBar name="ЦветаКоманднаяПанель" id="62">
+					<Autofill>false</Autofill>
+				</AutoCommandBar>
+				<ExtendedTooltip name="ЦветаРасширеннаяПодсказка" id="63"/>
+				<SearchStringAddition name="ЦветаСтрокаПоиска" id="64">
+					<AdditionSource>
+						<Item>Цвета</Item>
+						<Type>SearchStringRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="ЦветаСтрокаПоискаКонтекстноеМеню" id="65"/>
+					<ExtendedTooltip name="ЦветаСтрокаПоискаРасширеннаяПодсказка" id="66"/>
+				</SearchStringAddition>
+				<ViewStatusAddition name="ЦветаСостояниеПросмотра" id="67">
+					<AdditionSource>
+						<Item>Цвета</Item>
+						<Type>ViewStatusRepresentation</Type>
+					</AdditionSource>
+					<ContextMenu name="ЦветаСостояниеПросмотраКонтекстноеМеню" id="68"/>
+					<ExtendedTooltip name="ЦветаСостояниеПросмотраРасширеннаяПодсказка" id="69"/>
+				</ViewStatusAddition>
+				<SearchControlAddition name="ЦветаУправлениеПоиском" id="70">
+					<AdditionSource>
+						<Item>Цвета</Item>
+						<Type>SearchControl</Type>
+					</AdditionSource>
+					<ContextMenu name="ЦветаУправлениеПоискомКонтекстноеМеню" id="71"/>
+					<ExtendedTooltip name="ЦветаУправлениеПоискомРасширеннаяПодсказка" id="72"/>
+				</SearchControlAddition>
+				<ChildItems>
+					<LabelField name="ЦветаНомерСтроки" id="73">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>№</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаНомерСтрокиКонтекстноеМеню" id="74"/>
+						<ExtendedTooltip name="ЦветаНомерСтрокиРасширеннаяПодсказка" id="75"/>
+					</LabelField>
+					<InputField name="ЦветаВидСекции" id="413">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Вид работ</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<DropListButton>true</DropListButton>
+						<ChoiceButton>false</ChoiceButton>
+						<CreateButton>false</CreateButton>
+						<ListChoiceMode>true</ListChoiceMode>
+						<ContextMenu name="ЦветаВидСекцииКонтекстноеМеню" id="414"/>
+						<ExtendedTooltip name="ЦветаВидСекцииРасширеннаяПодсказка" id="415"/>
+					</InputField>
+					<InputField name="ЦветаВидПечати" id="76">
+						<Visible>false</Visible>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаВидПечатиКонтекстноеМеню" id="77"/>
+						<ExtendedTooltip name="ЦветаВидПечатиРасширеннаяПодсказка" id="78"/>
+					</InputField>
+					<InputField name="ЦветаТипЦвета1" id="407">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Тип цвета</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>8</MaxWidth>
+						<ContextMenu name="ЦветаТипЦвета1КонтекстноеМеню" id="408"/>
+						<ExtendedTooltip name="ЦветаТипЦвета1РасширеннаяПодсказка" id="409"/>
+					</InputField>
+					<InputField name="ЦветаТипКраски" id="82">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>8</MaxWidth>
+						<ContextMenu name="ЦветаТипКраскиКонтекстноеМеню" id="83"/>
+						<ExtendedTooltip name="ЦветаТипКраскиРасширеннаяПодсказка" id="84"/>
+					</InputField>
+					<InputField name="ЦветаНазвание" id="85">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>9</MaxWidth>
+						<ContextMenu name="ЦветаНазваниеКонтекстноеМеню" id="86"/>
+						<ExtendedTooltip name="ЦветаНазваниеРасширеннаяПодсказка" id="87"/>
+					</InputField>
+					<InputField name="ЦветаПроцентЗаливки" id="88">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>%</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаПроцентЗаливкиКонтекстноеМеню" id="89"/>
+						<ExtendedTooltip name="ЦветаПроцентЗаливкиРасширеннаяПодсказка" id="90"/>
+					</InputField>
+					<InputField name="ЦветаГрамматура" id="91">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Гр.</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаГрамматураКонтекстноеМеню" id="92"/>
+						<ExtendedTooltip name="ЦветаГрамматураРасширеннаяПодсказка" id="93"/>
+					</InputField>
+					<InputField name="ЦветаЗапечатываемыйМатериал" id="94">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Зап. мат.</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаЗапечатываемыйМатериалКонтекстноеМеню" id="95"/>
+						<ExtendedTooltip name="ЦветаЗапечатываемыйМатериалРасширеннаяПодсказка" id="96"/>
+					</InputField>
+					<CheckBoxField name="ЦветаЦветоделение" id="97">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Цв.</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<CheckBoxType>Auto</CheckBoxType>
+						<ContextMenu name="ЦветаЦветоделениеКонтекстноеМеню" id="98"/>
+						<ExtendedTooltip name="ЦветаЦветоделениеРасширеннаяПодсказка" id="99"/>
+					</CheckBoxField>
+					<CheckBoxField name="ЦветаПерегравировка" id="100">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Переграв.</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<CheckBoxType>Auto</CheckBoxType>
+						<ContextMenu name="ЦветаПерегравировкаКонтекстноеМеню" id="101"/>
+						<ExtendedTooltip name="ЦветаПерегравировкаРасширеннаяПодсказка" id="102"/>
+					</CheckBoxField>
+					<CheckBoxField name="ЦветаДистортВидПолимера" id="441">
+						<EditMode>EnterOnInput</EditMode>
+						<CheckBoxType>Auto</CheckBoxType>
+						<ContextMenu name="ЦветаДистортВидПолимераКонтекстноеМеню" id="442"/>
+						<ExtendedTooltip name="ЦветаДистортВидПолимераРасширеннаяПодсказка" id="443"/>
+					</CheckBoxField>
+					<InputField name="ЦветаВидПолимера" id="394">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветаВидПолимераКонтекстноеМеню" id="395"/>
+						<ExtendedTooltip name="ЦветаВидПолимераРасширеннаяПодсказка" id="396"/>
+					</InputField>
+					<LabelField name="ЦветаФормаКод" id="347">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветаФормаКодКонтекстноеМеню" id="348"/>
+						<ExtendedTooltip name="ЦветаФормаКодРасширеннаяПодсказка" id="349"/>
+					</LabelField>
+					<InputField name="ЦветаФорма" id="103">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветаФормаКонтекстноеМеню" id="104"/>
+						<ExtendedTooltip name="ЦветаФормаРасширеннаяПодсказка" id="105"/>
+					</InputField>
+					<InputField name="ЦветаДистортФлексо" id="422">
+						<EditMode>EnterOnInput</EditMode>
+						<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+						<ContextMenu name="ЦветаДистортФлексоКонтекстноеМеню" id="423"/>
+						<ExtendedTooltip name="ЦветаДистортФлексоРасширеннаяПодсказка" id="424"/>
+					</InputField>
+					<InputField name="ЦветаНомерПроката" id="109">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>№ проката</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаНомерПрокатаКонтекстноеМеню" id="110"/>
+						<ExtendedTooltip name="ЦветаНомерПрокатаРасширеннаяПодсказка" id="111"/>
+					</InputField>
+					<InputField name="ЦветаВал" id="112">
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>5</MaxWidth>
+						<ContextMenu name="ЦветаВалКонтекстноеМеню" id="113"/>
+						<ExtendedTooltip name="ЦветаВалРасширеннаяПодсказка" id="114"/>
+					</InputField>
+					<InputField name="ЦветаПроцентДо" id="115">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>% До</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаПроцентДоКонтекстноеМеню" id="116"/>
+						<ExtendedTooltip name="ЦветаПроцентДоРасширеннаяПодсказка" id="117"/>
+					</InputField>
+					<InputField name="ЦветаПроцентПосле" id="118">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>% После</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаПроцентПослеКонтекстноеМеню" id="119"/>
+						<ExtendedTooltip name="ЦветаПроцентПослеРасширеннаяПодсказка" id="120"/>
+					</InputField>
+					<InputField name="ЦветаПроцент50" id="121">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>% 50</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаПроцент50КонтекстноеМеню" id="122"/>
+						<ExtendedTooltip name="ЦветаПроцент50РасширеннаяПодсказка" id="123"/>
+					</InputField>
+					<InputField name="ЦветаD" id="127">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>D</v8:content>
+							</v8:item>
+						</Title>
+						<EditMode>EnterOnInput</EditMode>
+						<AutoMaxWidth>false</AutoMaxWidth>
+						<MaxWidth>1</MaxWidth>
+						<ContextMenu name="ЦветаDКонтекстноеМеню" id="128"/>
+						<ExtendedTooltip name="ЦветаDРасширеннаяПодсказка" id="129"/>
+					</InputField>
+					<InputField name="ЦветаПроизведенныеИзменения" id="130">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветаПроизведенныеИзмененияКонтекстноеМеню" id="131"/>
+						<ExtendedTooltip name="ЦветаПроизведенныеИзмененияРасширеннаяПодсказка" id="132"/>
+					</InputField>
+					<InputField name="ЦветаВидТМЦ" id="416">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветаВидТМЦКонтекстноеМеню" id="417"/>
+						<ExtendedTooltip name="ЦветаВидТМЦРасширеннаяПодсказка" id="418"/>
+					</InputField>
+					<InputField name="ЦветаВидЗаливки" id="419">
+						<EditMode>EnterOnInput</EditMode>
+						<ContextMenu name="ЦветаВидЗаливкиКонтекстноеМеню" id="420"/>
+						<ExtendedTooltip name="ЦветаВидЗаливкиРасширеннаяПодсказка" id="421"/>
+					</InputField>
+				</ChildItems>
+			</Table>
+			<UsualGroup name="ПараметрыЦветоделения" id="251">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Параметры цветоделения</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Параметры цветоделения</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Group>Horizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ПараметрыЦветоделенияРасширеннаяПодсказка" id="252"/>
+				<ChildItems>
+					<UsualGroup name="Параметры1" id="256">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Параметры1</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Параметры1</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="Параметры1РасширеннаяПодсказка" id="257"/>
+						<ChildItems>
+							<InputField name="ЦветоделениеКоличествоНаименований1" id="253">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:f78666bc-2ab4-40a6-a34a-c1a000375e06</DataPath>
+								<ContextMenu name="ЦветоделениеКоличествоНаименований1КонтекстноеМеню" id="254"/>
+								<ExtendedTooltip name="ЦветоделениеКоличествоНаименований1РасширеннаяПодсказка" id="255"/>
+							</InputField>
+							<InputField name="ЦветоделениеКонгревНФ1" id="262">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:fd573bcc-f13e-45e9-a05f-91971917a120</DataPath>
+								<ContextMenu name="ЦветоделениеКонгревНФ1КонтекстноеМеню" id="263"/>
+								<ExtendedTooltip name="ЦветоделениеКонгревНФ1РасширеннаяПодсказка" id="264"/>
+							</InputField>
+							<InputField name="ЦветоделениеТиснениеРотационное1" id="265">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:127e6307-72be-4d38-b188-bdbf66bcf26a</DataPath>
+								<ContextMenu name="ЦветоделениеТиснениеРотационное1КонтекстноеМеню" id="266"/>
+								<ExtendedTooltip name="ЦветоделениеТиснениеРотационное1РасширеннаяПодсказка" id="267"/>
+							</InputField>
+							<InputField name="ЦветоделениеТиснениеНФ1" id="268">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:4d672983-0e01-4411-a8b4-b6595d799b71</DataPath>
+								<ContextMenu name="ЦветоделениеТиснениеНФ1КонтекстноеМеню" id="269"/>
+								<ExtendedTooltip name="ЦветоделениеТиснениеНФ1РасширеннаяПодсказка" id="270"/>
+							</InputField>
+							<InputField name="ЦветоделениеТиснениеГалакси1" id="271">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:7da3e162-4a7c-45b6-803c-01254a32caec</DataPath>
+								<ContextMenu name="ЦветоделениеТиснениеГалакси1КонтекстноеМеню" id="272"/>
+								<ExtendedTooltip name="ЦветоделениеТиснениеГалакси1РасширеннаяПодсказка" id="273"/>
+							</InputField>
+							<InputField name="ЦветоделениеТиснениеГолография1" id="274">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:5bf6c583-fbf0-4596-be21-21dce8a16f07</DataPath>
+								<ContextMenu name="ЦветоделениеТиснениеГолография1КонтекстноеМеню" id="275"/>
+								<ExtendedTooltip name="ЦветоделениеТиснениеГолография1РасширеннаяПодсказка" id="276"/>
+							</InputField>
+						</ChildItems>
+					</UsualGroup>
+					<UsualGroup name="Параметры2" id="258">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Параметры2</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Параметры2</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="Параметры2РасширеннаяПодсказка" id="259"/>
+						<ChildItems>
+							<InputField name="ЦветоделениеКоличествоЦветовФлексо1" id="277">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:609f09e8-7836-4306-bd0b-c3e0749d5ca6</DataPath>
+								<ContextMenu name="ЦветоделениеКоличествоЦветовФлексо1КонтекстноеМеню" id="278"/>
+								<ExtendedTooltip name="ЦветоделениеКоличествоЦветовФлексо1РасширеннаяПодсказка" id="279"/>
+							</InputField>
+							<InputField name="ЦветоделениеКоличествоЦветовОфсет1" id="280">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:25b7cd82-6f1e-4238-87c8-230efb89419f</DataPath>
+								<ContextMenu name="ЦветоделениеКоличествоЦветовОфсет1КонтекстноеМеню" id="281"/>
+								<ExtendedTooltip name="ЦветоделениеКоличествоЦветовОфсет1РасширеннаяПодсказка" id="282"/>
+							</InputField>
+							<InputField name="ЦветоделениеКоличествоЦветовИнкджет1" id="283">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:58c5564e-3b29-4551-bc8c-e7eb15580fcf</DataPath>
+								<ContextMenu name="ЦветоделениеКоличествоЦветовИнкджет1КонтекстноеМеню" id="284"/>
+								<ExtendedTooltip name="ЦветоделениеКоличествоЦветовИнкджет1РасширеннаяПодсказка" id="285"/>
+							</InputField>
+							<InputField name="ЦветоделениеКоличествоЦветовГлубокая1" id="286">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:e95eddff-3b4e-4527-8ada-a2b7e106c8d3</DataPath>
+								<ContextMenu name="ЦветоделениеКоличествоЦветовГлубокая1КонтекстноеМеню" id="287"/>
+								<ExtendedTooltip name="ЦветоделениеКоличествоЦветовГлубокая1РасширеннаяПодсказка" id="288"/>
+							</InputField>
+							<InputField name="ЦветоделениеКоличествоЦветовЦифровая1" id="289">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:7be4818e-631b-4c9e-a4ff-6942ffd30cd5</DataPath>
+								<ContextMenu name="ЦветоделениеКоличествоЦветовЦифровая1КонтекстноеМеню" id="290"/>
+								<ExtendedTooltip name="ЦветоделениеКоличествоЦветовЦифровая1РасширеннаяПодсказка" id="291"/>
+							</InputField>
+							<InputField name="ЦветоделениеКоличествоЦветовТрафарет1" id="292">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:24011ec6-1cd7-4ce2-9096-1437cf675fd7</DataPath>
+								<ContextMenu name="ЦветоделениеКоличествоЦветовТрафарет1КонтекстноеМеню" id="293"/>
+								<ExtendedTooltip name="ЦветоделениеКоличествоЦветовТрафарет1РасширеннаяПодсказка" id="294"/>
+							</InputField>
+						</ChildItems>
+					</UsualGroup>
+					<UsualGroup name="Параметры3" id="260">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Параметры3</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Параметры3</v8:content>
+							</v8:item>
+						</ToolTip>
+						<Group>Vertical</Group>
+						<Behavior>Usual</Behavior>
+						<Representation>None</Representation>
+						<ShowTitle>false</ShowTitle>
+						<ExtendedTooltip name="Параметры3РасширеннаяПодсказка" id="261"/>
+						<ChildItems>
+							<InputField name="ЦветоделениеАвторПеределки" id="323">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:f8c76aec-7fc6-4b6a-a0f6-a6ccc7483f43</DataPath>
+								<ReadOnly>true</ReadOnly>
+								<ContextMenu name="ЦветоделениеАвторПеределкиКонтекстноеМеню" id="324"/>
+								<ExtendedTooltip name="ЦветоделениеАвторПеределкиРасширеннаяПодсказка" id="325"/>
+							</InputField>
+							<InputField name="ЦветоделениеИнициаторПеределки" id="428">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:42bb14fe-5ec2-4780-9e9c-4d98dc7ec2ce</DataPath>
+								<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+								<ContextMenu name="ЦветоделениеИнициаторПеределкиКонтекстноеМеню" id="429"/>
+								<ExtendedTooltip name="ЦветоделениеИнициаторПеределкиРасширеннаяПодсказка" id="430"/>
+							</InputField>
+							<InputField name="ЦветоделениеПричинаПеределки" id="326">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:5c542d35-83d9-4963-9f16-9255076a574d</DataPath>
+								<ContextMenu name="ЦветоделениеПричинаПеределкиКонтекстноеМеню" id="327"/>
+								<ExtendedTooltip name="ЦветоделениеПричинаПеределкиРасширеннаяПодсказка" id="328"/>
+							</InputField>
+							<InputField name="ЦветоделениеПечатник" id="329">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:2308c6ca-c890-4dd3-b5b7-61f9c9117b0a</DataPath>
+								<ContextMenu name="ЦветоделениеПечатникКонтекстноеМеню" id="330"/>
+								<ExtendedTooltip name="ЦветоделениеПечатникРасширеннаяПодсказка" id="331"/>
+							</InputField>
+							<InputField name="ЦветоделениеТехнолог" id="332">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:6b5c2e1e-7e6d-4919-b007-62b18fbe1493</DataPath>
+								<ContextMenu name="ЦветоделениеТехнологКонтекстноеМеню" id="333"/>
+								<ExtendedTooltip name="ЦветоделениеТехнологРасширеннаяПодсказка" id="334"/>
+							</InputField>
+							<InputField name="ЦветоделениеНачальникСмены" id="335">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:7b56e076-8502-48f3-85f9-43e225221291</DataPath>
+								<ContextMenu name="ЦветоделениеНачальникСменыКонтекстноеМеню" id="336"/>
+								<ExtendedTooltip name="ЦветоделениеНачальникСменыРасширеннаяПодсказка" id="337"/>
+							</InputField>
+							<InputField name="ЦветоделениеСпециалистОДП" id="338">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:6dcbad81-afec-4a01-b115-cd369fa77b53</DataPath>
+								<ContextMenu name="ЦветоделениеСпециалистОДПКонтекстноеМеню" id="339"/>
+								<ExtendedTooltip name="ЦветоделениеСпециалистОДПРасширеннаяПодсказка" id="340"/>
+							</InputField>
+							<InputField name="ЦветоделениеСпециалистОТК" id="341">
+								<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:eefd1d1b-e07d-4696-89aa-ca353ae93cb2</DataPath>
+								<ContextMenu name="ЦветоделениеСпециалистОТККонтекстноеМеню" id="342"/>
+								<ExtendedTooltip name="ЦветоделениеСпециалистОТКРасширеннаяПодсказка" id="343"/>
+							</InputField>
+						</ChildItems>
+					</UsualGroup>
+				</ChildItems>
+			</UsualGroup>
+			<InputField name="ЦветоделениеКомментарий1" id="363">
+				<DataPath>135:02023637-7868-4a5f-8576-835a76e0c9ba/0:3be03549-1857-4f43-8b89-8584fbc63630</DataPath>
+				<AutoMaxWidth>false</AutoMaxWidth>
+				<HorizontalStretch>true</HorizontalStretch>
+				<MultiLine>true</MultiLine>
+				<ContextMenu name="ЦветоделениеКомментарий1КонтекстноеМеню" id="364"/>
+				<ExtendedTooltip name="ЦветоделениеКомментарий1РасширеннаяПодсказка" id="365"/>
+			</InputField>
+			<UsualGroup name="ГруппаПодвал" id="373">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа подвал</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Группа подвал</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Group>AlwaysHorizontal</Group>
+				<Behavior>Usual</Behavior>
+				<Representation>None</Representation>
+				<ShowTitle>false</ShowTitle>
+				<ExtendedTooltip name="ГруппаПодвалРасширеннаяПодсказка" id="374"/>
+				<ChildItems>
+					<CommandBar name="Группа4" id="379">
+						<ExtendedTooltip name="Группа4РасширеннаяПодсказка" id="380"/>
+						<ChildItems>
+							<Button name="ВыгрузитьXML" id="352">
+								<Type>CommandBarButton</Type>
+								<CommandName>0</CommandName>
+								<ExtendedTooltip name="ВыгрузитьXMLРасширеннаяПодсказка" id="353"/>
+							</Button>
+							<Button name="Монтаж" id="371">
+								<Type>CommandBarButton</Type>
+								<CommandName>0</CommandName>
+								<ExtendedTooltip name="МонтажРасширеннаяПодсказка" id="372"/>
+							</Button>
+							<Popup name="ФорматДляСкрипта" id="381">
+								<Title>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Формат для скрипта</v8:content>
+									</v8:item>
+								</Title>
+								<ToolTip>
+									<v8:item>
+										<v8:lang>ru</v8:lang>
+										<v8:content>Формат для скрипта</v8:content>
+									</v8:item>
+								</ToolTip>
+								<Picture>
+									<xr:Ref>CommonPicture.НастройкаБЭД</xr:Ref>
+									<xr:LoadTransparent>true</xr:LoadTransparent>
+									<xr:TransparentPixel x="38" y="43"/>
+								</Picture>
+								<Representation>PictureAndText</Representation>
+								<ExtendedTooltip name="ФорматДляСкриптаРасширеннаяПодсказка" id="382"/>
+								<ChildItems>
+									<Button name="БезМонтажа" id="383">
+										<Type>CommandBarButton</Type>
+										<CommandName>0</CommandName>
+										<ExtendedTooltip name="БезМонтажаРасширеннаяПодсказка" id="384"/>
+									</Button>
+								</ChildItems>
+							</Popup>
+							<Button name="СоздатьМонтаж" id="392">
+								<Type>CommandBarButton</Type>
+								<CommandName>0</CommandName>
+								<ExtendedTooltip name="СоздатьМонтажРасширеннаяПодсказка" id="393"/>
+							</Button>
+						</ChildItems>
+					</CommandBar>
+				</ChildItems>
+			</UsualGroup>
+		</ChildItems>
+		<Attributes/>
+		<Commands>
+			<Command name="Цветоделение" id="1000001">
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Цветоделение</v8:content>
+					</v8:item>
+				</Title>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Цветоделение</v8:content>
+					</v8:item>
+				</ToolTip>
+				<Action callType="Before">Цветоделение</Action>
+				<CurrentRowUse>DontUse</CurrentRowUse>
+			</Command>
+		</Commands>
+	</BaseForm>
+</Form>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<IntegrationService uuid="c512a1cd-1240-4e46-8bad-8b7b27c5c25a">
+		<InternalInfo>
+			<xr:GeneratedType name="IntegrationServiceManager.ОбменСообщениями" category="Manager">
+				<xr:TypeId>5362f1d1-1f56-4a61-a52e-6519a060293e</xr:TypeId>
+				<xr:ValueId>ad884943-3c3a-4073-ab34-ed12a0d67556</xr:ValueId>
+			</xr:GeneratedType>
+		</InternalInfo>
+		<Properties>
+			<Name>ОбменСообщениями</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обмен сообщениями</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Message exchange</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment/>
+			<ExternalIntegrationServiceAddress/>
+		</Properties>
+		<ChildObjects>
+			<IntegrationServiceChannel uuid="1ef0581c-b1d8-4115-87f1-7856f6c06bb6">
+				<InternalInfo>
+					<xr:GeneratedType name="IntegrationServiceChannelManager.ОбменСообщениями.input_from_SM_normal_priority" category="Manager">
+						<xr:TypeId>71313d47-3c6e-464a-8776-f7eb0626fd6b</xr:TypeId>
+						<xr:ValueId>bb1ff475-725d-46cb-8cbc-9ff08970cccc</xr:ValueId>
+					</xr:GeneratedType>
+				</InternalInfo>
+				<Properties>
+					<Name>input_from_SM_normal_priority</Name>
+					<Synonym/>
+					<Comment/>
+					<ExternalIntegrationServiceChannelName>e1c::FreshBus::Main::MessageExchange_v2.input_from_SM_normal_priority</ExternalIntegrationServiceChannelName>
+					<MessageDirection>Receive</MessageDirection>
+					<ReceiveMessageProcessing>ОбработатьСообщениеОбычныйПриоритет</ReceiveMessageProcessing>
+					<Transactioned>false</Transactioned>
+				</Properties>
+			</IntegrationServiceChannel>
+			<IntegrationServiceChannel uuid="cbdcb16f-cd4b-49ca-b9dd-19f34c280b52">
+				<InternalInfo>
+					<xr:GeneratedType name="IntegrationServiceChannelManager.ОбменСообщениями.input_from_SM_high_priority" category="Manager">
+						<xr:TypeId>9d8dc419-a252-467d-a132-abba635ac42d</xr:TypeId>
+						<xr:ValueId>0f7df7e6-a5a4-4c0a-8a44-b70676ce54a2</xr:ValueId>
+					</xr:GeneratedType>
+				</InternalInfo>
+				<Properties>
+					<Name>input_from_SM_high_priority</Name>
+					<Synonym/>
+					<Comment/>
+					<ExternalIntegrationServiceChannelName>e1c::FreshBus::Main::MessageExchange_v2.input_from_SM_high_priority</ExternalIntegrationServiceChannelName>
+					<MessageDirection>Receive</MessageDirection>
+					<ReceiveMessageProcessing>ОбработатьСообщениеВысокийПриоритет</ReceiveMessageProcessing>
+					<Transactioned>false</Transactioned>
+				</Properties>
+			</IntegrationServiceChannel>
+			<IntegrationServiceChannel uuid="b017ac62-a4a2-47bd-b963-50e0764a7d4e">
+				<InternalInfo>
+					<xr:GeneratedType name="IntegrationServiceChannelManager.ОбменСообщениями.output_to_SM_high_priority" category="Manager">
+						<xr:TypeId>fa26d8bb-bc63-4707-926d-64b8c10cd13d</xr:TypeId>
+						<xr:ValueId>301c529a-896f-4da6-946e-a28690af5399</xr:ValueId>
+					</xr:GeneratedType>
+				</InternalInfo>
+				<Properties>
+					<Name>output_to_SM_high_priority</Name>
+					<Synonym/>
+					<Comment/>
+					<ExternalIntegrationServiceChannelName>e1c::FreshBus::Main::MessageExchange_v2.output_to_SM_high_priority</ExternalIntegrationServiceChannelName>
+					<MessageDirection>Send</MessageDirection>
+					<ReceiveMessageProcessing/>
+					<Transactioned>true</Transactioned>
+				</Properties>
+			</IntegrationServiceChannel>
+			<IntegrationServiceChannel uuid="ac1b3976-e9e1-4d12-97a2-3f32df05ad97">
+				<InternalInfo>
+					<xr:GeneratedType name="IntegrationServiceChannelManager.ОбменСообщениями.output_to_SM_normal_priority" category="Manager">
+						<xr:TypeId>2c5400bc-0503-4bf3-b2db-64d8e12338d1</xr:TypeId>
+						<xr:ValueId>9ab26516-751f-4ef4-8c9e-716d19bd35a0</xr:ValueId>
+					</xr:GeneratedType>
+				</InternalInfo>
+				<Properties>
+					<Name>output_to_SM_normal_priority</Name>
+					<Synonym/>
+					<Comment/>
+					<ExternalIntegrationServiceChannelName>e1c::FreshBus::Main::MessageExchange_v2.output_to_SM_normal_priority</ExternalIntegrationServiceChannelName>
+					<MessageDirection>Send</MessageDirection>
+					<ReceiveMessageProcessing/>
+					<Transactioned>true</Transactioned>
+				</Properties>
+			</IntegrationServiceChannel>
+		</ChildObjects>
+	</IntegrationService>
+</MetaDataObject>

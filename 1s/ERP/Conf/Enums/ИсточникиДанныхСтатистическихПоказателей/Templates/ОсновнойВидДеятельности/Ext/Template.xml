@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>НаборДанных1</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодОКВЭД</dataPath>
+			<field>КодОКВЭД</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеОКВЭД</dataPath>
+			<field>НаименованиеОКВЭД</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодОКВЭД2</dataPath>
+			<field>КодОКВЭД2</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеОКВЭД2</dataPath>
+			<field>НаименованиеОКВЭД2</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ЧисловойКодРазделаОКВЭД2</dataPath>
+			<field>ЧисловойКодРазделаОКВЭД2</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	Организации.КодОКВЭД КАК КодОКВЭД,
+	Организации.НаименованиеОКВЭД КАК НаименованиеОКВЭД,
+	Организации.КодОКВЭД2 КАК КодОКВЭД2,
+	Организации.НаименованиеОКВЭД2 КАК НаименованиеОКВЭД2,
+	ПОДСТРОКА(Организации.КодОКВЭД2, 0, 2) КАК ЧисловойКодРазделаОКВЭД2
+{ВЫБРАТЬ
+	КодОКВЭД,
+	НаименованиеОКВЭД,
+	КодОКВЭД2,
+	НаименованиеОКВЭД2,
+	ЧисловойКодРазделаОКВЭД2}
+ИЗ
+	Справочник.Организации КАК Организации
+ГДЕ
+	Организации.Ссылка = &amp;Организация</query>
+		<autoFillFields>false</autoFillFields>
+	</dataSet>
+	<dataSet xsi:type="DataSetObject">
+		<name>БуквенныеКодыРазделовОКВЭД2</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ЧисловойКодРазделаОКВЭД2</dataPath>
+			<field>Код</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Числовой код раздела ОКВЭД2</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Numeric code of RNCEA section2</v8:content>
+				</v8:item>
+			</title>
+			<valueType>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>2</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>БуквенныйКодРазделаОКВЭД2</dataPath>
+			<field>Раздел</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Буквенный код раздела ОКВЭД2</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Letter code of RNCEA section2</v8:content>
+				</v8:item>
+			</title>
+			<valueType>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>1</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</valueType>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<objectName>БуквенныеКодыРазделовОКВЭД2</objectName>
+	</dataSet>
+	<dataSetLink>
+		<sourceDataSet>НаборДанных1</sourceDataSet>
+		<destinationDataSet>БуквенныеКодыРазделовОКВЭД2</destinationDataSet>
+		<sourceExpression>ЧисловойКодРазделаОКВЭД2</sourceExpression>
+		<destinationExpression>ЧисловойКодРазделаОКВЭД2</destinationExpression>
+	</dataSetLink>
+	<parameter>
+		<name>Организация</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Организация</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Company</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:CatalogRef.Организации</v8:Type>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Основной</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Main</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

@@ -1,0 +1,143 @@
+# ═══════════════════════════════════════════════════════════
+# 1С — коммитим только Лико_* ЯССМ_* ЗаказКлиента
+# Ключевой приём: игнорируем /* (содержимое), а не саму папку
+# Тогда исключения через ! работают
+# ═══════════════════════════════════════════════════════════
+
+# Бинарники — никогда
+*.cf
+*.cfe
+*.dt
+*.epf
+*.erf
+*.bin
+
+# CommonModules — всё кроме Лико_* и ЯССМ_*
+1s/ERP/Conf/CommonModules/*
+!1s/ERP/Conf/CommonModules/Лико_*
+!1s/ERP/Conf/CommonModules/ЯССМ_*
+
+# Documents — всё кроме Лико_* ЯССМ_* ЗаказКлиента
+1s/ERP/Conf/Documents/*
+!1s/ERP/Conf/Documents/Лико_*
+!1s/ERP/Conf/Documents/ЯССМ_*
+!1s/ERP/Conf/Documents/ЗаказКлиента
+
+# Catalogs — всё кроме Лико_* ЯССМ_*
+1s/ERP/Conf/Catalogs/*
+!1s/ERP/Conf/Catalogs/Лико_*
+!1s/ERP/Conf/Catalogs/ЯССМ_*
+
+# AccumulationRegisters — всё кроме Лико_* ЯССМ_*
+1s/ERP/Conf/AccumulationRegisters/*
+!1s/ERP/Conf/AccumulationRegisters/Лико_*
+!1s/ERP/Conf/AccumulationRegisters/ЯССМ_*
+
+# InformationRegisters — всё кроме Лико_* ЯССМ_*
+1s/ERP/Conf/InformationRegisters/*
+!1s/ERP/Conf/InformationRegisters/Лико_*
+!1s/ERP/Conf/InformationRegisters/ЯССМ_*
+
+# Все остальные типовые разделы — целиком
+1s/ERP/Conf/Reports/
+1s/ERP/Conf/DataProcessors/
+1s/ERP/Conf/ExchangePlans/
+1s/ERP/Conf/BusinessProcesses/
+1s/ERP/Conf/Tasks/
+1s/ERP/Conf/ChartsOfAccounts/
+1s/ERP/Conf/ChartsOfCalculationTypes/
+1s/ERP/Conf/ChartsOfCharacteristicTypes/
+1s/ERP/Conf/Sequences/
+1s/ERP/Conf/ScheduledJobs/
+1s/ERP/Conf/Subsystems/
+1s/ERP/Conf/Roles/
+1s/ERP/Conf/CommonForms/
+1s/ERP/Conf/CommonTemplates/
+1s/ERP/Conf/CommonPictures/
+1s/ERP/Conf/CommonCommands/
+1s/ERP/Conf/CommandGroups/
+1s/ERP/Conf/Constants/
+1s/ERP/Conf/SessionParameters/
+1s/ERP/Conf/FilterCriteria/
+1s/ERP/Conf/EventSubscriptions/
+1s/ERP/Conf/AccountingRegisters/
+1s/ERP/Conf/CalculationRegisters/
+1s/ERP/Conf/Ext/
+1s/ERP/Conf/ConfigDumpInfo.xml
+
+# ═══════════════════════════════════════════════════════════
+# Зависимости
+# ═══════════════════════════════════════════════════════════
+node_modules/
+package-lock.json
+yarn.lock
+
+# ═══════════════════════════════════════════════════════════
+# Сборка
+# ═══════════════════════════════════════════════════════════
+dist/
+build/
+*.o
+*.a
+*.so
+
+# ═══════════════════════════════════════════════════════════
+# IDE
+# ═══════════════════════════════════════════════════════════
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ═══════════════════════════════════════════════════════════
+# ОС
+# ═══════════════════════════════════════════════════════════
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ═══════════════════════════════════════════════════════════
+# Секреты
+# ═══════════════════════════════════════════════════════════
+.env
+.env.local
+.env.*.local
+
+# ═══════════════════════════════════════════════════════════
+# Obsidian
+# ═══════════════════════════════════════════════════════════
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/plugins/*/data.json
+
+# ═══════════════════════════════════════════════════════════
+# Claude Code
+# ═══════════════════════════════════════════════════════════
+output/
+
+# ═══════════════════════════════════════════════════════════
+# Python
+# ═══════════════════════════════════════════════════════════
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+venv/
+.venv/
+*.egg-info/
+
+# ═══════════════════════════════════════════════════════════
+# Данные и медиа
+# ═══════════════════════════════════════════════════════════
+qdrant_storage/
+jpg/
+excel/
+PDF/
+*.tmp
+*.bak
+*.log
+npm-debug.log*

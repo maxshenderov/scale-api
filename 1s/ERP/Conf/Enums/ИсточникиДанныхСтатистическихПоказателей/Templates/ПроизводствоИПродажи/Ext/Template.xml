@@ -1,0 +1,4414 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetUnion">
+		<name>ПроизводствоИПродажи</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Номенклатура</dataPath>
+			<field>Номенклатура</field>
+			<valueType>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Номенклатура</v8:Type>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СтоимостьОстатка</dataPath>
+			<field>СтоимостьОстатка</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Стоимость</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cost value</v8:content>
+				</v8:item>
+			</title>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ЧДЦ=2</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>NFD=2</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ОстатокВЕдиницахОрганизации</dataPath>
+			<field>Служебные.ОстатокВЕдиницахОрганизации</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Остаток в единицах организации</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Stock in company units</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.Аналитика</dataPath>
+			<field>Служебные.Аналитика</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОбособленноеПодразделение</dataPath>
+			<field>ОбособленноеПодразделение</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подразделение</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Business unit</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ЗачисленоВОсновныеСредства</dataPath>
+			<field>ЗачисленоВОсновныеСредства</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сумма (Зачислено в основные средства)</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Amount (Credited in fixed assets)</v8:content>
+				</v8:item>
+			</title>
+			<useRestriction>
+				<group>true</group>
+			</useRestriction>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ЧДЦ=2</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>NFD=2</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ОбъемПроизводства</dataPath>
+			<field>Служебные.ОбъемПроизводства</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объем производства</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Production volume</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ОбъемРеализации</dataPath>
+			<field>Служебные.ОбъемРеализации</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объем реализации</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sales volume</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.СтоимостьПроизводства</dataPath>
+			<field>Служебные.СтоимостьПроизводства</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Стоимость производства</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Production cost</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.СтоимостьРеализации</dataPath>
+			<field>Служебные.СтоимостьРеализации</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Стоимость реализации</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sales cost</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВыручкаБезНДС</dataPath>
+			<field>ВыручкаБезНДС</field>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ЧДЦ=2</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>NFD=2</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВыручкаВключаяНДС</dataPath>
+			<field>ВыручкаВключаяНДС</field>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ЧДЦ=2</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>NFD=2</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СчетУчетаНоменклатуры</dataPath>
+			<field>СчетУчетаНоменклатуры</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СчетВыручки</dataPath>
+			<field>СчетВыручки</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СчетРасчетовСПокупателем</dataPath>
+			<field>СчетРасчетовСПокупателем</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ЕдиницаИзмерения</dataPath>
+			<field>Служебные.ЕдиницаИзмерения</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ед. изм.</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Unit</v8:content>
+				</v8:item>
+			</title>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
+					<dcscor:value xsi:type="xs:decimal">5</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Услуга</dataPath>
+			<field>Услуга</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВключатьВыручкуБезНоменклатуры</dataPath>
+			<field>ВключатьВыручкуБезНоменклатуры</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ТипРозничныхЦен</dataPath>
+			<field>ТипРозничныхЦен</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.СтоимостьОстаткаВРозничныхЦенах</dataPath>
+			<field>Служебные.СтоимостьОстаткаВРозничныхЦенах</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Стоимость остатка в розничных ценах</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Balance cost in retail prices</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Количество</dataPath>
+			<field>Количество</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Quantity</v8:content>
+				</v8:item>
+			</title>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ЧДЦ=3</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>NFD=3</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Счет</dataPath>
+			<field>Счет</field>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
+			<presentationExpression>Счет.Код + " " + Счет.Наименование</presentationExpression>
+			<valueType>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfAccountsRef.Хозрасчетный</v8:Type>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СтоимостьПроданныхНаСторону</dataPath>
+			<field>СтоимостьПроданныхНаСторону</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Стоимость проданных на сторону</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Cost of ones sold to third parties</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаправлениеДеятельности</dataPath>
+			<field>НаправлениеДеятельности</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Направление деятельности</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Line of business</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:required>true</dcscom:required>
+			</role>
+			<valueType>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НаправленияДеятельности</v8:Type>
+			</valueType>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ВидДеятельности</dataPath>
+			<field>ВидДеятельности</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа финансового учета</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Financial accounting group</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ВесКоэффициент</dataPath>
+			<field>ВесКоэффициент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ЕдиницаДляОтчетов</dataPath>
+			<field>ЕдиницаДляОтчетов</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ДлинаИспользовать</dataPath>
+			<field>ДлинаИспользовать</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ПлощадьИспользовать</dataPath>
+			<field>ПлощадьИспользовать</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ВесИспользовать</dataPath>
+			<field>ВесИспользовать</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ДлинаКоэффициент</dataPath>
+			<field>ДлинаКоэффициент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ОбъемИспользовать</dataPath>
+			<field>ОбъемИспользовать</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ОбъемКоэффициент</dataPath>
+			<field>ОбъемКоэффициент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ПлощадьКоэффициент</dataPath>
+			<field>ПлощадьКоэффициент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения</dataPath>
+			<field>ТипИзмеряемойВеличиныЕдиницаИзмерения</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов</dataPath>
+			<field>ТипИзмеряемойВеличиныЕдиницыОтчетов</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ЕдиницаДляОтчетовКоэффициент</dataPath>
+			<field>ЕдиницаДляОтчетовКоэффициент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.ЕдиницаИзмеренияКоэффициент</dataPath>
+			<field>ЕдиницаИзмеренияКоэффициент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СчетКт</dataPath>
+			<field>СчетКт</field>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>УчетПоПодразделениям</dataPath>
+			<field>УчетПоПодразделениям</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СуммаОборот</dataPath>
+			<field>СуммаОборот</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СчетДт</dataPath>
+			<field>СчетДт</field>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>СтатьяДоходовОтРеализации</dataPath>
+			<field>СтатьяДоходовОтРеализации</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Статья доходов от реализации</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Sales income item</v8:content>
+				</v8:item>
+			</title>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+				<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+			</role>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НДСПоРеализацииМПЗНаСторону</dataPath>
+			<field>НДСПоРеализацииМПЗНаСторону</field>
+		</field>
+		<item xsi:type="DataSetQuery">
+			<name>Остаток</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.Номенклатура</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтоимостьОстатка</dataPath>
+				<field>СтоимостьОстатка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.ОстатокВЕдиницахОрганизации</dataPath>
+				<field>ОстатокВЕдиницахОрганизации</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.Аналитика</dataPath>
+				<field>Аналитика</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбособленноеПодразделение</dataPath>
+				<field>ОбособленноеПодразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СчетУчетаНоменклатуры</dataPath>
+				<field>СчетУчетаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.ЕдиницаИзмерения</dataPath>
+				<field>ЕдиницаИзмерения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипРозничныхЦен</dataPath>
+				<field>ТипРозничныхЦен</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.СтоимостьОстаткаВРозничныхЦенах</dataPath>
+				<field>СтоимостьОстаткаВРозничныхЦенах</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Количество</dataPath>
+				<field>Количество</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Количество</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Quantity</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Счет</dataPath>
+				<field>Счет</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НаправлениеДеятельности</dataPath>
+				<field>НаправлениеДеятельности</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Направление деятельности</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Line of business</v8:content>
+					</v8:item>
+				</title>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.НаправленияДеятельности</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВесКоэффициент</dataPath>
+				<field>ВесКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вес коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Weight factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаДляОтчетов</dataPath>
+				<field>ЕдиницаДляОтчетов</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДлинаИспользовать</dataPath>
+				<field>ДлинаИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПлощадьИспользовать</dataPath>
+				<field>ПлощадьИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВесИспользовать</dataPath>
+				<field>ВесИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДлинаКоэффициент</dataPath>
+				<field>ДлинаКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Длина коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Length factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбъемИспользовать</dataPath>
+				<field>ОбъемИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбъемКоэффициент</dataPath>
+				<field>ОбъемКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Объем коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Volume factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПлощадьКоэффициент</dataPath>
+				<field>ПлощадьКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Площадь коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Area factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипИзмеряемойВеличиныЕдиницаИзмерения</dataPath>
+				<field>ТипИзмеряемойВеличиныЕдиницаИзмерения</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Тип измеряемой величины единица измерения</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Measured value type unit of measure</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипИзмеряемойВеличиныЕдиницыОтчетов</dataPath>
+				<field>ТипИзмеряемойВеличиныЕдиницыОтчетов</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Тип измеряемой величины единицы отчетов</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Measured value type units of reports</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаДляОтчетовКоэффициент</dataPath>
+				<field>ЕдиницаДляОтчетовКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Единица для отчетов коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Unit for reports is factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмеренияКоэффициент</dataPath>
+				<field>ЕдиницаИзмеренияКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Единица измерения коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Unit of measure is factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ СчетаУчетаНоменклатуры
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+{ГДЕ
+	Хозрасчетный.Ссылка.* КАК СчетУчетаНоменклатуры}
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВЫРАЗИТЬ(ХозрасчетныйОстатки.Субконто1 КАК Справочник.Номенклатура) КАК Номенклатура,
+	ХозрасчетныйОстатки.НаправлениеДеятельности КАК НаправлениеДеятельности,
+	ХозрасчетныйОстатки.КоличествоОстаток КАК Количество,
+	ХозрасчетныйОстатки.СуммаОстаток КАК Сумма,
+	ХозрасчетныйОстатки.Счет
+ПОМЕСТИТЬ ОстаткиТоваров
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Остатки(
+			&amp;СледующийПериод,
+			Счет В
+				(ВЫБРАТЬ
+					СчетаУчетаНоменклатуры.Счет
+				ИЗ
+					СчетаУчетаНоменклатуры),
+			ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Номенклатура),
+			{(Организация В (&amp;Организация)), (ЕСТЬNULL(Подразделение, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение, (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто1).* КАК Номенклатура}) КАК ХозрасчетныйОстатки
+
+ИНДЕКСИРОВАТЬ ПО
+	Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЦеныНоменклатуры.Номенклатура КАК Номенклатура,
+	МАКСИМУМ(ЦеныНоменклатуры.Цена) КАК Цена
+ПОМЕСТИТЬ ЦеныВРознице
+ИЗ
+	(ВЫБРАТЬ
+		ЦеныНоменклатуры.Номенклатура КАК Номенклатура,
+		ЦеныНоменклатуры.Цена КАК Цена
+	ИЗ
+		РегистрСведений.ЦеныНоменклатуры.СрезПоследних(&amp;СледующийПериод, {(ВидЦены).* КАК ТипРозничныхЦен, (Номенклатура).* КАК Номенклатура}) КАК ЦеныНоменклатуры
+	ГДЕ
+		ЦеныНоменклатуры.Валюта В
+				(ВЫБРАТЬ
+					ВалютаРегламентированногоУчета.Значение
+				ИЗ
+					Константа.ВалютаРегламентированногоУчета КАК ВалютаРегламентированногоУчета)) КАК ЦеныНоменклатуры
+
+СГРУППИРОВАТЬ ПО
+	ЦеныНоменклатуры.Номенклатура
+
+ИНДЕКСИРОВАТЬ ПО
+	Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ СчетаУчетаПоПродажнойСтоимости
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ТоварыВРозничнойТорговлеВПродажныхЦенахАТТ), ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ТоварыВРозничнойТорговлеВПродажныхЦенахНТТ))
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	&amp;Аналитика КАК Аналитика,
+	ОстаткиТоваров.НаправлениеДеятельности КАК НаправлениеДеятельности,
+	ОстаткиТоваров.Номенклатура КАК Номенклатура,
+	ОстаткиТоваров.Номенклатура.ЕдиницаИзмерения КАК ЕдиницаИзмерения,
+	СУММА(ВЫБОР
+			КОГДА НЕ СчетаУчетаПоПродажнойСтоимости.Счет ЕСТЬ NULL 
+				ТОГДА ОстаткиТоваров.Сумма
+			КОГДА ЦеныВРознице.Номенклатура ЕСТЬ NULL 
+				ТОГДА ОстаткиТоваров.Сумма
+			ИНАЧЕ ОстаткиТоваров.Количество * ЦеныВРознице.Цена
+		КОНЕЦ) КАК СтоимостьОстаткаВРозничныхЦенах,
+	СУММА(ОстаткиТоваров.Сумма) КАК СтоимостьОстатка,
+	СУММА(ОстаткиТоваров.Количество) КАК ОстатокВЕдиницахОрганизации,
+	ОстаткиТоваров.Счет КАК Счет,
+	
+	СпрНоменклатура.ЕдиницаДляОтчетов КАК ЕдиницаДляОтчетов,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Числитель / СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ / ВЫБОР
+		КОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов &lt;&gt; 0
+			ТОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов
+		ИНАЧЕ 1
+	КОНЕЦ КАК ЕдиницаДляОтчетовКоэффициент,
+	СпрНоменклатура.ЕдиницаДляОтчетов.ТипИзмеряемойВеличины КАК ТипИзмеряемойВеличиныЕдиницыОтчетов,
+	
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаИзмерения.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаИзмерения.Числитель / СпрНоменклатура.ЕдиницаИзмерения.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ КАК ЕдиницаИзмеренияКоэффициент,
+	СпрНоменклатура.ЕдиницаИзмерения.ТипИзмеряемойВеличины КАК ТипИзмеряемойВеличиныЕдиницаИзмерения,
+	
+	СпрНоменклатура.ВесИспользовать КАК ВесИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ВесИспользовать
+				И СпрНоменклатура.ВесЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ВесЧислитель / СпрНоменклатура.ВесЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВесКоэффициент,
+	СпрНоменклатура.ДлинаИспользовать КАК ДлинаИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ДлинаИспользовать
+				И СпрНоменклатура.ДлинаЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ДлинаЧислитель / СпрНоменклатура.ДлинаЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ДлинаКоэффициент,
+	СпрНоменклатура.ПлощадьИспользовать КАК ПлощадьИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ПлощадьИспользовать
+				И СпрНоменклатура.ПлощадьЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ПлощадьЧислитель / СпрНоменклатура.ПлощадьЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПлощадьКоэффициент,
+	СпрНоменклатура.ОбъемИспользовать КАК ОбъемИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ОбъемИспользовать
+				И СпрНоменклатура.ОбъемЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ОбъемЧислитель / СпрНоменклатура.ОбъемЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ОбъемКоэффициент
+{ВЫБРАТЬ
+	СтоимостьОстатка,
+	ОстатокВЕдиницахОрганизации,
+	ЕдиницаИзмерения,
+	Аналитика,
+	Номенклатура.*,
+	СтоимостьОстаткаВРозничныхЦенах,
+	Счет.*,
+	НаправлениеДеятельности.*,
+	ЕдиницаДляОтчетов,
+	ЕдиницаДляОтчетовКоэффициент,
+	ТипИзмеряемойВеличиныЕдиницыОтчетов,
+	ЕдиницаИзмеренияКоэффициент,
+	ТипИзмеряемойВеличиныЕдиницаИзмерения,
+	ВесИспользовать,
+	ВесКоэффициент,
+	ДлинаИспользовать,
+	ДлинаКоэффициент,
+	ПлощадьИспользовать,
+	ПлощадьКоэффициент,
+	ОбъемИспользовать,
+	ОбъемКоэффициент}
+ИЗ
+	ОстаткиТоваров КАК ОстаткиТоваров
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.Номенклатура КАК СпрНоменклатура
+		ПО ОстаткиТоваров.Номенклатура = СпрНоменклатура.Ссылка
+		ЛЕВОЕ СОЕДИНЕНИЕ СчетаУчетаПоПродажнойСтоимости КАК СчетаУчетаПоПродажнойСтоимости
+		ПО ОстаткиТоваров.Счет = СчетаУчетаПоПродажнойСтоимости.Счет
+		ЛЕВОЕ СОЕДИНЕНИЕ ЦеныВРознице КАК ЦеныВРознице
+		ПО ОстаткиТоваров.Номенклатура = ЦеныВРознице.Номенклатура
+{ГДЕ
+	(ВЫБОР
+			КОГДА НЕ СчетаУчетаПоПродажнойСтоимости.Счет ЕСТЬ NULL 
+				ТОГДА ОстаткиТоваров.Сумма
+			КОГДА ЦеныВРознице.Номенклатура ЕСТЬ NULL 
+				ТОГДА ОстаткиТоваров.Сумма
+			ИНАЧЕ ОстаткиТоваров.Количество * ЦеныВРознице.Цена
+		КОНЕЦ) КАК СтоимостьОстаткаВРозничныхЦенах,
+	ОстаткиТоваров.Сумма КАК СтоимостьОстатка,
+	ОстаткиТоваров.Количество}
+
+СГРУППИРОВАТЬ ПО
+	ОстаткиТоваров.Номенклатура.ЕдиницаИзмерения,
+	ОстаткиТоваров.Номенклатура,
+	ОстаткиТоваров.Счет,
+	ОстаткиТоваров.НаправлениеДеятельности,
+	СпрНоменклатура.ЕдиницаДляОтчетов,
+	СпрНоменклатура.КоэффициентЕдиницыДляОтчетов,
+	СпрНоменклатура.ЕдиницаИзмерения,
+	СпрНоменклатура.ВесИспользовать,
+	СпрНоменклатура.ДлинаИспользовать,
+	СпрНоменклатура.ПлощадьИспользовать,
+	СпрНоменклатура.ОбъемИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ВесИспользовать
+				И СпрНоменклатура.ВесЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ВесЧислитель / СпрНоменклатура.ВесЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ДлинаИспользовать
+				И СпрНоменклатура.ДлинаЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ДлинаЧислитель / СпрНоменклатура.ДлинаЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ПлощадьИспользовать
+				И СпрНоменклатура.ПлощадьЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ПлощадьЧислитель / СпрНоменклатура.ПлощадьЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ОбъемИспользовать
+				И СпрНоменклатура.ОбъемЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ОбъемЧислитель / СпрНоменклатура.ОбъемЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ЕдиницаДляОтчетов.ТипИзмеряемойВеличины,
+	СпрНоменклатура.ЕдиницаИзмерения.ТипИзмеряемойВеличины,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Числитель / СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ / ВЫБОР
+		КОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов &lt;&gt; 0
+			ТОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов
+		ИНАЧЕ 1
+	КОНЕЦ</query>
+			<autoFillFields>false</autoFillFields>
+		</item>
+		<item xsi:type="DataSetQuery">
+			<name>Движение</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗачисленоВОсновныеСредства</dataPath>
+				<field>ЗачисленоВОсновныеСредства</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.Номенклатура</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбособленноеПодразделение</dataPath>
+				<field>ОбособленноеПодразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.ОбъемПроизводства</dataPath>
+				<field>ОбъемПроизводства</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.ОбъемРеализации</dataPath>
+				<field>ОбъемРеализации</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.СтоимостьПроизводства</dataPath>
+				<field>СтоимостьПроизводства</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.СтоимостьРеализации</dataPath>
+				<field>СтоимостьРеализации</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СчетУчетаНоменклатуры</dataPath>
+				<field>СчетУчетаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Служебные.ЕдиницаИзмерения</dataPath>
+				<field>ЕдиницаИзмерения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Счет</dataPath>
+				<field>Счет</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НаправлениеДеятельности</dataPath>
+				<field>НаправлениеДеятельности</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.НаправленияДеятельности</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВесКоэффициент</dataPath>
+				<field>ВесКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вес коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Weight factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаДляОтчетов</dataPath>
+				<field>ЕдиницаДляОтчетов</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДлинаИспользовать</dataPath>
+				<field>ДлинаИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПлощадьИспользовать</dataPath>
+				<field>ПлощадьИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВесИспользовать</dataPath>
+				<field>ВесИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДлинаКоэффициент</dataPath>
+				<field>ДлинаКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Длина коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Length factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбъемИспользовать</dataPath>
+				<field>ОбъемИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбъемКоэффициент</dataPath>
+				<field>ОбъемКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Объем коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Volume factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПлощадьКоэффициент</dataPath>
+				<field>ПлощадьКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Площадь коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Area factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипИзмеряемойВеличиныЕдиницаИзмерения</dataPath>
+				<field>ТипИзмеряемойВеличиныЕдиницаИзмерения</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Тип измеряемой величины единица измерения</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Measured value type unit of measure</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипИзмеряемойВеличиныЕдиницыОтчетов</dataPath>
+				<field>ТипИзмеряемойВеличиныЕдиницыОтчетов</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Тип измеряемой величины единицы отчетов</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Measured value type units of reports</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаДляОтчетовКоэффициент</dataPath>
+				<field>ЕдиницаДляОтчетовКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Единица для отчетов коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Unit for reports is factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмеренияКоэффициент</dataPath>
+				<field>ЕдиницаИзмеренияКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Единица измерения коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Unit of measure is factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+    Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ СчетаУчетаНоменклатуры
+ИЗ
+    ПланСчетов.Хозрасчетный КАК Хозрасчетный
+{ГДЕ
+    Хозрасчетный.Ссылка.* КАК СчетУчетаНоменклатуры}
+
+ИНДЕКСИРОВАТЬ ПО
+    Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+    Хозрасчетный.Ссылка КАК Счет,
+    "Производство" КАК Операция
+ПОМЕСТИТЬ КорСчетаДвиженияТоваров
+ИЗ
+    ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+    Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ОсновноеПроизводство))
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+    Хозрасчетный.Ссылка,
+    "Реализация"
+ИЗ
+    ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+    (Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.СебестоимостьПродаж))
+            ИЛИ Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ПрочиеРасходы)))
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+    Хозрасчетный.Ссылка,
+    "ЗачисленоВОсновныеСредства"
+ИЗ
+    ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+    Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ВложенияВоВнеоборотныеАктивы))
+
+ИНДЕКСИРОВАТЬ ПО
+    Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+    ХозрасчетныйОбороты.КорСчет КАК КорСчет,
+    ХозрасчетныйОбороты.СуммаОборотДт КАК СуммаОборотДт,
+    ХозрасчетныйОбороты.СуммаОборотКт КАК СуммаОборотКт,
+    ХозрасчетныйОбороты.КоличествоОборотДт,
+    ХозрасчетныйОбороты.КоличествоОборотКт,
+    ВЫРАЗИТЬ(ХозрасчетныйОбороты.Субконто1 КАК Справочник.Номенклатура) КАК Номенклатура,
+    ХозрасчетныйОбороты.Счет,
+    ХозрасчетныйОбороты.НаправлениеДеятельности
+ПОМЕСТИТЬ ДвижениеТоваров
+ИЗ
+    РегистрБухгалтерии.Хозрасчетный.Обороты(
+            &amp;НачалоПериода,
+            &amp;КонецПериода,
+            ,
+            Счет В
+                (ВЫБРАТЬ
+                    СчетаУчетаНоменклатуры.Счет
+                ИЗ
+                    СчетаУчетаНоменклатуры),
+            ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Номенклатура),
+            {(Организация В (&amp;Организация)), (ЕСТЬNULL(Подразделение, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение,
+            (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто1).* КАК Номенклатура},
+            КорСчет В
+                (ВЫБРАТЬ
+                    КорСчетаДвиженияТоваров.Счет
+                ИЗ
+                    КорСчетаДвиженияТоваров),
+            ) КАК ХозрасчетныйОбороты
+
+ИНДЕКСИРОВАТЬ ПО
+    КорСчет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+    &amp;Аналитика КАК Аналитика,
+    СУММА(ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "Производство"
+                ТОГДА ДвижениеТоваров.СуммаОборотДт
+        КОНЕЦ) КАК СтоимостьПроизводства,
+    СУММА(ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "Производство"
+                ТОГДА ДвижениеТоваров.КоличествоОборотДт
+        КОНЕЦ) КАК ОбъемПроизводства,
+    СУММА(ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "ЗачисленоВОсновныеСредства"
+                ТОГДА ДвижениеТоваров.СуммаОборотКт
+        КОНЕЦ) КАК ЗачисленоВОсновныеСредства,
+    СУММА(ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "Реализация"
+                ТОГДА ДвижениеТоваров.СуммаОборотКт
+        КОНЕЦ) КАК СтоимостьРеализации,
+    СУММА(ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "Реализация"
+                ТОГДА ДвижениеТоваров.КоличествоОборотКт
+        КОНЕЦ) КАК ОбъемРеализации,
+    ДвижениеТоваров.Номенклатура.ЕдиницаИзмерения КАК ЕдиницаИзмерения,
+    ДвижениеТоваров.Счет КАК Счет,
+    ДвижениеТоваров.НаправлениеДеятельности КАК НаправлениеДеятельности,
+    ДвижениеТоваров.Номенклатура КАК Номенклатура,
+
+	СпрНоменклатура.ЕдиницаДляОтчетов КАК ЕдиницаДляОтчетов,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Числитель / СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ / ВЫБОР
+		КОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов &lt;&gt; 0
+			ТОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов
+		ИНАЧЕ 1
+	КОНЕЦ КАК ЕдиницаДляОтчетовКоэффициент,
+	СпрНоменклатура.ЕдиницаДляОтчетов.ТипИзмеряемойВеличины КАК ТипИзмеряемойВеличиныЕдиницыОтчетов,
+	
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаИзмерения.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаИзмерения.Числитель / СпрНоменклатура.ЕдиницаИзмерения.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ КАК ЕдиницаИзмеренияКоэффициент,
+	СпрНоменклатура.ЕдиницаИзмерения.ТипИзмеряемойВеличины КАК ТипИзмеряемойВеличиныЕдиницаИзмерения,
+
+	СпрНоменклатура.ВесИспользовать КАК ВесИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ВесИспользовать
+				И СпрНоменклатура.ВесЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ВесЧислитель / СпрНоменклатура.ВесЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВесКоэффициент,
+	СпрНоменклатура.ДлинаИспользовать КАК ДлинаИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ДлинаИспользовать
+				И СпрНоменклатура.ДлинаЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ДлинаЧислитель / СпрНоменклатура.ДлинаЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ДлинаКоэффициент,
+	СпрНоменклатура.ПлощадьИспользовать КАК ПлощадьИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ПлощадьИспользовать
+				И СпрНоменклатура.ПлощадьЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ПлощадьЧислитель / СпрНоменклатура.ПлощадьЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПлощадьКоэффициент,
+	СпрНоменклатура.ОбъемИспользовать КАК ОбъемИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ОбъемИспользовать
+				И СпрНоменклатура.ОбъемЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ОбъемЧислитель / СпрНоменклатура.ОбъемЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ОбъемКоэффициент
+	
+
+{ВЫБРАТЬ
+    ЕдиницаИзмерения,
+    СтоимостьПроизводства,
+    ОбъемПроизводства,
+    ЗачисленоВОсновныеСредства,
+    СтоимостьРеализации,
+    ОбъемРеализации,
+    Счет.*,
+    Номенклатура.*,
+	НаправлениеДеятельности.*,
+	ЕдиницаДляОтчетов,
+	ЕдиницаДляОтчетовКоэффициент,
+	ТипИзмеряемойВеличиныЕдиницыОтчетов,
+	ТипИзмеряемойВеличиныЕдиницаИзмерения,
+	ЕдиницаИзмеренияКоэффициент,
+	ВесИспользовать,
+	ВесКоэффициент,
+	ДлинаИспользовать,
+	ДлинаКоэффициент,
+	ПлощадьИспользовать,
+	ПлощадьКоэффициент,
+	ОбъемИспользовать,
+	ОбъемКоэффициент}
+
+ИЗ
+    ДвижениеТоваров КАК ДвижениеТоваров
+        ВНУТРЕННЕЕ СОЕДИНЕНИЕ КорСчетаДвиженияТоваров КАК КорСчетаДвиженияТоваров
+        ПО ДвижениеТоваров.КорСчет = КорСчетаДвиженияТоваров.Счет
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.Номенклатура КАК СпрНоменклатура
+		ПО ДвижениеТоваров.Номенклатура = СпрНоменклатура.Ссылка
+{ГДЕ
+    (ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "Производство"
+                ТОГДА ДвижениеТоваров.СуммаОборотДт
+        КОНЕЦ) КАК СтоимостьПроизводства,
+    (ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "Производство"
+                ТОГДА ДвижениеТоваров.КоличествоОборотДт
+        КОНЕЦ) КАК ОбъемПроизводства,
+    (ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "ЗачисленоВОсновныеСредства"
+                ТОГДА ДвижениеТоваров.СуммаОборотКт
+        КОНЕЦ) КАК ЗачисленоВОсновныеСредства,
+    (ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "Реализация"
+                ТОГДА ДвижениеТоваров.СуммаОборотКт
+        КОНЕЦ) КАК СтоимостьРеализации,
+    (ВЫБОР
+            КОГДА КорСчетаДвиженияТоваров.Операция = "Реализация"
+                ТОГДА ДвижениеТоваров.КоличествоОборотКт
+        КОНЕЦ) КАК ОбъемРеализации}
+
+СГРУППИРОВАТЬ ПО
+    ДвижениеТоваров.Номенклатура.ЕдиницаИзмерения,
+    ДвижениеТоваров.Счет,
+    ДвижениеТоваров.Номенклатура,
+    ДвижениеТоваров.НаправлениеДеятельности,
+	
+	СпрНоменклатура.ЕдиницаДляОтчетов,
+	СпрНоменклатура.КоэффициентЕдиницыДляОтчетов,
+	СпрНоменклатура.ЕдиницаИзмерения,
+	СпрНоменклатура.ВесИспользовать,
+	СпрНоменклатура.ДлинаИспользовать,
+	СпрНоменклатура.ПлощадьИспользовать,
+	СпрНоменклатура.ОбъемИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ВесИспользовать
+				И СпрНоменклатура.ВесЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ВесЧислитель / СпрНоменклатура.ВесЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ДлинаИспользовать
+				И СпрНоменклатура.ДлинаЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ДлинаЧислитель / СпрНоменклатура.ДлинаЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ПлощадьИспользовать
+				И СпрНоменклатура.ПлощадьЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ПлощадьЧислитель / СпрНоменклатура.ПлощадьЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ОбъемИспользовать
+				И СпрНоменклатура.ОбъемЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ОбъемЧислитель / СпрНоменклатура.ОбъемЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ</query>
+			<autoFillFields>false</autoFillFields>
+		</item>
+		<item xsi:type="DataSetQuery">
+			<name>Выручка</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВыручкаБезНДС</dataPath>
+				<field>ВыручкаБезНДС</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВыручкаВключаяНДС</dataPath>
+				<field>ВыручкаВключаяНДС</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.Номенклатура</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбособленноеПодразделение</dataPath>
+				<field>ОбособленноеПодразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СчетВыручки</dataPath>
+				<field>СчетВыручки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СчетРасчетовСПокупателем</dataPath>
+				<field>СчетРасчетовСПокупателем</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Услуга</dataPath>
+				<field>Услуга</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВключатьВыручкуБезНоменклатуры</dataPath>
+				<field>ВключатьВыручкуБезНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Счет</dataPath>
+				<field>Счет</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НаправлениеДеятельности</dataPath>
+				<field>НаправлениеДеятельности</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Направление деятельности</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Line of business</v8:content>
+					</v8:item>
+				</title>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.НаправленияДеятельности</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидДеятельности</dataPath>
+				<field>ВидДеятельности</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вид деятельности</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Activity type</v8:content>
+					</v8:item>
+				</title>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.ГруппыФинансовогоУчетаНоменклатуры</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВесКоэффициент</dataPath>
+				<field>ВесКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Вес коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Weight factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаДляОтчетов</dataPath>
+				<field>ЕдиницаДляОтчетов</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДлинаИспользовать</dataPath>
+				<field>ДлинаИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПлощадьИспользовать</dataPath>
+				<field>ПлощадьИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВесИспользовать</dataPath>
+				<field>ВесИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДлинаКоэффициент</dataPath>
+				<field>ДлинаКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Длина коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Length factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбъемИспользовать</dataPath>
+				<field>ОбъемИспользовать</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбъемКоэффициент</dataPath>
+				<field>ОбъемКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Объем коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Volume factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПлощадьКоэффициент</dataPath>
+				<field>ПлощадьКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Площадь коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Area factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипИзмеряемойВеличиныЕдиницаИзмерения</dataPath>
+				<field>ТипИзмеряемойВеличиныЕдиницаИзмерения</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Тип измеряемой величины единица измерения</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Measured value type unit of measure</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипИзмеряемойВеличиныЕдиницыОтчетов</dataPath>
+				<field>ТипИзмеряемойВеличиныЕдиницыОтчетов</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Тип измеряемой величины единицы отчетов</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Measured value type units of reports</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаДляОтчетовКоэффициент</dataPath>
+				<field>ЕдиницаДляОтчетовКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Единица для отчетов коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Unit for reports is factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмеренияКоэффициент</dataPath>
+				<field>ЕдиницаИзмеренияКоэффициент</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Единица измерения коэффициент</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Unit of measure is factor</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ПланСчетовХозрасчетный.Ссылка КАК Счет,
+	МАКСИМУМ(ВЫБОР
+			КОГДА ВидыСубконтоСчета.Ссылка ЕСТЬ NULL
+				ТОГДА ЛОЖЬ
+			ИНАЧЕ ИСТИНА
+		КОНЕЦ) КАК МожетОблагатьсяНДС
+ПОМЕСТИТЬ СчетаВыручки
+ИЗ
+	ПланСчетов.Хозрасчетный КАК ПланСчетовХозрасчетный
+		ЛЕВОЕ СОЕДИНЕНИЕ ПланСчетов.Хозрасчетный.ВидыСубконто КАК ВидыСубконтоСчета
+		ПО ПланСчетовХозрасчетный.Ссылка = ВидыСубконтоСчета.Ссылка
+			И (ВидыСубконтоСчета.ВидСубконто = ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.СтавкиНДС))
+ГДЕ
+	ПланСчетовХозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.Выручка))
+{ГДЕ
+	ПланСчетовХозрасчетный.Ссылка КАК СчетВыручки}
+
+СГРУППИРОВАТЬ ПО
+	ПланСчетовХозрасчетный.Ссылка
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПланСчетовХозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ СчетаНДС
+ИЗ
+	ПланСчетов.Хозрасчетный КАК ПланСчетовХозрасчетный
+ГДЕ
+	ПланСчетовХозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.Продажи_НДС))
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПланСчетовХозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ СчетаАкцизы
+ИЗ
+	ПланСчетов.Хозрасчетный КАК ПланСчетовХозрасчетный
+ГДЕ
+	ПланСчетовХозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.Продажи_Акцизы))
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Номенклатура.Ссылка КАК Ссылка
+ПОМЕСТИТЬ НоменклатураУслуг
+ИЗ
+	Справочник.Номенклатура КАК Номенклатура
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.ВидыНоменклатуры КАК ВидыНоменклатуры
+		ПО Номенклатура.ВидНоменклатуры = ВидыНоменклатуры.Ссылка
+ГДЕ
+	ВидыНоменклатуры.ТипНоменклатуры В (ЗНАЧЕНИЕ(Перечисление.ТипыНоменклатуры.Услуга), ЗНАЧЕНИЕ(Перечисление.ТипыНоменклатуры.Работа))
+
+ИНДЕКСИРОВАТЬ ПО
+	Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВыручкаОблагаетсяНДС_Услуги.Счет КАК Счет,
+	ВыручкаОблагаетсяНДС_Услуги.НаправлениеДеятельности КАК НаправлениеДеятельности,
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_Услуги.Субконто1 КАК Справочник.ГруппыФинансовогоУчетаНоменклатуры) КАК НоменклатурнаяГруппа,
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_Услуги.Субконто2 КАК Справочник.Номенклатура) КАК Номенклатура,
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_Услуги.Субконто3 КАК Перечисление.СтавкиНДС) КАК СтавкаНДС,
+	ВыручкаОблагаетсяНДС_Услуги.СуммаОборотКт КАК Сумма,
+	ВыручкаОблагаетсяНДС_Услуги.Подразделение КАК Подразделение
+ПОМЕСТИТЬ ВыручкаОблагаетсяНДС
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			,
+			Счет В
+				(ВЫБРАТЬ
+					СчетаВыручки.Счет
+				ИЗ
+					СчетаВыручки
+				ГДЕ
+					СчетаВыручки.МожетОблагатьсяНДС),
+			&amp;ВидыСубконтоНоменклатурныеГруппы_Номенклатура_СтавкиНДС,
+			Субконто2 В
+				(ВЫБРАТЬ
+					НоменклатураУслуг.Ссылка
+				ИЗ
+					НоменклатураУслуг) {(Организация В (&amp;Организация)), (ЕСТЬNULL(Подразделение, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение, (Субконто1).* КАК ВидДеятельности, (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто2).* КАК Номенклатура, (ИСТИНА) КАК Услуга},
+			{(КорСчет) КАК СчетРасчетовСПокупателем},
+			) КАК ВыручкаОблагаетсяНДС_Услуги
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВыручкаОблагаетсяНДС_Товары.Счет,
+	ВыручкаОблагаетсяНДС_Товары.НаправлениеДеятельности,
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_Товары.Субконто1 КАК Справочник.ГруппыФинансовогоУчетаНоменклатуры),
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_Товары.Субконто2 КАК Справочник.Номенклатура),
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_Товары.Субконто3 КАК Перечисление.СтавкиНДС),
+	ВыручкаОблагаетсяНДС_Товары.СуммаОборотКт,
+	ВыручкаОблагаетсяНДС_Товары.Подразделение
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			,
+			Счет В
+				(ВЫБРАТЬ
+					СчетаВыручки.Счет
+				ИЗ
+					СчетаВыручки
+				ГДЕ
+					СчетаВыручки.МожетОблагатьсяНДС),
+			&amp;ВидыСубконтоНоменклатурныеГруппы_Номенклатура_СтавкиНДС,
+			Организация В (&amp;Организация)
+				И Субконто2 &lt;&gt; ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка)
+				И НЕ Субконто2 В
+						(ВЫБРАТЬ
+							НоменклатураУслуг.Ссылка
+						ИЗ
+							НоменклатураУслуг) {(Подразделение).* КАК ОбособленноеПодразделение, (Субконто1).* КАК ВидДеятельности, (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто2).* КАК Номенклатура, (ЛОЖЬ) КАК Услуга},
+			{(КорСчет) КАК СчетРасчетовСПокупателем},
+			) КАК ВыручкаОблагаетсяНДС_Товары
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВыручкаОблагаетсяНДС_БезНоменклатуры.Счет,
+	ВыручкаОблагаетсяНДС_БезНоменклатуры.НаправлениеДеятельности,
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_БезНоменклатуры.Субконто1 КАК Справочник.ГруппыФинансовогоУчетаНоменклатуры),
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_БезНоменклатуры.Субконто2 КАК Справочник.Номенклатура),
+	ВЫРАЗИТЬ(ВыручкаОблагаетсяНДС_БезНоменклатуры.Субконто3 КАК Перечисление.СтавкиНДС),
+	ВыручкаОблагаетсяНДС_БезНоменклатуры.СуммаОборотКт,
+	ВыручкаОблагаетсяНДС_БезНоменклатуры.Подразделение
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			,
+			Счет В
+				(ВЫБРАТЬ
+					СчетаВыручки.Счет
+				ИЗ
+					СчетаВыручки
+				ГДЕ
+					СчетаВыручки.МожетОблагатьсяНДС),
+			&amp;ВидыСубконтоНоменклатурныеГруппы_Номенклатура_СтавкиНДС,
+			Организация В (&amp;Организация)
+				И Субконто2 = ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка) {(Подразделение).* КАК ОбособленноеПодразделение, (Субконто1).* КАК ВидДеятельности, (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто2).* КАК Номенклатура, (ИСТИНА) КАК ВключатьВыручкуБезНоменклатуры},
+			{(КорСчет) КАК СчетРасчетовСПокупателем},
+			) КАК ВыручкаОблагаетсяНДС_БезНоменклатуры
+			
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		ВыручкаРаздельныйУчет.Счет,
+		ВыручкаРаздельныйУчет.НаправлениеДеятельности,
+		ВЫРАЗИТЬ(ВыручкаРаздельныйУчет.Субконто1 КАК Справочник.ГруппыФинансовогоУчетаНоменклатуры),
+		ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка),
+		ВЫРАЗИТЬ(ВыручкаРаздельныйУчет.Субконто2 КАК Перечисление.СтавкиНДС),
+		ВыручкаРаздельныйУчет.СуммаОборотКт,
+		ВыручкаРаздельныйУчет.Подразделение
+	ИЗ
+		РегистрБухгалтерии.Хозрасчетный.Обороты(
+				&amp;НачалоПериода,
+				&amp;КонецПериода,
+				,
+				Счет В
+					(ВЫБРАТЬ
+						СчетаВыручки.Счет
+					ИЗ
+						СчетаВыручки
+					ГДЕ
+						СчетаВыручки.МожетОблагатьсяНДС),
+				&amp;ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС_ВариантНО,
+				Организация В (&amp;Организация) {(ЕСТЬNULL(Подразделение, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение, (Субконто1).* КАК ВидДеятельности, (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто2).* КАК Номенклатура},
+				,
+				) КАК ВыручкаРаздельныйУчет
+
+ИНДЕКСИРОВАТЬ ПО
+	НоменклатурнаяГруппа,
+	СтавкаНДС
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДоляНДС.Подразделение КАК Подразделение,
+	ДоляНДС.НаправлениеДеятельности КАК НаправлениеДеятельности,
+	ДоляНДС.НоменклатурнаяГруппа КАК НоменклатурнаяГруппа,
+	ДоляНДС.СтавкаНДС КАК СтавкаНДС,
+	СУММА(ДоляНДС.ВыручкаВключаяНДС) КАК ВыручкаВключаяНДС,
+	СУММА(ДоляНДС.НДС) КАК НДС
+ПОМЕСТИТЬ ДоляНДС
+ИЗ
+	(ВЫБРАТЬ
+		Выручка.Подразделение КАК Подразделение,
+		Выручка.НаправлениеДеятельности КАК НаправлениеДеятельности,
+		ВЫРАЗИТЬ(Выручка.Субконто1 КАК Справочник.ГруппыФинансовогоУчетаНоменклатуры) КАК НоменклатурнаяГруппа,
+		ВЫРАЗИТЬ(Выручка.Субконто2 КАК Перечисление.СтавкиНДС) КАК СтавкаНДС,
+		Выручка.СуммаОборотКт КАК ВыручкаВключаяНДС,
+		0 КАК НДС
+	ИЗ
+		РегистрБухгалтерии.Хозрасчетный.Обороты(
+				&amp;НачалоПериода,
+				&amp;КонецПериода,
+				,
+				Счет В
+					(ВЫБРАТЬ
+						ВыручкаОблагаетсяНДС.Счет
+					ИЗ
+						ВыручкаОблагаетсяНДС),
+				&amp;ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС,
+				Организация В (&amp;Организация)
+					И (Субконто1, Субконто2) В
+						(ВЫБРАТЬ РАЗЛИЧНЫЕ
+							ВыручкаОблагаетсяНДС.НоменклатурнаяГруппа,
+							ВыручкаОблагаетсяНДС.СтавкаНДС
+						ИЗ
+							ВыручкаОблагаетсяНДС) {(Подразделение).* КАК ОбособленноеПодразделение},
+				,
+				) КАК Выручка
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		НДС.Подразделение,
+		НДС.НаправлениеДеятельности,
+		ВЫРАЗИТЬ(НДС.Субконто1 КАК Справочник.ГруппыФинансовогоУчетаНоменклатуры),
+		ВЫРАЗИТЬ(НДС.Субконто2 КАК Перечисление.СтавкиНДС),
+		0,
+		НДС.СуммаОборотДт
+	ИЗ
+		РегистрБухгалтерии.Хозрасчетный.Обороты(
+				&amp;НачалоПериода,
+				&amp;КонецПериода,
+				,
+				Счет В
+					(ВЫБРАТЬ
+						СчетаНДС.Счет
+					ИЗ
+						СчетаНДС),
+				&amp;ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС,
+				Организация В (&amp;Организация)
+					И (Субконто1, Субконто2) В
+						(ВЫБРАТЬ РАЗЛИЧНЫЕ
+							ВыручкаОблагаетсяНДС.НоменклатурнаяГруппа,
+							ВыручкаОблагаетсяНДС.СтавкаНДС
+						ИЗ
+							ВыручкаОблагаетсяНДС) {(Подразделение).* КАК ОбособленноеПодразделение},
+				,
+				) КАК НДС) КАК ДоляНДС
+
+СГРУППИРОВАТЬ ПО
+	ДоляНДС.Подразделение,
+	ДоляНДС.НаправлениеДеятельности,
+	ДоляНДС.НоменклатурнаяГруппа,
+	ДоляНДС.СтавкаНДС
+
+ИНДЕКСИРОВАТЬ ПО
+	Подразделение,
+	НаправлениеДеятельности,
+	НоменклатурнаяГруппа,
+	СтавкаНДС
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДоляАкцизов.Подразделение КАК Подразделение,
+	ДоляАкцизов.НаправлениеДеятельности КАК НаправлениеДеятельности,
+	ДоляАкцизов.НоменклатурнаяГруппа КАК НоменклатурнаяГруппа,
+	СУММА(ДоляАкцизов.ВыручкаВключаяАкцизы) КАК ВыручкаВключаяАкцизы,
+	СУММА(ДоляАкцизов.Акцизы) КАК Акцизы
+ПОМЕСТИТЬ ДоляАкцизов
+ИЗ
+	(ВЫБРАТЬ
+		Выручка.Подразделение КАК Подразделение,
+		Выручка.НаправлениеДеятельности КАК НаправлениеДеятельности,
+		ВЫРАЗИТЬ(Выручка.Субконто1 КАК Справочник.ГруппыФинансовогоУчетаНоменклатуры) КАК НоменклатурнаяГруппа,
+		Выручка.СуммаОборотКт КАК ВыручкаВключаяАкцизы,
+		0 КАК Акцизы
+	ИЗ
+		РегистрБухгалтерии.Хозрасчетный.Обороты(
+				&amp;НачалоПериода,
+				&amp;КонецПериода,
+				,
+				Счет В
+					(ВЫБРАТЬ
+						ВыручкаОблагаетсяНДС.Счет
+					ИЗ
+						ВыручкаОблагаетсяНДС),
+				&amp;ВидыСубконтоНоменклатурныеГруппы,
+				Организация В (&amp;Организация)
+					И Субконто1 В
+						(ВЫБРАТЬ РАЗЛИЧНЫЕ
+							ВыручкаОблагаетсяНДС.НоменклатурнаяГруппа
+						ИЗ
+							ВыручкаОблагаетсяНДС) {(Подразделение).* КАК ОбособленноеПодразделение},
+				,
+				) КАК Выручка
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		Акцизы.Подразделение,
+		Акцизы.НаправлениеДеятельности,
+		ВЫРАЗИТЬ(Акцизы.Субконто1 КАК Справочник.ГруппыФинансовогоУчетаНоменклатуры),
+		0,
+		Акцизы.СуммаОборотДт
+	ИЗ
+		РегистрБухгалтерии.Хозрасчетный.Обороты(
+				&amp;НачалоПериода,
+				&amp;КонецПериода,
+				,
+				Счет В
+					(ВЫБРАТЬ
+						СчетаАкцизы.Счет
+					ИЗ
+						СчетаАкцизы),
+				&amp;ВидыСубконтоНоменклатурныеГруппы,
+				Организация В (&amp;Организация)
+					И Субконто1 В
+						(ВЫБРАТЬ РАЗЛИЧНЫЕ
+							ВыручкаОблагаетсяНДС.НоменклатурнаяГруппа
+						ИЗ
+							ВыручкаОблагаетсяНДС) {(Подразделение).* КАК ОбособленноеПодразделение},
+				,
+				) КАК Акцизы) КАК ДоляАкцизов
+
+СГРУППИРОВАТЬ ПО
+	ДоляАкцизов.Подразделение,
+	ДоляАкцизов.НаправлениеДеятельности,
+	ДоляАкцизов.НоменклатурнаяГруппа
+
+ИНДЕКСИРОВАТЬ ПО
+	Подразделение,
+	НаправлениеДеятельности,
+	НоменклатурнаяГруппа
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Выручка.Сумма КАК ВыручкаВключаяНДС,
+	Выручка.Сумма - ВЫБОР
+		КОГДА ЕСТЬNULL(ДоляНДС.ВыручкаВключаяНДС, 0) = 0
+			ТОГДА 0
+		КОГДА ДоляНДС.ВыручкаВключаяНДС = Выручка.Сумма
+			ТОГДА ДоляНДС.НДС
+		ИНАЧЕ ДоляНДС.НДС * Выручка.Сумма / ДоляНДС.ВыручкаВключаяНДС
+	КОНЕЦ - ВЫБОР
+		КОГДА ЕСТЬNULL(ДоляАкцизов.ВыручкаВключаяАкцизы, 0) = 0
+			ТОГДА 0
+		КОГДА ДоляАкцизов.ВыручкаВключаяАкцизы = Выручка.Сумма
+			ТОГДА ДоляАкцизов.Акцизы
+		ИНАЧЕ ДоляАкцизов.Акцизы * Выручка.Сумма / ДоляАкцизов.ВыручкаВключаяАкцизы
+	КОНЕЦ КАК ВыручкаБезНДС,
+	Выручка.Счет КАК Счет,
+	Выручка.Номенклатура КАК Номенклатура,
+	Выручка.НаправлениеДеятельности КАК НаправлениеДеятельности,
+	Выручка.НоменклатурнаяГруппа КАК ВидДеятельности,
+	Выручка.Подразделение КАК ОбособленноеПодразделение,
+	СпрНоменклатура.ЕдиницаДляОтчетов КАК ЕдиницаДляОтчетов,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Числитель / СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ / ВЫБОР
+		КОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов &lt;&gt; 0
+			ТОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов
+		ИНАЧЕ 1
+	КОНЕЦ КАК ЕдиницаДляОтчетовКоэффициент,
+	СпрНоменклатура.ЕдиницаДляОтчетов.ТипИзмеряемойВеличины КАК ТипИзмеряемойВеличиныЕдиницыОтчетов,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаИзмерения.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаИзмерения.Числитель / СпрНоменклатура.ЕдиницаИзмерения.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ КАК ЕдиницаИзмеренияКоэффициент,
+	СпрНоменклатура.ЕдиницаИзмерения.ТипИзмеряемойВеличины КАК ТипИзмеряемойВеличиныЕдиницаИзмерения,
+	СпрНоменклатура.ВесИспользовать КАК ВесИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ВесИспользовать
+				И СпрНоменклатура.ВесЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ВесЧислитель / СпрНоменклатура.ВесЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВесКоэффициент,
+	СпрНоменклатура.ДлинаИспользовать КАК ДлинаИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ДлинаИспользовать
+				И СпрНоменклатура.ДлинаЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ДлинаЧислитель / СпрНоменклатура.ДлинаЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ДлинаКоэффициент,
+	СпрНоменклатура.ПлощадьИспользовать КАК ПлощадьИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ПлощадьИспользовать
+				И СпрНоменклатура.ПлощадьЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ПлощадьЧислитель / СпрНоменклатура.ПлощадьЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПлощадьКоэффициент,
+	СпрНоменклатура.ОбъемИспользовать КАК ОбъемИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ОбъемИспользовать
+				И СпрНоменклатура.ОбъемЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ОбъемЧислитель / СпрНоменклатура.ОбъемЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ КАК ОбъемКоэффициент
+{ВЫБРАТЬ
+	ВыручкаВключаяНДС,
+	ВыручкаБезНДС,
+	Счет.*,
+	Номенклатура.*,
+	ОбособленноеПодразделение.*,
+	НаправлениеДеятельности.*,
+	ВидДеятельности.*,
+	ЕдиницаДляОтчетов,
+	ЕдиницаДляОтчетовКоэффициент,
+	ТипИзмеряемойВеличиныЕдиницыОтчетов,
+	ТипИзмеряемойВеличиныЕдиницаИзмерения,
+	ЕдиницаИзмеренияКоэффициент,
+	ВесИспользовать,
+	ВесКоэффициент,
+	ДлинаИспользовать,
+	ДлинаКоэффициент,
+	ПлощадьИспользовать,
+	ПлощадьКоэффициент,
+	ОбъемИспользовать,
+	ОбъемКоэффициент}
+ИЗ
+	ВыручкаОблагаетсяНДС КАК Выручка
+		ЛЕВОЕ СОЕДИНЕНИЕ ДоляНДС КАК ДоляНДС
+		ПО Выручка.Подразделение = ДоляНДС.Подразделение
+			И Выручка.НаправлениеДеятельности = ДоляНДС.НаправлениеДеятельности
+			И Выручка.НоменклатурнаяГруппа = ДоляНДС.НоменклатурнаяГруппа
+			И Выручка.СтавкаНДС = ДоляНДС.СтавкаНДС
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Номенклатура КАК СпрНоменклатура
+		ПО Выручка.Номенклатура = СпрНоменклатура.Ссылка
+		ЛЕВОЕ СОЕДИНЕНИЕ ДоляАкцизов КАК ДоляАкцизов
+		ПО Выручка.Подразделение = ДоляАкцизов.Подразделение
+			И Выручка.НаправлениеДеятельности = ДоляАкцизов.НаправлениеДеятельности
+			И Выручка.НоменклатурнаяГруппа = ДоляАкцизов.НоменклатурнаяГруппа
+{ГДЕ
+	Выручка.Сумма КАК ВыручкаВключаяНДС}
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВыручкаНеОблагаетсяНДС_Услуги.СуммаОборотКт,
+	ВыручкаНеОблагаетсяНДС_Услуги.СуммаОборотКт,
+	ВыручкаНеОблагаетсяНДС_Услуги.Счет,
+	ВыручкаНеОблагаетсяНДС_Услуги.Субконто2,
+	ВыручкаНеОблагаетсяНДС_Услуги.НаправлениеДеятельности,
+	ВыручкаНеОблагаетсяНДС_Услуги.Субконто1,
+	ВыручкаНеОблагаетсяНДС_Услуги.Подразделение,
+	СпрНоменклатура.ЕдиницаДляОтчетов,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Числитель / СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ / ВЫБОР
+		КОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов &lt;&gt; 0
+			ТОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов
+		ИНАЧЕ 1
+	КОНЕЦ,
+	СпрНоменклатура.ЕдиницаДляОтчетов.ТипИзмеряемойВеличины,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаИзмерения.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаИзмерения.Числитель / СпрНоменклатура.ЕдиницаИзмерения.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ,
+	СпрНоменклатура.ЕдиницаИзмерения.ТипИзмеряемойВеличины,
+	СпрНоменклатура.ВесИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ВесИспользовать
+				И СпрНоменклатура.ВесЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ВесЧислитель / СпрНоменклатура.ВесЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ДлинаИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ДлинаИспользовать
+				И СпрНоменклатура.ДлинаЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ДлинаЧислитель / СпрНоменклатура.ДлинаЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ПлощадьИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ПлощадьИспользовать
+				И СпрНоменклатура.ПлощадьЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ПлощадьЧислитель / СпрНоменклатура.ПлощадьЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ОбъемИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ОбъемИспользовать
+				И СпрНоменклатура.ОбъемЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ОбъемЧислитель / СпрНоменклатура.ОбъемЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			,
+			Счет В
+				(ВЫБРАТЬ
+					СчетаВыручки.Счет
+				ИЗ
+					СчетаВыручки
+				ГДЕ
+					НЕ СчетаВыручки.МожетОблагатьсяНДС),
+			&amp;ВидыСубконтоНоменклатурныеГруппы_Номенклатура,
+			Организация В (&amp;Организация)
+				И Субконто2 В
+					(ВЫБРАТЬ
+						НоменклатураУслуг.Ссылка
+					ИЗ
+						НоменклатураУслуг) {(Подразделение).* КАК ОбособленноеПодразделение, (Субконто1).* КАК ВидДеятельности, (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто2).* КАК Номенклатура, (ИСТИНА) КАК Услуга},
+			{(КорСчет) КАК СчетРасчетовСПокупателем},
+			) КАК ВыручкаНеОблагаетсяНДС_Услуги
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Номенклатура КАК СпрНоменклатура
+		ПО ВыручкаНеОблагаетсяНДС_Услуги.Субконто2.Номенклатура = СпрНоменклатура.Ссылка
+{ГДЕ
+	ВыручкаНеОблагаетсяНДС_Услуги.СуммаОборотКт КАК ВыручкаВключаяНДС,
+	ВыручкаНеОблагаетсяНДС_Услуги.СуммаОборотКт КАК ВыручкаБезНДС}
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВыручкаНеОблагаетсяНДС_Товары.СуммаОборотКт,
+	ВыручкаНеОблагаетсяНДС_Товары.СуммаОборотКт,
+	ВыручкаНеОблагаетсяНДС_Товары.Счет,
+	ВыручкаНеОблагаетсяНДС_Товары.Субконто2,
+	ВыручкаНеОблагаетсяНДС_Товары.НаправлениеДеятельности,
+	ВыручкаНеОблагаетсяНДС_Товары.Субконто1,
+	ВыручкаНеОблагаетсяНДС_Товары.Подразделение,
+	СпрНоменклатура.ЕдиницаДляОтчетов,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Числитель / СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ / ВЫБОР
+		КОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов &lt;&gt; 0
+			ТОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов
+		ИНАЧЕ 1
+	КОНЕЦ,
+	СпрНоменклатура.ЕдиницаДляОтчетов.ТипИзмеряемойВеличины,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаИзмерения.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаИзмерения.Числитель / СпрНоменклатура.ЕдиницаИзмерения.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ,
+	СпрНоменклатура.ЕдиницаИзмерения.ТипИзмеряемойВеличины,
+	СпрНоменклатура.ВесИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ВесИспользовать
+				И СпрНоменклатура.ВесЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ВесЧислитель / СпрНоменклатура.ВесЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ДлинаИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ДлинаИспользовать
+				И СпрНоменклатура.ДлинаЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ДлинаЧислитель / СпрНоменклатура.ДлинаЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ПлощадьИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ПлощадьИспользовать
+				И СпрНоменклатура.ПлощадьЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ПлощадьЧислитель / СпрНоменклатура.ПлощадьЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ОбъемИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ОбъемИспользовать
+				И СпрНоменклатура.ОбъемЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ОбъемЧислитель / СпрНоменклатура.ОбъемЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			,
+			Счет В
+				(ВЫБРАТЬ
+					СчетаВыручки.Счет
+				ИЗ
+					СчетаВыручки
+				ГДЕ
+					НЕ СчетаВыручки.МожетОблагатьсяНДС),
+			&amp;ВидыСубконтоНоменклатурныеГруппы_Номенклатура,
+			Организация В (&amp;Организация)
+				И Субконто2 &lt;&gt; ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка)
+				И НЕ Субконто2 В
+						(ВЫБРАТЬ
+							НоменклатураУслуг.Ссылка
+						ИЗ
+							НоменклатураУслуг) {(Подразделение).* КАК ОбособленноеПодразделение, (Субконто1).* КАК ВидДеятельности, (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто2).* КАК Номенклатура, (ЛОЖЬ) КАК Услуга},
+			{(КорСчет) КАК СчетРасчетовСПокупателем},
+			) КАК ВыручкаНеОблагаетсяНДС_Товары
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Номенклатура КАК СпрНоменклатура
+		ПО ВыручкаНеОблагаетсяНДС_Товары.Субконто2.Номенклатура = СпрНоменклатура.Ссылка
+{ГДЕ
+	ВыручкаНеОблагаетсяНДС_Товары.СуммаОборотКт КАК ВыручкаВключаяНДС,
+	ВыручкаНеОблагаетсяНДС_Товары.СуммаОборотКт КАК ВыручкаБезНДС}
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.СуммаОборотКт,
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.СуммаОборотКт,
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.Счет,
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.Субконто2,
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.НаправлениеДеятельности,
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.Субконто1,
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.Подразделение,
+	СпрНоменклатура.ЕдиницаДляОтчетов,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаДляОтчетов.Числитель / СпрНоменклатура.ЕдиницаДляОтчетов.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ / ВЫБОР
+		КОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов &lt;&gt; 0
+			ТОГДА СпрНоменклатура.КоэффициентЕдиницыДляОтчетов
+		ИНАЧЕ 1
+	КОНЕЦ,
+	СпрНоменклатура.ЕдиницаДляОтчетов.ТипИзмеряемойВеличины,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ЕдиницаИзмерения.Знаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ЕдиницаИзмерения.Числитель / СпрНоменклатура.ЕдиницаИзмерения.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ,
+	СпрНоменклатура.ЕдиницаИзмерения.ТипИзмеряемойВеличины,
+	СпрНоменклатура.ВесИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ВесИспользовать
+				И СпрНоменклатура.ВесЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ВесЧислитель / СпрНоменклатура.ВесЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ДлинаИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ДлинаИспользовать
+				И СпрНоменклатура.ДлинаЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ДлинаЧислитель / СпрНоменклатура.ДлинаЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ПлощадьИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ПлощадьИспользовать
+				И СпрНоменклатура.ПлощадьЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ПлощадьЧислитель / СпрНоменклатура.ПлощадьЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ,
+	СпрНоменклатура.ОбъемИспользовать,
+	ВЫБОР
+		КОГДА СпрНоменклатура.ОбъемИспользовать
+				И СпрНоменклатура.ОбъемЗнаменатель &lt;&gt; 0
+			ТОГДА СпрНоменклатура.ОбъемЧислитель / СпрНоменклатура.ОбъемЗнаменатель
+		ИНАЧЕ 0
+	КОНЕЦ
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			,
+			Счет В
+				(ВЫБРАТЬ
+					СчетаВыручки.Счет
+				ИЗ
+					СчетаВыручки
+				ГДЕ
+					НЕ СчетаВыручки.МожетОблагатьсяНДС),
+			&amp;ВидыСубконтоНоменклатурныеГруппы_Номенклатура,
+			Организация В (&amp;Организация)
+				И Субконто2 = ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка) {(Подразделение).* КАК ОбособленноеПодразделение, (Субконто1).* КАК ВидДеятельности, (ЕСТЬNULL(НаправлениеДеятельности, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (Субконто2).* КАК Номенклатура, (ИСТИНА) КАК ВключатьВыручкуБезНоменклатуры},
+			{(КорСчет) КАК СчетРасчетовСПокупателем},
+			) КАК ВыручкаНеОблагаетсяНДС_БезНоменклатуры
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Номенклатура КАК СпрНоменклатура
+		ПО ВыручкаНеОблагаетсяНДС_БезНоменклатуры.Субконто2.Номенклатура = СпрНоменклатура.Ссылка
+{ГДЕ
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.СуммаОборотКт КАК ВыручкаВключаяНДС,
+	ВыручкаНеОблагаетсяНДС_БезНоменклатуры.СуммаОборотКт КАК ВыручкаБезНДС}</query>
+			<autoFillFields>false</autoFillFields>
+		</item>
+		<item xsi:type="DataSetQuery">
+			<name>Прочие</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбособленноеПодразделение</dataPath>
+				<field>ОбособленноеПодразделение</field>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.СтруктураПредприятия</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Счет</dataPath>
+				<field>Счет</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтоимостьПроданныхНаСторону</dataPath>
+				<field>СтоимостьПроданныхНаСторону</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Стоимость проданных на сторону</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Cost of ones sold to third parties</v8:content>
+					</v8:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НаправлениеДеятельности</dataPath>
+				<field>НаправлениеДеятельности</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+				<valueType>
+					<v8:Type xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.НаправленияДеятельности</v8:Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СчетКт</dataPath>
+				<field>СчетКт</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УчетПоПодразделениям</dataPath>
+				<field>УчетПоПодразделениям</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаОборот</dataPath>
+				<field>СуммаОборот</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СчетДт</dataPath>
+				<field>СчетДт</field>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатьяДоходовОтРеализации</dataPath>
+				<field>СтатьяДоходовОтРеализации</field>
+				<title xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Статья доходов от реализации</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>Sales income item</v8:content>
+					</v8:item>
+				</title>
+				<role>
+					<dcscom:dimension>true</dcscom:dimension>
+					<dcscom:ignoreNullValues>true</dcscom:ignoreNullValues>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НДСПоРеализацииМПЗНаСторону</dataPath>
+				<field>НДСПоРеализацииМПЗНаСторону</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ПланСчетовХозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ ВТ_СчетаПрочихДоходов
+ИЗ
+	ПланСчетов.Хозрасчетный КАК ПланСчетовХозрасчетный
+ГДЕ
+	ПланСчетовХозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ПрочиеДоходы))
+{ГДЕ
+	ПланСчетовХозрасчетный.УчетПоПодразделениям КАК УчетПоПодразделениям}
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ ВТ_СчетаРасчетовСПокупателями
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.РасчетыСПокупателямиИЗаказчиками), ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.РасчетыСРазнымиДебиторамиИКредиторами))
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ ВТ_СчетаНДСПоРеализацииМПЗНаСторону
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.ПрочиеРасходы))
+{ГДЕ
+	Хозрасчетный.УчетПоПодразделениям КАК УчетПоПодразделениям}
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Хозрасчетный.Ссылка КАК Счет
+ПОМЕСТИТЬ ВТ_СчетаРасчетовПоНДС
+ИЗ
+	ПланСчетов.Хозрасчетный КАК Хозрасчетный
+ГДЕ
+	Хозрасчетный.Ссылка В ИЕРАРХИИ (ЗНАЧЕНИЕ(ПланСчетов.Хозрасчетный.НДС))
+
+ИНДЕКСИРОВАТЬ ПО
+	Счет
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ХозрасчетныйОборотыДтКт.СчетКт КАК Счет,
+	ХозрасчетныйОборотыДтКт.СчетДт КАК СчетДт,
+	ХозрасчетныйОборотыДтКт.СчетКт КАК СчетКт,
+	ХозрасчетныйОборотыДтКт.СуммаОборот КАК СтоимостьПроданныхНаСторону,
+	0 КАК НДСПоРеализацииМПЗНаСторону,
+	ХозрасчетныйОборотыДтКт.НаправлениеДеятельностиКт КАК НаправлениеДеятельности,
+	ХозрасчетныйОборотыДтКт.СубконтоКт1 КАК СтатьяДоходовОтРеализации
+{ВЫБРАТЬ
+	СчетДт.*,
+	СчетКт.*,
+	СтоимостьПроданныхНаСторону,
+	НДСПоРеализацииМПЗНаСторону,
+	СтатьяДоходовОтРеализации.*,
+	НаправлениеДеятельности.*,
+	Счет.* КАК Счет}
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.ОборотыДтКт(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			,
+			СчетДт В
+				(ВЫБРАТЬ
+					ВТ_СчетаРасчетовСПокупателями.Счет
+				ИЗ
+					ВТ_СчетаРасчетовСПокупателями) {(СчетДт).*},
+			,
+			СчетКт В
+				(ВЫБРАТЬ
+					ВТ_СчетаПрочихДоходов.Счет
+				ИЗ
+					ВТ_СчетаПрочихДоходов) {(СчетКт).*},
+			ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.ПрочиеДоходыИРасходы),
+			{(Организация В (&amp;Организация)), (ЕСТЬNULL(ПодразделениеКт, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение, (ЕСТЬNULL(НаправлениеДеятельностиКт, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (СубконтоКт1).* КАК СтатьяДоходовОтРеализации}) КАК ХозрасчетныйОборотыДтКт
+{ГДЕ
+	ХозрасчетныйОборотыДтКт.СуммаОборот}
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ХозрасчетныйОборотыДтКт.СчетДт,
+	ХозрасчетныйОборотыДтКт.СчетДт,
+	ХозрасчетныйОборотыДтКт.СчетКт,
+	-ХозрасчетныйОборотыДтКт.СуммаОборот,
+	ХозрасчетныйОборотыДтКт.СуммаОборот,
+	ХозрасчетныйОборотыДтКт.НаправлениеДеятельностиДт,
+	ХозрасчетныйОборотыДтКт.СубконтоДт1
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.ОборотыДтКт(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			,
+			СчетДт В
+				(ВЫБРАТЬ
+					ВТ_СчетаНДСПоРеализацииМПЗНаСторону.Счет
+				ИЗ
+					ВТ_СчетаНДСПоРеализацииМПЗНаСторону),
+			ЗНАЧЕНИЕ(ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.ПрочиеДоходыИРасходы),
+			СчетКт В
+				(ВЫБРАТЬ
+					ВТ_СчетаРасчетовПоНДС.Счет
+				ИЗ
+					ВТ_СчетаРасчетовПоНДС),
+			,
+			{(Организация В (&amp;Организация)), (ЕСТЬNULL(ПодразделениеДт, ЗНАЧЕНИЕ(Справочник.СтруктураПредприятия.ПустаяСсылка))).* КАК ОбособленноеПодразделение, (ЕСТЬNULL(НаправлениеДеятельностиДт, ЗНАЧЕНИЕ(Справочник.НаправленияДеятельности.ПустаяСсылка))).* КАК НаправлениеДеятельности, (СубконтоДт1).* КАК СтатьяДоходовОтРеализации}) КАК ХозрасчетныйОборотыДтКт
+{ГДЕ
+	(-ХозрасчетныйОборотыДтКт.СуммаОборот) КАК СуммаОборот}</query>
+			<autoFillFields>false</autoFillFields>
+		</item>
+	</dataSet>
+	<dataSet xsi:type="DataSetQuery">
+		<name>ЕдиницаСтатистическогоУчета</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.СтоимостнойИзмеритель</dataPath>
+			<field>СтоимостнойИзмеритель</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Служебные.Аналитика</dataPath>
+			<field>Аналитика</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодЕдиницыСтатистическогоУчета</dataPath>
+			<field>КодЕдиницыСтатистическогоУчета</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Код по ОКЕИ</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>ID</v8:content>
+				</v8:item>
+			</title>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
+					<dcscor:value xsi:type="xs:decimal">15</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеЕдиницыСтатистическогоУчета</dataPath>
+			<field>НаименованиеЕдиницыСтатистическогоУчета</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Наименование</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Description</v8:content>
+				</v8:item>
+			</title>
+			<appearance>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
+					<dcscor:value xsi:type="xs:decimal">15</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодПоОКПД</dataPath>
+			<field>КодПоОКПД</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеПоОКПД</dataPath>
+			<field>НаименованиеПоОКПД</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодСвободнойСтроки</dataPath>
+			<field>КодСвободнойСтроки</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Пересчет.ТипИзмеряемойВеличины</dataPath>
+			<field>ТипИзмеряемойВеличины</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Пересчет.Коэффициент</dataPath>
+			<field>Коэффициент</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Пересчет.ЕдиницаИзмерения</dataPath>
+			<field>ЕдиницаИзмерения</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Пересчет.Единица измерения</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Recalculation.Unit of measure</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dataPath>
+			<field>ПолноеНаименованиеЕдиницыСтатистическогоУчета</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Полное наименование</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Full description</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	ВЫБОР
+		КОГДА КлассификаторПродукцииПоВидамДеятельности.ЕдиницаСтатистическогоУчета.Код ЕСТЬ NULL
+		    ИЛИ КлассификаторПродукцииПоВидамДеятельности.ЕдиницаСтатистическогоУчета.Код = &amp;КодЕдиницыТысячиРублей
+			ТОГДА ИСТИНА
+		ИНАЧЕ ЛОЖЬ
+	КОНЕЦ КАК СтоимостнойИзмеритель,
+	КлассификаторПродукцииПоВидамДеятельности.Ссылка КАК Аналитика,
+	ВЫРАЗИТЬ(УпаковкиЕдиницыИзмерения.Код КАК СТРОКА(4)) КАК КодЕдиницыСтатистическогоУчета,
+	УпаковкиЕдиницыИзмерения.Наименование КАК НаименованиеЕдиницыСтатистическогоУчета,
+	УпаковкиЕдиницыИзмерения.НаименованиеПолное КАК ПолноеНаименованиеЕдиницыСтатистическогоУчета,
+	УпаковкиЕдиницыИзмерения.Ссылка КАК ЕдиницаИзмерения,
+	УпаковкиЕдиницыИзмерения.ТипИзмеряемойВеличины КАК ТипИзмеряемойВеличины,
+	ВЫБОР
+		КОГДА УпаковкиЕдиницыИзмерения.Знаменатель &lt;&gt; 0
+			ТОГДА УпаковкиЕдиницыИзмерения.Числитель / УпаковкиЕдиницыИзмерения.Знаменатель
+		ИНАЧЕ 1
+	КОНЕЦ КАК Коэффициент,
+	ВЫРАЗИТЬ(КлассификаторПродукцииПоВидамДеятельности.НаименованиеПолное КАК СТРОКА(1000)) КАК НаименованиеПоОКПД,
+	КлассификаторПродукцииПоВидамДеятельности.Код КАК КодПоОКПД,
+	ВЫБОР
+		КОГДА КлассификаторПродукцииПоВидамДеятельности.ВидСвободныхСтрокФормСтатистики = ЗНАЧЕНИЕ(Перечисление.ВидыСвободныхСтрокФормСтатистики.ВидыПродукцииОпт)
+			ТОГДА 80
+		КОГДА КлассификаторПродукцииПоВидамДеятельности.ВидСвободныхСтрокФормСтатистики = ЗНАЧЕНИЕ(Перечисление.ВидыСвободныхСтрокФормСтатистики.ВидыПродукцииРозница)
+			ТОГДА 70
+		ИНАЧЕ 50
+	КОНЕЦ КАК КодСвободнойСтроки
+{ВЫБРАТЬ
+	Аналитика,
+	СтоимостнойИзмеритель,
+	КодЕдиницыСтатистическогоУчета,
+	НаименованиеЕдиницыСтатистическогоУчета,
+	ПолноеНаименованиеЕдиницыСтатистическогоУчета,
+	ЕдиницаИзмерения,
+	ТипИзмеряемойВеличины,
+	Коэффициент,
+	НаименованиеПоОКПД,
+	КодПоОКПД,
+	КодСвободнойСтроки}
+ИЗ
+	Справочник.КлассификаторПродукцииПоВидамДеятельности КАК КлассификаторПродукцииПоВидамДеятельности
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.УпаковкиЕдиницыИзмерения КАК УпаковкиЕдиницыИзмерения
+		ПО КлассификаторПродукцииПоВидамДеятельности.ЕдиницаСтатистическогоУчета = УпаковкиЕдиницыИзмерения.Ссылка
+ГДЕ
+	КлассификаторПродукцииПоВидамДеятельности.Ссылка = &amp;Аналитика</query>
+		<autoFillFields>false</autoFillFields>
+	</dataSet>
+	<dataSet xsi:type="DataSetQuery">
+		<name>ОКВЭД</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Аналитика</dataPath>
+			<field>Аналитика</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодПоОКВЭД</dataPath>
+			<field>КодПоОКВЭД</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеПоОКВЭД</dataPath>
+			<field>НаименованиеПоОКВЭД</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	КлассификаторВидовЭкономическойДеятельности.Ссылка КАК Аналитика,
+	ВЫРАЗИТЬ(КлассификаторВидовЭкономическойДеятельности.НаименованиеПолное КАК СТРОКА(1000)) КАК НаименованиеПоОКВЭД,
+	КлассификаторВидовЭкономическойДеятельности.Код КАК КодПоОКВЭД
+{ВЫБРАТЬ
+	Аналитика,
+	НаименованиеПоОКВЭД,
+	КодПоОКВЭД}
+ИЗ
+	Справочник.КлассификаторВидовЭкономическойДеятельности КАК КлассификаторВидовЭкономическойДеятельности
+ГДЕ
+	КлассификаторВидовЭкономическойДеятельности.Ссылка = &amp;Аналитика</query>
+	</dataSet>
+	<dataSet xsi:type="DataSetQuery">
+		<name>ОКУН</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Аналитика</dataPath>
+			<field>Аналитика</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодПоОКУН</dataPath>
+			<field>КодПоОКУН</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеПоОКУН</dataPath>
+			<field>НаименованиеПоОКУН</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеЕдиницыТысячиРублей</dataPath>
+			<field>НаименованиеЕдиницыТысячиРублей</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодСвободнойСтрокиОКУН</dataPath>
+			<field>КодСвободнойСтрокиОКУН</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	КлассификаторУслугНаселению.Ссылка КАК Аналитика,
+	ВЫРАЗИТЬ(КлассификаторУслугНаселению.НаименованиеПолное КАК СТРОКА(1000)) КАК НаименованиеПоОКУН,
+	КлассификаторУслугНаселению.Код КАК КодПоОКУН,
+	60 КАК КодСвободнойСтрокиОКУН,
+	&amp;НаименованиеЕдиницыТысячиРублей КАК НаименованиеЕдиницыТысячиРублей
+{ВЫБРАТЬ
+	Аналитика,
+	НаименованиеПоОКУН,
+	КодПоОКУН,
+	КодСвободнойСтрокиОКУН,
+	НаименованиеЕдиницыТысячиРублей}
+ИЗ
+	Справочник.КлассификаторУслугНаселению КАК КлассификаторУслугНаселению
+ГДЕ
+	КлассификаторУслугНаселению.Ссылка = &amp;Аналитика</query>
+		<autoFillFields>false</autoFillFields>
+	</dataSet>
+	<dataSetLink>
+		<sourceDataSet>ПроизводствоИПродажи</sourceDataSet>
+		<destinationDataSet>ЕдиницаСтатистическогоУчета</destinationDataSet>
+		<sourceExpression>Служебные.Аналитика</sourceExpression>
+		<destinationExpression>Служебные.Аналитика</destinationExpression>
+		<required>false</required>
+	</dataSetLink>
+	<dataSetLink>
+		<sourceDataSet>ПроизводствоИПродажи</sourceDataSet>
+		<destinationDataSet>ОКВЭД</destinationDataSet>
+		<sourceExpression>Служебные.Аналитика</sourceExpression>
+		<destinationExpression>Аналитика</destinationExpression>
+		<parameter>Аналитика</parameter>
+		<parameterListAllowed>false</parameterListAllowed>
+		<required>false</required>
+	</dataSetLink>
+	<dataSetLink>
+		<sourceDataSet>ПроизводствоИПродажи</sourceDataSet>
+		<destinationDataSet>ОКУН</destinationDataSet>
+		<sourceExpression>Служебные.Аналитика</sourceExpression>
+		<destinationExpression>Аналитика</destinationExpression>
+		<parameter>Аналитика</parameter>
+		<parameterListAllowed>false</parameterListAllowed>
+		<required>false</required>
+	</dataSetLink>
+	<calculatedField>
+		<dataPath>ОстатокВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>ВЫБОР 
+    КОГДА ISNULL(Служебные.СтоимостнойИзмеритель, ЛОЖЬ)
+        ТОГДА СтоимостьОстатка / 1000
+    КОГДА Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаДляОтчетов ИЛИ Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаИзмерения ТОГДА
+        Служебные.ОстатокВЕдиницахОрганизации
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ЕдиницаИзмеренияКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ЕдиницаДляОтчетовКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныВес И Служебные.ВесИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ВесКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныДлина И Служебные.ДлинаИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ДлинаКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныПлощадь И Служебные.ПлощадьИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ПлощадьКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныОбъем И Служебные.ОбъемИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ОбъемКоэффициент
+    ИНАЧЕ
+        Служебные.ОстатокВЕдиницахОрганизации
+КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Остаток в единицах статистического учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Balance in statistical accounting units</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+			<group>true</group>
+			<order>true</order>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧДЦ=2</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NFD=2</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОбъемПроизводстваВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>ВЫБОР 
+    КОГДА ISNULL(Служебные.СтоимостнойИзмеритель, ЛОЖЬ)
+        ТОГДА Служебные.СтоимостьПроизводства / 1000
+    КОГДА Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаДляОтчетов ИЛИ Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаИзмерения ТОГДА
+        Служебные.ОбъемПроизводства
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения
+        ТОГДА (Служебные.ОбъемПроизводства / Пересчет.Коэффициент) * Служебные.ЕдиницаИзмеренияКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов
+        ТОГДА (Служебные.ОбъемПроизводства / Пересчет.Коэффициент) * Служебные.ЕдиницаДляОтчетовКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныВес И Служебные.ВесИспользовать
+        ТОГДА (Служебные.ОбъемПроизводства / Пересчет.Коэффициент) * Служебные.ВесКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныДлина И Служебные.ДлинаИспользовать
+        ТОГДА (Служебные.ОбъемПроизводства / Пересчет.Коэффициент) * Служебные.ДлинаКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныПлощадь И Служебные.ПлощадьИспользовать
+        ТОГДА (Служебные.ОбъемПроизводства / Пересчет.Коэффициент) * Служебные.ПлощадьКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныОбъем И Служебные.ОбъемИспользовать
+        ТОГДА (Служебные.ОбъемПроизводства / Пересчет.Коэффициент) * Служебные.ОбъемКоэффициент
+    ИНАЧЕ
+        Служебные.ОбъемПроизводства
+КОНЕЦ
+</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Объем производства в единицах статистического учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Production volume in units of statistical accounting </v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+			<group>true</group>
+			<order>true</order>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧДЦ=2</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NFD=2</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОбъемРеализацииВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>ВЫБОР 
+    КОГДА ISNULL(Служебные.СтоимостнойИзмеритель, ЛОЖЬ)
+        ТОГДА Служебные.СтоимостьРеализации / 1000
+    КОГДА Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаДляОтчетов ИЛИ Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаИзмерения ТОГДА
+        Служебные.ОбъемРеализации
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ЕдиницаИзмеренияКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ЕдиницаДляОтчетовКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныВес И Служебные.ВесИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ВесКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныДлина И Служебные.ДлинаИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ДлинаКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныПлощадь И Служебные.ПлощадьИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ПлощадьКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныОбъем И Служебные.ОбъемИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ОбъемКоэффициент
+    ИНАЧЕ
+        Служебные.ОбъемРеализации
+КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Объем реализации в единицах статистического учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Sales volume in units of statistical accounting</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+			<group>true</group>
+			<order>true</order>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧДЦ=2</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NFD=2</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОбъемРозничныхПродажВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>ВЫБОР 
+    КОГДА ISNULL(Служебные.СтоимостнойИзмеритель, ЛОЖЬ)
+        ТОГДА ВыручкаВключаяНДС / 1000
+    КОГДА Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаДляОтчетов ИЛИ Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаИзмерения ТОГДА
+        Служебные.ОбъемРеализации
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ЕдиницаИзмеренияКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ЕдиницаДляОтчетовКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныВес И Служебные.ВесИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ВесКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныДлина И Служебные.ДлинаИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ДлинаКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныПлощадь И Служебные.ПлощадьИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ПлощадьКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныОбъем И Служебные.ОбъемИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ОбъемКоэффициент
+    ИНАЧЕ
+        Служебные.ОбъемРеализации
+КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Объем розничных продаж в единицах статистического учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Retail sales volume in units of statistical accounting</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+			<group>true</group>
+			<order>true</order>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧДЦ=2</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NFD=2</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОстатокВРозницеВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>ВЫБОР 
+    КОГДА ISNULL(Служебные.СтоимостнойИзмеритель, ЛОЖЬ)
+        ТОГДА Служебные.СтоимостьОстаткаВРозничныхЦенах / 1000
+    КОГДА Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаДляОтчетов ИЛИ Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаИзмерения ТОГДА
+        Служебные.ОстатокВЕдиницахОрганизации
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ЕдиницаИзмеренияКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ЕдиницаДляОтчетовКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныВес И Служебные.ВесИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ВесКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныДлина И Служебные.ДлинаИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ДлинаКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныПлощадь И Служебные.ПлощадьИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ПлощадьКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныОбъем И Служебные.ОбъемИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ОбъемКоэффициент
+    ИНАЧЕ
+        Служебные.ОстатокВЕдиницахОрганизации
+КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Остаток в рознице в единицах статистического учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Balance in retail in statistical accounting units</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+			<group>true</group>
+			<order>true</order>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧДЦ=2</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NFD=2</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОбъемРеализацииБезНДСВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>ВЫБОР 
+    КОГДА ISNULL(Служебные.СтоимостнойИзмеритель, ЛОЖЬ)
+        ТОГДА ВыручкаБезНДС / 1000
+    КОГДА Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаДляОтчетов ИЛИ Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаИзмерения ТОГДА
+        Служебные.ОбъемРеализации
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ЕдиницаИзмеренияКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ЕдиницаДляОтчетовКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныВес И Служебные.ВесИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ВесКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныДлина И Служебные.ДлинаИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ДлинаКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныПлощадь И Служебные.ПлощадьИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ПлощадьКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныОбъем И Служебные.ОбъемИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ОбъемКоэффициент
+    ИНАЧЕ
+        Служебные.ОбъемРеализации
+КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Объем реализации без НДС в единицах статистического учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Sales volume excluding VAT in units of statistical accounting</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+			<group>true</group>
+			<order>true</order>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧДЦ=2</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NFD=2</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОбъемРеализацииВключаяНДСВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>ВЫБОР 
+    КОГДА ISNULL(Служебные.СтоимостнойИзмеритель, ЛОЖЬ)
+        ТОГДА ВыручкаВключаяНДС / 1000
+    КОГДА Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаДляОтчетов ИЛИ Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаИзмерения ТОГДА
+        Служебные.ОбъемРеализации
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ЕдиницаИзмеренияКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ЕдиницаДляОтчетовКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныВес И Служебные.ВесИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ВесКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныДлина И Служебные.ДлинаИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ДлинаКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныПлощадь И Служебные.ПлощадьИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ПлощадьКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныОбъем И Служебные.ОбъемИспользовать
+        ТОГДА (Служебные.ОбъемРеализации / Пересчет.Коэффициент) * Служебные.ОбъемКоэффициент
+    ИНАЧЕ
+        Служебные.ОбъемРеализации
+КОНЕЦ
+
+</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Объем реализации включая НДС в единицах статистического учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Sales volume VAT inclusive in units of statistical accounting</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+			<group>true</group>
+			<order>true</order>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧДЦ=2</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NFD=2</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ВыручкаВключаяНДСТысРуб</dataPath>
+		<expression>ВыручкаВключаяНДС/1000</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Выручка включая НДС (Тыс руб)</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Revenue VAT inclusive (Thousand of rubles)</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+			<group>true</group>
+			<order>true</order>
+		</useRestriction>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧДЦ=2</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>NFD=2</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОстатокВРознице</dataPath>
+		<expression>ВЫБОР 
+    КОГДА ISNULL(Служебные.СтоимостнойИзмеритель, ЛОЖЬ)
+        ТОГДА Служебные.СтоимостьОстаткаВРозничныхЦенах / 1000
+    КОГДА Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаДляОтчетов ИЛИ Пересчет.ЕдиницаИзмерения = Служебные.ЕдиницаИзмерения ТОГДА
+        Служебные.ОстатокВЕдиницахОрганизации
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницаИзмерения
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ЕдиницаИзмеренияКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = Служебные.ТипИзмеряемойВеличиныЕдиницыОтчетов
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ЕдиницаДляОтчетовКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныВес И Служебные.ВесИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ВесКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныДлина И Служебные.ДлинаИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ДлинаКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныПлощадь И Служебные.ПлощадьИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ПлощадьКоэффициент
+    КОГДА Пересчет.ТипИзмеряемойВеличины &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ТипыИзмеряемыхВеличин.ПустаяСсылка) И Пересчет.ТипИзмеряемойВеличины = &amp;ТипИзмеряемойВеличиныОбъем И Служебные.ОбъемИспользовать
+        ТОГДА (Служебные.ОстатокВЕдиницахОрганизации / Пересчет.Коэффициент) * Служебные.ОбъемКоэффициент
+    ИНАЧЕ
+        Служебные.ОстатокВЕдиницахОрганизации
+КОНЕЦ
+</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Остаток в рознице</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Stock in retail</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+		</useRestriction>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ЕстьВыручкаБезНДС</dataPath>
+		<expression>ВЫБОР КОГДА ВыручкаБезНДС &gt; 0 ТОГДА "1" ИНАЧЕ "0" КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Есть выручка без НДС</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>There is a revenue excluding VAT</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОстатокВРозничныхЦенах</dataPath>
+		<expression>Служебные.СтоимостьОстаткаВРозничныхЦенах</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Остаток в розничных ценах</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Balance in retail prices</v8:content>
+			</v8:item>
+		</title>
+		<useRestriction>
+			<condition>true</condition>
+		</useRestriction>
+	</calculatedField>
+	<totalField>
+		<dataPath>СтоимостьОстатка</dataPath>
+		<expression>Сумма(СтоимостьОстатка)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОстатокВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>Сумма(ОстатокВЕдиницахСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОбъемПроизводстваВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>Сумма(ОбъемПроизводстваВЕдиницахСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОбъемРеализацииВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>Сумма(ОбъемРеализацииВЕдиницахСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ЗачисленоВОсновныеСредства</dataPath>
+		<expression>Сумма(ЗачисленоВОсновныеСредства)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВыручкаБезНДС</dataPath>
+		<expression>Сумма(ВыручкаБезНДС)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВыручкаВключаяНДС</dataPath>
+		<expression>Сумма(ВыручкаВключаяНДС)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КодЕдиницыСтатистическогоУчета</dataPath>
+		<expression>Максимум(КодЕдиницыСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НаименованиеЕдиницыСтатистическогоУчета</dataPath>
+		<expression>Максимум(НаименованиеЕдиницыСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НаименованиеПоОКПД</dataPath>
+		<expression>Максимум(НаименованиеПоОКПД)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КодПоОКПД</dataPath>
+		<expression>Максимум(КодПоОКПД)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КодСвободнойСтроки</dataPath>
+		<expression>Максимум(КодСвободнойСтроки)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НаименованиеПоОКВЭД</dataPath>
+		<expression>Максимум(НаименованиеПоОКВЭД)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КодПоОКВЭД</dataPath>
+		<expression>Максимум(КодПоОКВЭД)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОбъемРозничныхПродажВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>Сумма(ОбъемРозничныхПродажВЕдиницахСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОстатокВРозницеВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>Сумма(ОстатокВРозницеВЕдиницахСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОбъемРеализацииБезНДСВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>Сумма(ОбъемРеализацииБезНДСВЕдиницахСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОбъемРеализацииВключаяНДСВЕдиницахСтатистическогоУчета</dataPath>
+		<expression>Сумма(ОбъемРеализацииВключаяНДСВЕдиницахСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КодПоОКУН</dataPath>
+		<expression>Максимум(КодПоОКУН)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НаименованиеПоОКУН</dataPath>
+		<expression>Максимум(НаименованиеПоОКУН)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НаименованиеЕдиницыТысячиРублей</dataPath>
+		<expression>Максимум(НаименованиеЕдиницыТысячиРублей)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ВыручкаВключаяНДСТысРуб</dataPath>
+		<expression>Сумма(ВыручкаВключаяНДСТысРуб)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КодСвободнойСтрокиОКУН</dataPath>
+		<expression>Максимум(КодСвободнойСтрокиОКУН)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Служебные.ЕдиницаИзмерения</dataPath>
+		<expression>Служебные.ЕдиницаИзмерения</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Служебные.ОстатокВЕдиницахОрганизации</dataPath>
+		<expression>Сумма(Служебные.ОстатокВЕдиницахОрганизации)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Служебные.ОбъемПроизводства</dataPath>
+		<expression>Сумма(Служебные.ОбъемПроизводства)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Служебные.ОбъемРеализации</dataPath>
+		<expression>Сумма(Служебные.ОбъемРеализации)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Служебные.СтоимостьОстаткаВРозничныхЦенах</dataPath>
+		<expression>Сумма(Служебные.СтоимостьОстаткаВРозничныхЦенах)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Служебные.СтоимостьПроизводства</dataPath>
+		<expression>Сумма(Служебные.СтоимостьПроизводства)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Служебные.СтоимостьРеализации</dataPath>
+		<expression>Сумма(Служебные.СтоимостьРеализации)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОстатокВРознице</dataPath>
+		<expression>Сумма(ОстатокВРознице)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СтоимостьПроданныхНаСторону</dataPath>
+		<expression>Сумма(СтоимостьПроданныхНаСторону)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dataPath>
+		<expression>Максимум(ПолноеНаименованиеЕдиницыСтатистическогоУчета)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ЕстьВыручкаБезНДС</dataPath>
+		<expression>Максимум(ЕстьВыручкаБезНДС)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОстатокВРозничныхЦенах</dataPath>
+		<expression>Сумма(ОстатокВРозничныхЦенах)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НаправлениеДеятельности</dataPath>
+		<expression>Количество(НаправлениеДеятельности)</expression>
+	</totalField>
+	<parameter>
+		<name>Организация</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Организация</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Company</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:CatalogRef.Организации</v8:Type>
+		</valueType>
+		<useRestriction>false</useRestriction>
+		<valueListAllowed>true</valueListAllowed>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>НачалоПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Начало периода</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period start</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>КонецПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Конец периода</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period end</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>СледующийПериод</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Следующий период</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Next period</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<expression>ДобавитьКДате(&amp;КонецПериода,"СЕКУНДА", 1)</expression>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>Аналитика</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Аналитика</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Dimension</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:CatalogRef.КлассификаторПродукцииПоВидамДеятельности</v8:Type>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>false</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>ВидыСубконтоНоменклатурныеГруппы_Номенклатура</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Виды субконто номенклатурные группы номенклатура</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Extra dimension types product categories products</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:ChartOfCharacteristicTypesRef.ВидыСубконтоХозрасчетные</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.НоменклатурныеГруппы</value>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Номенклатура</value>
+		<useRestriction>true</useRestriction>
+		<valueListAllowed>true</valueListAllowed>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>ВидыСубконтоНоменклатурныеГруппы_Номенклатура_СтавкиНДС</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Виды субконто номенклатурные группы номенклатура ставки НДС</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Extra dimension types product categories products VAT rates</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:ChartOfCharacteristicTypesRef.ВидыСубконтоХозрасчетные</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.НоменклатурныеГруппы</value>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Номенклатура</value>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.СтавкиНДС</value>
+		<useRestriction>true</useRestriction>
+		<valueListAllowed>true</valueListAllowed>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Виды субконто номенклатурные группы ставки НДС</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Extra dimension types product categories VAT rates</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:ChartOfCharacteristicTypesRef.ВидыСубконтоХозрасчетные</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.НоменклатурныеГруппы</value>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.СтавкиНДС</value>
+		<useRestriction>true</useRestriction>
+		<valueListAllowed>true</valueListAllowed>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>КодЕдиницыТысячиРублей</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Код единицы тысячи рублей</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Unit code thousand rubles</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:string</v8:Type>
+			<v8:StringQualifiers>
+				<v8:Length>3</v8:Length>
+				<v8:AllowedLength>Fixed</v8:AllowedLength>
+			</v8:StringQualifiers>
+		</valueType>
+		<value xsi:type="xs:string">384</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+		<use>Always</use>
+	</parameter>
+	<parameter>
+		<name>НаименованиеЕдиницыТысячиРублей</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Наименование единицы тысячи рублей</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Unit name thousand rubles</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:string</v8:Type>
+			<v8:StringQualifiers>
+				<v8:Length>11</v8:Length>
+				<v8:AllowedLength>Fixed</v8:AllowedLength>
+			</v8:StringQualifiers>
+		</valueType>
+		<value xsi:type="xs:string">тыс. рублей</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+		<use>Always</use>
+	</parameter>
+	<parameter>
+		<name>ТипИзмеряемойВеличиныВес</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Тип измеряемой величины вес</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Measured value type weight</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:EnumRef.ТипыИзмеряемыхВеличин</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">Перечисление.ТипыИзмеряемыхВеличин.Вес</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>ТипИзмеряемойВеличиныДлина</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Тип измеряемой величины длина</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Measured value type length</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:EnumRef.ТипыИзмеряемыхВеличин</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">Перечисление.ТипыИзмеряемыхВеличин.Длина</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>ТипИзмеряемойВеличиныПлощадь</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Тип измеряемой величины площадь</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Measured value type area</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:EnumRef.ТипыИзмеряемыхВеличин</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">Перечисление.ТипыИзмеряемыхВеличин.Площадь</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>ТипИзмеряемойВеличиныОбъем</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Тип измеряемой величины объем</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Measured value type volume</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:EnumRef.ТипыИзмеряемыхВеличин</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">Перечисление.ТипыИзмеряемыхВеличин.Объем</value>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>ВидыСубконтоНоменклатурныеГруппы</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Виды субконто номенклатурные группы</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Виды субконто номенклатурные группы</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:ChartOfCharacteristicTypesRef.ВидыСубконтоХозрасчетные</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.НоменклатурныеГруппы</value>
+		<useRestriction>true</useRestriction>
+		<valueListAllowed>true</valueListAllowed>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС_ВариантНО</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Виды субконто номенклатурные группы ставки НДС вариант НО</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Виды субконто номенклатурные группы ставки НДС вариант НО</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:ChartOfCharacteristicTypesRef.ВидыСубконтоХозрасчетные</v8:Type>
+		</valueType>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.НоменклатурныеГруппы</value>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.СтавкиНДС</value>
+		<value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.ВариантыНалогообложенияПрибыли</value>
+		<useRestriction>true</useRestriction>
+		<valueListAllowed>true</valueListAllowed>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Основной</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Main</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+			</dcsset:selection>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>Расшифровка</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Расшифровка</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Drill down</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Контрагенты</dcscor:value>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Договоры</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Номенклатура</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>ОстатокВЕдиницахСтатистическогоУчета</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Остаток в единицах статистического учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Balance in statistical accounting units</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ЕдиницаИзмерения</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ОстатокВЕдиницахОрганизации</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ед. изм. статистики</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Statistic unit of measure</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КодЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Контрагенты</dcscor:value>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Договоры</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>НаправлениеДеятельности</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Счет</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+					<dcsset:item xsi:type="dcsset:StructureItemGroup">
+						<dcsset:groupItems>
+							<dcsset:item xsi:type="dcsset:GroupItemField">
+								<dcsset:field>Номенклатура</dcsset:field>
+								<dcsset:groupType>Items</dcsset:groupType>
+								<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+								<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+								<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+							</dcsset:item>
+						</dcsset:groupItems>
+						<dcsset:order>
+							<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+						</dcsset:order>
+						<dcsset:selection>
+							<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+						</dcsset:selection>
+					</dcsset:item>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>ОбъемПроизводстваВЕдиницахСтатистическогоУчета</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Объем Производства В Единицах Статистического Учета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Production Volume In Units of Statistical Accounting </v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ЕдиницаИзмерения</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ОбъемПроизводства</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ед. изм. статистики</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Statistic unit of measure</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КодЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Аналитика</dcscor:parameter>
+					<dcscor:value xsi:nil="true"/>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Контрагенты</dcscor:value>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Договоры</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Номенклатура</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>ОбъемРеализацииВЕдиницахСтатистическогоУчета</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>ОбъемРеализацииВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>ОбъемРеализацииВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ЕдиницаИзмерения</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ОбъемРеализации</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ед. изм. статистики</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Statistic unit of measure</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КодЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Аналитика</dcscor:parameter>
+					<dcscor:value xsi:nil="true"/>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Контрагенты</dcscor:value>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Договоры</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Номенклатура</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>ОбъемРозничныхПродажВЕдиницахСтатистическогоУчета</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>ОбъемРозничныхПродажВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>ОбъемРозничныхПродажВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>ВыручкаВключаяНДС</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ед. изм. статистики</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Statistic unit of measure</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КодЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Аналитика</dcscor:parameter>
+					<dcscor:value xsi:nil="true"/>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Контрагенты</dcscor:value>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Договоры</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Номенклатура</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>ОстатокВРозницеВЕдиницахСтатистическогоУчета</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>ОстатокВРозницеВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>ОстатокВРозницеВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ЕдиницаИзмерения</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ОстатокВЕдиницахОрганизации</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ед. изм. статистики</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Statistic unit of measure</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КодЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Аналитика</dcscor:parameter>
+					<dcscor:value xsi:nil="true"/>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Контрагенты</dcscor:value>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Договоры</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Номенклатура</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>ОбъемРеализацииБезНДСВЕдиницахСтатистическогоУчета</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>ОбъемРеализацииБезНДСВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>ОбъемРеализацииБезНДСВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ЕдиницаИзмерения</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ОбъемРеализации</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ед. изм. статистики</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Statistic unit of measure</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КодЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Аналитика</dcscor:parameter>
+					<dcscor:value xsi:nil="true"/>
+				</dcscor:item>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Контрагенты</dcscor:value>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Договоры</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Номенклатура</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>ОбъемРеализацииВключаяНДСВЕдиницахСтатистическогоУчета</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>ОбъемРеализацииВключаяНДСВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>ОбъемРеализацииВключаяНДСВЕдиницахСтатистическогоУчета</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:selection>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ЕдиницаИзмерения</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemField">
+					<dcsset:field>Служебные.ОбъемРеализации</dcsset:field>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ед. изм. статистики</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Statistic unit of measure</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>КодЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПолноеНаименованиеЕдиницыСтатистическогоУчета</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+			</dcsset:selection>
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ВидыСубконтоНоменклатурныеГруппы_СтавкиНДС</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Контрагенты</dcscor:value>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">ПланВидовХарактеристик.ВидыСубконтоХозрасчетные.Договоры</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Номенклатура</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>СтоимостьПроданныхНаСторону</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Стоимость реализованных на сторону МПЗ</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Cost implemented on the side of inventories</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Счет</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>СтатьяДоходовОтРеализации</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

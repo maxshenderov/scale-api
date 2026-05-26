@@ -1,0 +1,1101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcscom="http://v8.1c.ru/8.1/data-composition-system/common" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type="DataSetQuery">
+		<name>Реквизиты</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодОКВЭД</dataPath>
+			<field>КодОКВЭД</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеОКВЭД</dataPath>
+			<field>НаименованиеОКВЭД</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>НаименованиеПолное</dataPath>
+			<field>НаименованиеПолное</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодПоОКПО</dataPath>
+			<field>КодПоОКПО</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КодПоОКТМО</dataPath>
+			<field>КодПоОКТМО</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Код по ОКТМО</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>RNCMT code</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ФактическийАдрес</dataPath>
+			<field>ФактическийАдрес</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Фактический адрес</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Business address</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ДатаРегистрации</dataPath>
+			<field>ДатаРегистрации</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ЮридическийАдресJSON</dataPath>
+			<field>ЮридическийАдресJSON</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ЮридическийАдрес</dataPath>
+			<field>ЮридическийАдрес</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ФактическийАдресJSON</dataPath>
+			<field>ФактическийАдресJSON</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	Организации.КодОКВЭД КАК КодОКВЭД,
+	Организации.НаименованиеОКВЭД КАК НаименованиеОКВЭД,
+	Организации.КодПоОКПО КАК КодПоОКПО,
+	Организации.НаименованиеПолное КАК НаименованиеПолное,
+	ЕСТЬNULL(Организации.РегистрацияВНалоговомОргане.КодПоОКТМО, "") КАК КодПоОКТМО,
+	ОрганизацияФактичесикйАдрес.Представление КАК ФактическийАдрес,
+	ОрганизацияФактичесикйАдрес.Значение КАК ФактическийАдресJSON,
+	ОрганизацияЮридическийАдрес.Представление КАК ЮридическийАдрес,
+	ОрганизацияЮридическийАдрес.Значение КАК ЮридическийАдресJSON,
+	Организации.ДатаРегистрации КАК ДатаРегистрации
+{ВЫБРАТЬ
+	КодОКВЭД,
+	НаименованиеОКВЭД,
+	КодПоОКПО,
+	НаименованиеПолное,
+	КодПоОКТМО,
+	ФактическийАдрес,
+	ФактическийАдресJSON,
+	ЮридическийАдрес,
+	ЮридическийАдресJSON,
+	ДатаРегистрации}
+ИЗ
+	Справочник.Организации КАК Организации
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Организации.КонтактнаяИнформация КАК ОрганизацияФактичесикйАдрес
+		ПО Организации.Ссылка = ОрганизацияФактичесикйАдрес.Ссылка
+			И (ОрганизацияФактичесикйАдрес.Вид = ЗНАЧЕНИЕ(Справочник.ВидыКонтактнойИнформации.ФактАдресОрганизации))
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Организации.КонтактнаяИнформация КАК ОрганизацияЮридическийАдрес
+		ПО Организации.Ссылка = ОрганизацияЮридическийАдрес.Ссылка
+			И (ОрганизацияЮридическийАдрес.Вид = ЗНАЧЕНИЕ(Справочник.ВидыКонтактнойИнформации.ЮрАдресОрганизации))
+ГДЕ
+	Организации.Ссылка = &amp;Организация</query>
+		<autoFillFields>false</autoFillFields>
+	</dataSet>
+	<dataSet xsi:type="DataSetQuery">
+		<name>ДатаНачалаХозДеятельности</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ДатаНачалаХозДеятельности</dataPath>
+			<field>Дата</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОсуществляласьДеятельностьВТекущемПериоде</dataPath>
+			<field>ОсуществляласьДеятельностьВТекущемПериоде</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой</dataPath>
+			<field>ОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ РАЗЛИЧНЫЕ
+	КОНЕЦПЕРИОДА(ВыручкаИСебестоимостьПродаж.Период, МЕСЯЦ) КАК Дата
+ПОМЕСТИТЬ ДатыДокументов
+ИЗ
+	РегистрНакопления.ВыручкаИСебестоимостьПродаж КАК ВыручкаИСебестоимостьПродаж
+ГДЕ
+	ВыручкаИСебестоимостьПродаж.АналитикаУчетаПоПартнерам.Организация = &amp;Организация
+
+ОБЪЕДИНИТЬ
+
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	КОНЕЦПЕРИОДА(СебестоимостьТоваров.Период, МЕСЯЦ)
+ИЗ
+	РегистрНакопления.СебестоимостьТоваров КАК СебестоимостьТоваров
+ГДЕ
+	СебестоимостьТоваров.Организация = &amp;Организация
+	И СебестоимостьТоваров.РазделУчета = ЗНАЧЕНИЕ(Перечисление.РазделыУчетаСебестоимостиТоваров.НезавершенноеПроизводство)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ ПЕРВЫЕ 1
+	ДатыДокументов.Дата КАК Дата,
+	ДатыДокументов.Дата &lt;= &amp;КонецПериода КАК ОсуществляласьДеятельностьВТекущемПериоде,
+	ВЫБОР
+		КОГДА ДатыДокументов.Дата &lt;= &amp;КонецПериода
+			ТОГДА "X"
+		ИНАЧЕ ""
+	КОНЕЦ КАК ОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой
+{ВЫБРАТЬ
+	ОсуществляласьДеятельностьВТекущемПериоде,
+	Дата,
+	ОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой}
+ИЗ
+	ДатыДокументов КАК ДатыДокументов
+
+УПОРЯДОЧИТЬ ПО
+	Дата</query>
+	</dataSet>
+	<dataSet xsi:type="DataSetQuery">
+		<name>РегистрацииОбособленныхПодразделений</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>КоличествоРегистраций</dataPath>
+			<field>КоличествоРегистраций</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество регистраций</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Registration quantity</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>РегистрацияДругогоРегиона</dataPath>
+			<field>РегистрацияДругогоРегиона</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Регистрация другого региона</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Register another region</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>РегистрацияВНалоговомОргане</dataPath>
+			<field>РегистрацияВНалоговомОргане</field>
+			<role>
+				<dcscom:required>true</dcscom:required>
+			</role>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ЭтоФилиал</dataPath>
+			<field>ЭтоФилиал</field>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	Организации.Ссылка КАК Организация,
+	Организации.РегистрацияВНалоговомОргане КАК РегистрацияВНалоговомОргане,
+	ЕСТЬNULL(ОрганизацииКонтактнаяИнформация.Регион, """") КАК Регион,
+	ЕСТЬNULL(Организации.РегистрацияВНалоговомОргане.КПП, """") КАК КПП
+ПОМЕСТИТЬ ОбособленныеПодразделенияОрганизации
+ИЗ
+	Справочник.Организации КАК Организации
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Организации.КонтактнаяИнформация КАК ОрганизацииКонтактнаяИнформация
+		ПО Организации.Ссылка = ОрганизацииКонтактнаяИнформация.Ссылка
+			И (ОрганизацииКонтактнаяИнформация.Вид = ЗНАЧЕНИЕ(Справочник.ВидыКонтактнойИнформации.ФактАдресОрганизации))
+ГДЕ
+	Организации.ГоловнаяОрганизация = &amp;Организация
+	И НЕ Организации.ПометкаУдаления
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПодразделенияОрганизаций.Ссылка КАК Подразделение,
+	ПодразделенияОрганизаций.РегистрацияВНалоговомОргане КАК РегистрацияВНалоговомОргане,
+	ЕСТЬNULL(ПодразделенияОрганизацийКонтактнаяИнформация.Регион, """") КАК Регион,
+	ЕСТЬNULL(ПодразделенияОрганизаций.РегистрацияВНалоговомОргане.КПП, """") КАК КПП
+ПОМЕСТИТЬ ОбособленныеПодразделения
+ИЗ
+	ОбособленныеПодразделенияОрганизации КАК ОбособленныеПодразделенияОрганизации
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.ПодразделенияОрганизаций КАК ПодразделенияОрганизаций
+		ПО ОбособленныеПодразделенияОрганизации.Организация = ПодразделенияОрганизаций.Владелец
+			И (ПодразделенияОрганизаций.ОбособленноеПодразделение)
+			И (НЕ ПодразделенияОрганизаций.ПометкаУдаления)
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Организации.КонтактнаяИнформация КАК ПодразделенияОрганизацийКонтактнаяИнформация
+		ПО (ПодразделенияОрганизаций.Ссылка = ПодразделенияОрганизацийКонтактнаяИнформация.Ссылка)
+			И (ПодразделенияОрганизацийКонтактнаяИнформация.Вид = ЗНАЧЕНИЕ(Справочник.ВидыКонтактнойИнформации.ФактАдресОрганизации))
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ОрганизацииКонтактнаяИнформация.Регион КАК Регион
+ПОМЕСТИТЬ РегионОрганизации
+ИЗ
+	Справочник.Организации.КонтактнаяИнформация КАК ОрганизацииКонтактнаяИнформация
+ГДЕ
+	ОрганизацииКонтактнаяИнформация.Ссылка = &amp;Организация
+	И ОрганизацииКонтактнаяИнформация.Вид = ЗНАЧЕНИЕ(Справочник.ВидыКонтактнойИнформации.ФактАдресОрганизации)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	Регистрации.РегистрацияВНалоговомОргане КАК РегистрацияВНалоговомОргане,
+	Регистрации.РегистрацияДругогоРегиона КАК РегистрацияДругогоРегиона,
+	Регистрации.ЭтоФилиал КАК ЭтоФилиал,
+	Регистрации.КоличествоРегистраций КАК КоличествоРегистраций
+{ВЫБРАТЬ
+	РегистрацияВНалоговомОргане,
+	РегистрацияДругогоРегиона,
+	ЭтоФилиал,
+	КоличествоРегистраций}
+ИЗ
+	(ВЫБРАТЬ
+		ОбособленныеПодразделенияОрганизации.РегистрацияВНалоговомОргане КАК РегистрацияВНалоговомОргане,
+		ВЫБОР
+			КОГДА РегионОрганизации.Регион ЕСТЬ NULL
+				ТОГДА ИСТИНА
+			ИНАЧЕ ЛОЖЬ
+		КОНЕЦ КАК РегистрацияДругогоРегиона,
+		ПОДСТРОКА(ОбособленныеПодразделенияОрганизации.КПП, 5, 2) = "43" КАК ЭтоФилиал,
+		1 КАК КоличествоРегистраций
+	ИЗ
+		ОбособленныеПодразделенияОрганизации КАК ОбособленныеПодразделенияОрганизации
+			ЛЕВОЕ СОЕДИНЕНИЕ РегионОрганизации КАК РегионОрганизации
+			ПО ОбособленныеПодразделенияОрганизации.Регион = РегионОрганизации.Регион
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ РАЗЛИЧНЫЕ
+		ОбособленныеПодразделения.РегистрацияВНалоговомОргане,
+		ВЫБОР
+			КОГДА РегионОрганизации.Регион ЕСТЬ NULL
+				ТОГДА ИСТИНА
+			ИНАЧЕ ЛОЖЬ
+		КОНЕЦ,
+		ПОДСТРОКА(ОбособленныеПодразделения.КПП, 5, 2) = "43",
+		1
+	ИЗ
+		ОбособленныеПодразделения КАК ОбособленныеПодразделения
+			ЛЕВОЕ СОЕДИНЕНИЕ РегионОрганизации КАК РегионОрганизации
+			ПО ОбособленныеПодразделения.Регион = РегионОрганизации.Регион) КАК Регистрации</query>
+		<autoFillFields>false</autoFillFields>
+	</dataSet>
+	<dataSet xsi:type="DataSetQuery">
+		<name>ПрименяемыеСистемыНалогообложения</name>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Организация</dataPath>
+			<field>Организация</field>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ЕНВД</dataPath>
+			<field>ЕНВД</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ЕНВД</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>UTII</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>УСН</dataPath>
+			<field>УСН</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>УСН</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>STS</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ОСНО</dataPath>
+			<field>ОСНО</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ОСНО</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>GTS</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>Патент</dataPath>
+			<field>Патент</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Патент</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Patent</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	МАКСИМУМ(НастройкиСистемыНалогообложения.ПлательщикНалогаНаПрибыль) КАК ОСНО,
+	МИНИМУМ(НастройкиСистемыНалогообложения.ПрименяетсяЕНВД) КАК ЕНВД,
+	МАКСИМУМ(НастройкиСистемыНалогообложения.ПрименяетсяУСН) КАК УСН,
+	МАКСИМУМ(НастройкиСистемыНалогообложения.ПрименяетсяПСН) КАК Патент
+ПОМЕСТИТЬ УчетнаяПолитика
+ИЗ
+	Справочник.Организации КАК Организации
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.НастройкиСистемыНалогообложения КАК НастройкиСистемыНалогообложения
+		ПО Организации.ГоловнаяОрганизация = НастройкиСистемыНалогообложения.Организация
+ГДЕ
+	Организации.Ссылка = &amp;Организация
+	И НастройкиСистемыНалогообложения.Период &lt;= &amp;КонецПериода
+	И НастройкиСистемыНалогообложения.Период &gt;= &amp;НачалоПериода
+{ГДЕ
+	НастройкиСистемыНалогообложения.Организация.*}
+
+СГРУППИРОВАТЬ ПО
+	НастройкиСистемыНалогообложения.Организация
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	УчетнаяПолитикаОрганизацийНаНачалоПериода.ПлательщикНалогаНаПрибыль,
+	УчетнаяПолитикаОрганизацийНаНачалоПериода.ПрименяетсяЕНВД,
+	УчетнаяПолитикаОрганизацийНаНачалоПериода.ПрименяетсяУСН,
+	УчетнаяПолитикаОрганизацийНаНачалоПериода.ПрименяетсяПСН
+ИЗ
+	РегистрСведений.НастройкиСистемыНалогообложения.СрезПоследних(&amp;НачалоПериода, Организация = ВЫРАЗИТЬ(&amp;Организация КАК Справочник.Организации).ГоловнаяОрганизация) КАК УчетнаяПолитикаОрганизацийНаНачалоПериода
+{ГДЕ
+	УчетнаяПолитикаОрганизацийНаНачалоПериода.Организация.*}
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	МАКСИМУМ(УчетнаяПолитика.ЕНВД) КАК ЕНВД,
+	МАКСИМУМ(УчетнаяПолитика.УСН) КАК УСН,
+	МАКСИМУМ(УчетнаяПолитика.ОСНО) КАК ОСНО,
+	МАКСИМУМ(УчетнаяПолитика.Патент) КАК Патент
+{ВЫБРАТЬ
+	ЕНВД,
+	УСН,
+	ОСНО,
+	Патент}
+ИЗ
+	УчетнаяПолитика КАК УчетнаяПолитика</query>
+		<autoFillFields>false</autoFillFields>
+	</dataSet>
+	<calculatedField>
+		<dataPath>ДеньРегистрации</dataPath>
+		<expression>Формат(ДатаРегистрации,"ДФ=дд")</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>День регистрации</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Registration day</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧЦ=2; ЧДЦ=; ЧВН=</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>ND=2; NFD=; NLZ=</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>МесяцРегистрации</dataPath>
+		<expression>Формат(ДатаРегистрации,"ДФ=ММ")</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Месяц регистрации</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Registration month</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧЦ=2; ЧДЦ=; ЧВН=</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>ND=2; NFD=; NLZ=</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ГодРегистрации</dataPath>
+		<expression>Формат(ДатаРегистрации,"ДФ=гггг")</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Год регистрации</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Registration year</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ЧЦ=4; ЧДЦ=; ЧВН=</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>ND=4; NFD=; NLZ=</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ДеньНачалаХозДеятельности</dataPath>
+		<expression>Формат(ДатаНачалаХозДеятельности,"ДФ=дд")</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>День начала хоз деятельности</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Business activity start day</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ДФ=дд</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>DF=dd</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>МесяцНачалаХозДеятельности</dataPath>
+		<expression>Формат(ДатаНачалаХозДеятельности,"ДФ=ММ")</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Месяц начала хоз деятельности</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Month of business activity start</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ДФ=ММ</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>DF=MM</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ГодНачалаХозДеятельности</dataPath>
+		<expression>Формат(ДатаНачалаХозДеятельности,"ДФ=гггг")</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Год начала хоз деятельности</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Business activity start year </v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ДФ=гггг</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>DF=yyyy</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>КоличествоМесяцевДеятельностиВТекущемГоду</dataPath>
+		<expression>Выбор Когда &amp;НачалоПериода &gt; ДатаНачалаХозДеятельности Тогда 12 Иначе 12 - (Месяц(ДатаНачалаХозДеятельности)-1) Конец</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Количество месяцев деятельности в текущем году</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Activity month quantity in the current year</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ЕНВДОтметкаСтрокой</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>ЕНВДОтметка строкой</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>UTII Mark as a line</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОСНООтметкаСтрокой</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>ОСНООтметка строкой</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>GTSMark with line</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>УСНОтметкаСтрокой</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>УСНОтметка строкой</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>STS Mark as a line</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>УСНГалка</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>УСНГалка</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>STS Check box</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>НеУСНГалка</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Не УСНГалка</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Not STS Check box</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>НеУСНОтметкаСтрокой</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Не УСНОтметка строкой</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Not STS Mark as a line</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>УСНЧислом</dataPath>
+		<expression>УСН</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>УСНЧислом</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>УСНЧислом</v8:content>
+			</v8:item>
+		</title>
+		<appearance>
+			<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+				<dcscor:parameter>Формат</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>БЛ=0; БИ=1</v8:content>
+					</v8:item>
+					<v8:item>
+						<v8:lang>en</v8:lang>
+						<v8:content>BF=0; BT=1</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</appearance>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>НеОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой</dataPath>
+		<expression>ВЫБОР
+        КОГДА ОсуществляласьДеятельностьВТекущемПериоде
+            ТОГДА ""
+        ИНАЧЕ "X"
+    КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Не осуществлялась деятельность в текущем периоде отметка строкой</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Activity has not been performed in the current period mark as a line</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ВидДеятельности</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Вид деятельности</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Activity type</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>КоличествоТранспортныхСредств</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Количество транспортных средств</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Vehicle amount</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>НеОсуществляласьДеятельностьВТекущемПериоде</dataPath>
+		<expression>НЕ ОсуществляласьДеятельностьВТекущемПериоде</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Не осуществлялась деятельность в текущем периоде</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Activity has not been performed in the current period</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ПатентОтметкаСтрокой</dataPath>
+		<expression>ВЫБОР
+        КОГДА Патент
+            ТОГДА "X"
+        ИНАЧЕ ""
+    КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Патент отметка строкой</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Patent mark as a line</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>НПДОтметкаСтрокой</dataPath>
+		<expression>""</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>НПД отметка строкой</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>PIT mark as line</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>ОсуществляласьДеятельностьВТекущемПериодеЧислом</dataPath>
+		<expression>ОсуществляласьДеятельностьВТекущемПериоде</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Осуществлялась деятельность в текущем периоде числом</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Activities were carried out in the current period by number</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>КоличествоРегистрацийДругиеРегионы</dataPath>
+		<expression>ВЫБОР КОГДА РегистрацияДругогоРегиона ТОГДА 1 ИНАЧЕ 0 КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Количество регистраций в других регионах</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Number of registrations in other regions</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>КоличествоФилиалов</dataPath>
+		<expression>ВЫБОР КОГДА ЭтоФилиал ТОГДА 1 ИНАЧЕ 0 КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Количество филиалов</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Number of branch offices</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<calculatedField>
+		<dataPath>КоличествоФилиаловДругиеРегионы</dataPath>
+		<expression>ВЫБОР КОГДА РегистрацияДругогоРегиона И ЭтоФилиал ТОГДА 1 ИНАЧЕ 0 КОНЕЦ</expression>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Количество филиалов в других регионах</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Number of branch offices in other regions</v8:content>
+			</v8:item>
+		</title>
+	</calculatedField>
+	<totalField>
+		<dataPath>ГодНачалаХозДеятельности</dataPath>
+		<expression>ГодНачалаХозДеятельности</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ДеньНачалаХозДеятельности</dataPath>
+		<expression>ДеньНачалаХозДеятельности</expression>
+	</totalField>
+	<totalField>
+		<dataPath>МесяцНачалаХозДеятельности</dataPath>
+		<expression>МесяцНачалаХозДеятельности</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоРегистраций</dataPath>
+		<expression>Сумма(КоличествоРегистраций)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ЕНВД</dataPath>
+		<expression>Максимум(ЕНВД)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ЕНВДОтметкаСтрокой</dataPath>
+		<expression>ВЫБОР
+        КОГДА Максимум(ЕНВД)
+            ТОГДА "X"
+        ИНАЧЕ ""
+    КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОСНО</dataPath>
+		<expression>Максимум(ОСНО)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОСНООтметкаСтрокой</dataPath>
+		<expression>ВЫБОР
+        КОГДА Максимум(ОСНО)
+            ТОГДА "X"
+        ИНАЧЕ ""
+    КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>УСН</dataPath>
+		<expression>Максимум(УСН)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>УСНОтметкаСтрокой</dataPath>
+		<expression>ВЫБОР
+        КОГДА Максимум(УСН)
+            ТОГДА "X"
+        ИНАЧЕ ""
+    КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>УСНГалка</dataPath>
+		<expression>ВЫБОР
+        КОГДА Максимум(УСН)
+            ТОГДА "V"
+        ИНАЧЕ ""
+    КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НеУСНГалка</dataPath>
+		<expression>ВЫБОР
+        КОГДА Максимум(УСН)
+            ТОГДА ""
+        ИНАЧЕ "V"
+    КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НеУСНОтметкаСтрокой</dataPath>
+		<expression>ВЫБОР
+        КОГДА Максимум(УСН)
+            ТОГДА ""
+        ИНАЧЕ "X"
+    КОНЕЦ</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НеОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой</dataPath>
+		<expression>НеОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОсуществляласьДеятельностьВТекущемПериоде</dataPath>
+		<expression>Максимум(ОсуществляласьДеятельностьВТекущемПериоде)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоТранспортныхСредств</dataPath>
+		<expression>Максимум(КоличествоТранспортныхСредств)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой</dataPath>
+		<expression>ОсуществляласьДеятельностьВТекущемПериодеОтметкаСтрокой</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НеОсуществляласьДеятельностьВТекущемПериоде</dataPath>
+		<expression>Максимум(НеОсуществляласьДеятельностьВТекущемПериоде)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>Патент</dataPath>
+		<expression>Максимум(Патент)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ПатентОтметкаСтрокой</dataPath>
+		<expression>Максимум(ПатентОтметкаСтрокой)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>НПДОтметкаСтрокой</dataPath>
+		<expression>Максимум(НПДОтметкаСтрокой)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ОсуществляласьДеятельностьВТекущемПериодеЧислом</dataPath>
+		<expression>Сумма(ОсуществляласьДеятельностьВТекущемПериодеЧислом)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоРегистрацийДругиеРегионы</dataPath>
+		<expression>Сумма(КоличествоРегистрацийДругиеРегионы)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоФилиалов</dataPath>
+		<expression>Сумма(КоличествоФилиалов)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоФилиаловДругиеРегионы</dataPath>
+		<expression>Сумма(КоличествоФилиаловДругиеРегионы)</expression>
+	</totalField>
+	<parameter>
+		<name>Организация</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Организация</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Company</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:CatalogRef.Организации</v8:Type>
+		</valueType>
+		<value xsi:nil="true"/>
+		<useRestriction>true</useRestriction>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>КонецПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Конец периода</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period end</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<parameter>
+		<name>НачалоПериода</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Начало периода</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Period start</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Основной</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>Main</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Организация</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">Справочник.СтраныМира.Россия</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+	<settingsVariant>
+		<dcsset:name>РасшифровкаПодразделения</dcsset:name>
+		<dcsset:presentation xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>РасшифровкаПодразделения</v8:content>
+			</v8:item>
+			<v8:item>
+				<v8:lang>en</v8:lang>
+				<v8:content>РасшифровкаПодразделения</v8:content>
+			</v8:item>
+		</dcsset:presentation>
+		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Организация</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DesignTimeValue">Справочник.СтраныМира.Россия</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>Подразделение</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</DataCompositionSchema>

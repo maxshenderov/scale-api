@@ -1,0 +1,1262 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<HTTPService uuid="07392695-ab3c-429a-896e-8de7fca09433">
+		<Properties>
+			<Name>СерверЛояльности</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сервер лояльности</v8:content>
+				</v8:item>
+				<v8:item>
+					<v8:lang>en</v8:lang>
+					<v8:content>Loyalty server</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment/>
+			<RootURL>loyaltyservice</RootURL>
+			<ReuseSessions>AutoUse</ReuseSessions>
+			<SessionMaxAge>20</SessionMaxAge>
+		</Properties>
+		<ChildObjects>
+			<URLTemplate uuid="fc05dfdf-8002-4dc2-9126-20dc12269575">
+				<Properties>
+					<Name>ping</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ping</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>ping</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/ping/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="f6213a2f-900c-4344-9372-b44ac0ec1260">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>pingGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="e0c5bdf0-f740-4f5f-8163-33df54ae0af2">
+				<Properties>
+					<Name>ПолучитьБонусыКлиента</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить бонусы клиента</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get customer bonus points</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getclientbonuses/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="49263947-3a82-42d6-84c4-048d629e17f4">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьБонусыКлиентаGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="a052e13f-4aef-45c9-97b4-d6c18317fa88">
+				<Properties>
+					<Name>РазблокироватьБонусыКлиента</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разблокировать бонусы клиента</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Unlock customer bonus points</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/unlockclientbonuses/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="857ffed1-377a-471c-9b3b-a3d415e3dcaf">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>РазблокироватьБонусыКлиентаPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="805e97e2-200d-4ba2-b020-a917f3f2315b">
+				<Properties>
+					<Name>СписатьБонусыКлиента</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Списать бонусы клиента</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Write off customer bonus points</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/writeoffclientbonuses/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="b4c7074c-18cf-434d-9dd0-ef76c43653cc">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>СписатьБонусыКлиентаPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="416f8e2b-ad66-4111-a6a8-d8eb598f80e2">
+				<Properties>
+					<Name>ВыдатьКартуКлиенту</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выдать карту клиенту</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Issue card to customer</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/issueclientcard/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="0d7c9d62-7f80-4518-8bb0-78634c186ec9">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>ВыдатьКартуКлиентуPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="5ae83dba-8d2d-4b15-9c24-063fe13104e6">
+				<Properties>
+					<Name>ИнформацияОЗапретахПродаж</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Информация о запретах продаж</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Information on sales restriction</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/salesrestrictionsinfo/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="d62ee234-bba0-4b57-9798-71942bf909e1">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ИнформацияОЗапретахПродажGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="ad85cafe-bd8e-4c6b-95a2-5d7e2f277ca2">
+				<Properties>
+					<Name>ПолучитьДанныеПодарочногоСертификата</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить данные подарочного сертификата</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get gift card data</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getgiftcardinfo/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="789c8900-e5e6-49ff-a1ec-16acbb178701">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьДанныеПодарочногоСертификатаGET</Handler>
+						</Properties>
+					</Method>
+					<Method uuid="e90b1574-c3af-4202-8600-2dc6e8ef40e4">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>ПолучитьДанныеПодарочногоСертификатаPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="201f8e7d-1351-41f8-992b-e416c3895374">
+				<Properties>
+					<Name>РазблокироватьПодарочныйСертификат</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разблокировать подарочный сертификат</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Unlock gift card</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/unlockgiftcard/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="e5b4f307-fa29-4b0f-b371-9835b7642be4">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>РазблокироватьПодарочныйСертификатPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="5fe290bb-d2f7-4c67-b619-159751be6089">
+				<Properties>
+					<Name>СписатьПодарочныйСертификат</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Списать подарочный сертификат</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Write off gift card</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/writeoffgiftcard/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="cde0732a-f573-4235-8cfa-6523db56c733">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>СписатьПодарочныйСертификатPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="99faea2f-eac1-4cee-aa00-67951b6270c9">
+				<Properties>
+					<Name>ИспользоватьАвтоматическиеСкидки</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Использовать автоматические скидки</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Use discounts</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/useautomaticdiscounts/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="4a967be5-9229-47f4-8eea-f18123864fcb">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ИспользоватьАвтоматическиеСкидкиGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="9234fb54-50c1-4940-87c9-9e56f7cbfbdd">
+				<Properties>
+					<Name>РассчитатьАвтоматическиеСкидки</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Рассчитать автоматические скидки</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Calculate discounts</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/calculatediscounts/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="c9af0002-f71e-44d0-9c80-79db3005fd92">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>РассчитатьАвтоматическиеСкидкиGET</Handler>
+						</Properties>
+					</Method>
+					<Method uuid="23cd5835-26da-463e-8d62-39b97ee884b7">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>РассчитатьАвтоматическиеСкидкиPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="582fae70-ae47-4dc9-af7b-ea1a63f6392d">
+				<Properties>
+					<Name>ПроверитьПодарочныйСертификат</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Проверить подарочный сертификат</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Check gift card</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/checkgiftcard/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="dd1399ba-0f55-4122-bd99-04d13093f497">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПроверитьПодарочныйСертификатGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="2c1a71ec-3798-438e-bf44-db9e167d2fa6">
+				<Properties>
+					<Name>ПолучитьСписокУправляемыхСкидок</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить список управляемых скидок</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get list of managed discounts</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getcontrolleddiscountslist/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="ab07124a-097c-4dc1-80bd-a394f1971ea1">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьСписокУправляемыхСкидокGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="88c1cf65-0958-4d26-9b85-d51e7e3ade27">
+				<Properties>
+					<Name>РазблокироватьПромокод</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разблокировать промокод</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Unlock promo code</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/unlockpromocode/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="c14a5b7e-6a15-4173-910e-557b81e70060">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>РазблокироватьПромокодPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="e1fb5674-6b3f-478b-963f-b5f7559c9d2b">
+				<Properties>
+					<Name>ПолучитьДанныеПромокода</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить данные промокода</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get promo code data</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/promocodeinfo/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="16c64f7d-66f6-41f5-b134-a0663baf8882">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьДанныеПромокодаGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="f147d5c6-9a48-4245-a253-0f69d6f9a4e5">
+				<Properties>
+					<Name>ПолучитьОстатки</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить остатки</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get balance</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getleftovers/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="f77227bc-c5c1-401d-8221-1f9e6ed04047">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьОстаткиGET</Handler>
+						</Properties>
+					</Method>
+					<Method uuid="3efec888-5159-47ed-8fc2-4cd8c57d9159">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>ПолучитьОстаткиPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="054be924-394c-4bd5-944d-ca6dda43a11b">
+				<Properties>
+					<Name>НайтиКартуКлиента</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Найти карту клиента</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Find customer card</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/findclientcard/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="cb55e595-7f2b-41e0-8d5f-6dfedd8ff120">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>НайтиКартуКлиентаGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="31d20a67-349d-4b0c-85ba-d22e931c0293">
+				<Properties>
+					<Name>ПолучитьОборотыПродаж</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить обороты продаж</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get sales turnovers</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/salesturnover/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="6cafe566-a9bb-4e2d-94f9-e356572b445f">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьОборотыПродажGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="77dc4999-4a59-4e93-8c70-8ff137d47d97">
+				<Properties>
+					<Name>ПолучитьВидыКарт</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить виды карт</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get card kinds</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getcardtypes/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="73f17afb-bdd0-40fa-8abd-8f6f1c265c49">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьВидыКартGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="9dac9ba1-5327-400d-9980-7772269b7589">
+				<Properties>
+					<Name>ПолучитьСписокПродавцов</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить список продавцов</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get seller list</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/listofemployees/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="b8a8406b-55ee-4557-a0e8-08a16c3358bc">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьСписокПродавцовGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="eb40f16c-8717-45b5-b894-552c0e97ebda">
+				<Properties>
+					<Name>ПолучитьСписокСерийПоОтбору</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить список серий по отбору</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get batch list by filter</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getlistbatches/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="268d5409-4bab-4c34-b2d1-c82f1c178493">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьСписокСерийПоОтборуGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="f1acc915-8f6c-410e-86c3-57e40150500b">
+				<Properties>
+					<Name>ПолучитьДанныеСерии</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить данные серии</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get batch data</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getseriesdata/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="71840a3b-1d24-4d6b-84b7-b794c046e183">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьДанныеСерииGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="4de7762d-ca52-41a4-977e-1a1071339df1">
+				<Properties>
+					<Name>ОбработатьКодМаркировки</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Обработать код маркировки</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Process marking code</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/processmarkingcode/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="ac984b3d-384a-4a7e-9f8e-4fc07152a335">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>ОбработатьКодМаркировкиPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="f8f3c922-57a5-48e6-8ed6-da4ac43c579e">
+				<Properties>
+					<Name>ПолучитьТокенАвторизацииГосИС</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить токен авторизации ГосИС</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get authorization token of State information system</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getgosisauthorizationtoken/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="7434debf-faa7-47af-bb2c-d1132c99211a">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>ПолучитьТокенАвторизацииГосИСPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="7e3d2ee2-fe7f-447b-b436-c52506a5f944">
+				<Properties>
+					<Name>ПолучитьАктуальнуюЦену</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить актуальную цену</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get relevant price</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getprice/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="be228227-2491-44fb-b798-a82017471b12">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьАктуальнуюЦенуGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="99c68e40-4802-486a-94f1-c04503df6e94">
+				<Properties>
+					<Name>ПолучитьСписокСкидокПоВидамОплаты</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Получить список скидок по видам оплаты</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Get list of discounts by payment kinds</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/getlistonpaydiscounts/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="a852ddf9-2743-46b4-ac71-7a11aa8fa194">
+						<Properties>
+							<Name>GET</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>GET</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>GET</HTTPMethod>
+							<Handler>ПолучитьСписокСкидокПоВидамОплатыGET</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="17e60c39-be0a-4d82-897b-53a895c777fb">
+				<Properties>
+					<Name>ОбъединитьБонусныеКарты</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Объединить бонусные карты</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Combine bonus cards</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/unitedbonuscards/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="bdcfb92b-7dd8-4d27-a5b4-d852edb31797">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>ОбъединитьБонусныеКартыPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="bb214cc3-f510-4ffa-9583-4bf947eab8ff">
+				<Properties>
+					<Name>РазблокироватьБонусыКлиентаНовый</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разблокировать бонусы клиента новый</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Unlock customer bonus points new</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/unlockclientbonusesnew/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="f8a9b8b6-04f1-4392-a682-5143a7f28334">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>РазблокироватьБонусыКлиентаНовыйPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="31495aca-b516-428a-adbd-f981d8c692e0">
+				<Properties>
+					<Name>СписатьБонусыКлиентаНовый</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Списать бонусы клиента новый</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Write off customer bonus points new</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/writeoffclientbonusesnew/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="13688d03-9e26-45c8-a777-b7cbc81dae74">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>СписатьБонусыКлиентаНовыйPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="c2827a7e-cffa-44e5-bcde-8dba3f4db475">
+				<Properties>
+					<Name>РазблокироватьПодарочныйСертификатНовый</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разблокировать подарочный сертификат новый</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Unlock gift card new</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/unlockgiftcardnew/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="f28a4580-339b-4f8a-98fa-8651d4649157">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>РазблокироватьПодарочныйСертификатНовыйPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="c19c7f9b-1c3c-4929-9f65-be0e55c18506">
+				<Properties>
+					<Name>СписатьПодарочныйСертификатНовый</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Списать подарочный сертификат новый</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Write off gift card new</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/writeoffgiftcardnew/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="8fd144fc-8d50-4835-9e0d-6251fd0cc03f">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>СписатьПодарочныйСертификатНовыйPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+			<URLTemplate uuid="83655ac4-b347-42aa-8eb8-00ee90a7f367">
+				<Properties>
+					<Name>РазблокироватьПромокодНовый</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разблокировать промокод новый</v8:content>
+						</v8:item>
+						<v8:item>
+							<v8:lang>en</v8:lang>
+							<v8:content>Unlock promo code new</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Template>/unlockpromocodenew/</Template>
+				</Properties>
+				<ChildObjects>
+					<Method uuid="f761fe92-d242-4572-9ed4-00af8b486650">
+						<Properties>
+							<Name>POST</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+								<v8:item>
+									<v8:lang>en</v8:lang>
+									<v8:content>POST</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<HTTPMethod>POST</HTTPMethod>
+							<Handler>РазблокироватьПромокодНовыйPOST</Handler>
+						</Properties>
+					</Method>
+				</ChildObjects>
+			</URLTemplate>
+		</ChildObjects>
+	</HTTPService>
+</MetaDataObject>

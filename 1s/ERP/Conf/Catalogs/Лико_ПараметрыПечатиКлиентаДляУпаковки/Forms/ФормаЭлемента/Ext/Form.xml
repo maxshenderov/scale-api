@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<UsualGroup name="Группа3" id="154">
+			<Group>AlwaysHorizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="155"/>
+			<ChildItems>
+				<UsualGroup name="Группа1" id="150">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="151"/>
+					<ChildItems>
+						<InputField name="ТипШтрихкода" id="138">
+							<DataPath>Объект.ТипШтрихкода</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ТипШтрихкодаКонтекстноеМеню" id="139"/>
+							<ExtendedTooltip name="ТипШтрихкодаРасширеннаяПодсказка" id="140"/>
+						</InputField>
+						<InputField name="Наименование" id="4">
+							<DataPath>Объект.Description</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+							<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+						</InputField>
+						<InputField name="Партнер" id="7">
+							<DataPath>Объект.Партнер</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ПартнерКонтекстноеМеню" id="8"/>
+							<ExtendedTooltip name="ПартнерРасширеннаяПодсказка" id="9"/>
+							<Events>
+								<Event name="OnChange">ПартнерПриИзменении</Event>
+							</Events>
+						</InputField>
+						<InputField name="Площадка" id="156">
+							<DataPath>Объект.Площадка</DataPath>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Если пусто, то для всех, иначе только для выбранной площадки</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ПлощадкаКонтекстноеМеню" id="157"/>
+							<ExtendedTooltip name="ПлощадкаРасширеннаяПодсказка" id="158"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="Группа2" id="152">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="153"/>
+					<ChildItems>
+						<CheckBoxField name="ВыводитьДопШтрихкодКоробки" id="144">
+							<DataPath>Объект.ВыводитьДопШтрихкодКоробки</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Выводить два кода</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>QR --&gt; QR параметр 1 + QR параметр 2;
+GS1 --&gt; GS1 + ШК серии</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="ВыводитьДопШтрихкодКоробкиКонтекстноеМеню" id="145"/>
+							<ExtendedTooltip name="ВыводитьДопШтрихкодКоробкиРасширеннаяПодсказка" id="146"/>
+						</CheckBoxField>
+						<CheckBoxField name="QRКодОднойСтрокой" id="147">
+							<DataPath>Объект.QRКодОднойСтрокой</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>QR-код строкой</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Данные строкой вместо структуры JSON, если больше одного параметра
+Если всего 1 Параметр, то строкой по умолчанию</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ToolTipRepresentation>Button</ToolTipRepresentation>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="QRКодОднойСтрокойКонтекстноеМеню" id="148"/>
+							<ExtendedTooltip name="QRКодОднойСтрокойРасширеннаяПодсказка" id="149"/>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Страницы" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<Page name="ГруппаБиркаНаКоробку" id="12">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Бирка на коробку</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаБиркаНаКоробкуРасширеннаяПодсказка" id="13"/>
+					<ChildItems>
+						<Table name="БиркаНаКоробку" id="14">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.БиркаНаКоробку</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="БиркаНаКоробкуКонтекстноеМеню" id="15"/>
+							<AutoCommandBar name="БиркаНаКоробкуКоманднаяПанель" id="16"/>
+							<ExtendedTooltip name="БиркаНаКоробкуРасширеннаяПодсказка" id="17"/>
+							<SearchStringAddition name="БиркаНаКоробкуСтрокаПоиска" id="18">
+								<AdditionSource>
+									<Item>БиркаНаКоробку</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="БиркаНаКоробкуСтрокаПоискаКонтекстноеМеню" id="19"/>
+								<ExtendedTooltip name="БиркаНаКоробкуСтрокаПоискаРасширеннаяПодсказка" id="20"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="БиркаНаКоробкуСостояниеПросмотра" id="21">
+								<AdditionSource>
+									<Item>БиркаНаКоробку</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="БиркаНаКоробкуСостояниеПросмотраКонтекстноеМеню" id="22"/>
+								<ExtendedTooltip name="БиркаНаКоробкуСостояниеПросмотраРасширеннаяПодсказка" id="23"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="БиркаНаКоробкуУправлениеПоиском" id="24">
+								<AdditionSource>
+									<Item>БиркаНаКоробку</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="БиркаНаКоробкуУправлениеПоискомКонтекстноеМеню" id="25"/>
+								<ExtendedTooltip name="БиркаНаКоробкуУправлениеПоискомРасширеннаяПодсказка" id="26"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="БиркаНаКоробкуНомерСтроки" id="84">
+									<DataPath>Объект.БиркаНаКоробку.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="БиркаНаКоробкуНомерСтрокиКонтекстноеМеню" id="85"/>
+									<ExtendedTooltip name="БиркаНаКоробкуНомерСтрокиРасширеннаяПодсказка" id="86"/>
+								</LabelField>
+								<InputField name="БиркаНаКоробкуПараметрПечати" id="87">
+									<DataPath>Объект.БиркаНаКоробку.ПараметрПечати</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаКоробкуПараметрПечатиКонтекстноеМеню" id="88"/>
+									<ExtendedTooltip name="БиркаНаКоробкуПараметрПечатиРасширеннаяПодсказка" id="89"/>
+								</InputField>
+								<InputField name="БиркаНаКоробкуФормат" id="90">
+									<DataPath>Объект.БиркаНаКоробку.Формат</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>20</MaxWidth>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаКоробкуФорматКонтекстноеМеню" id="91"/>
+									<ExtendedTooltip name="БиркаНаКоробкуФорматРасширеннаяПодсказка" id="92"/>
+								</InputField>
+								<InputField name="БиркаНаКоробкуЗначение" id="141">
+									<DataPath>Объект.БиркаНаКоробку.Значение</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>20</MaxWidth>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаКоробкуЗначениеКонтекстноеМеню" id="142"/>
+									<ExtendedTooltip name="БиркаНаКоробкуЗначениеРасширеннаяПодсказка" id="143"/>
+								</InputField>
+								<InputField name="БиркаНаКоробкуПрефикс" id="93">
+									<DataPath>Объект.БиркаНаКоробку.Префикс</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаКоробкуПрефиксКонтекстноеМеню" id="94"/>
+									<ExtendedTooltip name="БиркаНаКоробкуПрефиксРасширеннаяПодсказка" id="95"/>
+								</InputField>
+								<InputField name="БиркаНаКоробкуКоличествоСимволов" id="96">
+									<DataPath>Объект.БиркаНаКоробку.КоличествоСимволов</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MaxWidth>10</MaxWidth>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаКоробкуКоличествоСимволовКонтекстноеМеню" id="97"/>
+									<ExtendedTooltip name="БиркаНаКоробкуКоличествоСимволовРасширеннаяПодсказка" id="98"/>
+								</InputField>
+								<InputField name="БиркаНаКоробкуСимволРазделитель" id="99">
+									<DataPath>Объект.БиркаНаКоробку.СимволРазделитель</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаКоробкуСимволРазделительКонтекстноеМеню" id="100"/>
+									<ExtendedTooltip name="БиркаНаКоробкуСимволРазделительРасширеннаяПодсказка" id="101"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаБиркаНаВтулку" id="36">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Бирка на втулку</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаБиркаНаВтулкуРасширеннаяПодсказка" id="37"/>
+					<ChildItems>
+						<Table name="БиркаНаВтулку" id="38">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.БиркаНаВтулку</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="БиркаНаВтулкуКонтекстноеМеню" id="39"/>
+							<AutoCommandBar name="БиркаНаВтулкуКоманднаяПанель" id="40"/>
+							<ExtendedTooltip name="БиркаНаВтулкуРасширеннаяПодсказка" id="41"/>
+							<SearchStringAddition name="БиркаНаВтулкуСтрокаПоиска" id="42">
+								<AdditionSource>
+									<Item>БиркаНаВтулку</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="БиркаНаВтулкуСтрокаПоискаКонтекстноеМеню" id="43"/>
+								<ExtendedTooltip name="БиркаНаВтулкуСтрокаПоискаРасширеннаяПодсказка" id="44"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="БиркаНаВтулкуСостояниеПросмотра" id="45">
+								<AdditionSource>
+									<Item>БиркаНаВтулку</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="БиркаНаВтулкуСостояниеПросмотраКонтекстноеМеню" id="46"/>
+								<ExtendedTooltip name="БиркаНаВтулкуСостояниеПросмотраРасширеннаяПодсказка" id="47"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="БиркаНаВтулкуУправлениеПоиском" id="48">
+								<AdditionSource>
+									<Item>БиркаНаВтулку</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="БиркаНаВтулкуУправлениеПоискомКонтекстноеМеню" id="49"/>
+								<ExtendedTooltip name="БиркаНаВтулкуУправлениеПоискомРасширеннаяПодсказка" id="50"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="БиркаНаВтулкуНомерСтроки" id="102">
+									<DataPath>Объект.БиркаНаВтулку.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="БиркаНаВтулкуНомерСтрокиКонтекстноеМеню" id="103"/>
+									<ExtendedTooltip name="БиркаНаВтулкуНомерСтрокиРасширеннаяПодсказка" id="104"/>
+								</LabelField>
+								<InputField name="БиркаНаВтулкуПараметрПечати" id="105">
+									<DataPath>Объект.БиркаНаВтулку.ПараметрПечати</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаВтулкуПараметрПечатиКонтекстноеМеню" id="106"/>
+									<ExtendedTooltip name="БиркаНаВтулкуПараметрПечатиРасширеннаяПодсказка" id="107"/>
+								</InputField>
+								<InputField name="БиркаНаВтулкуФормат" id="108">
+									<DataPath>Объект.БиркаНаВтулку.Формат</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаВтулкуФорматКонтекстноеМеню" id="109"/>
+									<ExtendedTooltip name="БиркаНаВтулкуФорматРасширеннаяПодсказка" id="110"/>
+								</InputField>
+								<InputField name="БиркаНаВтулкуПрефикс" id="111">
+									<DataPath>Объект.БиркаНаВтулку.Префикс</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаВтулкуПрефиксКонтекстноеМеню" id="112"/>
+									<ExtendedTooltip name="БиркаНаВтулкуПрефиксРасширеннаяПодсказка" id="113"/>
+								</InputField>
+								<InputField name="БиркаНаВтулкуКоличествоСимволов" id="114">
+									<DataPath>Объект.БиркаНаВтулку.КоличествоСимволов</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаВтулкуКоличествоСимволовКонтекстноеМеню" id="115"/>
+									<ExtendedTooltip name="БиркаНаВтулкуКоличествоСимволовРасширеннаяПодсказка" id="116"/>
+								</InputField>
+								<InputField name="БиркаНаВтулкуСимволРазделитель" id="117">
+									<DataPath>Объект.БиркаНаВтулку.СимволРазделитель</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="БиркаНаВтулкуСимволРазделительКонтекстноеМеню" id="118"/>
+									<ExtendedTooltip name="БиркаНаВтулкуСимволРазделительРасширеннаяПодсказка" id="119"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаПаллетныйЛист" id="60">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Паллетный лист</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ГруппаПаллетныйЛистРасширеннаяПодсказка" id="61"/>
+					<ChildItems>
+						<Table name="ПаллетныйЛист" id="62">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Объект.ПаллетныйЛист</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ПаллетныйЛистКонтекстноеМеню" id="63"/>
+							<AutoCommandBar name="ПаллетныйЛистКоманднаяПанель" id="64"/>
+							<ExtendedTooltip name="ПаллетныйЛистРасширеннаяПодсказка" id="65"/>
+							<SearchStringAddition name="ПаллетныйЛистСтрокаПоиска" id="66">
+								<AdditionSource>
+									<Item>ПаллетныйЛист</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПаллетныйЛистСтрокаПоискаКонтекстноеМеню" id="67"/>
+								<ExtendedTooltip name="ПаллетныйЛистСтрокаПоискаРасширеннаяПодсказка" id="68"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ПаллетныйЛистСостояниеПросмотра" id="69">
+								<AdditionSource>
+									<Item>ПаллетныйЛист</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПаллетныйЛистСостояниеПросмотраКонтекстноеМеню" id="70"/>
+								<ExtendedTooltip name="ПаллетныйЛистСостояниеПросмотраРасширеннаяПодсказка" id="71"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ПаллетныйЛистУправлениеПоиском" id="72">
+								<AdditionSource>
+									<Item>ПаллетныйЛист</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ПаллетныйЛистУправлениеПоискомКонтекстноеМеню" id="73"/>
+								<ExtendedTooltip name="ПаллетныйЛистУправлениеПоискомРасширеннаяПодсказка" id="74"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="ПаллетныйЛистНомерСтроки" id="120">
+									<DataPath>Объект.ПаллетныйЛист.LineNumber</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПаллетныйЛистНомерСтрокиКонтекстноеМеню" id="121"/>
+									<ExtendedTooltip name="ПаллетныйЛистНомерСтрокиРасширеннаяПодсказка" id="122"/>
+								</LabelField>
+								<InputField name="ПаллетныйЛистПараметрПечати" id="123">
+									<DataPath>Объект.ПаллетныйЛист.ПараметрПечати</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетныйЛистПараметрПечатиКонтекстноеМеню" id="124"/>
+									<ExtendedTooltip name="ПаллетныйЛистПараметрПечатиРасширеннаяПодсказка" id="125"/>
+								</InputField>
+								<InputField name="ПаллетныйЛистФормат" id="126">
+									<DataPath>Объект.ПаллетныйЛист.Формат</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетныйЛистФорматКонтекстноеМеню" id="127"/>
+									<ExtendedTooltip name="ПаллетныйЛистФорматРасширеннаяПодсказка" id="128"/>
+								</InputField>
+								<InputField name="ПаллетныйЛистПрефикс" id="129">
+									<DataPath>Объект.ПаллетныйЛист.Префикс</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетныйЛистПрефиксКонтекстноеМеню" id="130"/>
+									<ExtendedTooltip name="ПаллетныйЛистПрефиксРасширеннаяПодсказка" id="131"/>
+								</InputField>
+								<InputField name="ПаллетныйЛистКоличествоСимволов" id="132">
+									<DataPath>Объект.ПаллетныйЛист.КоличествоСимволов</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетныйЛистКоличествоСимволовКонтекстноеМеню" id="133"/>
+									<ExtendedTooltip name="ПаллетныйЛистКоличествоСимволовРасширеннаяПодсказка" id="134"/>
+								</InputField>
+								<InputField name="ПаллетныйЛистСимволРазделитель" id="135">
+									<DataPath>Объект.ПаллетныйЛист.СимволРазделитель</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетныйЛистСимволРазделительКонтекстноеМеню" id="136"/>
+									<ExtendedTooltip name="ПаллетныйЛистСимволРазделительРасширеннаяПодсказка" id="137"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.Лико_ПараметрыПечатиКлиентаДляУпаковки</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>
