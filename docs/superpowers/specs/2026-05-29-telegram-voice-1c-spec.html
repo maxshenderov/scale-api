@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telegram Voice → 1С — Архитектура</title>
+<style>
+:root {
+  --bg: #1a1a2e; --bg-card: #16213e; --bg-code: #0d1117;
+  --text: #e6e1e5; --text-dim: #8b949e; --accent: #f0a050;
+  --accent2: #58a6ff; --green: #7ee787; --red: #ff7b72;
+  --border: #30363d; --line: #21262d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 40px 20px; }
+.container { max-width: 960px; margin: 0 auto; }
+h1 { font-size: 2em; border-bottom: 2px solid var(--accent); padding-bottom: 12px; margin-bottom: 8px; color: #fff; }
+h1 .sub { font-size: 0.5em; color: var(--text-dim); font-weight: normal; display: block; margin-top: 4px; }
+h2 { font-size: 1.4em; color: var(--accent); margin: 40px 0 16px; padding-left: 12px; border-left: 3px solid var(--accent); }
+h3 { font-size: 1.1em; color: var(--accent2); margin: 20px 0 10px; }
+p { margin: 8px 0; }
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 12px 0; }
+.code-block { background: var(--bg-code); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin: 8px 0; overflow-x: auto; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 13px; line-height: 1.5; }
+.kw  { color: #ff7b72; } .str { color: #a5d6ff; } .cmt { color: #8b949e; font-style: italic; }
+.fn  { color: #d2a8ff; } .num { color: #79c0ff; } .op  { color: #ff7b72; }
+.type { color: #ffa657; } .prop { color: #79c0ff; }
+.diagram { background: var(--bg-code); border: 1px solid var(--border); border-radius: 6px; padding: 16px; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 12px; line-height: 1.4; white-space: pre; color: var(--green); margin: 8px 0; }
+.step { display: flex; gap: 12px; align-items: flex-start; margin: 12px 0; }
+.step-num { background: var(--accent); color: #000; border-radius: 50%; min-width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0; }
+.step-body { flex: 1; } .step-body strong { color: var(--accent); }
+.file-path { color: var(--text-dim); font-size: 12px; margin-bottom: 4px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 2px; }
+.tag-py { background: #306998; color: #ffd43b; } .tag-bsl { background: #8b0000; color: #fff; }
+.tag-docker { background: #0db7ed; color: #000; } .tag-1c { background: #c62828; color: #fff; }
+.flow-arrow { text-align: center; color: var(--accent); font-size: 20px; margin: 4px 0; }
+ul { padding-left: 20px; margin: 8px 0; } li { margin: 4px 0; }
+a { color: var(--accent2); }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 13px; }
+th { background: var(--bg-card); color: var(--accent); }
+hr { border: none; border-top: 1px solid var(--line); margin: 32px 0; }
+@media (max-width: 640px) { body { padding: 16px 8px; } h1 { font-size: 1.4em; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>
+  Telegram Voice → 1С ПолеHTML
+  <span class="sub">Фаза 1 AI-ассистента склада | 29 мая 2026</span>
+</h1>
+<p><span class="tag tag-py">Python</span> <span class="tag tag-bsl">BSL</span> <span class="tag tag-docker">Docker</span> <span class="tag tag-1c">1С</span></p>
+
+<div class="card"><strong>Суть:</strong> диктовка в Telegram → faster-whisper транскрипция → текст в форме 1С. Внутри сети OKIL, ничего не публикуется.</div>
+
+<!-- ════════════════════════════════════ -->
+<h2>1. Архитектура</h2>
+<div class="diagram">
+┌──────────┐  голос (.ogg)   ┌──────────────┐
+│ Telegram │ ──────────────→ │ api.telegram │
+│ (телефон) │                │    .org      │
+└──────────┘                └──────┬───────┘
+                                   │  getUpdates (long polling)
+┌──────────┐                ┌──────▼───────┐
+│ 1С Форма │    HTTP GET    │  Python      │
+│ ПолеHTML │ ← /latest      │  FastAPI     │
+│ [текст]  │   (каждую 1с)  │  :8004       │
+└──────────┘                │              │
+                            │ aiogram      │  ← Telegram Bot
+                            │ faster-whisper│ ← STT локально
+                            │ Docker       │
+                            └──────────────┘
+</div>
+
+<div class="card">
+  <h3>Ключевые решения</h3>
+  <ul>
+    <li><strong>Long Polling</strong> — бот сам опрашивает Telegram API. Публичные URL не нужны.</li>
+    <li><strong>faster-whisper small</strong> — 2 GB, русский язык, CPU, бесплатно.</li>
+    <li><strong>XMLHttpRequest в ПолеHTML</strong> — 1С не поддерживает fetch(). JS опрашивает /latest и сам обновляет DOM.</li>
+    <li><strong>Docker + volume</strong> — модель кешируется, не перекачивается.</li>
+  </ul>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<h2>2. Поток данных — 7 шагов</h2>
+<div class="step"><div class="step-num">1</div><div class="step-body"><strong>Голосовое в Telegram</strong> — тип Voice, file_id, .ogg</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body"><strong>aiogram long polling</strong> — GET /getUpdates каждые 2-3 сек</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-body"><strong>Скачивание .ogg</strong> — bot.get_file(file_id) → /tmp/*.ogg</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-body"><strong>faster-whisper</strong> — ffmpeg ogg→wav (16kHz, mono), модель small, язык ru</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-body"><strong>Broadcast + _latest</strong> — JSON сохраняется в ws_manager._latest</div></div>
+<div class="step"><div class="step-num">6</div><div class="step-body"><strong>ПолеHTML опрашивает /latest</strong> — XMLHttpRequest каждую 1с</div></div>
+<div class="step"><div class="step-num">7</div><div class="step-body"><strong>Текст на форме 1С</strong> — JS обновляет DOM, пользователь видит результат</div></div>
+
+<!-- ════════════════════════════════════ -->
+<h2>3. Python — app.py</h2>
+<div class="file-path">services/telegram_voice/app.py — точка входа</div>
+<div class="code-block"><pre>
+<span class="kw">from</span> dotenv <span class="kw">import</span> load_dotenv
+<span class="fn">load_dotenv</span>()                          <span class="cmt">// TELEGRAM_BOT_TOKEN из .env</span>
+
+<span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI, WebSocket, WebSocketDisconnect
+<span class="kw">from</span> fastapi.responses <span class="kw">import</span> HTMLResponse
+<span class="kw">from</span> fastapi.middleware.cors <span class="kw">import</span> CORSMiddleware
+
+ws_manager = <span class="fn">WSManager</span>()              <span class="cmt">// Хранит WS-подключения + последнее сообщение</span>
+stt = <span class="fn">STT</span>()                          <span class="cmt">// Модель Whisper загружается при старте</span>
+voice_bot = <span class="fn">VoiceBot</span>(stt, ws_manager)  <span class="cmt">// aiogram бот</span>
+
+<span class="kw">@asynccontextmanager</span>
+<span class="kw">async def</span> <span class="fn">lifespan</span>(app):
+    bot_task = asyncio.<span class="fn">create_task</span>(voice_bot.<span class="fn">start</span>())  <span class="cmt">// Фоновый polling</span>
+    <span class="kw">yield</span>
+    <span class="kw">await</span> voice_bot.<span class="fn">stop</span>()
+    bot_task.<span class="fn">cancel</span>()
+
+app = <span class="fn">FastAPI</span>(lifespan=lifespan)
+app.<span class="fn">add_middleware</span>(CORSMiddleware, allow_origins=[<span class="str">"*"</span>], allow_methods=[<span class="str">"*"</span>])
+
+<span class="kw">@app</span>.<span class="fn">get</span>(<span class="str">"/latest"</span>)
+<span class="kw">async def</span> <span class="fn">latest</span>():
+    <span class="kw">return</span> ws_manager.latest <span class="kw">or</span> {<span class="str">"text"</span>: <span class="str">""</span>, <span class="str">"type"</span>: <span class="str">"empty"</span>}  <span class="cmt">// Опрашивается 1С</span>
+
+<span class="kw">@app</span>.<span class="fn">websocket</span>(<span class="str">"/ws"</span>)
+<span class="kw">async def</span> <span class="fn">ws_endpoint</span>(ws: WebSocket):
+    <span class="kw">await</span> ws_manager.<span class="fn">connect</span>(ws)
+    <span class="kw">try</span>: <span class="kw">while True</span>: <span class="kw">await</span> ws.<span class="fn">receive_text</span>()
+    <span class="kw">except</span>: ws_manager.<span class="fn">disconnect</span>(ws)
+</pre></div>
+
+<!-- ════════════════════════════════════ -->
+<h2>4. Python — bot.py</h2>
+<div class="file-path">services/telegram_voice/bot.py — aiogram 3.x</div>
+<div class="code-block"><pre>
+<span class="kw">class</span> <span class="type">VoiceBot</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, stt, ws_manager):
+        self.stt = stt              <span class="cmt">// faster-whisper (модель уже в памяти)</span>
+        self.ws = ws_manager        <span class="cmt">// Хранилище _latest для HTTP-опроса</span>
+        self.bot = <span class="fn">Bot</span>(token=TOKEN)
+        self.dp = <span class="fn">Dispatcher</span>()       <span class="cmt">// Маршрутизатор aiogram</span>
+        self.router = <span class="fn">Router</span>()
+        self.router.message(F.voice)(self._handle_voice)  <span class="cmt">// Голос → STT</span>
+        self.router.message(F.text)(self._handle_text)    <span class="cmt">// Текст → сразу</span>
+
+    <span class="kw">async def</span> <span class="fn">start</span>(self):
+        <span class="kw">await</span> self.bot.<span class="fn">delete_webhook</span>(drop_pending_updates=True)  <span class="cmt">// Очистка старых</span>
+        <span class="kw">await</span> self.dp.<span class="fn">start_polling</span>(self.bot)  <span class="cmt">// Long polling старт</span>
+
+    <span class="kw">async def</span> <span class="fn">_handle_voice</span>(self, msg):
+        voice = msg.voice
+        file_info = <span class="kw">await</span> self.bot.<span class="fn">get_file</span>(voice.file_id)
+        ogg = tempfile.<span class="fn">NamedTemporaryFile</span>(suffix=<span class="str">".ogg"</span>).name  <span class="cmt">// /tmp/xxx.ogg</span>
+        <span class="kw">await</span> self.bot.<span class="fn">download_file</span>(file_info.file_path, ogg)
+        <span class="kw">await</span> msg.<span class="fn">reply</span>(<span class="str">"Распознаю..."</span>)
+        text = self.stt.<span class="fn">transcribe</span>(ogg)  <span class="cmt">// .ogg → ffmpeg → .wav → Whisper → текст</span>
+        <span class="kw">await</span> self.ws.<span class="fn">broadcast</span>({<span class="str">"type"</span>: <span class="str">"transcription"</span>, <span class="str">"text"</span>: text, <span class="str">"user"</span>: <span class="str">"Макс"</span>})
+        <span class="kw">await</span> msg.<span class="fn">reply</span>(<span class="str">f"Готово: {text}"</span>)
+
+    <span class="kw">async def</span> <span class="fn">_handle_text</span>(self, msg):  <span class="cmt">// Текст для теста — без STT</span>
+        <span class="kw">await</span> self.ws.<span class="fn">broadcast</span>({<span class="str">"type"</span>: <span class="str">"transcription"</span>, <span class="str">"text"</span>: msg.text, <span class="str">"user"</span>: <span class="str">"Макс"</span>})
+        <span class="kw">await</span> msg.<span class="fn">reply</span>(<span class="str">f"Готово: {msg.text}"</span>)
+</pre></div>
+
+<!-- ════════════════════════════════════ -->
+<h2>5. Python — stt.py</h2>
+<div class="file-path">services/telegram_voice/stt.py — faster-whisper</div>
+<div class="code-block"><pre>
+<span class="cmt">// Патч SSL для корпоративной сети (MITM прокси)</span>
+<span class="kw">import</span> httpx
+_orig_init = httpx.Client.<span class="prop">__init__</span>
+<span class="kw">def</span> <span class="fn">_patched</span>(self, *a, **kw): kw[<span class="str">'verify'</span>] = <span class="num">False</span>; _orig_init(self, *a, **kw)
+httpx.Client.<span class="prop">__init__</span> = _patched
+
+<span class="kw">from</span> faster_whisper <span class="kw">import</span> WhisperModel
+
+<span class="kw">class</span> <span class="type">STT</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self.model = <span class="fn">WhisperModel</span>(<span class="str">"small"</span>, device=<span class="str">"cpu"</span>, compute_type=<span class="str">"int8"</span>,
+                                   download_root=<span class="str">"/app/whisper_models"</span>)
+
+    <span class="kw">def</span> <span class="fn">transcribe</span>(self, ogg_path):
+        wav = ogg_path + <span class="str">".wav"</span>
+        subprocess.<span class="fn">run</span>([<span class="str">"ffmpeg"</span>, <span class="str">"-y"</span>, <span class="str">"-i"</span>, ogg_path, <span class="str">"-ar"</span>, <span class="str">"16000"</span>, <span class="str">"-ac"</span>, <span class="str">"1"</span>, wav])
+        segments, _ = self.model.<span class="fn">transcribe</span>(wav, language=<span class="str">"ru"</span>)
+        <span class="kw">return</span> <span class="str">" "</span>.<span class="fn">join</span>(s.text.<span class="fn">strip</span>() <span class="kw">for</span> s <span class="kw">in</span> segments)
+</pre></div>
+
+<!-- ════════════════════════════════════ -->
+<h2>6. Python — ws_manager.py</h2>
+<div class="file-path">services/telegram_voice/ws_manager.py — хранилище</div>
+<div class="code-block"><pre>
+<span class="kw">class</span> <span class="type">WSManager</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self._connections: list[WebSocket] = []   <span class="cmt">// Для будущей Фазы 2 (двусторонний WS)</span>
+        self._latest: dict | None = <span class="num">None</span>          <span class="cmt">// Последнее сообщение для HTTP-опроса</span>
+
+    <span class="kw">async def</span> <span class="fn">broadcast</span>(self, msg):
+        self._latest = msg  <span class="cmt">// ← Ключ: сохраняем для /latest</span>
+        <span class="kw">for</span> ws <span class="kw">in</span> self._connections: <span class="kw">await</span> ws.<span class="fn">send_text</span>(json.<span class="fn">dumps</span>(msg))
+
+    <span class="kw">@property</span>
+    <span class="kw">def</span> <span class="fn">latest</span>(self): <span class="kw">return</span> self._latest  <span class="cmt">// Читается GET /latest</span>
+</pre></div>
+
+<!-- ════════════════════════════════════ -->
+<h2>7. Dockerfile</h2>
+<div class="file-path">services/telegram_voice/Dockerfile</div>
+<div class="code-block"><pre>
+<span class="kw">FROM</span> python:3.11-slim
+<span class="kw">RUN</span> apt-get update && apt-get install -y libsndfile1 ffmpeg     <span class="cmt">// Аудио + конвертация</span>
+<span class="kw">ENV</span> PYTHONHTTPSVERIFY=0                                          <span class="cmt">// Корпоративный SSL bypass</span>
+<span class="kw">ENV</span> HF_HUB_DISABLE_XET=1    <span class="cmt">// Качать модель через httpx (не Rust Xet)</span>
+<span class="kw">WORKDIR</span> /app
+<span class="kw">COPY</span> requirements.txt .
+<span class="kw">RUN</span> pip install --no-cache-dir --trusted-host pypi.org -r requirements.txt
+<span class="kw">COPY</span> app.py bot.py stt.py ws_manager.py .
+<span class="kw">ENV</span> WHISPER_MODEL_DIR=/app/whisper_models
+<span class="kw">RUN</span> mkdir -p /app/whisper_models  <span class="cmt">// Volume для кеша модели (2 GB)</span>
+<span class="kw">EXPOSE</span> 8004
+<span class="kw">CMD</span> ["python", "app.py"]
+</pre></div>
+
+<!-- ════════════════════════════════════ -->
+<h2>8. BSL — Module.bsl</h2>
+<div class="file-path">1s/ERP/obrab/Лико_ГолосовойАссистент/.../Module.bsl</div>
+<div class="code-block"><pre>
+<span class="cmt">// ═══════════════════════════════════════════════════════</span>
+<span class="cmt">// Лико_ГолосовойАссистент — ПолеHTML с JS-опросом</span>
+<span class="cmt">// Никаких BSL HTTP/WebSocket — всё делает JavaScript в браузере</span>
+<span class="cmt">// ═══════════════════════════════════════════════════════</span>
+
+<span class="kw">&НаСервере</span>
+<span class="fn">Процедура</span> <span class="type">ПриСозданииНаСервере</span>(Отказ, СтандартнаяОбработка)
+
+    <span class="cmt">// Создаём реквизит формы динамически</span>
+    РеквизитDisplay = <span class="fn">Новый РеквизитФормы</span>(
+        <span class="str">"DisplayHTML"</span>,                            <span class="cmt">// Имя</span>
+        <span class="fn">Новый ОписаниеТипов</span>(<span class="str">"Строка"</span>, ,            <span class="cmt">// Тип: строка</span>
+            <span class="fn">Новый КвалификаторыСтроки</span>(0, <span class="type">ДопустимаяДлина.Переменная</span>)),
+        , <span class="str">"DisplayHTML"</span>);
+    <span class="fn">ЭтаФорма.ИзменитьРеквизиты</span>(ДобавляемыеРеквизиты);
+
+    <span class="cmt">// Визуальный элемент: ПолеHTMLДокумента</span>
+    DisplayField = <span class="fn">ЭтаФорма.Элементы.Добавить</span>(
+        <span class="str">"DisplayHTML"</span>, <span class="fn">Тип</span>(<span class="str">"ПолеФормы"</span>), ...);
+    DisplayField.Вид = <span class="type">ВидПоляФормы.ПолеHTMLДокумента</span>;  <span class="cmt">// ← Ключевое</span>
+    DisplayField.ПутьКДанным = <span class="str">"DisplayHTML"</span>;
+
+    <span class="cmt">// HTML + JavaScript — опрос Python-сервера каждую секунду</span>
+    <span class="cmt">// fetch() не поддерживается в 1С → используем XMLHttpRequest</span>
+    <span class="fn">ЭтаФорма.DisplayHTML</span> =
+    <span class="str">"&lt;html&gt;&lt;body&gt;
+    |&lt;div id='status'&gt;Подключено...&lt;/div&gt;
+    |&lt;div id='text'&gt;&lt;/div&gt;
+    |&lt;script&gt;
+    |var lastText='';
+    |setInterval(function(){
+    |  var x=new XMLHttpRequest();
+    |  x.open('GET','http://localhost:8004/latest',true);
+    |  x.onreadystatechange=function(){
+    |    if(x.readyState===4&&x.status===200){
+    |      var d=JSON.parse(x.responseText);
+    |      if(d.text&&d.text!==lastText){
+    |        lastText=d.text;
+    |        document.getElementById('text').innerText=d.text;
+    |      }
+    |    }
+    |  };
+    |  x.send();
+    |},1000);
+    |&lt;/script&gt;
+    |&lt;/body&gt;&lt;/html&gt;"</span>;
+
+<span class="fn">КонецПроцедуры</span>
+</pre></div>
+
+<!-- ════════════════════════════════════ -->
+<h2>9. Запуск</h2>
+<div class="card">
+  <h3>Docker</h3>
+  <div class="code-block">
+<span class="kw">cd</span> services\telegram_voice
+docker build -t telegram-voice .
+docker run -d -p 8004:8004 -v whisper_models:/app/whisper_models --env-file .env --name telegram-voice telegram-voice
+<span class="cmt"># Проверка:</span>
+curl http://localhost:8004/latest</div>
+  <h3>1С</h3>
+  <p>Файл → Открыть → <code>1s/ERP/obrab/Лико_ГолосовойАссистент/Лико_ГолосовойАссистент.xml</code></p>
+</div>
+
+<!-- ════════════════════════════════════ -->
+<h2>10. Файлы</h2>
+<table>
+  <tr><th>Файл</th><th>Роль</th></tr>
+  <tr><td><code>app.py</code></td><td>FastAPI: /latest, /display, /ws</td></tr>
+  <tr><td><code>bot.py</code></td><td>aiogram: приём голосовых/текстовых, вызов STT</td></tr>
+  <tr><td><code>stt.py</code></td><td>faster-whisper: .ogg → ffmpeg → .wav → текст</td></tr>
+  <tr><td><code>ws_manager.py</code></td><td>Хранилище последнего сообщения + WebSocket</td></tr>
+  <tr><td><code>Dockerfile</code></td><td>Контейнер: python + ffmpeg + libsndfile1</td></tr>
+  <tr><td><code>requirements.txt</code></td><td>fastapi, uvicorn, aiogram, faster-whisper</td></tr>
+  <tr><td><code>.env</code></td><td>TELEGRAM_BOT_TOKEN (в .gitignore)</td></tr>
+  <tr style="border-top:2px solid var(--accent)"><td><code>obrab/Лико_ГолосовойАссистент/</code></td><td style="border-top:2px solid var(--accent)">Внешняя обработка 1С</td></tr>
+  <tr><td><code>wiki/services/telegram_voice.md</code></td><td>Документация сервиса</td></tr>
+  <tr><td><code>wiki/extensions/Лико_ГолосовойАссистент.md</code></td><td>Документация обработки</td></tr>
+</table>
+
+<hr>
+<p style="color:var(--text-dim);font-size:12px;text-align:center;margin-top:32px">OKIL · Telegram Voice → 1С · Фаза 1 · 29 мая 2026 · Claude Code + m.shenderov</p>
+</div>
+</body>
+</html>
