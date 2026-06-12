@@ -104,6 +104,11 @@
 										<Event name="OnChange">ФилтрПоПаллетуПриИзменении</Event>
 									</Events>
 								</CheckBoxField>
+								<Button name="ПоказатьСкрытьСтеллажи" id="232">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.ПоказатьСкрытьСтеллажи</CommandName>
+									<ExtendedTooltip name="ПоказатьСкрытьСтеллажиРасширеннаяПодсказка" id="233"/>
+								</Button>
 							</ChildItems>
 						</UsualGroup>
 						<UsualGroup name="ГруппаШапка" id="9">
@@ -455,17 +460,65 @@
 							<ShowTitle>false</ShowTitle>
 							<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="85"/>
 							<ChildItems>
-								<HTMLDocumentField name="ОтветLLMHTML" id="75">
-									<DataPath>ОтветLLMHTML</DataPath>
-									<TitleLocation>None</TitleLocation>
-									<AutoMaxWidth>false</AutoMaxWidth>
-									<AutoMaxHeight>false</AutoMaxHeight>
-									<ContextMenu name="ОтветLLMHTMLКонтекстноеМеню" id="76"/>
-									<ExtendedTooltip name="ОтветLLMHTMLРасширеннаяПодсказка" id="77"/>
-									<Events>
-										<Event name="OnClick">htmlЧатПриНажатии</Event>
-									</Events>
-								</HTMLDocumentField>
+								<UsualGroup name="Группа7" id="230">
+									<Group>Vertical</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="Группа7РасширеннаяПодсказка" id="231"/>
+									<ChildItems>
+										<HTMLDocumentField name="ОтветLLMHTML" id="75">
+											<DataPath>ОтветLLMHTML</DataPath>
+											<TitleLocation>None</TitleLocation>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<AutoMaxHeight>false</AutoMaxHeight>
+											<ContextMenu name="ОтветLLMHTMLКонтекстноеМеню" id="76"/>
+											<ExtendedTooltip name="ОтветLLMHTMLРасширеннаяПодсказка" id="77"/>
+											<Events>
+												<Event name="OnClick">htmlЧатПриНажатии</Event>
+											</Events>
+										</HTMLDocumentField>
+										<UsualGroup name="ГруппаВводСообщения" id="78">
+											<Group>Horizontal</Group>
+											<Representation>None</Representation>
+											<ShowTitle>false</ShowTitle>
+											<ExtendedTooltip name="ГруппаВводСообщенияРасширеннаяПодсказка" id="79"/>
+											<ChildItems>
+												<Button name="ВыбратьФайлы" id="82">
+													<Type>UsualButton</Type>
+													<CommandName>Form.Command.ВыбратьФайлы</CommandName>
+													<ExtendedTooltip name="ВыбратьФайлыРасширеннаяПодсказка" id="83"/>
+												</Button>
+												<InputField name="ВопросКLLM" id="54">
+													<DataPath>ВопросКLLM</DataPath>
+													<TitleLocation>None</TitleLocation>
+													<AutoMaxWidth>false</AutoMaxWidth>
+													<Height>2</Height>
+													<AutoMaxHeight>false</AutoMaxHeight>
+													<MaxHeight>2</MaxHeight>
+													<HorizontalStretch>true</HorizontalStretch>
+													<VerticalStretch>true</VerticalStretch>
+													<MultiLine>true</MultiLine>
+													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+													<ContextMenu name="ВопросКLLMКонтекстноеМеню" id="55"/>
+													<ExtendedTooltip name="ВопросКLLMРасширеннаяПодсказка" id="56"/>
+												</InputField>
+												<Button name="ОтпрвитьВLLM" id="60">
+													<Type>UsualButton</Type>
+													<Representation>Picture</Representation>
+													<Height>2</Height>
+													<GroupHorizontalAlign>Center</GroupHorizontalAlign>
+													<GroupVerticalAlign>Center</GroupVerticalAlign>
+													<CommandName>Form.Command.ОтпрвитьВLLM</CommandName>
+													<Picture>
+														<xr:Ref>StdPicture.SendMessage</xr:Ref>
+														<xr:LoadTransparent>true</xr:LoadTransparent>
+													</Picture>
+													<ExtendedTooltip name="ОтпрвитьВLLMРасширеннаяПодсказка" id="61"/>
+												</Button>
+											</ChildItems>
+										</UsualGroup>
+									</ChildItems>
+								</UsualGroup>
 								<UsualGroup name="Группа5" id="207">
 									<Representation>None</Representation>
 									<ShowTitle>false</ShowTitle>
@@ -497,6 +550,11 @@
 															<ContextMenu name="ТребованияКонтекстноеМеню" id="214"/>
 															<ExtendedTooltip name="ТребованияРасширеннаяПодсказка" id="215"/>
 														</InputField>
+														<Button name="СформироватьТЗ" id="226">
+															<Type>UsualButton</Type>
+															<CommandName>Form.Command.СформироватьТЗ</CommandName>
+															<ExtendedTooltip name="СформироватьТЗРасширеннаяПодсказка" id="227"/>
+														</Button>
 													</ChildItems>
 												</Page>
 												<Page name="ГруппаЧерновикТЗ" id="216">
@@ -522,6 +580,11 @@
 															<ContextMenu name="ЧерновикТЗКонтекстноеМеню" id="219"/>
 															<ExtendedTooltip name="ЧерновикТЗРасширеннаяПодсказка" id="220"/>
 														</InputField>
+														<Button name="Экспертиза" id="228">
+															<Type>UsualButton</Type>
+															<CommandName>Form.Command.Экспертиза</CommandName>
+															<ExtendedTooltip name="ЭкспертизаРасширеннаяПодсказка" id="229"/>
+														</Button>
 													</ChildItems>
 												</Page>
 												<Page name="ГруппаТехническоеЗадание" id="221">
@@ -561,61 +624,11 @@
 							<ShowTitle>false</ShowTitle>
 							<ExtendedTooltip name="Группа3РасширеннаяПодсказка" id="87"/>
 							<ChildItems>
-								<Button name="СформироватьТЗ" id="226">
-										<Type>UsualButton</Type>
-										<CommandName>Form.Command.СформироватьТЗ</CommandName>
-										<ExtendedTooltip name="СформироватьТЗРасширеннаяПодсказка" id="227"/>
-									</Button>
-									<Button name="Экспертиза" id="228">
-										<Type>UsualButton</Type>
-										<CommandName>Form.Command.Экспертиза</CommandName>
-										<ExtendedTooltip name="ЭкспертизаРасширеннаяПодсказка" id="229"/>
-									</Button>
-									<Button name="Тесты" id="62">
+								<Button name="Тесты" id="62">
 									<Type>UsualButton</Type>
 									<Visible>false</Visible>
 									<CommandName>Form.Command.Тесты</CommandName>
 									<ExtendedTooltip name="ТестыРасширеннаяПодсказка" id="63"/>
-								</Button>
-							</ChildItems>
-						</UsualGroup>
-						<UsualGroup name="ГруппаВводСообщения" id="78">
-							<Group>Horizontal</Group>
-							<Representation>None</Representation>
-							<ShowTitle>false</ShowTitle>
-							<ExtendedTooltip name="ГруппаВводСообщенияРасширеннаяПодсказка" id="79"/>
-							<ChildItems>
-								<Button name="ВыбратьФайлы" id="82">
-									<Type>UsualButton</Type>
-									<CommandName>Form.Command.ВыбратьФайлы</CommandName>
-									<ExtendedTooltip name="ВыбратьФайлыРасширеннаяПодсказка" id="83"/>
-								</Button>
-								<InputField name="ВопросКLLM" id="54">
-									<DataPath>ВопросКLLM</DataPath>
-									<TitleLocation>None</TitleLocation>
-									<AutoMaxWidth>false</AutoMaxWidth>
-									<Height>2</Height>
-									<AutoMaxHeight>false</AutoMaxHeight>
-									<MaxHeight>2</MaxHeight>
-									<HorizontalStretch>true</HorizontalStretch>
-									<VerticalStretch>true</VerticalStretch>
-									<MultiLine>true</MultiLine>
-									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-									<ContextMenu name="ВопросКLLMКонтекстноеМеню" id="55"/>
-									<ExtendedTooltip name="ВопросКLLMРасширеннаяПодсказка" id="56"/>
-								</InputField>
-								<Button name="ОтпрвитьВLLM" id="60">
-									<Type>UsualButton</Type>
-									<Representation>Picture</Representation>
-									<Height>2</Height>
-									<GroupHorizontalAlign>Center</GroupHorizontalAlign>
-									<GroupVerticalAlign>Center</GroupVerticalAlign>
-									<CommandName>Form.Command.ОтпрвитьВLLM</CommandName>
-									<Picture>
-										<xr:Ref>StdPicture.SendMessage</xr:Ref>
-										<xr:LoadTransparent>true</xr:LoadTransparent>
-									</Picture>
-									<ExtendedTooltip name="ОтпрвитьВLLMРасширеннаяПодсказка" id="61"/>
 								</Button>
 							</ChildItems>
 						</UsualGroup>
@@ -1546,6 +1559,17 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
+		<Attribute name="Объект" id="31">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объект</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:ExternalReportObject.ЗагрузкаСклада</v8:Type>
+			</Type>
+		</Attribute>
 	</Attributes>
 	<Commands>
 		<Command name="ОбновитьФорму" id="1">
@@ -1659,34 +1683,49 @@
 			<Representation>Picture</Representation>
 		</Command>
 		<Command name="СформироватьТЗ" id="7">
-		<Title>
-			<v8:item>
-				<v8:lang>ru</v8:lang>
-				<v8:content>Сформировать ТЗ</v8:content>
-			</v8:item>
-		</Title>
-		<ToolTip>
-			<v8:item>
-				<v8:lang>ru</v8:lang>
-				<v8:content>Сформировать техническое задание</v8:content>
-			</v8:item>
-		</ToolTip>
-		<Action>СформироватьТЗ</Action>
-	</Command>
-	<Command name="Экспертиза" id="8">
-		<Title>
-			<v8:item>
-				<v8:lang>ru</v8:lang>
-				<v8:content>Экспертиза</v8:content>
-			</v8:item>
-		</Title>
-		<ToolTip>
-			<v8:item>
-				<v8:lang>ru</v8:lang>
-				<v8:content>Экспертиза ТЗ (Критик / Адвокат / Судья)</v8:content>
-			</v8:item>
-		</ToolTip>
-		<Action>Экспертиза</Action>
-	</Command>
-</Commands>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать ТЗ</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать техническое задание</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СформироватьТЗ</Action>
+		</Command>
+		<Command name="Экспертиза" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Экспертиза</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Экспертиза ТЗ (Критик / Адвокат / Судья)</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>Экспертиза</Action>
+		</Command>
+		<Command name="ПоказатьСкрытьСтеллажи" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Стеллажи</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Показать скрыть стеллажи</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПоказатьСкрытьСтеллажи</Action>
+		</Command>
+	</Commands>
 </Form>
