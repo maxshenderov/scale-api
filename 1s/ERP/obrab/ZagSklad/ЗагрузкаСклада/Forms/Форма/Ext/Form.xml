@@ -409,6 +409,7 @@
 					</ChildItems>
 				</Page>
 				<Page name="АсистентAI" id="52">
+					<Visible>false</Visible>
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
@@ -452,6 +453,17 @@
 									<ContextMenu name="ЗадачаКонтекстноеМеню" id="205"/>
 									<ExtendedTooltip name="ЗадачаРасширеннаяПодсказка" id="206"/>
 								</InputField>
+								<PictureDecoration name="Декорация1" id="236">
+									<Height>1</Height>
+									<HorizontalStretch>true</HorizontalStretch>
+									<ContextMenu name="Декорация1КонтекстноеМеню" id="237"/>
+									<ExtendedTooltip name="Декорация1РасширеннаяПодсказка" id="238"/>
+								</PictureDecoration>
+								<Button name="ПоказатьСкрытьТЗ" id="234">
+									<Type>Hyperlink</Type>
+									<CommandName>Form.Command.ПоказатьСкрытьТЗ</CommandName>
+									<ExtendedTooltip name="ПоказатьСкрытьТЗРасширеннаяПодсказка" id="235"/>
+								</Button>
 							</ChildItems>
 						</UsualGroup>
 						<UsualGroup name="Группа2" id="84">
@@ -519,13 +531,38 @@
 										</UsualGroup>
 									</ChildItems>
 								</UsualGroup>
-								<UsualGroup name="Группа5" id="207">
+								<UsualGroup name="ГруппаТЗ" id="207">
+									<Visible>false</Visible>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа ТЗ</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группа ТЗ</v8:content>
+										</v8:item>
+									</ToolTip>
 									<Representation>None</Representation>
 									<ShowTitle>false</ShowTitle>
-									<ExtendedTooltip name="Группа5РасширеннаяПодсказка" id="208"/>
+									<ExtendedTooltip name="ГруппаТЗРасширеннаяПодсказка" id="208"/>
 									<ChildItems>
-										<Pages name="Группа6" id="209">
-											<ExtendedTooltip name="Группа6РасширеннаяПодсказка" id="210"/>
+										<Pages name="Группа5" id="209">
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Группа5</v8:content>
+												</v8:item>
+											</Title>
+											<ToolTip>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Группа5</v8:content>
+												</v8:item>
+											</ToolTip>
+											<ExtendedTooltip name="Группа5РасширеннаяПодсказка" id="210"/>
 											<ChildItems>
 												<Page name="ГруппаТребования" id="211">
 													<Title>
@@ -658,11 +695,27 @@
 							<CheckBoxType>Auto</CheckBoxType>
 							<ContextMenu name="ИспользоватьАсистентаAIКонтекстноеМеню" id="91"/>
 							<ExtendedTooltip name="ИспользоватьАсистентаAIРасширеннаяПодсказка" id="92"/>
+							<Events>
+								<Event name="OnChange">ИспользоватьАсистентаAIПриИзменении</Event>
+							</Events>
 						</CheckBoxField>
-						<UsualGroup name="Группа4" id="102">
+						<UsualGroup name="ГруппаНастройкиАсистента" id="102">
+							<Visible>false</Visible>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа настройки асистента</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа настройки асистента</v8:content>
+								</v8:item>
+							</ToolTip>
 							<Representation>None</Representation>
 							<ShowTitle>false</ShowTitle>
-							<ExtendedTooltip name="Группа4РасширеннаяПодсказка" id="103"/>
+							<ExtendedTooltip name="ГруппаНастройкиАсистентаРасширеннаяПодсказка" id="103"/>
 							<ChildItems>
 								<InputField name="Провайдер" id="99">
 									<DataPath>Провайдер</DataPath>
@@ -1495,6 +1548,9 @@
 					<v8:AllowedLength>Variable</v8:AllowedLength>
 				</v8:StringQualifiers>
 			</Type>
+			<Save>
+				<Field>ФорматОтветаLLM</Field>
+			</Save>
 		</Attribute>
 		<Attribute name="Задача" id="27">
 			<Title>
@@ -1726,6 +1782,21 @@
 				</v8:item>
 			</ToolTip>
 			<Action>ПоказатьСкрытьСтеллажи</Action>
+		</Command>
+		<Command name="ПоказатьСкрытьТЗ" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ТЗ</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Показать скрыть ТЗ</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ПоказатьСкрытьТЗ</Action>
 		</Command>
 	</Commands>
 </Form>

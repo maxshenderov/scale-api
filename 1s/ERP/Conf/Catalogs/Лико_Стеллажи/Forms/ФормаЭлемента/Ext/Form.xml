@@ -52,6 +52,12 @@
 							<ContextMenu name="КодКонтекстноеМеню" id="2"/>
 							<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
 						</InputField>
+						<InputField name="НомерСтеллажа" id="96">
+							<DataPath>Объект.НомерСтеллажа</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="НомерСтеллажаКонтекстноеМеню" id="97"/>
+							<ExtendedTooltip name="НомерСтеллажаРасширеннаяПодсказка" id="98"/>
+						</InputField>
 						<InputField name="КодДоп" id="7">
 							<DataPath>Объект.КодДоп</DataPath>
 							<EditMode>EnterOnInput</EditMode>
@@ -108,6 +114,42 @@
 							<ContextMenu name="ВремяДоступаКонтекстноеМеню" id="29"/>
 							<ExtendedTooltip name="ВремяДоступаРасширеннаяПодсказка" id="30"/>
 						</InputField>
+						<InputField name="ШиринаСекции" id="99">
+							<DataPath>Объект.ШиринаСекции</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="ШиринаСекцииКонтекстноеМеню" id="100"/>
+							<ExtendedTooltip name="ШиринаСекцииРасширеннаяПодсказка" id="101"/>
+						</InputField>
+						<InputField name="МинШиринаПаллета" id="84">
+							<DataPath>Объект.МинШиринаПаллета</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="МинШиринаПаллетаКонтекстноеМеню" id="85"/>
+							<ExtendedTooltip name="МинШиринаПаллетаРасширеннаяПодсказка" id="86"/>
+						</InputField>
+						<InputField name="МаксШиринаПаллета" id="87">
+							<DataPath>Объект.МаксШиринаПаллета</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="МаксШиринаПаллетаКонтекстноеМеню" id="88"/>
+							<ExtendedTooltip name="МаксШиринаПаллетаРасширеннаяПодсказка" id="89"/>
+						</InputField>
+						<InputField name="МинГлубинаПаллета" id="90">
+							<DataPath>Объект.МинГлубинаПаллета</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="МинГлубинаПаллетаКонтекстноеМеню" id="91"/>
+							<ExtendedTooltip name="МинГлубинаПаллетаРасширеннаяПодсказка" id="92"/>
+						</InputField>
+						<InputField name="МаксГлубинаПаллета" id="93">
+							<DataPath>Объект.МаксГлубинаПаллета</DataPath>
+							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+							<ContextMenu name="МаксГлубинаПаллетаКонтекстноеМеню" id="94"/>
+							<ExtendedTooltip name="МаксГлубинаПаллетаРасширеннаяПодсказка" id="95"/>
+						</InputField>
+						<CheckBoxField name="Узкопроходный" id="102">
+							<DataPath>Объект.Узкопроходный</DataPath>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ContextMenu name="УзкопроходныйКонтекстноеМеню" id="103"/>
+							<ExtendedTooltip name="УзкопроходныйРасширеннаяПодсказка" id="104"/>
+						</CheckBoxField>
 						<Pages name="Страницы" id="31">
 							<Title>
 								<v8:item>
@@ -173,6 +215,27 @@
 													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
 													<ContextMenu name="ЭтажиТипоразмерКонтекстноеМеню" id="52"/>
 													<ExtendedTooltip name="ЭтажиТипоразмерРасширеннаяПодсказка" id="53"/>
+												</InputField>
+												<CheckBoxField name="ЭтажиМинимальнаяГлубинаНеОграничена" id="105">
+													<DataPath>Объект.Этажи.МинимальнаяГлубинаНеОграничена</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ЭтажиМинимальнаяГлубинаНеОграниченаКонтекстноеМеню" id="106"/>
+													<ExtendedTooltip name="ЭтажиМинимальнаяГлубинаНеОграниченаРасширеннаяПодсказка" id="107"/>
+												</CheckBoxField>
+												<CheckBoxField name="ЭтажиМаксимальнаяГлубинаНеОграничена" id="108">
+													<DataPath>Объект.Этажи.МаксимальнаяГлубинаНеОграничена</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="ЭтажиМаксимальнаяГлубинаНеОграниченаКонтекстноеМеню" id="109"/>
+													<ExtendedTooltip name="ЭтажиМаксимальнаяГлубинаНеОграниченаРасширеннаяПодсказка" id="110"/>
+												</CheckBoxField>
+												<InputField name="ЭтажиМаксимальныйВесПодъёмаНаЭтаж" id="111">
+													<DataPath>Объект.Этажи.МаксимальныйВесПодъёмаНаЭтаж</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+													<ContextMenu name="ЭтажиМаксимальныйВесПодъёмаНаЭтажКонтекстноеМеню" id="112"/>
+													<ExtendedTooltip name="ЭтажиМаксимальныйВесПодъёмаНаЭтажРасширеннаяПодсказка" id="113"/>
 												</InputField>
 											</ChildItems>
 										</Table>
