@@ -1,0 +1,810 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="АвторДокумента" id="114">
+			<DataPath>АвторДокумента</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="АвторДокументаКонтекстноеМеню" id="115"/>
+			<ExtendedTooltip name="АвторДокументаРасширеннаяПодсказка" id="116"/>
+		</InputField>
+		<InputField name="ПутьКФайлу" id="117">
+			<DataPath>ПутьКФайлу</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ПутьКФайлуКонтекстноеМеню" id="118"/>
+			<ExtendedTooltip name="ПутьКФайлуРасширеннаяПодсказка" id="119"/>
+		</InputField>
+		<InputField name="НачалоСтрокиExcel" id="120">
+			<DataPath>НачалоСтрокиExcel</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НачалоСтрокиExcelКонтекстноеМеню" id="121"/>
+			<ExtendedTooltip name="НачалоСтрокиExcelРасширеннаяПодсказка" id="122"/>
+		</InputField>
+		<InputField name="Склад" id="4">
+			<DataPath>Склад</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="СкладКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="СкладРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="Адрес" id="87">
+			<DataPath>Адрес</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="АдресКонтекстноеМеню" id="88"/>
+			<ExtendedTooltip name="АдресРасширеннаяПодсказка" id="89"/>
+		</InputField>
+		<InputField name="ОбъектНоменклатурыБазовый" id="1">
+			<DataPath>ОбъектНоменклатурыБазовый</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ОбъектНоменклатурыБазовыйКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ОбъектНоменклатурыБазовыйРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<Button name="ЗаполнитьСтатистику" id="100">
+			<Type>UsualButton</Type>
+			<CommandName>Form.Command.ЗаполнитьСтатистику</CommandName>
+			<ExtendedTooltip name="ЗаполнитьСтатистикуРасширеннаяПодсказка" id="101"/>
+		</Button>
+		<Pages name="ГруппаСтраницы" id="35">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа страницы</v8:content>
+				</v8:item>
+			</ToolTip>
+			<ExtendedTooltip name="ГруппаСтраницыРасширеннаяПодсказка" id="36"/>
+			<ChildItems>
+				<Page name="ГруппаПаллеты" id="37">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Паллеты</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа паллеты</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ГруппаПаллетыРасширеннаяПодсказка" id="38"/>
+					<ChildItems>
+						<UsualGroup name="Группа1" id="92">
+							<Representation>None</Representation>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="93"/>
+							<ChildItems>
+								<Button name="ЗагрузитьИзExcel" id="81">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.ЗагрузитьИзExcel</CommandName>
+									<ExtendedTooltip name="ЗагрузитьИзExcelРасширеннаяПодсказка" id="82"/>
+								</Button>
+								<Button name="СозатьТипоразмеры" id="90">
+									<Type>UsualButton</Type>
+									<CommandName>Form.Command.СозатьТипоразмеры</CommandName>
+									<ExtendedTooltip name="СозатьТипоразмерыРасширеннаяПодсказка" id="91"/>
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<Table name="Паллеты" id="7">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>Паллеты</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ПаллетыКонтекстноеМеню" id="8"/>
+							<AutoCommandBar name="ПаллетыКоманднаяПанель" id="9"/>
+							<ExtendedTooltip name="ПаллетыРасширеннаяПодсказка" id="10"/>
+							<SearchStringAddition name="ПаллетыСтрокаПоиска" id="11">
+								<AdditionSource>
+									<Item>Паллеты</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПаллетыСтрокаПоискаКонтекстноеМеню" id="12"/>
+								<ExtendedTooltip name="ПаллетыСтрокаПоискаРасширеннаяПодсказка" id="13"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ПаллетыСостояниеПросмотра" id="14">
+								<AdditionSource>
+									<Item>Паллеты</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПаллетыСостояниеПросмотраКонтекстноеМеню" id="15"/>
+								<ExtendedTooltip name="ПаллетыСостояниеПросмотраРасширеннаяПодсказка" id="16"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ПаллетыУправлениеПоиском" id="17">
+								<AdditionSource>
+									<Item>Паллеты</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ПаллетыУправлениеПоискомКонтекстноеМеню" id="18"/>
+								<ExtendedTooltip name="ПаллетыУправлениеПоискомРасширеннаяПодсказка" id="19"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<InputField name="ПаллетыВысота" id="20">
+									<DataPath>Паллеты.Высота</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыВысотаКонтекстноеМеню" id="21"/>
+									<ExtendedTooltip name="ПаллетыВысотаРасширеннаяПодсказка" id="22"/>
+								</InputField>
+								<InputField name="ПаллетыШиринаПлан" id="97">
+									<DataPath>Паллеты.ШиринаПлан</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыШиринаПланКонтекстноеМеню" id="98"/>
+									<ExtendedTooltip name="ПаллетыШиринаПланРасширеннаяПодсказка" id="99"/>
+								</InputField>
+								<InputField name="ПаллетыШирина" id="23">
+									<DataPath>Паллеты.Ширина</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыШиринаКонтекстноеМеню" id="24"/>
+									<ExtendedTooltip name="ПаллетыШиринаРасширеннаяПодсказка" id="25"/>
+								</InputField>
+								<InputField name="ПаллетыГлубинаПлан" id="94">
+									<DataPath>Паллеты.ГлубинаПлан</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыГлубинаПланКонтекстноеМеню" id="95"/>
+									<ExtendedTooltip name="ПаллетыГлубинаПланРасширеннаяПодсказка" id="96"/>
+								</InputField>
+								<InputField name="ПаллетыГлубина" id="26">
+									<DataPath>Паллеты.Глубина</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыГлубинаКонтекстноеМеню" id="27"/>
+									<ExtendedTooltip name="ПаллетыГлубинаРасширеннаяПодсказка" id="28"/>
+								</InputField>
+								<InputField name="ПаллетыКоличествоСозданныхФормированийПаллет" id="102">
+									<DataPath>Паллеты.КоличествоСозданныхФормированийПаллет</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыКоличествоСозданныхФормированийПаллетКонтекстноеМеню" id="103"/>
+									<ExtendedTooltip name="ПаллетыКоличествоСозданныхФормированийПаллетРасширеннаяПодсказка" id="104"/>
+								</InputField>
+								<InputField name="ПаллетыКоличествоСозданныхПеремещенийПаллет" id="105">
+									<DataPath>Паллеты.КоличествоСозданныхПеремещенийПаллет</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыКоличествоСозданныхПеремещенийПаллетКонтекстноеМеню" id="106"/>
+									<ExtendedTooltip name="ПаллетыКоличествоСозданныхПеремещенийПаллетРасширеннаяПодсказка" id="107"/>
+								</InputField>
+								<InputField name="ПаллетыВес" id="29">
+									<DataPath>Паллеты.Вес</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыВесКонтекстноеМеню" id="30"/>
+									<ExtendedTooltip name="ПаллетыВесРасширеннаяПодсказка" id="31"/>
+								</InputField>
+								<InputField name="ПаллетыКоличество" id="32">
+									<DataPath>Паллеты.Количество</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыКоличествоКонтекстноеМеню" id="33"/>
+									<ExtendedTooltip name="ПаллетыКоличествоРасширеннаяПодсказка" id="34"/>
+								</InputField>
+								<InputField name="ПаллетыНеСозданныеПеремещенияПаллет" id="108">
+									<DataPath>Паллеты.НеСозданныеПеремещенияПаллет</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыНеСозданныеПеремещенияПаллетКонтекстноеМеню" id="109"/>
+									<ExtendedTooltip name="ПаллетыНеСозданныеПеремещенияПаллетРасширеннаяПодсказка" id="110"/>
+								</InputField>
+								<InputField name="ПаллетыНеСозданныеФормированияПаллет" id="111">
+									<DataPath>Паллеты.НеСозданныеФормированияПаллет</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПаллетыНеСозданныеФормированияПаллетКонтекстноеМеню" id="112"/>
+									<ExtendedTooltip name="ПаллетыНеСозданныеФормированияПаллетРасширеннаяПодсказка" id="113"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаФормированияПаллета" id="39">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа формирования паллета</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа формирования паллета</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ГруппаФормированияПаллетаРасширеннаяПодсказка" id="40"/>
+					<ChildItems>
+						<Button name="СоздатьДокументыФормированияПаллет" id="83">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.СоздатьДокументыФормированияПаллет</CommandName>
+							<ExtendedTooltip name="СоздатьДокументыФормированияПаллетРасширеннаяПодсказка" id="84"/>
+						</Button>
+						<Table name="ФормированияПаллет" id="41">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>ФормированияПаллет</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ФормированияПаллетКонтекстноеМеню" id="42"/>
+							<AutoCommandBar name="ФормированияПаллетКоманднаяПанель" id="43"/>
+							<ExtendedTooltip name="ФормированияПаллетРасширеннаяПодсказка" id="44"/>
+							<SearchStringAddition name="ФормированияПаллетСтрокаПоиска" id="45">
+								<AdditionSource>
+									<Item>ФормированияПаллет</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ФормированияПаллетСтрокаПоискаКонтекстноеМеню" id="46"/>
+								<ExtendedTooltip name="ФормированияПаллетСтрокаПоискаРасширеннаяПодсказка" id="47"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ФормированияПаллетСостояниеПросмотра" id="48">
+								<AdditionSource>
+									<Item>ФормированияПаллет</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ФормированияПаллетСостояниеПросмотраКонтекстноеМеню" id="49"/>
+								<ExtendedTooltip name="ФормированияПаллетСостояниеПросмотраРасширеннаяПодсказка" id="50"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ФормированияПаллетУправлениеПоиском" id="51">
+								<AdditionSource>
+									<Item>ФормированияПаллет</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ФормированияПаллетУправлениеПоискомКонтекстноеМеню" id="52"/>
+								<ExtendedTooltip name="ФормированияПаллетУправлениеПоискомРасширеннаяПодсказка" id="53"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<InputField name="ФормированияПаллетФормированиеПаллета" id="54">
+									<DataPath>ФормированияПаллет.ФормированиеПаллета</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ФормированияПаллетФормированиеПаллетаКонтекстноеМеню" id="55"/>
+									<ExtendedTooltip name="ФормированияПаллетФормированиеПаллетаРасширеннаяПодсказка" id="56"/>
+								</InputField>
+								<InputField name="ФормированияПаллетТипоразмер" id="57">
+									<DataPath>ФормированияПаллет.Типоразмер</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ФормированияПаллетТипоразмерКонтекстноеМеню" id="58"/>
+									<ExtendedTooltip name="ФормированияПаллетТипоразмерРасширеннаяПодсказка" id="59"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+				<Page name="ГруппаПеремещенияпПаллет" id="60">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Перемещения паллет</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа перемещенияп паллет</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ГруппаПеремещенияпПаллетРасширеннаяПодсказка" id="61"/>
+					<ChildItems>
+						<Button name="СоздатьДокументыПеремещенияПаллет" id="85">
+							<Type>UsualButton</Type>
+							<CommandName>Form.Command.СоздатьДокументыПеремещенияПаллет</CommandName>
+							<ExtendedTooltip name="СоздатьДокументыПеремещенияПаллетРасширеннаяПодсказка" id="86"/>
+						</Button>
+						<Table name="ПеремещенияПаллет" id="62">
+							<Representation>List</Representation>
+							<AutoInsertNewRow>true</AutoInsertNewRow>
+							<EnableStartDrag>true</EnableStartDrag>
+							<EnableDrag>true</EnableDrag>
+							<DataPath>ПеремещенияПаллет</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ПеремещенияПаллетКонтекстноеМеню" id="63"/>
+							<AutoCommandBar name="ПеремещенияПаллетКоманднаяПанель" id="64"/>
+							<ExtendedTooltip name="ПеремещенияПаллетРасширеннаяПодсказка" id="65"/>
+							<SearchStringAddition name="ПеремещенияПаллетСтрокаПоиска" id="66">
+								<AdditionSource>
+									<Item>ПеремещенияПаллет</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПеремещенияПаллетСтрокаПоискаКонтекстноеМеню" id="67"/>
+								<ExtendedTooltip name="ПеремещенияПаллетСтрокаПоискаРасширеннаяПодсказка" id="68"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ПеремещенияПаллетСостояниеПросмотра" id="69">
+								<AdditionSource>
+									<Item>ПеремещенияПаллет</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ПеремещенияПаллетСостояниеПросмотраКонтекстноеМеню" id="70"/>
+								<ExtendedTooltip name="ПеремещенияПаллетСостояниеПросмотраРасширеннаяПодсказка" id="71"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ПеремещенияПаллетУправлениеПоиском" id="72">
+								<AdditionSource>
+									<Item>ПеремещенияПаллет</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ПеремещенияПаллетУправлениеПоискомКонтекстноеМеню" id="73"/>
+								<ExtendedTooltip name="ПеремещенияПаллетУправлениеПоискомРасширеннаяПодсказка" id="74"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<InputField name="ПеремещенияПаллетПеремещениепаллета" id="75">
+									<DataPath>ПеремещенияПаллет.Перемещениепаллета</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремещенияПаллетПеремещениепаллетаКонтекстноеМеню" id="76"/>
+									<ExtendedTooltip name="ПеремещенияПаллетПеремещениепаллетаРасширеннаяПодсказка" id="77"/>
+								</InputField>
+								<InputField name="ПеремещенияПаллетТипоразмер" id="78">
+									<DataPath>ПеремещенияПаллет.Типоразмер</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ПеремещенияПаллетТипоразмерКонтекстноеМеню" id="79"/>
+									<ExtendedTooltip name="ПеремещенияПаллетТипоразмерРасширеннаяПодсказка" id="80"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:ExternalDataProcessorObject.РазмещениеПаллетНаСкладе</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="Паллеты" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Паллеты</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Save>
+				<Field>Паллеты</Field>
+			</Save>
+			<Columns>
+				<Column name="Высота" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Высота</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Ширина" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ширина</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Глубина" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Глубина</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Вес" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вес</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Количество" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="КоличествоСозданныхФормированийПаллет" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество созданных формирований паллет</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Типоразмер" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Типоразмер</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_ТипоразмерыПаллет</v8:Type>
+					</Type>
+				</Column>
+				<Column name="НеСозданныеПеремещенияПаллет" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Не созданные перемещения паллет</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="КоличествоСозданныхПеремещенийПаллет" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество созданных перемещений паллет</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="НеСозданныеФормированияПаллет" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Не созданные формирования паллет</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ШиринаПлан" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ширина план</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="ГлубинаПлан" id="12">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Глубина план</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ОбъектНоменклатурыБазовый" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объект номенклатуры базовый</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.ЯССМ_ОбъектыНоменклатуры</v8:Type>
+			</Type>
+			<Save>
+				<Field>ОбъектНоменклатурыБазовый</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="Склад" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Склад</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Склады</v8:Type>
+			</Type>
+			<Save>
+				<Field>Склад</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="ФормированияПаллет" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Формирования паллет</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Save>
+				<Field>ФормированияПаллет</Field>
+			</Save>
+			<Columns>
+				<Column name="ФормированиеПаллета" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Формирование паллета</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:DocumentRef.Лико_ФормированиеПаллета2_0</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Типоразмер" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Типоразмер</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_ТипоразмерыПаллет</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ПеремещенияПаллет" id="6">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Перемещения паллет</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Save>
+				<Field>ПеремещенияПаллет</Field>
+			</Save>
+			<Columns>
+				<Column name="Перемещениепаллета" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Перемещениепаллета</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:DocumentRef.Лико_ПеремещениеПаллета2_0</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Типоразмер" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Типоразмер</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_ТипоразмерыПаллет</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="Адрес" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Адрес</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.СкладскиеЯчейки</v8:Type>
+			</Type>
+			<Save>
+				<Field>Адрес</Field>
+			</Save>
+		</Attribute>
+		<Attribute name="АвторДокумента" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Автор документа</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.ФизическиеЛица</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ПутьКФайлу" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Путь к файлу</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="НачалоСтрокиExcel" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Начало строки excel</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:decimal</v8:Type>
+				<v8:NumberQualifiers>
+					<v8:Digits>10</v8:Digits>
+					<v8:FractionDigits>0</v8:FractionDigits>
+					<v8:AllowedSign>Any</v8:AllowedSign>
+				</v8:NumberQualifiers>
+			</Type>
+			<Save>
+				<Field>НачалоСтрокиExcel</Field>
+			</Save>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ЗагрузитьИзExcel" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Загрузить из excel</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Загрузить из excel</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ЗагрузитьИзExcel</Action>
+		</Command>
+		<Command name="СоздатьДокументыФормированияПаллет" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать документы формирования паллет</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать документы формирования паллет</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СоздатьДокументыФормированияПаллет</Action>
+		</Command>
+		<Command name="СоздатьДокументыПеремещенияПаллет" id="3">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать документы перемещения паллет</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать документы перемещения паллет</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СоздатьДокументыПеремещенияПаллет</Action>
+		</Command>
+		<Command name="СозатьТипоразмеры" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Созать типоразмеры</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Созать типоразмеры</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СозатьТипоразмеры</Action>
+		</Command>
+		<Command name="ЗаполнитьСтатистику" id="5">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполнить статистику</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполнить статистику</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ЗаполнитьСтатистику</Action>
+		</Command>
+	</Commands>
+</Form>
