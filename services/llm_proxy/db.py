@@ -15,6 +15,7 @@ async def get_db(db_path: str = DB_PATH):
     """Async context manager for database connection."""
     Path(db_path).parent.mkdir(parents=True, exist_ok=True)
     conn = await aiosqlite.connect(db_path)
+    await conn.execute("PRAGMA foreign_keys = ON")
     conn.row_factory = aiosqlite.Row
     try:
         yield conn
@@ -26,6 +27,8 @@ async def init_db(db_path: str = DB_PATH):
     """Create tables if they don't exist."""
     async with get_db(db_path) as conn:
         await conn.executescript("""
+            PRAGMA foreign_keys = ON;
+
             CREATE TABLE IF NOT EXISTS providers (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL UNIQUE,
