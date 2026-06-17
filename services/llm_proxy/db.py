@@ -187,7 +187,7 @@ async def log_request(conn, key_name: str, provider: str, model: str,
 
 async def get_recent_logs(conn, limit: int = 200) -> list[dict]:
     cursor = await conn.execute(
-        "SELECT * FROM request_log ORDER BY id DESC LIMIT ?", (limit,)
+        "SELECT * FROM request_log ORDER BY timestamp DESC LIMIT ?", (limit,)
     )
     return [dict(row) for row in await cursor.fetchall()]
 
