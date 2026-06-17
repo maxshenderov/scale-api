@@ -351,7 +351,14 @@ async def api_get_settings():
 @app.post("/api/settings")
 async def api_set_settings(data: dict):
     async with get_db(DB_PATH) as conn:
-        for key, value in data.items():
+        normalized = dict(data)
+        if 'override_enabled' in normalized:
+            val = normalized['override_enabled']
+            if val is True or val == 'true' or val == 'True' or val == '1':
+                normalized['override_enabled'] = '1'
+            else:
+                normalized['override_enabled'] = '0'
+        for key, value in normalized.items():
             await set_setting(conn, key, str(value))
         return {"ok": True}
 
