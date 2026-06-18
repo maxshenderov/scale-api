@@ -11,7 +11,7 @@ document.querySelectorAll('nav button').forEach(btn => {
     btn.classList.add('active');
     document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
     if (btn.dataset.tab === 'logs') loadLogs();
-    if (btn.dataset.tab === 'keys') loadKeys();
+    if (btn.dataset.tab === 'connections') loadConnections();
     if (btn.dataset.tab === 'providers') loadProviders();
     if (btn.dataset.tab === 'settings') loadSettings();
   });
@@ -34,22 +34,25 @@ async function loadProviders() {
   const tbody = document.getElementById('providers-table');
   tbody.innerHTML = list.map(p => `
     <tr>
-      <td>${esc(p.name)}</td>
-      <td>${esc(p.base_url)}</td>
-      <td>${esc(p.path)}</td>
-      <td><span class="badge badge-ok">${esc(p.format)}</span></td>
+      <td><strong>${esc(p.name)}</strong></td>
+      <td>${esc(p.base_url)}:${p.port}${esc(p.path)}</td>
+      <td><span class="badge ${p.format === 'anthropic' ? 'badge-info' : 'badge-ok'}">${esc(p.format)}</span></td>
       <td><button class="small danger" onclick="delProvider(${p.id})">Удалить</button></td>
     </tr>`).join('');
-  // Also update key form's provider select
-  const sel = document.getElementById('key-provider');
-  sel.innerHTML = list.map(p => `<option value="${p.id}">${esc(p.name)}</option>`).join('');
+  // Update connection form's provider select
+  const sel = document.getElementById('conn-provider');
+  if (sel) {
+    sel.innerHTML = list.map(p => `<option value="${p.id}">${esc(p.name)}</option>`).join('');
+  }
 }
 
 async function createProvider() {
+  const name = document.getElementById('prov-name').value.trim();
+  const url = document.getElementById('prov-url').value.trim();
+  if (!name || !url) return alert('Имя и Хост обязательны');
   const data = {
-    name: document.getElementById('prov-name').value,
-    base_url: document.getElementById('prov-url').value,
-    path: document.getElementById('prov-path').value,
+    name, base_url: url,
+    path: document.getElementById('prov-path').value.trim() || '/v1/chat/completions',
     format: document.getElementById('prov-format').value,
     port: parseInt(document.getElementById('prov-port').value) || 443,
   };
@@ -60,55 +63,71 @@ async function createProvider() {
 }
 
 async function delProvider(id) {
-  if (!confirm('Удалить провайдера и все его ключи?')) return;
+  if (!confirm('Удалить провайдера и все его подключения?')) return;
   await api('DELETE', '/api/providers/' + id);
   loadProviders();
-  loadKeys();
+  loadConnections();
 }
 
-// ── Keys ────────────────────────────────────────────────────────────────
+// ── Connections (бывшие Keys) ───────────────────────────────────────────
 
-async function loadKeys() {
+async function loadConnections() {
   const list = await api('GET', '/api/keys');
-  const tbody = document.getElementById('keys-table');
-  tbody.innerHTML = list.map(k => `
-    <tr>
-      <td><strong>${esc(k.name)}</strong></td>
-      <td>${esc(k.provider_name)}</td>
-      <td>${esc(k.default_model)}</td>
-      <td><div class="toggle ${k.enabled ? 'on' : ''}" onclick="toggleKey(${k.id}, ${k.enabled})"></div></td>
-      <td><button class="small danger" onclick="delKey(${k.id})">Удалить</button></td>
-    </tr>`).join('');
-  // Update override key selector
+  const tbody = document.getElementById('connections-table');
+  const empty = document.getElementById('connections-empty');
+  if (list.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    tbody.innerHTML = list.map(k => `
+      <tr>
+        <td><code style="background:#f1f5f9;padding:2px 6px;border-radius:3px;font-size:13px;">${esc(k.name)}</code></td>
+        <td>${esc(k.provider_name)}</td>
+        <td style="color:var(--muted);font-size:12px;">${esc(k.default_model) || '—'}</td>
+        <td>${k.enabled ? '<span class="badge badge-ok">активно</span>' : '<span class="badge badge-err">отключено</span>'}</td>
+        <td>
+          <button class="small ghost" onclick="toggleConnection(${k.id}, ${k.enabled})">${k.enabled ? 'отключить' : 'включить'}</button>
+          <button class="small danger" onclick="deleteConnection(${k.id})">Удалить</button>
+        </td>
+      </tr>`).join('');
+  }
+  // Update override selector
   const sel = document.getElementById('override-key');
-  const cur = sel.value;
-  sel.innerHTML = '<option value="">— не выбрано —</option>' +
-    list.map(k => `<option value="${k.id}">${esc(k.name)} (${esc(k.provider_name)})</option>`).join('');
-  sel.value = cur;
+  if (sel) {
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">— не выбрано —</option>' +
+      list.map(k => `<option value="${k.id}">${esc(k.name)} (${esc(k.provider_name)} → ${esc(k.default_model)})</option>`).join('');
+    sel.value = cur;
+  }
 }
 
-async function createKey() {
+async function createConnection() {
+  const name = document.getElementById('conn-name').value.trim();
+  const realKey = document.getElementById('conn-key').value.trim();
+  const providerId = parseInt(document.getElementById('conn-provider').value);
+  if (!name || !realKey || !providerId) return alert('Имя, Провайдер и API-ключ обязательны');
   const data = {
-    name: document.getElementById('key-name').value,
-    provider_id: parseInt(document.getElementById('key-provider').value),
-    real_key: document.getElementById('key-real').value,
-    default_model: document.getElementById('key-model').value,
+    name,
+    provider_id: providerId,
+    real_key: realKey,
+    default_model: document.getElementById('conn-model').value.trim(),
   };
   await api('POST', '/api/keys', data);
-  document.getElementById('key-name').value = '';
-  document.getElementById('key-real').value = '';
-  loadKeys();
+  document.getElementById('conn-name').value = '';
+  document.getElementById('conn-key').value = '';
+  loadConnections();
 }
 
-async function delKey(id) {
-  if (!confirm('Удалить ключ?')) return;
+async function deleteConnection(id) {
+  if (!confirm('Удалить подключение? 1С больше не сможет его использовать.')) return;
   await api('DELETE', '/api/keys/' + id);
-  loadKeys();
+  loadConnections();
 }
 
-async function toggleKey(id, current) {
+async function toggleConnection(id, current) {
   await api('POST', '/api/keys/' + id + '/toggle', { enabled: !current });
-  loadKeys();
+  loadConnections();
 }
 
 // ── Settings ────────────────────────────────────────────────────────────
@@ -141,16 +160,18 @@ async function saveOverrideKey() {
 async function loadLogs() {
   const list = await api('GET', '/api/logs?limit=200');
   const tbody = document.getElementById('logs-table');
+  const counter = document.getElementById('log-count');
+  if (counter) counter.textContent = 'Записей: ' + list.length;
   tbody.innerHTML = list.map(l => `
     <tr>
-      <td>${esc(l.timestamp)}</td>
-      <td>${esc(l.key_name)}</td>
+      <td style="font-size:11px;color:var(--muted);">${esc(l.timestamp)}</td>
+      <td><code>${esc(l.key_name)}</code></td>
       <td>${esc(l.provider)}</td>
-      <td>${esc(l.model)}</td>
+      <td style="font-size:12px;">${esc(l.model)}</td>
       <td>${l.tokens_in}</td>
       <td>${l.tokens_out}</td>
       <td>${l.duration_ms}</td>
-      <td>${l.error ? '<span class="badge badge-err">' + esc(l.error.substring(0, 80)) + '</span>' : ''}</td>
+      <td>${l.error ? '<span class="badge badge-err">' + esc(l.error.substring(0, 60)) + '</span>' : '✅'}</td>
     </tr>`).join('');
 }
 
@@ -169,7 +190,7 @@ function esc(s) {
 
 // ── Init ────────────────────────────────────────────────────────────────
 
-loadKeys();
+loadConnections();
 setInterval(() => {
   if (document.getElementById('tab-logs').classList.contains('active')) loadLogs();
 }, 5000);

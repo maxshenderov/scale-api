@@ -9,97 +9,197 @@
           --muted: #64748b; --accent: #2563eb; --danger: #dc2626; --green: #059669; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font: 14px -apple-system, Arial, sans-serif; background: var(--bg); color: var(--text); }
-  .app { max-width: 960px; margin: 0 auto; padding: 20px; }
-  h1 { font-size: 20px; margin-bottom: 16px; }
-  nav { display: flex; gap: 2px; margin-bottom: 20px; }
-  nav button { padding: 8px 16px; border: 1px solid var(--border); background: var(--card);
-               cursor: pointer; font-size: 14px; border-radius: 6px 6px 0 0; }
+  .app { max-width: 900px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 22px; margin-bottom: 6px; }
+  .subtitle { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+  nav { display: flex; gap: 3px; margin-bottom: 0; }
+  nav button { padding: 10px 20px; border: 1px solid var(--border); background: var(--card);
+               cursor: pointer; font-size: 14px; border-radius: 8px 8px 0 0; border-bottom: none; }
   nav button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .tab-content { background: var(--card); border: 1px solid var(--border); border-radius: 0 8px 8px 8px;
+                 padding: 20px; min-height: 300px; }
+  .tab-desc { font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
   .tab { display: none; }
   .tab.active { display: block; }
-  table { width: 100%; border-collapse: collapse; background: var(--card);
-          border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13px; }
-  th { background: #f1f5f9; font-weight: 600; }
-  .form-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: flex-end; }
-  input, select, button { padding: 6px 10px; font-size: 13px; border: 1px solid var(--border);
-                          border-radius: 4px; }
-  button { cursor: pointer; background: var(--accent); color: #fff; border: none; }
-  button.danger { background: var(--danger); }
-  button.small { padding: 3px 8px; font-size: 12px; }
-  label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 2px; }
-  .badge { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13px; }
+  th { background: #f1f5f9; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; }
+  tr:hover td { background: #f8fafc; }
+  .form-card { background: #f8fafc; border: 1px dashed var(--border); border-radius: 8px;
+               padding: 14px; margin-bottom: 16px; }
+  .form-card h3 { font-size: 14px; margin-bottom: 10px; color: var(--text); }
+  .form-row { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .form-field { display: flex; flex-direction: column; gap: 3px; }
+  .form-field label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; }
+  .form-field .hint { font-size: 10px; color: var(--muted); }
+  input, select { padding: 7px 10px; font-size: 13px; border: 1px solid var(--border); border-radius: 4px;
+                  background: var(--card); }
+  input:focus, select:focus { outline: none; border-color: var(--accent); }
+  button { padding: 7px 14px; font-size: 13px; border-radius: 4px; cursor: pointer; border: none; }
+  button.primary { background: var(--accent); color: #fff; }
+  button.danger { background: var(--danger); color: #fff; }
+  button.small { padding: 3px 8px; font-size: 11px; }
+  button.ghost { background: none; color: var(--danger); padding: 3px 6px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
   .badge-ok { background: #dcfce7; color: var(--green); }
   .badge-err { background: #fee2e2; color: var(--danger); }
-  .toggle { width: 40px; height: 22px; background: #cbd5e1; border-radius: 11px;
-            position: relative; cursor: pointer; display: inline-block; vertical-align: middle; }
+  .badge-info { background: #dbeafe; color: var(--accent); }
+  .toggle-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .toggle { width: 44px; height: 24px; background: #cbd5e1; border-radius: 12px;
+            position: relative; cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
   .toggle.on { background: var(--green); }
-  .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px;
-                   background: #fff; border-radius: 50%; transition: transform 0.15s; }
-  .toggle.on::after { transform: translateX(18px); }
-  .logs-auto { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px;
+                   background: #fff; border-radius: 50%; transition: transform 0.2s; }
+  .toggle.on::after { transform: translateX(20px); }
+  .empty { text-align: center; padding: 40px; color: var(--muted); font-size: 14px; }
+  .logs-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 </style>
 </head>
 <body>
 <div class="app">
   <h1>🔀 LLM Proxy</h1>
+  <p class="subtitle">Прокси между 1С и LLM-провайдерами. Порт 8765.</p>
+
   <nav>
-    <button data-tab="keys" class="active">Ключи</button>
-    <button data-tab="providers">Провайдеры</button>
-    <button data-tab="settings">Настройки</button>
-    <button data-tab="logs">Логи</button>
+    <button data-tab="connections" class="active">🔌 Подключения</button>
+    <button data-tab="providers">🏢 Провайдеры</button>
+    <button data-tab="settings">⚙️ Настройки</button>
+    <button data-tab="logs">📋 Логи</button>
   </nav>
 
-  <!-- Keys tab -->
-  <div id="tab-keys" class="tab active">
-    <div class="form-row">
-      <div><label>Имя ключа</label><input id="key-name" placeholder="prod"></div>
-      <div><label>Провайдер</label><select id="key-provider"></select></div>
-      <div><label>API-ключ</label><input id="key-real" type="password" placeholder="sk-..."></div>
-      <div><label>Модель по умолчанию</label><input id="key-model" placeholder="deepseek/deepseek-v4-pro"></div>
-      <div><label>&nbsp;</label><button onclick="createKey()">Создать</button></div>
-    </div>
-    <table><thead><tr><th>Имя</th><th>Провайдер</th><th>Модель</th><th>Вкл</th><th></th></tr></thead>
-    <tbody id="keys-table"></tbody></table>
-  </div>
+  <div class="tab-content">
 
-  <!-- Providers tab -->
-  <div id="tab-providers" class="tab">
-    <div class="form-row">
-      <div><label>Имя</label><input id="prov-name" placeholder="RouterAI"></div>
-      <div><label>URL</label><input id="prov-url" placeholder="routerai.ru"></div>
-      <div><label>Путь</label><input id="prov-path" placeholder="/api"></div>
-      <div><label>Формат</label><select id="prov-format"><option value="anthropic">Anthropic</option><option value="openai" selected>OpenAI</option></select></div>
-      <div><label>Порт</label><input id="prov-port" type="number" value="443" style="width:70px"></div>
-      <div><label>&nbsp;</label><button onclick="createProvider()">Добавить</button></div>
-    </div>
-    <table><thead><tr><th>Имя</th><th>URL</th><th>Путь</th><th>Формат</th><th></th></tr></thead>
-    <tbody id="providers-table"></tbody></table>
-  </div>
+    <!-- ═══ ПОДКЛЮЧЕНИЯ ═══ -->
+    <div id="tab-connections" class="tab active">
+      <p class="tab-desc">
+        <strong>Подключение</strong> — это то, что 1С передаёт в заголовке <code>Authorization: Bearer &lt;имя&gt;</code>.
+        Каждое подключение связывает имя, провайдера, реальный API-ключ и модель.
+      </p>
 
-  <!-- Settings tab -->
-  <div id="tab-settings" class="tab">
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-        <span>Форсировать провайдера/модель:</span>
-        <div id="override-toggle" class="toggle" onclick="toggleOverride()"></div>
+      <div class="form-card">
+        <h3>➕ Новое подключение</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Имя *</label>
+            <input id="conn-name" placeholder="например: prod" style="width:140px">
+            <span class="hint">1С будет слать это в Authorization</span>
+          </div>
+          <div class="form-field">
+            <label>Провайдер *</label>
+            <select id="conn-provider" style="width:160px"></select>
+            <span class="hint">Куда отправлять запрос</span>
+          </div>
+          <div class="form-field">
+            <label>API-ключ *</label>
+            <input id="conn-key" type="password" placeholder="sk-..." style="width:260px">
+            <span class="hint">Реальный ключ провайдера</span>
+          </div>
+          <div class="form-field">
+            <label>Модель</label>
+            <input id="conn-model" placeholder="deepseek/deepseek-v4-pro" style="width:220px">
+            <span class="hint">По умолчанию, если 1С не указала</span>
+          </div>
+          <div class="form-field">
+            <label>&nbsp;</label>
+            <button class="primary" onclick="createConnection()">Создать</button>
+          </div>
+        </div>
       </div>
-      <div class="form-row">
-        <div><label>Ключ для форсирования</label>
-        <select id="override-key" onchange="saveOverrideKey()"><option value="">— не выбрано —</option></select></div>
-      </div>
-      <p style="font-size:12px;color:var(--muted);">
-        Когда включено — все запросы идут через выбранного провайдера, игнорируя выбор в 1С.</p>
-    </div>
-  </div>
 
-  <!-- Logs tab -->
-  <div id="tab-logs" class="tab">
-    <div class="logs-auto">Автообновление каждые 5 сек.
-      <button class="small danger" onclick="clearLogs()" style="margin-left:12px;">Очистить</button>
+      <table>
+        <thead><tr><th>Имя (Bearer)</th><th>Провайдер</th><th>Модель</th><th>Статус</th><th></th></tr></thead>
+        <tbody id="connections-table"></tbody>
+      </table>
+      <div class="empty" id="connections-empty" style="display:none">
+        Нет подключений. Создайте первое — и 1С сможет отправлять запросы.
+      </div>
     </div>
-    <table><thead><tr><th>Время</th><th>Ключ</th><th>Провайдер</th><th>Модель</th><th>In</th><th>Out</th><th>мс</th><th>Ошибка</th></tr></thead>
-    <tbody id="logs-table"></tbody></table>
+
+    <!-- ═══ ПРОВАЙДЕРЫ ═══ -->
+    <div id="tab-providers" class="tab">
+      <p class="tab-desc">
+        <strong>Провайдер</strong> — внешний LLM-сервис. Добавьте провайдера, затем создайте подключение с его API-ключом.
+        Формат <b>Anthropic</b> — запросы будут переведены в Messages API (RouterAI → всегда DeepSeek, дёшево).
+        Формат <b>OpenAI</b> — запросы пойдут как есть (pass-through).
+      </p>
+
+      <div class="form-card">
+        <h3>➕ Новый провайдер</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Имя *</label>
+            <input id="prov-name" placeholder="RouterAI" style="width:140px">
+          </div>
+          <div class="form-field">
+            <label>Хост *</label>
+            <input id="prov-url" placeholder="routerai.ru" style="width:200px">
+          </div>
+          <div class="form-field">
+            <label>Путь</label>
+            <input id="prov-path" placeholder="/api" style="width:200px">
+          </div>
+          <div class="form-field">
+            <label>Формат</label>
+            <select id="prov-format" style="width:130px">
+              <option value="anthropic">Anthropic Messages</option>
+              <option value="openai" selected>OpenAI Chat Completions</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Порт</label>
+            <input id="prov-port" type="number" value="443" style="width:70px">
+          </div>
+          <div class="form-field">
+            <label>&nbsp;</label>
+            <button class="primary" onclick="createProvider()">Добавить</button>
+          </div>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Имя</th><th>Адрес</th><th>Формат</th><th></th></tr></thead>
+        <tbody id="providers-table"></tbody>
+      </table>
+    </div>
+
+    <!-- ═══ НАСТРОЙКИ ═══ -->
+    <div id="tab-settings" class="tab">
+      <p class="tab-desc">
+        Когда <strong>форсирование включено</strong> — все запросы от 1С идут через выбранное подключение,
+        <em>независимо</em> от того, что пользователь выбрал в 1С.
+      </p>
+
+      <div style="background:#f8fafc;border-radius:8px;padding:20px;">
+        <div class="toggle-wrap">
+          <div id="override-toggle" class="toggle" onclick="toggleOverride()"></div>
+          <span style="font-weight:600;">Форсировать провайдера и модель</span>
+        </div>
+
+        <div class="form-row" style="margin-top:12px;">
+          <div class="form-field">
+            <label>Подключение для форсирования</label>
+            <select id="override-key" onchange="saveOverrideKey()" style="width:300px">
+              <option value="">— не выбрано —</option>
+            </select>
+            <span class="hint">Выберите одно из подключений. Все запросы пойдут через него.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ЛОГИ ═══ -->
+    <div id="tab-logs" class="tab">
+      <p class="tab-desc">Последние 200 запросов через прокси. Автообновление каждые 5 секунд.</p>
+      <div class="logs-meta">
+        <span id="log-count"></span>
+        <button class="small danger" onclick="clearLogs()">🗑 Очистить логи</button>
+      </div>
+      <table>
+        <thead><tr><th>Время</th><th>Подключение</th><th>Провайдер</th><th>Модель</th><th>In</th><th>Out</th><th>мс</th><th>Ошибка</th></tr></thead>
+        <tbody id="logs-table"></tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 <script src="/static/app.js"></script>
