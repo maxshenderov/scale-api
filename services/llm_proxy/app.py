@@ -196,10 +196,9 @@ async def chat_completions(request: Request):
                 if override_info:
                     key_info = override_info
 
-        # Determine model: if body model is a connection name, use key's default
+        # Determine model: if body model matches ANY key name, use key's default_model
         model = body.get("model", "") or key_info.get("default_model", "")
-        # If model matches a key name, replace with actual default model
-        if model == key_info.get("name", "") and key_info.get("default_model"):
+        if key_info.get("default_model"):
             model = key_info["default_model"]
         provider_format = key_info["format"]  # "anthropic" or "openai"
         base_url = key_info["base_url"]
@@ -214,11 +213,11 @@ async def chat_completions(request: Request):
         else:
             request_body = body
 
-        # Ensure model is set and replace connection name with real model
-        if "model" not in request_body or not request_body.get("model"):
-            request_body["model"] = model
-        elif request_body.get("model") == key_info.get("name") and key_info.get("default_model"):
+        # Always set the real model from the key's default_model
+        if key_info.get("default_model"):
             request_body["model"] = key_info["default_model"]
+        elif "model" not in request_body or not request_body.get("model"):
+            request_body["model"] = model
 
         # Build real URL
         scheme = "https" if port == 443 else "http"
