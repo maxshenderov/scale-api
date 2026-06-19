@@ -19,7 +19,7 @@ import logging
 from contextlib import asynccontextmanager
 
 import httpx
-from fastapi import FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
+from fastapi import Depends, FastAPI, Header, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
@@ -29,6 +29,8 @@ from db import (
     create_key, get_key_by_name, list_keys, delete_key, set_key_enabled,
     set_setting, get_setting, get_all_settings,
     log_request, get_recent_logs, clear_logs,
+    check_admin_password, is_admin_password_set, set_admin_password,
+    get_enabled_models, refresh_models, update_models, get_models_by_provider,
 )
 from translator import openai_to_anthropic, anthropic_to_openai
 
@@ -57,6 +59,17 @@ app = FastAPI(title="LLM Proxy", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
+# ── Admin verification dependency ──────────────────────────────────────────
+
+async def verify_admin(x_admin_key: str = Header(default="")):
+    if not x_admin_key:
+        raise HTTPException(status_code=401, detail="Missing X-Admin-Key header")
+    async with get_db(DB_PATH) as conn:
+        if not await check_admin_password(conn, x_admin_key):
+            raise HTTPException(status_code=403, detail="Invalid admin password")
+    return True
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # UI
 # ═══════════════════════════════════════════════════════════════════════════
@@ -81,7 +94,7 @@ async def health():
 
 @app.get("/v1/models")
 async def list_models():
-    """Fetch model list from the default (or override) provider."""
+    """Fetch model list — curated from DB, fallback to raw provider list."""
     async with get_db(DB_PATH) as conn:
         # Determine which key to use
         override_enabled = await get_setting(conn, "override_enabled")
@@ -90,7 +103,7 @@ async def list_models():
         if override_enabled == "1" and override_key_id:
             key_info = await _get_key_by_id(conn, int(override_key_id))
         else:
-            # Use first enabled key
+            # Use first key
             keys = await list_keys(conn)
             if keys:
                 key_info = await _get_key_by_id(conn, keys[0]["id"])
@@ -100,6 +113,19 @@ async def list_models():
         if not key_info:
             raise HTTPException(status_code=503, detail="No proxy keys configured")
 
+        provider_id = key_info.get("provider_id")
+        curated = await get_enabled_models(conn, provider_id)
+
+        if curated:
+            return {
+                "data": [
+                    {"id": m["model_id"], "name": m["display_name"] or m["model_id"],
+                     "description": m["description"]}
+                    for m in curated
+                ]
+            }
+
+        # Fallback: raw list from provider
         return await _fetch_models(key_info)
 
 
@@ -267,6 +293,38 @@ async def websocket_endpoint(ws: WebSocket):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Auth API (admin password management)
+# ═══════════════════════════════════════════════════════════════════════════
+
+@app.get("/api/auth/status")
+async def auth_status():
+    async with get_db(DB_PATH) as conn:
+        pw_set = await is_admin_password_set(conn)
+    return {"password_set": pw_set}
+
+
+@app.post("/api/auth/setup")
+async def auth_setup(data: dict):
+    async with get_db(DB_PATH) as conn:
+        if await is_admin_password_set(conn):
+            raise HTTPException(status_code=403, detail="Password already set")
+        pw = data.get("password", "").strip()
+        if len(pw) < 4:
+            raise HTTPException(status_code=400, detail="Password too short (min 4 chars)")
+        await set_admin_password(conn, pw)
+    return {"ok": True}
+
+
+@app.post("/api/auth/login")
+async def auth_login(data: dict, x_admin_key: str = Header(default="")):
+    pw = x_admin_key or data.get("password", "")
+    async with get_db(DB_PATH) as conn:
+        if await check_admin_password(conn, pw):
+            return {"ok": True}
+    raise HTTPException(status_code=403, detail="Invalid password")
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # API for Web UI (providers, keys, settings, logs)
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -279,7 +337,7 @@ async def api_list_providers():
 
 
 @app.post("/api/providers")
-async def api_create_provider(data: dict):
+async def api_create_provider(data: dict, _: bool = Depends(verify_admin)):
     async with get_db(DB_PATH) as conn:
         pid = await create_provider(
             conn,
@@ -293,12 +351,54 @@ async def api_create_provider(data: dict):
 
 
 @app.delete("/api/providers/{provider_id}")
-async def api_delete_provider(provider_id: int):
+async def api_delete_provider(provider_id: int, _: bool = Depends(verify_admin)):
     async with get_db(DB_PATH) as conn:
         ok = await delete_provider(conn, provider_id)
         if not ok:
             raise HTTPException(status_code=404)
         return {"ok": True}
+
+
+# ── Provider Models ───────────────────────────────────────────────────────
+
+@app.get("/api/providers/{provider_id}/models")
+async def api_get_models(provider_id: int):
+    async with get_db(DB_PATH) as conn:
+        return await get_models_by_provider(conn, provider_id)
+
+
+@app.post("/api/providers/{provider_id}/models/refresh")
+async def api_refresh_models(provider_id: int, _: bool = Depends(verify_admin)):
+    async with get_db(DB_PATH) as conn:
+        prov = await get_provider(conn, provider_id)
+        if not prov:
+            raise HTTPException(status_code=404, detail="Provider not found")
+        # Fetch real models from provider
+        key_info = await get_key_by_name(conn, "prod")  # try any key for this provider
+        if not key_info:
+            # Try list_keys
+            keys = await list_keys(conn)
+            key_info = next((k for k in keys if k["provider_id"] == provider_id), None)
+        if not key_info:
+            raise HTTPException(status_code=400, detail="No key configured for this provider")
+        raw = await _fetch_models(key_info)
+        models_list = raw.get("data", raw) if isinstance(raw, dict) else raw
+        parsed = []
+        for m in models_list:
+            if isinstance(m, dict):
+                parsed.append({
+                    "id": m.get("id", m.get("name", "")),
+                    "description": m.get("description", m.get("name", "")),
+                })
+        count = await refresh_models(conn, provider_id, parsed)
+    return {"ok": True, "count": count}
+
+
+@app.put("/api/providers/{provider_id}/models")
+async def api_update_models(provider_id: int, data: list[dict], _: bool = Depends(verify_admin)):
+    async with get_db(DB_PATH) as conn:
+        count = await update_models(conn, provider_id, data)
+    return {"ok": True, "count": count}
 
 
 # ── Proxy Keys ───────────────────────────────────────────────────────────
@@ -310,7 +410,7 @@ async def api_list_keys():
 
 
 @app.post("/api/keys")
-async def api_create_key(data: dict):
+async def api_create_key(data: dict, _: bool = Depends(verify_admin)):
     async with get_db(DB_PATH) as conn:
         kid = await create_key(
             conn,
@@ -323,7 +423,7 @@ async def api_create_key(data: dict):
 
 
 @app.delete("/api/keys/{key_id}")
-async def api_delete_key(key_id: int):
+async def api_delete_key(key_id: int, _: bool = Depends(verify_admin)):
     async with get_db(DB_PATH) as conn:
         ok = await delete_key(conn, key_id)
         if not ok:
@@ -332,7 +432,7 @@ async def api_delete_key(key_id: int):
 
 
 @app.post("/api/keys/{key_id}/toggle")
-async def api_toggle_key(key_id: int, data: dict):
+async def api_toggle_key(key_id: int, data: dict, _: bool = Depends(verify_admin)):
     async with get_db(DB_PATH) as conn:
         ok = await set_key_enabled(conn, key_id, data.get("enabled", True))
         if not ok:
@@ -349,7 +449,7 @@ async def api_get_settings():
 
 
 @app.post("/api/settings")
-async def api_set_settings(data: dict):
+async def api_set_settings(data: dict, _: bool = Depends(verify_admin)):
     async with get_db(DB_PATH) as conn:
         normalized = dict(data)
         if 'override_enabled' in normalized:
@@ -372,7 +472,7 @@ async def api_get_logs(limit: int = 200):
 
 
 @app.delete("/api/logs")
-async def api_clear_logs():
+async def api_clear_logs(_: bool = Depends(verify_admin)):
     async with get_db(DB_PATH) as conn:
         await clear_logs(conn)
         return {"ok": True}
