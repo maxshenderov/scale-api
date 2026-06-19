@@ -4,6 +4,7 @@ Schema: providers, proxy_keys, settings, request_log.
 """
 
 import aiosqlite
+import hashlib
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -67,6 +68,16 @@ async def init_db(db_path: str = DB_PATH):
             CREATE INDEX IF NOT EXISTS idx_request_log_timestamp
                 ON request_log(timestamp DESC);
 
+            CREATE TABLE IF NOT EXISTS provider_models (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                provider_id INTEGER NOT NULL REFERENCES providers(id) ON DELETE CASCADE,
+                model_id TEXT NOT NULL DEFAULT '',
+                display_name TEXT NOT NULL DEFAULT '',
+                description TEXT NOT NULL DEFAULT '',
+                enabled INTEGER NOT NULL DEFAULT 1,
+                UNIQUE(provider_id, model_id)
+            );
+
             -- Default settings
             INSERT OR IGNORE INTO settings (key, value) VALUES ('override_enabled', '0');
             INSERT OR IGNORE INTO settings (key, value) VALUES ('override_key_id', '');
@@ -101,6 +112,56 @@ async def delete_provider(conn, provider_id: int) -> bool:
     cursor = await conn.execute("DELETE FROM providers WHERE id = ?", (provider_id,))
     await conn.commit()
     return cursor.rowcount > 0
+
+
+# ── Provider Models CRUD ───────────────────────────────────────────────────
+
+async def get_models_by_provider(conn, provider_id: int) -> list[dict]:
+    cursor = await conn.execute(
+        "SELECT * FROM provider_models WHERE provider_id = ? ORDER BY enabled DESC, display_name",
+        (provider_id,),
+    )
+    return [dict(row) for row in await cursor.fetchall()]
+
+
+async def refresh_models(conn, provider_id: int, models: list[dict]) -> int:
+    """Insert or update models from provider list. Returns count of models."""
+    count = 0
+    for m in models:
+        await conn.execute(
+            """INSERT INTO provider_models (provider_id, model_id, description)
+               VALUES (?, ?, ?)
+               ON CONFLICT(provider_id, model_id)
+               DO UPDATE SET description = excluded.description""",
+            (provider_id, m["id"], m.get("description", "")),
+        )
+        count += 1
+    await conn.commit()
+    return count
+
+
+async def update_models(conn, provider_id: int, updates: list[dict]) -> int:
+    """Update display_name and enabled for existing models."""
+    count = 0
+    for u in updates:
+        cursor = await conn.execute(
+            """UPDATE provider_models
+               SET display_name = ?, enabled = ?
+               WHERE provider_id = ? AND model_id = ?""",
+            (u.get("display_name", ""), 1 if u.get("enabled") else 0,
+             provider_id, u["model_id"]),
+        )
+        count += cursor.rowcount
+    await conn.commit()
+    return count
+
+
+async def get_enabled_models(conn, provider_id: int) -> list[dict]:
+    cursor = await conn.execute(
+        "SELECT * FROM provider_models WHERE provider_id = ? AND enabled = 1 ORDER BY display_name",
+        (provider_id,),
+    )
+    return [dict(row) for row in await cursor.fetchall()]
 
 
 # ── Proxy Keys CRUD ──────────────────────────────────────────────────────
@@ -170,6 +231,38 @@ async def get_setting(conn, key: str) -> str | None:
 async def get_all_settings(conn) -> dict:
     cursor = await conn.execute("SELECT key, value FROM settings")
     return {row["key"]: row["value"] for row in await cursor.fetchall()}
+
+
+# ── Auth Helpers ───────────────────────────────────────────────────────────
+
+async def get_password_hash(password: str) -> str:
+    return hashlib.sha256(password.encode()).hexdigest()
+
+
+async def set_admin_password(conn, password: str):
+    h = await get_password_hash(password)
+    await conn.execute(
+        "INSERT OR REPLACE INTO settings (key, value) VALUES ('admin_password_hash', ?)", (h,)
+    )
+    await conn.commit()
+
+
+async def check_admin_password(conn, password: str) -> bool:
+    cursor = await conn.execute(
+        "SELECT value FROM settings WHERE key = 'admin_password_hash'"
+    )
+    row = await cursor.fetchone()
+    if not row:
+        return False
+    return row["value"] == await get_password_hash(password)
+
+
+async def is_admin_password_set(conn) -> bool:
+    cursor = await conn.execute(
+        "SELECT value FROM settings WHERE key = 'admin_password_hash' AND value != ''"
+    )
+    row = await cursor.fetchone()
+    return row is not None
 
 
 # ── Request Log ──────────────────────────────────────────────────────────
