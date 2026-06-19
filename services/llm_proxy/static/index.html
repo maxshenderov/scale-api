@@ -57,8 +57,28 @@
 </head>
 <body>
 <div class="app">
-  <h1>🔀 LLM Proxy</h1>
-  <p class="subtitle">Прокси между 1С и LLM-провайдерами. Порт 8765.</p>
+  <!-- Auth overlay -->
+  <div id="auth-screen" style="max-width:360px;margin:80px auto;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:30px;">
+    <h2 id="auth-title">🔐 Вход</h2>
+    <div class="form-field" style="margin-bottom:12px;">
+      <label>Пароль</label>
+      <input id="auth-password" type="password" style="width:100%">
+    </div>
+    <div class="form-field" id="auth-confirm-group" style="display:none;margin-bottom:12px;">
+      <label>Подтверждение</label>
+      <input id="auth-confirm" type="password" style="width:100%">
+    </div>
+    <button class="primary" onclick="doAuth()" style="width:100%;">Войти</button>
+    <p id="auth-error" style="color:var(--danger);font-size:12px;margin-top:8px;display:none;"></p>
+  </div>
+
+  <!-- Main app (hidden until auth) -->
+  <div id="main-app" style="display:none;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h1>🔀 LLM Proxy</h1>
+      <button class="ghost" onclick="logout()" style="font-size:13px;">🚪 Выйти</button>
+    </div>
+    <p class="subtitle">Прокси между 1С и LLM-провайдерами. Порт 8765.</p>
 
   <nav>
     <button data-tab="connections" class="active">🔌 Подключения</button>
@@ -96,7 +116,7 @@
           </div>
           <div class="form-field">
             <label>Модель</label>
-            <input id="conn-model" placeholder="deepseek/deepseek-v4-pro" style="width:220px">
+            <select id="conn-model" style="width:220px"><option value="">— автовыбор —</option></select>
             <span class="hint">По умолчанию, если 1С не указала</span>
           </div>
           <div class="form-field">
@@ -200,6 +220,23 @@
       </table>
     </div>
 
+  </div>
+  </div>
+</div>
+
+<!-- Model edit modal -->
+<div id="models-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);z-index:100;align-items:center;justify-content:center;">
+  <div style="background:var(--card);border-radius:8px;padding:20px;max-width:700px;width:90%;max-height:80vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <h3 id="models-title">Модели</h3>
+      <button onclick="closeModels()" style="background:none;border:none;font-size:20px;cursor:pointer;">✖</button>
+    </div>
+    <div style="margin-bottom:12px;">
+      <button class="primary small" onclick="refreshModels()">🔄 Загрузить с провайдера</button>
+      <button class="primary small" onclick="saveModels()" style="margin-left:8px;">💾 Сохранить</button>
+    </div>
+    <table><thead><tr><th>☑</th><th>Название</th><th>ID модели</th><th>Описание</th></tr></thead>
+    <tbody id="models-table"></tbody></table>
   </div>
 </div>
 <script src="/static/app.js"></script>
