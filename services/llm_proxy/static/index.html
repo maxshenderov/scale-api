@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232563eb'/><path d='M20 32l8-6v4h12v4H28v4l-8-6zM44 32l-8 6v-4H24v-4h12v-4l8 6z' fill='white'/></svg>">
 <title>LLM Proxy</title>
 <style>
   :root { --bg: #f8fafc; --card: #fff; --border: #e2e8f0; --text: #1e293b;
@@ -127,7 +128,7 @@
       </div>
 
       <table>
-        <thead><tr><th>Имя (Bearer)</th><th>Провайдер</th><th>Модель</th><th>Статус</th><th></th></tr></thead>
+        <thead><tr><th>ID (Bearer)</th><th>Отображаемое имя</th><th>Провайдер</th><th>Модель</th><th>Статус</th><th></th></tr></thead>
         <tbody id="connections-table"></tbody>
       </table>
       <div class="empty" id="connections-empty" style="display:none">
@@ -235,10 +236,10 @@
       <button class="primary small" onclick="refreshModels()">🔄 Загрузить с провайдера</button>
       <button class="primary small" onclick="saveModels()" style="margin-left:8px;">💾 Сохранить</button>
     </div>
-    <table><thead><tr><th>☑</th><th>Название</th><th>ID модели</th><th>Описание</th></tr></thead>
+    <table><thead><tr><th>☑</th><th>Название</th><th>ID модели</th><th>Коэф.</th><th>Описание</th></tr></thead>
     <tbody id="models-table"></tbody></table>
   </div>
 </div>
-<script src="/static/app.js"></script>
+<script src="/static/app.js?v=2"></script>
 </body>
 </html>

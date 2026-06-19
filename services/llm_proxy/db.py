@@ -141,15 +141,15 @@ async def refresh_models(conn, provider_id: int, models: list[dict]) -> int:
 
 
 async def update_models(conn, provider_id: int, updates: list[dict]) -> int:
-    """Update display_name and enabled for existing models."""
+    """Update display_name, enabled, and pricing for existing models."""
     count = 0
     for u in updates:
         cursor = await conn.execute(
             """UPDATE provider_models
-               SET display_name = ?, enabled = ?
+               SET display_name = ?, enabled = ?, pricing = ?
                WHERE provider_id = ? AND model_id = ?""",
             (u.get("display_name", ""), 1 if u.get("enabled") else 0,
-             provider_id, u["model_id"]),
+             u.get("pricing", ""), provider_id, u["model_id"]),
         )
         count += cursor.rowcount
     await conn.commit()

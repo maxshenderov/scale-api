@@ -94,39 +94,29 @@ async def health():
 
 @app.get("/v1/models")
 async def list_models():
-    """Fetch model list — curated from DB, fallback to raw provider list."""
+    """Return list of enabled proxy connections as models for 1C."""
     async with get_db(DB_PATH) as conn:
-        # Determine which key to use
-        override_enabled = await get_setting(conn, "override_enabled")
-        override_key_id = await get_setting(conn, "override_key_id")
+        keys = await list_keys(conn)
+        if not keys:
+            raise HTTPException(status_code=503, detail="No connections configured")
 
-        if override_enabled == "1" and override_key_id:
-            key_info = await _get_key_by_id(conn, int(override_key_id))
-        else:
-            # Use first key
-            keys = await list_keys(conn)
-            if keys:
-                key_info = await _get_key_by_id(conn, keys[0]["id"])
-            else:
-                key_info = None
+        enabled = [k for k in keys if k.get("enabled")]
+        return {
+            "data": [
+                {
+                    "id": k["name"],
+                    "name": k.get("display_name") or k["name"],
+                    "description": f"{k['provider_name']} | {k['default_model'] or 'авто'}"
+                }
+                for k in enabled
+            ]
+        }
 
-        if not key_info:
-            raise HTTPException(status_code=503, detail="No proxy keys configured")
 
-        provider_id = key_info.get("provider_id")
-        curated = await get_enabled_models(conn, provider_id)
-
-        if curated:
-            return {
-                "data": [
-                    {"id": m["model_id"], "name": m["display_name"] or m["model_id"],
-                     "description": m["description"]}
-                    for m in curated
-                ]
-            }
-
-        # Fallback: raw list from provider
-        return await _fetch_models(key_info)
+@app.get("/api/v1/models")
+async def list_models_api():
+    """Alias for /v1/models — 1C compatibility."""
+    return await list_models()
 
 
 async def _get_key_by_id(conn, key_id: int) -> dict | None:
@@ -149,9 +139,12 @@ async def _fetch_models(key_info: dict) -> dict:
     path = key_info.get("path", "")
     provider_format = key_info.get("format", "openai")
     scheme = "https" if port == 443 else "http"
-    # Derive models URL from provider path (strip last segment, add /models)
-    path_parts = path.rsplit("/", 1)
-    models_path = path_parts[0] + "/models" if len(path_parts) > 1 else "/v1/models"
+    # Models endpoint: for anthropic derive from path, for openai use standard /v1/models
+    if provider_format == "anthropic":
+        path_parts = path.rsplit("/", 1)
+        models_path = path_parts[0] + "/models" if len(path_parts) > 1 else "/models"
+    else:
+        models_path = "/api/v1/models"
     url = f"{scheme}://{base_url}{models_path}"
 
     headers = {"Authorization": f"Bearer {real_key}"}
@@ -177,9 +170,11 @@ async def chat_completions(request: Request):
     """
     body = await request.json()
 
-    # Extract key name from Authorization header
+    # Extract key name from Authorization header, fallback to model
     auth = request.headers.get("Authorization", "")
     key_name = auth.replace("Bearer ", "", 1).strip()
+    if not key_name:
+        key_name = body.get("model", "").strip()
 
     if not key_name:
         raise HTTPException(status_code=401, detail="Missing Authorization: Bearer <key_name>")
@@ -373,14 +368,19 @@ async def api_refresh_models(provider_id: int, _: bool = Depends(verify_admin)):
         prov = await get_provider(conn, provider_id)
         if not prov:
             raise HTTPException(status_code=404, detail="Provider not found")
-        # Fetch real models from provider
-        key_info = await get_key_by_name(conn, "prod")  # try any key for this provider
-        if not key_info:
-            # Try list_keys
-            keys = await list_keys(conn)
-            key_info = next((k for k in keys if k["provider_id"] == provider_id), None)
-        if not key_info:
-            raise HTTPException(status_code=400, detail="No key configured for this provider")
+        # Find a key for THIS provider
+        keys = await list_keys(conn)
+        matching_key = next((k for k in keys if k["provider_id"] == provider_id), None)
+        if not matching_key:
+            raise HTTPException(status_code=400, detail="No key configured for this provider. Create one first.")
+        # Build full key_info with provider fields
+        key_info = {
+            **matching_key,
+            "base_url": prov["base_url"],
+            "path": prov["path"],
+            "format": prov["format"],
+            "port": prov["port"],
+        }
         raw = await _fetch_models(key_info)
         models_list = raw.get("data", raw) if isinstance(raw, dict) else raw
         parsed = []
@@ -420,6 +420,19 @@ async def api_create_key(data: dict, _: bool = Depends(verify_admin)):
             default_model=data.get("default_model", ""),
         )
         return {"id": kid}
+
+
+@app.put("/api/keys/{key_id}")
+async def api_update_key(key_id: int, data: dict, _: bool = Depends(verify_admin)):
+    async with get_db(DB_PATH) as conn:
+        for field in ["default_model", "display_name", "name"]:
+            if field in data and data[field] is not None:
+                await conn.execute(
+                    f"UPDATE proxy_keys SET {field} = ? WHERE id = ?",
+                    (data[field], key_id),
+                )
+        await conn.commit()
+        return {"ok": True}
 
 
 @app.delete("/api/keys/{key_id}")

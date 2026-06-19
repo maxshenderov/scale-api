@@ -160,6 +160,11 @@ async function openModels(providerId) {
   currentProviderId = providerId;
   document.getElementById('models-modal').style.display = 'flex';
   await loadModels(providerId);
+  // Auto-refresh if no models yet
+  const list = await api('GET', '/api/providers/' + providerId + '/models');
+  if (list.length === 0) {
+    await refreshModels();
+  }
 }
 
 function closeModels() {
@@ -173,9 +178,10 @@ async function loadModels(providerId) {
   tbody.innerHTML = list.map(m => `
     <tr>
       <td><input type="checkbox" ${m.enabled ? 'checked' : ''} data-model-id="${esc(m.model_id)}" class="model-check"></td>
-      <td><input type="text" value="${esc(m.display_name || m.model_id)}" data-model-id="${esc(m.model_id)}" class="model-name" style="width:200px;"></td>
+      <td><input type="text" value="${esc(m.display_name || m.model_id)}" data-model-id="${esc(m.model_id)}" class="model-name" style="width:180px;"></td>
       <td style="font-size:11px;color:var(--muted);">${esc(m.model_id)}</td>
-      <td style="font-size:11px;color:var(--muted);">${esc(m.description).substring(0, 100)}</td>
+      <td><input type="text" value="${esc(m.pricing || '')}" data-model-id="${esc(m.model_id)}" class="model-pricing" placeholder="1.0x" style="width:60px;font-size:11px;"></td>
+      <td style="font-size:11px;color:var(--muted);">${esc(m.description || '').substring(0, 80)}</td>
     </tr>`).join('');
 }
 
@@ -191,11 +197,13 @@ async function saveModels() {
   document.querySelectorAll('#models-table tr').forEach(row => {
     const check = row.querySelector('.model-check');
     const name = row.querySelector('.model-name');
+    const pricing = row.querySelector('.model-pricing');
     if (check && name) {
       updates.push({
         model_id: check.dataset.modelId,
         display_name: name.value,
         enabled: check.checked,
+        pricing: pricing ? pricing.value : '',
       });
     }
   });
@@ -218,8 +226,16 @@ async function loadConnections() {
     tbody.innerHTML = list.map(k => `
       <tr>
         <td><code style="background:#f1f5f9;padding:2px 6px;border-radius:3px;font-size:13px;">${esc(k.name)}</code></td>
-        <td>${esc(k.provider_name)}</td>
-        <td style="color:var(--muted);font-size:12px;">${esc(k.default_model) || '—'}</td>
+        <td>
+          <input value="${esc(k.display_name || '')}" onchange="updateKeyField(${k.id}, 'display_name', this.value)" placeholder="${esc(k.name)}" style="font-size:12px;padding:3px 6px;border:1px solid var(--border);border-radius:3px;width:100%;">
+        </td>
+        <td>
+          <select onchange="updateKeyField(${k.id}, 'default_model', this.value)" style="font-size:12px;padding:3px 6px;border:1px solid var(--border);border-radius:3px;width:100%;max-width:280px;">
+            <option value="">— автовыбор —</option>
+            <option value="${esc(k.default_model)}" selected>${esc(k.default_model) || '— автовыбор —'}</option>
+          </select>
+          <span style="font-size:10px;color:var(--muted);cursor:pointer;" onclick="loadModelOptions(this, ${k.id}, ${k.provider_id})">📋 загрузить список</span>
+        </td>
         <td>${k.enabled ? '<span class="badge badge-ok">активно</span>' : '<span class="badge badge-err">отключено</span>'}</td>
         <td>
           <button class="small ghost" onclick="toggleConnection(${k.id}, ${k.enabled})">${k.enabled ? 'отключить' : 'включить'}</button>
@@ -263,6 +279,27 @@ async function deleteConnection(id) {
 async function toggleConnection(id, current) {
   await api('POST', '/api/keys/' + id + '/toggle', { enabled: !current });
   loadConnections();
+}
+
+async function updateKeyField(id, field, value) {
+  const data = {};
+  data[field] = value;
+  await api('PUT', '/api/keys/' + id, data);
+}
+
+async function loadModelOptions(el, keyId, providerId) {
+  const models = await api('GET', '/api/providers/' + providerId + '/models');
+  const sel = el.parentElement.querySelector('select');
+  sel.innerHTML = '<option value="">— автовыбор —</option>' +
+    models.filter(m => m.enabled).map(m =>
+      `<option value="${esc(m.model_id)}">${esc(m.display_name || m.model_id)}</option>`
+    ).join('');
+  // Restore current value
+  const cur = await api('GET', '/api/keys');
+  const key = cur.find(k => k.id === keyId);
+  if (key) sel.value = key.default_model;
+  el.textContent = '✅ список загружен';
+  setTimeout(() => { el.textContent = '📋 загрузить список'; }, 2000);
 }
 
 // ── Settings ────────────────────────────────────────────────────────────
