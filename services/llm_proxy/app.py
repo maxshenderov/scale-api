@@ -196,10 +196,14 @@ async def chat_completions(request: Request):
                 if override_info:
                     key_info = override_info
 
-        # Determine model: if body model matches ANY key name, use key's default_model
+        # Determine model
         model = body.get("model", "") or key_info.get("default_model", "")
         if key_info.get("default_model"):
             model = key_info["default_model"]
+
+        logger.info("KEY=%s PROVIDER=%s BODY_MODEL=%s FINAL_MODEL=%s DEF=%s",
+            key_name, key_info.get("provider_name","?"),
+            body.get("model","?"), model, key_info.get("default_model","?"))
         provider_format = key_info["format"]  # "anthropic" or "openai"
         base_url = key_info["base_url"]
         path = key_info["path"]
@@ -231,7 +235,9 @@ async def chat_completions(request: Request):
         else:
             headers["Authorization"] = f"Bearer {real_key}"
 
-        logger.info("→ %s [%s] model=%s msgs=%d", provider_name, provider_format, model, len(body.get("messages", [])))
+        logger.info("→ %s [%s] REQ_MODEL=%s DEF=%s",
+            provider_name, provider_format,
+            request_body.get("model","?"), key_info.get("default_model","?"))
 
         # Send to real provider
         try:
