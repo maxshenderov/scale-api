@@ -172,7 +172,7 @@ async def chat_completions(request: Request):
 
     # Extract key name from Authorization header, fallback to model
     auth = request.headers.get("Authorization", "")
-    key_name = auth.replace("Bearer ", "", 1).strip()
+    key_name = auth.replace("Bearer", "", 1).strip()
     if not key_name:
         key_name = body.get("model", "").strip()
 
