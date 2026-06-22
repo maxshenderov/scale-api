@@ -897,7 +897,7 @@
 		+ ".scale-val { font-weight: bold; min-width: 40px; }"
 		+ ".racking { margin-bottom: 25px; }"
 		+ ".racking-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }"
-		+ ".floor { margin-bottom: 0; padding-left: 25px; position: relative; }"
+		+ ".floor { margin-bottom: 0; padding-left: 25px; position: relative; overflow: hidden; }"
 			+ ".floor-header { position: absolute; left: 0; top: 0; z-index: 10; }"
 			+ ".floor-label { font-weight: bold; font-size: 9px; color: #000; white-space: nowrap; }"
 			+ ".floor-load { position: absolute; left: 2px; top: 60%; font-size: 7px; color: #00c; font-weight: bold; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; z-index: 10; max-height: 80%; overflow: hidden; }"
