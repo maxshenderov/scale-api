@@ -889,7 +889,7 @@
 	// === 6. Генерация HTML ===
 	HTML = "<!DOCTYPE html><html><head><meta charset=""utf-8"">"
 		+ "<style>"
-		+ "body { font-family: Arial, sans-serif; margin: 10px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow-x: auto; }"
+		+ "body { font-family: Arial, sans-serif; margin: 10px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow-x: auto; min-width: min-content; }"
 		+ ".scale-container { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; }"
 		+ ".scale-container input[type=range] { width: 150px; }"
 		+ ".zoom-btn { display:inline-block;width:24px;height:24px;line-height:22px;text-align:center;font-size:16px;font-weight:bold;color:#333;background:#e0e0e0;border:1px solid #aaa;border-radius:3px;text-decoration:none;margin:0 4px;cursor:pointer;vertical-align:middle; }"
@@ -956,7 +956,7 @@
 	// Заголовок
 		HTML = HTML + "<div class=""scale-container""><a href=""zagsklad://zoom/out"" class=""zoom-btn"" title=""Уменьшить масштаб"">−</a>Масштаб: <input type=""range"" id=""zs_range"" min=""20"" max=""300"" value=""" + Строка(МасштабПроцентов) + """ step=""10"" oninput=""applyScale(this.value)""><span class=""scale-val"" id=""sv"">" + Строка(МасштабПроцентов) + "%</span><a href=""zagsklad://zoom/in"" class=""zoom-btn"" title=""Увеличить масштаб"">+</a></div>";
 	
-	HTML = HTML + "<div id=""sc""><div class=""racking"">"
+	HTML = HTML + "<div style=""overflow-x:auto;width:100%""><div id=""sc""><div class=""racking"">"
 		+ "<div class=""racking-title"">Стеллаж: " + Строка(СтеллажДанные.Наименование)
 		+ " (" + Формат(СтеллажДанные.КодПолный, "ЧН=0; ЧГ=0") + ")</div>"
 			+ "<div>Загрузка: <span style=""color:%%COLOR%%;font-weight:bold"">%%PCT%%%</span></div>";
@@ -1458,6 +1458,7 @@
 	
 	HTML = HTML + "</div>"; // конец racking
 	HTML = HTML + "</div>"; // конец #sc
+	HTML = HTML + "</div>"; // конец scroll-wrapper
 		HTML = HTML + "<script>(function(){var r=document.getElementById(""zs_range"");if(!r)return;var s=null;try{s=localStorage.getItem(""zs_scale"");}catch(e){}if(s){var v=parseInt(s,10);if(v>=20&&v<=300){r.value=v;}}var cv=parseInt(r.value,10);if(cv>=20&&cv<=300){applyScale(cv,false);}})();</script></body></html>";
 	html = HTML;
 КонецПроцедуры
