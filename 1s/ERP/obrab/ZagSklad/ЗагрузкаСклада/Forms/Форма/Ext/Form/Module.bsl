@@ -889,7 +889,8 @@
 	// === 6. Генерация HTML ===
 	HTML = "<!DOCTYPE html><html><head><meta charset=""utf-8"">"
 		+ "<style>"
-		+ "body { font-family: Arial, sans-serif; margin: 10px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow-x: auto; min-width: min-content; }"
+		+ "html { overflow-x: auto; }"
++ "body { font-family: Arial, sans-serif; margin: 10px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow-x: auto; }"
 		+ ".scale-container { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; }"
 		+ ".scale-container input[type=range] { width: 150px; }"
 		+ ".zoom-btn { display:inline-block;width:24px;height:24px;line-height:22px;text-align:center;font-size:16px;font-weight:bold;color:#333;background:#e0e0e0;border:1px solid #aaa;border-radius:3px;text-decoration:none;margin:0 4px;cursor:pointer;vertical-align:middle; }"
@@ -941,7 +942,7 @@
 		+ ".rules b { color: #333; }"
 		+ "</style>"
 		+ "<script>"
-		+ "function applyScale(v,save){document.getElementById('sv').textContent=v+'%';var c=document.getElementById('sc');c.style.zoom=v/100;if(save!==false){try{localStorage.setItem('zs_scale',v);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+v;a.click();},300);}}"
+		+ "function applyScale(v,save){document.getElementById('sv').textContent=v+'%';var c=document.getElementById('sc');c.style.zoom=v/100;document.body.style.minWidth=(v)+'%';if(save!==false){try{localStorage.setItem('zs_scale',v);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+v;a.click();},300);}}"
 		+ "function openItem(e,type,guid){"
 		+ "  if(e&&e.stopPropagation)e.stopPropagation();"
 		+ "  var a=document.getElementById('_zs_nav_');"
