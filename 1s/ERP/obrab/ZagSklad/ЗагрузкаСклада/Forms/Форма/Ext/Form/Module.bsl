@@ -688,6 +688,7 @@
 		+ ".floor { margin-bottom: 0; padding-left: 25px; position: relative; }"
 		+ ".floor-header { position: absolute; left: 0; top: 0; z-index: 10; }"
 		+ ".floor-label { font-weight: bold; font-size: 10px; color: #000; white-space: nowrap; }"
+		+ ".floor-pct { font-size: 9px; font-weight: bold; }"
 		+ ".height-info { position: absolute; left: 2px; top: 50%; width: 20px; text-align: center; font-size: 8px; color: #00c; font-weight: bold; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; z-index: 10; }"
 		+ ".floor-width { font-size: 10px; color: #333; text-align: center; margin-top: 2px; font-weight: bold; }"
 		+ ".sections-row { display: flex; align-items: stretch; border: 2px solid #444; min-height: 40px; width: max-content; overflow: visible; }"
@@ -765,6 +766,12 @@
 			АдресаФильтраНомера.Вставить(СтрокаАдрес.Адрес, СтрокаАдрес.НомерСтроки);
 		КонецЦикла;
 	КонецЕсли;
+
+	//+Лико m.shenderov 22.06.2026 — счётчики для расчёта процента занятости
+	ВсегоЯчеекВсего = 0;
+	ЗеленыхЯчеекВсего = 0;
+	СчетчикиПоЭтажам = Новый Соответствие; // Ключ=НомерЭтажа, Значение=Структура(Всего, Зеленых)
+
 	Для Каждого НомерЭтажа Из НомераЭтажей Цикл
 		МассивЭтажа = СекцииПоЭтажам.Получить(НомерЭтажа);
 		Если МассивЭтажа = Неопределено Тогда
