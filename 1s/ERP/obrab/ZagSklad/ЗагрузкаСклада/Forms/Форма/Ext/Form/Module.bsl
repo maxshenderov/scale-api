@@ -942,7 +942,7 @@
 		+ ".rules b { color: #333; }"
 		+ "</style>"
 		+ "<script>"
-		+ "function applyScale(v,save){document.getElementById('sv').textContent=v+'%';var c=document.getElementById('sc');c.style.zoom=v/100;document.body.style.minWidth=(v)+'%';if(save!==false){try{localStorage.setItem('zs_scale',v);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+v;a.click();},300);}}"
+		+ "function applyScale(v,save){document.getElementById('sv').textContent=v+'%';var c=document.getElementById('sc');var baseW=c.offsetWidth||(c.scrollWidth||800);c.style.zoom=v/100;document.body.style.minWidth=Math.round(baseW*v/100)+'px';document.body.style.overflowX='auto';if(save!==false){try{localStorage.setItem('zs_scale',v);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+v;a.click();},300);}}"
 		+ "function openItem(e,type,guid){"
 		+ "  if(e&&e.stopPropagation)e.stopPropagation();"
 		+ "  var a=document.getElementById('_zs_nav_');"
@@ -957,7 +957,7 @@
 	// Заголовок
 		HTML = HTML + "<div class=""scale-container""><a href=""zagsklad://zoom/out"" class=""zoom-btn"" title=""Уменьшить масштаб"">−</a>Масштаб: <input type=""range"" id=""zs_range"" min=""20"" max=""300"" value=""" + Строка(МасштабПроцентов) + """ step=""10"" oninput=""applyScale(this.value)""><span class=""scale-val"" id=""sv"">" + Строка(МасштабПроцентов) + "%</span><a href=""zagsklad://zoom/in"" class=""zoom-btn"" title=""Увеличить масштаб"">+</a></div>";
 	
-	HTML = HTML + "<div style=""overflow-x:auto;width:100%""><div id=""sc""><div class=""racking"">"
+	HTML = HTML + "<div id=""sc""><div class=""racking"">"
 		+ "<div class=""racking-title"">Стеллаж: " + Строка(СтеллажДанные.Наименование)
 		+ " (" + Формат(СтеллажДанные.КодПолный, "ЧН=0; ЧГ=0") + ")</div>"
 			+ "<div>Загрузка: <span style=""color:%%COLOR%%;font-weight:bold"">%%PCT%%%</span></div>";
@@ -1459,7 +1459,6 @@
 	
 	HTML = HTML + "</div>"; // конец racking
 	HTML = HTML + "</div>"; // конец #sc
-	HTML = HTML + "</div>"; // конец scroll-wrapper
 		HTML = HTML + "<script>(function(){var r=document.getElementById(""zs_range"");if(!r)return;var s=null;try{s=localStorage.getItem(""zs_scale"");}catch(e){}if(s){var v=parseInt(s,10);if(v>=20&&v<=300){r.value=v;}}var cv=parseInt(r.value,10);if(cv>=20&&cv<=300){applyScale(cv,false);}})();</script></body></html>";
 	html = HTML;
 КонецПроцедуры
