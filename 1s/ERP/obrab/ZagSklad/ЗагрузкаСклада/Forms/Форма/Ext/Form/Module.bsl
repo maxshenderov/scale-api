@@ -356,6 +356,20 @@
 			Кнопка.ЦветФона = WebЦвета.СветлоЖелтый;
 		КонецЕсли;
 	КонецЦикла;
+
+	//+Лико m.shenderov 22.06.2026 — общий процент загрузки склада
+	Если НЕ ФильтрАктивен Тогда
+		ВсегоАдресовВсех = 0;
+		ЗанятоАдресовВсех = 0;
+		Для Каждого ЭлПроцент Из ПроцентПоСтеллажам Цикл
+			// ПроцентПоСтеллажам хранит % занятости (0-100), нужно восстановить занято/всего
+			// Но у нас нет отдельных счётчиков — считаем приблизительно
+			ВсегоАдресовВсех = ВсегоАдресовВсех + 1;
+			ЗанятоАдресовВсех = ЗанятоАдресовВсех + ЭлПроцент.Значение / 100;
+		КонецЦикла;
+		ОбщийПроцент = ?(ВсегоАдресовВсех > 0, Окр(ЗанятоАдресовВсех / ВсегоАдресовВсех * 100, 0), 0);
+		Элементы.ГруппаСтеллажи.Заголовок = "Стеллажи (общ. " + Формат(ОбщийПроцент, "ЧН=0; ЧГ=0") + "%)";
+	КонецЕсли;
 КонецПроцедуры
 
 &НаСервере
@@ -686,10 +700,10 @@
 		+ ".racking { margin-bottom: 25px; }"
 		+ ".racking-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }"
 		+ ".floor { margin-bottom: 0; padding-left: 25px; position: relative; }"
-		+ ".floor-header { position: absolute; left: 0; top: 0; z-index: 10; }"
-		+ ".floor-label { font-weight: bold; font-size: 10px; color: #000; white-space: nowrap; }"
-		+ ".floor-pct { font-size: 9px; font-weight: bold; }"
-		+ ".height-info { position: absolute; left: 2px; top: 50%; width: 20px; text-align: center; font-size: 8px; color: #00c; font-weight: bold; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; z-index: 10; }"
+			+ ".floor-header { position: absolute; left: 2px; top: 70%; font-size: 8px; font-weight: bold; white-space: nowrap; z-index: 10; transform: translateY(-50%) rotate(-90deg); }"
+			+ ".floor-label { font-weight: bold; font-size: 9px; color: #000; white-space: nowrap; }"
+			+ ".floor-pct { font-size: 8px; font-weight: bold; }"
+		+ ".height-info { position: absolute; left: 2px; top: 30%; width: 20px; text-align: center; font-size: 8px; color: #00c; font-weight: bold; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; z-index: 10; }"
 		+ ".floor-width { font-size: 10px; color: #333; text-align: center; margin-top: 2px; font-weight: bold; }"
 		+ ".sections-row { display: flex; align-items: stretch; border: 2px solid #444; min-height: 40px; width: max-content; overflow: visible; }"
 		+ ".section { position: relative; box-sizing: border-box; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid #aaa; overflow: visible; }"
@@ -796,13 +810,14 @@
 		HTML = HTML + "<div class=""height-info"">"
 			+ Формат(ВысотаЭтажаМм, "ЧН=0; ЧГ=0") + " мм</div>";
 		
-			// Метка этажа (с плейсхолдером процента — будет заменён после подсчёта ячеек)
+			// Метка этажа — высота + этаж + процент + макс. подъём (вертикально)
 			ИмяПлейсхолдераПЦ = "%%FPCT_" + Формат(НомерЭтажа, "ЧН=0; ЧГ=0") + "%%";
 			ИмяПлейсхолдераЦВ = "%%FCLR_" + Формат(НомерЭтажа, "ЧН=0; ЧГ=0") + "%%";
+			МаксПодъемТекст = ?(ВесогрузкаЭтажа > 0, " max " + Формат(ВесогрузкаЭтажа, "ЧН=0; ЧГ=0") + "кг", "");
 			HTML = HTML + "<div class=""floor-header""><span class=""floor-label"">Э"
-				+ Формат(НомерЭтажа, "ЧН=0; ЧГ=0") + "</span>"
-				+ " <span class=""floor-pct"" style=""color:" + ИмяПлейсхолдераЦВ + """>"
-				+ ИмяПлейсхолдераПЦ + "%</span></div>";
+				+ Формат(НомерЭтажа, "ЧН=0; ЧГ=0") + "</span> "
+				+ "<span class=""floor-pct"" style=""color:" + ИмяПлейсхолдераЦВ + """>"
+				+ ИмяПлейсхолдераПЦ + "%</span> " + МаксПодъемТекст + "</div>";
 		
 		// Ряд секций
 		HTML = HTML + "<div class=""sections-row"">";
