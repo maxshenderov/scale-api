@@ -931,7 +931,7 @@
 		+ ".pallet-size { position: absolute; bottom: 2px; left: 0; right: 0; text-align: center; font-size: 8px; color: #333; z-index: 3; }"
 		+ ".free-space { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 8px; color: #090; font-weight: bold; z-index: 4; white-space: nowrap; background: rgba(255,255,255,0.85); padding: 0 2px; }"
 		+ ".zones-title { font-weight: bold; font-size: 12px; color: #000; margin-top: 10px; margin-bottom: 4px; padding-left: 25px; }"
-		+ ".zones-row { display: flex; gap: 5px; padding-left: 25px; margin-bottom: 10px; }"
+		+ ".zones-row { display: flex; align-items: flex-start; gap: 5px; padding-left: 25px; margin-bottom: 10px; }"
 		+ ".zone-box { border: 2px solid #4a90d9; background: rgba(74,144,217,0.1); padding: 4px; min-width: 80px; min-height: 50px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; cursor: pointer; }"
 		+ ".zone-box:hover { background: rgba(74,144,217,0.25); outline: 2px solid #2060c0; outline-offset: -2px; z-index: 3; }"
 		+ ".zone-name { font-size: 8px; color: #4a90d9; text-align: center; margin-bottom: 2px; word-break: break-all; }"
