@@ -941,7 +941,7 @@
 		+ ".rules b { color: #333; }"
 		+ "</style>"
 		+ "<script>"
-		+ "function applyScale(v,save){document.getElementById('sv').textContent=v+'%';var c=document.getElementById('sc');c.style.transform='scale('+v/100+')';c.style.transformOrigin='top left';if(save!==false){try{localStorage.setItem('zs_scale',v);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+v;a.click();},300);}}"
+		+ "function applyScale(v,save){document.getElementById('sv').textContent=v+'%';var c=document.getElementById('sc');c.style.zoom=v/100;if(save!==false){try{localStorage.setItem('zs_scale',v);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+v;a.click();},300);}}"
 		+ "function openItem(e,type,guid){"
 		+ "  if(e&&e.stopPropagation)e.stopPropagation();"
 		+ "  var a=document.getElementById('_zs_nav_');"
