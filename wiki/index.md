@@ -50,6 +50,7 @@ D:\project\OKIL\
 
 - [[РасширениеЛико]] — главное расширение конфигурации для типографии Лико: 56 документов, 128 справочников, 80 регистров сведений, 48 регистров накопления, 14 обработок, 10 общих форм, 45 общих команд
 - [[MCP_Расширение]] — MCP-сервер внутри 1С: HTTP-сервис, 5 общих модулей, 3 обработки-контейнера
+- [[Лико_ГолосовойАссистент]] — AI ассистент внутри 1С: голосовой ввод через Telegram → STT → HTTP polling → ПолеHTML
 
 ---
 
@@ -494,7 +495,7 @@ D:\project\OKIL\
 
 ## Кастомные формы типовых документов
 
-- [[wiki/documents/ЗаказКлиента]] — кастомная форма Лико_ФормаДокумента (~6600+ строк), главный интерфейс работы с заказом
+- [[documents/ЗаказКлиента|Лико_ФормаДокумента]] — кастомная форма Лико_ФормаДокумента (~6600+ строк), главный интерфейс работы с заказом
 
 ---
 
@@ -513,9 +514,9 @@ D:\project\OKIL\
 - [[docling]] — IBM Docling + Vision LLM, порт 8001
 - [[rag_llm]] — RAG pipeline: TOP-3 похожих заказа -> LLM -> параметры + уверенность, порт 8003
 - [[batch_indexer]] — индексация заказов из 1С в Qdrant
-- [[hybrid_search]] — BM25 + Dense поиск (эксперимент фазы 1)
+- [[telegram_voice]] — FastAPI + aiogram + faster-whisper: голосовые из Telegram → STT → 1С, порт 8004
 
-Страницы сервисов: [[services/parser|parser]], [[services/docling|docling]], [[services/hybrid_search|hybrid_search]], [[services/rag_llm|rag_llm]], [[services/batch_indexer|batch_indexer]]
+Страницы сервисов: [[parser]], [[docling]], [[hybrid_search]], [[rag_llm]], [[batch_indexer]], [[telegram_voice]]
 
 ---
 
@@ -536,18 +537,25 @@ D:\project\OKIL\
 ## Инструменты и инфраструктура
 
 - [[1c-mcp-bridge]] — внешний Python MCP-сервер: соединяет Claude Code с 1С, 3 инструмента (list_metadata_objects, get_metadata_structure, execute_bsl)
+- [[tell-1c]] — Claude-скилл: отправка сообщений в 1С без Telegram, Write UTF-8 + Bash curl
+
+---
+
+## Спецификации
+
+- [[2026-05-29-telegram-voice-1c-spec]] — спецификация Фазы 1 AI-ассистента: Telegram Voice → 1С
 
 ---
 
 ## Планы и ТЗ
 
-- [[wiki/plans/index]] — навигация по всем планам и ТЗ
-- [[wiki/plans/БизнесКонтекст]] — компания Лико, боли, 4 этапа AI-продукта, LLM-инфра
+- [[plans/index]] — навигация по всем планам и ТЗ
+- [[plans/БизнесКонтекст]] — компания Лико, боли, 4 этапа AI-продукта, LLM-инфра
 
 ---
 
 ## Статистика
-- Страниц в вики: 401 (wiki/liko/ — 376, wiki/services/ — 6, wiki/extensions/ — 3, wiki/ai/ — 4, wiki/documents/ — 1, wiki/plans/ — 2, wiki/patterns/ — 1, wiki/tools/ — 2, wiki/specs/ — 1)
+- Страниц в вики: 402 (wiki/liko/ — 376, wiki/services/ — 6, wiki/extensions/ — 3, wiki/ai/ — 4, wiki/documents/ — 1, wiki/plans/ — 2, wiki/patterns/ — 1, wiki/tools/ — 2, wiki/specs/ — 1)
 - Общих модулей: 18 Лико_ + 5 внешних + 5 MCP + 17 override
 - Документов (Лико_): 56
 - Справочников (Лико_): 70
@@ -562,4 +570,4 @@ D:\project\OKIL\
 - Хранилищ вариантов отчётов: 1
 - Типовых доработанных объектов: 29 документов + 17 справочников + 1 РМ
 - Перечислений (Лико_): 1 → 2 (добавлено Лико_ТипыЗаказов)
-- Последний ingest: 2026-06-16 (wiki-ingest: +ЗалежалыеОбъектыНоменклатурыОстаткиИОбороты, +30 CommonCommands)
+- Последний ingest: 2026-06-22 (wiki-lint fix: 8 dead links, +5 страниц в индексе)
