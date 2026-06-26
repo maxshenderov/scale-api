@@ -49,8 +49,9 @@
 					АвтоНавигационнаяСсылка=Истина;
 					//Сообщить("АвтоНавигационнаяСсылка2");                 
 				КонецЕсли;
-УровеньДоступа=1;				
-				
+УровеньДоступа=1;
+ИсторияЧата = Новый Массив;
+
 КонецПроцедуры
 
 #КонецОбласти
@@ -1368,6 +1369,8 @@
 		+ ".pallet:hover { outline: 2px solid #ff6600; outline-offset: -2px; z-index: 6; box-shadow: inset 0 0 8px rgba(255,100,0,0.45); }"
 		+ ".pallet-occupied { background: rgba(255,255,200,0.7); border: 2px solid #888; }"
 		+ ".pallet-reserved { background: rgba(255,255,220,0.5); border: 2px dashed #888; }"
+		+ ".pallet-virtual{background:rgba(255,165,0,0.6);border:2px solid #e67300;}"
+		+ ".pallet-virtual:hover{outline:2px solid #cc5500;box-shadow:inset 0 0 8px rgba(255,100,0,0.45);}"
 		+ ".pallet-label { position: absolute; top: 4px; left: 0; right: 0; text-align: center; font-size: 9px; font-weight: bold; color: #333; z-index: 3; }"
 		+ ".pallet-size { position: absolute; bottom: 2px; left: 0; right: 0; text-align: center; font-size: 8px; color: #333; z-index: 3; }"
 		+ ".free-space { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 8px; color: #090; font-weight: bold; z-index: 4; white-space: nowrap; background: rgba(255,255,255,0.85); padding: 0 2px; }"
@@ -1688,17 +1691,26 @@
 					Заблокирован = ДанныеПаллетаВЯчейке.Заблокирован;
 					КоличествоПаллета = ДанныеПаллетаВЯчейке.Количество;
 					
-					// Определяем стиль: зарезервирован / занят
+					// Определяем стиль: зарезервирован / занят / виртуальный
 					Если Заблокирован > 0 И КоличествоПаллета = 0 Тогда
 						КлассПаллета = "pallet-reserved";
 						СтатусТекст = " [резерв]";
+					ИначеЕсли ТипЗнч(ДанныеПаллетаВЯчейке.НомерПаллета) = Тип("Строка")
+						И Лев(ДанныеПаллетаВЯчейке.НомерПаллета, 1) = "В" Тогда
+						КлассПаллета = "pallet-virtual";
+						СтатусТекст = "";
 					Иначе
 						КлассПаллета = "pallet-occupied";
 						СтатусТекст = "";
 					КонецЕсли;
-					
+
 					// Номер паллета
-					НомерСтрока = Формат(ДанныеПаллетаВЯчейке.НомерПаллета, "ЧН=—; ЧГ=0");
+					НомерПаллетаСырой = ДанныеПаллетаВЯчейке.НомерПаллета;
+					Если ТипЗнч(НомерПаллетаСырой) = Тип("Строка") Тогда
+						НомерСтрока = НомерПаллетаСырой;
+					Иначе
+						НомерСтрока = Формат(НомерПаллетаСырой, "ЧН=—; ЧГ=0");
+					КонецЕсли;
 					
 					// Глубина паллета
 					ГлубинаПаллетаМм = 0;
@@ -1878,19 +1890,31 @@
 				ВысотаПЗ = Макс(14, Цел(60 / КоличествоПаллетЗоны));
 				
 				Для Каждого ДанныеПЗ Из МассивПаллетЗоны Цикл
-					НомерП = Формат(ДанныеПЗ.НомерПаллета, "ЧН=—; ЧГ=0");
+					НомерПЗСырой = ДанныеПЗ.НомерПаллета;
+					ЭтоВиртуальныйЗ = (ТипЗнч(НомерПЗСырой) = Тип("Строка") И Лев(НомерПЗСырой, 1) = "В");
+					Если ЭтоВиртуальныйЗ Тогда
+						НомерП = НомерПЗСырой;
+					Иначе
+						НомерП = Формат(НомерПЗСырой, "ЧН=—; ЧГ=0");
+					КонецЕсли;
 					КлассПЗ = "pallet-occupied";
 					СтатусЗ = "";
 					Если ДанныеПЗ.Заблокирован > 0 И ДанныеПЗ.Количество = 0 Тогда
 						КлассПЗ = "pallet-reserved";
 						СтатусЗ = " [резерв]";
+					ИначеЕсли ЭтоВиртуальныйЗ Тогда
+						КлассПЗ = "pallet-virtual";
+						СтатусЗ = "";
 					КонецЕсли;
-					// Двойной клик на паллете в зоне — открыть карточку паллета
-					ГУИДПЗоны = Строка(ДанныеПЗ.ПаллетСсылка.УникальныйИдентификатор());
-					ПаллетDblClick = " ondblclick=""openItem(event,'pallet','" + ГУИДПЗоны + "')""";
+					// Двойной клик на паллете в зоне — открыть карточку паллета (только для реальных)
+					ПаллетDblClick = "";
+					Если НЕ ЭтоВиртуальныйЗ Тогда
+						ГУИДПЗоны = Строка(ДанныеПЗ.ПаллетСсылка.УникальныйИдентификатор());
+						ПаллетDblClick = " ondblclick=""openItem(event,'pallet','" + ГУИДПЗоны + "')""";
+					КонецЕсли;
 					HTML = HTML + "<div class=""pallet " + КлассПЗ + """" + ПаллетDblClick
 						+ " style=""position:relative;width:100%;height:" + Формат(ВысотаПЗ, "ЧН=0; ЧГ=0") + "px;margin-bottom:2px;"">"
-						+ "<div class=""pallet-label"">П" + НомерП + СтатусЗ + "</div>"
+						+ "<div class=""pallet-label"">" + НомерП + СтатусЗ + "</div>"
 						+ "</div>";
 				КонецЦикла;
 			КонецЕсли;
@@ -5430,6 +5454,8 @@
 			+ ".pallet:hover{outline:2px solid #ff6600;outline-offset:-2px;z-index:6;box-shadow:inset 0 0 8px rgba(255,100,0,0.45);}"
 			+ ".pallet-occupied{background:rgba(255,255,200,0.7);border:2px solid #888;}"
 			+ ".pallet-reserved{background:rgba(255,255,220,0.5);border:2px dashed #888;}"
+			+ ".pallet-virtual{background:rgba(255,165,0,0.6);border:2px solid #e67300;}"
+			+ ".pallet-virtual:hover{outline:2px solid #cc5500;box-shadow:inset 0 0 8px rgba(255,100,0,0.45);}"
 			+ ".pallet-label{position:absolute;top:4px;left:0;right:0;text-align:center;font-size:9px;font-weight:bold;color:#333;z-index:3;}"
 			+ ".pallet-size{position:absolute;bottom:2px;left:0;right:0;text-align:center;font-size:8px;color:#333;z-index:3;}"
 			+ ".free-space{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:8px;color:#090;font-weight:bold;z-index:4;white-space:nowrap;background:rgba(255,255,255,0.85);padding:0 2px;}"
@@ -6183,11 +6209,15 @@
 КонецПроцедуры
 
 
-ИсторияЧата = Новый Массив;
 
 #Область СимуляторРазмещения
 
 //+Лико m.shenderov 26.06.2026 — In-memory симуляция размещения паллет
+
+&НаКлиенте
+Процедура ВиртуальныйСкладПриИзменении(Элемент)
+	ПолныйРендер();
+КонецПроцедуры
 
 &НаСервере
 Функция ЗагрузитьСекцииСОстатки(Склад)
