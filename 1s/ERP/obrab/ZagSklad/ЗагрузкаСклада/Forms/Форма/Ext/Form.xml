@@ -95,6 +95,12 @@
 									<ContextMenu name="ТипоразмерПаллетаКонтекстноеМеню" id="16"/>
 									<ExtendedTooltip name="ТипоразмерПаллетаРасширеннаяПодсказка" id="17"/>
 								</LabelField>
+								<CheckBoxField name="ТестАдаптер" id="313">
+									<DataPath>ТестАдаптер</DataPath>
+									<CheckBoxType>Auto</CheckBoxType>
+									<ContextMenu name="ТестАдаптерКонтекстноеМеню" id="314"/>
+									<ExtendedTooltip name="ТестАдаптерРасширеннаяПодсказка" id="315"/>
+								</CheckBoxField>
 								<CheckBoxField name="ВиртуальныйСклад" id="307">
 									<DataPath>ВиртуальныйСклад</DataPath>
 									<CheckBoxType>Auto</CheckBoxType>
@@ -990,6 +996,87 @@
 									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
 									<ContextMenu name="ПаллетыАдресКонтекстноеМеню" id="311"/>
 									<ExtendedTooltip name="ПаллетыАдресРасширеннаяПодсказка" id="312"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+						<Table name="ВиртуальныеПаллеты" id="316">
+							<Representation>List</Representation>
+							<DataPath>ВиртуальныеПаллеты</DataPath>
+							<RowFilter xsi:nil="true"/>
+							<ContextMenu name="ВиртуальныеПаллетыКонтекстноеМеню" id="327"/>
+							<AutoCommandBar name="ВиртуальныеПаллетыКоманднаяПанель" id="317"/>
+							<ExtendedTooltip name="ВиртуальныеПаллетыРасширеннаяПодсказка" id="318"/>
+							<SearchStringAddition name="ВиртуальныеПаллетыСтрокаПоиска" id="328">
+								<AdditionSource>
+									<Item>ВиртуальныеПаллеты</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ВиртуальныеПаллетыСтрокаПоискаКонтекстноеМеню" id="329"/>
+								<ExtendedTooltip name="ВиртуальныеПаллетыСтрокаПоискаРасширеннаяПодсказка" id="330"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="ВиртуальныеПаллетыСостояниеПросмотра" id="331">
+								<AdditionSource>
+									<Item>ВиртуальныеПаллеты</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="ВиртуальныеПаллетыСостояниеПросмотраКонтекстноеМеню" id="332"/>
+								<ExtendedTooltip name="ВиртуальныеПаллетыСостояниеПросмотраРасширеннаяПодсказка" id="333"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="ВиртуальныеПаллетыУправлениеПоиском" id="334">
+								<AdditionSource>
+									<Item>ВиртуальныеПаллеты</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="ВиртуальныеПаллетыУправлениеПоискомКонтекстноеМеню" id="335"/>
+								<ExtendedTooltip name="ВиртуальныеПаллетыУправлениеПоискомРасширеннаяПодсказка" id="336"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<InputField name="ВиртуальныеПаллетыПаллет" id="353">
+									<DataPath>ВиртуальныеПаллеты.Паллет</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="ВиртуальныеПаллетыПаллетКонтекстноеМеню" id="354"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыПаллетРасширеннаяПодсказка" id="355"/>
+								</InputField>
+								<InputField name="ВиртуальныеПаллетыКод" id="319">
+									<DataPath>ВиртуальныеПаллеты.Код</DataPath>
+									<ContextMenu name="ВиртуальныеПаллетыКодКонтекстноеМеню" id="337"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыКодРасширеннаяПодсказка" id="338"/>
+								</InputField>
+								<InputField name="ВиртуальныеПаллетыСекция" id="320">
+									<DataPath>ВиртуальныеПаллеты.Секция</DataPath>
+									<ContextMenu name="ВиртуальныеПаллетыСекцияКонтекстноеМеню" id="339"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыСекцияРасширеннаяПодсказка" id="340"/>
+								</InputField>
+								<InputField name="ВиртуальныеПаллетыАдрес" id="321">
+									<DataPath>ВиртуальныеПаллеты.Адрес</DataPath>
+									<ContextMenu name="ВиртуальныеПаллетыАдресКонтекстноеМеню" id="341"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыАдресРасширеннаяПодсказка" id="342"/>
+								</InputField>
+								<InputField name="ВиртуальныеПаллетыТипоразмер" id="322">
+									<DataPath>ВиртуальныеПаллеты.Типоразмер</DataPath>
+									<ContextMenu name="ВиртуальныеПаллетыТипоразмерКонтекстноеМеню" id="343"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыТипоразмерРасширеннаяПодсказка" id="344"/>
+								</InputField>
+								<InputField name="ВиртуальныеПаллетыВысота" id="323">
+									<DataPath>ВиртуальныеПаллеты.Высота</DataPath>
+									<ContextMenu name="ВиртуальныеПаллетыВысотаКонтекстноеМеню" id="345"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыВысотаРасширеннаяПодсказка" id="346"/>
+								</InputField>
+								<InputField name="ВиртуальныеПаллетыШирина" id="324">
+									<DataPath>ВиртуальныеПаллеты.Ширина</DataPath>
+									<ContextMenu name="ВиртуальныеПаллетыШиринаКонтекстноеМеню" id="347"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыШиринаРасширеннаяПодсказка" id="348"/>
+								</InputField>
+								<InputField name="ВиртуальныеПаллетыГлубина" id="325">
+									<DataPath>ВиртуальныеПаллеты.Глубина</DataPath>
+									<ContextMenu name="ВиртуальныеПаллетыГлубинаКонтекстноеМеню" id="349"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыГлубинаРасширеннаяПодсказка" id="350"/>
+								</InputField>
+								<InputField name="ВиртуальныеПаллетыВес" id="326">
+									<DataPath>ВиртуальныеПаллеты.Вес</DataPath>
+									<ContextMenu name="ВиртуальныеПаллетыВесКонтекстноеМеню" id="351"/>
+									<ExtendedTooltip name="ВиртуальныеПаллетыВесРасширеннаяПодсказка" id="352"/>
 								</InputField>
 							</ChildItems>
 						</Table>
@@ -2119,6 +2206,188 @@
 			<Type>
 				<v8:Type>xs:boolean</v8:Type>
 			</Type>
+		</Attribute>
+		<Attribute name="ТестАдаптер" id="39">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Тест адаптер</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="ВиртуальныеПаллеты" id="40">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Виртуальные паллеты</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Save>
+				<Field>ВиртуальныеПаллеты</Field>
+			</Save>
+			<Columns>
+				<Column name="Код" id="1">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>0</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Секция" id="2">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Секция</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_СкладскиеСекции</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Адрес" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Адрес</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.СкладскиеЯчейки</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Типоразмер" id="4">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Типоразмер</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_ТипоразмерыПаллет</v8:Type>
+					</Type>
+				</Column>
+				<Column name="Высота" id="5">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Высота</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Ширина" id="6">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ширина</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Глубина" id="7">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Глубина</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Вес" id="8">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вес</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>15</v8:Digits>
+							<v8:FractionDigits>2</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Количество" id="9">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Количество</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>5</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Заблокирован" id="10">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заблокирован</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>5</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Паллет" id="11">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Паллет</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Лико_Паллеты2_0</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
 		</Attribute>
 	</Attributes>
 	<Commands>
