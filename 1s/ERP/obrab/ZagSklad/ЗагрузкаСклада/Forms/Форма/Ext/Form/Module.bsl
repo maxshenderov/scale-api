@@ -1864,7 +1864,7 @@
 	
 	
 	// === 6. Генерация HTML ===
-	РезультатHtml = "<!DOCTYPE html><html><head><meta charset=""utf-8"">"
+	РезультатHtml = "<!DOCTYPE html><html><head><meta charset=""utf-8""><meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">"
 	+ "<style>"
 	+ "body { font-family: Arial, sans-serif; margin: 10px; padding-top: 36px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow: auto; }"
 	+ ".scale-container { display: flex; align-items: center; gap: 6px; font-size: 12px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; padding: 4px 10px; border-bottom: 1px solid #ccc; }"
@@ -1970,9 +1970,9 @@
 		+ "document.onselectstart=function(){return false;};"
 		+ "function allowDrop(ev){ev.preventDefault();}"
 		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text/plain',g);ev.dataTransfer.effectAllowed='move';}"
-		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';this.classList.add('drag-over');}"
-		+ "function dragLeaveCell(ev){this.classList.remove('drag-over');}"
-		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text/plain');var cg=this.getAttribute('data-cell-guid');var a=document.getElementById('bridge');a.setAttribute('data-payload',JSON.stringify({type:'dragdrop',from:pg,to:cg}));a.click()('Move',pg+'|'+cg);}"
+		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';ev.currentTarget.classList.add('drag-over');}"
+		+ "function dragLeaveCell(ev){ev.currentTarget.classList.remove('drag-over');}"
+		+ "function dropOnCell(ev){ev.preventDefault();ev.currentTarget.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text/plain');var cg=ev.currentTarget.getAttribute('data-cell-guid');var a=document.getElementById('bridge');a.setAttribute('data-payload',JSON.stringify({type:'dragdrop',from:pg,to:cg}));a.click();}"
 		+ "</script>"
 	+ "</head><body onselectstart=""return false"">"
 	+ "<a id=""bridge"" href=""javascript:void(0)"" style=""display:none""></a>";
@@ -2232,10 +2232,9 @@
 						КлассЯчейки = "cell"; // запрет размещения — светло-красный фон от section-restricted
 					Иначе
 						КлассЯчейки = "cell cell-free"; // полностью свободна — зелёная + hover
+						// Drag & Drop + двойной клик — только для реально свободных ячеек
+						ДопАтрибутыЯчейки = " ondragover=""allowDrop(event)"" ondragenter=""dragOverCell(event)"" ondragleave=""dragLeaveCell(event)"" ondrop=""dropOnCell(event)"" ondblclick=""openItem(event,'cell','" + ГУИДЯчейки + "')""";
 					КонецЕсли;
-					// Двойной клик по свободной ячейке — открыть карточку ячейки склада
-					ГУИДЯчейки = Строка(АдресЯчейки.УникальныйИдентификатор());
-					ДопАтрибутыЯчейки = " ondragover=""allowDrop(event)"" ondragenter=""dragOverCell(event)"" ondragleave=""dragLeaveCell(event)"" ondrop=""dropOnCell(event)"" ondblclick=""openItem(event,'cell','" + ГУИДЯчейки + "')""";
 				КонецЕсли;
 				//+Лико m.shenderov 22.06.2026 — подсчёт зелёных/всего ячеек
 				ЭтажСчетчик = СчетчикиПоЭтажам.Получить(НомерЭтажа);
@@ -3249,9 +3248,9 @@
 		+ "document.onselectstart=function(){return false;};"
 		+ "function allowDrop(ev){ev.preventDefault();}"
 		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text/plain',g);ev.dataTransfer.effectAllowed='move';}"
-		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';this.classList.add('drag-over');}"
-		+ "function dragLeaveCell(ev){this.classList.remove('drag-over');}"
-		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text/plain');var cg=this.getAttribute('data-cell-guid');var a=document.getElementById('bridge');a.setAttribute('data-payload',JSON.stringify({type:'dragdrop',from:pg,to:cg}));a.click()('Move',pg+'|'+cg);}"
+		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';ev.currentTarget.classList.add('drag-over');}"
+		+ "function dragLeaveCell(ev){ev.currentTarget.classList.remove('drag-over');}"
+		+ "function dropOnCell(ev){ev.preventDefault();ev.currentTarget.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text/plain');var cg=ev.currentTarget.getAttribute('data-cell-guid');var a=document.getElementById('bridge');a.setAttribute('data-payload',JSON.stringify({type:'dragdrop',from:pg,to:cg}));a.click();}"
 		+ "</script>"
 		+ "</head><body onselectstart=""return false"">"
 	+ "<a id=""bridge"" href=""javascript:void(0)"" style=""display:none""></a>";
