@@ -95,6 +95,13 @@
 	
 	СтандартнаяОбработка = Ложь;
 	Части = СтрРазделить(Ссылка, "/");
+
+	// Обработка перемещения паллета: zagsklad://move/PALLET_GUID/CELL_GUID
+	Если Части.Количество() >= 5 И Части[2] = "move" Тогда
+		ПереместитьПаллетНаСервере(Части[3], Части[4]);
+		Возврат;
+	КонецЕсли;
+
 	Если Части.Количество() < 4 Тогда
 		Возврат;
 	КонецЕсли;
@@ -1907,6 +1914,9 @@
 	+ ".pallet-summary td { padding: 3px 6px; border: 1px solid #ddd; text-align: center; font-size: 11px; }"
 	+ ".pallet-summary tr:nth-child(even) { background: #f9f9f9; }"
 	+ ".pallet-summary .color-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 3px; vertical-align: middle; }"
+		+ ".cell-free.drag-over { background: rgba(255,200,50,0.6) !important; outline: 3px solid #ff8800; outline-offset: -3px; z-index: 10; }"
+		+ ".zone-box.drag-over { background: rgba(255,200,50,0.6) !important; outline: 3px solid #ff8800; outline-offset: -3px; z-index: 10; }"
+		+ ".drag-clone { position: fixed; pointer-events: none; z-index: 9999; opacity: 0.75; transform: translate(-50%,-50%); border: 2px dashed #ff8800; background: rgba(255,255,200,0.85); font-size: 11px; padding: 4px 8px; white-space: nowrap; }"
 	+ "</style>"
 	+ "<script>"
 	+ "var _zs_cur=100;"
@@ -1926,6 +1936,13 @@
 	+ "  return false;"
 	+ "}"
 	+ "function sortTable(th,c){var t=th;while(t&&t.tagName!='TABLE')t=t.parentNode;if(!t)return;var b=t.tBodies[0];var r=[],i;for(i=0;i<b.rows.length;i++)r.push(b.rows[i]);var d=t.getAttribute('data-sort-dir')=='asc'?'desc':'asc';t.setAttribute('data-sort-dir',d);r.sort(function(a,b){var an=parseFloat(a.cells[c].textContent),bn=parseFloat(b.cells[c].textContent);if(!isNaN(an)&&!isNaN(bn))return d=='asc'?an-bn:bn-an;return d=='asc'?a.cells[c].textContent.localeCompare(b.cells[c].textContent,'ru'):b.cells[c].textContent.localeCompare(a.cells[c].textContent,'ru');});for(i=0;i<r.length;i++)b.appendChild(r[i]);for(i=0;i<b.rows.length;i++)b.rows[i].cells[0].textContent=i+1;}"
+		+ "if(!Element.prototype.matches)Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector;"
+		+ "function _closest(el,sel){while(el&&el!==document){if(el.matches&&el.matches(sel))return el;el=el.parentNode;}return null;}"
+		+ "var _dragPalletGuid=null,_dragClone=null,_dragOverEl=null;"
+		+ "function startDrag(e){if(e.button!==0)return;var g=this.getAttribute('data-pallet-guid');if(!g)return;_dragPalletGuid=g;var lb=this.querySelector('.pallet-label');var lt=lb?lb.textContent:'?';_dragClone=document.createElement('div');_dragClone.className='drag-clone';_dragClone.textContent=lt;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';document.body.appendChild(_dragClone);this.style.opacity='0.3';if(this.setCapture)this.setCapture();e.preventDefault();}"
+		+ "function onDragMove(e){if(!_dragClone)return;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';_dragClone.style.display='none';var el=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';var ce=_closest(el,'.cell-free');var ze=_closest(el,'.zone-box');if(_dragOverEl&&_dragOverEl!==ce&&_dragOverEl!==ze){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}if(ce&&ce!==_dragOverEl){_dragOverEl=ce;_dragOverEl.classList.add('drag-over');}else if(ze&&ze!==_dragOverEl){_dragOverEl=ze;_dragOverEl.classList.add('drag-over');}}"
+		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){var pg=_dragPalletGuid;var cg2=cg;setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://move/'+pg+'/'+cg2;a.click();},300);}_dragPalletGuid=null;}"
+		+ "document.addEventListener('mousemove',onDragMove);document.addEventListener('mouseup',onDragEnd);"
 	+ "</script>"
 	+ "</head><body>";
 	
@@ -2170,6 +2187,7 @@
 			// Ячейки секции (Адрес1, Адрес2, Адрес3)
 			Для ИндексАдреса = 0 По КоличествоАдресов - 1 Цикл
 				АдресЯчейки = Адреса[ИндексАдреса];
+				ГУИДЯчейки = Строка(АдресЯчейки.УникальныйИдентификатор());
 				ДанныеПаллетаВЯчейке = КартаАдресов.Получить(АдресЯчейки);
 				
 				// Класс ячейки: занята / физически перекрыта паллетом (белая) / свободна (зелёная)
@@ -2200,7 +2218,7 @@
 					ЭтажСчетчик.Зеленых = ЭтажСчетчик.Зеленых + 1;
 					ЗеленыхЯчеекВсего = ЗеленыхЯчеекВсего + 1;
 				КонецЕсли;
-				РезультатHtml = РезультатHtml + "<div class=""" + КлассЯчейки + """" + ДопАтрибутыЯчейки + ">";
+				РезультатHtml = РезультатHtml + "<div class=""" + КлассЯчейки + """ data-cell-guid=""" + ГУИДЯчейки + """" + ДопАтрибутыЯчейки + ">";
 				
 				// Номер строки из фильтра по паллету
 				Если ФилтрПоПаллету И ЗначениеЗаполнено(Паллет) И АдресаХранения.Количество() > 0 Тогда
@@ -2287,7 +2305,7 @@
 						+ "</div></div>";
 					Иначе
 						ГУИДПаллета = Строка(ДанныеПаллетаВЯчейке.ПаллетСсылка.УникальныйИдентификатор());
-						РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПаллета + """ data-size=""" + РазмерСтр + """ data-weight=""" + ВесСтр + """ ondblclick=""openItem(event,'pallet','" + ГУИДПаллета + "')"" onmousemove=""showTip(event,'П" + НомерСтрока + "\n" + РазмерСтр + "\n" + ВесСтр + "')"" onmouseout=""hideTip()"" style="""
+						РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПаллета + """ data-pallet-guid=""" + ГУИДПаллета + """ onmousedown=""startDrag(event)"" data-size=""" + РазмерСтр + """ data-weight=""" + ВесСтр + """ ondblclick=""openItem(event,'pallet','" + ГУИДПаллета + "')"" onmousemove=""showTip(event,'П" + НомерСтрока + "\n" + РазмерСтр + "\n" + ВесСтр + "')"" onmouseout=""hideTip()"" style="""
 						+ "left:" + ФорматЧислоHTML(СмещениеПаллетаPx) + "px;"
 						+ "width:" + ФорматЧислоHTML(ШиринаПаллетаPx) + "px;"
 						+ "height:" + ФорматЧислоHTML(ВысотаПаллетаPx) + "px;"">"
@@ -2425,7 +2443,7 @@
 			ГУИДЗоны = Строка(СтрокаЗоны.АдресХранения.УникальныйИдентификатор());
 			ЗонаDblClick = " ondblclick=""openItem(event,'cell','" + ГУИДЗоны + "')""";
 			
-			РезультатHtml = РезультатHtml + "<div class=""zone-box""" + ЗонаDblClick + ">";
+			РезультатHtml = РезультатHtml + "<div class=""zone-box"" data-cell-guid=""" + ГУИДЗоны + """" + ЗонаDblClick + ">";
 			РезультатHtml = РезультатHtml + "<div class=""zone-name"">" + ИмяЗоны + "</div>";
 			
 			Если МассивПаллетЗоны <> Неопределено Тогда
@@ -2444,7 +2462,7 @@
 					// Двойной клик на паллете в зоне — открыть карточку паллета
 					ГУИДПЗоны = Строка(ДанныеПЗ.ПаллетСсылка.УникальныйИдентификатор());
 					ПаллетDblClick = " ondblclick=""openItem(event,'pallet','" + ГУИДПЗоны + "')""";
-					РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПЗ + """" + ПаллетDblClick
+					РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПЗ + """ data-pallet-guid=""" + ГУИДПЗоны + """ onmousedown=""startDrag(event)""" + ПаллетDblClick
 					+ " style=""position:relative;width:100%;height:" + ФорматЧислоHTML(ВысотаПЗ) + "px;margin-bottom:2px;"">"
 					+ "<div class=""pallet-label"">П" + НомерП + СтатусЗ + "</div>"
 					+ "</div>";
@@ -3180,6 +3198,9 @@
 			+ ".pallet-summary td { padding: 3px 6px; border: 1px solid #ddd; text-align: center; font-size: 11px; }"
 			+ ".pallet-summary tr:nth-child(even) { background: #f9f9f9; }"
 			+ ".pallet-summary .color-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 3px; vertical-align: middle; }"
+		+ ".cell-free.drag-over { background: rgba(255,200,50,0.6) !important; outline: 3px solid #ff8800; outline-offset: -3px; z-index: 10; }"
+		+ ".zone-box.drag-over { background: rgba(255,200,50,0.6) !important; outline: 3px solid #ff8800; outline-offset: -3px; z-index: 10; }"
+		+ ".drag-clone { position: fixed; pointer-events: none; z-index: 9999; opacity: 0.75; transform: translate(-50%,-50%); border: 2px dashed #ff8800; background: rgba(255,255,200,0.85); font-size: 11px; padding: 4px 8px; white-space: nowrap; }"
 		+ "</style>"
 		+ "<script>"
 		+ "var _zs_cur=100;"
@@ -3193,6 +3214,13 @@
 		+ "  return false;"
 		+ "}"
 				+ "function sortTable(th,c){var t=th;while(t&&t.tagName!='TABLE')t=t.parentNode;if(!t)return;var b=t.tBodies[0];var r=[],i;for(i=0;i<b.rows.length;i++)r.push(b.rows[i]);var d=t.getAttribute('data-sort-dir')=='asc'?'desc':'asc';t.setAttribute('data-sort-dir',d);r.sort(function(a,b){var an=parseFloat(a.cells[c].textContent),bn=parseFloat(b.cells[c].textContent);if(!isNaN(an)&&!isNaN(bn))return d=='asc'?an-bn:bn-an;return d=='asc'?a.cells[c].textContent.localeCompare(b.cells[c].textContent,'ru'):b.cells[c].textContent.localeCompare(a.cells[c].textContent,'ru');});for(i=0;i<r.length;i++)b.appendChild(r[i]);for(i=0;i<b.rows.length;i++)b.rows[i].cells[0].textContent=i+1;}"
+		+ "if(!Element.prototype.matches)Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector;"
+		+ "function _closest(el,sel){while(el&&el!==document){if(el.matches&&el.matches(sel))return el;el=el.parentNode;}return null;}"
+		+ "var _dragPalletGuid=null,_dragClone=null,_dragOverEl=null;"
+		+ "function startDrag(e){if(e.button!==0)return;var g=this.getAttribute('data-pallet-guid');if(!g)return;_dragPalletGuid=g;var lb=this.querySelector('.pallet-label');var lt=lb?lb.textContent:'?';_dragClone=document.createElement('div');_dragClone.className='drag-clone';_dragClone.textContent=lt;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';document.body.appendChild(_dragClone);this.style.opacity='0.3';if(this.setCapture)this.setCapture();e.preventDefault();}"
+		+ "function onDragMove(e){if(!_dragClone)return;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';_dragClone.style.display='none';var el=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';var ce=_closest(el,'.cell-free');var ze=_closest(el,'.zone-box');if(_dragOverEl&&_dragOverEl!==ce&&_dragOverEl!==ze){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}if(ce&&ce!==_dragOverEl){_dragOverEl=ce;_dragOverEl.classList.add('drag-over');}else if(ze&&ze!==_dragOverEl){_dragOverEl=ze;_dragOverEl.classList.add('drag-over');}}"
+		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){var pg=_dragPalletGuid;var cg2=cg;setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://move/'+pg+'/'+cg2;a.click();},300);}_dragPalletGuid=null;}"
+		+ "document.addEventListener('mousemove',onDragMove);document.addEventListener('mouseup',onDragEnd);"
 		+ "</script>"
 		+ "</head><body>";
 	
@@ -3853,6 +3881,34 @@
 	КонецПопытки;
 	Возврат Неопределено;
 КонецФункции
+
+&НаСервере
+Процедура ПереместитьПаллетНаСервере(ГУИДПаллетаСтрока, ГУИДЯчейкиСтрока)
+	//+Лико m.shenderov 15.07.2026 — drag-and-drop перемещение паллета
+	ПаллетСсылка = ПолучитьСсылкуПоГУИД("pallet", ГУИДПаллетаСтрока);
+	ЯчейкаСсылка = ПолучитьСсылкуПоГУИД("cell", ГУИДЯчейкиСтрока);
+
+	Если ПаллетСсылка = Неопределено Или ЯчейкаСсылка = Неопределено Тогда
+		Сообщить("Drag&Drop: не удалось найти паллет или ячейку");
+		Возврат;
+	КонецЕсли;
+
+	// ТЕСТ: сначала просто сообщение — убедимся что callback работает
+	Сообщить("Drag&Drop: паллет=" + Строка(ПаллетСсылка) + " → ячейка=" + Строка(ЯчейкаСсылка));
+
+	Попытка
+		Документы.Лико_ПеремещениеПаллета2_0.СоздатьПеремещение(ПаллетСсылка, ЯчейкаСсылка);
+		Сообщить("Drag&Drop: документ перемещения создан успешно");
+	Исключение
+		Сообщить("Drag&Drop: ошибка — " + ОписаниеОшибки());
+		Возврат;
+	КонецПопытки;
+
+	// Обновить визуализацию
+	Если ЗначениеЗаполнено(ТекущийСтеллаж) Тогда
+		РендерЗагрузкиСтеллажаНаСервере(ТекущийСтеллаж);
+	КонецЕсли;
+КонецПроцедуры
 
 &НаКлиенте
 Процедура ПриОткрытии(Отказ)
