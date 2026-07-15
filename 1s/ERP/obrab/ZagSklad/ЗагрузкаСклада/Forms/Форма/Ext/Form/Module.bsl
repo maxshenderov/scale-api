@@ -1927,7 +1927,8 @@
 	+ ".pallet-summary .color-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 3px; vertical-align: middle; }"
 		+ ".cell-free.drag-over { background: rgba(255,200,50,0.6) !important; outline: 3px solid #ff8800; outline-offset: -3px; z-index: 10; }"
 		+ ".zone-box.drag-over { background: rgba(255,200,50,0.6) !important; outline: 3px solid #ff8800; outline-offset: -3px; z-index: 10; }"
-		+ ".drag-clone { position: fixed; pointer-events: none; z-index: 9999; opacity: 0.75; transform: translate(-50%,-50%); border: 2px dashed #ff8800; background: rgba(255,255,200,0.85); font-size: 11px; padding: 4px 8px; white-space: nowrap; }"
+		+ "[draggable=""true""] { cursor: grab; }"
+		+ "[draggable=""true""]:active { cursor: grabbing; opacity: 0.7; }"
 	+ "</style>"
 	+ "<script>"
 	+ "var _zs_cur=100;"
@@ -1947,15 +1948,13 @@
 	+ "  return false;"
 	+ "}"
 	+ "function sortTable(th,c){var t=th;while(t&&t.tagName!='TABLE')t=t.parentNode;if(!t)return;var b=t.tBodies[0];var r=[],i;for(i=0;i<b.rows.length;i++)r.push(b.rows[i]);var d=t.getAttribute('data-sort-dir')=='asc'?'desc':'asc';t.setAttribute('data-sort-dir',d);r.sort(function(a,b){var an=parseFloat(a.cells[c].textContent),bn=parseFloat(b.cells[c].textContent);if(!isNaN(an)&&!isNaN(bn))return d=='asc'?an-bn:bn-an;return d=='asc'?a.cells[c].textContent.localeCompare(b.cells[c].textContent,'ru'):b.cells[c].textContent.localeCompare(a.cells[c].textContent,'ru');});for(i=0;i<r.length;i++)b.appendChild(r[i]);for(i=0;i<b.rows.length;i++)b.rows[i].cells[0].textContent=i+1;}"
-		+ "if(!Element.prototype.matches)Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector;"
-		+ "function _closest(el,sel){while(el&&el!==document){if(el.matches&&el.matches(sel))return el;el=el.parentNode;}return null;}"
 		+ "document.onselectstart=function(){return false;};"
-		+ "var _dragPalletGuid=null,_dragClone=null,_dragOverEl=null;"
-		+ "function startDrag(e){if(e.button!==0)return;var g=this.getAttribute('data-pallet-guid');if(!g)return;_dragPalletGuid=g;var lb=this.querySelector('.pallet-label');var lt=lb?lb.textContent:'?';_dragClone=document.createElement('div');_dragClone.className='drag-clone';_dragClone.textContent=lt;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';document.body.appendChild(_dragClone);this.style.opacity='0.3';if(this.setCapture)this.setCapture();e.preventDefault();}"
-		+ "function onDragMove(e){if(!_dragClone)return;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';_dragClone.style.display='none';var el=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';var ce=_closest(el,'.cell-free');var ze=_closest(el,'.zone-box');if(_dragOverEl&&_dragOverEl!==ce&&_dragOverEl!==ze){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}if(ce&&ce!==_dragOverEl){_dragOverEl=ce;_dragOverEl.classList.add('drag-over');}else if(ze&&ze!==_dragOverEl){_dragOverEl=ze;_dragOverEl.classList.add('drag-over');}}"
-		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){window.external.ОбработкаСобытия('Move',_dragPalletGuid+'|'+cg);}_dragPalletGuid=null;}"
-		+ "document.addEventListener('mousemove',onDragMove);document.addEventListener('mouseup',onDragEnd);"
-	+ "</script>"
+		+ "function allowDrop(ev){ev.preventDefault();}"
+		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text',g);ev.dataTransfer.effectAllowed='move';}"
+		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';this.classList.add('drag-over');}"
+		+ "function dragLeaveCell(ev){this.classList.remove('drag-over');}"
+		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text');var cg=this.getAttribute('data-cell-guid');if(pg&&cg)window.external.ОбработкаСобытия('Move',pg+'|'+cg);}"
+		+ "</script>"
 	+ "</head><body onselectstart=""return false"">";
 	
 	// Заголовок
@@ -2216,7 +2215,7 @@
 					КонецЕсли;
 					// Двойной клик по свободной ячейке — открыть карточку ячейки склада
 					ГУИДЯчейки = Строка(АдресЯчейки.УникальныйИдентификатор());
-					ДопАтрибутыЯчейки = " ondblclick=""openItem(event,'cell','" + ГУИДЯчейки + "')""";
+					ДопАтрибутыЯчейки = " ondragover=""allowDrop(event)"" ondragenter=""dragOverCell(event)"" ondragleave=""dragLeaveCell(event)"" ondrop=""dropOnCell(event)"" ondblclick=""openItem(event,'cell','" + ГУИДЯчейки + "')""";
 				КонецЕсли;
 				//+Лико m.shenderov 22.06.2026 — подсчёт зелёных/всего ячеек
 				ЭтажСчетчик = СчетчикиПоЭтажам.Получить(НомерЭтажа);
@@ -2317,7 +2316,7 @@
 						+ "</div></div>";
 					Иначе
 						ГУИДПаллета = Строка(ДанныеПаллетаВЯчейке.ПаллетСсылка.УникальныйИдентификатор());
-						РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПаллета + """ data-pallet-guid=""" + ГУИДПаллета + """ onmousedown=""startDrag(event)"" onselectstart=""return false"" data-size=""" + РазмерСтр + """ data-weight=""" + ВесСтр + """ ondblclick=""openItem(event,'pallet','" + ГУИДПаллета + "')"" onmousemove=""showTip(event,'П" + НомерСтрока + "\n" + РазмерСтр + "\n" + ВесСтр + "')"" onmouseout=""hideTip()"" style="""
+						РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПаллета + """ data-pallet-guid=""" + ГУИДПаллета + """ draggable=""true"" ondragstart=""dragPallet(event)"" data-size=""" + РазмерСтр + """ data-weight=""" + ВесСтр + """ ondblclick=""openItem(event,'pallet','" + ГУИДПаллета + "')"" onmousemove=""showTip(event,'П" + НомерСтрока + "\n" + РазмерСтр + "\n" + ВесСтр + "')"" onmouseout=""hideTip()"" style="""
 						+ "left:" + ФорматЧислоHTML(СмещениеПаллетаPx) + "px;"
 						+ "width:" + ФорматЧислоHTML(ШиринаПаллетаPx) + "px;"
 						+ "height:" + ФорматЧислоHTML(ВысотаПаллетаPx) + "px;"">"
@@ -2453,7 +2452,7 @@
 			
 			// Двойной клик на zone-box — открыть карточку ячейки зоны
 			ГУИДЗоны = Строка(СтрокаЗоны.АдресХранения.УникальныйИдентификатор());
-			ЗонаDblClick = " ondblclick=""openItem(event,'cell','" + ГУИДЗоны + "')""";
+			ЗонаDblClick = " ondragover=""allowDrop(event)"" ondragenter=""dragOverCell(event)"" ondragleave=""dragLeaveCell(event)"" ondrop=""dropOnCell(event)"" ondblclick=""openItem(event,'cell','" + ГУИДЗоны + "')""";
 			
 			РезультатHtml = РезультатHtml + "<div class=""zone-box"" data-cell-guid=""" + ГУИДЗоны + """" + ЗонаDblClick + ">";
 			РезультатHtml = РезультатHtml + "<div class=""zone-name"">" + ИмяЗоны + "</div>";
@@ -2474,7 +2473,7 @@
 					// Двойной клик на паллете в зоне — открыть карточку паллета
 					ГУИДПЗоны = Строка(ДанныеПЗ.ПаллетСсылка.УникальныйИдентификатор());
 					ПаллетDblClick = " ondblclick=""openItem(event,'pallet','" + ГУИДПЗоны + "')""";
-					РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПЗ + """ data-pallet-guid=""" + ГУИДПЗоны + """ onmousedown=""startDrag(event)"" onselectstart=""return false""" + ПаллетDblClick
+					РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПЗ + """ data-pallet-guid=""" + ГУИДПЗоны + """ draggable=""true"" ondragstart=""dragPallet(event)""" + ПаллетDblClick
 					+ " style=""position:relative;width:100%;height:" + ФорматЧислоHTML(ВысотаПЗ) + "px;margin-bottom:2px;"">"
 					+ "<div class=""pallet-label"">П" + НомерП + СтатусЗ + "</div>"
 					+ "</div>";
@@ -3212,7 +3211,8 @@
 			+ ".pallet-summary .color-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 3px; vertical-align: middle; }"
 		+ ".cell-free.drag-over { background: rgba(255,200,50,0.6) !important; outline: 3px solid #ff8800; outline-offset: -3px; z-index: 10; }"
 		+ ".zone-box.drag-over { background: rgba(255,200,50,0.6) !important; outline: 3px solid #ff8800; outline-offset: -3px; z-index: 10; }"
-		+ ".drag-clone { position: fixed; pointer-events: none; z-index: 9999; opacity: 0.75; transform: translate(-50%,-50%); border: 2px dashed #ff8800; background: rgba(255,255,200,0.85); font-size: 11px; padding: 4px 8px; white-space: nowrap; }"
+		+ "[draggable=""true""] { cursor: grab; }"
+		+ "[draggable=""true""]:active { cursor: grabbing; opacity: 0.7; }"
 		+ "</style>"
 		+ "<script>"
 		+ "var _zs_cur=100;"
@@ -3226,14 +3226,12 @@
 		+ "  return false;"
 		+ "}"
 				+ "function sortTable(th,c){var t=th;while(t&&t.tagName!='TABLE')t=t.parentNode;if(!t)return;var b=t.tBodies[0];var r=[],i;for(i=0;i<b.rows.length;i++)r.push(b.rows[i]);var d=t.getAttribute('data-sort-dir')=='asc'?'desc':'asc';t.setAttribute('data-sort-dir',d);r.sort(function(a,b){var an=parseFloat(a.cells[c].textContent),bn=parseFloat(b.cells[c].textContent);if(!isNaN(an)&&!isNaN(bn))return d=='asc'?an-bn:bn-an;return d=='asc'?a.cells[c].textContent.localeCompare(b.cells[c].textContent,'ru'):b.cells[c].textContent.localeCompare(a.cells[c].textContent,'ru');});for(i=0;i<r.length;i++)b.appendChild(r[i]);for(i=0;i<b.rows.length;i++)b.rows[i].cells[0].textContent=i+1;}"
-		+ "if(!Element.prototype.matches)Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector;"
-		+ "function _closest(el,sel){while(el&&el!==document){if(el.matches&&el.matches(sel))return el;el=el.parentNode;}return null;}"
 		+ "document.onselectstart=function(){return false;};"
-		+ "var _dragPalletGuid=null,_dragClone=null,_dragOverEl=null;"
-		+ "function startDrag(e){if(e.button!==0)return;var g=this.getAttribute('data-pallet-guid');if(!g)return;_dragPalletGuid=g;var lb=this.querySelector('.pallet-label');var lt=lb?lb.textContent:'?';_dragClone=document.createElement('div');_dragClone.className='drag-clone';_dragClone.textContent=lt;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';document.body.appendChild(_dragClone);this.style.opacity='0.3';if(this.setCapture)this.setCapture();e.preventDefault();}"
-		+ "function onDragMove(e){if(!_dragClone)return;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';_dragClone.style.display='none';var el=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';var ce=_closest(el,'.cell-free');var ze=_closest(el,'.zone-box');if(_dragOverEl&&_dragOverEl!==ce&&_dragOverEl!==ze){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}if(ce&&ce!==_dragOverEl){_dragOverEl=ce;_dragOverEl.classList.add('drag-over');}else if(ze&&ze!==_dragOverEl){_dragOverEl=ze;_dragOverEl.classList.add('drag-over');}}"
-		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){window.external.ОбработкаСобытия('Move',_dragPalletGuid+'|'+cg);}_dragPalletGuid=null;}"
-		+ "document.addEventListener('mousemove',onDragMove);document.addEventListener('mouseup',onDragEnd);"
+		+ "function allowDrop(ev){ev.preventDefault();}"
+		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text',g);ev.dataTransfer.effectAllowed='move';}"
+		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';this.classList.add('drag-over');}"
+		+ "function dragLeaveCell(ev){this.classList.remove('drag-over');}"
+		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text');var cg=this.getAttribute('data-cell-guid');if(pg&&cg)window.external.ОбработкаСобытия('Move',pg+'|'+cg);}"
 		+ "</script>"
 		+ "</head><body onselectstart=""return false"">";
 	
@@ -3461,7 +3459,7 @@
 						КонецЕсли;
 					// Двойной клик по свободной ячейке — открыть карточку ячейки склада
 					ГУИДЯчейки = Строка(АдресЯчейки.УникальныйИдентификатор());
-					ДопАтрибутыЯчейки = " ondblclick=""openItem(event,'cell','" + ГУИДЯчейки + "')""";
+					ДопАтрибутыЯчейки = " ondragover=""allowDrop(event)"" ondragenter=""dragOverCell(event)"" ondragleave=""dragLeaveCell(event)"" ondrop=""dropOnCell(event)"" ondblclick=""openItem(event,'cell','" + ГУИДЯчейки + "')""";
 				КонецЕсли;
 				//+Лико m.shenderov 22.06.2026 — подсчёт зелёных/всего ячеек
 				ЭтажСчетчик = СчетчикиПоЭтажам.Получить(НомерЭтажа);
@@ -3696,7 +3694,7 @@
 			
 			// Двойной клик на zone-box — открыть карточку ячейки зоны
 			ГУИДЗоны = Строка(СтрокаЗоны.АдресХранения.УникальныйИдентификатор());
-			ЗонаDblClick = " ondblclick=""openItem(event,'cell','" + ГУИДЗоны + "')""";
+			ЗонаDblClick = " ondragover=""allowDrop(event)"" ondragenter=""dragOverCell(event)"" ondragleave=""dragLeaveCell(event)"" ondrop=""dropOnCell(event)"" ondblclick=""openItem(event,'cell','" + ГУИДЗоны + "')""";
 			
 			HTML = HTML + "<div class=""zone-box""" + ЗонаDblClick + ">";
 			HTML = HTML + "<div class=""zone-name"">" + ИмяЗоны + "</div>";
