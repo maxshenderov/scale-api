@@ -21,7 +21,7 @@ from contextlib import asynccontextmanager
 import httpx
 from fastapi import Depends, FastAPI, Header, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 
 from db import (
     init_db, get_db,
@@ -33,6 +33,8 @@ from db import (
     get_enabled_models, refresh_models, update_models, get_models_by_provider,
 )
 from translator import openai_to_anthropic, anthropic_to_openai
+from translator import anthropic_to_openai_request, openai_to_anthropic_response
+from translator import OpenAISSEToAnthropic
 
 # ── Config ───────────────────────────────────────────────────────────────
 
@@ -281,6 +283,197 @@ async def chat_completions(request: Request):
 
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Anthropic Messages API endpoint (for Claude Code)
+# ═══════════════════════════════════════════════════════════════════════════
+
+@app.post("/v1/messages")
+async def messages(request: Request):
+    """
+    Anthropic Messages → translate if needed → real provider → translate back.
+    Claude Code sends: x-api-key: <key_name>, anthropic-version: <date>
+    Supports both streaming (stream: true) and non-streaming.
+    """
+    import json as _json
+
+    body = await request.json()
+    is_stream = body.get("stream", False)
+
+    # Extract key name: prefer Authorization: Bearer, fallback to x-api-key
+    auth_header = request.headers.get("Authorization", "")
+    x_api_key = request.headers.get("x-api-key", "").strip()
+    key_name = ""
+    if auth_header.startswith("Bearer "):
+        key_name = auth_header[7:].strip()
+    if not key_name:
+        key_name = x_api_key
+    logger.info("AUTH headers: x-api-key='%s', Authorization='%s', resolved='%s'",
+        x_api_key, auth_header, key_name)
+    if not key_name:
+        raise HTTPException(status_code=401, detail="Missing x-api-key header")
+
+    start_time = time.time()
+
+    async with get_db(DB_PATH) as conn:
+        # Find the proxy key
+        key_info = await get_key_by_name(conn, key_name)
+        if not key_info:
+            raise HTTPException(status_code=401, detail=f"Unknown or disabled key: {key_name}")
+
+        # Check override
+        override_enabled = await get_setting(conn, "override_enabled")
+        if override_enabled == "1":
+            override_key_id = await get_setting(conn, "override_key_id")
+            if override_key_id:
+                override_info = await _get_key_by_id(conn, int(override_key_id))
+                if override_info:
+                    key_info = override_info
+
+        # Determine model
+        model = body.get("model", "") or key_info.get("default_model", "")
+        if key_info.get("default_model"):
+            model = key_info["default_model"]
+
+        logger.info("ANTHROPIC KEY=%s PROVIDER=%s BODY_MODEL=%s FINAL_MODEL=%s STREAM=%s",
+            key_name, key_info.get("provider_name","?"),
+            body.get("model","?"), model, is_stream)
+
+        provider_format = key_info["format"]  # "anthropic" or "openai"
+        base_url = key_info["base_url"]
+        path = key_info["path"]
+        port = key_info["port"]
+        real_key = key_info["real_key"]
+        provider_name = key_info.get("provider_name", "unknown")
+
+        if provider_format == "openai":
+            # Anthropic → OpenAI conversion
+            request_body = anthropic_to_openai_request(body)
+        else:
+            # Forward as-is (both Anthropic format)
+            request_body = body
+
+        # Always set the real model from the key's default_model
+        if key_info.get("default_model"):
+            request_body["model"] = key_info["default_model"]
+        elif "model" not in request_body or not request_body.get("model"):
+            request_body["model"] = model
+
+        # Build real URL
+        scheme = "https" if port == 443 else "http"
+        url = f"{scheme}://{base_url}{path}"
+
+        # Headers for real provider
+        headers = {"Content-Type": "application/json"}
+        if provider_format == "openai":
+            headers["Authorization"] = f"Bearer {real_key}"
+        else:
+            headers["x-api-key"] = real_key
+            headers["anthropic-version"] = ANTHROPIC_VERSION
+
+        request_body["stream"] = is_stream
+
+        logger.info("→ %s [%s] REQ_MODEL=%s DEF=%s STREAM=%s",
+            provider_name, provider_format,
+            request_body.get("model","?"), key_info.get("default_model","?"), is_stream)
+
+        # ── Streaming path ─────────────────────────────────────────────
+        if is_stream:
+
+            async def sse_generator():
+                tokens_in = 0
+                tokens_out = 0
+                async def _log_error(error_msg: str):
+                    try:
+                        async with get_db(DB_PATH) as log_conn:
+                            await log_request(log_conn, key_name, provider_name, model, 0, 0, int((time.time() - start_time) * 1000), error=error_msg)
+                    except Exception:
+                        pass
+                try:
+                    async with httpx.AsyncClient(timeout=HTTP_TIMEOUT, verify=False) as client:
+                        async with client.stream("POST", url, json=request_body, headers=headers) as resp:
+                            if resp.status_code != 200:
+                                error_body = (await resp.aread()).decode("utf-8", errors="replace")[:500]
+                                logger.error("Provider stream error %d: %s", resp.status_code, error_body)
+                                await _log_error(error_body[:200])
+                                yield f"event: error\ndata: {_json.dumps({'error': error_body[:200]})}\n\n"
+                                return
+
+                            if provider_format == "anthropic":
+                                async for raw_line in resp.aiter_lines():
+                                    if raw_line:
+                                        yield raw_line + "\n"
+                            else:
+                                conv = OpenAISSEToAnthropic(model=model)
+                                async for raw_line in resp.aiter_lines():
+                                    if not raw_line:
+                                        continue
+                                    event = conv.feed(raw_line)
+                                    if event:
+                                        yield event
+                                for event in conv.flush():
+                                    yield event
+
+                except httpx.TimeoutException:
+                    await _log_error("stream_timeout")
+                    yield f"event: error\ndata: {_json.dumps({'error': 'timeout'})}\n\n"
+                except Exception as e:
+                    await _log_error(str(e))
+                    yield f"event: error\ndata: {_json.dumps({'error': str(e)})}\n\n"
+                finally:
+                    duration_ms = int((time.time() - start_time) * 1000)
+                    logger.info("<- %s [STREAM] %dms", provider_name, duration_ms)
+
+            return StreamingResponse(
+                sse_generator(),
+                media_type="text/event-stream",
+                headers={
+                    "Cache-Control": "no-cache",
+                    "Connection": "keep-alive",
+                    "X-Accel-Buffering": "no",
+                },
+            )
+
+        # ── Non-streaming path ─────────────────────────────────────────
+        try:
+            async with httpx.AsyncClient(timeout=HTTP_TIMEOUT, verify=False) as client:
+                resp = await client.post(url, json=request_body, headers=headers)
+
+            if resp.status_code != 200:
+                error_body = resp.text[:500]
+                logger.error("Provider error %d: %s", resp.status_code, error_body)
+                duration_ms = int((time.time() - start_time) * 1000)
+                await log_request(conn, key_name, provider_name, model, 0, 0, duration_ms, error_body)
+                raise HTTPException(status_code=502, detail=f"Provider: {resp.status_code} — {error_body[:200]}")
+
+            resp_data = resp.json()
+
+            # Translate response back
+            if provider_format == "openai":
+                result = openai_to_anthropic_response(resp_data, model)
+            else:
+                result = resp_data
+
+            duration_ms = int((time.time() - start_time) * 1000)
+            usage = result.get("usage", {})
+            tokens_in = usage.get("input_tokens", 0)
+            tokens_out = usage.get("output_tokens", 0)
+
+            logger.info("← %s tokens_in=%d tokens_out=%d %dms", provider_name, tokens_in, tokens_out, duration_ms)
+
+            await log_request(conn, key_name, provider_name, model, tokens_in, tokens_out, duration_ms)
+
+            return result
+
+        except httpx.TimeoutException:
+            duration_ms = int((time.time() - start_time) * 1000)
+            await log_request(conn, key_name, provider_name, model, 0, 0, duration_ms, error="timeout")
+            raise HTTPException(status_code=504, detail="Provider timeout")
+        except Exception as e:
+            duration_ms = int((time.time() - start_time) * 1000)
+            await log_request(conn, key_name, provider_name, model, 0, 0, duration_ms, error=str(e))
+            raise
+
+
+# ═══════════════════════════════════════════════════════════════════════════
 # WebSocket (future)
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -368,7 +561,46 @@ async def api_delete_provider(provider_id: int, _: bool = Depends(verify_admin))
 
 @app.get("/api/providers/{provider_id}/models")
 async def api_get_models(provider_id: int):
+    """Always fetch fresh models from the real provider, update DB cache."""
+    import json as _json
     async with get_db(DB_PATH) as conn:
+        prov = await get_provider(conn, provider_id)
+        if not prov:
+            raise HTTPException(status_code=404, detail="Provider not found")
+
+        # Find a key for THIS provider (needed for auth)
+        keys = await list_keys(conn)
+        matching_key = next((k for k in keys if k["provider_id"] == provider_id), None)
+        if not matching_key:
+            # No key — return whatever is in DB
+            return await get_models_by_provider(conn, provider_id)
+
+        key_info = {
+            **matching_key,
+            "base_url": prov["base_url"],
+            "path": prov["path"],
+            "format": prov["format"],
+            "port": prov["port"],
+        }
+
+        try:
+            raw = await _fetch_models(key_info)
+        except Exception as e:
+            logger.warning("Live model fetch failed for provider %d: %s", provider_id, e)
+            return await get_models_by_provider(conn, provider_id)
+
+        models_list = raw.get("data", raw) if isinstance(raw, dict) else raw
+        parsed = []
+        for m in models_list:
+            if isinstance(m, dict):
+                parsed.append({
+                    "id": m.get("id", m.get("name", "")),
+                    "description": m.get("description", m.get("name", "")),
+                })
+
+        # Update DB cache
+        await refresh_models(conn, provider_id, parsed)
+
         return await get_models_by_provider(conn, provider_id)
 
 

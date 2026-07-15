@@ -20,7 +20,7 @@
 	ДинамическиеЭлементы = Новый СписокЗначений;
 	ТекущийСтеллажИмяКнопки = "";
 	МасштабМм = 0.05; // 1мм = 0.05px (стеллаж 2000мм → 100px)
-	МасштабПроцентов = 100; // текущий масштаб слайдера (20-300)
+	МасштабПроцентов = 100; // текущий масштаб слайдера (20-1000)
 	СуммаТокеновВход  = 0; //+Лико m.shenderov 05.06.2026
 	СуммаТокеновВыход = 0; //+Лико m.shenderov 05.06.2026
 	
@@ -106,15 +106,12 @@
 	КонецЕсли;
 		
 		// Обработка зума: zagsklad://zoom/in, zagsklad://zoom/out
+		// Не перерисовываем HTML — просто меняем масштаб клиентом
 		Если Части[2] = "zoom" Тогда
 			Если Части[3] = "in" Тогда
-				МасштабПроцентов = Мин(300, МасштабПроцентов + 10);
+				МасштабПроцентов = Мин(1000, МасштабПроцентов + 10);
 			ИначеЕсли Части[3] = "out" Тогда
-				МасштабПроцентов = Макс(20, МасштабПроцентов - 10);
-			КонецЕсли;
-			Если ЗначениеЗаполнено(ТекущийСтеллаж) Тогда
-				РендерЗагрузкиСтеллажаНаСервере(ТекущийСтеллаж);
-			ДобавитьПаллетыНаПолуВHTML();
+				МасштабПроцентов = Макс(0, МасштабПроцентов - 10);
 			КонецЕсли;
 			Возврат;
 		КонецЕсли;
@@ -1099,6 +1096,25 @@
 	Если Поз > 0 Тогда
 		html = Лев(html, Поз - 1) + ТабHTML + Сред(html, Поз);
 	КонецЕсли;
+
+	//+Лико m.shenderov 12.07.2026 — elevation views после таблицы паллет на полу
+	Если ЗначениеЗаполнено(ТекущийСтеллаж) Тогда
+		ДанныеЭт = ПолучитьДанныеЭтажейРасширенные(ТекущийСтеллаж);
+		Если ДанныеЭт.ДанныеЭтажейРасширенные.Количество() > 0 Тогда
+			КоэфМасштаба = МасштабМм;
+			Если КоэфМасштаба <= 0 Тогда
+				КоэфМасштаба = 0.05;
+			КонецЕсли;
+			СтеллажДанные = ОбщегоНазначения.ЗначенияРеквизитовОбъекта(ТекущийСтеллаж,
+				"Наименование, КодПолный");
+			ЧертежSVG = СформироватьЧертежСтеллажаSVG(ДанныеЭт.ДанныеЭтажейРасширенные, КоэфМасштаба, СтеллажДанные);
+
+			Поз2 = СтрНайти(html, "</body>");
+			Если Поз2 > 0 Тогда
+				html = Лев(html, Поз2 - 1) + ЧертежSVG + Сред(html, Поз2);
+			КонецЕсли;
+		КонецЕсли;
+	КонецЕсли;
 КонецПроцедуры
 
 &НаСервере
@@ -1116,29 +1132,10 @@
 	ЦветЗагрузкиHex = ЦветЗагрузкиHex(ПроцентЗагрузки);
 
 	// === 2. Этажи стеллажа ===
+	ДанныеЭт = ПолучитьДанныеЭтажейРасширенные(СтеллажСсылка);
 	СтеллажОбъект = СтеллажСсылка.ПолучитьОбъект();
-	ЭтажиТЧ = СтеллажОбъект.Этажи;
-
-	МассивТипоразмеровЭтажей = Новый Массив;
-	Для Каждого СтрокаЭтажа Из ЭтажиТЧ Цикл
-		Если ЗначениеЗаполнено(СтрокаЭтажа.Типоразмер) Тогда
-			МассивТипоразмеровЭтажей.Добавить(СтрокаЭтажа.Типоразмер);
-		КонецЕсли;
-	КонецЦикла;
-
-	ТипоразмерыЭтажейКэш = Новый Соответствие;
-	Если МассивТипоразмеровЭтажей.Количество() > 0 Тогда
-		ТипоразмерыЭтажейКэш = ОбщегоНазначения.ЗначенияРеквизитовОбъектов(
-		МассивТипоразмеровЭтажей, "Ширина, Высота, Вес");
-	КонецЕсли;
-
-	ДанныеЭтажей = Новый Соответствие;
-	Для Каждого СтрокаЭтажа Из ЭтажиТЧ Цикл
-		Если ЗначениеЗаполнено(СтрокаЭтажа.Типоразмер) Тогда
-			ДанныеЭтажей.Вставить(СтрокаЭтажа.НомерСтроки,
-			ТипоразмерыЭтажейКэш.Получить(СтрокаЭтажа.Типоразмер));
-		КонецЕсли;
-	КонецЦикла;
+	ДанныеЭтажей = ДанныеЭт.ДанныеЭтажей;
+	ДанныеЭтажейРасширенные = ДанныеЭт.ДанныеЭтажейРасширенные;
 
 	// === 3. Секции стеллажа ===
 	ЗапросСекций = Новый Запрос;
@@ -1430,6 +1427,7 @@
 	Результат.Вставить("ПроцентЗагрузки", ПроцентЗагрузки);
 	Результат.Вставить("ЦветЗагрузкиHex", ЦветЗагрузкиHex);
 	Результат.Вставить("ДанныеЭтажей", ДанныеЭтажей);
+	Результат.Вставить("ДанныеЭтажейРасширенные", ДанныеЭтажейРасширенные);
 	Результат.Вставить("СекцииПоЭтажам", СекцииПоЭтажам);
 	Результат.Вставить("МаксВесПоЭтажам", МаксВесПоЭтажам);
 	Результат.Вставить("МассивСекцийСсылки", МассивСекцийСсылки);
@@ -1471,28 +1469,9 @@
 
 	// === 2. Этажи стеллажа ===
 	СтеллажОбъект = СтеллажСсылка.ПолучитьОбъект();
-	ЭтажиТЧ = СтеллажОбъект.Этажи;
-
-	МассивТипоразмеровЭтажей = Новый Массив;
-	Для Каждого СтрокаЭтажа Из ЭтажиТЧ Цикл
-		Если ЗначениеЗаполнено(СтрокаЭтажа.Типоразмер) Тогда
-			МассивТипоразмеровЭтажей.Добавить(СтрокаЭтажа.Типоразмер);
-		КонецЕсли;
-	КонецЦикла;
-
-	ТипоразмерыЭтажейКэш = Новый Соответствие;
-	Если МассивТипоразмеровЭтажей.Количество() > 0 Тогда
-		ТипоразмерыЭтажейКэш = ОбщегоНазначения.ЗначенияРеквизитовОбъектов(
-		МассивТипоразмеровЭтажей, "Ширина, Высота, Вес");
-	КонецЕсли;
-
-	ДанныеЭтажей = Новый Соответствие;
-	Для Каждого СтрокаЭтажа Из ЭтажиТЧ Цикл
-		Если ЗначениеЗаполнено(СтрокаЭтажа.Типоразмер) Тогда
-			ДанныеЭтажей.Вставить(СтрокаЭтажа.НомерСтроки,
-			ТипоразмерыЭтажейКэш.Получить(СтрокаЭтажа.Типоразмер));
-		КонецЕсли;
-	КонецЦикла;
+	ДанныеЭт = ПолучитьДанныеЭтажейРасширенные(СтеллажСсылка);
+	ДанныеЭтажей = ДанныеЭт.ДанныеЭтажей;
+	ДанныеЭтажейРасширенные = ДанныеЭт.ДанныеЭтажейРасширенные;
 
 	// === 3. Секции стеллажа (из СекцииСОстатки — без SQL) ===
 	Если СекцииСОстатки = Неопределено Тогда
@@ -1787,6 +1766,7 @@
 	Результат.Вставить("ПроцентЗагрузки", ПроцентЗагрузки);
 	Результат.Вставить("ЦветЗагрузкиHex", ЦветЗагрузкиHex);
 	Результат.Вставить("ДанныеЭтажей", ДанныеЭтажей);
+	Результат.Вставить("ДанныеЭтажейРасширенные", ДанныеЭтажейРасширенные);
 	Результат.Вставить("СекцииПоЭтажам", СекцииПоЭтажам);
 	Результат.Вставить("МаксВесПоЭтажам", МаксВесПоЭтажам);
 	Результат.Вставить("МассивСекцийСсылки", МассивСекцийСсылки);
@@ -1831,6 +1811,7 @@
 	ПроцентЗагрузки = Данные.ПроцентЗагрузки;
 	ЦветЗагрузкиHex = Данные.ЦветЗагрузкиHex;
 	ДанныеЭтажей = Данные.ДанныеЭтажей;
+	ДанныеЭтажейРасширенные = Данные.ДанныеЭтажейРасширенные;
 	СекцииПоЭтажам = Данные.СекцииПоЭтажам;
 	МаксВесПоЭтажам = Данные.МаксВесПоЭтажам;
 	МассивСекцийСсылки = Данные.МассивСекцийСсылки;
@@ -1848,12 +1829,17 @@
 	// === 6. Генерация HTML ===
 	РезультатHtml = "<!DOCTYPE html><html><head><meta charset=""utf-8"">"
 	+ "<style>"
-	+ "body { font-family: Arial, sans-serif; margin: 10px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow: auto; }"
-	+ ".scale-container { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; }"
-	+ ".scale-container input[type=range] { width: 150px; }"
-	+ ".zoom-btn { display:inline-block;width:24px;height:24px;line-height:22px;text-align:center;font-size:16px;font-weight:bold;color:#333;background:#e0e0e0;border:1px solid #aaa;border-radius:3px;text-decoration:none;margin:0 4px;cursor:pointer;vertical-align:middle; }"
-	+ ".zoom-btn:hover { background:#ccc;border-color:#666; }"
-	+ ".scale-val { font-weight: bold; min-width: 40px; }"
+	+ "body { font-family: Arial, sans-serif; margin: 10px; padding-top: 36px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow: auto; }"
+	+ ".scale-container { display: flex; align-items: center; gap: 6px; font-size: 12px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; padding: 4px 10px; border-bottom: 1px solid #ccc; }"
+	+ ".scale-controls { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; max-width: 33%; min-width: 0; overflow: hidden; }"
+	+ ".sc-rack { font-weight: bold; color: #333; white-space: nowrap; flex: 1; min-width: 0; text-align: left; padding-right: 8px; overflow: hidden; text-overflow: ellipsis; }"
+	+ ".sc-sep { display: none; }"
+	+ ".zoom-btn { display:inline-block;width:28px;height:32px;line-height:30px;text-align:center;font-size:18px;font-weight:bold;color:#3a2010;background:linear-gradient(180deg,#e8c98a 0%,#d4a56a 40%,#b8863e 100%);border:1px solid #8b6914;border-radius:4px;text-decoration:none;cursor:pointer;vertical-align:middle;box-shadow:0 1px 0 #f0d8a0 inset,0 -1px 2px rgba(0,0,0,0.15); }"
+	+ ".zoom-btn:hover { background:linear-gradient(180deg,#f0d8a0 0%,#ddb57a 40%,#c49454 100%); }"
+	+ ".zoom-btn:active { box-shadow:0 -1px 0 #f0d8a0 inset,0 1px 2px rgba(0,0,0,0.2); }"
+	+ ".sc-ruler-wrap { display: flex; flex: 1; min-width: 0; align-items: center; }"
+	+ ".sc-ruler-wrap input[type=range] { width: 100%; margin: 0; display: block; }"
+	+ ".scale-val { font-weight: bold; min-width: 40px; color: #333; font-size: 12px; }"
 	+ ".racking { margin-bottom: 25px; }"
 	+ ".racking-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }"
 	+ ".floor { margin-bottom: 0; display: flex; align-items: stretch; }"
@@ -1865,20 +1851,28 @@
 	+ ".floor-load-line2 { font-size: 6px; white-space: nowrap; }"
 	+ ".height-info { position: absolute; left: 0; top: 50%; transform: translateY(-50%) rotate(180deg); width: 100%; font-size: 7px; color: #00c; font-weight: bold; writing-mode: vertical-rl; text-orientation: mixed; white-space: nowrap; z-index: 10; display: flex; align-items: center; justify-content: center; }"
 	+ ".floor-content { flex: 1; }"
-	+ ".floor-width { font-size: 10px; color: #333; text-align: center; margin-top: 2px; font-weight: bold; }"
-	+ ".sections-row { display: flex; align-items: stretch; border: 2px solid #444; min-height: 40px; width: max-content; overflow: visible; }"
-	+ ".section { position: relative; box-sizing: border-box; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid #aaa; overflow: visible; }"
-	+ ".section:last-child { border-right: none; }"
+	+ ".floor-width { font-size: 10px; color: #333; text-align: center; margin-top: 2px; font-weight: bold; display: flex; }"
+	+ ".sections-row { display: flex; align-items: stretch; border: 2px solid #444; width: max-content; overflow: visible; }"
+	+ ".rack-post { width: 2px; background: #1a4fb4; flex-shrink: 0; box-sizing: border-box; }"
+	+ ".section { position: relative; box-sizing: border-box; flex: 0 0 auto; display: flex; flex-direction: column; overflow: visible; }"
 	+ ".section-empty { background: rgba(200,230,200,0.3); }"
 	+ ".section-restricted { background: rgba(230,200,200,0.35); }"
 	+ ".section-restricted .cell { background: rgba(230,180,180,0.45); }"
 	+ ".section-dimmed { opacity: 0.35; }"
+	+ ".section-header { flex: 0 0 auto; display: flex; flex-direction: column; overflow: hidden; background: #fff; border-bottom: 1px solid #ccc; line-height: 1; }"
+	+ ".section-header-name { display: flex; justify-content: space-between; align-items: center; font-size: 7px; font-weight: bold; color: #000; white-space: nowrap; overflow: hidden; padding: 0 2px; }"
+	+ ".section-header-cells { display: flex; width: 100%; }"
+	+ ".section-header-cells > div { flex: 1; text-align: center; font-size: 5px; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 1px; border-left: 1px solid #ccc; line-height: 1; }"
+	+ ".section-header-cells > div:first-child { border-left: none; }"
 	+ ".section-name { position: absolute; top: 2px; left: 2px; right: 2px; text-align: center; font-size: 8px; color: #000; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 1; }"
-	+ ".weight-remaining { position: absolute; top: 22px; left: 0; right: 0; text-align: center; font-size: 8px; color: #000; font-weight: bold; z-index: 1; }"
+	+ ".weight-remaining { position: absolute; top: 2px; left: 0; right: 0; text-align: center; font-size: 8px; color: #000; font-weight: bold; z-index: 1; }"
 	+ ".free-space-left { position: absolute; bottom: 16px; left: 0; font-size: 8px; color: #090; font-weight: bold; z-index: 4; white-space: nowrap; background: rgba(255,255,255,0.85); padding: 0 2px; }"
 	+ ".free-space-right { position: absolute; bottom: 16px; right: 0; font-size: 8px; color: #00c; font-weight: bold; z-index: 4; white-space: nowrap; background: rgba(255,255,255,0.85); padding: 0 2px; text-align: right; }"
-	+ ".cells-container { display: flex; width: 100%; height: 100%; align-items: stretch; }"
-	+ ".cell { flex: 1; position: relative; border-left: 1px dashed #ccc; display: flex; flex-direction: column; justify-content: flex-end; }"
+	+ ".gap { position: absolute; bottom: 0; box-sizing: border-box; background: repeating-linear-gradient(135deg, rgba(200,200,200,0.25) 0px, rgba(200,200,200,0.25) 2px, transparent 2px, transparent 5px); z-index: 1; pointer-events: none; }"
+	+ ".gap-label { position: absolute; bottom: 2px; left: 2px; right: 2px; display: flex; flex-direction: column; align-items: center; font-size: 7px; color: #333; font-weight: bold; white-space: nowrap; z-index: 5; pointer-events: none; line-height: 1.1; }"
+	+ ".gap-label .gl-txt { }"
+	+ ".cells-container { display: flex; width: 100%; flex: 1; align-items: stretch; }"
+	+ ".cell { flex: 1; position: relative; border-left: 1px dashed #ccc; display: flex; flex-direction: column; justify-content: flex-end; min-height: 0; }"
 	+ ".cell:first-child { border-left: none; }"
 	+ ".cell-free { background: rgba(180,230,180,0.45); }"
 	+ ".cell-free:hover { background: rgba(100,200,100,0.55); outline: 2px solid #2a9a2a; outline-offset: -2px; cursor: pointer; z-index: 5; }"
@@ -1886,12 +1880,14 @@
 	+ ".cell-filter-number { position: absolute; top: 22px; left: 2px; right: 2px; bottom: 2px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; color: rgba(0,80,0,0.18); z-index: 0; pointer-events: none; overflow: hidden; line-height: 1; }"
 	+ ".pallet { position: absolute; bottom: 0; box-sizing: border-box; overflow: visible; z-index: 2; cursor: pointer; }"
 	+ ".pallet:hover { outline: 2px solid #ff6600; outline-offset: -2px; z-index: 6; box-shadow: inset 0 0 8px rgba(255,100,0,0.45); }"
+	+ ".pallet-tooltip { display: none; position: fixed; background: rgba(26,79,180,0.94); color: #fff; font-size: 9px; font-weight: bold; padding: 4px 8px; white-space: pre-line; text-align: center; z-index: 200; pointer-events: none; border-radius: 8px; line-height: 1.3; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }"
+	+ ".pallet-tooltip::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid rgba(26,79,180,0.94); }"
 	+ ".pallet-occupied { background: rgba(255,255,200,0.7); border: 2px solid #888; }"
 	+ ".pallet-reserved { background: rgba(255,255,220,0.5); border: 2px dashed #888; }"
 	+ ".pallet-virtual { background: rgba(255,165,0,0.6); border: 2px solid #e67300; }"
 	+ ".pallet-virtual:hover { outline: 2px solid #cc5500; box-shadow: inset 0 0 8px rgba(255,100,0,0.45); }"
-	+ ".pallet-label { position: absolute; top: 4px; left: 0; right: 0; text-align: center; font-size: 9px; font-weight: bold; color: #333; z-index: 3; }"
-	+ ".pallet-size { position: absolute; bottom: 2px; left: 0; right: 0; text-align: center; font-size: 8px; color: #333; z-index: 3; }"
+	+ ".pallet-label { position: absolute; top: 4px; left: 0; right: 0; text-align: center; font-size: 9px; font-weight: bold; color: #333; z-index: 3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
+	+ ".pallet-size { position: absolute; bottom: 2px; left: 0; right: 0; text-align: center; font-size: 8px; color: #333; z-index: 3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
 	+ ".free-space { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 8px; color: #090; font-weight: bold; z-index: 4; white-space: nowrap; background: rgba(255,255,255,0.85); padding: 0 2px; }"
 	+ ".zones-title { font-weight: bold; font-size: 12px; color: #000; margin-top: 10px; margin-bottom: 4px; padding-left: 25px; }"
 	+ ".zones-row { display: flex; align-items: flex-start; gap: 5px; padding-left: 25px; margin-bottom: 10px; }"
@@ -1913,7 +1909,14 @@
 	+ ".pallet-summary .color-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 3px; vertical-align: middle; }"
 	+ "</style>"
 	+ "<script>"
-	+ "function applyScale(v,save){document.getElementById('sv').textContent=v+'%';var c=document.getElementById('sc');c.style.transform='scale('+v/100+')';c.style.transformOrigin='top left';if(save!==false){try{localStorage.setItem('zs_scale',v);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+v;a.click();},300);}}"
+	+ "var _zs_cur=100;"
+	+ "function applyScale(v,save){_zs_cur=parseInt(v);document.getElementById('sv').textContent=_zs_cur+'%';var ratio=_zs_cur/100;var sc=document.getElementById('sc');if(!sc)return;var natH=sc.scrollHeight;sc.style.transform='scale('+ratio+')';sc.style.transformOrigin='top left';sc.style.marginBottom=(natH*(ratio-1))+'px';if(!sc._obw){sc._obw={};var els=sc.querySelectorAll('.pallet-occupied,.pallet-reserved,.pallet-virtual,.sections-row,.cell,.cell-free,.section-header');for(var i=0;i<els.length;i++){var c=getComputedStyle(els[i]);sc._obw[i]={el:els[i],bt:parseFloat(c.borderTopWidth)||0,bb:parseFloat(c.borderBottomWidth)||0,bl:parseFloat(c.borderLeftWidth)||0,br:parseFloat(c.borderRightWidth)||0};}}var obw=sc._obw;for(var k in obw){var o=obw[k];if(o.bt>0)o.el.style.borderTopWidth=(o.bt/ratio)+'px';if(o.bb>0)o.el.style.borderBottomWidth=(o.bb/ratio)+'px';if(o.bl>0)o.el.style.borderLeftWidth=(o.bl/ratio)+'px';if(o.br>0)o.el.style.borderRightWidth=(o.br/ratio)+'px';}var posts=sc.querySelectorAll('.rack-post');for(var pi=0;pi<posts.length;pi++)posts[pi].style.width=(2/ratio)+'px';var plbls=sc.querySelectorAll('.pallet-label');for(var i=0;i<plbls.length;i++)plbls[i].style.fontSize=(9/ratio)+'px';var psizes=sc.querySelectorAll('.pallet-size');for(var i=0;i<psizes.length;i++)psizes[i].style.fontSize=(8/ratio)+'px';var fs=Math.min(14,Math.max(8,8+6*(ratio-0.2)/0.8));var lbls=sc.querySelectorAll('.cell-name,.section-name');for(var li=0;li<lbls.length;li++)lbls[li].style.fontSize=fs+'px';var glbls=sc.querySelectorAll('.gap-label');for(var gi=0;gi<glbls.length;gi++)glbls[gi].style.fontSize=(7/ratio)+'px';var fws=sc.querySelectorAll('.floor-width div[data-bw]');for(var fi=0;fi<fws.length;fi++)fws[fi].style.fontSize=(10/ratio)+'px';if(save!==false){try{localStorage.setItem('zs_scale',_zs_cur);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+_zs_cur;a.click();},300);}}"
+	+ "var _rafId=null;function applyScaleRAF(v){applyScale(v);}"
+	+ "var _sv=null;try{_sv=localStorage.getItem('zs_scale');}catch(e){}if(_sv){var _vi=parseInt(_sv,10);if(_vi>=0&&_vi<=1000)_zs_cur=_vi;}var scEl=document.getElementById('sc');if(scEl){var r0=scEl.querySelector('#zs_range');if(r0)r0.value=_zs_cur;applyScale(_zs_cur,false);}"
+	+ "function zoomIn(){var r=document.getElementById('zs_range');var v=Math.min(1000,parseInt(r.value)+10);r.value=v;applyScale(v);}"
+	+ "function zoomOut(){var r=document.getElementById('zs_range');var v=Math.max(0,parseInt(r.value)-10);r.value=v;applyScale(v);}"
+	+ "var _tipEl=null;function showTip(e,txt){if(!_tipEl){_tipEl=document.createElement('div');_tipEl.className='pallet-tooltip';document.body.appendChild(_tipEl);}_tipEl.textContent=txt;_tipEl.style.display='block';var r=e.target.getBoundingClientRect();var tw=_tipEl.offsetWidth;var th=_tipEl.offsetHeight;_tipEl.style.left=(r.left+r.width/2-tw/2)+'px';_tipEl.style.top=(r.top-th-6)+'px';}"
+	+ "function hideTip(){if(_tipEl)_tipEl.style.display='none';}"
 	+ "function openItem(e,type,guid){"
 	+ "  if(e&&e.stopPropagation)e.stopPropagation();"
 	+ "  var a=document.getElementById('_zs_nav_');"
@@ -1927,12 +1930,19 @@
 	+ "</head><body>";
 	
 	// Заголовок
-	РезультатHtml = РезультатHtml + "<div class=""scale-container""><a href=""zagsklad://zoom/out"" class=""zoom-btn"" title=""Уменьшить масштаб"">−</a>Масштаб: <input type=""range"" id=""zs_range"" min=""20"" max=""300"" value=""" + Строка(МасштабПроцентов) + """ step=""10"" oninput=""applyScale(this.value)""><span class=""scale-val"" id=""sv"">" + Строка(МасштабПроцентов) + "%</span><a href=""zagsklad://zoom/in"" class=""zoom-btn"" title=""Увеличить масштаб"">+</a></div>";
+	РезультатHtml = РезультатHtml + "<div class=""scale-container"">"
+	+ "<span class=""sc-rack"">Стеллаж: " + Строка(СтеллажДанные.Наименование) + " (" + Формат(СтеллажДанные.КодПолный, "ЧН=0; ЧГ=0") + "). Загрузка: %%PCT%%% (св. %%FREE%%)</span>"
+	+ "<div class=""scale-controls"">"
+	+ "<a onclick=""zoomOut()"" class=""zoom-btn"" title=""Уменьшить"">−</a>"
+	+ "<div class=""sc-ruler-wrap"">"
+	+ "<input type=""range"" id=""zs_range"" min=""0"" max=""1000"" value=""" + Строка(МасштабПроцентов) + """ step=""10"" oninput=""applyScaleRAF(this.value)"">"
+	+ "</div>"
+	+ "<span class=""scale-val"" id=""sv"">" + Строка(МасштабПроцентов) + "%</span>"
+	+ "<a onclick=""zoomIn()"" class=""zoom-btn"" title=""Увеличить"">+</a>"
+	+ "</div>"
+	+ "</div>";
 	
-	РезультатHtml = РезультатHtml + "<div id=""sc""><div class=""racking"">"
-	+ "<div class=""racking-title"">Стеллаж: " + Строка(СтеллажДанные.Наименование)
-	+ " (" + Формат(СтеллажДанные.КодПолный, "ЧН=0; ЧГ=0") + ")</div>"
-	+ "<div>Загрузка: <span style=""font-weight:bold"">%%PCT%%% (св. %%FREE%%)</span></div>";
+	РезультатHtml = РезультатHtml + "<div id=""sc""><div class=""racking"">";
 	
 	// === Этажи (сверху вниз) ===
 	НомераЭтажейСписок = Новый СписокЗначений;
@@ -2002,9 +2012,15 @@
 		// Содержимое (секции)
 		РезультатHtml = РезультатHtml + "<div class=""floor-content"">";
 		
-		// Ряд секций
-		РезультатHtml = РезультатHtml + "<div class=""sections-row"">";
-		
+		// Ряд шапок секций (отдельный ряд НАД секциями)
+		ШапкиРяд = "<div style=""display:flex;align-items:stretch;margin-bottom:0;"">";
+		ШапкиРяд = ШапкиРяд + "<div class=""rack-post""></div>";
+
+		// Ряд секций (шапки вставятся перед этим через замену)
+		РезультатHtml = РезультатHtml + "###HEADERS###<div class=""sections-row"">";
+		//+Лико m.shenderov 07.07.2026 — левая крайняя стойка
+		РезультатHtml = РезультатHtml + "<div class=""rack-post""></div>";
+
 		Для Каждого СекцияДанные Из МассивЭтажа Цикл
 			КартаАдресов = ДанныеПаллет.Получить(СекцияДанные.Ссылка);
 			Если КартаАдресов = Неопределено Тогда
@@ -2042,19 +2058,22 @@
 			КонецЦикла;
 			
 			ШиринаЯчейкиМм_Расч = ?(КоличествоАдресов > 0, ШиринаСекцииМм / КоличествоАдресов, ШиринаСекцииМм);
-			
+
+			//+Лико m.shenderov 07.07.2026 — сбор позиций паллет в мм для зазоров
+			ПозицииПаллетВСекции = Новый Массив; // {ЛевоМм, ПравоМм}
+
 			Для ИА = 0 По КоличествоАдресов - 1 Цикл
 				ДанныеПалл = КартаАдресов.Получить(Адреса[ИА]);
 				Если ДанныеПалл = Неопределено Тогда
 					Продолжить;
 				КонецЕсли;
-				
+
 				ПараметрыП2 = ПараметрыПаллетКэш.Получить(ДанныеПалл.ПаллетСсылка);
 				ШиринаПалл = 0;
 				Если ПараметрыП2 <> Неопределено Тогда
 					ШиринаПалл = ПараметрыП2.Ширина;
 				КонецЕсли;
-				
+
 				// Левая граница паллета в мм от левого края секции
 				Если КоличествоАдресов = 1 Тогда
 					ЛевыйПалл = (ШиринаСекцииМм - ШиринаПалл) / 2;
@@ -2066,6 +2085,9 @@
 					ЛевыйПалл = (ШиринаСекцииМм - ШиринаПалл) / 2;
 				КонецЕсли;
 				ПравыйПалл = ЛевыйПалл + ШиринаПалл;
+
+				//+Лико m.shenderov 07.07.2026 — сохранить позицию для зазоров
+				ПозицииПаллетВСекции.Добавить(Новый Структура("ЛевоМм, ПравоМм", ЛевыйПалл, ПравыйПалл));
 				
 				// Отмечаем соседние ячейки, которые перекрывает этот паллет
 				Для ИА2 = 0 По КоличествоАдресов - 1 Цикл
@@ -2103,21 +2125,48 @@
 					КлассСекции = КлассСекции + " section-dimmed";
 				КонецЕсли;
 			КонецЕсли;
-			
+
+			// Шапка секции в отдельный ряд
+			ШапкиРяд = ШапкиРяд + "<div class=""rack-post""></div>";
+			ШапкиРяд = ШапкиРяд + "<div class=""section-header"" data-bw=""" + ФорматЧислоHTML(ШиринаСекцииPx) + """ style=""width:" + ФорматЧислоHTML(ШиринаСекцииPx) + "px;"">";
+			ОстатокВесаСтр = "";
+			Если ВесогрузкаЭтажа > 0 Тогда
+				ВесПаллетовВСекции = 0;
+				Для ИАВ = 0 По КоличествоАдресов - 1 Цикл
+					ДанныеПВЯ = КартаАдресов.Получить(Адреса[ИАВ]);
+					Если ДанныеПВЯ <> Неопределено Тогда
+						ПараметрыПВес = ПараметрыПаллетКэш.Получить(ДанныеПВЯ.ПаллетСсылка);
+						Если ПараметрыПВес <> Неопределено Тогда
+							ВесПаллетовВСекции = ВесПаллетовВСекции + ПараметрыПВес.Вес;
+						КонецЕсли;
+					КонецЕсли;
+				КонецЦикла;
+				ОстатокВесаСтр = "<span style=""font-weight:normal;font-size:6px;color:#666;flex-shrink:0;margin-left:4px;"">" + Формат(ВесогрузкаЭтажа - ВесПаллетовВСекции, "ЧН=0; ЧГ=0") + "кг</span>";
+			КонецЕсли;
+			ШапкиРяд = ШапкиРяд + "<div class=""section-header-name""><span style=""overflow:hidden;text-overflow:ellipsis;"">" + СекцияДанные.Наименование + "</span>" + ОстатокВесаСтр + "</div>";
+			ШапкиРяд = ШапкиРяд + "<div class=""section-header-cells"">";
+			Для ИАШ = 0 По КоличествоАдресов - 1 Цикл
+				Если ИАШ = 0 Тогда
+					ИмяАдресаШ = Строка(СекцияДанные.Адрес1);
+				ИначеЕсли ИАШ = 1 Тогда
+					ИмяАдресаШ = Строка(СекцияДанные.Адрес2);
+				Иначе
+					ИмяАдресаШ = Строка(СекцияДанные.Адрес3);
+				КонецЕсли;
+				ШапкиРяд = ШапкиРяд + "<div>" + ИмяАдресаШ + "</div>";
+			КонецЦикла;
+			ШапкиРяд = ШапкиРяд + "</div></div>";
+
 			РезультатHtml = РезультатHtml + "<div class=""" + КлассСекции + """ style="""
 			+ "width:" + ФорматЧислоHTML(ШиринаСекцииPx) + "px;"
 			+ "height:" + ФорматЧислоHTML(ВысотаЭтажаPx) + "px;"">";
-			
-			// Имя секции
-			РезультатHtml = РезультатHtml + "<div class=""section-name"">" + СекцияДанные.Наименование + "</div>";
-			
+
 			// Контейнер ячеек (пунктирное разделение)
 			РезультатHtml = РезультатHtml + "<div class=""cells-container"">";
-			
-			// Переменные для free-space (заполняются в цикле ячеек)
-			РасстЛевоСтр = "";
-			РасстПравоСтр = "";
-			
+
+			//+Лико m.shenderov 07.07.2026 — массив позиций паллет для расчёта зазоров
+			МассивПозицийПаллет = Новый Массив; // {ЛевоМм, ПравоМм}
+
 			// Ячейки секции (Адрес1, Адрес2, Адрес3)
 			Для ИндексАдреса = 0 По КоличествоАдресов - 1 Цикл
 				АдресЯчейки = Адреса[ИндексАдреса];
@@ -2152,17 +2201,6 @@
 					ЗеленыхЯчеекВсего = ЗеленыхЯчеекВсего + 1;
 				КонецЕсли;
 				РезультатHtml = РезультатHtml + "<div class=""" + КлассЯчейки + """" + ДопАтрибутыЯчейки + ">";
-				
-				// Имя ячейки
-				ИмяЯчейкиСтр = "";
-				Если ИндексАдреса = 0 Тогда
-					ИмяЯчейкиСтр = Строка(СекцияДанные.Адрес1);
-				ИначеЕсли ИндексАдреса = 1 Тогда
-					ИмяЯчейкиСтр = Строка(СекцияДанные.Адрес2);
-				Иначе
-					ИмяЯчейкиСтр = Строка(СекцияДанные.Адрес3);
-				КонецЕсли;
-				РезультатHtml = РезультатHtml + "<div class=""cell-name"">" + ИмяЯчейкиСтр + "</div>";
 				
 				// Номер строки из фильтра по паллету
 				Если ФилтрПоПаллету И ЗначениеЗаполнено(Паллет) И АдресаХранения.Количество() > 0 Тогда
@@ -2234,8 +2272,10 @@
 					КонецЕсли;
 
 					// Двойной клик на паллете — открыть карточку паллета (только для реальных)
+					РазмерСтр = Формат(ВысотаПаллетаМм, "ЧН=0; ЧГ=0") + "×" + Формат(ШиринаПаллетаМм, "ЧН=0; ЧГ=0") + "×" + Формат(ГлубинаПаллетаМм, "ЧН=0; ЧГ=0");
+					ВесСтр = ?(ВесПаллета > 0, Формат(ВесПаллета, "ЧН=0; ЧГ=0") + " кг", "");
 					Если ЭтоВиртуальныйПаллет Тогда
-						РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПаллета + """ style="""
+						РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПаллета + """ data-size=""" + РазмерСтр + """ data-weight=""" + ВесСтр + """ onmousemove=""showTip(event,'" + НомерСтрока + "\n" + РазмерСтр + "\n" + ВесСтр + "')"" onmouseout=""hideTip()"" style="""
 						+ "left:" + ФорматЧислоHTML(СмещениеПаллетаPx) + "px;"
 						+ "width:" + ФорматЧислоHTML(ШиринаПаллетаPx) + "px;"
 						+ "height:" + ФорматЧислоHTML(ВысотаПаллетаPx) + "px;"">"
@@ -2247,7 +2287,7 @@
 						+ "</div></div>";
 					Иначе
 						ГУИДПаллета = Строка(ДанныеПаллетаВЯчейке.ПаллетСсылка.УникальныйИдентификатор());
-						РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПаллета + """ ondblclick=""openItem(event,'pallet','" + ГУИДПаллета + "')"" style="""
+						РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПаллета + """ data-size=""" + РазмерСтр + """ data-weight=""" + ВесСтр + """ ondblclick=""openItem(event,'pallet','" + ГУИДПаллета + "')"" onmousemove=""showTip(event,'П" + НомерСтрока + "\n" + РазмерСтр + "\n" + ВесСтр + "')"" onmouseout=""hideTip()"" style="""
 						+ "left:" + ФорматЧислоHTML(СмещениеПаллетаPx) + "px;"
 						+ "width:" + ФорматЧислоHTML(ШиринаПаллетаPx) + "px;"
 						+ "height:" + ФорматЧислоHTML(ВысотаПаллетаPx) + "px;"">"
@@ -2259,58 +2299,72 @@
 						+ "</div></div>";
 					КонецЕсли;
 					
-					// Свободное пространство — сохраняем для вывода в section
-					Если КоличествоАдресов = 1 Тогда
-						// Центральное размещение — свободно с обеих сторон
-						РасстЛевоСтр = Формат(Окр((ШиринаСекцииМм - ШиринаПаллетаМм) / 2, 0), "ЧН=0; ЧГ=0");
-						РасстПравоСтр = РасстЛевоСтр;
-					ИначеЕсли ИндексАдреса = 0 Тогда
-						// Левый — свободно только справа
-						РасстЛевоСтр = "";
-						РасстПравоСтр = Формат(Окр(ШиринаСекцииМм - ШиринаПаллетаМм, 0), "ЧН=0; ЧГ=0");
-					ИначеЕсли ИндексАдреса = КоличествоАдресов - 1 Тогда
-						// Правый — свободно только слева
-						РасстЛевоСтр = Формат(Окр(ШиринаСекцииМм - ШиринаПаллетаМм, 0), "ЧН=0; ЧГ=0");
-						РасстПравоСтр = "";
-					Иначе
-						// Средний (3 адреса) — свободно с обеих сторон
-						РасстЛевоСтр = Формат(Окр((ШиринаСекцииМм - ШиринаПаллетаМм) / 2, 0), "ЧН=0; ЧГ=0");
-						РасстПравоСтр = РасстЛевоСтр;
-					КонецЕсли;
+					//+Лико m.shenderov 07.07.2026 — зазоры теперь через ПозицииПаллетВСекции (ниже)
 				КонецЕсли;
 				
 				РезультатHtml = РезультатHtml + "</div>"; // конец cell
 			КонецЦикла;
 			
 			РезультатHtml = РезультатHtml + "</div>"; // конец cells-container
-			
-			// Свободное пространство — два блока от краёв паллета
-			Если РасстЛевоСтр <> "" Тогда
-				РезультатHtml = РезультатHtml + "<div class=""free-space-left"">← " + РасстЛевоСтр + " мм</div>";
-			КонецЕсли;
-			Если РасстПравоСтр <> "" Тогда
-				РезультатHtml = РезультатHtml + "<div class=""free-space-right"">" + РасстПравоСтр + " мм →</div>";
-			КонецЕсли;
-			
-			// Остаточный вес (если есть грузоподъемность)
-			Если ВесогрузкаЭтажа > 0 Тогда
-				ВесПаллетовВСекции = 0;
-				Для ИндексАдреса = 0 По КоличествоАдресов - 1 Цикл
-					ДанныеПВЯ = КартаАдресов.Получить(Адреса[ИндексАдреса]);
-					Если ДанныеПВЯ <> Неопределено Тогда
-						ПараметрыПВес = ПараметрыПаллетКэш.Получить(ДанныеПВЯ.ПаллетСсылка);
-						Если ПараметрыПВес <> Неопределено Тогда
-							ВесПаллетовВСекции = ВесПаллетовВСекции + ПараметрыПВес.Вес;
+
+			//+Лико m.shenderov 07.07.2026 — зазоры между стойками и паллетами
+			Если ПозицииПаллетВСекции.Количество() > 0 Тогда
+				// Сортировка позиций по левому краю
+				Для І = 0 По ПозицииПаллетВСекции.Количество() - 2 Цикл
+					Для Ј = І + 1 По ПозицииПаллетВСекции.Количество() - 1 Цикл
+						Если ПозицииПаллетВСекции[І].ЛевоМм > ПозицииПаллетВСекции[Ј].ЛевоМм Тогда
+							Врем = ПозицииПаллетВСекции[І];
+							ПозицииПаллетВСекции[І] = ПозицииПаллетВСекции[Ј];
+							ПозицииПаллетВСекции[Ј] = Врем;
 						КонецЕсли;
+					КонецЦикла;
+				КонецЦикла;
+
+				// Зазор до первого паллета
+				ПервПоз = ПозицииПаллетВСекции[0];
+				Если ПервПоз.ЛевоМм > 1 Тогда
+					ЗазорШиринаПикс = Окр(ПервПоз.ЛевоМм * КоэфМасштаба, 1);
+					ЗазорТекст = Формат(Окр(ПервПоз.ЛевоМм, 0), "ЧН=0; ЧГ=0");
+					РезультатHtml = РезультатHtml + "<div class=""gap"" data-bl=""0"" data-bw=""" + ФорматЧислоHTML(ЗазорШиринаПикс) + """ style=""left:0px;width:" + ФорматЧислоHTML(ЗазорШиринаПикс) + "px;height:" + ФорматЧислоHTML(ВысотаЭтажаPx) + "px;"">"
+						+ "<span class=""gap-label""><span class=""gl-txt"">" + ЗазорТекст + " мм</span></span></div>";
+				КонецЕсли;
+
+				// Зазоры между паллетами
+				Для І = 0 По ПозицииПаллетВСекции.Количество() - 2 Цикл
+					ТекПоз = ПозицииПаллетВСекции[І];
+					СледПоз = ПозицииПаллетВСекции[І + 1];
+					ЗазорМм = СледПоз.ЛевоМм - ТекПоз.ПравоМм;
+					Если ЗазорМм > 1 Тогда
+						ЗазорЛевоПикс = Окр(ТекПоз.ПравоМм * КоэфМасштаба, 1);
+						ЗазорШиринаПикс = Окр(ЗазорМм * КоэфМасштаба, 1);
+						ЗазорТекст = Формат(Окр(ЗазорМм, 0), "ЧН=0; ЧГ=0");
+						РезультатHtml = РезультатHtml + "<div class=""gap"" data-bl=""" + ФорматЧислоHTML(ЗазорЛевоПикс) + """ data-bw=""" + ФорматЧислоHTML(ЗазорШиринаПикс) + """ style=""left:" + ФорматЧислоHTML(ЗазорЛевоПикс) + "px;width:" + ФорматЧислоHTML(ЗазорШиринаПикс) + "px;height:" + ФорматЧислоHTML(ВысотаЭтажаPx) + "px;"">"
+							+ "<span class=""gap-label""><span class=""gl-txt"">" + ЗазорТекст + " мм</span></span></div>";
 					КонецЕсли;
 				КонецЦикла;
-				ОстатокВеса = ВесогрузкаЭтажа - ВесПаллетовВСекции;
-				РезультатHtml = РезультатHtml + "<div class=""weight-remaining"">ост: " + Формат(ОстатокВеса, "ЧН=0; ЧГ=0") + " кг</div>";
+
+				// Зазор после последнего паллета
+				ПослПоз = ПозицииПаллетВСекции[ПозицииПаллетВСекции.Количество() - 1];
+				ПравЗазорМм = ШиринаСекцииМм - ПослПоз.ПравоМм;
+				Если ПравЗазорМм > 1 Тогда
+					ЗазорЛевоПикс = Окр(ПослПоз.ПравоМм * КоэфМасштаба, 1);
+					ЗазорШиринаПикс = Окр(ПравЗазорМм * КоэфМасштаба, 1);
+					ЗазорТекст = Формат(Окр(ПравЗазорМм, 0), "ЧН=0; ЧГ=0");
+					РезультатHtml = РезультатHtml + "<div class=""gap"" data-bl=""" + ФорматЧислоHTML(ЗазорЛевоПикс) + """ data-bw=""" + ФорматЧислоHTML(ЗазорШиринаПикс) + """ style=""left:" + ФорматЧислоHTML(ЗазорЛевоПикс) + "px;width:" + ФорматЧислоHTML(ЗазорШиринаПикс) + "px;height:" + ФорматЧислоHTML(ВысотаЭтажаPx) + "px;"">"
+						+ "<span class=""gap-label""><span class=""gl-txt"">" + ЗазорТекст + " мм</span></span></div>";
+				КонецЕсли;
 			КонецЕсли;
 			
 			РезультатHtml = РезультатHtml + "</div>"; // конец section
+			//+Лико m.shenderov 07.07.2026 — стойка после каждой секции (межсекционная + правая крайняя)
+			РезультатHtml = РезультатHtml + "<div class=""rack-post""></div>";
 		КонецЦикла;
-		
+
+		ШапкиРяд = ШапкиРяд + "<div class=""rack-post""></div></div>"; // конец ряд шапок
+
+		// Вставить шапки перед sections-row
+		РезультатHtml = СтрЗаменить(РезультатHtml, "###HEADERS###", ШапкиРяд);
+
 		РезультатHtml = РезультатHtml + "</div>"; // конец sections-row
 		
 		
@@ -2332,9 +2386,13 @@
 		КонецЦикла;
 		Если НомерЭтажа = ПервыйЭтажНомер Тогда
 			РезультатHtml = РезультатHtml + "<div class=""floor-width"" style=""display:flex;"">";
+			// Невидимая стойка слева — для выравнивания с sections-row
+			РезультатHtml = РезультатHtml + "<div style=""width:2px;flex-shrink:0;""></div>";
 			Для Каждого СекцияДанныеШ Из МассивЭтажа Цикл
-				РезультатHtml = РезультатHtml + "<div style=""flex:0 0 " + ФорматЧислоHTML(ШиринаСекцииPx) + "px;text-align:center;font-size:10px;color:#333;font-weight:bold;padding-top:2px;"">"
+				РезультатHtml = РезультатHtml + "<div data-bw=""" + ФорматЧислоHTML(ШиринаСекцииPx) + """ style=""flex:0 0 " + ФорматЧислоHTML(ШиринаСекцииPx) + "px;text-align:center;font-size:10px;color:#333;font-weight:bold;padding-top:2px;"">"
 				+ Формат(ШиринаСекцииМм, "ЧН=0; ЧГ=0") + " мм</div>";
+				// Невидимая стойка между секциями
+				РезультатHtml = РезультатHtml + "<div style=""width:2px;flex-shrink:0;""></div>";
 			КонецЦикла;
 			РезультатHtml = РезультатHtml + "</div>";
 		КонецЕсли;
@@ -2387,7 +2445,7 @@
 					ГУИДПЗоны = Строка(ДанныеПЗ.ПаллетСсылка.УникальныйИдентификатор());
 					ПаллетDblClick = " ondblclick=""openItem(event,'pallet','" + ГУИДПЗоны + "')""";
 					РезультатHtml = РезультатHtml + "<div class=""pallet " + КлассПЗ + """" + ПаллетDblClick
-					+ " style=""position:relative;width:100%;height:" + Формат(ВысотаПЗ, "ЧН=0; ЧГ=0") + "px;margin-bottom:2px;"">"
+					+ " style=""position:relative;width:100%;height:" + ФорматЧислоHTML(ВысотаПЗ) + "px;margin-bottom:2px;"">"
 					+ "<div class=""pallet-label"">П" + НомерП + СтатусЗ + "</div>"
 					+ "</div>";
 				КонецЦикла;
@@ -2499,6 +2557,242 @@
 
 
 
+
+
+//+Лико m.shenderov 12.07.2026 — Технический чертёж стеллажа (SVG, вид сбоку)
+// Рисует: стойки, балки, размерные цепочки, внутреннюю высоту
+&НаСервере
+Функция СформироватьЧертежСтеллажаSVG(ДанныеЭтажейРасширенные, КоэфМасштаба, СтеллажДанные)
+
+	Если ДанныеЭтажейРасширенные.Количество() = 0 Тогда
+		Возврат "";
+	КонецЕсли;
+
+	// Номера этажей по возрастанию (Э1 внизу, ЭN вверху)
+	НомераЭтажейСписок = Новый СписокЗначений;
+	Для Каждого КлючЗначение Из ДанныеЭтажейРасширенные Цикл
+		НомераЭтажейСписок.Добавить(КлючЗначение.Ключ);
+	КонецЦикла;
+	НомераЭтажейСписок.СортироватьПоЗначению(НаправлениеСортировки.Возр);
+	НомераЭтажей = НомераЭтажейСписок.ВыгрузитьЗначения();
+
+	// Сбор данных по этажам (снизу вверх: Э1 → ЭN)
+	ДанныеЭ = Новый Массив;
+	СуммаРасстМм = 0;
+	Для Инд = 0 По НомераЭтажей.Количество() - 1 Цикл
+		Данные = ДанныеЭтажейРасширенные.Получить(НомераЭтажей[Инд]);
+		Если Данные <> Неопределено Тогда
+			ВнутрВысота = Данные.Высота + Данные.Зазор;
+			РасстМм = Данные.Высота + Данные.Зазор + Данные.ВысотаБалки;
+			ДанныеЭ.Добавить(Новый Структура("Номер, Высота, Ширина, Вес, Зазор, Балка, ВнутрВысота, Расст, Глубина,МаксимальныйВесПодъёмаНаЭтаж",
+				НомераЭтажей[Инд], Данные.Высота, Данные.Ширина, Данные.Вес, Данные.Зазор, Данные.ВысотаБалки,
+				ВнутрВысота, РасстМм, Данные.Глубина,Данные.МаксимальныйВесПодъёмаНаЭтаж));
+			СуммаРасстМм = СуммаРасстМм + РасстМм;
+		КонецЕсли;
+	КонецЦикла;
+
+	// Данные первого (нижнего) этажа
+	ПервыйЭ = ДанныеЭ[0];
+	ДанныеПервого = ДанныеЭтажейРасширенные.Получить(ПервыйЭ.Номер);
+	ВысотаОтПолаМм = ДанныеПервого.ВысотаОтПола;
+
+	// Данные верхнего этажа
+	ПоследнийЭ = ДанныеЭ[ДанныеЭ.Количество() - 1];
+	ВерхНадБалкойМм = ПоследнийЭ.ВнутрВысота;
+
+	// Полная высота: от пола до верха стоек
+	ПолнаяВысотаМм = ВысотаОтПолаМм + СуммаРасстМм + ВерхНадБалкойМм;
+
+	// Размеры SVG
+	TopY = 40;
+	BottomY = 820;
+	ДоступнаяВысота = BottomY - TopY; // 780 px
+	МасштабPx = ДоступнаяВысота / ПолнаяВысотаМм;
+
+	ШиринаМм = ПервыйЭ.Ширина;
+	PaddingX = 160;
+	SvgWidth = PaddingX * 2 + 200;
+	SvgHeight = BottomY + 60;
+
+	СтойкаЛево = PaddingX;
+	СтойкаПраво = PaddingX + 200;
+	ЦентрX = PaddingX + 100;
+
+	Рез = "";
+
+	Рез = Рез + "<svg width=""" + ФорматЧислоHTML(SvgWidth) + """ height=""" + ФорматЧислоHTML(SvgHeight) + """ style=""overflow:visible;font-family:Arial,sans-serif;"">";
+
+	// Defs не нужны — засечки рисуем явными линиями
+
+	Рез = Рез + "<rect width=""" + ФорматЧислоHTML(SvgWidth) + """ height=""" + ФорматЧислоHTML(SvgHeight) + """ fill=""#fff"" stroke=""none""/>";
+
+	// Заголовок
+	ИмяРяда = Строка(СтеллажДанные.Наименование);
+	Рез = Рез + "<text x=""" + ФорматЧислоHTML(SvgWidth/2) + """ y=""20"" text-anchor=""middle"" font-weight=""bold"" font-size=""14"" fill=""#000"">Ряд " + ИмяРяда + "</text>";
+	Рез = Рез + "<text x=""" + ФорматЧислоHTML(SvgWidth/2) + """ y=""34"" text-anchor=""middle"" font-size=""10"" fill=""#333"">Чертёж стеллажа — вид сбоку</text>";
+
+	// === Вычисление Y-позиций балок (от пола вверх) ===
+	// Y_пола[i] — Y-координата оранжевой балки i-го этажа (пол этажа)
+	// i=0: Э1 (нижний), i=N-1: ЭN (верхний)
+	МассивYпола = Новый Массив;
+	ТекY = BottomY - ВысотаОтПолаМм * МасштабPx; // пол Э1
+	Для Инд = 0 По ДанныеЭ.Количество() - 1 Цикл
+		МассивYпола.Добавить(ТекY);
+		Э = ДанныеЭ[Инд];
+		ТекY = ТекY - Э.Расст * МасштабPx; // пол следующего этажа
+	КонецЦикла;
+	// Y_верха = позиция над последним этажом (верх стоек)
+	Yверха = ТекY; // = МассивYпола[последний] - ПоследнийЭ.Расст * МасштабPx
+
+	// === Синие стойки ===
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтойкаЛево) + """ y1=""" + ФорматЧислоHTML(Yверха) + """ x2=""" + ФорматЧислоHTML(СтойкаЛево) + """ y2=""" + ФорматЧислоHTML(BottomY) + """ stroke=""#1560d4"" stroke-width=""3""/>";
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтойкаПраво) + """ y1=""" + ФорматЧислоHTML(Yверха) + """ x2=""" + ФорматЧислоHTML(СтойкаПраво) + """ y2=""" + ФорматЧислоHTML(BottomY) + """ stroke=""#1560d4"" stroke-width=""3""/>";
+
+	// Верхняя связь рамы
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтойкаЛево) + """ y1=""" + ФорматЧислоHTML(Yверха) + """ x2=""" + ФорматЧислоHTML(СтойкаПраво) + """ y2=""" + ФорматЧислоHTML(Yверха) + """ stroke=""#1560d4"" stroke-width=""2""/>";
+
+	// Пол
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтойкаЛево - 15) + """ y1=""" + ФорматЧислоHTML(BottomY) + """ x2=""" + ФорматЧислоHTML(СтойкаПраво + 15) + """ y2=""" + ФорматЧислоHTML(BottomY) + """ stroke=""#333"" stroke-width=""2""/>";
+
+	// === Оранжевые балки ===
+	Для Инд = 0 По ДанныеЭ.Количество() - 1 Цикл
+		БалкаY = МассивYпола[Инд];
+		Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтойкаЛево) + """ y1=""" + ФорматЧислоHTML(БалкаY) + """ x2=""" + ФорматЧислоHTML(СтойкаПраво) + """ y2=""" + ФорматЧислоHTML(БалкаY) + """ stroke=""#c8641e"" stroke-width=""4""/>";
+	КонецЦикла;
+
+	// === Этажи: подписи + внутренняя высота (синие стрелки) ===
+	Для Инд = 0 По ДанныеЭ.Количество() - 1 Цикл
+		Э = ДанныеЭ[Инд];
+		// Пол этого этажа
+		Yпол = МассивYпола[Инд];
+		// Пол следующего этажа (потолок этого)
+		Если Инд < ДанныеЭ.Количество() - 1 Тогда
+			Yпотолок = МассивYпола[Инд + 1];
+		Иначе
+			Yпотолок = Yверха; // верхний этаж — потолок = верх стоек
+		КонецЕсли;
+
+		ЦентрY = (Yпол + Yпотолок) / 2;
+
+		// Подпись этажа
+		Рез = Рез + "<text x=""" + ФорматЧислоHTML(ЦентрX) + """ y=""" + ФорматЧислоHTML(ЦентрY - 14) + """ text-anchor=""middle"" font-weight=""bold"" font-size=""11"" fill=""#000"">Э" + ФорматЧислоHTML(Э.Номер) + "</text>";
+		Рез = Рез + "<text x=""" + ФорматЧислоHTML(ЦентрX) + """ y=""" + ФорматЧислоHTML(ЦентрY) + """ text-anchor=""middle"" font-size=""10"" fill=""#1a7a1a"">MaxQb = " + ФорматЧислоHTML(Э.МаксимальныйВесПодъёмаНаЭтаж) + " кг</text>";
+		// Типоразмер: В × Ш × Г мм (Вес кг)
+		ГлубинаСтр = ?(Э.Глубина > 0, ФорматЧислоHTML(Окр(Э.Глубина, 0)), "—");
+		ВесСтр = ?(Э.Вес > 0, ФорматЧислоHTML(Э.Вес) + " кг", "неограничен кг");
+		ТипоразмерСтр = ФорматЧислоHTML(Окр(Э.ВнутрВысота, 0)) + " × " + ФорматЧислоHTML(Э.Ширина) + " × " + ГлубинаСтр + " мм (" + ВесСтр + ")";
+		Рез = Рез + "<text x=""" + ФорматЧислоHTML(ЦентрX) + """ y=""" + ФорматЧислоHTML(ЦентрY + 13) + """ text-anchor=""middle"" font-size=""8"" fill=""#555"">" + ТипоразмерСтр + "</text>";
+
+		// Внутренняя высота — чёрная стрелка справа внутри секции с явными засечками
+		ВнутрPx = Э.ВнутрВысота * МасштабPx;
+		Если ВнутрPx > 20 Тогда
+			СтрелкаX = СтойкаПраво - 18;
+			СтрелкаВерх = Yпотолок + 4;
+			СтрелкаНиз = Yпол - 4;
+			// Линия
+			Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтрелкаX) + """ y1=""" + ФорматЧислоHTML(СтрелкаВерх) + """ x2=""" + ФорматЧислоHTML(СтрелкаX) + """ y2=""" + ФорматЧислоHTML(СтрелкаНиз) + """ stroke=""#222"" stroke-width=""1""/>";
+			// Засечка верх (диагональ)
+			Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтрелкаX - 4) + """ y1=""" + ФорматЧислоHTML(СтрелкаВерх + 6) + """ x2=""" + ФорматЧислоHTML(СтрелкаX + 4) + """ y2=""" + ФорматЧислоHTML(СтрелкаВерх) + """ stroke=""#222"" stroke-width=""1.5""/>";
+			// Засечка низ (диагональ)
+			Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтрелкаX - 4) + """ y1=""" + ФорматЧислоHTML(СтрелкаНиз + 6) + """ x2=""" + ФорматЧислоHTML(СтрелкаX + 4) + """ y2=""" + ФорматЧислоHTML(СтрелкаНиз) + """ stroke=""#222"" stroke-width=""1.5""/>";
+			ТекстY = (СтрелкаВерх + СтрелкаНиз) / 2;
+			Рез = Рез + "<text x=""" + ФорматЧислоHTML(СтрелкаX - 5) + """ y=""" + ФорматЧислоHTML(ТекстY) + """ text-anchor=""middle"" transform=""rotate(-90 " + ФорматЧислоHTML(СтрелкаX - 5) + " " + ФорматЧислоHTML(ТекстY) + ")"" fill=""#222"" font-size=""8"">" + ФорматЧислоHTML(Окр(Э.ВнутрВысота, 0)) + "</text>";
+		КонецЕсли;
+	КонецЦикла;
+
+	// === Левая размерная цепочка (чёрная) ===
+	ЦепX = СтойкаЛево - 80;
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(ЦепX) + """ y1=""" + ФорматЧислоHTML(Yверха) + """ x2=""" + ФорматЧислоHTML(ЦепX) + """ y2=""" + ФорматЧислоHTML(BottomY) + """ stroke=""#222"" stroke-width=""1""/>";
+
+	// Собираем все Y-позиции для засечек: верх, балки этажей, пол
+	МассивYзасечек = Новый Массив;
+	//МассивYзасечек.Добавить(Yверха);
+	Для Каждого Y Из МассивYпола Цикл
+		МассивYзасечек.Добавить(Y);
+	КонецЦикла;
+	//МассивYзасечек.Добавить(BottomY);
+
+	// Засечки и подписи
+	Для Каждого Yзас Из МассивYзасечек Цикл
+		Рез = Рез + "<line x1=""" + ФорматЧислоHTML(ЦепX - 5) + """ y1=""" + ФорматЧислоHTML(Yзас) + """ x2=""" + ФорматЧислоHTML(СтойкаЛево) + """ y2=""" + ФорматЧислоHTML(Yзас) + """ stroke=""#222"" stroke-width=""1""/>";
+	КонецЦикла;
+	Для Инд = 1 По МассивYзасечек.Количество() - 1 Цикл
+		Yтек = МассивYзасечек[Инд];
+		Yпред = МассивYзасечек[Инд - 1];
+		СерединаY = (Yтек + Yпред) / 2;
+		РасстМм = Окр((Yпред - Yтек) / МасштабPx, 0);
+		Рез = Рез + "<text x=""" + ФорматЧислоHTML(ЦепX - 8) + """ y=""" + ФорматЧислоHTML(СерединаY) + """ text-anchor=""middle"" transform=""rotate(-90 " + ФорматЧислоHTML(ЦепX - 8) + " " + ФорматЧислоHTML(СерединаY) + ")"" fill=""#222"" font-size=""12"">" + ФорматЧислоHTML(РасстМм) + "</text>";
+	КонецЦикла;
+
+	// === Высота до пола верхнего этажа — справа ===
+	YполВерх = МассивYпола[ДанныеЭ.Количество() - 1];
+	ПравЦепX = СтойкаПраво + 45;
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(ПравЦепX) + """ y1=""" + ФорматЧислоHTML(YполВерх) + """ x2=""" + ФорматЧислоHTML(ПравЦепX) + """ y2=""" + ФорматЧислоHTML(BottomY) + """ stroke=""#222"" stroke-width=""1""/>";
+	// Засечка верх
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(ПравЦепX - 4) + """ y1=""" + ФорматЧислоHTML(YполВерх + 6) + """ x2=""" + ФорматЧислоHTML(ПравЦепX + 4) + """ y2=""" + ФорматЧислоHTML(YполВерх) + """ stroke=""#222"" stroke-width=""1.5""/>";
+	// Засечка низ
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(ПравЦепX - 4) + """ y1=""" + ФорматЧислоHTML(BottomY + 6) + """ x2=""" + ФорматЧислоHTML(ПравЦепX + 4) + """ y2=""" + ФорматЧислоHTML(BottomY) + """ stroke=""#222"" stroke-width=""1.5""/>";
+	ВысотаДоПолаВерхМм = Окр((BottomY - YполВерх) / МасштабPx, 0);
+	Рез = Рез + "<text x=""" + ФорматЧислоHTML(ПравЦепX + 15) + """ y=""" + ФорматЧислоHTML((YполВерх + BottomY) / 2) + """ text-anchor=""middle"" transform=""rotate(-90 " + ФорматЧислоHTML(ПравЦепX + 15) + " " + ФорматЧислоHTML((YполВерх + BottomY) / 2) + ")"" fill=""#222"" font-weight=""bold"" font-size=""13"">" + ФорматЧислоHTML(ВысотаДоПолаВерхМм) + " (пол Э" + ФорматЧислоHTML(ПоследнийЭ.Номер) + ")</text>";
+
+	// === Ширина секции снизу ===
+	ШирY = BottomY + 40;
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтойкаЛево) + """ y1=""" + ФорматЧислоHTML(ШирY) + """ x2=""" + ФорматЧислоHTML(СтойкаПраво) + """ y2=""" + ФорматЧислоHTML(ШирY) + """ stroke=""#222"" stroke-width=""1""/>";
+	 //Засечка лево
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтойкаЛево) + """ y1=""" + ФорматЧислоHTML(ШирY - 4) + """ x2=""" + ФорматЧислоHTML(СтойкаЛево + 6) + """ y2=""" + ФорматЧислоHTML(ШирY + 4) + """ stroke=""#222"" stroke-width=""1.5""/>";
+	 //Засечка право
+	Рез = Рез + "<line x1=""" + ФорматЧислоHTML(СтойкаПраво - 6) + """ y1=""" + ФорматЧислоHTML(ШирY - 4) + """ x2=""" + ФорматЧислоHTML(СтойкаПраво) + """ y2=""" + ФорматЧислоHTML(ШирY + 4) + """ stroke=""#222"" stroke-width=""1.5""/>";
+	Рез = Рез + "<text x=""" + ФорматЧислоHTML(ЦентрX) + """ y=""" + ФорматЧислоHTML(ШирY + 15) + """ text-anchor=""middle"" fill=""#222"" font-size=""12"">" + ФорматЧислоHTML(ШиринаМм) + "</text>";
+
+	Рез = Рез + "</svg>";
+
+	Возврат Рез;
+КонецФункции
+
+
+
+//+Лико m.shenderov 12.07.2026 — хелпер: загрузка расширенных данных этажей (Зазор, ВысотаБалки, ВысотаОтПола)
+&НаСервере
+Функция ПолучитьДанныеЭтажейРасширенные(СтеллажСсылка)
+	УстановитьПривилегированныйРежим(Истина);
+
+	СтеллажОбъект = СтеллажСсылка.ПолучитьОбъект();
+	ЭтажиТЧ = СтеллажОбъект.Этажи;
+
+	МассивТипоразмеровЭтажей = Новый Массив;
+	Для Каждого СтрокаЭтажа Из ЭтажиТЧ Цикл
+		Если ЗначениеЗаполнено(СтрокаЭтажа.Типоразмер) Тогда
+			МассивТипоразмеровЭтажей.Добавить(СтрокаЭтажа.Типоразмер);
+		КонецЕсли;
+	КонецЦикла;
+
+	ТипоразмерыЭтажейКэш = Новый Соответствие;
+	Если МассивТипоразмеровЭтажей.Количество() > 0 Тогда
+		ТипоразмерыЭтажейКэш = ОбщегоНазначения.ЗначенияРеквизитовОбъектов(
+			МассивТипоразмеровЭтажей, "Ширина, Высота, Вес, Глубина");
+	КонецЕсли;
+
+	ДанныеЭтажей = Новый Соответствие;
+	ДанныеЭтажейРасширенные = Новый Соответствие;
+	Для Каждого СтрокаЭтажа Из ЭтажиТЧ Цикл
+		Если ЗначениеЗаполнено(СтрокаЭтажа.Типоразмер) Тогда
+			ДанныеТипоразмера = ТипоразмерыЭтажейКэш.Получить(СтрокаЭтажа.Типоразмер);
+			Если ДанныеТипоразмера <> Неопределено Тогда
+				ДанныеЭтажей.Вставить(СтрокаЭтажа.НомерСтроки, ДанныеТипоразмера);
+				РасшДанные = Новый Структура("Высота, Ширина, Вес, Зазор, ВысотаБалки, ВысотаОтПола, Глубина,МаксимальныйВесПодъёмаНаЭтаж",
+					ДанныеТипоразмера.Высота, ДанныеТипоразмера.Ширина, ДанныеТипоразмера.Вес,
+					СтрокаЭтажа.Зазор, СтрокаЭтажа.ВысотаБалки, СтрокаЭтажа.ВысотаОтПола,
+					ДанныеТипоразмера.Глубина,СтрокаЭтажа.МаксимальныйВесПодъёмаНаЭтаж);
+				ДанныеЭтажейРасширенные.Вставить(СтрокаЭтажа.НомерСтроки, РасшДанные);
+			КонецЕсли;
+		КонецЕсли;
+	КонецЦикла;
+
+	Результат = Новый Структура;
+	Результат.Вставить("ДанныеЭтажей", ДанныеЭтажей);
+	Результат.Вставить("ДанныеЭтажейРасширенные", ДанныеЭтажейРасширенные);
+	Возврат Результат;
+КонецФункции
 
 
 Процедура РендерЗагрузкиСтеллажаНаСервере(СтеллажСсылка, ПроцентЗагрузки = -1)
@@ -2813,12 +3107,17 @@
 	// === 6. Генерация HTML ===
 	HTML = "<!DOCTYPE html><html><head><meta charset=""utf-8"">"
 		+ "<style>"
-		+ "body { font-family: Arial, sans-serif; margin: 10px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow: auto; }"
-		+ ".scale-container { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12px; }"
-		+ ".scale-container input[type=range] { width: 150px; }"
-		+ ".zoom-btn { display:inline-block;width:24px;height:24px;line-height:22px;text-align:center;font-size:16px;font-weight:bold;color:#333;background:#e0e0e0;border:1px solid #aaa;border-radius:3px;text-decoration:none;margin:0 4px;cursor:pointer;vertical-align:middle; }"
-		+ ".zoom-btn:hover { background:#ccc;border-color:#666; }"
-		+ ".scale-val { font-weight: bold; min-width: 40px; }"
+		+ "body { font-family: Arial, sans-serif; margin: 10px; padding-top: 36px; font-size: 12px; background: #fff; scrollbar-width: thin; overflow: auto; }"
+		+ ".scale-container { display: flex; align-items: center; gap: 8px; font-size: 12px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff; padding: 4px 10px; border-bottom: 1px solid #ccc; }"
+		+ ".scale-controls { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; max-width: 33%; min-width: 0; overflow: hidden; }"
+		+ ".sc-rack { font-weight: bold; color: #333; white-space: nowrap; flex: 1; min-width: 0; text-align: left; padding-right: 8px; overflow: hidden; text-overflow: ellipsis; }"
+		+ ".sc-sep { display: none; }"
+		+ ".zoom-btn { display:inline-block;width:24px;height:24px;line-height:22px;text-align:center;font-size:16px;font-weight:bold;color:#3a2010;background:linear-gradient(180deg,#e8c98a 0%,#d4a56a 40%,#b8863e 100%);border:1px solid #8b6914;border-radius:3px;text-decoration:none;cursor:pointer;vertical-align:middle;box-shadow:0 1px 0 #f0d8a0 inset,0 -1px 2px rgba(0,0,0,0.15); }"
+		+ ".zoom-btn:hover { background:linear-gradient(180deg,#f0d8a0 0%,#ddb57a 40%,#c49454 100%); }"
+		+ ".zoom-btn:active { box-shadow:0 -1px 0 #f0d8a0 inset,0 1px 2px rgba(0,0,0,0.2); }"
+		+ ".sc-ruler-wrap { display: flex; flex: 1; min-width: 0; align-items: center; }"
+		+ ".sc-ruler-wrap input[type=range] { width: 100%; margin: 0; display: block; }"
+		+ ".scale-val { font-weight: bold; min-width: 40px; color: #333; font-size: 12px; }"
 		+ ".racking { margin-bottom: 25px; }"
 		+ ".racking-title { font-size: 16px; font-weight: bold; margin-bottom: 5px; }"
 		+ ".floor { margin-bottom: 0; display: flex; align-items: stretch; }"
@@ -2830,20 +3129,25 @@
 			+ ".floor-load-line2 { font-size: 6px; white-space: nowrap; }"
 		+ ".height-info { position: absolute; left: 0; top: 50%; transform: translateY(-50%) rotate(180deg); width: 100%; font-size: 7px; color: #00c; font-weight: bold; writing-mode: vertical-rl; text-orientation: mixed; white-space: nowrap; z-index: 10; display: flex; align-items: center; justify-content: center; }"
 		+ ".floor-content { flex: 1; }"
-		+ ".floor-width { font-size: 10px; color: #333; text-align: center; margin-top: 2px; font-weight: bold; }"
-		+ ".sections-row { display: flex; align-items: stretch; border: 2px solid #444; min-height: 40px; width: max-content; overflow: visible; }"
+		+ ".floor-width { font-size: 10px; color: #333; text-align: center; margin-top: 2px; font-weight: bold; display: flex; }"
+		+ ".sections-row { display: flex; align-items: stretch; border: 2px solid #444; width: max-content; overflow: visible; }"
 		+ ".section { position: relative; box-sizing: border-box; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid #aaa; overflow: visible; }"
 		+ ".section:last-child { border-right: none; }"
 		+ ".section-empty { background: rgba(200,230,200,0.3); }"
 		+ ".section-restricted { background: rgba(230,200,200,0.35); }"
 		+ ".section-restricted .cell { background: rgba(230,180,180,0.45); }"
 		+ ".section-dimmed { opacity: 0.35; }"
-		+ ".section-name { position: absolute; top: 2px; left: 2px; right: 2px; text-align: center; font-size: 8px; color: #000; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 1; }"
-		+ ".weight-remaining { position: absolute; top: 22px; left: 0; right: 0; text-align: center; font-size: 8px; color: #000; font-weight: bold; z-index: 1; }"
+		+ ".section-header { flex: 0 0 auto; display: flex; flex-direction: column; overflow: hidden; background: #fff; border-bottom: 1px solid #ccc; line-height: 1; }"
+	+ ".section-header-name { display: flex; justify-content: space-between; align-items: center; font-size: 7px; font-weight: bold; color: #000; white-space: nowrap; overflow: hidden; padding: 0 2px; }"
+	+ ".section-header-cells { display: flex; width: 100%; }"
+	+ ".section-header-cells > div { flex: 1; text-align: center; font-size: 5px; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 1px; border-left: 1px solid #ccc; line-height: 1; }"
+	+ ".section-header-cells > div:first-child { border-left: none; }"
+	+ ".section-name { position: absolute; top: 2px; left: 2px; right: 2px; text-align: center; font-size: 8px; color: #000; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; z-index: 1; }"
+		+ ".weight-remaining { position: absolute; top: 2px; left: 0; right: 0; text-align: center; font-size: 8px; color: #000; font-weight: bold; z-index: 1; }"
 		+ ".free-space-left { position: absolute; bottom: 16px; left: 0; font-size: 8px; color: #090; font-weight: bold; z-index: 4; white-space: nowrap; background: rgba(255,255,255,0.85); padding: 0 2px; }"
 		+ ".free-space-right { position: absolute; bottom: 16px; right: 0; font-size: 8px; color: #00c; font-weight: bold; z-index: 4; white-space: nowrap; background: rgba(255,255,255,0.85); padding: 0 2px; text-align: right; }"
-		+ ".cells-container { display: flex; width: 100%; height: 100%; align-items: stretch; }"
-		+ ".cell { flex: 1; position: relative; border-left: 1px dashed #ccc; display: flex; flex-direction: column; justify-content: flex-end; }"
+		+ ".cells-container { display: flex; width: 100%; flex: 1; align-items: stretch; }"
+		+ ".cell { flex: 1; position: relative; border-left: 1px dashed #ccc; display: flex; flex-direction: column; justify-content: flex-end; min-height: 0; }"
 		+ ".cell:first-child { border-left: none; }"
 		+ ".cell-free { background: rgba(180,230,180,0.45); }"
 		+ ".cell-free:hover { background: rgba(100,200,100,0.55); outline: 2px solid #2a9a2a; outline-offset: -2px; cursor: pointer; z-index: 5; }"
@@ -2851,10 +3155,12 @@
 		+ ".cell-filter-number { position: absolute; top: 22px; left: 2px; right: 2px; bottom: 2px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; color: rgba(0,80,0,0.18); z-index: 0; pointer-events: none; overflow: hidden; line-height: 1; }"
 		+ ".pallet { position: absolute; bottom: 0; box-sizing: border-box; overflow: visible; z-index: 2; cursor: pointer; }"
 		+ ".pallet:hover { outline: 2px solid #ff6600; outline-offset: -2px; z-index: 6; box-shadow: inset 0 0 8px rgba(255,100,0,0.45); }"
+	+ ".pallet-tooltip { display: none; position: fixed; background: rgba(26,79,180,0.94); color: #fff; font-size: 9px; font-weight: bold; padding: 4px 8px; white-space: pre-line; text-align: center; z-index: 200; pointer-events: none; border-radius: 8px; line-height: 1.3; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }"
+	+ ".pallet-tooltip::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid rgba(26,79,180,0.94); }"
 		+ ".pallet-occupied { background: rgba(255,255,200,0.7); border: 2px solid #888; }"
 		+ ".pallet-reserved { background: rgba(255,255,220,0.5); border: 2px dashed #888; }"
-		+ ".pallet-label { position: absolute; top: 4px; left: 0; right: 0; text-align: center; font-size: 9px; font-weight: bold; color: #333; z-index: 3; }"
-		+ ".pallet-size { position: absolute; bottom: 2px; left: 0; right: 0; text-align: center; font-size: 8px; color: #333; z-index: 3; }"
+		+ ".pallet-label { position: absolute; top: 4px; left: 0; right: 0; text-align: center; font-size: 9px; font-weight: bold; color: #333; z-index: 3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
+		+ ".pallet-size { position: absolute; bottom: 2px; left: 0; right: 0; text-align: center; font-size: 8px; color: #333; z-index: 3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }"
 		+ ".free-space { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 8px; color: #090; font-weight: bold; z-index: 4; white-space: nowrap; background: rgba(255,255,255,0.85); padding: 0 2px; }"
 		+ ".zones-title { font-weight: bold; font-size: 12px; color: #000; margin-top: 10px; margin-bottom: 4px; padding-left: 25px; }"
 		+ ".zones-row { display: flex; align-items: flex-start; gap: 5px; padding-left: 25px; margin-bottom: 10px; }"
@@ -2876,7 +3182,8 @@
 			+ ".pallet-summary .color-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 3px; vertical-align: middle; }"
 		+ "</style>"
 		+ "<script>"
-		+ "function applyScale(v,save){document.getElementById('sv').textContent=v+'%';var c=document.getElementById('sc');c.style.transform='scale('+v/100+')';c.style.transformOrigin='top left';if(save!==false){try{localStorage.setItem('zs_scale',v);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+v;a.click();},300);}}"
+		+ "var _zs_cur=100;"
+		+ "function applyScale(v,save){_zs_cur=parseInt(v);document.getElementById('sv').textContent=_zs_cur+'%';var ratio=_zs_cur/100;var sc=document.getElementById('sc');if(!sc)return;var natH=sc.scrollHeight;sc.style.transform='scale('+ratio+')';sc.style.transformOrigin='top left';sc.style.marginBottom=(natH*(ratio-1))+'px';if(!sc._obw){sc._obw={};var els=sc.querySelectorAll('.pallet-occupied,.pallet-reserved,.pallet-virtual,.sections-row,.cell,.cell-free,.section-header');for(var i=0;i<els.length;i++){var c=getComputedStyle(els[i]);sc._obw[i]={el:els[i],bt:parseFloat(c.borderTopWidth)||0,bb:parseFloat(c.borderBottomWidth)||0,bl:parseFloat(c.borderLeftWidth)||0,br:parseFloat(c.borderRightWidth)||0};}}var obw=sc._obw;for(var k in obw){var o=obw[k];if(o.bt>0)o.el.style.borderTopWidth=(o.bt/ratio)+'px';if(o.bb>0)o.el.style.borderBottomWidth=(o.bb/ratio)+'px';if(o.bl>0)o.el.style.borderLeftWidth=(o.bl/ratio)+'px';if(o.br>0)o.el.style.borderRightWidth=(o.br/ratio)+'px';}var posts=sc.querySelectorAll('.rack-post');for(var pi=0;pi<posts.length;pi++)posts[pi].style.width=(2/ratio)+'px';var plbls=sc.querySelectorAll('.pallet-label');for(var i=0;i<plbls.length;i++)plbls[i].style.fontSize=(9/ratio)+'px';var psizes=sc.querySelectorAll('.pallet-size');for(var i=0;i<psizes.length;i++)psizes[i].style.fontSize=(8/ratio)+'px';var fs=Math.min(14,Math.max(8,8+6*(ratio-0.2)/0.8));var lbls=sc.querySelectorAll('.cell-name,.section-name');for(var li=0;li<lbls.length;li++)lbls[li].style.fontSize=fs+'px';var glbls=sc.querySelectorAll('.gap-label');for(var gi=0;gi<glbls.length;gi++)glbls[gi].style.fontSize=(7/ratio)+'px';var fws=sc.querySelectorAll('.floor-width div[data-bw]');for(var fi=0;fi<fws.length;fi++)fws[fi].style.fontSize=(10/ratio)+'px';if(save!==false){try{localStorage.setItem('zs_scale',_zs_cur);}catch(e){}clearTimeout(window._zs_st);window._zs_st=setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://scale/'+_zs_cur;a.click();},300);}}"
 		+ "function openItem(e,type,guid){"
 		+ "  if(e&&e.stopPropagation)e.stopPropagation();"
 		+ "  var a=document.getElementById('_zs_nav_');"
@@ -2890,12 +3197,19 @@
 		+ "</head><body>";
 	
 	// Заголовок
-		HTML = HTML + "<div class=""scale-container""><a href=""zagsklad://zoom/out"" class=""zoom-btn"" title=""Уменьшить масштаб"">−</a>Масштаб: <input type=""range"" id=""zs_range"" min=""20"" max=""300"" value=""" + Строка(МасштабПроцентов) + """ step=""10"" oninput=""applyScale(this.value)""><span class=""scale-val"" id=""sv"">" + Строка(МасштабПроцентов) + "%</span><a href=""zagsklad://zoom/in"" class=""zoom-btn"" title=""Увеличить масштаб"">+</a></div>";
+		HTML = HTML + "<div class=""scale-container"">"
+		+ "<span class=""sc-rack"">Стеллаж: " + Строка(СтеллажДанные.Наименование) + " (" + Формат(СтеллажДанные.КодПолный, "ЧН=0; ЧГ=0") + "). Загрузка: %%PCT%%% (св. %%FREE%%)</span>"
+		+ "<div class=""scale-controls"">"
+		+ "<a onclick=""zoomOut()"" class=""zoom-btn"" title=""Уменьшить"">−</a>"
+		+ "<div class=""sc-ruler-wrap"">"
+		+ "<input type=""range"" id=""zs_range"" min=""0"" max=""1000"" value=""" + Строка(МасштабПроцентов) + """ step=""10"" oninput=""applyScaleRAF(this.value)"">"
+		+ "</div>"
+		+ "<span class=""scale-val"" id=""sv"">" + Строка(МасштабПроцентов) + "%</span>"
+		+ "<a onclick=""zoomIn()"" class=""zoom-btn"" title=""Увеличить"">+</a>"
+		+ "</div>"
+		+ "</div>";
 	
-	HTML = HTML + "<div id=""sc""><div class=""racking"">"
-		+ "<div class=""racking-title"">Стеллаж: " + Строка(СтеллажДанные.Наименование)
-		+ " (" + Формат(СтеллажДанные.КодПолный, "ЧН=0; ЧГ=0") + ")</div>"
-			+ "<div>Загрузка: <span style=""font-weight:bold"">%%PCT%%% (св. %%FREE%%)</span></div>";
+	HTML = HTML + "<div id=""sc""><div class=""racking"">";
 	
 	// === Этажи (сверху вниз) ===
 	НомераЭтажейСписок = Новый СписокЗначений;
@@ -3005,19 +3319,22 @@
 			КонецЦикла;
 			
 			ШиринаЯчейкиМм_Расч = ?(КоличествоАдресов > 0, ШиринаСекцииМм / КоличествоАдресов, ШиринаСекцииМм);
-			
+
+			//+Лико m.shenderov 07.07.2026 — сбор позиций паллет в мм для зазоров
+			ПозицииПаллетВСекции = Новый Массив; // {ЛевоМм, ПравоМм}
+
 			Для ИА = 0 По КоличествоАдресов - 1 Цикл
 				ДанныеПалл = КартаАдресов.Получить(Адреса[ИА]);
 				Если ДанныеПалл = Неопределено Тогда
 					Продолжить;
 				КонецЕсли;
-				
+
 				ПараметрыП2 = ПараметрыПаллетКэш.Получить(ДанныеПалл.ПаллетСсылка);
 				ШиринаПалл = 0;
 				Если ПараметрыП2 <> Неопределено Тогда
 					ШиринаПалл = ПараметрыП2.Ширина;
 				КонецЕсли;
-				
+
 				// Левая граница паллета в мм от левого края секции
 				Если КоличествоАдресов = 1 Тогда
 					ЛевыйПалл = (ШиринаСекцииМм - ШиринаПалл) / 2;
@@ -3029,6 +3346,9 @@
 					ЛевыйПалл = (ШиринаСекцииМм - ШиринаПалл) / 2;
 				КонецЕсли;
 				ПравыйПалл = ЛевыйПалл + ШиринаПалл;
+
+				//+Лико m.shenderov 07.07.2026 — сохранить позицию для зазоров
+				ПозицииПаллетВСекции.Добавить(Новый Структура("ЛевоМм, ПравоМм", ЛевыйПалл, ПравыйПалл));
 				
 				// Отмечаем соседние ячейки, которые перекрывает этот паллет
 				Для ИА2 = 0 По КоличествоАдресов - 1 Цикл
@@ -3204,24 +3524,7 @@
 						+ Формат(ГлубинаПаллетаМм, "ЧН=0; ЧГ=0")
 						+ "</div></div>";
 					
-					// Свободное пространство — сохраняем для вывода в section
-					Если КоличествоАдресов = 1 Тогда
-						// Центральное размещение — свободно с обеих сторон
-						РасстЛевоСтр = Формат(Окр((ШиринаСекцииМм - ШиринаПаллетаМм) / 2, 0), "ЧН=0; ЧГ=0");
-						РасстПравоСтр = РасстЛевоСтр;
-					ИначеЕсли ИндексАдреса = 0 Тогда
-						// Левый — свободно только справа
-						РасстЛевоСтр = "";
-						РасстПравоСтр = Формат(Окр(ШиринаСекцииМм - ШиринаПаллетаМм, 0), "ЧН=0; ЧГ=0");
-					ИначеЕсли ИндексАдреса = КоличествоАдресов - 1 Тогда
-						// Правый — свободно только слева
-						РасстЛевоСтр = Формат(Окр(ШиринаСекцииМм - ШиринаПаллетаМм, 0), "ЧН=0; ЧГ=0");
-						РасстПравоСтр = "";
-					Иначе
-						// Средний (3 адреса) — свободно с обеих сторон
-						РасстЛевоСтр = Формат(Окр((ШиринаСекцииМм - ШиринаПаллетаМм) / 2, 0), "ЧН=0; ЧГ=0");
-						РасстПравоСтр = РасстЛевоСтр;
-					КонецЕсли;
+					//+Лико m.shenderov 07.07.2026 — зазоры теперь через ПозицииПаллетВСекции (ниже)
 				КонецЕсли;
 				
 				HTML = HTML + "</div>"; // конец cell
@@ -3231,10 +3534,10 @@
 			
 			// Свободное пространство — два блока от краёв паллета
 			Если РасстЛевоСтр <> "" Тогда
-				HTML = HTML + "<div class=""free-space-left"">← " + РасстЛевоСтр + " мм</div>";
+				HTML = HTML + "<div class=""free-space-left"">" + РасстЛевоСтр + " мм</div>";
 			КонецЕсли;
 			Если РасстПравоСтр <> "" Тогда
-				HTML = HTML + "<div class=""free-space-right"">" + РасстПравоСтр + " мм →</div>";
+				HTML = HTML + "<div class=""free-space-right"">" + РасстПравоСтр + " мм</div>";
 			КонецЕсли;
 			
 			// Остаточный вес (если есть грузоподъемность)
@@ -3374,7 +3677,7 @@
 					ГУИДПЗоны = Строка(ДанныеПЗ.ПаллетСсылка.УникальныйИдентификатор());
 					ПаллетDblClick = " ondblclick=""openItem(event,'pallet','" + ГУИДПЗоны + "')""";
 					HTML = HTML + "<div class=""pallet " + КлассПЗ + """" + ПаллетDblClick
-						+ " style=""position:relative;width:100%;height:" + Формат(ВысотаПЗ, "ЧН=0; ЧГ=0") + "px;margin-bottom:2px;"">"
+						+ " style=""position:relative;width:100%;height:" + ФорматЧислоHTML(ВысотаПЗ) + "px;margin-bottom:2px;"">"
 						+ "<div class=""pallet-label"">П" + НомерП + СтатусЗ + "</div>"
 						+ "</div>";
 				КонецЦикла;
@@ -6057,9 +6360,10 @@
 			"Подбирает ячейки для размещения паллета в порядке приоритета. "
 		+ "ОДИН ВЫЗОВ НА ВОПРОС. Если параллельно с другими инструментами — limit=3. "
 		+ "Без фильтров возвращает до 20 лучших кандидатов. "
-		+ "Приоритеты (подробно в system prompt): ширина прохода → лимит веса → "
-		+ "best-fit высота → плотность упаковки (потенциал) → best-fit вес ячейки → "
-		+ "грузоподъёмность → остаток ширины → остаток веса → уровень доступа → время доступа. Выводит: ДельтаГрузоподъемности, ВесПаллета, ГрузоподъемностьСекции, ОстатокВесЯчейка, ОстатокВес, МаксВесПодъёмаНаЭтаж, МинГлубинаНеОграничена, Узкопроходный, НеОграниченаПоГрузоподъемности.");
+		+ "Приоритеты (подробно в system prompt): узкопроходные стеллажи → ограничение глубины → "
+		+ "потенциал итого (мин по ширине и весу) → best-fit высота → best-fit грузоподъёмность → "
+		+ "потенциал по ширине → потенциал по весу → best-fit вес ячейки → ёмкость секции → "
+		+ "остаток ширины → остаток веса → уровень доступа → время доступа. Выводит: ДельтаГрузоподъемности, ВесПаллета, ГрузоподъемностьСекции, ОстатокВесЯчейка, ОстатокВес, МаксВесПодъёмаНаЭтаж, МинГлубинаНеОграничена, Узкопроходный, НеОграниченаПоГрузоподъемности, ПотенциалИтого, ПотенциалПоВесу.");
 	ДобавитьПараметр(Инструмент, "pallet", "string", "Код паллета, например 65");
 		ДобавитьПараметрМассив(Инструмент, "rack",    "string", "Стеллаж (опционально)", Ложь);
 		ДобавитьПараметр(Инструмент, "floor",   "integer", "Этаж (опционально)", Ложь);
@@ -6875,12 +7179,17 @@
 	// Шапка документа
 	ИтогHTML = "<!DOCTYPE html><html><head><meta charset=""utf-8"">"
 		+ "<style>"
-			+ "body{font-family:Arial,sans-serif;margin:10px;font-size:12px;background:#fff;scrollbar-width:thin;overflow:auto;}"
-			+ ".scale-container{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;}"
-			+ ".scale-container input[type=range]{width:150px;}"
-			+ ".zoom-btn{display:inline-block;width:24px;height:24px;line-height:22px;text-align:center;font-size:16px;font-weight:bold;color:#333;background:#e0e0e0;border:1px solid #aaa;border-radius:3px;text-decoration:none;margin:0 4px;cursor:pointer;vertical-align:middle;}"
-			+ ".zoom-btn:hover{background:#ccc;border-color:#666;}"
-			+ ".scale-val{font-weight:bold;min-width:40px;}"
+			+ "body{font-family:Arial,sans-serif;margin:10px;padding-top:36px;font-size:12px;background:#fff;scrollbar-width:thin;overflow:auto;}"
+			+ ".scale-container{display:flex;align-items:center;gap:8px;font-size:12px;position:fixed;top:0;left:0;right:140px;z-index:99;background:#fff;padding:4px 10px;border-bottom:1px solid #ccc;}"
+			+ ".scale-controls{display:flex;align-items:center;gap:6px;flex:0 0 auto;max-width:33%;min-width:0;overflow:hidden;}"
+			+ ".sc-rack{font-weight:bold;color:#333;white-space:nowrap;flex:1;min-width:0;text-align:left;padding-right:8px;overflow:hidden;text-overflow:ellipsis;}"
+			+ ".sc-sep{display:none;}"
+			+ ".zoom-btn{display:inline-block;width:28px;height:32px;line-height:30px;text-align:center;font-size:18px;font-weight:bold;color:#3a2010;background:linear-gradient(180deg,#e8c98a 0%,#d4a56a 40%,#b8863e 100%);border:1px solid #8b6914;border-radius:4px;text-decoration:none;cursor:pointer;vertical-align:middle;box-shadow:0 1px 0 #f0d8a0 inset,0 -1px 2px rgba(0,0,0,0.15);}"
+			+ ".zoom-btn:hover{background:linear-gradient(180deg,#f0d8a0 0%,#ddb57a 40%,#c49454 100%);}"
+			+ ".zoom-btn:active{box-shadow:0 -1px 0 #f0d8a0 inset,0 1px 2px rgba(0,0,0,0.2);}"
+			+ ".sc-ruler-wrap{display:flex;flex:1;min-width:0;align-items:center;}"
+			+ ".sc-ruler-wrap input[type=range]{width:100%;margin:0;display:block;}"
+			+ ".scale-val{font-weight:bold;min-width:36px;color:#333;font-size:12px;}"
 			+ ".racking{margin-bottom:25px;}"
 			+ ".racking-title{font-size:16px;font-weight:bold;margin-bottom:5px;}"
 			+ ".floor{margin-bottom:0;display:flex;align-items:stretch;}"
@@ -6892,10 +7201,15 @@
 			+ ".floor-load-line2{font-size:6px;white-space:nowrap;}"
 			+ ".height-info{position:absolute;left:0;top:50%;transform:translateY(-50%) rotate(180deg);width:100%;font-size:7px;color:#00c;font-weight:bold;writing-mode:vertical-rl;text-orientation:mixed;white-space:nowrap;z-index:10;display:flex;align-items:center;justify-content:center;}"
 			+ ".floor-content{flex:1;}"
-			+ ".floor-width{font-size:10px;color:#333;text-align:center;margin-top:2px;font-weight:bold;}"
-			+ ".sections-row{display:flex;align-items:stretch;border:2px solid #444;min-height:40px;width:max-content;overflow:visible;}"
-			+ ".section{position:relative;box-sizing:border-box;flex:0 0 auto;display:flex;flex-direction:column;justify-content:flex-end;border-right:1px solid #aaa;overflow:visible;}"
-			+ ".section:last-child{border-right:none;}"
+			+ ".floor-width{font-size:10px;color:#333;text-align:center;margin-top:2px;font-weight:bold;display:flex;}"
+			+ ".sections-row{display:flex;align-items:stretch;border:2px solid #444;width:max-content;overflow:visible;}"
+			+ ".rack-post{width:2px;background:#1a4fb4;flex-shrink:0;box-sizing:border-box;}"
+			+ ".section{position:relative;box-sizing:border-box;flex:0 0 auto;display:flex;flex-direction:column;overflow:visible;}"
+			+ ".section-header{flex:0 0 auto;display:flex;flex-direction:column;overflow:hidden;background:#fff;border-bottom:1px solid #ccc;line-height:1;}"
+			+ ".section-header-name{display:flex;justify-content:space-between;align-items:center;font-size:7px;font-weight:bold;color:#000;white-space:nowrap;overflow:hidden;padding:0 2px;}"
+			+ ".section-header-cells{display:flex;width:100%;}"
+			+ ".section-header-cells>div{flex:1;text-align:center;font-size:5px;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 1px;border-left:1px solid #ccc;line-height:1;}"
+			+ ".section-header-cells>div:first-child{border-left:none;}"
 			+ ".section-empty{background:rgba(200,230,200,0.3);}"
 			+ ".section-restricted{background:rgba(230,200,200,0.35);}"
 			+ ".section-restricted .cell{background:rgba(230,180,180,0.45);}"
@@ -6904,8 +7218,11 @@
 			+ ".weight-remaining{position:absolute;top:22px;left:0;right:0;text-align:center;font-size:8px;color:#000;font-weight:bold;z-index:1;}"
 			+ ".free-space-left{position:absolute;bottom:16px;left:0;font-size:8px;color:#090;font-weight:bold;z-index:4;white-space:nowrap;background:rgba(255,255,255,0.85);padding:0 2px;}"
 			+ ".free-space-right{position:absolute;bottom:16px;right:0;font-size:8px;color:#00c;font-weight:bold;z-index:4;white-space:nowrap;background:rgba(255,255,255,0.85);padding:0 2px;text-align:right;}"
-			+ ".cells-container{display:flex;width:100%;height:100%;align-items:stretch;}"
-			+ ".cell{flex:1;position:relative;border-left:1px dashed #ccc;display:flex;flex-direction:column;justify-content:flex-end;}"
+			+ ".gap{position:absolute;bottom:0;box-sizing:border-box;background:repeating-linear-gradient(135deg,rgba(200,200,200,0.25) 0px,rgba(200,200,200,0.25) 2px,transparent 2px,transparent 5px);z-index:1;pointer-events:none;}"
+			+ ".gap-label{position:absolute;bottom:2px;left:2px;right:2px;display:flex;flex-direction:column;align-items:center;font-size:7px;color:#333;font-weight:bold;white-space:nowrap;z-index:5;pointer-events:none;line-height:1.1;}"
+			+ ".gap-label .gl-txt{}"
+			+ ".cells-container{display:flex;width:100%;flex:1;align-items:stretch;}"
+			+ ".cell{flex:1;position:relative;border-left:1px dashed #ccc;display:flex;flex-direction:column;justify-content:flex-end;min-height:0;}"
 			+ ".cell:first-child{border-left:none;}"
 			+ ".cell-free{background:rgba(180,230,180,0.45);}"
 			+ ".cell-free:hover{background:rgba(100,200,100,0.55);outline:2px solid #2a9a2a;outline-offset:-2px;cursor:pointer;z-index:5;}"
@@ -6913,6 +7230,9 @@
 			+ ".cell-filter-number{position:absolute;top:22px;left:2px;right:2px;bottom:2px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:bold;color:rgba(0,80,0,0.18);z-index:0;pointer-events:none;overflow:hidden;line-height:1;}"
 			+ ".pallet{position:absolute;bottom:0;box-sizing:border-box;overflow:visible;z-index:2;cursor:pointer;}"
 			+ ".pallet:hover{outline:2px solid #ff6600;outline-offset:-2px;z-index:6;box-shadow:inset 0 0 8px rgba(255,100,0,0.45);}"
+			+ ".pallet-tooltip{display:none;position:fixed;background:rgba(26,79,180,0.94);color:#fff;font-size:9px;font-weight:bold;padding:4px 8px;white-space:pre-line;text-align:center;z-index:200;pointer-events:none;border-radius:8px;line-height:1.3;box-shadow:0 2px 8px rgba(0,0,0,0.25);}"
+			+ ".pallet-tooltip::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid rgba(26,79,180,0.94);}"
+			+ ".pallet:hover .pallet-tooltip{display:block;}"
 			+ ".pallet-occupied{background:rgba(255,255,200,0.7);border:2px solid #888;}"
 			+ ".pallet-reserved{background:rgba(255,255,220,0.5);border:2px dashed #888;}"
 			+ ".pallet-virtual{background:rgba(255,165,0,0.6);border:2px solid #e67300;}"
@@ -6939,7 +7259,7 @@
 			+ ".pallet-summary .color-dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:3px;vertical-align:middle;}"
 			+ ".layout{display:flex;height:100vh;overflow:hidden;}"
 			+ ".content{flex:1;overflow-x:scroll;overflow-y:auto;margin-right:140px;}"
-			+ ".sidebar{position:fixed;right:0;top:0;height:100vh;width:auto;min-width:0;background:#e8e8e8;border-left:2px solid #bbb;padding:4px 6px;overflow-y:auto;z-index:100;}"
+			+ ".sidebar{position:fixed;right:0;top:0;height:100vh;width:auto;min-width:0;background:#e8e8e8;border-left:2px solid #bbb;padding:4px 6px;overflow-y:auto;z-index:101;}"
 				+ ".shelf-link{display:flex;align-items:center;gap:5px;padding:3px 6px;margin:2px 0;border:1px solid #bbb;border-radius:3px;font-size:11px;text-decoration:none;color:#222;background:#f0f0f0;white-space:nowrap;}"
 			+ ".shelf-link:hover{background:#e0e0e0;filter:none;}"
 			+ ".shelf-link.active{background:#d8d8d8;border:2px solid #555;font-weight:bold;}"
@@ -6954,6 +7274,18 @@
 	Индекс = 0;
 	Пока ВыборкаСтл2.Следующий() Цикл
 		РендерЗагрузкиСтеллажаНаСервере(ВыборкаСтл2.Ссылка);
+		// Добавить чертёж SVG
+		ДанныеЭтСохр = ПолучитьДанныеЭтажейРасширенные(ВыборкаСтл2.Ссылка);
+		Если ДанныеЭтСохр.ДанныеЭтажейРасширенные.Количество() > 0 Тогда
+			СтлДанные = ОбщегоНазначения.ЗначенияРеквизитовОбъекта(ВыборкаСтл2.Ссылка, "Наименование, КодПолный");
+			КоэфМасш = МасштабМм;
+			Если КоэфМасш <= 0 Тогда КоэфМасш = 0.05; КонецЕсли;
+			СвгЧертеж = СформироватьЧертежСтеллажаSVG(ДанныеЭтСохр.ДанныеЭтажейРасширенные, КоэфМасш, СтлДанные);
+			ПозСвг = СтрНайти(html, "</body>");
+			Если ПозСвг > 0 Тогда
+				html = Лев(html, ПозСвг - 1) + СвгЧертеж + Сред(html, ПозСвг);
+			КонецЕсли;
+		КонецЕсли;
 		ТекHTML = html;
 		// Извлечь body content
 		ПозB = СтрНайти(ТекHTML, "<body>");
@@ -7064,19 +7396,21 @@
 
 		ИтогHTML = ИтогHTML + "<script>"
 			+ "var _zs_cur=100;"
-				+ "function applyScale(v){_zs_cur=parseInt(v);try{localStorage.setItem('zs_scale',_zs_cur);}catch(e){}var el=document.getElementById('active-sc');if(el){el.style.transform='scale('+_zs_cur/100+')';el.style.transformOrigin='top left';}var sv=document.getElementById('sv');if(sv)sv.textContent=_zs_cur+'%';var rr=document.querySelectorAll('#zs_range');for(var i=0;i<rr.length;i++)rr[i].value=_zs_cur;updateScrollGhost();var ps=el?el.nextElementSibling:null;if(ps&&ps.id==='post-sc')ps.style.marginTop=Math.max(0,el.offsetHeight*(_zs_cur/100-1))+""px"";}"
+				+ "function applyScale(v){_zs_cur=parseInt(v);try{localStorage.setItem('zs_scale',_zs_cur);}catch(e){}var ratio=_zs_cur/100;var el=document.getElementById('active-sc');if(!el)return;var natH=el.scrollHeight;el.style.transform='scale('+ratio+')';el.style.transformOrigin='top left';el.style.marginBottom=(natH*(ratio-1))+'px';if(!el._obw){el._obw={};var els=el.querySelectorAll('.pallet-occupied,.pallet-reserved,.pallet-virtual,.sections-row,.cell,.cell-free,.section-header');for(var i=0;i<els.length;i++){var c=getComputedStyle(els[i]);el._obw[i]={el:els[i],bt:parseFloat(c.borderTopWidth)||0,bb:parseFloat(c.borderBottomWidth)||0,bl:parseFloat(c.borderLeftWidth)||0,br:parseFloat(c.borderRightWidth)||0};}}var obw=el._obw;for(var k in obw){var o=obw[k];if(o.bt>0)o.el.style.borderTopWidth=(o.bt/ratio)+'px';if(o.bb>0)o.el.style.borderBottomWidth=(o.bb/ratio)+'px';if(o.bl>0)o.el.style.borderLeftWidth=(o.bl/ratio)+'px';if(o.br>0)o.el.style.borderRightWidth=(o.br/ratio)+'px';}var posts=el.querySelectorAll('.rack-post');for(var pi=0;pi<posts.length;pi++)posts[pi].style.width=(2/ratio)+'px';var plbls=el.querySelectorAll('.pallet-label');for(var i=0;i<plbls.length;i++)plbls[i].style.fontSize=(9/ratio)+'px';var psizes=el.querySelectorAll('.pallet-size');for(var i=0;i<psizes.length;i++)psizes[i].style.fontSize=(8/ratio)+'px';var fs=Math.min(14,Math.max(8,8+6*(ratio-0.2)/0.8));var lbls=el.querySelectorAll('.cell-name,.section-name');for(var li=0;li<lbls.length;li++)lbls[li].style.fontSize=fs+'px';var glbls=el.querySelectorAll('.gap-label');for(var gi=0;gi<glbls.length;gi++)glbls[gi].style.fontSize=(7/ratio)+'px';var fws=el.querySelectorAll('.floor-width div[data-bw]');for(var fi=0;fi<fws.length;fi++)fws[fi].style.fontSize=(10/ratio)+'px';var sv=document.getElementById('sv');if(sv)sv.textContent=_zs_cur+'%';var rr=document.querySelectorAll('#zs_range');for(var i=0;i<rr.length;i++)rr[i].value=_zs_cur;updateScrollGhost();}"
+			+ "var _tipEl=null;function showTip(e,txt){if(!_tipEl){_tipEl=document.createElement('div');_tipEl.className='pallet-tooltip';document.body.appendChild(_tipEl);}_tipEl.textContent=txt;_tipEl.style.display='block';var r=e.target.getBoundingClientRect();var tw=_tipEl.offsetWidth;var th=_tipEl.offsetHeight;_tipEl.style.left=(r.left+r.width/2-tw/2)+'px';_tipEl.style.top=(r.top-th-6)+'px';}"
+			+ "function hideTip(){if(_tipEl)_tipEl.style.display='none';}"
 			+ "function switchShelf(code){"
 			+ "var p=document.querySelectorAll('.shelf-page');for(var i=0;i<p.length;i++){p[i].style.display='none';}"
 			+ "var el=document.getElementById('s_'+code);if(el)el.style.display='block';"
 			+ "var l=document.querySelectorAll('.shelf-link');for(var i=0;i<l.length;i++){l[i].classList.remove('active');}"
 			+ "var la=document.getElementById('lnk_'+code);if(la)la.classList.add('active');"
-			+ "var prevSc=document.getElementById('active-sc');if(prevSc)prevSc.id='sc';var sc=el?el.querySelector('#sc'):null;if(sc){sc.id='active-sc';applyScale(_zs_cur);}}"
-			+ "function zoomIn(){applyScale(Math.min(300,_zs_cur+10));}"
-			+ "function zoomOut(){applyScale(Math.max(20,_zs_cur-10));}"
+			+ "var prevSc=document.getElementById('active-sc');if(prevSc)prevSc.id='sc';var sc=el?el.querySelector('#sc'):null;if(sc){sc.id='active-sc';var r0=sc.querySelector('#zs_range');if(r0)r0.value=_zs_cur;applyScale(_zs_cur);}}"
+			+ "function zoomIn(){var v=Math.min(1000,_zs_cur+10);_zs_cur=v;applyScale(v);}"
+			+ "function zoomOut(){var v=Math.max(0,_zs_cur-10);_zs_cur=v;applyScale(v);}"
 			+ "function openItem(e,type,guid){if(e&&e.stopPropagation)e.stopPropagation();return false;}"
 			+ "function sortTable(th,c){var t=th;while(t&&t.tagName!='TABLE')t=t.parentNode;if(!t)return;var b=t.tBodies[0];var r=[],i;for(i=0;i<b.rows.length;i++)r.push(b.rows[i]);var d=t.getAttribute('data-sort-dir')=='asc'?'desc':'asc';t.setAttribute('data-sort-dir',d);r.sort(function(a,b){var an=parseFloat(a.cells[c].textContent),bn=parseFloat(b.cells[c].textContent);if(!isNaN(an)&&!isNaN(bn))return d=='asc'?an-bn:bn-an;return d=='asc'?a.cells[c].textContent.localeCompare(b.cells[c].textContent,'ru'):b.cells[c].textContent.localeCompare(a.cells[c].textContent,'ru');});for(i=0;i<r.length;i++)b.appendChild(r[i]);for(i=0;i<b.rows.length;i++)b.rows[i].cells[0].textContent=i+1;}"
 			+ "var zl=document.querySelectorAll('a[href*=""zagsklad://zoom""]');for(var i=0;i<zl.length;i++){if(zl[i].href.indexOf('zoom/in')>0)zl[i].onclick=function(){zoomIn();return false;};else zl[i].onclick=function(){zoomOut();return false;};zl[i].removeAttribute('href');}"
-			+ "var _sv=null;try{_sv=localStorage.getItem('zs_scale');}catch(e){}if(_sv){var _vi=parseInt(_sv,10);if(_vi>=20&&_vi<=300)_zs_cur=_vi;}var scEl=document.getElementById('sc');if(scEl){scEl.id='active-sc';var r0=scEl.querySelector('#zs_range');if(r0)r0.value=_zs_cur;}var fp=document.querySelector('.shelf-page');if(fp){fp.style.display='block';var fsc=fp.querySelector('#sc');if(fsc)fsc.id='active-sc';}applyScale(_zs_cur);";
+			+ "var _sv=null;try{_sv=localStorage.getItem('zs_scale');}catch(e){}if(_sv){var _vi=parseInt(_sv,10);if(_vi>=0&&_vi<=1000)_zs_cur=_vi;}var scEl=document.getElementById('sc');if(scEl){scEl.id='active-sc';var r0=scEl.querySelector('#zs_range');if(r0)r0.value=_zs_cur;}var fp=document.querySelector('.shelf-page');if(fp){fp.style.display='block';var fsc=fp.querySelector('#sc');if(fsc)fsc.id='active-sc';}applyScale(_zs_cur);";
 			ИтогHTML = ИтогHTML + "function updateScrollGhost(){var c=document.querySelector('.content');var g=document.getElementById('scroll-ghost');if(!c||!g)return;var s=document.getElementById('active-sc');var w=s?s.scrollWidth*(_zs_cur/100):c.scrollWidth;g.style.width=w+'px';}";
 			ИтогHTML = ИтогHTML + "function initStickyScrollbar(){var c=document.querySelector('.content');if(!c)return;var b=document.createElement('div');b.id='sticky-scrollbar';var g=document.createElement('div');g.id='scroll-ghost';b.appendChild(g);document.body.appendChild(b);var sync=false;b.addEventListener('scroll',function(){if(sync)return;sync=true;c.scrollLeft=b.scrollLeft;sync=false;});c.addEventListener('scroll',function(){if(sync)return;sync=true;b.scrollLeft=c.scrollLeft;sync=false;});c.style.paddingBottom='16px';updateScrollGhost();window.addEventListener('resize',updateScrollGhost);}";
 			ИтогHTML = ИтогHTML + "initStickyScrollbar();";
