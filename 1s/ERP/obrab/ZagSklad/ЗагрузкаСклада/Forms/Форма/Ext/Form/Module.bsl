@@ -139,6 +139,17 @@
 	ОткрытьФорму(ПутьФормы, ПараметрыФормы, ЭтаФорма,,,,,РежимОткрытияОкнаФормы.БлокироватьОкноВладельца);
 КонецПроцедуры
 
+&НаКлиенте
+Процедура htmlОбработкаСобытия(ИмяСобытия, Параметры)
+	//+Лико m.shenderov 15.07.2026 — обработка window.external.ОбработкаСобытия из JS
+	Если ИмяСобытия = "Move" Тогда
+		Части = СтрРазделить(Параметры, "|");
+		Если Части.Количество() >= 2 Тогда
+			ПереместитьПаллетНаСервере(Части[0], Части[1]);
+		КонецЕсли;
+	КонецЕсли;
+КонецПроцедуры
+
 #КонецОбласти
 
 #Область ОбработчикиКомандФормы
@@ -1942,7 +1953,7 @@
 		+ "var _dragPalletGuid=null,_dragClone=null,_dragOverEl=null;"
 		+ "function startDrag(e){if(e.button!==0)return;var g=this.getAttribute('data-pallet-guid');if(!g)return;_dragPalletGuid=g;var lb=this.querySelector('.pallet-label');var lt=lb?lb.textContent:'?';_dragClone=document.createElement('div');_dragClone.className='drag-clone';_dragClone.textContent=lt;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';document.body.appendChild(_dragClone);this.style.opacity='0.3';if(this.setCapture)this.setCapture();e.preventDefault();}"
 		+ "function onDragMove(e){if(!_dragClone)return;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';_dragClone.style.display='none';var el=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';var ce=_closest(el,'.cell-free');var ze=_closest(el,'.zone-box');if(_dragOverEl&&_dragOverEl!==ce&&_dragOverEl!==ze){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}if(ce&&ce!==_dragOverEl){_dragOverEl=ce;_dragOverEl.classList.add('drag-over');}else if(ze&&ze!==_dragOverEl){_dragOverEl=ze;_dragOverEl.classList.add('drag-over');}}"
-		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){var pg=_dragPalletGuid;var cg2=cg;setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://move/'+pg+'/'+cg2;a.click();},300);}_dragPalletGuid=null;}"
+		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){window.external.ОбработкаСобытия('Move',_dragPalletGuid+'|'+cg);}_dragPalletGuid=null;}"
 		+ "document.addEventListener('mousemove',onDragMove);document.addEventListener('mouseup',onDragEnd);"
 	+ "</script>"
 	+ "</head><body onselectstart=""return false"">";
@@ -3221,7 +3232,7 @@
 		+ "var _dragPalletGuid=null,_dragClone=null,_dragOverEl=null;"
 		+ "function startDrag(e){if(e.button!==0)return;var g=this.getAttribute('data-pallet-guid');if(!g)return;_dragPalletGuid=g;var lb=this.querySelector('.pallet-label');var lt=lb?lb.textContent:'?';_dragClone=document.createElement('div');_dragClone.className='drag-clone';_dragClone.textContent=lt;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';document.body.appendChild(_dragClone);this.style.opacity='0.3';if(this.setCapture)this.setCapture();e.preventDefault();}"
 		+ "function onDragMove(e){if(!_dragClone)return;_dragClone.style.left=e.clientX+'px';_dragClone.style.top=e.clientY+'px';_dragClone.style.display='none';var el=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';var ce=_closest(el,'.cell-free');var ze=_closest(el,'.zone-box');if(_dragOverEl&&_dragOverEl!==ce&&_dragOverEl!==ze){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}if(ce&&ce!==_dragOverEl){_dragOverEl=ce;_dragOverEl.classList.add('drag-over');}else if(ze&&ze!==_dragOverEl){_dragOverEl=ze;_dragOverEl.classList.add('drag-over');}}"
-		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){var pg=_dragPalletGuid;var cg2=cg;setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://move/'+pg+'/'+cg2;a.click();},300);}_dragPalletGuid=null;}"
+		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){window.external.ОбработкаСобытия('Move',_dragPalletGuid+'|'+cg);}_dragPalletGuid=null;}"
 		+ "document.addEventListener('mousemove',onDragMove);document.addEventListener('mouseup',onDragEnd);"
 		+ "</script>"
 		+ "</head><body onselectstart=""return false"">";
