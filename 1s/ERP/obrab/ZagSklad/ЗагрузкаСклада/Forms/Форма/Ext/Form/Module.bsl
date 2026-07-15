@@ -83,7 +83,26 @@
 	// В HTML элементам с dblclick назначен data-атрибут data-zs-href="zagsklad://type/guid"
 	// При дабл-клике JS вызывает openItem(), который устанавливает <a id="_zs_nav_" href="..."> и кликает по нему
 	// OnClick в 1С возвращает href кликнутой ссылки в ДанныеСобытия.href
-	
+
+	//+Лико m.shenderov 15.07.2026 — bridge для drag&drop (ТЗ)
+	Если ДанныеСобытия.Anchor <> Неопределено Тогда
+		Попытка
+			ТекстJSON = ДанныеСобытия.Anchor.getAttribute("data-payload");
+			Если ЗначениеЗаполнено(ТекстJSON) Тогда
+				СтандартнаяОбработка = Ложь;
+				ЧтениеJSON = Новый ЧтениеJSON;
+				ЧтениеJSON.УстановитьСтроку(ТекстJSON);
+				Данные = ПрочитатьJSON(ЧтениеJSON);
+				Если Данные.type = "dragdrop" Тогда
+					ПереместитьПаллетНаСервере(Данные.from, Данные.to);
+					Возврат;
+				КонецЕсли;
+			КонецЕсли;
+		Исключение
+			// Не JSON или не наш payload — игнорируем
+		КонецПопытки;
+	КонецЕсли;
+
 	Ссылка = "";
 	Если ДанныеСобытия.Свойство("href") И ЗначениеЗаполнено(ДанныеСобытия.href) Тогда
 		Ссылка = СокрЛП(ДанныеСобытия.href);
@@ -1950,12 +1969,13 @@
 	+ "function sortTable(th,c){var t=th;while(t&&t.tagName!='TABLE')t=t.parentNode;if(!t)return;var b=t.tBodies[0];var r=[],i;for(i=0;i<b.rows.length;i++)r.push(b.rows[i]);var d=t.getAttribute('data-sort-dir')=='asc'?'desc':'asc';t.setAttribute('data-sort-dir',d);r.sort(function(a,b){var an=parseFloat(a.cells[c].textContent),bn=parseFloat(b.cells[c].textContent);if(!isNaN(an)&&!isNaN(bn))return d=='asc'?an-bn:bn-an;return d=='asc'?a.cells[c].textContent.localeCompare(b.cells[c].textContent,'ru'):b.cells[c].textContent.localeCompare(a.cells[c].textContent,'ru');});for(i=0;i<r.length;i++)b.appendChild(r[i]);for(i=0;i<b.rows.length;i++)b.rows[i].cells[0].textContent=i+1;}"
 		+ "document.onselectstart=function(){return false;};"
 		+ "function allowDrop(ev){ev.preventDefault();}"
-		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text',g);ev.dataTransfer.effectAllowed='move';}"
+		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text/plain',g);ev.dataTransfer.effectAllowed='move';}"
 		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';this.classList.add('drag-over');}"
 		+ "function dragLeaveCell(ev){this.classList.remove('drag-over');}"
-		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text');var cg=this.getAttribute('data-cell-guid');zoomIn();if(pg&&cg)window.external.ОбработкаСобытия('Move',pg+'|'+cg);}"
+		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text/plain');var cg=this.getAttribute('data-cell-guid');var a=document.getElementById('bridge');a.setAttribute('data-payload',JSON.stringify({type:'dragdrop',from:pg,to:cg}));a.click()('Move',pg+'|'+cg);}"
 		+ "</script>"
-	+ "</head><body onselectstart=""return false"">";
+	+ "</head><body onselectstart=""return false"">"
+	+ "<a id=""bridge"" href=""javascript:void(0)"" style=""display:none""></a>";
 	
 	// Заголовок
 	РезультатHtml = РезультатHtml + "<div class=""scale-container"">"
@@ -3228,12 +3248,13 @@
 				+ "function sortTable(th,c){var t=th;while(t&&t.tagName!='TABLE')t=t.parentNode;if(!t)return;var b=t.tBodies[0];var r=[],i;for(i=0;i<b.rows.length;i++)r.push(b.rows[i]);var d=t.getAttribute('data-sort-dir')=='asc'?'desc':'asc';t.setAttribute('data-sort-dir',d);r.sort(function(a,b){var an=parseFloat(a.cells[c].textContent),bn=parseFloat(b.cells[c].textContent);if(!isNaN(an)&&!isNaN(bn))return d=='asc'?an-bn:bn-an;return d=='asc'?a.cells[c].textContent.localeCompare(b.cells[c].textContent,'ru'):b.cells[c].textContent.localeCompare(a.cells[c].textContent,'ru');});for(i=0;i<r.length;i++)b.appendChild(r[i]);for(i=0;i<b.rows.length;i++)b.rows[i].cells[0].textContent=i+1;}"
 		+ "document.onselectstart=function(){return false;};"
 		+ "function allowDrop(ev){ev.preventDefault();}"
-		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text',g);ev.dataTransfer.effectAllowed='move';}"
+		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text/plain',g);ev.dataTransfer.effectAllowed='move';}"
 		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';this.classList.add('drag-over');}"
 		+ "function dragLeaveCell(ev){this.classList.remove('drag-over');}"
-		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text');var cg=this.getAttribute('data-cell-guid');zoomIn();if(pg&&cg)window.external.ОбработкаСобытия('Move',pg+'|'+cg);}"
+		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text/plain');var cg=this.getAttribute('data-cell-guid');var a=document.getElementById('bridge');a.setAttribute('data-payload',JSON.stringify({type:'dragdrop',from:pg,to:cg}));a.click()('Move',pg+'|'+cg);}"
 		+ "</script>"
-		+ "</head><body onselectstart=""return false"">";
+		+ "</head><body onselectstart=""return false"">"
+	+ "<a id=""bridge"" href=""javascript:void(0)"" style=""display:none""></a>";
 	
 	// Заголовок
 		HTML = HTML + "<div class=""scale-container"">"
