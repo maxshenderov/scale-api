@@ -1945,7 +1945,7 @@
 		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){var pg=_dragPalletGuid;var cg2=cg;setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://move/'+pg+'/'+cg2;a.click();},300);}_dragPalletGuid=null;}"
 		+ "document.addEventListener('mousemove',onDragMove);document.addEventListener('mouseup',onDragEnd);"
 	+ "</script>"
-	+ "</head><body>";
+	+ "</head><body onselectstart=""return false"">";
 	
 	// Заголовок
 	РезультатHtml = РезультатHtml + "<div class=""scale-container"">"
@@ -3224,7 +3224,7 @@
 		+ "function onDragEnd(e){if(_dragOverEl){_dragOverEl.classList.remove('drag-over');_dragOverEl=null;}var te=null;if(_dragClone){_dragClone.style.display='none';te=document.elementFromPoint(e.clientX,e.clientY);_dragClone.style.display='';document.body.removeChild(_dragClone);_dragClone=null;}var ce=_closest(te,'.cell-free');var ze=_closest(te,'.zone-box');var cg=null;if(ce)cg=ce.getAttribute('data-cell-guid');else if(ze)cg=ze.getAttribute('data-cell-guid');if(_dragPalletGuid&&cg){var pg=_dragPalletGuid;var cg2=cg;setTimeout(function(){var a=document.getElementById('_zs_nav_');if(!a){a=document.createElement('a');a.id='_zs_nav_';a.style.display='none';document.body.appendChild(a);}a.href='zagsklad://move/'+pg+'/'+cg2;a.click();},300);}_dragPalletGuid=null;}"
 		+ "document.addEventListener('mousemove',onDragMove);document.addEventListener('mouseup',onDragEnd);"
 		+ "</script>"
-		+ "</head><body>";
+		+ "</head><body onselectstart=""return false"">";
 	
 	// Заголовок
 		HTML = HTML + "<div class=""scale-container"">"
