@@ -1953,7 +1953,7 @@
 		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text',g);ev.dataTransfer.effectAllowed='move';}"
 		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';this.classList.add('drag-over');}"
 		+ "function dragLeaveCell(ev){this.classList.remove('drag-over');}"
-		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text');var cg=this.getAttribute('data-cell-guid');if(pg&&cg)window.external.ОбработкаСобытия('Move',pg+'|'+cg);}"
+		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text');var cg=this.getAttribute('data-cell-guid');zoomIn();if(pg&&cg)window.external.ОбработкаСобытия('Move',pg+'|'+cg);}"
 		+ "</script>"
 	+ "</head><body onselectstart=""return false"">";
 	
@@ -3231,7 +3231,7 @@
 		+ "function dragPallet(ev){var g=ev.target.getAttribute('data-pallet-guid');if(!g)return;ev.dataTransfer.setData('text',g);ev.dataTransfer.effectAllowed='move';}"
 		+ "function dragOverCell(ev){ev.preventDefault();ev.dataTransfer.dropEffect='move';this.classList.add('drag-over');}"
 		+ "function dragLeaveCell(ev){this.classList.remove('drag-over');}"
-		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text');var cg=this.getAttribute('data-cell-guid');if(pg&&cg)window.external.ОбработкаСобытия('Move',pg+'|'+cg);}"
+		+ "function dropOnCell(ev){ev.preventDefault();this.classList.remove('drag-over');var pg=ev.dataTransfer.getData('text');var cg=this.getAttribute('data-cell-guid');zoomIn();if(pg&&cg)window.external.ОбработкаСобытия('Move',pg+'|'+cg);}"
 		+ "</script>"
 		+ "</head><body onselectstart=""return false"">";
 	
