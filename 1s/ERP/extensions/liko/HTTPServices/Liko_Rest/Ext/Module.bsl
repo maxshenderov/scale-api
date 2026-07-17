@@ -14731,6 +14731,53 @@
 КонецФункции //-Лико m.shenderov 06.05.2021 
 
 
+// WMS-прокси — делегируют в Лико_WMS_Сервер
+//+Лико m.shenderov 17.07.2026
+
+Функция WMS_CheckConnection(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_CheckConnection(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_GetWarehouses(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_GetWarehouses(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_GetRacks(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_GetRacks(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_GetOccupancy(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_GetOccupancy(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_GetFloor(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_GetFloor(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_FindCell(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_FindCell(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_PlacePallets(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_PlacePallets(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_ValidatePlacement(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_ValidatePlacement(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_MovePallet(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_MovePallet(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_ExportSnapshot(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_ExportSnapshot(ПараметрыPOST);
+КонецФункции
+
+Функция WMS_GenerateMockData(ПараметрыPOST)
+	Возврат Лико_WMS_Сервер.WMS_GenerateMockData(ПараметрыPOST);
+КонецФункции
+
 
 Функция HttpВернутьТзКакJSON(ТЗ)
 	
