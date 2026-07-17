@@ -1,0 +1,262 @@
+{
+	"info": {
+		"name": "WMS Optimizer — Phase 1",
+		"description": "4A WMS REST API — 3A 1, 10 ProcName (.json_WMS_.json)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost/hs/Liko_Rest",
+			"type": "string"
+		},
+		{
+			"key": "warehouse_id",
+			"value": "00000000-0000-0000-0000-000000000000",
+			"type": "string"
+		},
+		{
+			"key": "pallet_id",
+			"value": "00000000-0000-0000-0000-000000000000",
+			"type": "string"
+		},
+		{
+			"key": "cell_id",
+			"value": "00000000-0000-0000-0000-000000000000",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "WMS_CheckConnection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_CheckConnection\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": "Health-check WMS API. Expected: { ok: true, version: \"1.0.0\", timestamp: \"...\" }"
+			}
+		},
+		{
+			"name": "WMS_GetWarehouses",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_GetWarehouses\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": ".json .json .json. Expected: { warehouses: [{ id, name, code }] }"
+			}
+		},
+		{
+			"name": "WMS_GetRacks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_GetRacks\",\n    \"warehouse\": \"{{warehouse_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": ".json .json .json .json. Expected: { racks: [{ id, name, code, number, narrowAisle, color, floors }] }"
+			}
+		},
+		{
+			"name": "WMS_GetOccupancy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_GetOccupancy\",\n    \"warehouse\": \"{{warehouse_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": ".json .json. Expected: { sections: [...], summary: { totalSections, totalAddresses, occupancyPercent } }"
+			}
+		},
+		{
+			"name": "WMS_GetFloor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_GetFloor\",\n    \"warehouse\": \"{{warehouse_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": ".json  .json/.json .json. Expected: { floorPallets: [{ rack, address, code, pallet }] }"
+			}
+		},
+		{
+			"name": "WMS_FindCell",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_FindCell\",\n    \"warehouse\": \"{{warehouse_id}}\",\n    \"pallet\": \"{{pallet_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": ".json .json (.json=.json). Expected: { candidates: [...], totalCandidates }"
+			}
+		},
+		{
+			"name": "WMS_ValidatePlacement",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_ValidatePlacement\",\n    \"warehouse\": \"{{warehouse_id}}\",\n    \"cell\": \"{{cell_id}}\",\n    \"pallet\": \"{{pallet_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": "Drag-and-drop .json. Expected: { valid: true/false, errors: [{ code, message }] }"
+			}
+		},
+		{
+			"name": "WMS_MovePallet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_MovePallet\",\n    \"warehouse\": \"{{warehouse_id}}\",\n    \"pallet\": \"{{pallet_id}}\",\n    \"targetCell\": \"{{cell_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": ".json  .json_2_0 .json. Expected: { ok: true, document: \"...\", message: \"...\" }"
+			}
+		},
+		{
+			"name": "WMS_ExportSnapshot",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_ExportSnapshot\",\n    \"warehouse\": \"{{warehouse_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": ".json  .json:  + .json + .json. Expected: { exportedAt, warehouse, racks, sections, floorPallets, summary }"
+			}
+		},
+		{
+			"name": "WMS_PlacePallets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_PlacePallets\",\n    \"warehouse\": \"{{warehouse_id}}\",\n    \"pallets\": [\n        { \"id\": \"test-1\", \"width\": 800, \"height\": 1200, \"depth\": 1100, \"weight\": 500 },\n        { \"id\": \"test-2\", \"width\": 750, \"height\": 1200, \"depth\": 1100, \"weight\": 400 }\n    ],\n    \"options\": {\n        \"mode\": \"newOnly\",\n        \"fillExistingFirst\": true\n    }\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": "Greedy .json. Expected: { placements: [...], unplaced: [...], stats: { total, placed, sectionsUsed } }"
+			}
+		},
+		{
+			"name": "WMS_GenerateMockData",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ProcName\": \"WMS_GenerateMockData\",\n    \"racksCount\": 2,\n    \"sectionsPerRack\": 3,\n    \"floorsPerRack\": 2,\n    \"palletCount\": 50\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": ["{{base_url}}"]
+				},
+				"description": ".json .json  .json. Expected: { ok: true, snapshot: { warehouse, racks, sections, summary } }"
+			}
+		}
+	]
+}
