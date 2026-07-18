@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>WMS Phase 1 — Тестер</v8:content>
+		</v8:item>
+	</Title>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
+	<SaveDataInSettings>UseList</SaveDataInSettings>
+	<AutoTitle>false</AutoTitle>
+	<AutoURL>false</AutoURL>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="GroupSettings" id="10">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Настройки подключения</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<ExtendedTooltip name="GroupSettingsРасширеннаяПодсказка" id="11"/>
+			<ChildItems>
+				<InputField name="URL" id="12">
+					<DataPath>URL</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>URL</v8:content>
+						</v8:item>
+					</Title>
+					<Width>60</Width>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="URLКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="URLРасширеннаяПодсказка" id="14"/>
+				</InputField>
+				<InputField name="Login" id="15">
+					<DataPath>Login</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Логин</v8:content>
+						</v8:item>
+					</Title>
+					<Width>15</Width>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="LoginКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="LoginРасширеннаяПодсказка" id="17"/>
+				</InputField>
+				<InputField name="Password" id="18">
+					<DataPath>Password</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Пароль</v8:content>
+						</v8:item>
+					</Title>
+					<Width>12</Width>
+					<PasswordMode>true</PasswordMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="PasswordКонтекстноеМеню" id="19"/>
+					<ExtendedTooltip name="PasswordРасширеннаяПодсказка" id="20"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<InputField name="Склад" id="162">
+			<DataPath>Склад</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="СкладКонтекстноеМеню" id="163"/>
+			<ExtendedTooltip name="СкладРасширеннаяПодсказка" id="164"/>
+		</InputField>
+		<InputField name="Паллет" id="165">
+			<DataPath>Паллет</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ПаллетКонтекстноеМеню" id="166"/>
+			<ExtendedTooltip name="ПаллетРасширеннаяПодсказка" id="167"/>
+		</InputField>
+		<InputField name="Ячейка" id="168">
+			<DataPath>Ячейка</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ЯчейкаКонтекстноеМеню" id="169"/>
+			<ExtendedTooltip name="ЯчейкаРасширеннаяПодсказка" id="170"/>
+		</InputField>
+		<UsualGroup name="GroupWarehouse" id="40">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Склад (GUID)</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<ExtendedTooltip name="GroupWarehouseРасширеннаяПодсказка" id="41"/>
+			<ChildItems>
+				<InputField name="Warehouse" id="24">
+					<DataPath>Warehouse</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>GUID склада</v8:content>
+						</v8:item>
+					</Title>
+					<Width>37</Width>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="WarehouseКонтекстноеМеню" id="22"/>
+					<ExtendedTooltip name="WarehouseРасширеннаяПодсказка" id="23"/>
+				</InputField>
+				<Button name="BtnLoadWh" id="25">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.LoadWarehouses</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Load</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="BtnLoadWhРасширеннаяПодсказка" id="26"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="GroupButtons" id="30">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Функции WMS</v8:content>
+				</v8:item>
+			</Title>
+			<Group>AlwaysHorizontal</Group>
+			<ExtendedTooltip name="GroupButtonsРасширеннаяПодсказка" id="31"/>
+			<ChildItems>
+				<Button name="Btn01" id="101">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.CheckConnection</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Проверка связи (CheckConnection)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn01РасширеннаяПодсказка" id="151"/>
+				</Button>
+				<Button name="Btn02" id="102">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.GetWarehouses</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Список складов (GetWarehouses)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn02РасширеннаяПодсказка" id="152"/>
+				</Button>
+				<Button name="Btn03" id="103">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.GetRacks</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Стеллажи (GetRacks)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn03РасширеннаяПодсказка" id="153"/>
+				</Button>
+				<Button name="Btn04" id="104">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.GetOccupancy</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Занятость (GetOccupancy)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn04РасширеннаяПодсказка" id="154"/>
+				</Button>
+				<Button name="Btn05" id="105">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.GetFloor</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Паллеты на полу (GetFloor)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn05РасширеннаяПодсказка" id="155"/>
+				</Button>
+				<Button name="Btn06" id="106">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.FindCell</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Подобрать ячейку (FindCell)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn06РасширеннаяПодсказка" id="156"/>
+				</Button>
+				<Button name="Btn07" id="107">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.ValidatePlacement</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Проверить ячейку (ValidatePlacement)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn07РасширеннаяПодсказка" id="157"/>
+				</Button>
+				<Button name="Btn08" id="108">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.MovePallet</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Переместить (MovePallet)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn08РасширеннаяПодсказка" id="158"/>
+				</Button>
+				<Button name="Btn09" id="109">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.ExportSnapshot</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Слепок склада (ExportSnapshot)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn09РасширеннаяПодсказка" id="159"/>
+				</Button>
+				<Button name="Btn10" id="110">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.PlacePallets</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разместить (PlacePallets)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn10РасширеннаяПодсказка" id="160"/>
+				</Button>
+				<Button name="Btn11" id="111">
+					<Type>UsualButton</Type>
+					<CommandName>Form.Command.GenerateMockData</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тестовые данные (GenerateMockData)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="Btn11РасширеннаяПодсказка" id="161"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:ExternalDataProcessorObject.ТестHttp1cerp</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+		<Attribute name="URL" id="2">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Login" id="3">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Password" id="4">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Response" id="5">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Warehouse" id="6">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Склад" id="7">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Склад</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Склады</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Паллет" id="8">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Паллет</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.Лико_Паллеты2_0</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Ячейка" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ячейка</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.СкладскиеЯчейки</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="LoadWarehouses" id="1000">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Загрузить склады</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Загрузить список складов для выбора GUID</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>LoadWarehouses</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="CheckConnection" id="1001">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>CheckConnection</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Проверка соединения с WMS</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>CheckConnection</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="GetWarehouses" id="1002">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>GetWarehouses</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список складов</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GetWarehouses</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="GetRacks" id="1003">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>GetRacks</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Список стеллажей</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GetRacks</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="GetOccupancy" id="1004">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>GetOccupancy</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заполненность склада</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GetOccupancy</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="GetFloor" id="1005">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>GetFloor</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Этажи стеллажа</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GetFloor</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="FindCell" id="1006">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>FindCell</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подобрать ячейку</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>FindCell</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="ValidatePlacement" id="1007">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ValidatePlacement</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Проверка размещения</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ValidatePlacement</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="MovePallet" id="1008">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>MovePallet</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Переместить паллет</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>MovePallet</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="ExportSnapshot" id="1009">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>ExportSnapshot</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Экспорт слепка остатков</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ExportSnapshot</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="PlacePallets" id="1010">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>PlacePallets</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Разместить паллеты</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>PlacePallets</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+		<Command name="GenerateMockData" id="1011">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>GenerateMockData</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Генерация тестовых данных</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>GenerateMockData</Action>
+			<Representation>TextPicture</Representation>
+		</Command>
+	</Commands>
+</Form>

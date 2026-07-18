@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>WMS Phase 1 – Тестер</title>
+<style>
+body{font:14px Segoe UI,sans-serif;max-width:800px;margin:20px auto;padding:0 20px;background:#f5f5f5}
+h1{color:#333;font-size:20px}
+input{padding:5px;font:13px Segoe UI;margin:2px}
+.url{width:100%;box-sizing:border-box;margin-bottom:8px}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.btns button{padding:8px 14px;font:13px Segoe UI;cursor:pointer;background:#5C87B2;color:#fff;border:none;border-radius:3px}
+.btns button:hover{background:#4A6C8E}
+iframe{width:100%;height:450px;border:1px solid #ccc;background:#fff;margin-top:10px}
+</style>
+</head>
+<body>
+
+<h1>WMS Phase 1 – Тестер LikoRest API</h1>
+
+<input class="url" id="u" value="http://it-mshenderov/1ctesterp5/hs/LikoRest/API">
+<input id="l" value="administrator" style="width:140px" placeholder="login">
+<input id="p" value="224" type="password" style="width:80px" placeholder="pass">
+
+<div class="btns" id="btns"></div>
+
+<iframe name="res" id="res"></iframe>
+
+<script>
+const tests = [
+  'WMS_CheckConnection',
+  'WMS_GetWarehouses',
+  'WMS_GetRacks',
+  'WMS_GetOccupancy',
+  'WMS_GetFloor',
+  'WMS_FindCell',
+  'WMS_ValidatePlacement',
+  'WMS_MovePallet',
+  'WMS_ExportSnapshot',
+  'WMS_PlacePallets',
+  'WMS_GenerateMockData'
+];
+
+const btns = document.getElementById('btns');
+tests.forEach(t => {
+  const f = document.createElement('form');
+  f.method = 'POST';
+  f.action = document.getElementById('u').value;
+  f.target = 'res';
+  f.style.display = 'inline';
+
+  const auth = document.createElement('input');
+  auth.type = 'hidden';
+  auth.name = 'auth_login';
+  // Inject Basic auth via fetch first, or use a trick...
+  // Actually, form POST can't set Authorization header. Need fetch with no-cors.
+
+  f.innerHTML = '<input type="hidden" name="ProcName" value="'+t+'">';
+  const btn = document.createElement('button');
+  btn.textContent = t.replace('WMS_','');
+  btn.onclick = async function(e){
+    e.preventDefault();
+    const u = document.getElementById('u').value;
+    const l = document.getElementById('l').value;
+    const p = document.getElementById('p').value;
+    const res = document.getElementById('res');
+    res.srcdoc = '<pre style="padding:10px">Wait...</pre>';
+    try {
+      const r = await fetch(u,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Basic '+btoa(l+':'+p)},
+        body: JSON.stringify({ProcName: t})
+      });
+      const txt = await r.text();
+      let out = txt;
+      try { out = JSON.stringify(JSON.parse(txt),null,2); } catch(e){}
+      res.srcdoc = '<pre style="padding:10px;white-space:pre-wrap;font:13px Consolas,monospace">Status: '+r.status+' '+r.statusText+'\n\n'+out.replace(/</g,'&lt;')+'</pre>';
+    } catch(e){
+      res.srcdoc = '<pre style="padding:10px;color:red">ERROR: '+e.message+'</pre>';
+    }
+  };
+  f.appendChild(btn);
+  btns.appendChild(f);
+});
+</script>
+</body>
+</html>
