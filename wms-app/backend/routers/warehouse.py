@@ -57,104 +57,17 @@ async def get_racks(data: dict, db: AsyncSession = Depends(get_db)):
 @router.post("/occupancy")
 async def get_occupancy(data: dict, db: AsyncSession = Depends(get_db)):
     try:
-        response = await call_1c("WMS_GetOccupancy", db, warehouse=data.get("warehouse", ""))
-        # Преобразуем плоскую структуру 1С в вложенную (addresses[])
-        return normalize_occupancy_response(response)
+        return await call_1c("WMS_GetOccupancy", db, warehouse=data.get("warehouse", ""))
     except Exception:
         return {"sections": MOCK_SNAPSHOT["sections"], "summary": MOCK_SNAPSHOT["summary"]}
-
-
-def normalize_occupancy_response(data: dict) -> dict:
-    """Преобразует плоскую структуру WMS_GetOccupancy в вложенную addresses[]."""
-    sections = data.get("sections", [])
-    normalized = []
-
-    for sec in sections:
-        # Преобразуем plettX_* поля в addresses массив
-        addresses = []
-
-        for addr_num in range(1, 4):  # Address 1, 2, 3
-            pallet_code = sec.get(f"pallet{addr_num}_code")
-            if pallet_code or pallet_code == "":  # Даже пустой адрес добавляем
-                addresses.append({
-                    "address": sec.get(f"address{addr_num}"),
-                    "addressCode": f"Addr{addr_num}",  # TODO: получить реальный код
-                    "pallet": sec.get(f"pallet{addr_num}_id"),
-                    "palletCode": pallet_code,
-                    "width": sec.get(f"pallet{addr_num}_width"),
-                    "height": sec.get(f"pallet{addr_num}_height"),
-                    "depth": sec.get(f"pallet{addr_num}_depth"),
-                    "weight": sec.get(f"pallet{addr_num}_weight"),
-                })
-
-        # Если typeSize приходит плоским — преобразуем в объект
-        typeSize = {
-            "width": sec.get("typeSize_width", 0),
-            "height": sec.get("typeSize_height", 0),
-            "depth": sec.get("typeSize_depth", 0),
-            "weight": sec.get("typeSize_weight", 0),
-            "unlimitedWeight": sec.get("typeSize_unlimitedWeight", False),
-        }
-
-        normalized.append({
-            "id": sec.get("section_id"),
-            "code": sec.get("section_code"),
-            "rack": sec.get("rack_id"),
-            "floor": sec.get("floor"),
-            "accessLevel": sec.get("accessLevel"),
-            "restricted": sec.get("restricted"),
-            "typeSize": typeSize,
-            "addresses": addresses,
-        })
-
-    summary = data.get("summary", {})
-    return {
-        "ok": data.get("ok", True),
-        "sections": normalized,
-        "summary": summary,
-    }
 
 
 @router.post("/floor")
 async def get_floor(data: dict, db: AsyncSession = Depends(get_db)):
     try:
-        response = await call_1c("WMS_GetFloor", db, warehouse=data.get("warehouse", ""))
-        # Преобразуем формат WMS_GetFloor в правильную структуру
-        return normalize_floor_response(response)
+        return await call_1c("WMS_GetFloor", db, warehouse=data.get("warehouse", ""))
     except Exception:
         return {"floorPallets": MOCK_SNAPSHOT["floorPallets"]}
-
-
-def normalize_floor_response(data: dict) -> dict:
-    """Преобразует формат WMS_GetFloor — pallet_id/pallet_code это стеллаж, не паллета."""
-    floorPallets = data.get("floorPallets", [])
-    normalized = []
-
-    for fp in floorPallets:
-        # ВНИМАНИЕ: в ответе 1С pallet_id/pallet_code это код СТЕЛЛАЖА (ВложенныйЗапрос.Стеллаж),
-        # не паллета. Габариты (width, height, depth, weight) — это габариты типоразмера паллета.
-        # У настоящего паллета ID нет в 1С WMS_GetFloor — используем адрес как идентификатор.
-
-        normalized.append({
-            "rack": fp.get("rack_id"),  # GUID стеллажа или null для общей зоны
-            "address": fp.get("adress_id"),  # GUID адреса в зоне приёмки
-            "code": fp.get("adress_code"),  # Код адреса (ПОЛ-Приёмка-1)
-            "pallet": {
-                # id и code в реальном 1С WMS_GetFloor — это СТЕЛЛАЖ, не паллета
-                # Используем адрес как fallback для идентификации
-                "id": fp.get("adress_id"),  # Используем ID адреса как ID паллета (fallback)
-                "code": fp.get("adress_code"),  # Используем код адреса как код паллета (fallback)
-                "width": fp.get("width"),
-                "height": fp.get("height"),
-                "depth": fp.get("depth"),
-                "weight": fp.get("weight"),
-            }
-        })
-
-    return {
-        "ok": data.get("ok", True),
-        "floorPallets": normalized,
-    }
 
 
 @router.post("/find-cell")
