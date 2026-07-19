@@ -6,7 +6,12 @@
     let testResult = $state('');
 
     async function load() {
-        try { const data = await api.getConnections(); connections = data.connections || []; } catch {}
+        try {
+            const data = await api.getConnections();
+            connections = data.connections || [];
+        } catch (e) {
+            console.error('connections load() error:', e);
+        }
     }
 
     async function add() {

@@ -54,6 +54,7 @@ async def get_racks(data: dict, db: AsyncSession = Depends(get_db)):
         return {"racks": MOCK_SNAPSHOT["racks"]}
 
 
+@router.post("/occupancy")
 async def get_occupancy(data: dict, db: AsyncSession = Depends(get_db)):
     try:
         response = await call_1c("WMS_GetOccupancy", db, warehouse=data.get("warehouse", ""))

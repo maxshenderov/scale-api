@@ -41,10 +41,53 @@
             sections = occupancyData.sections || [];
             floorPallets = floorData.floorPallets || [];
             selectedRack = racks[0]?.id || '';
-        } catch {
+        } catch (e) {
             error = 'Не удалось загрузить данные склада';
+            console.error('loadWarehouseData error:', e);
         } finally {
             loading = false;
+        }
+    }
+
+    async function handlePalletDrop(palletId: string, targetAddressId: string) {
+        if (!selectedWarehouse) return;
+        error = '';
+        try {
+            // 1. Валидация размещения
+            const validateResult = await api.validate({
+                warehouse: selectedWarehouse,
+                cell: targetAddressId,
+                pallet: palletId
+            });
+
+            if (validateResult.ok === false) {
+                const errMsg = validateResult?.errors?.join('; ')
+                    || validateResult?.error?.message
+                    || validateResult?.error
+                    || 'Размещение невозможно';
+                error = `Невозможно разместить: ${errMsg}`;
+                console.error('Validation failed:', validateResult);
+                return;
+            }
+
+            // 2. Перемещение
+            const moveResult = await api.move({
+                warehouse: selectedWarehouse,
+                pallet: palletId,
+                targetCell: targetAddressId
+            });
+
+            if (moveResult.ok === false) {
+                error = `Ошибка перемещения: ${moveResult?.error?.message || moveResult?.error || 'неизвестная'}`;
+                console.error('Move failed:', moveResult);
+                return;
+            }
+
+            // 3. Перезагрузка данных (не optimistic update — ждём подтверждения от 1С)
+            await loadWarehouseData();
+        } catch (e) {
+            error = `Ошибка drag-and-drop: ${e instanceof Error ? e.message : String(e)}`;
+            console.error('handlePalletDrop error:', e);
         }
     }
 
@@ -54,29 +97,38 @@
 
 <div class="flex flex-col h-full">
     <!-- Toolbar -->
-    <div class="bg-white border-b px-4 py-2 flex items-center gap-3 flex-wrap">
-        <select bind:value={selectedWarehouse}
-                class="border rounded px-3 py-1.5 text-sm bg-white">
-            <option value="">-- Выберите склад --</option>
-            {#each warehouses as w}
-                <option value={w.id}>{w.name}</option>
-            {/each}
-        </select>
-
-        <div class="flex gap-1 bg-gray-100 rounded p-0.5">
-            <button onclick={() => viewMode = 'front'}
-                    class="px-3 py-1 rounded text-sm {viewMode === 'front' ? 'bg-white shadow font-medium' : ''}">
-                Вид спереди
-            </button>
-            <button onclick={() => viewMode = 'side'}
-                    class="px-3 py-1 rounded text-sm {viewMode === 'side' ? 'bg-white shadow font-medium' : ''}">
-                Вид сбоку
-            </button>
+    <div class="bg-white border-b px-4 py-3 flex flex-col gap-3">
+        <!-- Warehouse selection (prominent) -->
+        <div class="flex items-center gap-3">
+            <label for="warehouse-select" class="text-sm font-medium text-gray-700">Склад:</label>
+            <select id="warehouse-select" bind:value={selectedWarehouse}
+                    class="border border-gray-300 rounded-md px-4 py-2 text-base bg-white shadow-sm
+                           hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500
+                           min-w-[200px]">
+                <option value="">-- Выберите склад --</option>
+                {#each warehouses as w}
+                    <option value={w.id}>{w.name}</option>
+                {/each}
+            </select>
         </div>
 
-        <span class="text-xs text-gray-400 ml-auto">
-            {racks.length} стеллажей · {sections.length} секций
-        </span>
+        <!-- View mode controls -->
+        <div class="flex items-center gap-3">
+            <div class="flex gap-1 bg-gray-100 rounded p-0.5">
+                <button onclick={() => viewMode = 'front'}
+                        class="px-3 py-1 rounded text-sm {viewMode === 'front' ? 'bg-white shadow font-medium' : ''}">
+                    Вид спереди
+                </button>
+                <button onclick={() => viewMode = 'side'}
+                        class="px-3 py-1 rounded text-sm {viewMode === 'side' ? 'bg-white shadow font-medium' : ''}">
+                    Вид сбоку
+                </button>
+            </div>
+
+            <span class="text-xs text-gray-400 ml-auto">
+                {racks.length} стеллажей · {sections.length} секций
+            </span>
+        </div>
     </div>
 
     {#if error}
@@ -93,7 +145,8 @@
             <!-- Main view -->
             <div class="flex-1 flex flex-col overflow-auto">
                 <RackSvgView racks={racks} sections={sections}
-                             selectedRack={selectedRack} mode={viewMode} />
+                             selectedRack={selectedRack} mode={viewMode}
+                             onpalletdrop={handlePalletDrop} />
 
                 <FloorPalletBar pallets={floorPallets} racks={racks} />
 
