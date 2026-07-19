@@ -101,7 +101,7 @@
 </script>
 
 {#if activeRack}
-    <div class="flex flex-col h-full">
+    <div class="flex flex-col flex-1 min-h-0">
         <!-- Zoom toolbar (референс) -->
         <div class="scale-container">
             <div class="scale-controls">
@@ -117,9 +117,9 @@
         </div>
 
         <!-- Rack view (scaled) -->
-        <div class="flex-1 overflow-auto p-4">
+        <div class="flex-1 overflow-auto p-4" style="min-height:300px;background:#fafafa;">
             <div id="sc" style="transform:scale({zs / 100});transform-origin:top left;">
-                <div class="racking">
+                <div class="racking" style="border:1px solid #ccc;min-height:200px;padding:10px;">
                     {#each (activeRack.floors || []) as floor, fi}
                         <div class="floor">
                             <div class="floor-side">
