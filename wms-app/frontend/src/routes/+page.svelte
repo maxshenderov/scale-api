@@ -138,12 +138,18 @@
     {#if loading}
         <div class="flex items-center justify-center py-20 text-gray-400">Загрузка...</div>
     {:else if racks.length > 0}
-        <div class="flex flex-1 overflow-hidden">
+        <div class="flex flex-1 overflow-hidden" style="min-height:400px">
             <!-- Rack panel (left) -->
             <RackPanel {racks} {selectedRack} onselect={(id: string) => selectedRack = id} />
 
             <!-- Main view -->
-            <div class="flex-1 flex flex-col overflow-auto">
+            <div class="flex-1 flex flex-col overflow-auto" style="min-height:400px">
+                <!-- DEBUG: показываем что данные загружены -->
+                <div class="bg-green-100 border-b border-green-300 px-4 py-1 text-xs text-green-800">
+                    ✓ Данные загружены: {racks.length} стеллажей, {sections.length} секций, {floorPallets.length} паллетов на полу.
+                    Выбран: {selectedRack ? (racks.find(r => r.id === selectedRack)?.name || selectedRack.substring(0, 8)) : 'нет'}
+                </div>
+
                 <RackSvgView racks={racks} sections={sections}
                              selectedRack={selectedRack} mode={viewMode}
                              onpalletdrop={handlePalletDrop} />
