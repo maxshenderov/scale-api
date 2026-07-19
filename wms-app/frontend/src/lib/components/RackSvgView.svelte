@@ -1,164 +1,203 @@
 <script lang="ts">
-    import { countOccupied, sectionPallets, sectionTypeSize } from '$lib/occupancy';
+    import { sectionPallets, sectionTypeSize } from '$lib/occupancy';
 
-    let { racks, sections, selectedRack, mode = 'front', onpalletdrop }: {
-        racks: any[]; sections: any[]; selectedRack: string;
+    interface Props {
+        racks: any[];
+        sections: any[];
+        selectedRack: string;
         mode?: 'front' | 'side';
         onpalletdrop?: (palletId: string, targetAddressId: string) => void;
-    } = $props();
+    }
 
-    const RACK_COLORS = [
-        '#E8C98A','#A8D8B9','#B8D4E3','#F0C8C8','#D5C4E1',
-        '#F5DEB3','#C8E6E6','#E8D5B7','#D4E4C8'
-    ];
-
-    let scale = $state(typeof window !== 'undefined' ?
-        parseFloat(localStorage.getItem('wms-rack-scale') || '1.0') : 1.0);
+    let { racks, sections, selectedRack, mode = 'front', onpalletdrop }: Props = $props();
 
     let activeRack = $derived(racks.find(r => r.id === selectedRack));
 
+    // --- Zoom (референс: 0–1000, шаг 10, localStorage 'zs_scale') ---
+    let zs = $state(typeof window !== 'undefined' ?
+        parseInt(localStorage.getItem('zs_scale') || '100') : 100);
+
+    let tip = $state({ show: false, x: 0, y: 0, text: '' });
+
+    function applyScale(v: number, save: boolean = true) {
+        zs = Math.max(0, Math.min(1000, v));
+        if (save && typeof window !== 'undefined') {
+            localStorage.setItem('zs_scale', String(zs));
+        }
+    }
+
+    function zoomIn() { applyScale(zs + 10); }
+    function zoomOut() { applyScale(zs - 10); }
+
+    // --- Tooltip (референс: showTip/hideTip) ---
+    function showTip(event: MouseEvent, text: string) {
+        tip = { show: true, x: event.clientX + 12, y: event.clientY - 10, text };
+    }
+    function hideTip() { tip = { ...tip, show: false }; }
+
+    // --- Drag & Drop (референс: data-pallet-guid, data-cell-guid, text/plain) ---
+    function dragPallet(event: DragEvent) {
+        const g = (event.currentTarget as HTMLElement)?.getAttribute('data-pallet-guid');
+        if (!g) return;
+        event.dataTransfer!.setData('text/plain', g);
+        event.dataTransfer!.effectAllowed = 'move';
+    }
+
+    function dragOverCell(event: DragEvent) {
+        event.preventDefault();
+        event.dataTransfer!.dropEffect = 'move';
+        (event.currentTarget as HTMLElement)?.classList.add('drag-over');
+    }
+
+    function dragLeaveCell(event: DragEvent) {
+        (event.currentTarget as HTMLElement)?.classList.remove('drag-over');
+    }
+
+    function dropOnCell(event: DragEvent) {
+        event.preventDefault();
+        (event.currentTarget as HTMLElement)?.classList.remove('drag-over');
+        const pg = event.dataTransfer!.getData('text/plain');
+        const cg = (event.currentTarget as HTMLElement)?.getAttribute('data-cell-guid');
+        if (pg && cg && onpalletdrop) {
+            onpalletdrop(pg, cg);
+        }
+    }
+
+    // --- Helpers ---
     function sectionsForRackFloor(rackId: string, floorNumber: number) {
         return sections.filter(s =>
             (s.rack === rackId || s.rack_id === rackId) &&
             (s.floor === undefined || s.floor === floorNumber));
     }
 
-    function tooltipText(pallet: any): string {
-        return `${pallet.code || '—'}\n${pallet.width || 0}×${pallet.depth || 1100}×${pallet.height || 0}\n${pallet.weight || 0} кг`;
+    function cellGuid(sec: any, addrIndex: number): string {
+        return sec?.[`address${addrIndex + 1}`] || `${sec?.section_id || '?'}_addr${addrIndex + 1}`;
     }
 
-    function palletColor(index: number): string {
-        const colors = ['#4CAF50', '#FFC107', '#FF9800'];
-        return colors[index % colors.length];
+    function palletGuid(sec: any, addrIndex: number): string {
+        return sec?.[`pallet${addrIndex + 1}_id`] || '';
     }
 
-    function updateScale(newScale: number) {
-        scale = Math.max(0.5, Math.min(2.0, newScale));
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('wms-rack-scale', scale.toString());
-        }
+    function palletCode(sec: any, addrIndex: number): string {
+        return sec?.[`pallet${addrIndex + 1}_code`] || '';
     }
 
-    // Возвращает GUID адреса для слота addrIndex секции
-    function addressGuid(sec: any, addrIndex: number): string {
-        const addresses = sec?.addresses;
-        if (Array.isArray(addresses) && addresses[addrIndex]) {
-            return addresses[addrIndex].address || addresses[addrIndex].addressCode || '';
-        }
-        // Fallback для плоского формата
-        return sec?.[`address${addrIndex + 1}`] || '';
+    function palletInfo(sec: any, addrIndex: number): { guid: string; code: string; w: number; h: number; d: number; weight: number } | null {
+        const code = palletCode(sec, addrIndex);
+        if (!code) return null;
+        return {
+            guid: palletGuid(sec, addrIndex),
+            code,
+            w: sec?.[`pallet${addrIndex + 1}_width`] || 0,
+            h: sec?.[`pallet${addrIndex + 1}_height`] || 0,
+            d: sec?.[`pallet${addrIndex + 1}_depth`] || 0,
+            weight: sec?.[`pallet${addrIndex + 1}_weight`] || 0,
+        };
     }
 
-    // Паллет на конкретном слоте (или null если свободно)
-    function palletAtSlot(sec: any, addrIndex: number): any | null {
-        const addresses = sec?.addresses;
-        if (Array.isArray(addresses) && addresses[addrIndex]?.pallet) {
-            const a = addresses[addrIndex];
-            return {
-                code: a.palletCode,
-                width: a.width, height: a.height, depth: a.depth, weight: a.weight
-            };
-        }
-        // Fallback: используем sectionPallets (только занятые)
-        const pallets = sec ? sectionPallets(sec) : [];
-        return pallets[addrIndex] || null;
-    }
-
-    function handleDrop(event: DragEvent, targetAddressId: string) {
-        event.preventDefault();
-        if (!event.dataTransfer) return;
-        const palletId = event.dataTransfer.getData('palletId');
-        if (palletId && targetAddressId && onpalletdrop) {
-            onpalletdrop(palletId, targetAddressId);
-        }
-    }
-
-    function allowDrop(event: DragEvent) {
-        event.preventDefault();
-        if (event.dataTransfer) {
-            event.dataTransfer.dropEffect = 'move';
-        }
+    function palletTip(p: NonNullable<ReturnType<typeof palletInfo>>): string {
+        return `${p.code}\n${p.w}×${p.d}×${p.h}\n${p.weight} кг`;
     }
 </script>
 
 {#if activeRack}
     <div class="flex flex-col h-full">
-        <!-- Zoom controls -->
-        <div class="bg-white border-b px-4 py-2 flex items-center gap-3">
-            <button onclick={() => updateScale(scale - 0.1)}
-                    class="px-3 py-1 rounded bg-gray-200 text-sm hover:bg-gray-300">−</button>
-            <input type="range" min="0.5" max="2.0" step="0.1" bind:value={scale}
-                   onchange={(e) => updateScale(parseFloat(e.currentTarget.value))}
-                   class="w-32" />
-            <button onclick={() => updateScale(scale + 0.1)}
-                    class="px-3 py-1 rounded bg-gray-200 text-sm hover:bg-gray-300">+</button>
-            <span class="text-sm text-gray-600">{Math.round(scale * 100)}%</span>
+        <!-- Zoom toolbar (референс) -->
+        <div class="scale-container">
+            <div class="scale-controls">
+                <button class="zoom-btn" onclick={zoomOut} title="Уменьшить">−</button>
+                <span class="sc-rack">{activeRack.name || activeRack.code} ({activeRack.sectionsCount} секций)</span>
+                <div class="sc-ruler-wrap">
+                    <input type="range" min="0" max="1000" value={zs}
+                           oninput={(e) => applyScale(parseInt(e.currentTarget.value))} />
+                </div>
+                <span class="scale-val">{zs}%</span>
+                <button class="zoom-btn" onclick={zoomIn} title="Увеличить">+</button>
+            </div>
         </div>
 
+        <!-- Rack view (scaled) -->
         <div class="flex-1 overflow-auto p-4">
-            <div style={`transform: scale(${scale}); transform-origin: top left; display: inline-block;`}>
-                <svg width="{Math.max((activeRack.sectionsCount || 17) * 52 + 60, 800)}"
-                     height="{(activeRack.floors?.length || 9) * 42 + 80}"
-                     class="border border-gray-300 bg-white">
-                    <!-- Rack label -->
-                    <text x="20" y="20" font-size="13" font-weight="bold" fill="#333">
-                        {activeRack.name || activeRack.code} ({activeRack.sectionsCount} секций)
-                    </text>
-
+            <div id="sc" style="transform:scale({zs / 100});transform-origin:top left;">
+                <div class="racking">
                     {#each (activeRack.floors || []) as floor, fi}
-                        {@const y = 40 + fi * 42}
-                        <!-- Floor number -->
-                        <text x="10" y={y + 22} font-size="10" fill="#888">Э{floor.number}</text>
-
-                        {@const rackSections = sectionsForRackFloor(activeRack.id, floor.number)}
-                        {#each Array(activeRack.sectionsCount || 17) as _, si}
-                            {@const sec = rackSections[si]}
-                            {@const typeSize = sec ? sectionTypeSize(sec) : { width: 2700 }}
-                            {@const sectionWidth = 48}
-                            {@const x = 42 + si * 52}
-
-                            <!-- Section background -->
-                            <rect x={x} y={y} width={sectionWidth} height="38" rx="3"
-                                  fill="#F5F5F5" stroke="#BDBDBD" stroke-width="1" />
-
-                            <!-- Individual pallet slots -->
-                            {#each Array(3) as _, addrIndex}
-                                {@const pallet = sec ? palletAtSlot(sec, addrIndex) : null}
-                                {@const addressId = sec ? addressGuid(sec, addrIndex) : ''}
-                                {@const palletX = x + (addrIndex * sectionWidth / 3)}
-                                {#if pallet}
-                                    <rect x={palletX} y={y} width={sectionWidth / 3 - 1} height="38" rx="2"
-                                          fill={palletColor(addrIndex)} stroke="#388E3C" stroke-width="1"
-                                          class="cursor-pointer hover:opacity-80" />
-                                    <title>{tooltipText(pallet)}</title>
-                                    <text x={palletX + sectionWidth / 6} y={y + 24} font-size="7" fill="#fff"
-                                          text-anchor="middle" class="pointer-events-none">{pallet.code || '—'}</text>
-                                {:else}
-                                    <!-- Free address (drop zone) -->
-                                    <rect x={palletX} y={y} width={sectionWidth / 3 - 1} height="38" rx="2"
-                                          fill="#E0E0E0" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="2,2"
-                                          class="cursor-move drop-zone"
-                                          role="button"
-                                          tabindex="0"
-                                          ondragover={allowDrop}
-                                          ondrop={(e) => handleDrop(e, addressId)} />
-                                {/if}
-                            {/each}
-
-                            <!-- Post -->
-                            <rect x={x + sectionWidth} y={y} width="4" height="38" fill="#90CAF9" />
-                        {/each}
+                        <div class="floor">
+                            <div class="floor-side">
+                                <span class="floor-header" style="font-size:{9 / (zs / 100)}px">Э{floor.number}</span>
+                            </div>
+                            <div class="floor-content">
+                                <div class="sections-row" style="border-width:{2 / (zs / 100)}px">
+                                    {#each Array(activeRack.sectionsCount || 17) as _, si}
+                                        {@const sec = sectionsForRackFloor(activeRack.id, floor.number)[si]}
+                                        {@const ts = sec ? sectionTypeSize(sec) : { width: 2700, height: 2100 }}
+                                        {@const wPx = Math.max(40, ts.width / 2700 * 180)}
+                                        <div class="section"
+                                             style="width:{wPx}px">
+                                            <!-- Section header -->
+                                            <div class="section-header" style="height:{18 / (zs / 100)}px">
+                                                <div class="section-header-name" style="font-size:{7 / (zs / 100)}px">
+                                                    {sec?.section_code || `${si + 1}`}
+                                                </div>
+                                                <div class="section-header-cells" style="font-size:{5 / (zs / 100)}px">
+                                                    <div>А1</div><div>А2</div><div>А3</div>
+                                                </div>
+                                            </div>
+                                            <!-- Cells -->
+                                            <div class="cells-container" style="height:{Math.max(20, ts.height / 2700 * 90)}px">
+                                                {#each Array(3) as _, addrIdx}
+                                                    {@const pallet = sec ? palletInfo(sec, addrIdx) : null}
+                                                    {@const cg = sec ? cellGuid(sec, addrIdx) : ''}
+                                                    <div class="cell {!pallet ? 'cell-free' : ''}"
+                                                         style="border-width:{1 / (zs / 100)}px"
+                                                         data-cell-guid={cg}
+                                                         ondragover={dragOverCell}
+                                                         ondragleave={dragLeaveCell}
+                                                         ondrop={dropOnCell}
+                                                         role="button"
+                                                         tabindex={pallet ? -1 : 0}>
+                                                        {#if pallet}
+                                                            <div class="pallet-occupied"
+                                                                 style="height:{(pallet.h / (ts.height || 2100)) * 100}%;
+                                                                        width:{(pallet.w / (ts.width || 2700)) * 100}%;
+                                                                        left:{((1 - (pallet.w / (ts.width || 2700))) / 2) * 100}%;
+                                                                        font-size:{9 / (zs / 100)}px"
+                                                                 draggable="true"
+                                                                 data-pallet-guid={pallet.guid}
+                                                                 ondragstart={dragPallet}
+                                                                 onmousemove={(e) => showTip(e, palletTip(pallet))}
+                                                                 onmouseout={hideTip}>
+                                                                <span class="pallet-label">{pallet.code}</span>
+                                                                <span class="pallet-size">{pallet.w}×{pallet.d}×{pallet.h}</span>
+                                                            </div>
+                                                        {/if}
+                                                    </div>
+                                                {/each}
+                                            </div>
+                                        </div>
+                                        <!-- Post -->
+                                        <div class="rack-post" style="width:{2 / (zs / 100)}px"></div>
+                                    {/each}
+                                </div>
+                                <div class="floor-width" style="font-size:{10 / (zs / 100)}px">
+                                    <div data-bw={ts.width}>{ts.width} мм</div>
+                                </div>
+                            </div>
+                        </div>
                     {/each}
-
-                    <!-- Legend -->
-                    <rect x="20" y={(activeRack.floors?.length || 9) * 42 + 52} width="12" height="12" fill="#E0E0E0" stroke="#BDBDBD" />
-                    <text x="36" y={(activeRack.floors?.length || 9) * 42 + 63} font-size="10" fill="#666">Своб</text>
-                    <rect x="80" y={(activeRack.floors?.length || 9) * 42 + 52} width="12" height="12" fill="#4CAF50" />
-                    <text x="96" y={(activeRack.floors?.length || 9) * 42 + 63} font-size="10" fill="#666">Паллет</text>
-                </svg>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Tooltip (референс: showTip/hideTip) -->
+    {#if tip.show}
+        <div class="pallet-tip" style="left:{tip.x}px;top:{tip.y}px">
+            {#each tip.text.split('\n') as line}
+                {line}<br />
+            {/each}
+        </div>
+    {/if}
+
 {:else}
     <div class="flex items-center justify-center h-full text-gray-400">
         Выберите стеллаж слева
@@ -166,15 +205,93 @@
 {/if}
 
 <style>
-    :global(.cursor-move) {
-        cursor: move;
+    /* === Zoom toolbar (из референса) === */
+    .scale-container {
+        display: flex; align-items: center; gap: 8px; font-size: 12px;
+        background: #fff; padding: 4px 10px; border-bottom: 1px solid #ccc;
     }
-    :global(.cursor-pointer) {
-        cursor: pointer;
+    .scale-controls {
+        display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0;
     }
-    .drop-zone:hover {
-        fill: #C8E6C9 !important;
-        stroke: #4CAF50 !important;
+    .sc-rack {
+        font-weight: bold; color: #333; white-space: nowrap; flex: 1; min-width: 0;
+        text-align: left; padding-right: 8px; overflow: hidden; text-overflow: ellipsis;
     }
-</style>
+    .sc-ruler-wrap { display: flex; flex: 1; min-width: 0; align-items: center; }
+    .sc-ruler-wrap input[type=range] { width: 100%; margin: 0; display: block; }
+    .scale-val { font-weight: bold; min-width: 36px; color: #333; font-size: 12px; }
+    .zoom-btn {
+        display: inline-block; width: 28px; height: 32px; line-height: 30px;
+        text-align: center; font-size: 18px; font-weight: bold; color: #3a2010;
+        background: linear-gradient(180deg, #e8c98a 0%, #d4a56a 40%, #b8863e 100%);
+        border: 1px solid #8b6914; border-radius: 4px; cursor: pointer;
+        box-shadow: 0 1px 0 #f0d8a0 inset, 0 -1px 2px rgba(0,0,0,0.15);
+    }
+    .zoom-btn:hover { background: linear-gradient(180deg, #f0d8a0 0%, #ddb57a 40%, #c49454 100%); }
 
+    /* === Rack structure (из референса) === */
+    .racking { margin-bottom: 25px; }
+    .floor { margin-bottom: 0; display: flex; align-items: stretch; }
+    .floor-side { width: 25px; position: relative; flex-shrink: 0; }
+    .floor-header { position: absolute; left: 2px; top: 2px; width: 21px;
+        text-align: center; z-index: 10; font-weight: bold; color: #000; }
+    .floor-content { flex: 1; }
+    .floor-width { font-size: 10px; color: #333; text-align: center; margin-top: 2px;
+        font-weight: bold; display: flex; }
+    .sections-row {
+        display: flex; align-items: stretch; border: 2px solid #444; width: max-content;
+        overflow: visible;
+    }
+    .rack-post { width: 2px; background: #1a4fb4; flex-shrink: 0; box-sizing: border-box; }
+    .section {
+        position: relative; box-sizing: border-box; flex: 0 0 auto; display: flex;
+        flex-direction: column; overflow: visible;
+    }
+    .section-header {
+        flex: 0 0 auto; display: flex; flex-direction: column; overflow: hidden;
+        background: #fff; border-bottom: 1px solid #ccc; line-height: 1;
+    }
+    .section-header-name {
+        display: flex; justify-content: space-between; align-items: center; font-weight: bold;
+        color: #000; white-space: nowrap; overflow: hidden; padding: 0 2px;
+    }
+    .section-header-cells { display: flex; width: 100%; }
+    .section-header-cells > div {
+        flex: 1; text-align: center; color: #333; white-space: nowrap;
+        overflow: hidden; text-overflow: ellipsis; padding: 0 1px; border-left: 1px solid #ccc;
+    }
+    .section-header-cells > div:first-child { border-left: none; }
+
+    /* === Cells & Pallets === */
+    .cells-container { display: flex; width: 100%; flex: 1; align-items: stretch; }
+    .cell {
+        flex: 1; position: relative; border-left: 1px dashed #ccc;
+        display: flex; flex-direction: column; justify-content: flex-end; min-height: 0;
+        background: rgba(200,230,200,0.3);
+    }
+    .cell:first-child { border-left: none; }
+    .cell.cell-free { cursor: move; }
+    .cell:hover { background: rgba(200,230,200,0.5); }
+    .cell.drag-over { background: rgba(76,175,80,0.45) !important; }
+
+    .pallet-occupied {
+        position: absolute; bottom: 0; z-index: 3;
+        background: linear-gradient(180deg, #e8c98a 0%, #d4a56a 30%, #c49454 70%, #a07030 100%);
+        border: 1px solid #8b6914; border-radius: 2px; cursor: grab;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        color: #3a2010; overflow: hidden; min-height: 0;
+    }
+    .pallet-occupied:active { cursor: grabbing; }
+    .pallet-label { font-weight: bold; line-height: 1.1; text-align: center; }
+    .pallet-size { line-height: 1.1; text-align: center; }
+
+    /* === Tooltip === */
+    .pallet-tip {
+        position: fixed; z-index: 9999; background: #fffde7; border: 1px solid #c0a040;
+        padding: 4px 8px; font-size: 11px; font-family: monospace; white-space: nowrap;
+        pointer-events: none; box-shadow: 2px 2px 6px rgba(0,0,0,0.2); border-radius: 3px;
+    }
+
+    /* Global */
+    :global(.drag-over) { outline: 2px solid #4CAF50; }
+</style>
