@@ -95,7 +95,7 @@
     $effect(() => { if (selectedWarehouse) loadWarehouseData(); });
 </script>
 
-<div class="flex flex-col h-full">
+<div class="flex flex-col flex-1 min-h-0">
     <!-- Toolbar -->
     <div class="bg-white border-b px-4 py-3 flex flex-col gap-3">
         <!-- Warehouse selection (prominent) -->
