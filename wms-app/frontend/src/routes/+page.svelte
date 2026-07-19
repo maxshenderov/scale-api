@@ -151,7 +151,7 @@
                 </div>
 
                 <RackSvgView racks={racks} sections={sections}
-                             selectedRack={selectedRack} mode={viewMode}
+                             selectedRack={selectedRack}
                              onpalletdrop={handlePalletDrop} />
 
                 <FloorPalletBar pallets={floorPallets} racks={racks} />
