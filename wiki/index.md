@@ -518,6 +518,7 @@ D:\project\OKIL\
 - [[batch_indexer]] — индексация заказов из 1С в Qdrant
 - [[telegram_voice]] — FastAPI + aiogram + faster-whisper: голосовые из Telegram → STT → 1С, порт 8004
 - [[wms-backend]] — WMS Optimizer: HTTP-прокси в 1С + Bin Packing, порт 8080
+- [[WMS_Optimizer_Summary]] — Итоговое резюме по WMS-оптимизатору: что сделано, что не работает, приоритеты
 
 Страницы сервисов: [[parser]], [[docling]], [[hybrid_search]], [[rag_llm]], [[batch_indexer]], [[telegram_voice]], [[wms-backend]]
 
