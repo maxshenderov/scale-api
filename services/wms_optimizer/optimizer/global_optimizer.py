@@ -116,9 +116,9 @@ def run_optimization(req: OptimizationRequest) -> OptimizationResponse:
         from solver.lp_solver import LPSolver
         solver_cls = LPSolver
         logger.info("id=%s используем LP solver (solverType='lp')", req.optimizationId)
-    elif settings.solverType == "hybrid_v3":
+    elif settings.solverType in ("hybrid_v3", "hybrid-v3"):
         from solver.hybrid_v3 import run_hybrid_v3
-        logger.info("id=%s используем Hybrid V3 (solverType='hybrid_v3')", req.optimizationId)
+        logger.info("id=%s используем Hybrid V3 (solverType='%s')", req.optimizationId, settings.solverType)
         return run_hybrid_v3(req)
 
     cp_solver = solver_cls(

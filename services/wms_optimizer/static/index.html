@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMS Optimizer — API Documentation</title>
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="stylesheet" href="/static/shared.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/static/logo.svg" alt="WMS Optimizer" class="logo" width="32" height="32">
+            <h1>WMS Optimizer</h1>
+            <div class="subtitle">v1.0.0 | Python Optimization Engine для WMS — оптимальное размещение паллет</div>
+        </header>
+
+        <nav>
+            <a href="#overview">Обзор</a>
+            <a href="#quickstart">Быстрый старт</a>
+            <a href="#installation">Установка</a>
+            <a href="#endpoints">API Endpoints</a>
+            <a href="#schemas">Схемы данных</a>
+            <a href="#examples">Примеры вызова</a>
+            <a href="#testing">Тестирование</a>
+            <a href="#debugging">Отладка</a>
+            <a href="#config">Конфигурация</a>
+            <a href="/static/rules.html">Правила размещения →</a>
+        </nav>
+
+        <div class="content">
+            <h2 id="overview">Обзор</h2>
+            <p>WMS Optimizer — Python-сервис на базе <strong>FastAPI</strong>, который по снимку текущей занятости склада (occupancy) и списку новых паллет для размещения рассчитывает оптимальный план расстановки с помощью <strong>OR-Tools CP-SAT</strong> солвера и эвристики <strong>FFD (First Fit Decreasing)</strong> для тёплого старта. Результат — список операций PUT/MOVE для выполнения в 1С.</p>
+
+            <div class="info">
+                <p><strong>Для кого:</strong> интеграция с 1С:Предприятие (конфигурация ЕРП, расширение Лико_WMS). Сервис принимает JSON-запросы от модуля <code>Лико_WMS_Сервер</code> и возвращает готовый план размещения.</p>
+            </div>
+
+            <h2 id="quickstart">Быстрый старт</h2>
+            <pre><code># 1. Поднять сервис через Docker Compose
+docker compose up -d wms-optimizer
+
+# 2. Проверить health
+curl http://localhost:8010/health
+
+# 3. Отправить запрос на оптимизацию (пример ниже в разделе "Примеры вызова")
+curl -X POST http://localhost:8010/api/optimize \
+  -H "Content-Type: application/json" \
+  -d @request.json</code></pre>
+
+            <p><strong>Пример минимального request.json</strong> (1 новая паллета, 2 секции — одна пустая, одна с 1 существующей паллетой):</p>
+            <pre><code>{
+  "mode": "place",
+  "occupancy": [
+    {
+      "section_id": "f71a4f79-2cf5-11f1-8dd5-3cecef0ea941",
+      "section_code": "Р301-М(16-17-18)-Э01",
+      "rack_id": "25b695e2-1e08-11f1-8dd5-3cecef0ea941",
+      "rack_code": 1,
+      "floor": 1,
+      "typeSize": "2 136мм х 2 700мм х 1 400мм (неограничен кг)",
+      "typeSize_height": 2136,
+      "typeSize_width": 2700,
+      "typeSize_depth": 1400,
+      "typeSize_weight": 10000,
+      "typeSize_unlimitedWeight": true,
+      "narrowAisle": false,
+      "restricted": false,
+      "accessLevel": 0,
+      "accessTime": 55,
+      "gap_width": 50,
+      "max_lift_weight": 10000,
+      "max_pallets": 3,
+      "max_widthPallet": 2700,
+      "max_depthPallet": 1400,
+      "address1": "Р301М16Э1",
+      "address2": "Р301М17Э1",
+      "address3": "Р301М18Э1",
+      "pallet1_id": "00000000-0000-0000-0000-000000000000",
+      "pallet1_code": 0,
+      "pallet1_width": 0,
+      "pallet1_height": 0,
+      "pallet1_depth": 0,
+      "pallet1_weight": 0,
+      "pallet1_typeSize": "",
+      "quantity1": 0,
+      "blocked1": 0,
+      "pallet2_id": "00000000-0000-0000-0000-000000000000",
+      "pallet2_code": 0,
+      "pallet2_width": 0,
+      "pallet2_height": 0,
+      "pallet2_depth": 0,
+      "pallet2_weight": 0,
+      "pallet2_typeSize": "",
+      "quantity2": 0,
+      "blocked2": 0,
+      "pallet3_id": "00000000-0000-0000-0000-000000000000",
+      "pallet3_code": 0,
+      "pallet3_width": 0,
+      "pallet3_height": 0,
+      "pallet3_depth": 0,
+      "pallet3_weight": 0,
+      "pallet3_typeSize": "",
+      "quantity3": 0,
+      "blocked3": 0
+    },
+    {
+      "section_id": "f71a4f1a-2cf5-11f1-8dd5-3cecef0ea941",
+      "section_code": "Р301-М(01-02-03)-Э01",
+      "rack_id": "25b695e2-1e08-11f1-8dd5-3cecef0ea941",
+      "rack_code": 1,
+      "floor": 1,
+      "typeSize": "2 136мм х 2 700мм х 1 400мм (неограничен кг)",
+      "typeSize_height": 2136,
+      "typeSize_width": 2700,
+      "typeSize_depth": 1400,
+      "typeSize_weight": 10000,
+      "typeSize_unlimitedWeight": true,
+      "narrowAisle": false,
+      "restricted": false,
+      "accessLevel": 0,
+      "accessTime": 10,
+      "gap_width": 50,
+      "max_lift_weight": 10000,
+      "max_pallets": 3,
+      "max_widthPallet": 2700,
+      "max_depthPallet": 1400,
+      "address1": "Р301М1Э1",
+      "address2": "Р301М2Э1",
+      "address3": "Р301М3Э1",
+      "pallet1_id": "b3c369bd-3a5e-11f1-8dd6-3cecef0ea941",
+      "pallet1_code": 35,
+      "pallet1_width": 1600,
+      "pallet1_height": 900,
+      "pallet1_depth": 1100,
+      "pallet1_weight": 2000,
+      "pallet1_typeSize": "900мм х 1 600мм х 1 100мм (2 000кг)",
+      "quantity1": 1,
+      "blocked1": 0,
+      "pallet2_id": "00000000-0000-0000-0000-000000000000",
+      "pallet2_code": 0,
+      "pallet2_width": 0,
+      "pallet2_height": 0,
+      "pallet2_depth": 0,
+      "pallet2_weight": 0,
+      "pallet2_typeSize": "",
+      "quantity2": 0,
+      "blocked2": 0,
+      "pallet3_id": "b3c369ad-3a5e-11f1-8dd6-3cecef0ea941",
+      "pallet3_code": 34,
+      "pallet3_width": 1600,
+      "pallet3_height": 900,
+      "pallet3_depth": 1100,
+      "pallet3_weight": 2000,
+      "pallet3_typeSize": "900мм х 1 600мм х 1 100мм (2 000кг)",
+      "quantity3": 1,
+      "blocked3": 0
+    }
+  ],
+  "newPallets": [
+    {
+      "id": "new-pallet-001",
+      "width": 1200,
+      "height": 1500,
+      "depth": 800,
+      "weight": 1200,
+      "accessLevel": 0
+    }
+  ]
+}</code></pre>
+
+            <p><strong>Важно:</strong> Все поля структуры <code>OccupancySection</code> должны присутствовать в JSON, даже если паллета отсутствует (<code>pallet1_id: "00000000-0000-0000-0000-000000000000"</code>, все размеры = 0). Это соответствует тому, как 1С формирует снимок через <code>Лико_WMS_Сервер.СобратьЗанятостьСекций()</code>.</p>
+
+            <p><strong>О типе pallet_code:</strong> 1С передает <code>pallet1_code</code> как число (например, <code>35</code>), но API автоматически конвертирует в строку. Можно передавать и <code>"35"</code> (строка), и <code>35</code> (число) — оба варианта валидны.</p>
+
+            <h2 id="installation">Установка и запуск</h2>
+
+            <h3>Сборка и запуск через Docker Compose</h3>
+            <pre><code># Из корня репозитория (где docker-compose.yml)
+docker compose up -d --build wms-optimizer
+
+# Только пересборка образа
+docker compose build wms-optimizer</code></pre>
+
+            <h3>Порт по умолчанию</h3>
+            <p><code>8010</code> — задан в <code>config/settings.json</code> → <code>api.port</code>, проброс в docker-compose.yml: <code>"8010:8010"</code></p>
+
+            <h3>Как изменить порт</h3>
+            <ol>
+                <li>Отредактировать <code>services/wms_optimizer/config/settings.json</code>:
+                    <pre><code>{
+  "api": {
+    "host": "0.0.0.0",
+    "port": 9000,  // ← новый порт
+    "workers": 1
+  }
+}</code></pre>
+                </li>
+                <li>Либо изменить только проброс в <code>docker-compose.yml</code> (внешний порт):
+                    <pre><code>ports:
+  - "9000:8010"  # внешний:внутренний</code></pre>
+                </li>
+                <li>Перезапустить: <code>docker compose up -d --build wms-optimizer</code></li>
+            </ol>
+
+            <h3>Логи</h3>
+            <pre><code>docker compose logs -f wms-optimizer</code></pre>
+
+            <h3>Локальный запуск без Docker (для разработки/отладки)</h3>
+            <pre><code># Из директории services/wms_optimizer/
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+# Запуск через main.py (читает config/settings.json)
+python main.py
+
+# ИЛИ напрямую uvicorn с --reload для hot-reload при правках
+uvicorn main:app --host 0.0.0.0 --port 8010 --reload</code></pre>
+
+            <h2 id="endpoints">API Endpoints</h2>
+
+            <div class="endpoint">
+                <p><span class="method get">GET</span> <code>/health</code></p>
+                <p>Health check — возвращает <code>{"status": "ok"}</code></p>
+            </div>
+
+            <div class="endpoint">
+                <p><span class="method post">POST</span> <code>/api/optimize</code></p>
+                <p><strong>Синхронная оптимизация</strong> — возвращает результат сразу (ограничение: <code>timeLimitSeconds</code> из settings, обычно 120 сек)</p>
+                <p><strong>Request:</strong> <code>OptimizationRequest</code> (см. раздел "Схемы данных")</p>
+                <p><strong>Response:</strong> <code>OptimizationResponse</code> — готовый план операций PUT/MOVE, метрики, не размещённые паллеты</p>
+            </div>
+
+            <div class="endpoint">
+                <p><span class="method post">POST</span> <code>/api/optimize/async</code></p>
+                <p><strong>Асинхронная оптимизация</strong> — для больших задач (&gt;1000 паллет). Возвращает <code>{"optimizationId": "...", "status": "RUNNING"}</code> сразу, расчёт идёт в фоне</p>
+            </div>
+
+            <div class="endpoint">
+                <p><span class="method get">GET</span> <code>/api/optimization/{id}</code></p>
+                <p>Статус асинхронной задачи — <code>RUNNING | COMPLETED | FAILED</code></p>
+            </div>
+
+            <div class="endpoint">
+                <p><span class="method get">GET</span> <code>/api/optimization/{id}/result</code></p>
+                <p>Результат завершённой асинхронной задачи (тот же <code>OptimizationResponse</code>)</p>
+            </div>
+
+            <h2 id="schemas">Схемы данных</h2>
+
+            <h3>OptimizationSettings — параметры оптимизации</h3>
+
+            <table>
+                <tr>
+                    <th>Параметр</th>
+                    <th>Тип</th>
+                    <th>Default</th>
+                    <th>Описание</th>
+                </tr>
+                <tr>
+                    <td><code>allowReslot</code></td>
+                    <td>bool</td>
+                    <td>true</td>
+                    <td>Разрешить переставлять стоящие паллеты</td>
+                </tr>
+                <tr>
+                    <td><code>maxReslotPercent</code></td>
+                    <td>float</td>
+                    <td>20</td>
+                    <td>Макс. % секций для реслота (0-100)</td>
+                </tr>
+                <tr>
+                    <td><strong><code>maxOperations</code></strong></td>
+                    <td><strong>int</strong></td>
+                    <td><strong>300</strong></td>
+                    <td><strong>🆕 Лимит операций в плане (PUT + MOVE). Рекомендуемые значения — см. таблицу ниже.</strong></td>
+                </tr>
+                <tr>
+                    <td><code>timeLimitSeconds</code></td>
+                    <td>int</td>
+                    <td>120</td>
+                    <td>Таймаут CP-SAT для основного этапа (сек)</td>
+                </tr>
+                <tr>
+                    <td><code>strictNarrowAislePlacement</code></td>
+                    <td>bool</td>
+                    <td>true</td>
+                    <td><strong>Режим размещения узкопроходных паллет</strong> (ширина И глубина ≤ 1200 мм). <code>true</code> — только в узкопроходные секции, <code>false</code> — приоритет узкопроходным, но может перелиться в широкие.</td>
+                </tr>
+                <tr>
+                    <td><strong><code>twoStageReslot</code></strong></td>
+                    <td><strong>bool</strong></td>
+                    <td><strong>false</strong></td>
+                    <td><strong>🆕 Двухэтапный режим</strong> (только mode="place"). ЭТАП 1: размещение без реслота, ЭТАП 2: реслот остатков. Рекомендуется для холодного старта >1000 паллет.</td>
+                </tr>
+                <tr>
+                    <td><strong><code>twoStageReslotMaxReslotPercent</code></strong></td>
+                    <td><strong>float</strong></td>
+                    <td><strong>10.0</strong></td>
+                    <td><strong>🆕</strong> maxReslotPercent для ЭТАПА 2 (если twoStageReslot=true)</td>
+                </tr>
+                <tr>
+                    <td><strong><code>twoStageReslotTimeLimitSeconds</code></strong></td>
+                    <td><strong>int</strong></td>
+                    <td><strong>120</strong></td>
+                    <td><strong>🆕</strong> timeLimitSeconds для ЭТАПА 2 (если twoStageReslot=true)</td>
+                </tr>
+                <tr>
+                    <td><strong><code>solverType</code></strong></td>
+                    <td><strong>string</strong></td>
+                    <td><strong>"cp_sat"</strong></td>
+                    <td><strong>🆕</strong> Тип солвера: <code>"cp_sat"</code> (OR-Tools), <code>"numpy"</code> (NumPy+SciPy), <code>"hybrid-v3"</code> (BFD+Chain-Swap)</td>
+                </tr>
+            </table>
+
+            <h3>🆕 Выбор солвера (solverType)</h3>
+
+            <table>
+                <tr><th>Солвер</th><th>Качество (3406 паллет)</th><th>Время</th><th>Когда</th></tr>
+                <tr>
+                    <td><code>"cp_sat"</code></td>
+                    <td><strong>3332 (97.8%)</strong></td>
+                    <td>253s</td>
+                    <td>Холодный старт, макс. качество</td>
+                </tr>
+                <tr>
+                    <td><code>"numpy"</code></td>
+                    <td><strong>3218 (94.5%)</strong></td>
+                    <td>57s</td>
+                    <td>Быстрое размещение, инкремент</td>
+                </tr>
+                <tr>
+                    <td><code>"hybrid-v3"</code></td>
+                    <td><strong>3215 (94.4%)</strong></td>
+                    <td>4.1s</td>
+                    <td>Из 1С, BFD+Chain-Swap, 0 ошибок</td>
+                </tr>
+            </table>
+
+            <pre><code>// NumPy солвер (быстрый)
+"settings": {
+    "solverType": "numpy",
+    "twoStageReslot": true,
+    "twoStageReslotMaxReslotPercent": 40,
+    "maxOperations": 5000
+}
+
+// CP-SAT солвер (качество, по умолчанию)
+"settings": {
+    "solverType": "cp_sat",
+    "twoStageReslot": true,
+    "maxOperations": 5000
+}</code></pre>
+
+            <h3>maxOperations — выбор значения</h3>
+
+            <p><strong>maxOperations</strong> — это лимит количества операций (PUT + MOVE) в результирующем плане размещения.</p>
+
+            <p><strong>Правило:</strong></p>
+            <pre><code>maxOperations ≥ количество новых паллет + (10% от existing для реслота)</code></pre>
+
+            <table>
+                <tr>
+                    <th>Сценарий</th>
+                    <th>maxOperations</th>
+                    <th>Примечание</th>
+                </tr>
+                <tr>
+                    <td>Холодный старт 3406 паллет</td>
+                    <td><strong>5000</strong></td>
+                    <td>3406 PUT + ~1594 MOVE (10% реслот)</td>
+                </tr>
+                <tr>
+                    <td>Инкрементальное 200 паллет</td>
+                    <td><strong>1000</strong></td>
+                    <td>200 PUT + 800 MOVE резерв</td>
+                </tr>
+                <tr>
+                    <td>Уплотнение (mode=compact)</td>
+                    <td><strong>500</strong></td>
+                    <td>Только MOVE, нет PUT</td>
+                </tr>
+                <tr>
+                    <td>Тест/debug</td>
+                    <td><strong>300</strong></td>
+                    <td>Минимум, для быстрого прогона</td>
+                </tr>
+            </table>
+
+            <h3>Рекомендуемые конфигурации</h3>
+
+            <table>
+                <tr>
+                    <th>Использование</th>
+                    <th>Параметры</th>
+                </tr>
+                <tr>
+                    <td><strong>Тест/разработка</strong></td>
+                    <td><code>allowReslot=false, maxOperations=300, timeLimitSeconds=30</code></td>
+                </tr>
+                <tr>
+                    <td><strong>🆕 Быстрый (NumPy)</strong></td>
+                    <td><code>solverType="numpy", twoStageReslot=true, twoStageReslotMaxReslotPercent=40, maxOperations=5000</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Рабочий режим</strong></td>
+                    <td><code>solverType="cp_sat", allowReslot=false, maxOperations=5000, timeLimitSeconds=120</code></td>
+                </tr>
+                <tr>
+                    <td><strong>🆕 Холодный старт (>1000 паллет)</strong></td>
+                    <td><code>solverType="cp_sat", twoStageReslot=true, maxOperations=5000, timeLimitSeconds=180, twoStageReslotTimeLimitSeconds=120</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Полная оптимизация</strong></td>
+                    <td><code>allowReslot=true, maxOperations=5000, timeLimitSeconds=300</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Стресс (2690+ паллет)</strong></td>
+                    <td><code>twoStageReslot=true, maxOperations=10000, timeLimitSeconds=240, async=true</code></td>
+                </tr>
+            </table>
+
+            <h3>OptimizationRequest</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th>Обязательное</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>optimizationId</code></td>
+                        <td>string</td>
+                        <td>✗ (для async — ✓)</td>
+                        <td>UUID запроса</td>
+                    </tr>
+                    <tr>
+                        <td><code>mode</code></td>
+                        <td>"place" | "compact"</td>
+                        <td>✗ (default: "place")</td>
+                        <td>place = разместить новые паллеты, compact = уплотнить существующие без новых</td>
+                    </tr>
+                    <tr>
+                        <td><code>occupancy</code></td>
+                        <td>array</td>
+                        <td>✓</td>
+                        <td>Секции склада — снимок текущего состояния (см. OccupancySection ниже)</td>
+                    </tr>
+                    <tr>
+                        <td><code>newPallets</code></td>
+                        <td>array</td>
+                        <td>✓* (*только при mode="place")</td>
+                        <td>Паллеты для размещения (см. NewPallet ниже)</td>
+                    </tr>
+                    <tr>
+                        <td><code>settings</code></td>
+                        <td>object</td>
+                        <td>✗</td>
+                        <td>Настройки солвера (см. Settings ниже)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>OccupancySection — занятость секций (текущее состояние склада)</h3>
+            <p><strong>Occupancy</strong> = снимок текущего состояния склада на момент запроса оптимизации. Одна строка = одна секция со всеми её параметрами (размеры, ограничения, правила) и до 3 паллет, которые уже стоят внутри. Источник — <code>Лико_WMS_Сервер.СобратьЗанятостьСекций()</code>.</p>
+
+            <h4>Идентификация секции</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th>Обяз.</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>section_id</code></td>
+                        <td>UUID (string)</td>
+                        <td>✓</td>
+                        <td>GUID секции</td>
+                    </tr>
+                    <tr>
+                        <td><code>section_code</code></td>
+                        <td>string</td>
+                        <td>✓</td>
+                        <td>Код секции, например <code>"Р601-М(01-02-03)-Э01"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>rack_id</code></td>
+                        <td>UUID (string)</td>
+                        <td>✓</td>
+                        <td>GUID стеллажа</td>
+                    </tr>
+                    <tr>
+                        <td><code>rack_code</code></td>
+                        <td>int</td>
+                        <td>✓</td>
+                        <td>Номер стеллажа</td>
+                    </tr>
+                    <tr>
+                        <td><code>floor</code></td>
+                        <td>int</td>
+                        <td>✓</td>
+                        <td>Этаж/ярус. <strong>Не используется в алгоритме</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Правила и ограничения секции</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th>Default</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>accessLevel</code></td>
+                        <td>int</td>
+                        <td>1</td>
+                        <td>Резерв на будущее. <strong>Не используется в алгоритме</strong></td>
+                    </tr>
+                    <tr>
+                        <td><code>accessTime</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Резерв на будущее. <strong>Не используется в алгоритме</strong></td>
+                    </tr>
+                    <tr>
+                        <td><code>restricted</code></td>
+                        <td>bool</td>
+                        <td>false</td>
+                        <td>Секция заблокирована — исключается из оптимизации полностью</td>
+                    </tr>
+                    <tr>
+                        <td><code>narrowAisle</code></td>
+                        <td>bool</td>
+                        <td>false</td>
+                        <td><strong>Узкопроходная секция.</strong> Узкопроходные секции проверяются/приоритизируются первыми для узкопроходных паллет (ширина И глубина ≤ 1200 мм). При <code>strictNarrowAislePlacement=true</code> (settings) — единственное допустимое место для таких паллет. См. <a href="/static/rules.html#narrow-aisle">Правила размещения</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_width</code></td>
+                        <td>float</td>
+                        <td>—</td>
+                        <td>Ширина секции, мм (обязательное, &gt; 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_height</code></td>
+                        <td>float</td>
+                        <td>—</td>
+                        <td>Высота секции, мм (обязательное, &gt; 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_depth</code></td>
+                        <td>float</td>
+                        <td>—</td>
+                        <td>Глубина секции, мм (обязательное, &gt; 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_weight</code></td>
+                        <td>float</td>
+                        <td>—</td>
+                        <td>Грузоподъёмность секции, кг (обязательное, ≥ 0). Игнорируется если <code>typeSize_unlimitedWeight=true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_unlimitedWeight</code></td>
+                        <td>bool</td>
+                        <td>false</td>
+                        <td>Вес секции не ограничен</td>
+                    </tr>
+                    <tr>
+                        <td><code>gap_width</code></td>
+                        <td>float</td>
+                        <td>—</td>
+                        <td>Зазор между паллетами, мм (обязательное, ≥ 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>max_lift_weight</code></td>
+                        <td>float</td>
+                        <td>—</td>
+                        <td>Макс. вес подъёма одной паллеты, кг (обязательное, ≥ 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>max_pallets</code></td>
+                        <td>int</td>
+                        <td>3</td>
+                        <td>Макс. количество паллет в секции</td>
+                    </tr>
+                    <tr>
+                        <td><code>max_widthPallet</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Макс. ширина ОДНОЙ паллеты, мм. <code>0</code> = нет отдельного ограничения (уже с fallback на ширину секции — резолвится в SQL 1С)</td>
+                    </tr>
+                    <tr>
+                        <td><code>max_depthPallet</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Макс. глубина ОДНОЙ паллеты, мм. <code>0</code> = нет отдельного ограничения (БЕЗ fallback, в отличие от width)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Текущие паллеты в секции (слоты 1-3)</h4>
+            <p>До 3 паллет на секцию, поля повторяются для N ∈ {1, 2, 3}:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th>Default</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>address1 / address2 / address3</code></td>
+                        <td>string (UUID)</td>
+                        <td>""</td>
+                        <td>GUID адреса слота N. <code>""</code> = адрес не задан</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_id ... pallet3_id</code></td>
+                        <td>string (UUID)</td>
+                        <td>""</td>
+                        <td>GUID существующей паллеты в слоте N. <code>""</code> = слот свободен</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_code ... pallet3_code</code></td>
+                        <td>int | string</td>
+                        <td>"" (или 0)</td>
+                        <td>Код существующей паллеты в слоте N. 1С передает число, API конвертирует в строку</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_width ... pallet3_width</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Ширина существующей паллеты в слоте N, мм</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_height ... pallet3_height</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Высота существующей паллеты в слоте N, мм</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_depth ... pallet3_depth</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Глубина существующей паллеты в слоте N, мм</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_weight ... pallet3_weight</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Вес существующей паллеты в слоте N, кг</td>
+                    </tr>
+                    <tr>
+                        <td><code>quantity1 ... quantity3</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Количество единиц товара на паллете в слоте N</td>
+                    </tr>
+                    <tr>
+                        <td><code>blocked1 ... blocked3</code></td>
+                        <td>float</td>
+                        <td>0</td>
+                        <td>Признак блокировки: <code>&gt; 0</code> → паллета в слоте N заблокирована, солвер её не двигает</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>NewPallet</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>id</code></td><td>string (UUID)</td><td>GUID паллеты</td></tr>
+                    <tr><td><code>width</code></td><td>float</td><td>Ширина, мм (&gt; 0)</td></tr>
+                    <tr><td><code>height</code></td><td>float</td><td>Высота, мм (&gt; 0)</td></tr>
+                    <tr><td><code>depth</code></td><td>float</td><td>Глубина, мм (&gt; 0)</td></tr>
+                    <tr><td><code>weight</code></td><td>float</td><td>Вес, кг (≥ 0)</td></tr>
+                    <tr><td><code>accessLevel</code></td><td>int</td><td>Резерв на будущее (не используется в алгоритме)</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Settings</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th>Default</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>allowReslot</code></td>
+                        <td>bool</td>
+                        <td>true</td>
+                        <td>Разрешить переставлять стоящие паллеты</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxReslotPercent</code></td>
+                        <td>float</td>
+                        <td>20</td>
+                        <td>Макс. % секций для реслота (0-100)</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxOperations</code></td>
+                        <td>int</td>
+                        <td>300</td>
+                        <td>Лимит операций в плане</td>
+                    </tr>
+                    <tr>
+                        <td><code>timeLimitSeconds</code></td>
+                        <td>int</td>
+                        <td>120</td>
+                        <td>Таймаут CP-SAT (сек)</td>
+                    </tr>
+                    <tr>
+                        <td><code>strictNarrowAislePlacement</code></td>
+                        <td>bool</td>
+                        <td>true</td>
+                        <td><strong>Режим размещения узкопроходных паллет</strong> (ширина И глубина ≤ 1200 мм). <code>true</code> — только в узкопроходные секции (<code>narrowAisle=true</code>), если все заняты → <code>notPlaced</code> с причиной <code>NARROW_AISLE_MISMATCH</code>. <code>false</code> — узкопроходные секции проверяются первыми (приоритет), но если заняты → размещается в широкопроходную секцию.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>OptimizationResponse</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>solverStatus</code></td><td>enum</td><td>OPTIMAL | FEASIBLE | TIME_LIMIT | INFEASIBLE</td></tr>
+                    <tr><td><code>placementStatus</code></td><td>enum</td><td>FULL | PARTIAL | NONE</td></tr>
+                    <tr><td><code>score</code></td><td>float</td><td>Оценка качества решения (чем выше — тем лучше)</td></tr>
+                    <tr><td><code>executionTimeSeconds</code></td><td>float</td><td>Время расчёта на сервере</td></tr>
+                    <tr><td><code>operations</code></td><td>array</td><td>Список операций PUT/MOVE для выполнения</td></tr>
+                    <tr><td><code>notPlaced</code></td><td>array</td><td>Не размещённые паллеты с причинами отказа</td></tr>
+                    <tr><td><code>metrics</code></td><td>object</td><td>Статистика: размещённые, перемещённые, не размещённые</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Operation</h3>
+            <p>Операция для выполнения в 1С:</p>
+            <pre><code>{
+  "pallet": "uuid",
+  "operation": "PUT",       // PUT = разместить новую | MOVE = переставить существующую
+  "oldAddress": null,       // для PUT = null, для MOVE = откуда
+  "newAddress": "uuid",     // куда разместить
+  "sequence": 1             // порядок выполнения
+}</code></pre>
+
+            <h3>NotPlaced</h3>
+            <p>Паллета, которую не удалось разместить:</p>
+            <pre><code>{
+  "pallet": "uuid",
+  "reason": "NARROW_AISLE_MISMATCH",  // причина отказа
+  "details": "..."                     // детали
+}</code></pre>
+            <p><strong>Причины отказа:</strong> <code>NARROW_AISLE_MISMATCH</code> (узкопроходная паллета, нет узкопроходных секций), <code>HEIGHT_LIMIT</code>, <code>DEPTH_LIMIT</code>, <code>LIFT_LIMIT</code>, <code>MAX_PALLET_SIZE_LIMIT</code>, <code>WEIGHT_LIMIT</code>, <code>NO_SPACE</code>, <code>RESLOT_LIMIT</code>.</p>
+
+            <h2 id="examples">Примеры вызова</h2>
+            <p>Все примеры используют одинаковый тестовый payload: 1 свободная секция шириной 3000 мм, 1 паллета для размещения (1200×1500×1000 мм, 700 кг).</p>
+
+            <h3>1С (HTTPСоединение)</h3>
+            <pre><code>Процедура ВызватьОптимизатор()
+    // 1. Найти склад
+    Склад = Справочники.Склады.НайтиПоНаименованию("ЛК Высотный 7");
+
+    // 2. Собрать занятость склада
+    Occupancy = Лико_WMS_Сервер.СобратьЗанятостьСекций(Склад);
+
+    // 3. Собрать новые паллеты для размещения
+    НовыеПаллеты = Новый Массив;
+    Для Каждого Паллета Из МассивПаллет Цикл
+        НоваяПаллета = Новый Структура;
+        НоваяПаллета.Вставить("id", Строка(Паллета.Ссылка.УникальныйИдентификатор()));
+        НоваяПаллета.Вставить("width", Паллета.Ширина);
+        НоваяПаллета.Вставить("height", Паллета.Высота);
+        НоваяПаллета.Вставить("depth", Паллета.Глубина);
+        НоваяПаллета.Вставить("weight", Паллета.Вес);
+        НоваяПаллета.Вставить("accessLevel", 1);
+        НовыеПаллеты.Добавить(НоваяПаллета);
+    КонецЦикла;
+
+    // 4. Настройки солвера
+    Settings = Новый Структура;
+    Settings.Вставить("allowReslot", Ложь);
+    Settings.Вставить("timeLimitSeconds", 120);
+    Settings.Вставить("strictNarrowAislePlacement", Истина); // только узкопроходные для узкопроходных
+
+    // 5. Запрос
+    ЗапросОптимизации = Новый Структура;
+    ЗапросОптимизации.Вставить("optimizationId", Строка(Новый УникальныйИдентификатор()));
+    ЗапросОптимизации.Вставить("mode", "place");
+    ЗапросОптимизации.Вставить("occupancy", Occupancy);
+    ЗапросОптимизации.Вставить("newPallets", НовыеПаллеты);
+    ЗапросОптимизации.Вставить("settings", Settings);
+
+    // 6. Отправка HTTP POST
+    Соединение = Новый HTTPСоединение("localhost", 8010);
+    Запрос = Новый HTTPЗапрос("/api/optimize");
+    Запрос.Заголовки.Вставить("Content-Type", "application/json; charset=utf-8");
+
+    ЗаписьJSON = Новый ЗаписьJSON;
+    ЗаписьJSON.УстановитьСтроку();
+    ЗаписатьJSON(ЗаписьJSON, ЗапросОптимизации);
+    Запрос.УстановитьТелоИзСтроки(ЗаписьJSON.Закрыть());
+
+    Ответ = Соединение.ВызватьHTTPМетод("POST", Запрос);
+
+    Если Ответ.КодСостояния = 200 Тогда
+        ЧтениеJSON = Новый ЧтениеJSON;
+        ЧтениеJSON.УстановитьСтроку(Ответ.ПолучитьТелоКакСтроку());
+        Результат = ПрочитатьJSON(ЧтениеJSON);
+        ЧтениеJSON.Закрыть();
+
+        // 7. Обработка результата
+        Сообщить("Статус: " + Результат.placementStatus);
+        Сообщить("Размещено: " + Формат(Результат.metrics.placedPallets, "ЧГ=0"));
+
+        Для Каждого Операция Из Результат.operations Цикл
+            Сообщить(Операция.operation + ": " + Операция.pallet + " → " + Операция.newAddress);
+        КонецЦикла;
+
+        Для Каждого НеРазмещенная Из Результат.notPlaced Цикл
+            Сообщить("НЕ размещена " + НеРазмещенная.pallet + ": " + НеРазмещенная.reason);
+        КонецЦикла;
+    Иначе
+        ВызватьИсключение "Ошибка HTTP: " + Формат(Ответ.КодСостояния, "ЧГ=0");
+    КонецЕсли;
+КонецПроцедуры
+</code></pre>
+
+            <h3>curl / cmd</h3>
+            <pre><code>curl -X POST http://localhost:8010/api/optimize \
+  -H "Content-Type: application/json" \
+  -d '{
+    "optimizationId": "test-001",
+    "mode": "place",
+    "occupancy": [
+      {
+        "section_id": "sec-uuid-001",
+        "section_code": "SEC001",
+        "rack_id": "rack-uuid-1",
+        "rack_code": 1,
+        "floor": 1,
+        "narrowAisle": true,
+        "restricted": false,
+        "typeSize_width": 3000,
+        "typeSize_height": 1800,
+        "typeSize_depth": 1200,
+        "typeSize_weight": 3000,
+        "typeSize_unlimitedWeight": false,
+        "gap_width": 50,
+        "max_lift_weight": 1000,
+        "max_pallets": 3,
+        "max_widthPallet": 0,
+        "max_depthPallet": 0,
+        "address1": "addr-uuid-1",
+        "address2": "addr-uuid-2",
+        "address3": "addr-uuid-3"
+      }
+    ],
+    "newPallets": [
+      {
+        "id": "pallet-uuid-001",
+        "width": 1200,
+        "height": 1500,
+        "depth": 1000,
+        "weight": 700,
+        "accessLevel": 1
+      }
+    ],
+    "settings": {
+      "allowReslot": false,
+      "timeLimitSeconds": 30,
+      "strictNarrowAislePlacement": true
+    }
+  }'</code></pre>
+
+            <h3>Python (requests)</h3>
+            <pre><code>import requests
+
+url = "http://localhost:8010/api/optimize"
+payload = {
+    "optimizationId": "test-001",
+    "mode": "place",
+    "occupancy": [
+        {
+            "section_id": "sec-uuid-001",
+            "section_code": "SEC001",
+            "rack_id": "rack-uuid-1",
+            "rack_code": 1,
+            "floor": 1,
+            "narrowAisle": True,
+            "restricted": False,
+            "typeSize_width": 3000,
+            "typeSize_height": 1800,
+            "typeSize_depth": 1200,
+            "typeSize_weight": 3000,
+            "typeSize_unlimitedWeight": False,
+            "gap_width": 50,
+            "max_lift_weight": 1000,
+            "max_pallets": 3,
+            "max_widthPallet": 0,
+            "max_depthPallet": 0,
+            "address1": "addr-uuid-1",
+            "address2": "addr-uuid-2",
+            "address3": "addr-uuid-3"
+        }
+    ],
+    "newPallets": [
+        {
+            "id": "pallet-uuid-001",
+            "width": 1200,
+            "height": 1500,
+            "depth": 1000,
+            "weight": 700,
+            "accessLevel": 1
+        }
+    ],
+    "settings": {
+        "allowReslot": False,
+        "timeLimitSeconds": 30,
+        "strictNarrowAislePlacement": True
+    }
+}
+
+response = requests.post(url, json=payload)
+result = response.json()
+
+print(f"Статус: {result['placementStatus']}")
+print(f"Размещено: {result['metrics']['placedPallets']}")
+
+for op in result['operations']:
+    print(f"  {op['operation']}: паллета {op['pallet']} → {op['newAddress']}")
+
+for np in result['notPlaced']:
+    print(f"  НЕ размещена {np['pallet']}: {np['reason']}")
+</code></pre>
+
+            <h3>Node.js (fetch, Node 18+)</h3>
+            <pre><code>const url = 'http://localhost:8010/api/optimize';
+const payload = {
+  optimizationId: 'test-001',
+  mode: 'place',
+  occupancy: [
+    {
+      section_id: 'sec-uuid-001',
+      section_code: 'SEC001',
+      rack_id: 'rack-uuid-1',
+      rack_code: 1,
+      floor: 1,
+      narrowAisle: true,
+      restricted: false,
+      typeSize_width: 3000,
+      typeSize_height: 1800,
+      typeSize_depth: 1200,
+      typeSize_weight: 3000,
+      typeSize_unlimitedWeight: false,
+      gap_width: 50,
+      max_lift_weight: 1000,
+      max_pallets: 3,
+      max_widthPallet: 0,
+      max_depthPallet: 0,
+      address1: 'addr-uuid-1',
+      address2: 'addr-uuid-2',
+      address3: 'addr-uuid-3'
+    }
+  ],
+  newPallets: [
+    {
+      id: 'pallet-uuid-001',
+      width: 1200,
+      height: 1500,
+      depth: 1000,
+      weight: 700,
+      accessLevel: 1
+    }
+  ],
+  settings: {
+    allowReslot: false,
+    timeLimitSeconds: 30,
+    strictNarrowAislePlacement: true
+  }
+};
+
+(async () => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  const result = await response.json();
+
+  console.log(`Статус: ${result.placementStatus}`);
+  console.log(`Размещено: ${result.metrics.placedPallets}`);
+
+  result.operations.forEach(op => {
+    console.log(`  ${op.operation}: паллета ${op.pallet} → ${op.newAddress}`);
+  });
+
+  result.notPlaced.forEach(np => {
+    console.log(`  НЕ размещена ${np.pallet}: ${np.reason}`);
+  });
+})();
+</code></pre>
+
+            <h2 id="testing">Тестирование</h2>
+
+            <h3>Какие тесты есть в проекте</h3>
+            <p>Всего <strong>41 тест</strong> в 4 файлах:</p>
+            <ul>
+                <li><code>tests/test_acceptance.py</code> — 12 приёмочных тестов (§21 ТЗ): простое размещение, переполнение секции, лимит подъёма, реслот, блокированные паллеты, restricted-секции</li>
+                <li><code>tests/test_narrow_aisle.py</code> — 5 тестов на узкопроходные стеллажи (<code>narrowAisle</code>, <code>strictNarrowAislePlacement</code>)</li>
+                <li><code>tests/test_potential.py</code> — 15 юнит-тестов функции <code>section_fits_pallet()</code> и расчёта потенциала</li>
+                <li><code>tests/test_scoring.py</code> — 9 тестов scoring-функций (глобальный score, адрес-score, веса)</li>
+            </ul>
+
+            <h3>Как запустить все тесты</h3>
+            <pre><code># Из директории services/wms_optimizer/
+pytest
+
+# С подробным выводом
+pytest -v
+
+# Только конкретный файл
+pytest tests/test_acceptance.py -v
+
+# Только конкретный тест
+pytest tests/test_narrow_aisle.py::test_narrow_pallet_strict_mode_only_narrow_sections -v</code></pre>
+
+            <h3>Покрытие</h3>
+            <p><code>pytest-cov</code> не настроен в проекте (не в <code>requirements.txt</code>). Для измерения покрытия:</p>
+            <pre><code>pip install pytest-cov
+pytest --cov=. --cov-report=term-missing</code></pre>
+
+            <h2 id="debugging">Отладка</h2>
+
+            <h3>Отладка сервиса из VS Code с точкой останова</h3>
+            <p>Пошаговый сценарий: вызов из 1С доходит до Python и останавливается на breakpoint в VS Code.</p>
+
+            <ol>
+                <li>Остановить Docker-контейнер (если запущен):
+                    <pre><code>docker compose stop wms-optimizer</code></pre>
+                </li>
+                <li>Открыть проект <code>services/wms_optimizer/</code> в VS Code</li>
+                <li>Создать/обновить <code>.vscode/launch.json</code>:
+                    <pre><code>{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: FastAPI",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "main:app",
+        "--host", "0.0.0.0",
+        "--port", "8010",
+        "--reload"
+      ],
+      "justMyCode": false,
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}</code></pre>
+                </li>
+                <li>Поставить breakpoint в нужной функции (например, <code>api/routes.py</code> строка 30: <code>async def optimize_sync(...)</code>)</li>
+                <li>Запустить через "Run and Debug" (F5) — сервис поднимется локально с дебаггером</li>
+                <li>Сделать вызов из 1С (тот же <code>HTTPСоединение("localhost", 8010)</code>) — выполнение остановится на breakpoint, можно смотреть значения переменных (<code>req.occupancy</code>, <code>req.newPallets</code> и т.д.)</li>
+            </ol>
+
+            <div class="info">
+                <p><strong>Примечание:</strong> Remote debug (debugpy attach к контейнеру) не настроен в проекте. Для отладки рекомендуется вариант выше — остановить контейнер, запустить локально с <code>launch.json</code>.</p>
+            </div>
+
+            <h2 id="config">Конфигурация</h2>
+
+            <h3>config/settings.json</h3>
+            <p>Основной конфигурационный файл:</p>
+            <pre><code>{
+  "defaultSettings": {
+    "allowReslot": true,
+    "maxReslotPercent": 20,
+    "maxOperations": 300,
+    "timeLimitSeconds": 120
+  },
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8010,
+    "workers": 1
+  },
+  "logging": {
+    "level": "INFO"
+  }
+}</code></pre>
+            <ul>
+                <li><code>api.host</code> — адрес для прослушивания (0.0.0.0 = все интерфейсы)</li>
+                <li><code>api.port</code> — порт сервиса (default 8010)</li>
+                <li><code>api.workers</code> — количество worker-процессов uvicorn (для production можно увеличить до 2-4)</li>
+                <li><code>defaultSettings</code> — дефолтные значения <code>OptimizationSettings</code>, если не переданы в запросе</li>
+            </ul>
+
+            <h3>config/weights.json</h3>
+            <p><code>globalWeights</code> — веса для <code>GlobalScore</code> (метрика итогового результата в ответе API, постпроцессинг, не участвует в самом CP-SAT). <code>localWeights</code> — веса старого scoring-выбора адреса, <strong>больше не используются</strong>: выбор адреса реализован детерминированным правилом 1С (см. раздел «Выбор адреса»), секция оставлена в файле только для истории/тестов. Редактируются редко — только для fine-tuning <code>globalWeights</code>. См. <code>optimizer/scoring.py</code>.</p>
+
+            <h3>Переменные окружения</h3>
+            <p>Сервис НЕ использует env-переменные для конфигурации — все настройки в <code>config/settings.json</code>. Для изменения порта/хоста — редактировать JSON напрямую.</p>
+
+            <h2 id="performance">Производительность</h2>
+            <ul>
+                <li><strong>Малая задача</strong> (&lt;100 паллет): ~1-5 сек, синхронный режим (<code>/api/optimize</code>)</li>
+                <li><strong>Средняя задача</strong> (100-500 паллет): ~10-60 сек, синхронный режим</li>
+                <li><strong>Большая задача</strong> (&gt;500 паллет): рекомендуется асинхронный режим (<code>/api/optimize/async</code>), time limit 300-600 сек</li>
+                <li><strong>Стресс-тест</strong> (2690 паллет реального склада): ~8-12 мин при <code>timeLimitSeconds=600</code></li>
+            </ul>
+
+            <div class="warning">
+                <p><strong>Рекомендации:</strong> для задач &gt;1000 паллет — всегда async режим + увеличить <code>timeLimitSeconds</code> до 600. Для первого прототипа/теста — <code>allowReslot=false</code>, <code>timeLimitSeconds=30</code>.</p>
+            </div>
+
+            <h2 id="internals">Внутреннее устройство (сигнатуры ключевых функций)</h2>
+            <p>Основные публичные функции пайплайна оптимизации:</p>
+            <pre><code># optimizer/global_optimizer.py
+def run_optimization(req: OptimizationRequest) -> OptimizationResponse:
+    """Главная точка входа — полный пайплайн от запроса до ответа."""
+
+# optimizer/potential.py
+def section_fits_pallet(
+    section: Section,
+    pallets_in_section: List[Pallet],
+    pallet: Pallet,
+    strict_narrow: bool = True
+) -> bool:
+    """Проверяет все ограничения §7 для размещения паллеты в секции.
+    strict_narrow: если True, узкопроходная паллета → только узкопроходные секции."""
+
+def compute_potential(section: Section, pallets: List[Pallet]) -> float:
+    """Потенциал секции (сколько ещё ширины доступно для размещения)."""
+
+# optimizer/section_optimizer.py
+def assign_addresses(
+    pallets: List[Pallet],
+    section_assignment: Dict[str, Optional[str]],
+    section_map: Dict[str, Section],
+    address_map: Dict[str, Address],
+) -> Dict[str, Optional[str]]:
+    """Назначает конкретный адрес (слот 1/2/3) внутри уже назначенной секции.
+    Детерминированное правило 1С (без scoring): ширина > 2/3 секции → адрес2,
+    иначе адрес1 → адрес3 → адрес2 по очереди, первый свободный и не blocked."""
+
+# solver/warm_start.py
+def first_fit_decreasing(
+    pallets: List[Pallet],
+    sections: List[Section],
+    strict_narrow: bool = True
+) -> Dict[str, str]:
+    """FFD-эвристика для тёплого старта CP-SAT.
+    Возвращает Pallet.id → Section.id mapping."""
+
+# solver/cp_sat_model.py (класс CPSATSolver)
+def solve(self) -> Tuple[str, Dict[str, str]]:
+    """Запуск CP-SAT солвера. Возвращает (status, allocation)."""
+</code></pre>
+        </div>
+
+        <footer>
+            <p>WMS Optimizer v1.0.0 | OR-Tools CP-SAT + FFD Warm Start</p>
+        </footer>
+    </div>
+
+    <button id="back-to-top" title="Наверх">↑</button>
+
+    <script>
+        // Кнопка "наверх"
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > window.innerHeight) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Кнопки копирования кода
+        const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        const CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        document.querySelectorAll('pre').forEach(pre => {
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.type = 'button';
+            btn.title = 'Копировать';
+            btn.innerHTML = COPY_ICON;
+            btn.addEventListener('click', () => {
+                const code = pre.querySelector('code');
+                const text = code ? code.innerText : pre.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    btn.innerHTML = CHECK_ICON;
+                    btn.title = 'Скопировано!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = COPY_ICON;
+                        btn.title = 'Копировать';
+                        btn.classList.remove('copied');
+                    }, 1500);
+                });
+            });
+            pre.appendChild(btn);
+        });
+    </script>
+</body>
+</html>
