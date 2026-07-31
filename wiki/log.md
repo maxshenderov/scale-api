@@ -839,3 +839,4 @@ HTTP-утилиты (~383 строк). GET/POST, JSON сериализация, 
 - 2026-07-31 11:41 | session end (other) | 5eea15e1977e
 - 2026-07-31 11:52 | session end (other) | 9a61e898742a
 - 2026-07-31 12:13 | session end (other) | cb97424ce9c5
+- 2026-07-31 12:15 | session end (other) | 1dd66593661e
