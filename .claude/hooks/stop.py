@@ -1,25 +1,29 @@
 # .claude/hooks/stop.py
-"""Stop: лёгкая проверка изменений + async git commit. Без суммаризации."""
+"""Stop: git-commit + async push. Каждый ход летит на GitHub."""
 
 import sys
 import time
-from _common import read_input, already_in_hook, git, git_dirty, is_okil_project
+import subprocess
+from _common import already_in_hook, git, git_dirty, project_dir
 
 
 def main() -> int:
     if already_in_hook():
         return 0
-    if not is_okil_project():
-        return 0
-
-    read_input()
-
     if not git_dirty():
         return 0
 
     ts = time.strftime("%Y-%m-%d %H:%M")
     git("add", "-A")
     git("commit", "-m", f"wip: auto-save {ts}")
+
+    # push в фоне — не блокирует, не роняет хук если нет сети
+    subprocess.Popen(
+        ["git", "push"],
+        cwd=str(project_dir()),
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
     return 0
 
 
