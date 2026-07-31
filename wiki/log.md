@@ -829,4 +829,4 @@ HTTP-утилиты (~383 строк). GET/POST, JSON сериализация, 
 - `wiki/liko/ХранилищеВариантовОтчетов.md` — приоритет расширений
 
 Обновлён `wiki/index.md` — добавлены записи во все разделы, обновлена статистика.
-Всего страниц в вики: **328** (wiki/liko/ — 320, wiki/extensions/ — 2, wiki/ai/ — 3, wiki/documents/ — 1, wiki/plans/ — 2).
+Всего страниц в вики: **328** (wiki/liko/ — 320, wiki/extensions/ — 2, wiki/ai/ — 3, wiki/documents/ — 1, wiki/plans/ — 2).- 2026-07-31 11:17 | session end (test) | d77bd8ef2957
