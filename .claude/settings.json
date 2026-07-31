@@ -12,10 +12,11 @@
   "hooks": {
     "PreCompact": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "python \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\precompact.py\"",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/precompact.py\"",
             "timeout": 45
           }
         ]
@@ -23,10 +24,11 @@
     ],
     "Stop": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "python \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\stop.py\"",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/stop.py\"",
             "async": true
           }
         ]
@@ -34,20 +36,22 @@
     ],
     "SessionStart": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "python \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\session_start.py\""
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/session_start.py\""
           }
         ]
       }
     ],
     "SessionEnd": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "python \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\session_end.py\"",
+            "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/session_end.py\"",
             "timeout": 45
           }
         ]
