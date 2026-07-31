@@ -3,11 +3,13 @@
 
 import sys
 import time
-from _common import read_input, already_in_hook, git, git_dirty
+from _common import read_input, already_in_hook, git, git_dirty, is_okil_project
 
 
 def main() -> int:
     if already_in_hook():
+        return 0
+    if not is_okil_project():
         return 0
 
     read_input()

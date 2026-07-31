@@ -68,3 +68,8 @@ def git_head() -> str:
     """Последний коммит (полный хеш) или пустая строка."""
     r = git("log", "-1", "--format=%H")
     return r.stdout.strip() if r.returncode == 0 else ""
+
+
+def is_okil_project() -> bool:
+    """Проверка что мы в проекте OKIL (есть output/session/)."""
+    return state_path().parent.exists()
