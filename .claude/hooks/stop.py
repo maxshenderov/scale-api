@@ -1,10 +1,21 @@
 # .claude/hooks/stop.py
-"""Stop: git-commit + async push. Каждый ход летит на GitHub."""
+"""Stop: git-commit + push в origin (всё) + wms (только services/wms_optimizer)."""
 
 import sys
 import time
 import subprocess
 from _common import already_in_hook, git, git_dirty, project_dir
+
+
+def push_async(remote: str, prefix: str = None):
+    """Асинхронный push (фон, не блокирует). Если prefix — subtree push."""
+    cwd = str(project_dir())
+    if prefix:
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
+        cmd = ["git", "subtree", "push", "--prefix", prefix, remote, branch]
+    else:
+        cmd = ["git", "push", remote]
+    subprocess.Popen(cmd, cwd=cwd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 def main() -> int:
@@ -17,13 +28,8 @@ def main() -> int:
     git("add", "-A")
     git("commit", "-m", f"wip: auto-save {ts}")
 
-    # push в фоне — не блокирует, не роняет хук если нет сети
-    subprocess.Popen(
-        ["git", "push"],
-        cwd=str(project_dir()),
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
+    push_async("origin")                          # всё
+    push_async("wms", "services/wms_optimizer")   # только wms-сервис
     return 0
 
 
