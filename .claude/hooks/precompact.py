@@ -4,24 +4,25 @@
 import sys
 import subprocess
 import time
-from _common import read_input, already_in_hook, child_env, state_path, git_head
+from _common import read_input, already_in_hook, child_env, state_path, git_head, claude_cmd
 
 PROMPT = (
-    "Ты обновляешь файл состояния сессии. На основе последнего ответа ассистента "
-    "ниже сформируй КОМПАКТНЫЙ markdown (<=150 токенов) строго по шаблону:\n"
+    "Напиши ТОЛЬКО содержимое файла state.md (markdown) — суммируй прогресс из контекста ниже. "
+    "Никаких пояснений, только сам файл.\n\n"
+    "Формат строго:\n"
     "# Session State — {date}\n"
-    "> <тема>\n"
+    "> <тема: одна строка>\n"
     "## Текущий шаг\n"
-    "- [ ] <что делаем>\n"
+    "- [ ] <что делаем прямо сейчас>\n"
     "## Что сделано\n"
-    "- [x] <пункт>\n"
+    "- [x] <конкретный результат>\n"
     "## Затронутые файлы\n"
     "- <путь>\n"
     "## Известные проблемы\n"
-    "- <если есть>\n"
+    "- <проблема или удалить секцию если нет>\n"
     "## Последний коммит\n"
     "{head}\n\n"
-    "Последний ответ ассистента:\n"
+    "Контекст для суммаризации:\n"
     "{msg}"
 )
 
@@ -43,9 +44,10 @@ def main() -> int:
 
     try:
         r = subprocess.run(
-            ["claude", "-p", prompt, "--model", "haiku"],
+            [*claude_cmd(), "-p", prompt, "--model", "haiku"],
             capture_output=True,
             text=True,
+            encoding="utf-8",
             env=child_env(),
             timeout=40,
         )

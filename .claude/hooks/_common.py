@@ -73,3 +73,14 @@ def git_head() -> str:
 def is_okil_project() -> bool:
     """Проверка что мы в проекте OKIL (есть output/session/)."""
     return state_path().parent.exists()
+
+
+def claude_cmd() -> list:
+    """Возвращает [команда] для вызова Claude CLI (учитывает Windows .cmd)."""
+    if sys.platform == "win32":
+        # claude — bash-скрипт, не виден из subprocess без shell=True
+        # Используем .cmd версию
+        npm_claude = pathlib.Path(os.environ.get("APPDATA", "")) / "npm" / "claude.cmd"
+        if npm_claude.exists():
+            return [str(npm_claude)]
+    return ["claude"]
