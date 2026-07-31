@@ -230,15 +230,23 @@ http://localhost:8010/docs
 | **twoStageReslot** | **bool** | **false** | **🆕 Двухэтапный режим** — только для mode="place". ЭТАП 1: размещение без реслота (allowReslot=False), ЭТАП 2: реслот не размещённых (allowReslot=True). Игнорирует `allowReslot` на ЭТАПЕ 1. **Рекомендуется для холодного старта (>1000 паллет).** |
 | **twoStageReslotMaxReslotPercent** | **float** | **10.0** | **🆕** maxReslotPercent для ЭТАПА 2 (если twoStageReslot=True) |
 | **twoStageReslotTimeLimitSeconds** | **int** | **120** | **🆕** timeLimitSeconds для ЭТАПА 2 (если twoStageReslot=True) |
-| **solverType** | **string** | **"cp_sat"** | **🆕 Тип солвера:** `"cp_sat"` — OR-Tools CP-SAT (макс. качество), `"numpy"` — NumPy+SciPy type-level greedy (быстрее), `"hybrid-v3"` — BFD+Chain-Swap из 1С. См. [Выбор солвера](#выбор-солвера) |
+| **solverType** | **string** | **"cp_sat"** | **🆕 Тип солвера:** `"cp_sat"` — OR-Tools CP-SAT (макс. качество), `"numpy"` — NumPy+SciPy type-level greedy (быстрее), `"hybrid-v3"` — BFD+Chain-Swap (быстрый), `"hybrid-v5"` — BFD hints + CP-SAT (баланс). См. [Выбор солвера](#выбор-солвера) |
 
 #### Выбор солвера
 
 | Солвер | `solverType` | Качество (S7) | Время (S7) | Когда использовать |
 |--------|-------------|--------------|-----------|-------------------|
-| **CP-SAT** | `"cp_sat"` | 3332/3406 (97.8%) | 253s | Максимальное качество, холодный старт |
+| **Hybrid V5** | `"hybrid-v5"` | **3238/3406 (95.1%)** | 368s | Максимальное качество, 0 ошибок |
+| **CP-SAT** | `"cp_sat"` | 3332/3406 (97.8%) | 253s | Макс. размещение (допускает WIDTH_OVERFLOW) |
 | **NumPy** | `"numpy"` | 3218/3406 (94.5%) | 57s | Скорость, инкрементальное размещение |
-| **Hybrid V3** | `"hybrid-v3"` | 3215/3406 (94.4%) | 4.1s | Из 1С, BFD+Chain-Swap, 0 ошибок валидации |
+| **Hybrid V3** | `"hybrid-v3"` | 3215/3406 (94.4%) | 4.1s | Макс. скорость, BFD+Chain-Swap, 0 ошибок |
+
+**Hybrid V5 солвер** (aggregate CP-SAT + V3 reslot):
+- Запускает агрегированную CP-SAT модель Y[тип, бакет] для глобальной оптимизации
+- Дезагрегация + residual passes (exact CP-SAT, consolidation, virtual reslot)
+- Если `allowReslot=true` и есть существующие паллеты — chain-swap реслот неразмещённых
+- Защита от WIDTH_OVERFLOW в финальной сборке ответа
+- Рекомендуется для холодного старта когда время не критично
 
 **NumPy солвер** (type-level greedy + two-stage reslot):
 - Группирует паллеты по типоразмерам (41 тип)
@@ -285,7 +293,8 @@ maxOperations ≥ количество новых паллет + 10% от existi
 
 **Рекомендации:**
 - **Тест:** allowReslot=false, time=30, maxOperations=300, strictNarrowAislePlacement=true, solverType="cp_sat"
-- **Быстрый:** solverType="numpy", twoStageReslot=true, time=60, maxOperations=5000
+- **Быстрый:** solverType="hybrid-v3", maxOperations=5000 (4с, 94.4%)
+- **Качество:** solverType="hybrid-v5", allowReslot=true, time=300, maxOperations=5000 (368с, 95.1%)
 - **Рабочий:** solverType="cp_sat", allowReslot=false, time=120, maxOperations=5000, strictNarrowAislePlacement=true
 - **Холодный старт с реслотом:** solverType="cp_sat", twoStageReslot=true, maxOperations=5000
 - **Холодный старт быстро:** solverType="numpy", twoStageReslot=true, twoStageReslotMaxReslotPercent=40, maxOperations=5000

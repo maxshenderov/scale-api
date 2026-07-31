@@ -26,6 +26,7 @@ export const api = {
     move:            (data: Record<string, unknown>) => post('/move', data),
     optimize:        (data: Record<string, unknown>) => post('/optimize', data),
     optimizeFloors:  (data: Record<string, unknown>) => post('/optimize/floors', data),
+    placePallets:      (data: Record<string, unknown>) => post('/placements/place', data),
     executePlacements: (data: Record<string, unknown>) => post('/placements/execute', data),
     getConnections:  ()          => get('/connections'),
     getSnapshots:    ()          => post('/snapshot/list'),

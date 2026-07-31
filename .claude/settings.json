@@ -9,6 +9,51 @@
     "memory-bank-indexer",
     "1c-mcp-bridge"
   ],
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\precompact.py\"",
+            "timeout": 45
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\stop.py\"",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\session_start.py\""
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\session_end.py\"",
+            "timeout": 45
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d.replace(/^\\uFEFF/,'').trim());let m=j.model?.display_name||'?';const p=j.context_window?.used_percentage;if(p!=null)m+=' ctx:'+Math.round(p)+'%';if(j.effort?.level)m+=' effort:'+j.effort.level;console.log(m)}catch(e){console.log('Claude')}})\""

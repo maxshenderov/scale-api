@@ -81,11 +81,28 @@ class HybridV3Solver:
         self.pallet_map: Dict[str, Pallet] = {p.id: p for p in self.all_pallets}
         self.new_pallets: List[Pallet] = list(self.all_pallets)
 
+        # Существующие паллеты + реслот
+        self.existing_ids: set = {p.id for p in existing_pallets}
+        self.existing_pallet_map: Dict[str, Pallet] = {p.id: p for p in existing_pallets}
+        for p in existing_pallets:
+            self.pallet_map[p.id] = p
+        self.movable_existing_ids: set = {p.id for p in existing_pallets if p.movable}
+        self.non_movable_ids: set = {p.id for p in existing_pallets if not p.movable}
+        self.moved_existing_ids: set = set()
+        self._old_address: Dict[str, str] = {
+            p.id: p.current_address_id for p in existing_pallets if p.current_address_id
+        }
+        total_existing = len(existing_pallets)
+        self._max_reslot_moves = (
+            int(total_existing * settings.maxReslotPercent / 100)
+            if settings.allowReslot and total_existing > 0
+            else 0
+        )
+
         self.section_states: Dict[str, _SectionState] = {}
         self._init_section_states(existing_pallets)
 
         self.placements: Dict[str, str] = {}  # pallet_id → section_id
-        self.existing_ids: set = {p.id for p in existing_pallets}
 
         # Кэш совместимости
         self.compatible: Dict[str, List[str]] = {}
@@ -115,6 +132,15 @@ class HybridV3Solver:
                 if self._basic_fits(p, state.section):
                     comp.append(state.id)
             self.compatible[p.id] = comp
+        # Совместимость для movable existing (нужна chain-swap при реслоте)
+        for p_id in self.movable_existing_ids:
+            if p_id not in self.compatible:
+                p = self.existing_pallet_map[p_id]
+                comp = []
+                for state in self.section_states.values():
+                    if self._basic_fits(p, state.section):
+                        comp.append(state.id)
+                self.compatible[p_id] = comp
         logger.info(f"  Совместимость: предвычислено для {len(self.all_pallets)} паллет")
 
     def _basic_fits(self, pallet: Pallet, section: Section) -> bool:
@@ -130,7 +156,7 @@ class HybridV3Solver:
             return False
         if pallet.weight > section.max_lift_weight:
             return False
-        if section.narrow_aisle and not pallet.is_narrow:
+        if self.settings.strictNarrowAislePlacement and section.narrow_aisle and not pallet.is_narrow:
             return False
         return True
 
@@ -141,26 +167,60 @@ class HybridV3Solver:
     def solve(self) -> OptimizationResponse:
         t0 = time.time()
         total = len(self.all_pallets)
-        logger.info(f"Hybrid V3: запуск, {total} паллет × {len(self.sections)} секций")
+        logger.info(f"Hybrid V3: запуск, {total} паллет × {len(self.sections)} секций"
+                    f" allowReslot={self.settings.allowReslot} twoStage={self.settings.twoStageReslot}")
+
+        if self.settings.twoStageReslot and self.settings.allowReslot:
+            return self._solve_two_stage(t0, total)
 
         # Фаза 1: BFD
         n1 = self._phase_bfd()
-        print(f"  [BFD]         {n1}/{total} ({n1/total*100:.1f}%)")
+        logger.info(f"  [BFD]         {n1}/{total} ({n1/total*100:.1f}%)")
 
         # Фаза 2: Chain-Swap
         n2 = self._phase_chain_swap()
-        print(f"  [Chain-Swap]  {n2}/{total} ({n2/total*100:.1f}%)")
+        logger.info(f"  [Chain-Swap]  {n2}/{total} ({n2/total*100:.1f}%)")
 
         # Фаза 3: Micro CP-SAT
         n3 = self._phase_micro_cpsat()
-        print(f"  [CP-SAT]      {n3}/{total} ({n3/total*100:.1f}%)")
+        logger.info(f"  [CP-SAT]      {n3}/{total} ({n3/total*100:.1f}%)")
 
         # Фаза 4: Адреса
         operations, not_placed = self._assign_addresses()
 
         elapsed = time.time() - t0
-        logger.info(f"Hybrid V3: итог {n3}/{total} за {elapsed:.1f}с")
-        return self._build_response(operations, not_placed, elapsed, n3)
+        placed_count = len([op for op in operations if op.operation == "PUT"])
+        moved_count = len([op for op in operations if op.operation == "MOVE"])
+        logger.info(f"Hybrid V3: итог {placed_count} placed + {moved_count} moved / {total} new за {elapsed:.1f}с")
+        return self._build_response(operations, not_placed, elapsed, placed_count, moved_count)
+
+    def _solve_two_stage(self, t0: float, total: int) -> OptimizationResponse:
+        self._max_reslot_moves = 0
+        n1 = self._phase_bfd()
+        logger.info(f"  [St1 BFD]         {n1}/{total} ({n1/total*100:.1f}%)")
+        n2 = self._phase_chain_swap()
+        logger.info(f"  [St1 Chain-Swap]  {n2}/{total} ({n2/total*100:.1f}%)")
+        n3 = self._phase_micro_cpsat()
+        logger.info(f"  [St1 CP-SAT]      {n3}/{total} ({n3/total*100:.1f}%)")
+        stage1_leftovers = list(self.new_pallets)
+        logger.info(f"  Этап 1: {len(self.placements)} placed, {len(stage1_leftovers)} leftovers")
+
+        if stage1_leftovers:
+            self._max_reslot_moves = int(
+                len(self.movable_existing_ids) * self.settings.twoStageReslotMaxReslotPercent / 100
+            )
+            self.new_pallets = stage1_leftovers
+            n4 = self._phase_chain_swap()
+            logger.info(f"  [St2 Chain-Swap]  {n4}/{total} ({n4/total*100:.1f}%)")
+            n5 = self._phase_micro_cpsat()
+            logger.info(f"  [St2 CP-SAT]      {n5}/{total} ({n5/total*100:.1f}%)")
+
+        operations, not_placed = self._assign_addresses()
+        elapsed = time.time() - t0
+        placed_count = len([op for op in operations if op.operation == "PUT"])
+        moved_count = len([op for op in operations if op.operation == "MOVE"])
+        logger.info(f"Hybrid V3 TwoStage: {placed_count} placed + {moved_count} moved за {elapsed:.1f}с")
+        return self._build_response(operations, not_placed, elapsed, placed_count, moved_count)
 
     # ------------------------------------------------------------------
     # Фаза 1: BFD
@@ -260,8 +320,12 @@ class HybridV3Solver:
             req = leftover.width + gap_a
 
             for placed_a in list(state_a.placed_pallets):
-                if placed_a.id in self.existing_ids:
+                if placed_a.id in self.non_movable_ids:
                     continue
+                # Проверка лимита реслота
+                if placed_a.id in self.movable_existing_ids:
+                    if len(self.moved_existing_ids) >= self._max_reslot_moves:
+                        continue
                 if state_a.free_width + placed_a.width + gap_a < req:
                     continue
 
@@ -290,8 +354,12 @@ class HybridV3Solver:
             req = leftover.width + gap_a
 
             for placed_a in list(state_a.placed_pallets):
-                if placed_a.id in self.existing_ids:
+                if placed_a.id in self.non_movable_ids:
                     continue
+                # Проверка лимита реслота
+                if placed_a.id in self.movable_existing_ids:
+                    if len(self.moved_existing_ids) >= self._max_reslot_moves:
+                        continue
                 if state_a.free_width + placed_a.width + gap_a < req:
                     continue
 
@@ -350,12 +418,18 @@ class HybridV3Solver:
 
     def _execute_chain(self, chain: List[Tuple[str, str, str]]):
         """Атомарное выполнение цепочки: сначала remove, потом place."""
+        old_sections = {}
+        for action, p_id, sec_id in chain:
+            if action == "remove" and p_id in self.movable_existing_ids:
+                old_sections[p_id] = sec_id
         for action, p_id, sec_id in chain:
             if action == "remove":
                 self._do_remove(p_id, sec_id)
         for action, p_id, sec_id in chain:
             if action == "place":
                 self._do_place(p_id, sec_id)
+                if p_id in old_sections and sec_id != old_sections[p_id]:
+                    self.moved_existing_ids.add(p_id)
 
     # ------------------------------------------------------------------
     # Фаза 3: Micro CP-SAT
@@ -421,7 +495,9 @@ class HybridV3Solver:
 
     def _do_remove(self, pallet_id: str, section_id: str):
         state = self.section_states[section_id]
-        pallet = self.pallet_map[pallet_id]
+        pallet = self.pallet_map.get(pallet_id) or self.existing_pallet_map.get(pallet_id)
+        if pallet is None:
+            return
         gap = state.gap_width
         state.free_width += pallet.width + gap
         state.free_count += 1
@@ -437,41 +513,60 @@ class HybridV3Solver:
         by_section: Dict[str, List[str]] = defaultdict(list)
         for p_id, sec_id in self.placements.items():
             by_section[sec_id].append(p_id)
+        # Добавляем НЕ-перемещённые existing паллеты
+        for p_id in self.existing_ids:
+            if p_id not in self.moved_existing_ids:
+                p = self.existing_pallet_map.get(p_id)
+                if p and p.current_section_id:
+                    by_section[p.current_section_id].append(p_id)
 
         for sec_id, p_ids in by_section.items():
             section = self.section_states[sec_id].section
-            # Реальные GUID-адреса из occupancy
             real_addresses = self._sec_addresses.get(sec_id, ["", "", ""])
+
+            # НЕ-перемещённые existing уже занимают свои адреса
+            occupied: set = set()
+            occupied_widths: Dict[int, float] = {}
+            for p_id in list(p_ids):
+                if p_id in self.existing_ids and p_id not in self.moved_existing_ids:
+                    old_addr = self._old_address.get(p_id, "")
+                    if old_addr and old_addr in real_addresses:
+                        idx = real_addresses.index(old_addr)
+                        p = self.pallet_map.get(p_id)
+                        if p:
+                            occupied.add(idx)
+                            occupied_widths[idx] = p.width
+                            if idx in (0, 2) and p.width > section.width / 3:
+                                occupied.add(1)
+                                occupied_widths[1] = p.width
 
             sorted_ids = sorted(
                 p_ids,
-                key=lambda pid: self.pallet_map[pid].width,
-                reverse=True,
+                key=lambda pid: (
+                    0 if pid in self.moved_existing_ids else
+                    1 if pid in self.existing_ids else 2,
+                    -(self.pallet_map[pid].width if pid in self.pallet_map else 0),
+                ),
             )
 
-            # Определяем занятые позиции (существующие паллеты)
-            occupied = set()
-            occupied_widths = {}  # idx → ширина паллеты
-            existing_in_sec = [p for p in self.section_states[sec_id].placed_pallets
-                              if p.id in self.existing_ids]
-            # Не отмечаем занятые — они уже в state.placed_pallets
-
             for p_id in sorted_ids:
-                p = self.pallet_map[p_id]
+                if p_id in self.existing_ids and p_id not in self.moved_existing_ids:
+                    continue
+                p = self.pallet_map.get(p_id)
+                if p is None:
+                    continue
                 w = p.width
                 W = section.width
-                # Позиции 1-based: 1=левый край, 2=центр, 3=правый край
                 if w > W * 2 / 3:
-                    allowed = [2]  # только центр
+                    allowed = [2]
                 elif w > W / 3:
-                    allowed = [1, 3]  # только края
+                    allowed = [1, 3]
                 else:
-                    allowed = [1, 2, 3]  # любая
+                    allowed = [1, 2, 3]
 
                 assigned = None
                 for pos in allowed:
                     idx = pos - 1
-                    # Addr2 блокирован только если Addr1/Addr3 заняты ШИРОКОЙ (>W/3) паллетой
                     if idx == 1:
                         if 0 in occupied and occupied_widths.get(0, 0) > W / 3:
                             continue
@@ -494,23 +589,21 @@ class HybridV3Solver:
                 if assigned is not None:
                     occupied.add(assigned)
                     occupied_widths[assigned] = w
-                    # Если паллета на Addr1/Addr3 широкая (>W/3) — блокируем Addr2
                     if assigned in (0, 2) and w > W / 3:
                         occupied.add(1)
-                        occupied_widths[1] = w  # фиктивная ширина для блокировки
-
-                if assigned is not None:
-                    occupied.add(assigned)
+                        occupied_widths[1] = w
+                    new_addr = real_addresses[assigned]
+                    old_addr = self._old_address.get(p_id) if p_id in self.existing_ids else None
                     all_ops.append(OperationSchema(
                         pallet=p_id,
-                        operation="PUT",
-                        newAddress=real_addresses[assigned],
+                        operation="MOVE" if (p_id in self.moved_existing_ids and old_addr) else "PUT",
+                        oldAddress=old_addr if p_id in self.moved_existing_ids else None,
+                        newAddress=new_addr,
                         sequence=len(all_ops) + 1,
                     ))
                 else:
                     self.placements.pop(p_id, None)
 
-        # Паллеты без адреса → неразмещённые
         addressed_ids = {op.pallet for op in all_ops}
         for p_id in list(self.placements.keys()):
             if p_id not in addressed_ids:
@@ -527,7 +620,7 @@ class HybridV3Solver:
     # ------------------------------------------------------------------
 
     def _build_response(
-        self, operations, not_placed, elapsed, placed_count
+        self, operations, not_placed, elapsed, placed_count, moved_count=0,
     ) -> OptimizationResponse:
         return OptimizationResponse(
             optimizationId="hybrid-v3",
@@ -540,7 +633,7 @@ class HybridV3Solver:
             notPlaced=not_placed,
             metrics=MetricsSchema(
                 placedPallets=placed_count,
-                movedPallets=0,
+                movedPallets=moved_count,
                 notPlacedPallets=len(not_placed),
                 potentialLoss=0,
                 usedSections=len(set(op.newAddress for op in operations)),

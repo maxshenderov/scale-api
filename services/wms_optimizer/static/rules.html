@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMS Optimizer — Правила размещения</title>
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+    <link rel="stylesheet" href="/static/shared.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/static/logo.svg" alt="WMS Optimizer" class="logo" width="32" height="32">
+            <h1>WMS Optimizer — Правила размещения</h1>
+            <div class="subtitle">v1.0.0 | Полная спецификация алгоритма размещения паллет (версия 2.0 — по факту кода)</div>
+        </header>
+
+        <nav>
+            <a href="/">← API Documentation</a>
+            <a href="#occupancy-fields">Поля occupancy</a>
+            <a href="#unused-fields">Неиспользуемые поля</a>
+            <a href="#narrow-aisle">Узкопроходные стеллажи</a>
+            <a href="#feasible">Отбор секций</a>
+            <a href="#constraints">Ограничения CP-SAT</a>
+            <a href="#address-rule">Выбор адреса</a>
+            <a href="#reasons">Причины отказа</a>
+        </nav>
+
+        <div class="content">
+            <div class="warning">
+                <strong>⚠️ Важно:</strong> Эта версия документации (2.0) переписана после ревью кода.
+                Предыдущая версия 1.0 содержала <strong>придуманные правила</strong> (проверка AccessLevel,
+                scoring адреса по Floor/AccessLevel/NarrowAisle), которые не были реализованы в коде.
+                Все правила ниже привязаны к конкретным файлам и строкам в <code>services/wms_optimizer/</code>.
+            </div>
+
+            <h2 id="occupancy-fields">Поля OccupancySection — занятость секций (текущее состояние склада)</h2>
+
+            <p><strong>Occupancy</strong> = снимок текущего состояния склада на момент запроса оптимизации. Одна строка = одна секция со всеми её параметрами (размеры, ограничения, правила) и до 3 паллет, которые уже стоят внутри. Источник — <code>Лико_WMS_Сервер.СобратьЗанятостьСекций()</code>.
+            Схема: <code>api/schemas.py:16</code> — <code>OccupancySectionSchema</code>.</p>
+
+            <h3>Идентификация секции</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th style="text-align:center">Обязательное</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>section_id</code></td>
+                        <td>UUID (string)</td>
+                        <td style="text-align:center">✓</td>
+                        <td>GUID секции</td>
+                    </tr>
+                    <tr>
+                        <td><code>section_code</code></td>
+                        <td>string</td>
+                        <td style="text-align:center">✓</td>
+                        <td>Код секции, например <code>"Р601-М(01-02-03)-Э01"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>rack_id</code></td>
+                        <td>UUID (string)</td>
+                        <td style="text-align:center">✓</td>
+                        <td>GUID стеллажа</td>
+                    </tr>
+                    <tr>
+                        <td><code>rack_code</code></td>
+                        <td>int</td>
+                        <td style="text-align:center">✓</td>
+                        <td>Номер стеллажа</td>
+                    </tr>
+                    <tr>
+                        <td><code>floor</code></td>
+                        <td>int</td>
+                        <td style="text-align:center">✓</td>
+                        <td>Этаж/ярус. <strong>Не используется в алгоритме</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Правила и ограничения секции</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th style="text-align:center">Default</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>accessLevel</code></td>
+                        <td>int</td>
+                        <td style="text-align:center">1</td>
+                        <td>Резерв на будущее. <strong>Не используется в алгоритме</strong></td>
+                    </tr>
+                    <tr>
+                        <td><code>accessTime</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Резерв на будущее. <strong>Не используется в алгоритме</strong></td>
+                    </tr>
+                    <tr>
+                        <td><code>restricted</code></td>
+                        <td>bool</td>
+                        <td style="text-align:center">false</td>
+                        <td>Секция заблокирована — исключается из оптимизации полностью</td>
+                    </tr>
+                    <tr>
+                        <td><code>narrowAisle</code></td>
+                        <td>bool</td>
+                        <td style="text-align:center">false</td>
+                        <td><strong>Узкопроходная секция.</strong> Узкопроходные секции проверяются/приоритизируются первыми для узкопроходных паллет (ширина И глубина ≤ 1200 мм). При <code>strictNarrowAislePlacement=true</code> (settings) — единственное допустимое место для таких паллет. См. <a href="#narrow-aisle">раздел «Узкопроходные стеллажи»</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_width</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">—</td>
+                        <td>Ширина секции, мм (обязательное, &gt; 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_height</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">—</td>
+                        <td>Высота секции, мм (обязательное, &gt; 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_depth</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">—</td>
+                        <td>Глубина секции, мм (обязательное, &gt; 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_weight</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">—</td>
+                        <td>Грузоподъёмность секции, кг (обязательное, ≥ 0). Игнорируется если <code>typeSize_unlimitedWeight=true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>typeSize_unlimitedWeight</code></td>
+                        <td>bool</td>
+                        <td style="text-align:center">false</td>
+                        <td>Вес секции не ограничен</td>
+                    </tr>
+                    <tr>
+                        <td><code>gap_width</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">—</td>
+                        <td>Зазор между паллетами, мм (обязательное, ≥ 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>max_lift_weight</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">—</td>
+                        <td>Макс. вес подъёма одной паллеты, кг (обязательное, ≥ 0)</td>
+                    </tr>
+                    <tr>
+                        <td><code>max_pallets</code></td>
+                        <td>int</td>
+                        <td style="text-align:center">3</td>
+                        <td>Макс. количество паллет в секции</td>
+                    </tr>
+                    <tr>
+                        <td><code>max_widthPallet</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Макс. ширина ОДНОЙ паллеты, мм. <code>0</code> = нет отдельного ограничения (уже с fallback на ширину секции — резолвится в SQL 1С)</td>
+                    </tr>
+                    <tr>
+                        <td><code>max_depthPallet</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Макс. глубина ОДНОЙ паллеты, мм. <code>0</code> = нет отдельного ограничения (БЕЗ fallback, в отличие от width)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Текущие паллеты в секции (слоты 1-3)</h3>
+            <p>До 3 паллет на секцию, поля повторяются для N ∈ {1, 2, 3}:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Поле</th>
+                        <th>Тип</th>
+                        <th style="text-align:center">Default</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>address1 / address2 / address3</code></td>
+                        <td>string (UUID)</td>
+                        <td style="text-align:center">""</td>
+                        <td>GUID адреса слота N. <code>""</code> = адрес не задан</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_id ... pallet3_id</code></td>
+                        <td>string (UUID)</td>
+                        <td style="text-align:center">""</td>
+                        <td>GUID существующей паллеты в слоте N. <code>""</code> = слот свободен</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_code ... pallet3_code</code></td>
+                        <td>string</td>
+                        <td style="text-align:center">""</td>
+                        <td>Код существующей паллеты в слоте N</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_width ... pallet3_width</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Ширина существующей паллеты в слоте N, мм</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_height ... pallet3_height</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Высота существующей паллеты в слоте N, мм</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_depth ... pallet3_depth</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Глубина существующей паллеты в слоте N, мм</td>
+                    </tr>
+                    <tr>
+                        <td><code>pallet1_weight ... pallet3_weight</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Вес существующей паллеты в слоте N, кг</td>
+                    </tr>
+                    <tr>
+                        <td><code>quantity1 ... quantity3</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Количество единиц товара на паллете в слоте N</td>
+                    </tr>
+                    <tr>
+                        <td><code>blocked1 ... blocked3</code></td>
+                        <td>float</td>
+                        <td style="text-align:center">0</td>
+                        <td>Признак блокировки: <code>&gt; 0</code> → паллета в слоте N заблокирована, солвер её не двигает</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="unused-fields">Что реально используется, а что нет</h2>
+
+            <div class="info">
+                <p><strong>Поля, которые НЕ влияют на размещение:</strong></p>
+                <ul>
+                    <li><code>accessLevel</code> (секция и паллета)</li>
+                    <li><code>accessTime</code> (секция)</li>
+                    <li><code>floor</code> (секция)</li>
+                </ul>
+                <p>Эти поля хранятся в моделях, передаются через API, но <strong>не участвуют ни в одной проверке</strong>
+                в <code>optimizer/</code>, <code>solver/</code>, <code>validation/</code>.</p>
+                <p><strong>Комментарий в коде подтверждает:</strong> <code>models/pallet.py:25-27</code> —
+                «резерв на будущее: сортировка секций по accessLevel/accessTime в зависимости от значения 1 или 2».</p>
+            </div>
+
+            <div class="warning">
+                <p><code>narrowAisle</code> (секция) <strong>раньше</strong> было в этом списке как неиспользуемое.
+                Начиная с этой версии оно <strong>активно используется</strong> — см. раздел
+                <a href="#narrow-aisle">«Узкопроходные стеллажи»</a> ниже.</p>
+            </div>
+
+            <p><strong>Единственное полное исключение:</strong> <code>restricted=true</code> — такие секции
+            <strong>полностью исключаются</strong> ещё на этапе построения модели (<code>models/occupancy_builder.py:33-35</code>):</p>
+            <pre>for row in occupancy:
+    if row.restricted:
+        continue  # секция не попадёт в список sections</pre>
+
+            <h2 id="narrow-aisle">Узкопроходные стеллажи (narrowAisle)</h2>
+
+            <p><strong>Узкопроходная паллета</strong> — паллета, у которой <code>width ≤ 1200</code> И
+            <code>depth ≤ 1200</code> (мм). Вычисляется на сервере, без отдельного входного поля
+            (<code>models/pallet.py</code>, свойство <code>is_narrow</code>). Признак не запрашивается у 1С —
+            только ширина/глубина паллеты.</p>
+
+            <p><strong>Узкопроходная секция</strong> — секция с <code>narrowAisle=true</code> в occupancy
+            (<code>models/section.py</code>, поле <code>narrow_aisle</code>).</p>
+
+            <h3>Параметр settings.strictNarrowAislePlacement (по умолчанию true)</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Значение</th>
+                        <th>Поведение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>true</code> (default)</td>
+                        <td>Узкопроходная паллета размещается <strong>ТОЛЬКО</strong> в секции с <code>narrowAisle=true</code>.
+                        Если все узкопроходные секции заняты → паллета попадает в <code>notPlaced</code>
+                        с причиной <code>NARROW_AISLE_MISMATCH</code>, даже если есть свободные широкопроходные секции.</td>
+                    </tr>
+                    <tr>
+                        <td><code>false</code></td>
+                        <td>Узкопроходные секции проверяются первыми (приоритет), но если все заняты — паллета
+                        размещается в широкопроходную секцию как запасной вариант.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Проверка правила выполняется в трёх местах пайплайна:</p>
+            <ul>
+                <li><code>optimizer/potential.py:section_fits_pallet</code> — используется FFD warm start и постпроцессингом причин отказа</li>
+                <li><code>solver/cp_sat_model.py</code> (предфильтрация feasible-пар) — текущая секция существующей паллеты
+                всегда остаётся допустимой для неё, иначе она выпадает из модели целиком и её вес/ширина не учитываются
+                в ограничениях секции</li>
+                <li><code>optimizer/global_optimizer.py:_determine_not_placed_reason</code> — формирует причину <code>NARROW_AISLE_MISMATCH</code></li>
+            </ul>
+
+            <h3>Приоритет узкопроходных секций</h3>
+            <p>Независимо от <code>strictNarrowAislePlacement</code>, узкопроходные секции имеют более высокий приоритет:</p>
+            <ul>
+                <li><strong>FFD warm start</strong> (<code>solver/warm_start.py</code>): секции сортируются
+                <code>(not narrow_aisle, -width)</code> — сначала все узкопроходные, потом по убыванию ширины.</li>
+                <li><strong>CP-SAT целевая функция</strong> (<code>solver/cp_sat_model.py</code>): небольшой бонус
+                <code>+10 * narrow_priority_sum</code> за размещение узкопроходной паллеты в узкопроходную секцию —
+                без этого бонуса решателю всё равно, какую из двух одинаково валидных секций выбрать.</li>
+            </ul>
+
+            <div class="info">
+                <p>Широкопроходная паллета (<code>width &gt; 1200</code> ИЛИ <code>depth &gt; 1200</code>) не подчиняется
+                этому правилу вообще — может размещаться в любую подходящую по остальным ограничениям секцию,
+                узкопроходную или широкопроходную.</p>
+            </div>
+
+            <h2 id="feasible">Отбор допустимых секций для паллеты</h2>
+
+            <p>Прежде чем CP-SAT начнёт решать задачу, для каждой паллеты строится список секций, где она
+            <strong>физически может стоять</strong> (<code>solver/cp_sat_model.py:76-86</code>):</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Условие</th>
+                        <th>Смысл</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><code>pallet.height ≤ section.height</code></td>
+                        <td>Высота паллеты не превышает высоту секции (<code>typeSize_height</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><code>pallet.depth ≤ section.depth</code></td>
+                        <td>Глубина паллеты не превышает глубину секции (<code>typeSize_depth</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><code>pallet.weight ≤ section.max_lift_weight</code></td>
+                        <td>Вес паллеты не превышает грузоподъёмность подъёма (<code>max_lift_weight</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><code>pallet.width ≤ section.eff_max_width</code></td>
+                        <td>Ширина ОДНОЙ паллеты (узкопроходные стеллажи, <code>max_widthPallet</code> → fallback на <code>typeSize_width</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><code>pallet.depth ≤ section.eff_max_depth</code></td>
+                        <td>Глубина ОДНОЙ паллеты (узкопроходные стеллажи, <code>max_depthPallet</code> → fallback на <code>typeSize_depth</code>)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Все 5 условий обязательны.</strong> Если хотя бы одно не выполнено — секция исключается из рассмотрения для этой паллеты.</p>
+
+            <div class="info">
+                <p><strong>Важно:</strong> <code>eff_max_width</code> и <code>eff_max_depth</code> — это <strong>отдельные поля</strong>
+                (<code>models/section.py:59-67</code>), не производные от <code>gap_width</code>. Они ограничивают размер ОДНОЙ паллеты,
+                а не сумму всех паллет в секции.</p>
+            </div>
+
+            <h2 id="constraints">Ограничения CP-SAT на секцию</h2>
+
+            <p>После предфильтрации CP-SAT накладывает три дополнительных ограничения на <strong>совокупность</strong> паллет в секции:</p>
+
+            <h3>1. Вместимость (max_pallets)</h3>
+            <pre>model.Add(sum(vars_in_sec) <= sec.max_pallets)</pre>
+            <p>Количество паллет в секции ≤ <code>max_pallets</code> (обычно 3).</p>
+
+            <h3>2. Ширина с зазорами (gap_width)</h3>
+            <pre>model.Add(width_sum + count_var * gap + gap <= width_limit)</pre>
+            <p>Формула: <code>SUM(pallet.width) + (N+1)*gap_width ≤ section.width</code></p>
+            <p>где N — количество паллет в секции <strong>после</strong> размещения новой паллеты.</p>
+
+            <p><strong>Эквивалентная проверка в постпроцессинге</strong> (<code>optimizer/potential.py:64-75</code>):</p>
+            <pre>free_width = section.width - SUM(existing_widths) - (N+1)*gap_width
+# новая паллета входит, если:
+if free_width >= pallet.width + gap_width:
+    # ОК</pre>
+
+            <h3>3. Вес секции (max_weight)</h3>
+            <pre>if not math.isinf(sec.max_weight):
+    weight_sum = sum(weights * X[pallet, section])
+    model.Add(weight_sum <= sec.max_weight)</pre>
+            <p>Если <code>typeSize_unlimitedWeight=true</code>, то <code>sec.max_weight = math.inf</code> и проверка пропускается.</p>
+
+            <h2 id="blocked">Заблокированные паллеты</h2>
+
+            <p>Паллета считается заблокированной (<code>movable=False</code>), если в occupancy <code>blockedN > 0</code> для её слота.</p>
+
+            <div class="warning">
+                <p><strong>Заблокированные паллеты ВСЕГДА зафиксированы на текущем месте</strong> — независимо от <code>allowReslot</code>
+                (<code>solver/cp_sat_model.py:144-155</code>).</p>
+            </div>
+
+            <h2 id="reslot">Реслот (allowReslot / maxReslotPercent)</h2>
+
+            <ul>
+                <li>Если <code>allowReslot=false</code> — движимые существующие паллеты <strong>тоже не двигаются</strong>, фиксируются как заблокированные.</li>
+                <li>Если <code>allowReslot=true</code> — количество перемещённых паллет ограничено:<br>
+                    <code>moved ≤ floor(current_movable_count * maxReslotPercent / 100)</code></li>
+                <li>В режиме <code>compact</code> реслот <strong>всегда включён</strong> принудительно (это единственная цель этого режима).</li>
+            </ul>
+
+            <h2 id="operations">Лимит операций (maxOperations)</h2>
+
+            <pre>model.Add(new_placed + moved <= settings.maxOperations)</pre>
+            <p>Суммарно PUT (новые) + MOVE (переставленные) не может превышать <code>maxOperations</code> за один запуск.</p>
+
+            <h2 id="warm-start">Тёплый старт (First Fit Decreasing — FFD, жадная эвристика)</h2>
+
+            <p><strong>Warm Start</strong> = эвристика для начального решения, передаваемого в CP-SAT как подсказка (<code>solver/warm_start.py</code>). Цель — дать солверу хорошую стартовую точку, чтобы он быстрее находил оптимум или хотя бы feasible решение в пределах таймаута:</p>
+            <ol>
+                <li>Заблокированные/недвижимые паллеты → сразу в текущую секцию</li>
+                <li>Остальные сортируются по <strong>убыванию ширины</strong></li>
+                <li>Секции сортируются: сначала узкопроходные (<code>narrowAisle=true</code>), внутри каждой группы — по <strong>убыванию ширины</strong></li>
+                <li>Жадное размещение: для каждой паллеты — первая подходящая секция (First Fit)</li>
+            </ol>
+
+            <h2 id="address-rule">Выбор адреса внутри секции</h2>
+
+            <p>После того как CP-SAT определил Паллета → Секция, выбирается конкретный адрес (слот 1/2/3) <strong>в рамках этой секции</strong>.</p>
+
+            <div class="success">
+                <p><strong>Правило из 1С</strong> (точная копия условия из <code>Лико_СкладскиеСекции</code>, без scoring):</p>
+            </div>
+
+            <pre>ВЫБОР
+    КОГДА ШиринаПаллета > Типоразмер.Ширина * 2 / 3
+        ТОГДА Адрес2 (центр, position=2)
+    КОГДА Паллет1 = ПустаяСсылка
+        ТОГДА Адрес1
+    КОГДА Паллет3 = ПустаяСсылка
+        ТОГДА Адрес3
+    КОГДА Паллет2 = ПустаяСсылка
+        ТОГДА Адрес2
+    ИНАЧЕ
+        Не ставим (None)
+КОНЕЦ</pre>
+
+            <p><strong>Реализация</strong> (<code>optimizer/section_optimizer.py:63-102</code>):</p>
+            <ol>
+                <li>Если <code>pallet.width > section.width * 2/3</code> → пробуем Адрес2. Свободен и не <code>blocked</code> → ставим. Иначе → <code>None</code>.</li>
+                <li>Иначе → Адрес1 свободен и не <code>blocked</code> → ставим.</li>
+                <li>Иначе → Адрес3 свободен и не <code>blocked</code> → ставим.</li>
+                <li>Иначе → Адрес2 свободен и не <code>blocked</code> → ставим.</li>
+                <li>Иначе → <code>None</code>.</li>
+            </ol>
+
+            <div class="info">
+                <p><strong>Порядок проверки всегда:</strong> 2 (для большой) или 1→3→2 (для обычной).</p>
+                <p>Никакого сравнения по объёму, потенциалу или другим метрикам между адресами — <strong>первый подходящий по этому порядку и есть выбранный</strong>.</p>
+            </div>
+
+            <h2 id="reasons">Причины отказа в размещении</h2>
+
+            <p>Если новую паллету не удалось разместить, причина вычисляется в <code>optimizer/global_optimizer.py:_determine_not_placed_reason</code>:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reason</th>
+                        <th>Условие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>RESLOT_LIMIT</code></td>
+                        <td>Хотя бы одна секция подошла по всем физическим ограничениям, но паллета не разместилась (лимит реслота/операций/решатель не успел)</td>
+                    </tr>
+                    <tr>
+                        <td><code>NARROW_AISLE_MISMATCH</code></td>
+                        <td>Паллета узкопроходная (<code>width ≤ 1200</code> И <code>depth ≤ 1200</code>), все проверенные секции — <code>narrowAisle=false</code>,
+                        а <code>settings.strictNarrowAislePlacement=true</code> (по умолчанию). См. раздел <a href="#narrow-aisle">«Узкопроходные стеллажи»</a>.</td>
+                    </tr>
+                    <tr>
+                        <td><code>HEIGHT_LIMIT</code></td>
+                        <td><code>pallet.height > section.height</code> во всех проверенных секциях</td>
+                    </tr>
+                    <tr>
+                        <td><code>DEPTH_LIMIT</code></td>
+                        <td><code>pallet.depth > section.depth</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>LIFT_LIMIT</code></td>
+                        <td><code>pallet.weight > section.max_lift_weight</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MAX_PALLET_SIZE_LIMIT</code></td>
+                        <td><code>pallet.width > eff_max_width</code> или <code>pallet.depth > eff_max_depth</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>WEIGHT_LIMIT</code></td>
+                        <td>Суммарный вес секции с этой паллетой превысил <code>max_weight</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>NO_SPACE</code></td>
+                        <td>Не прошла <code>section_fits_pallet</code> (ширина+зазоры или количество) — дефолт</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="objective">Целевая функция (score)</h2>
+
+            <h3>В самом CP-SAT (упрощённая):</h3>
+            <pre>objective = 100000 * placed - 1000 * section_moves + 10 * narrow_priority</pre>
+            <p>Максимизируется количество размещённых паллет, минимизируется количество перемещений между секциями,
+            небольшой бонус за размещение узкопроходной паллеты в узкопроходную секцию (см. <a href="#narrow-aisle">«Узкопроходные стеллажи»</a>).</p>
+
+            <h3>В финальном ответе (постпроцессинг):</h3>
+            <pre>GlobalScore = placedPalletWeight * placed
+            - sectionMovePenalty * section_moves
+            - addressMovePenalty * address_moves  (всегда 0)
+            - potentialLossPenalty * potential_loss
+            - spaceLossPenalty * unused_space     (всегда 0)
+            - sectionUsagePenalty * used_sections</pre>
+            <p>Коэффициенты берутся из <code>config/weights.json</code> (захардкоживание запрещено).</p>
+
+            <div class="warning">
+                <p><code>address_moves</code> и <code>unused_space</code> в текущей реализации всегда передаются <code>0</code> — это компоненты формулы, которые сейчас нигде не вычисляются.</p>
+            </div>
+
+            <h2 id="validation">Валидация запроса</h2>
+
+            <p><code>validation/validator.py</code> проверяет <strong>только ссылочную целостность</strong>:</p>
+            <ul>
+                <li>Нет дублирующихся <code>section_id</code> в <code>occupancy</code></li>
+                <li>Нет дублирующихся <code>address_id</code> (собранных из <code>address1/2/3</code>)</li>
+                <li>Нет дублирующихся <code>pallet_id</code> (из <code>pallet1/2/3_id</code>)</li>
+                <li>Нет дублирующихся <code>id</code> в <code>newPallets</code></li>
+                <li><code>newPallets</code> не содержит <code>id</code>, уже занятый существующей паллетой</li>
+            </ul>
+
+            <p><strong>Структурные проверки</strong> (обязательность полей, <code>width/height/depth > 0</code>, диапазоны) выполняет Pydantic на этапе разбора <code>OptimizationRequest</code>.</p>
+
+            <div class="info">
+                <p><strong>Нет</strong> проверки <code>accessLevel in [1,2,3]</code>, <strong>нет</strong> проверки "секция не restricted" на этапе валидации — <code>restricted</code> обрабатывается позже, при построении модели.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>WMS Optimizer — правила размещения (версия 2.0)</p>
+            <p>Дата: 2026-07-21 | Переписана после ревью кода</p>
+        </footer>
+    </div>
+
+    <button id="back-to-top" title="Наверх">↑</button>
+
+    <script>
+        // Кнопка "наверх"
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > window.innerHeight) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Кнопки копирования кода
+        const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        const CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        document.querySelectorAll('pre').forEach(pre => {
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.type = 'button';
+            btn.title = 'Копировать';
+            btn.innerHTML = COPY_ICON;
+            btn.addEventListener('click', () => {
+                const code = pre.querySelector('code');
+                const text = code ? code.innerText : pre.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    btn.innerHTML = CHECK_ICON;
+                    btn.title = 'Скопировано!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = COPY_ICON;
+                        btn.title = 'Копировать';
+                        btn.classList.remove('copied');
+                    }, 1500);
+                });
+            });
+            pre.appendChild(btn);
+        });
+    </script>
+</body>
+</html>

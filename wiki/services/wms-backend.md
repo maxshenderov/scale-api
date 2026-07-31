@@ -24,6 +24,7 @@
 | POST | `/api/move` | WMS_MovePallet | Одиночное перемещение |
 | POST | `/api/snapshot` | WMS_ExportSnapshot | Полный снимок склада |
 | POST | `/api/health` | WMS_CheckConnection | Health-check API |
+| POST | `/api/placements/place` | WMS_PlacePallets | Пакетное размещение по плану оптимизатора (с проверкой версий §15) |
 | POST | `/api/placements/execute` | WMS_ExecutePlacements | Пакетное размещение (массив) |
 
 ### Optimization (автономный, без 1С)

@@ -153,9 +153,12 @@ class OptimizationSettingsSchema(BaseModel):
         120, ge=1,
         description="timeLimitSeconds для ЭТАПА 2 (если twoStageReslot=True)"
     )
-    solverType: Literal["cp_sat", "numpy", "lp", "hybrid_v3", "hybrid-v3"] = Field(
+    solverType: Literal["cp_sat", "numpy", "lp", "hybrid_v3", "hybrid-v3", "hybrid_v5", "hybrid-v5"] = Field(
         "cp_sat",
-        description="Тип солвера: 'cp_sat' (OR-Tools), 'numpy' (NumPy greedy), 'lp' (scipy simplex)"
+        description="Тип солвера: 'cp_sat' (OR-Tools, макс. качество), "
+        "'numpy' (NumPy greedy), "
+        "'hybrid-v3' (BFD+Chain-Swap, быстрый), "
+        "'hybrid-v5' (Aggregate CP-SAT + V3 reslot, качество)"
     )
 
 

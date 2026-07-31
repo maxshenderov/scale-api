@@ -120,6 +120,10 @@ def run_optimization(req: OptimizationRequest) -> OptimizationResponse:
         from solver.hybrid_v3 import run_hybrid_v3
         logger.info("id=%s используем Hybrid V3 (solverType='%s')", req.optimizationId, settings.solverType)
         return run_hybrid_v3(req)
+    elif settings.solverType in ("hybrid_v5", "hybrid-v5"):
+        from solver.hybrid_v5 import run_hybrid_v5
+        logger.info("id=%s используем Hybrid V5 aggregate (solverType='%s')", req.optimizationId, settings.solverType)
+        return run_hybrid_v5(req)
 
     cp_solver = solver_cls(
         sections=sections,

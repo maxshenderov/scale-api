@@ -1,0 +1,140 @@
+# ------------------------------------------------------------------
+    # Фаза 3: Greedy Multi-Hop Repack
+    # ------------------------------------------------------------------
+
+    def _phase_consolidation(self) -> int:
+        """Greedy multi-hop repack: для каждого остатка строим цепочку
+        перемещений (A->B, B->C, ...) пока не найдём место."""
+        if not self.new_pallets:
+            return len(self.placements)
+
+        strict_narrow = self.settings.strictNarrowAislePlacement
+        t_start = time.time()
+        time_budget = max(3.0, TOTAL_TIME_BUDGET - (time.time() - t_start) - 1.0)
+
+        leftovers = sorted(self.new_pallets, key=lambda p: (not p.is_narrow, -p.width))
+        placed_this_phase = 0
+        self.new_pallets = []
+
+        for leftover in leftovers:
+            if time.time() - t_start > time_budget:
+                self.new_pallets.append(leftover)
+                continue
+
+            chain = self._build_multi_hop_chain(leftover)
+            if chain:
+                self._execute_multi_hop(chain)
+                placed_this_phase += 1
+            else:
+                self.new_pallets.append(leftover)
+
+        logger.info(f"    Multi-Hop: placed={placed_this_phase} time={time.time()-t_start:.1f}s")
+
+        return len(self.placements)
+
+    def _build_multi_hop_chain(self, leftover: Pallet, max_depth: int = 3) -> Optional[List[Tuple[str, str, str]]]:
+        """BFS search for a chain of relocations to accommodate leftover."""
+        t0 = time.time()
+        time_limit = 0.05  # 50ms per leftover
+        strict_narrow = self.settings.strictNarrowAislePlacement
+
+        # Quick path: can we place directly in an empty section?
+        for sec_id in self.compatible.get(leftover.id, []):
+            state = self.section_states[sec_id]
+            if state.free_count > 0 and state.free_width >= leftover.width + state.gap_width:
+                if section_fits_pallet(state.section, [], leftover, strict_narrow):
+                    return [("place", leftover.id, sec_id)]
+
+        # Find 2-pallet sections where removing 1 pallet makes space for leftover
+        target_sections = []
+        for sec_id in self.compatible.get(leftover.id, []):
+            state = self.section_states[sec_id]
+            if state.free_count <= 0:
+                continue
+            for pal_a in list(state.placed_pallets):
+                if pal_a.id in self.non_movable_ids:
+                    continue
+                if pal_a.id in self.movable_existing_ids:
+                    if len(self.moved_existing_ids) >= self._max_reslot_moves:
+                        continue
+                remaining = [p for p in state.placed_pallets if p.id != pal_a.id]
+                if section_fits_pallet(state.section, remaining, leftover, strict_narrow):
+                    target_sections.append((sec_id, pal_a))
+                    break
+
+        if not target_sections:
+            return None
+
+        for sec_a_id, displaced in target_sections:
+            if time.time() - t0 > time_limit:
+                break
+            p_a = displaced
+            # Direct 2-hop: find receiver for displaced
+            for sec_b_id in self.compatible.get(p_a.id, []):
+                if sec_b_id == sec_a_id:
+                    continue
+                state_b = self.section_states[sec_b_id]
+                if state_b.free_count <= 0:
+                    continue
+                if state_b.free_width >= p_a.width + state_b.gap_width:
+                    if section_fits_pallet(state_b.section, state_b.placed_pallets, p_a, strict_narrow):
+                        return [
+                            ("remove", p_a.id, sec_a_id),
+                            ("place", leftover.id, sec_a_id),
+                            ("place", p_a.id, sec_b_id),
+                        ]
+
+            # Multi-hop (3-hop): displace from sec_b to sec_c
+            if max_depth <= 1:
+                continue
+            for sec_b_id in self.compatible.get(p_a.id, []):
+                if sec_b_id == sec_a_id:
+                    continue
+                if time.time() - t0 > time_limit:
+                    break
+                state_b = self.section_states[sec_b_id]
+                if state_b.free_count <= 0:
+                    continue
+                for pal_b in list(state_b.placed_pallets):
+                    if pal_b.id in self.non_movable_ids:
+                        continue
+                    if pal_b.id in self.movable_existing_ids:
+                        if len(self.moved_existing_ids) >= self._max_reslot_moves:
+                            continue
+                    if p_a.id == pal_b.id:
+                        continue
+                    remaining_b = [p for p in state_b.placed_pallets if p.id != pal_b.id]
+                    if not section_fits_pallet(state_b.section, remaining_b, p_a, strict_narrow):
+                        continue
+                    for sec_c_id in self.compatible.get(pal_b.id, []):
+                        if sec_c_id in (sec_a_id, sec_b_id):
+                            continue
+                        state_c = self.section_states[sec_c_id]
+                        if state_c.free_count <= 0:
+                            continue
+                        if state_c.free_width >= pal_b.width + state_c.gap_width:
+                            if section_fits_pallet(state_c.section, state_c.placed_pallets, pal_b, strict_narrow):
+                                return [
+                                    ("remove", p_a.id, sec_a_id),
+                                    ("remove", pal_b.id, sec_b_id),
+                                    ("place", leftover.id, sec_a_id),
+                                    ("place", p_a.id, sec_b_id),
+                                    ("place", pal_b.id, sec_c_id),
+                                ]
+
+        return None
+
+    def _execute_multi_hop(self, chain: List[Tuple[str, str, str]]):
+        """Execute a multi-hop chain."""
+        old_sections = {}
+        for action, p_id, sec_id in chain:
+            if action == "remove" and p_id in self.movable_existing_ids:
+                old_sections[p_id] = sec_id
+        for action, p_id, sec_id in chain:
+            if action == "remove":
+                self._do_remove(p_id, sec_id)
+        for action, p_id, sec_id in chain:
+            if action == "place":
+                self._do_place(p_id, sec_id)
+                if p_id in old_sections and sec_id != old_sections[p_id]:
+                    self.moved_existing_ids.add(p_id)

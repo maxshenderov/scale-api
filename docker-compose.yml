@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  wms-optimizer:
+    build:
+      context: ./services/wms_optimizer
+      dockerfile: Dockerfile
+    container_name: wms-optimizer
+    ports:
+      - "8010:8010"
+    volumes:
+      - ./services/wms_optimizer/config:/app/config:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '8'
+          memory: 8G
+        reservations:
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8010/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

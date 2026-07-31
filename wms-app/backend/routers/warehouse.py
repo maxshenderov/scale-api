@@ -127,7 +127,25 @@ async def optimize_floors(req: FloorsRequest, db: AsyncSession = Depends(get_db)
     return {"error": "Rack not found"}
 
 
-# --- Placements execute ---
+# --- Placements ---
+
+@router.post("/placements/place")
+async def place_pallets(data: dict, db: AsyncSession = Depends(get_db)):
+    """Пакетное размещение паллет по плану WMS Optimizer с проверкой версий (§15).
+
+    versions приходит как {guid: N} от frontend,
+    конвертируется в [{section, version}] для 1С (GUID-ключи ломают ПрочитатьJSON).
+    """
+    versions_dict = data.get("versions", {})
+    versions_list = [{"section": k, "version": v} for k, v in versions_dict.items()]
+    return await call_1c(
+        "WMS_PlacePallets", db,
+        warehouse=data.get("warehouse", ""),
+        placements=data.get("placements", []),
+        rearrangements=data.get("rearrangements", []),
+        versions=versions_list,
+    )
+
 
 @router.post("/placements/execute")
 async def execute_placements(data: dict, db: AsyncSession = Depends(get_db)):

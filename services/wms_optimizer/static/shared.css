@@ -1,0 +1,323 @@
+/* Общие стили для index.html и rules.html — editorial-палитра */
+
+:root {
+  /* Основная палитра — тёплый editorial-стиль */
+  --bg-page:        #F7F4EC;
+  --bg-surface:     #FFFFFF;
+  --border:         #E3DDCB;
+  --text-primary:   #1a1a1a;
+  --text-secondary: #6B6255;
+  --accent:         #C97A4A;
+  --accent-dark:    #8A5A3B;
+  --accent-bg:      #F1E4D8;
+
+  /* Статусы */
+  --success-bg: #E7EFDC; --success-text: #3F5E2C;
+  --danger-bg:  #F6E3DE; --danger-text:  #8A3B24;
+  --info-bg:    #E4EEF1; --info-text:    #35606B;
+  --warning-bg: #FBF2E0; --warning-text: #6B4E10;
+
+  /* Method-бейджи */
+  --method-get-bg:  #6E93A8;
+  --method-post-bg: #7A9B6E;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-page);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+/* Шапка — одна строка, меньше отступов */
+header {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+header .logo {
+  height: 1.8rem;
+  width: 1.8rem;
+  max-height: 1.8rem;
+  max-width: 1.8rem;
+  vertical-align: middle;
+  margin-right: 0.6rem;
+  flex-shrink: 0;
+}
+
+header h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  display: inline;
+  vertical-align: middle;
+}
+
+header .subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  display: inline;
+  margin-left: 1rem;
+}
+
+/* Навигация — sticky, простые гиперссылки без кнопок */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(247, 244, 236, 0.95);
+  backdrop-filter: blur(8px);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+
+nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  margin-right: 1.5rem;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Контент-блоки */
+.content, .section {
+  background: var(--bg-surface);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+/* Заголовки */
+h1, h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+}
+
+h2 {
+  color: var(--text-primary);
+  margin: 2rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent-dark);
+  margin: 1.5rem 0 0.75rem 0;
+  font-weight: 500;
+}
+
+/* Код */
+code {
+  background: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 0.9em;
+  color: #d63384;
+}
+
+pre {
+  position: relative;
+  background: #2B2520;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8f8f2;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.copy-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+pre:hover .copy-btn,
+.copy-btn:focus {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.copy-btn.copied {
+  opacity: 1;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: var(--accent-bg);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Статусные блоки */
+.warning {
+  background: var(--warning-bg);
+  border-left: 3px solid #D9A441;
+  color: var(--warning-text);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.info {
+  background: var(--info-bg);
+  border-left: 3px solid #17a2b8;
+  color: var(--info-text);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.success {
+  background: var(--success-bg);
+  border-left: 3px solid #28a745;
+  color: var(--success-text);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.danger {
+  background: var(--danger-bg);
+  border-left: 3px solid #dc3545;
+  color: var(--danger-text);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+/* Method-бейджи */
+.method {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.method.get { background: var(--method-get-bg); }
+.method.post { background: var(--method-post-bg); }
+
+/* Endpoint-блоки */
+.endpoint {
+  border-left: 3px solid var(--accent);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+/* Списки */
+ul, ol { margin-left: 2rem; margin-bottom: 1rem; }
+li { margin: 0.5rem 0; }
+
+/* Кнопка наверх */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 1000;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#back-to-top:hover {
+  background: var(--accent-dark);
+}
+
+/* Футер */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
