@@ -39,8 +39,20 @@ def project_dir() -> pathlib.Path:
     return pathlib.Path(__file__).resolve().parents[2]
 
 
+def session_dir() -> pathlib.Path:
+    return project_dir() / "output" / "session"
+
+
 def state_path() -> pathlib.Path:
-    return project_dir() / "output" / "session" / "state.md"
+    return session_dir() / "state.md"
+
+
+def tasks_path() -> pathlib.Path:
+    return session_dir() / "tasks.md"
+
+
+def task_state_path(slug: str) -> pathlib.Path:
+    return session_dir() / f"state-{slug}.md"
 
 
 def log_path() -> pathlib.Path:
@@ -72,7 +84,7 @@ def git_head() -> str:
 
 def is_okil_project() -> bool:
     """Проверка что мы в проекте OKIL (есть output/session/)."""
-    return state_path().parent.exists()
+    return session_dir().exists()
 
 
 def claude_cmd() -> list:
@@ -84,3 +96,21 @@ def claude_cmd() -> list:
         if npm_claude.exists():
             return [str(npm_claude)]
     return ["claude"]
+
+
+def parse_active_slugs(tasks_md: str) -> list[str]:
+    """Из tasks.md извлекает slug'и активных задач (секция ## Активные)."""
+    import re
+    in_active = False
+    slugs = []
+    for line in tasks_md.splitlines():
+        if line.startswith("## Активные"):
+            in_active = True
+            continue
+        if in_active and line.startswith("## "):
+            break
+        if in_active:
+            m = re.match(r"- \*\*(\d+)\*\* \| (\S+) \|", line)
+            if m:
+                slugs.append(m.group(2))
+    return slugs
