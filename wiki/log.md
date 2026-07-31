@@ -832,3 +832,4 @@ HTTP-утилиты (~383 строк). GET/POST, JSON сериализация, 
 Всего страниц в вики: **328** (wiki/liko/ — 320, wiki/extensions/ — 2, wiki/ai/ — 3, wiki/documents/ — 1, wiki/plans/ — 2).- 2026-07-31 11:17 | session end (test) | d77bd8ef2957
 - 2026-07-31 11:33 | session end (other) | a21ae7c4bd7f
 - 2026-07-31 11:33 | session end (other) | 26f7ff265ad3
+- 2026-07-31 11:35 | session end (other) | 83cf6d9fa050
