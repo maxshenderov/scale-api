@@ -114,12 +114,12 @@ if __name__ == '__main__':
     print('Single reading:')
     w = read_weight()
     if w:
-        print(f'  Weight: {w.value} {w.unit} ({\"stable\" if w.stable else \"unstable\"}, {w.mode})')
-        print(f'  Raw: {w.raw}')
+        print(f"  Weight: {w.value} {w.unit} ({'stable' if w.stable else 'unstable'}, {w.mode})")
+        print(f"  Raw: {w.raw}")
     else:
         print('  No reading')
 
     print()
     print('Streaming (press Ctrl+C to stop):')
     for reading in stream_weights():
-        print(f'  {reading.value:>8.1f} {reading.unit}  [{\"✓\" if reading.stable else \"?\"}]')
+        print(f"  {reading.value:>8.1f} {reading.unit}  [{'STABLE' if reading.stable else '?'}]")
