@@ -27,7 +27,7 @@ M2M модуль в режиме **Transparent** непрерывно шлёт �
 docker compose restart
 ```
 
-Веб-интерфейс модуля: `http://<SCALE_HOST>` (admin / NY34As).
+Веб-интерфейс модуля: `http://<SCALE_HOST>` (логин/пароль — см. наклейку на модуле).
 
 ## Запуск
 
