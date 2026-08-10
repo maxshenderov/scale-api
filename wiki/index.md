@@ -520,11 +520,12 @@ D:\project\OKIL\
 - [[telegram_voice]] — FastAPI + aiogram + faster-whisper: голосовые из Telegram → STT → 1С, порт 8004
 - [[wms-backend]] — WMS Optimizer: HTTP-прокси в 1С + Bin Packing, порт 8080
 - [[wms_optimizer]] — WMS Pallet Optimizer v4: CP-SAT (OR-Tools) глобальная оптимизация + Section Optimizer, порт 8010
+- [[scale_api]] — HTTP-сервис чтения показаний весов СКУ I2121 (СКИ-12/Yaohua), порт 8011
 - [[WMS_Optimizer_Summary]] — Итоговое резюме по WMS-оптимизатору: что сделано, что не работает, приоритеты
 - [[WMS_Optimizer_Session_End]] — Состояние на конец сессии 20.07: честный статус, корневые проблемы, план на следующую сессию
 - [[WMS_Optimizer_LLM_TZ]] — Подробное ТЗ для LLM: полный контракт входа/выхода, архитектура, алгоритм, тесты S7 (3406 паллет)
 
-Страницы сервисов: [[parser]], [[docling]], [[hybrid_search]], [[rag_llm]], [[batch_indexer]], [[telegram_voice]], [[wms-backend]], [[wms_optimizer]]
+Страницы сервисов: [[parser]], [[docling]], [[hybrid_search]], [[rag_llm]], [[batch_indexer]], [[telegram_voice]], [[wms-backend]], [[wms_optimizer]], [[scale_api]]
 
 ---
 

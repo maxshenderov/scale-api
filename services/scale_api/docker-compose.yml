@@ -1,0 +1,16 @@
+services:
+  scale-api:
+    build: .
+    container_name: scale-api
+    ports:
+      - "${SERVER_PORT:-8011}:${SERVER_PORT:-8011}"
+    environment:
+      - SCALE_HOST=${SCALE_HOST:-192.168.12.147}
+      - SCALE_PORT=${SCALE_PORT:-8899}
+      - SERVER_PORT=${SERVER_PORT:-8011}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${SERVER_PORT:-8011}/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

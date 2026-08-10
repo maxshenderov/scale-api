@@ -1,3 +1,17 @@
+## 2026-08-10 [claude] scale_api — сервис чтения весов СКУ I2121
+
+**Суть:** Создан FastAPI-сервис для чтения показаний весов через M2M WiFi-UART модуль. Подключается к модулю по TCP (:8899), парсит формат Yaohua, отдаёт JSON через GET /api/weight.
+
+**Изменения:**
+- `services/scale_api/app.py` — FastAPI, порт 8011 (настраивается через SERVER_PORT)
+- `services/scale_api/scale_reader.py` — TCP-парсер весов (формат Yaohua)
+- `services/scale_api/Dockerfile` — Docker-образ
+- `services/scale_api/docker-compose.yml` — запуск с настройками
+- `services/scale_api/README.md` — документация для 1С
+
+**1С интеграция:** HTTPСоединение → GET /api/weight → JSON {value, unit, stable, mode}
+
+---
 ## 2026-07-29 [claude] Hybrid V5 — aggregate CP-SAT + V3 reslot, исправления и документация
 
 **Суть:** Реализован Hybrid V5 солвер (`solverType: "hybrid-v5"`) — aggregate CP-SAT + chain-swap реслот для максимального качества. Исправлены WIDTH_OVERFLOW (2→0) и KeyError при реслоте.
