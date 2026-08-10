@@ -67,3 +67,4 @@ docker compose up -d
 ## Связи
 
 - [[wms_optimizer]] — стиль сервиса (FastAPI + Docker)
+- GitHub: https://github.com/maxshenderov/scale-api
