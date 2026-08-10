@@ -1,0 +1,232 @@
+﻿<html>
+<head>
+<title>M2M Web Server</title>
+<meta http-equiv="content-type" content="text/html" charset="gb2312">
+<script language="JavaScript" type="text/javascript">
+
+var isMenuLock = 0;
+var linksel="laylink11";
+
+function showlay1(theIndex, zz) {
+	var item="layImg"+theIndex;
+
+	for (var i=2;i<9;i++)
+	{
+		theCurLay="lay"+i;
+		theCurLayImg=theCurLay+"Img1";
+		theImgSrc=document.images[theCurLayImg].src;
+		if(theImgSrc.indexOf("../images/jian.gif")>0)	
+		{
+			hideSub1(i);
+		}
+	}
+	linksel="laylink"+theIndex;
+	//parent.location=zz;
+	parent.view.location=zz;
+}
+
+</script>
+</head>
+<style>
+body {
+	padding: 0;
+	text-align: justify;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+}
+#lay1 {
+	height: 55px;
+	width: 194px;
+	padding-top: 20px;
+	padding-left: 25px;
+	background: url(../images/img09.jpg) no-repeat left top;
+	left: 11px;
+}
+#lay2, #lay3, #lay4, #lay5, #lay6, #lay7 , #lay8, #lay9, #lay10 {
+	height: 40px;
+	width: 194px;
+	padding-top: 15px;
+	padding-left: 25px;
+	background: url(../images/img10.jpg) no-repeat left top;
+	left: 11px;
+}
+#lay11 {
+	height: 40px;
+	width: 194px;
+	padding-top: 15px;
+	padding-left: 25px;
+	background: url(../images/img11.jpg) no-repeat left top;
+}
+#lay1Sub, #lay2Sub, #lay3Sub, #lay4Sub, #lay5Sub, #lay6Sub, #lay7Sub, #lay8Sub, #lay9Sub, #lay10Sub{
+	width: 194px;
+	padding-top: 15px;
+	padding-left: 35px;
+	background: url(../images/img10.jpg) repeat-y left top;
+}
+a {
+	height: 25px;
+	font-size: 14px;
+	color: #333333;
+}
+</style>
+<body >
+<div id='parentLay'>
+<!--lay1 begin-->
+<div id='lay1' style="position:absolute;top:0px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay1Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(11, 'fast.html')" id="ovFASTMODE">Quick Configure</a></td>
+</tr>
+</table>
+</div>
+<!--lay1 end-->
+<div id='lay1Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+
+<!--lay2 begin-->
+<div id='lay2' style="position:absolute;top:40px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay2Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(21, 'opmode.html')" id="ovOPMODE">Mode Selection</a></td>
+</tr>
+</table>
+</div>
+<!--lay2 end-->
+<div id='lay2Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+
+<!--lay3 begin-->
+<div id='lay3' style="position:absolute;top:80px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay3Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(31, 'ap.html')" id="ovAPCONFIG">AP Interface Setting 
+</a></td>
+</tr>
+</table>
+</div>
+<!--lay3 end-->
+<div id='lay3Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+<!--lay4 begin-->
+<div id='lay4' style="position:absolute;top:120px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay4Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(41, 'sta_config.html')" id="ovSTACONFIG">STA Interface Setting</a></td>
+</tr>
+</table>
+</div>
+<!--lay4 end-->
+<div id='lay4Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+<!--lay5 begin-->
+<div id='lay5' style="position:absolute;top:160px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay5Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(51, 'app_config.html')" id="ovAPPCONFIG">Application Setting 
+</a></td>
+</tr>
+</table>
+</div>
+<!--lay5_sub begin-->
+<div id='lay5Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+<!--lay5_sub end-->
+
+<!--lay6 begin-->
+<div id='lay6' style="position:absolute;top:200px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay6Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(61, 'ephy_config.html')" id="ovEPHYCONFIG">Ethernet Setting</a></td>
+</tr>
+</table>
+</div>
+<!--lay6 end-->
+<!--lay6_sub begin-->
+<div id='lay6Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+<!--lay6_sub end-->
+
+<!--lay7 begin-->
+<div id='lay7' style="position:absolute;top:240px">
+  <table cellspacing=0 cellpadding=0>
+    <tr>
+      <td><img id="lay7Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(71, 'httpd_client.html')" id="ovHTTDCLIENT">HTTPD Client Mode</a></td>
+    </tr>
+  </table>
+</div>
+<!--lay7 end-->
+<!--lay7_sub begin-->
+<div id='lay7Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+<!--lay7_sub end-->
+
+<!--lay8 begin-->
+<div id='lay8' style="position:absolute;top:280px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay8Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(81, 'webioen.html')" id="ovWEBIO">WEB IO</a></td>
+</tr>
+</table>
+</div>
+<!--lay8 end-->
+<!--lay8_sub begin-->
+<div id='lay8Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+<!--lay8_sub end-->
+
+<!--lay9 begin-->
+<div id='lay9' style="position:absolute;top:320px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay9Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(91, 'advanced_config.html')" id="advanced">Advanced</a></td>
+</tr>
+</table>
+</div>
+<!--lay9 end-->
+<!--lay9_sub begin-->
+<div id='lay9Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+<!--lay9_sub end-->
+
+<!--lay10 begin-->
+<div id='lay9' style="position:absolute;top:360px">
+<table cellspacing=0 cellpadding=0>
+<tr>
+<td><img id="lay10Img1" src="../images/add.gif"></td><td>&nbsp;<a href="JavaScript:showlay1(101, 'management.html')" id="ovDEVMANAGEMENT">Device Management</a></td>
+</tr>
+</table>
+</div>
+<!--lay10 end-->
+<!--lay10_sub begin-->
+<div id='lay10Sub' style="position:absolute;top:0px;visibility:hidden">
+<table cellspacing=0 cellpadding=0>
+</table>
+</div>
+<!--lay10_sub end-->
+
+<!--lay11 begin-->
+<div id='lay11' style="position:absolute;top:400px">
+</div>
+<!--lay11 end-->
+</div>
+</body>
+</html>
+

@@ -1,0 +1,868 @@
+﻿<HTML>
+<HEAD>
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv=Content-Type 	content="text/html" charset="gb2312">
+<TITLE> M2M Web Server</TITLE>
+<SCRIPT language=JavaScript src="../utils.js"></SCRIPT>
+<SCRIPT language=JavaScript src=spec.js></SCRIPT>
+<link rel="stylesheet" href="../style/normal_ws.css" type="text/css">
+<SCRIPT language=JavaScript>
+
+
+addCfg('uart_baudrate',0x11020100,'15');
+addCfg('uart_bits',0x11050100,'3');
+addCfg('uart_parity',0x11040100,'0');
+addCfg('uart_stop',0x11030100,'0');
+addCfg('uart_fc',0x11060100,'0');
+addCfg('RMIP',0x01080300,'0.0.0.0');
+addCfg('RMPORT',0x01090100,'80');
+addCfg('autoframe_mode',0x11070200,'disable');
+addCfg('AutoFrame_Time',0x11080100,'500');
+addCfg('AutoFrame_Length',0x11090100,'512');
+addCfg('net_mode',0x110c0200,'server');
+addCfg('net_protocol',0x110b0200,'TCP');
+addCfg('net_port',0x110d0100,'8899');
+addCfg('net_ip',0x110e0200,'10.10.100.100');
+addCfg('tcp_ms',0x11100100,'32');
+addCfg('tcp_to',0x110f0100,'0');
+addCfg('m2m_id',0x120b0200,'1111');
+addCfg('m2m_id_first',0x120c0200,'on');
+addCfg('m2m_id_every',0x120d0200,'off');
+addCfg('app_regen',0x122b0200,'off');
+addCfg('m2m_udlx',0x120e0200,'off');
+addCfg('phy_en',0x11210200,'off');
+addCfg('phy_mode',0x11200200,'disable');
+addCfg('m2m_aabr',0x12100200,'on');
+addCfg('tcp_pass',0x12030100,'0');
+addCfg('netb_mode',0x11110100,'0');
+addCfg('netb_port',0x11120100,'18899');
+addCfg('netb_ip',0x11130200,'10.10.100.100');
+addCfg('tcpb_to',0x11140100,'0');
+addCfg('upnp_en',0x12260200,'0');
+addCfg('upnp_int_port',0x12250200,'80');
+addCfg('upnp_ext_port',0x12240200,'51968');
+addCfg('upnp_time',0x12270200,'300');
+addCfg('ip_backup_b',0x122f0200,'off');
+addCfg('ip_backup_a',0x122e0200,'off');
+addCfg('hd_ver',0x12220200,'A');
+
+
+
+function NetCheckValue()
+{
+	var p= document.form_net_setting.net_port.value ;
+
+	var to= document.form_net_setting.tcp_to.value ;
+	
+	var ms= document.form_net_setting.tcp_ms.value ;
+
+	var ad= document.form_net_setting.net_ip;
+	
+	var mode= document.form_net_setting.net_mode.options.selectedIndex ;
+	
+	var prot= document.form_net_setting.net_protocol.options.selectedIndex ;
+	
+	var pb= document.form_net_setting.netb_port.value ;
+	var tob= document.form_net_setting.tcpb_to.value ;	
+	var adb= document.form_net_setting.netb_ip;	
+	if (pb== "")
+	{
+		alert('Please input the portb value!');
+		document.form_net_setting.net_port.focus();
+		document.form_net_setting.net_port.select();
+		return false;	
+	}
+	if (!((pb>0)&&(pb<=65535)))
+	{
+		alert('The portb value shall be: > 0 and <= 65535');
+		document.form_net_setting.net_port.focus();
+		document.form_net_setting.net_port.select();
+		return false;
+	} 
+	if (!((tob>=0)&&(tob<=600)))
+	{			
+		alert('The TCPB Timeout shall be: > 0 and <= 600');
+		document.form_net_setting.tcp_to.focus();
+		document.form_net_setting.tcp_to.select();
+		return false;
+	}
+    if(prot==1)
+	{  
+		if (p== "")
+		  {
+			alert('Please input the port value!');
+			document.form_net_setting.net_port.focus();
+			document.form_net_setting.net_port.select();
+			return false;	
+		   }
+		
+			p= 1*p;
+	   if (!((p>0)&&(p<=65535)))
+	     {
+			alert('The port value shall be: > 0 and <= 65535');
+			document.form_net_setting.net_port.focus();
+			document.form_net_setting.net_port.select();
+			return false;
+	     } 
+		/*
+	   if (!verifyIP2(ad,"IP Address")) 
+		 {
+			ad.focus();
+			ad.select();
+			return false;
+		  }
+		 */
+			return true;
+	
+	
+	}
+	else 
+	{ 
+				if (p== "")
+				{		
+					alert('Please input the port value!');
+					document.form_net_setting.net_port.focus();
+					document.form_net_setting.net_port.select();
+					return false;	
+				}
+	
+				p= 1*p;
+				if (!((p>0)&&(p<=65535)))
+				{		
+					alert('The port value shall be: > 0 and <= 65535');
+					document.form_net_setting.net_port.focus();
+					document.form_net_setting.net_port.select();
+					return false;
+				} 
+				to= 1*to;
+				if (!((to>=0)&&(to<=600)))
+				{			
+					alert('The TCP Timeout shall be: > 0 and <= 600');
+					document.form_net_setting.tcp_to.focus();
+					document.form_net_setting.tcp_to.select();
+					return false;
+				} 
+				if(mode==0)
+				{	
+					ms= 1*ms;
+					if (!((ms>=1)&&(ms<=32)))
+					{
+						alert('The MAX TCP Number shall be: 1~32');
+						document.form_net_setting.tcp_ms.focus();
+						document.form_net_setting.tcp_ms.select();
+						return  false;
+					} 
+					else
+						return true;
+			
+				}
+			return true;
+	}
+
+}
+
+
+ function initvalue_1()
+ {	
+	var Vubaud=getCfg("uart_baudrate");
+	var Vubits=getCfg("uart_bits");
+	var Vuparity=getCfg("uart_parity");
+	var Vustop=getCfg("uart_stop");
+	var Vufc=getCfg("uart_fc");
+ 	var V485=getCfg("m2m_udlx");
+	var Vaabr=getCfg("m2m_aabr");
+	if((Vubaud>=0)&&(Vubaud<=19))
+		document.form_uart_setting.uart_baudrate.options.selectedIndex = Vubaud-6;
+	else
+		document.form_uart_setting.uart_baudrate.options.selectedIndex = 0;
+	
+	
+/*
+	if(Vubits=="1")
+	document.form_uart_setting.uart_bits.options.selectedIndex = 1;
+	else if(Vubits=="2")
+	document.form_uart_setting.uart_bits.options.selectedIndex = 2;
+	else if(Vubits=="3")
+	document.form_uart_setting.uart_bits.options.selectedIndex = 3;
+	else
+	document.form_uart_setting.uart_bits.options.selectedIndex = 0;
+*/	
+    if((Vubits>=0)&&(Vubits<=3))
+	document.form_uart_setting.uart_bits.options.selectedIndex = Vubits;
+	else
+	document.form_uart_setting.uart_bits.options.selectedIndex = 0;
+	
+	/*
+	if(Vuparity=="1")
+	document.form_uart_setting.uart_parity.options.selectedIndex = 1;
+	else if(Vuparity=="2")
+	document.form_uart_setting.uart_parity.options.selectedIndex = 2;
+	else if(Vuparity=="3")
+	document.form_uart_setting.uart_parity.options.selectedIndex = 3;
+	else if(Vuparity=="4")
+	document.form_uart_setting.uart_parity.options.selectedIndex = 4;
+	else
+	document.form_uart_setting.uart_parity.options.selectedIndex = 0;
+	*/
+	if((Vuparity>=0)&&(Vuparity<=4))
+	document.form_uart_setting.uart_parity.options.selectedIndex = Vuparity;
+	else
+	document.form_uart_setting.uart_parity.options.selectedIndex = 0;
+	
+	if(Vustop=="1")
+	document.form_uart_setting.uart_stop.options.selectedIndex = 1;
+	else
+	document.form_uart_setting.uart_stop.options.selectedIndex = 0;
+	
+	
+	if(Vufc=="1")
+	document.form_uart_setting.uart_fc.options.selectedIndex = 1;
+	else if(Vufc=="2")
+	document.form_uart_setting.uart_fc.options.selectedIndex = 2;
+	else
+	document.form_uart_setting.uart_fc.options.selectedIndex = 0;
+	
+	if(V485=="on")
+	document.form_uart_setting.m2m_udlx.options.selectedIndex = 1;
+	else
+	document.form_uart_setting.m2m_udlx.options.selectedIndex = 0;	
+	if(Vaabr=="on")
+	document.form_uart_setting.m2m_aabr.options.selectedIndex = 1;
+	else
+	document.form_uart_setting.m2m_aabr.options.selectedIndex = 0;	
+ }
+ function AutoframeModeOnChange()
+ {	 
+   if(document.form_autoframe_setting.autoframe_mode.options.selectedIndex==1)
+      {
+	   document.getElementById("AutoFrame_Time_id").style.visibility = "visible";
+	   document.getElementById("AutoFrame_Time_id").style.display = "";
+	   document.getElementById("AutoFrame_Length_id").style.visibility = "visible";
+	   document.getElementById("AutoFrame_Length_id").style.display = "";
+	  }
+	else
+	   {
+	    document.getElementById("AutoFrame_Time_id").style.visibility = "hidden";
+	    document.getElementById("AutoFrame_Time_id").style.display = "none";
+		document.getElementById("AutoFrame_Length_id").style.visibility = "hidden";
+	    document.getElementById("AutoFrame_Length_id").style.display = "none";
+	   
+	   
+	   }
+ 
+ 
+ }
+ function AutoframeEphyOnChange()
+ {	 
+   if(document.form_ephy_setting.phy_en.options.selectedIndex==1)
+      {
+	   document.getElementById("AutoFrame_phy_id").style.visibility = "visible";
+	   document.getElementById("AutoFrame_phy_id").style.display = "";
+	  }
+	else
+	   {
+	    document.getElementById("AutoFrame_phy_id").style.visibility = "hidden";
+	    document.getElementById("AutoFrame_phy_id").style.display = "none";	   
+	   } 
+ }
+ function netModeOnChange()
+{
+	var idx= document.form_net_setting.net_mode.options.selectedIndex ;
+	var idx2= document.form_net_setting.net_protocol.options.selectedIndex ;
+	var NetIPClient = getCfg("net_ip");
+	
+	idx= 1*idx;
+	idx2= 1*idx2;
+
+	 if (idx2== 1)		//net_protocol=UDP
+	{
+		document.form_net_setting.net_ip.value= NetIPClient;
+		document.form_net_setting.net_mode.disabled= false;
+		document.form_net_setting.net_ip.disabled= false;
+		document.form_net_setting.tcp_ms.disabled= true;
+		document.getElementById("tcp_maxsock").style.visibility = "visible";
+		document.getElementById("tcp_timeout").style.visibility = "hidden";
+		document.getElementById("tcp_timeout").style.display = "none";
+		document.getElementById("tcppass_id").style.visibility = "hidden";
+		document.getElementById("tcppass_id").style.display = "none";
+	}
+	 else			//net_mode= server and net_protocol=TCP
+	{   if (idx== 0)
+		{
+		document.form_net_setting.net_ip.disabled= true;
+		document.form_net_setting.net_mode.disabled= false;
+		document.form_net_setting.tcp_ms.disabled= false;
+		document.getElementById("tcp_maxsock").style.visibility = "visible";
+		document.getElementById("tcp_timeout").style.visibility = "visible";
+		document.getElementById("tcp_timeout").style.display = "";
+		document.getElementById("tcppass_id").style.visibility = "visible";
+		document.getElementById("tcppass_id").style.display = "";
+		}
+		
+	
+	   else
+	   {
+		document.form_net_setting.net_ip.value= NetIPClient;
+		document.form_net_setting.net_ip.disabled= false;
+		document.form_net_setting.net_mode.disabled= false;
+		document.form_net_setting.tcp_ms.disabled= true;
+		document.getElementById("tcp_maxsock").style.visibility = "visible";
+		document.getElementById("tcp_timeout").style.visibility = "visible";
+		document.getElementById("tcp_timeout").style.display = "";		
+		document.getElementById("tcppass_id").style.visibility = "hidden";
+		document.getElementById("tcppass_id").style.display = "none";		
+	   }
+   }
+}
+
+
+ function initvalue_3()
+ {	 
+ 
+    if(getCfg("net_mode")=="client")
+	document.form_net_setting.net_mode.options.selectedIndex=1 ;
+	else
+	document.form_net_setting.net_mode.options.selectedIndex=0 ;
+	if(getCfg("net_protocol")=="UDP")
+	document.form_net_setting.net_protocol.options.selectedIndex=1 ;
+	else
+	document.form_net_setting.net_protocol.options.selectedIndex=0 ;
+	netModeOnChange();
+ 
+ 
+ }
+
+ 
+function Vapply2()
+{
+ var Vafmode=document.form_autoframe_setting.autoframe_mode.options.selectedIndex;
+ var Vaftime=document.form_autoframe_setting.AutoFrame_Time.value;
+ var Vaflength=document.form_autoframe_setting.AutoFrame_Length.value;
+
+	if(Vafmode==1)
+	{
+		if(!((Vaftime>=100)&&(Vaftime<=10000)))
+		{
+			document.form_autoframe_setting.AutoFrame_Time.focus();
+			document.form_autoframe_setting.AutoFrame_Time.select();
+			alert("please input number 100-10000 !");
+			return false;
+	
+	    }
+		else if(!((Vaflength>=16)&&(Vaflength<=4096)))
+		{
+		
+		   document.form_autoframe_setting.AutoFrame_Length.focus();
+		   document.form_autoframe_setting.AutoFrame_Length.select();
+		   alert("please input number 16-4096 !");
+		   return false;
+		
+		}
+		else
+		
+		return true;
+	}
+	else
+	
+	return true;
+
+}
+function Vapply4()
+{
+ 	var Vregen=document.form_id_setting.app_regen.options.selectedIndex;
+	var Vregtcp=document.form_id_setting.app_regtcp.options.selectedIndex;
+ 	var Vid=document.form_id_setting.m2m_id.value
+	if(Vregtcp == 0)
+	{
+		document.form_id_setting.m2m_id_first.value="on";
+		document.form_id_setting.m2m_id_every.value="off";
+	}
+	if(Vregtcp == 1)
+	{
+		document.form_id_setting.m2m_id_first.value="off";
+		document.form_id_setting.m2m_id_every.value="on";
+	}
+	if(!((Vid>=0)&&(Vid<=65535)))
+	{
+		document.form_id_setting.m2m_id.focus();
+		document.form_id_setting.m2m_id.select();
+		alert("please input number 0-65535 !");
+		return false;	
+	}
+	else		
+	return true
+
+}
+ <!--**-->
+function init(){
+ /*var slanV="en";
+		init_logo();
+		if(slanV=="zhcn")
+			setLanguageCN_2();
+		else if (slanV=="en")
+			setLanguageEN_2();
+		else
+			setLanguageCN_2();*/
+
+	var Vhd_ver=getCfg("hd_ver");
+	if(Vhd_ver =='D' ){
+	   document.getElementById("ip_backup_a_id_all").style.visibility = "visible";
+	   document.getElementById("ip_backup_a_id_all").style.display = "";
+	   document.getElementById("ip_backup_b_id_all").style.visibility = "visible";
+	   document.getElementById("ip_backup_b_id_all").style.display = "";
+	}
+	else{
+		var obj=document.getElementById('uart_fc_id'); 
+		obj.options.remove(2); 	
+		document.getElementById("ip_backup_a_id_all").style.visibility = "hidden";
+	    document.getElementById("ip_backup_a_id_all").style.display = "none";
+	    document.getElementById("ip_backup_b_id_all").style.visibility = "hidden";
+	    document.getElementById("ip_backup_b_id_all").style.display = "none";    
+	}
+	
+	init_1();
+	init_2();
+	init_3();
+	init_4();
+	init_5();
+
+}
+
+<!--1**-->
+function init_1(){
+	var f=document.form_uart_setting;
+	    cfg2Form(f);
+		initvalue_1();
+		
+	
+}
+function Cancel_1(){
+	init_1();
+}
+function Apply_1() {
+	f=document.form_uart_setting;
+
+	form2Cfg(f);
+	subForm(f,'do_cmd.html',' Application Setting',cPage);
+}
+<!--2**-->
+function init_2(){
+	var f=document.form_autoframe_setting;
+	var Vauto_mdoe=getCfg("autoframe_mode");
+	    cfg2Form(f);
+		if(Vauto_mdoe=="enable")
+		document.form_autoframe_setting.autoframe_mode.options.selectedIndex=1;
+		else
+		document.form_autoframe_setting.autoframe_mode.options.selectedIndex=0;
+		
+		AutoframeModeOnChange();
+		
+}
+function init_4(){
+	var f=document.form_id_setting;
+	var vid=getCfg("m2m_id");
+	var vregen=getCfg("app_regen");
+	var vidfirst=getCfg("m2m_id_first");
+	var videvery=getCfg("m2m_id_every");
+	cfg2Form(f);
+	if(((vidfirst=="on")||(vidfirst=="ON")||(vidfirst=="On"))&&((videvery=="off")||(videvery=="OFF")||(videvery=="Off")))
+		document.form_id_setting.app_regtcp.options.selectedIndex=0;
+	else if(((vidfirst=="off")||(vidfirst=="OFF")||(vidfirst=="Off"))&&((videvery=="on")||(videvery=="ON")||(videvery=="On")))
+		document.form_id_setting.app_regtcp.options.selectedIndex=1;
+	if((vregen=="ID")||(vregen=="Id")||(vregen=="id"))	
+		document.form_id_setting.app_regen.options.selectedIndex=1;
+	else if((vregen=="MAC")||(vregen=="Mac")||(vregen=="mac"))	
+		document.form_id_setting.app_regen.options.selectedIndex=2;
+	else if((vregen=="off")||(vregen=="OFF")||(vregen=="Off"))	
+		document.form_id_setting.app_regen.options.selectedIndex=0;
+		
+}
+function Cancel_2() {
+	init_2();
+}
+function Cancel_4() {
+	init_4();
+}
+function Apply_2() {
+var f=document.form_autoframe_setting;
+	if(Vapply2()==false)
+			return;
+	form2Cfg(f);
+	subForm(f,'do_cmd.html',' Application Setting',cPage);
+}
+function Apply_4() {
+var f=document.form_id_setting;
+	if(Vapply4()==false)
+			return;
+	form2Cfg(f);
+	subForm(f,'do_cmd.html',' Application Setting',cPage);
+}
+<!--3**-->
+function init_3(){
+	var f=document.form_net_setting;
+	    cfg2Form(f);
+		initvalue_3();
+		
+}
+function Cancel_3() {
+	init_3();
+}
+function Apply_3() {
+var	f=document.form_net_setting;
+
+    if(!NetCheckValue())
+	{		
+		return;		
+	}
+	form2Cfg(f);
+	subForm(f,'do_cmd.html',' Application Setting',cPage);
+}
+ function UpnpOnChange(){	 
+   if(document.form_upnp_setting.upnp_en.options.selectedIndex==1){
+	   document.getElementById("Upnp_Extport_id").style.visibility = "visible";
+	   document.getElementById("Upnp_Extport_id").style.display = "";
+	   document.getElementById("Upnp_Intport_id").style.visibility = "visible";
+	   document.getElementById("Upnp_Intport_id").style.display = "";
+	   document.getElementById("Upnp_time_id").style.visibility = "visible";
+	   document.getElementById("Upnp_time_id").style.display = "";
+	  }
+  else{
+	   document.getElementById("Upnp_Extport_id").style.visibility = "hidden";
+	   document.getElementById("Upnp_Extport_id").style.display = "none";
+	   document.getElementById("Upnp_Intport_id").style.visibility = "hidden";
+	   document.getElementById("Upnp_Intport_id").style.display = "none";
+	   document.getElementById("Upnp_time_id").style.visibility = "hidden";
+	   document.getElementById("Upnp_time_id").style.display = "none";	   	   
+	  } 
+ }
+function init_5(){
+	var f=document.form_upnp_setting;
+	var Vupnp_mdoe=getCfg("upnp_en");
+	    cfg2Form(f);
+		if(Vupnp_mdoe=="1")
+		document.form_upnp_setting.upnp_en.options.selectedIndex=1;
+		else
+		document.form_upnp_setting.upnp_en.options.selectedIndex=0;
+		
+		UpnpOnChange();		
+}
+
+function Cancel_5() {
+	init_5();
+}
+function Vapply5()
+{
+ var upnpmode=document.form_upnp_setting.upnp_en.options.selectedIndex;
+ var extport=document.form_upnp_setting.upnp_ext_port.value;
+ var intport=document.form_upnp_setting.upnp_int_port.value;
+	if(upnpmode==1)
+	{
+		if(!((extport>0)&&(extport<65535))){
+			document.form_upnp_setting.upnp_extport.focus();
+			document.form_upnp_setting.upnp_extport.select();
+			alert("Enter the port number within 65535!");
+			return false;	
+	    }
+		else if(!((intport>0)&&(intport<65535))){
+			document.form_upnp_setting.upnp_intport.focus();
+			document.form_upnp_setting.upnp_intport.select();
+		   alert("Enter the port number within 65535!");
+		   return false;		
+		}
+		else		
+			return true;
+	}
+	else	
+		return true;
+}
+function Apply_5() {
+var f=document.form_upnp_setting;
+	if(Vapply5()==false)
+			return;
+	form2Cfg(f);
+	subForm(f,'do_cmd.html',' Application Setting',cPage);
+}
+</SCRIPT>
+</HEAD>
+<BODY leftmargin=0 topmargin=0 onLoad="init()">
+<script>pageHead();</script>
+<h1 id="appTitle">Wifi-Uart Setting </h1>
+<p id="appIntroduction"> You could configure the Uart parameters and network parameters of the wifi-uart application. </p>
+<hr />
+
+<form method=post name=form_uart_setting >
+<table width="540" border="1" cellspacing="1" cellpadding="3" bordercolor="#9BABBD">
+  <tr> 
+    <td class="title" colspan="2" id="uart_setting_id">Uart Setting</td>
+  </tr>
+  <tr> 
+    <td class="head" width="40%" id="para_uart_baudrate_id">Baudrate</td>
+    <td>
+      <select name="uart_baudrate" id="uart_baudrate_id" size="1">
+ 	  <!--
+       <option value="0">50</option>
+        <option value="1">75</option>
+        <option value="2">110</option>
+        <option value="3">134</option>
+        <option value="4">150</option>
+        <option value="5">200</option>-->
+        <option value="6">300</option>
+        <option value="7">600</option>
+		<option value="8">1200</option>
+        <option value="9">1800</option>
+        <option value="10">2400</option>
+        <option value="11">4800</option>
+        <option value="12">9600</option>
+        <option value="13">19200</option>
+        <option value="14">38400</option>
+        <option value="15">57600</option>
+        <option value="16">115200</option>
+        <option value="17">230400</option>
+        <option value="18">345600</option>
+        <option value="19">460800</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" id="para_uart_bits_id">Data Bits</td>
+    <td>
+      <select name="uart_bits" id="uart_bits_id" size="1">
+        <option value="0">5</option>
+        <option value="1">6</option>
+        <option value="2">7</option>
+        <option value="3">8</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" id="para_uart_parity_id">Parity</td>
+    <td>
+      <select name="uart_parity" id="uart_parity_id" size="1">
+        <option value="0">None</option>
+        <option value="1">Odd</option>
+        <option value="2">Even</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" id="para_uart_stop_id">Stop</td>
+    <td>
+      <select name="uart_stop" id="uart_stop_id" size="1">
+        <option value="0">1</option>
+        <option value="1">2</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" id="para_uart_fc_id">Flow control</td>
+    <td>
+      <select name="uart_fc" id="uart_fc_id" size="1">
+        <option value="0">Disable</option>
+        <option value="1">HW Ctrl Flow</option>
+		<option value="2">SW Ctrl Flow</option>
+      </select>
+    </td>
+  </tr>
+   <tr> 
+    <td class="head" id="para_uart_485_id">485 mode</td>
+    <td>
+      <select name="m2m_udlx" id="m2m_udlx_id" size="1">
+        <option value="off">Disable</option>
+        <option value="on">Enable</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" id="para_uart_aabr_id">Baudrate adaptive (RFC2117)</td>
+    <td>
+      <select name="m2m_aabr" id="m2m_udlx_id" size="1">
+        <option value="off">Disable</option>
+        <option value="on">Enable</option>
+      </select>
+    </td>
+  </tr>
+</table> 
+<p/>
+<center>
+<input type=button style="{width:120px;}" value="Apply" onClick="Apply_1()" id="app_Apply1_lan_id">&nbsp;&nbsp;
+<input type=button style="{width:120px;}" value="Cancel" onClick="Cancel_1()" id="app_Cancel1_lan_id">
+</center>
+<br />
+
+
+</form> 
+
+<form method=post name=form_autoframe_setting >
+<table width="540" border="1" cellspacing="1" cellpadding="3" bordercolor="#9BABBD">
+  <tr> 
+    <td class="title" colspan="3" id="app_UARTAFSetting_lan_id">UART AutoFrame Setting</td>
+  </tr>
+  <tr> 
+    <td class="head"  colspan="2" width="50%" id="app_UARTAF_lan_id">UART AutoFrame </td>
+    <td>
+      <select name="autoframe_mode"  size="1" onChange="AutoframeModeOnChange()">
+        <option value="disable">Disable</option>
+        <option value="enable">Enable</option>
+      </select>
+    </td>
+  </tr>
+  <tr id="AutoFrame_Time_id" style="visibility:hidden;display:none;">
+	<td class="head" width="50%" colspan="2" id="app_AFTime_lan_id">AutoFrame Time(100~10000)(ms)</td>
+	<td><input name="AutoFrame_Time" type="text"></td>
+  </tr>
+  <tr id="AutoFrame_Length_id" style="visibility:hidden;display:none;">
+	<td class="head" colspan="2" id="app_AFLength_lan_id">AutoFrame Length(16~4096)</td>
+	<td><input name="AutoFrame_Length" type="text"></td>
+  </tr>  
+</table>
+<p/>
+<center>
+<input type=button style="{width:120px;}" value="Apply" onClick="Apply_2()" id="app_Apply2_lan_id">&nbsp;&nbsp;
+<input type=button style="{width:120px;}" value="Cancel" onClick="Cancel_2()" id="app_Cancel2_lan_id">
+</center>
+</form>
+<form method=post name=form_id_setting >
+<table width="540" border="1" cellspacing="1" cellpadding="3" bordercolor="#9BABBD">
+  <tr> 
+    <td class="title" colspan="3" id="app_idSetting_id">Registered Package Setting</td>
+  </tr>
+   <tr id="regen_id" >
+	<td class="head" colspan="2" id="app_regen_id">Registered Package Type</td>
+	<td>     
+		<select name="app_regen"  size="1" >
+        <option value="off">off</option>
+        <option value="id">ID</option>
+		<option value="mac">MAC</option>
+        </select></td>
+  </tr> 
+   <tr id="regtcp_id" >
+	<td class="head" colspan="2" id="app_regtcp_id">Upload Manner</td>
+	<td>     
+		<select name="app_regtcp"  size="1" >
+        <option value="first">first</option>
+        <option value="every">every</option>
+        </select></td>
+  </tr> 
+  <input type="hidden" name="m2m_id_first">
+  <input type="hidden" name="m2m_id_every">
+  <tr id="id_num_id" >
+	<td class="head" colspan="2" id="app_id_num_id">Device ID£¨0~65535£©</td>
+	<td><input name="m2m_id" type="text"></td>
+  </tr>
+</table>
+<p/>
+<p/>Note: <span class="head">With "Device ID" opened, the module send ID to the server, this function is used to identify the equipment.</span>
+<p/>Upload Manner: <span class="head">first£ºModule send registration packet when connection established£»every£ºSend registration packet every time when module send data</span>
+<p/>
+<center>
+<input type=button style="{width:120px;}" value="Apply" onClick="Apply_4()" id="app_Apply4_lan_id">&nbsp;&nbsp;
+<input type=button style="{width:120px;}" value="Cancel" onClick="Cancel_4()" id="app_Cancel4_lan_id">
+</center>
+</form>
+<br />
+
+<form method=post name=form_net_setting >
+<table width="540" border="1" cellspacing="1" cellpadding="3" bordercolor="#9BABBD">
+  <tr> 
+    <td class="title" colspan="2" id="net_setting_id">Network A Setting</td>
+  </tr>
+  <tr> 
+    <td class="head" width="40%" id="para_net_mode_id">Mode</td>
+    <td>
+      <select name="net_mode" id="net_mode_id" size="1" onchange=netModeOnChange()>
+        <option value="server">Server</option>
+        <option value="client">Client</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" id="para_net_protocol_id">Protocol</td>
+    <td>
+      <select name="net_protocol" id="net_protocol_id" size="1" onchange=netModeOnChange()>
+        <option value="TCP">TCP</option>
+        <option value="UDP">UDP</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" id="para_net_port_id">Port</td>
+		<td><input name="net_port" maxlength=32 size=32 value="8899"></td>
+  <tr> 
+    <td class="head" id="para_net_ip_id">Server Address</td>
+		<td><input name="net_ip" maxlength=32 size=32 value="10.10.10.100"></td>
+  </tr>
+  <tr id="ip_backup_a_id_all">
+    <td class="head" id="ip_backup_a_id">Backup domain IP address</td>
+    <td>
+      <select name="ip_backup_a"  size="1" >
+        <option value="off">OFF</option>
+        <option value="on">ON</option>
+      </select>
+    </td>
+   </tr>
+  <tr id="tcp_maxsock" style="visibility:visible;display:;"> 
+    <td class="head" id="para_maxsock_id">MAX TCP Num. (1~32)</td>
+		<td><input id="tcp_maxsock_id" name="tcp_ms" maxlength=32 size=32 value="32"></td>
+  </tr>
+  <tr id="tcp_timeout" style="visibility:hidden;display:none;"> 
+    <td class="head" id="para_tcpto_id">TCP Time out (MAX 600 s)</td>
+		<td><input id="tcp_to_id" name="tcp_to" maxlength=32 size=32 value="300"></td>
+  </tr>
+  <tr id="tcppass_id"style="visibility:hidden;display:none;">
+  	<td class="head" id="para_tcppass_id">TCP connection password authentication</td>
+		<td><select size="1" name="tcp_pass" >
+			<option value="0" id="tcppass_disable-lan_id">Disable</option>
+			<option value="1" id="tcppass_en_lan_id">Enable</option>
+			</select>
+		</td>
+  </tr>
+</table> 
+<table width="540" border="1" cellspacing="1" cellpadding="3" bordercolor="#9BABBD">
+  <tr> 
+    <td class="title" colspan="2" id="netb_setting_id">Socket B Setting</td>
+  </tr>
+  <tr> 
+    <td class="head" width="40%" id="para_netb_mode_id">Open the SocketB function</td>
+    <td>
+      <select name="netb_mode" id="netb_mode_id" size="1" >
+        <option value="1">on</option>
+        <option value="0">off</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td class="head" id="para_netb_port_id">Port</td>
+		<td><input name="netb_port" maxlength=32 size=32 value="8899"></td>
+  <tr> 
+    <td class="head" id="para_netb_ip_id">Server Address</td>
+		<td><input name="netb_ip" maxlength=32 size=32 value="10.10.100.100"></td>
+  </tr>
+  <tr id="ip_backup_b_id_all">
+    <td class="head" id="ip_backup_b_id">Backup domain IP address</td>
+    <td>
+      <select name="ip_backup_b"  size="1" >
+        <option value="off">OFF</option>
+        <option value="on">ON</option>
+      </select>
+    </td>
+   </tr>
+  <tr id="tcpb_timeout"> 
+    <td class="head" id="para_tcptob_id">TCPB Time out (MAX 600 s)</td>
+		<td><input id="tcpb_to_id" name="tcpb_to" maxlength=32 size=32 value="300"></td>
+  </tr>
+</table>
+	<p/>
+<center>
+<input type=button style="{width:120px;}" value="Apply" onClick="Apply_3()" id="app_Apply3_lan_id">&nbsp;&nbsp;
+<input type=button style="{width:120px;}" value="Cancel" onClick="Cancel_3()" id="app_Cancel3_lan_id">
+</center>
+</form>
+
+<br />
+
+
+
+<script>pageTail();</script>
+</BODY>
+</HTML>
+
