@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl && \
 
 # Копируем requirements и устанавливаем зависимости
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --default-timeout=120 --retries 5 --no-cache-dir \
+    --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org \
+    -r requirements.txt
 
 # Копируем весь код сервиса
 COPY . .

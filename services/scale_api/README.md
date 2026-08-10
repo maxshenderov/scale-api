@@ -12,14 +12,22 @@ M2M модуль в режиме **Transparent** непрерывно шлёт �
 
 ## Настройки M2M WiFi-модуля
 
-| Параметр | Значение |
-|---|---|
-| IP | 192.168.12.147 |
-| Data Transfer Mode | Transparent (0) |
-| 485 mode | ON |
-| Baudrate | 9600, 8N1 |
-| Network | Server, TCP, Port 8899 |
-| Web-интерфейс | http://192.168.12.147 (admin / NY34As) |
+Эти настройки задаются в самом модуле через веб-интерфейс. Сервис подключается к модулю используя переменные окружения из `.env`:
+
+| Параметр модуля | Значение | Переменная в `.env` |
+|---|---|---|
+| IP | 192.168.12.147 | `SCALE_HOST` |
+| Data Transfer Mode | Transparent (0) | — |
+| 485 mode | ON | — |
+| Baudrate | 9600, 8N1 | — |
+| Network | Server, TCP, Port 8899 | `SCALE_PORT` |
+
+**При смене IP модуля** — поменяй `SCALE_HOST` в `.env` и перезапусти:
+```bash
+docker compose restart
+```
+
+Веб-интерфейс модуля: `http://<SCALE_HOST>` (логин/пароль — см. наклейку на модуле).
 
 ## Запуск
 
