@@ -68,6 +68,28 @@ code { font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size:.8
 <h1>⚖ Scale API</h1>
 <p>HTTP-сервис чтения показаний весов <strong>СКУ I2121</strong> (индикатор СКИ-12 / Yaohua) через M2M WiFi-UART модуль.</p>
 
+<h2>Развертывание</h2>
+
+<div class="tabs">
+  <button class="tab active" onclick="showDeploy('docker')">Docker</button>
+  <button class="tab" onclick="showDeploy('bare')">Python</button>
+</div>
+
+<div id="deploy-docker" class="code-block active"><code>git clone https://github.com/maxshenderov/scale-api.git
+cd scale-api
+cp .env.example .env
+# отредактируй SCALE_HOST в .env если нужно
+docker compose up -d</code></div>
+
+<div id="deploy-bare" class="code-block"><code>git clone https://github.com/maxshenderov/scale-api.git
+cd scale-api
+pip install -r requirements.txt
+# Windows:
+set SCALE_HOST=192.168.12.147
+python app.py
+# Linux/Mac:
+SCALE_HOST=192.168.12.147 python app.py</code></div>
+
 <h2>Endpoints</h2>
 <table class="endpoints">
 <tr><th>Метод</th><th>Путь</th><th>Назначение</th></tr>
@@ -154,9 +176,19 @@ if ($r.ok) { "$($r.value) $($r.unit)" }  # 5.0 kg
 
 <script>
 function showTab(id) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.code-block').forEach(c => c.classList.remove('active'));
-  document.querySelector(`#${id}`).classList.add('active');
+  var tabs = document.querySelectorAll('.tabs:last-of-type .tab');
+  var blocks = document.querySelectorAll('.code-block[id]:not([id^="deploy-"])');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  blocks.forEach(function(c) { c.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+function showDeploy(mode) {
+  var tabs = document.querySelectorAll('.tabs:first-of-type .tab');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('deploy-docker').classList.remove('active');
+  document.getElementById('deploy-bare').classList.remove('active');
+  document.getElementById('deploy-' + mode).classList.add('active');
   event.target.classList.add('active');
 }
 </script>
